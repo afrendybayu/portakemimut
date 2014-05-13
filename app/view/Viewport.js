@@ -1,11 +1,11 @@
 Ext.define('rcm.view.Viewport', {
     extend: 'Ext.container.Viewport',
     requires:[
-        'Ext.layout.container.Fit',
-        'rcm.view.Main',
+        'Ext.layout.container.Border',
         'rcm.view.nav.Tanggalan',
         'rcm.view.nav.Navigation',
         'rcm.view.nav.AppHeader',
+        'rcm.view.Content'
     ],
 
 	/*
@@ -21,13 +21,14 @@ Ext.define('rcm.view.Viewport', {
         xtype: 'appHeader',
     }, {
 		region: 'center',
-		//xtype: 'content'
+		xtype: 'content'
 	//*
 	}, {
 	
 		region: 'west',
 		title: 'South Sumatera Extension',
-		icon: 'modul/icons/bullets.png',
+		//icon: 'modul/icons/bullets.png',
+		iconCls: 'bullets',
 		width: 210,
 		minWidth:210,
 		//collapsed : true,

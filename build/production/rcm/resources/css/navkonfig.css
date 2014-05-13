@@ -16,3 +16,24 @@
     background-color: #B0FFC5;
     color:green;
 }
+.Dashboard {
+    background-image: url('./images/Dashboard.png');
+}
+.bullets {
+    background-image: url('./images/bullets.png');
+}
+.Konfigurasi {
+	background-image: url('./images/config.png');
+}
+.sap {
+	background-image: url('./images/report_check.png');
+}
+.Reliability {
+	background-image: url('./images/report.png');
+}
+.RunnningHour {
+	background-image: url('./images/edit1.png');
+}
+.icon-grid  {
+	background-image: url('./images/application_go.png');
+}

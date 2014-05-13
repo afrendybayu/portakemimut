@@ -8,7 +8,8 @@ Ext.Loader.addClassPathMappings({
   "Ext": "ext/src",
   "Ext.Msg": "ext/src/window/MessageBox.js",
   "Ext.rtl.EventObjectImpl": "ext/src/rtl/EventObject.js",
-  "rcm": "app"
+  "rcm": "app",
+  "rcm.view.Util": "app/Util.js"
 });
 Ext.ClassManager.addNameAlternateMappings({
   "Ext.AbstractComponent": [],
@@ -831,8 +832,12 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.controller.Main": [],
   "rcm.controller.Nav": [],
   "rcm.model.Hirarki": [],
+  "rcm.model.RunningHour": [],
   "rcm.store.Hirarki": [],
+  "rcm.store.RunningHour": [],
+  "rcm.view.Content": [],
   "rcm.view.Main": [],
+  "rcm.view.Util": [],
   "rcm.view.Viewport": [],
   "rcm.view.nav.AppHeader": [],
   "rcm.view.nav.Navigation": [],
@@ -1827,10 +1832,16 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.controller.Main": [],
   "rcm.controller.Nav": [],
   "rcm.model.Hirarki": [],
+  "rcm.model.RunningHour": [],
   "rcm.store.Hirarki": [],
+  "rcm.store.RunningHour": [],
+  "rcm.view.Content": [
+    "widget.content"
+  ],
   "rcm.view.Main": [
     "widget.app-main"
   ],
+  "rcm.view.Util": [],
   "rcm.view.Viewport": [],
   "rcm.view.nav.AppHeader": [
     "widget.appHeader"

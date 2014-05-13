@@ -14,9 +14,9 @@ Ext.define('rcm.model.Hirarki', {
         //{ name: 'expanded' },
         //{ name: 'leaf'},
         // if we are using local storage, we need to persist the index field so the ordering of tree nodes will be preserved
-    ],
+    ]
     
-
+	/*
     proxy: {
 		type: 'ajax',
 		api: {
@@ -28,5 +28,6 @@ Ext.define('rcm.model.Hirarki', {
             messageProperty: 'message'
         }
     }
+    //*/
 });
 

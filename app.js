@@ -18,12 +18,6 @@ Ext.application({
 
     extend: 'rcm.Application',
     
-    autoCreateViewport: true,
-    
-    /*
-    controllers: [
-		'Main'
-		//'Nav'
-	],
-    //*/
+    autoCreateViewport: true
+
 });

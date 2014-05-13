@@ -10,7 +10,8 @@ Ext.define('rcm.controller.Main', {
     ],
 
     stores: [
-		'Hirarki'
+		'Hirarki',
+		'RunningHour'
     ],
     
     models: [

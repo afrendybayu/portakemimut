@@ -12,5 +12,15 @@ Ext.define('rcm.store.Hirarki', {
         //name: 'All Lists'
     }
     //*/
+
+    proxy: {
+		type: 'ajax',
+		url: 'php/hirarki/read.php',
+        reader: {
+            type: 'json',
+            root: 'hirarki',
+            messageProperty: 'message'
+        }
+    }
 });
 
