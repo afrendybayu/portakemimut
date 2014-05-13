@@ -4,6 +4,7 @@ Ext.define('rcm.view.Content', {
 	
 	require: [
 		'Ext.panel.Panel',
+		'rcm.view.dataentry.ExcelGrid'
 		//'Extensible.calendar.data.MemoryEventStore',
 		//'Extensible.calendar.CalendarPanel',
 		//'Extensible.example.calendar.data.Events'
@@ -38,8 +39,8 @@ Ext.define('rcm.view.Content', {
 		/*
 		},{
 			id: 'tu_pr',
+			iconCls: 'perform',
 			title: 'Prestasi Mesin',
-			//icon: 'modul/icons/perform.png',
 		//*/
 		},{
 			id: 'tu_rh',
@@ -49,7 +50,7 @@ Ext.define('rcm.view.Content', {
 			xtype: 'tabpanel',
 			items: [{
 				title: 'Data Running Hour',
-				//xtype: 'excelgrid',
+				xtype: 'excelgrid',
 				id: 'app-runninghour',
 				iconCls: 'icon-grid',
 			},{
@@ -142,17 +143,17 @@ Ext.define('rcm.view.Content', {
 			this.setActiveTab(this.items.length-2);
 		}
 		
-		console.log("tab: "+tab.title+", id: "+this.getActiveTab().getId()+" view/Content.js");
-		console.log("tab: "+rcmSettings.tab);
+		//console.log("tab: "+tab.title+", id: "+this.getActiveTab().getId()+" view/Content.js");
+		//console.log("tab: "+rcmSettings.tab);
 	},
 	
 	TambahClick: function()	{
-		console.log("tambah: ");
+		//console.log("tambah: ");
 		rcmSettings.sas = this.getEl();//.getActiveTab();
-		console.log("tab: "+rcmSettings.sas);
+		//console.log("tab: "+rcmSettings.sas);
 	},
 	
 	KurangClick: function()	{
-		console.log("Kurang: ");
+		//console.log("Kurang: ");
 	}
 })

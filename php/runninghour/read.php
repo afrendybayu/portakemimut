@@ -31,6 +31,21 @@ try {
 	//echo "tbl: {$sql["tbl"][0]}, bts: {$sql["bts"][0]}, tbl: {$sql["tbl"][1]}, bts: {$sql["bts"][1]}<br/>";
 	//echo "tbl: {$sql["tbl"][0]}, bts0: {$sql["bts"][0]}, bts1: {$sql["bts"][1]}<br/>";
 	
+	$dum = array();
+	for ($tgl=0; $tgl<14; $tgl++)	{
+		//$dum["k".date("ymd", mktime(0, 0, 0, $m, $t-13+$tgl, $y))] = '00:00';
+		$dum[$tgl] = "k".date("ymd", mktime(0, 0, 0, $m, $t-13+$tgl, $y));
+	}
+	//print_r($dum);
+	//echo "<br/>";
+	/*
+	while ($fruit_name = current($dum)) {
+		//if ($fruit_name == 'apple') {
+			echo key($dum).'<br />';
+		//}
+		next($dum);
+	}
+	//*/
 	
 	//$s =  "select equip.id, equip.nama, equip.tag, equip.cat, hirarki.nama as hlok from equip ".
 	//		"left join hirarki on equip.lok = hirarki.id where equip.strh = '$cat' order by hlok, nama asc";
@@ -57,6 +72,12 @@ try {
 		$fas[$row['id']]['eq'] = $row['nama'];//." ".$row['tag'];
 		$fas[$row['id']]['cat'] = $row['cat'];
 		$fas[$row['id']]['Lokasi'] = $row['hlok'];
+		//*
+		foreach ($dum as $dd)	{
+			$fas[$row['id']][$dd] = "-";
+		}
+		//*/
+
 	}
 	//print_r($fas);
 

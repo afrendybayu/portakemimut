@@ -8,8 +8,7 @@ Ext.Loader.addClassPathMappings({
   "Ext": "ext/src",
   "Ext.Msg": "ext/src/window/MessageBox.js",
   "Ext.rtl.EventObjectImpl": "ext/src/rtl/EventObject.js",
-  "rcm": "app",
-  "rcm.view.Util": "app/Util.js"
+  "rcm": "app"
 });
 Ext.ClassManager.addNameAlternateMappings({
   "Ext.AbstractComponent": [],
@@ -839,6 +838,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.Main": [],
   "rcm.view.Util": [],
   "rcm.view.Viewport": [],
+  "rcm.view.dataentry.ExcelGrid": [],
   "rcm.view.nav.AppHeader": [],
   "rcm.view.nav.Navigation": [],
   "rcm.view.nav.Tanggalan": []
@@ -1843,6 +1843,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.Util": [],
   "rcm.view.Viewport": [],
+  "rcm.view.dataentry.ExcelGrid": [
+    "widget.excelgrid"
+  ],
   "rcm.view.nav.AppHeader": [
     "widget.appHeader"
   ],
