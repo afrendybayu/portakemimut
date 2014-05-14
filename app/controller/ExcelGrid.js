@@ -36,7 +36,7 @@ Ext.define('rcm.controller.ExcelGrid', {
     
     updateGrid: function(view, e) {
         //var me=this, tv=e.value; drow=this.getRunningHourStore().getAt(e.rowIdx);
-        alert("muncul dulu");
+        alert("muncul dulu controller");
         //var at=e.row;
         //rcmSettings.asa = this.getRunningHourStore().getAt(e.rowIdx).data;
         //var alertText = ' ';   for (property in e) { alertText += property + ':' + e[property]+'; ';   }
