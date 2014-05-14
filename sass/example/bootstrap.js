@@ -828,6 +828,7 @@ Ext.ClassManager.addNameAlternateMappings({
     "Ext.Window"
   ],
   "rcm.Application": [],
+  "rcm.controller.ExcelGrid": [],
   "rcm.controller.Main": [],
   "rcm.controller.Nav": [],
   "rcm.model.Hirarki": [],
@@ -1829,6 +1830,7 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.window"
   ],
   "rcm.Application": [],
+  "rcm.controller.ExcelGrid": [],
   "rcm.controller.Main": [],
   "rcm.controller.Nav": [],
   "rcm.model.Hirarki": [],

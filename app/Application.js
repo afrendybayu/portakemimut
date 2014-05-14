@@ -11,7 +11,8 @@ Ext.define('rcm.Application', {
 
     controllers: [
         // TODO: add controllers here
-		'Main'
+		//'Main'
+		'ExcelGrid'
     ],
 
     stores: [
