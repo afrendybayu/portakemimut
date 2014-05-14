@@ -14,6 +14,6 @@ Ext.define('rcm.view.nav.AppHeader', {
 			html: document.title,
 			flex: 1
 		}, {
-			html: 'ini untuk LOGIN appHeader.js',
+			html: 'ini untuk LOGIN appHeader.js'
 	}]
 });

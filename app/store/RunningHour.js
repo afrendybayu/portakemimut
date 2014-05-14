@@ -4,6 +4,6 @@ Ext.define('rcm.store.RunningHour', {
     model: 'rcm.model.RunningHour',
     requires: 'rcm.model.RunningHour',
     groupField : 'Lokasi',
-    autoLoad: true, //--> load read.php
+    autoLoad: true //--> load read.php
 	//autoSync: true,
 });

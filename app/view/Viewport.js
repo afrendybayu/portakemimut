@@ -18,7 +18,7 @@ Ext.define('rcm.view.Viewport', {
     items: [{
 	//*
 		region: 'north',
-        xtype: 'appHeader',
+        xtype: 'appHeader'
     }, {
 		region: 'center',
 		xtype: 'content'
@@ -42,12 +42,12 @@ Ext.define('rcm.view.Viewport', {
 			region: 'center',
 			xtype: 'taskNav',
 			align: 'stretch',
-			flex: 1,
+			flex: 1
 		}, {
 			align: 'stretch',
 			region: 'south',
 			xtype: 'tanggalan',
-			height: 200,
+			height: 200
 		}]
 	//*/
     }]

@@ -11,10 +11,10 @@ Ext.define('rcm.view.nav.Tanggalan', {
     initComponent: function() {
 		var me=this;
 		me.items=[{
-				xtype: 'datepicker',
-				id: 'app-nav-picker',
-				cls: 'ext-cal-nav-picker',
-			}];
+			xtype: 'datepicker',
+			id: 'app-nav-picker',
+			cls: 'ext-cal-nav-picker'
+		}];
 		me.listeners= {
 			'select': {
 				fn: function(dp, dt){

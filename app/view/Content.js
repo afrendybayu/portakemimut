@@ -23,7 +23,7 @@ Ext.define('rcm.view.Content', {
 		me.items = [{
 			id: 'tu_ho',
 			title: 'Dashboard Home',
-			iconCls: 'Dashboard',
+			iconCls: 'Dashboard'
 			//icon: 'modul/icons/Dashboard.png',
 			//xtype: 'tHoChart',
 		},{	
@@ -52,7 +52,7 @@ Ext.define('rcm.view.Content', {
 				title: 'Data Running Hour',
 				xtype: 'excelgrid',
 				id: 'app-runninghour',
-				iconCls: 'icon-grid',
+				iconCls: 'icon-grid'
 			},{
 				//layout: 'accordion',
 				align: 'stretch',
@@ -65,7 +65,7 @@ Ext.define('rcm.view.Content', {
 						//xtype: 'daftarGagal',
 						region: 'center',
 						id: 'app-gagal',
-						flex: 1,
+						flex: 1
 					},{
 						collapsible: true,
 						split: true,
@@ -73,7 +73,7 @@ Ext.define('rcm.view.Content', {
 						maxHeight: 400,
 						region: 'south',
 						title: 'Info Detail DownTime',
-						html: 'testing dulu',
+						html: 'testing dulu'
 						//icon: 'modul/icons/more.png',
 				}]
 			/*
@@ -101,7 +101,7 @@ Ext.define('rcm.view.Content', {
 				align: 'stretch',
 				width: 350,
 				minWidth:310,
-				split: true,
+				split: true
 			}, {
 				align: 'stretch',
 				region: 'center',

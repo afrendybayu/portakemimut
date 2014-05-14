@@ -1,8 +1,8 @@
 3.1.7 (Brainy Betty)
-b451b5a3d86706ab423f5e39bf30b1a0a65ccb46
+7a2fed8ea1814a823b9aa2352de047cf848ecf12
 o:Sass::Tree::RootNode
 :@has_childrenT:
-@linei:@template"$Š$image-search-path: '/var/www/sencha/medco/build/production/rcm/resources';
+@linei:@template"sŠ$image-search-path: '/var/www/sencha/medco/build/production/rcm/resources';
 $theme-name:  'ext-theme-classic' !default;
 $include-ext-abstractcomponent: true;
 $include-ext-abstractmanager: true;
@@ -222,11 +222,11 @@ $include-ext-form-field-number: false;
 $include-ext-form-field-picker: false;
 $include-ext-form-field-radio: false;
 $include-ext-form-field-spinner: false;
-$include-ext-form-field-text: false;
+$include-ext-form-field-text: true;
 $include-ext-form-field-textarea: false;
 $include-ext-form-field-time: false;
 $include-ext-form-field-trigger: false;
-$include-ext-form-field-vtypes: false;
+$include-ext-form-field-vtypes: true;
 $include-ext-fx-anim: true;
 $include-ext-fx-animator: true;
 $include-ext-fx-cubicbezier: true;
@@ -308,7 +308,7 @@ $include-ext-layout-component-field-field: true;
 $include-ext-layout-component-field-fieldcontainer: false;
 $include-ext-layout-component-field-htmleditor: false;
 $include-ext-layout-component-field-slider: false;
-$include-ext-layout-component-field-text: false;
+$include-ext-layout-component-field-text: true;
 $include-ext-layout-component-field-textarea: false;
 $include-ext-layout-component-field-trigger: false;
 $include-ext-layout-container-absolute: false;
@@ -702,6 +702,7 @@ $relative-image-path-for-uis: $ext-theme-neutral-resource-path;
 @import '../../../../../ext/packages/ext-theme-neutral/sass/src/window/Window';
 @import '../../../../../ext/packages/ext-theme-neutral/sass/src/form/Labelable';
 @import '../../../../../ext/packages/ext-theme-neutral/sass/src/form/field/Base';
+@import '../../../../../ext/packages/ext-theme-neutral/sass/src/form/field/Text';
 @import '../../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date';
 @import '../../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table';
 @import '../../../../../ext/packages/ext-theme-neutral/sass/src/grid/header/DropZone';
@@ -730,7 +731,7 @@ $relative-image-path-for-uis: $ext-theme-classic-resource-path;
 @import '../../../../../ext/packages/ext-theme-classic/sass/src/grid/plugin/Editing';
 @import '../../../../../ext/packages/ext-theme-classic/sass/src/resizer/Resizer';
 @import '../../../../../ext/packages/ext-theme-classic/sass/src/tab/Panel';
-:@options{ :@children[Øo:Sass::Tree::VariableNode:@guarded0;i:
+:@options{ :@children[Ùo:Sass::Tree::VariableNode:@guarded0;i:
 @expro:Sass::Script::String	:
 @type:string:@value"9/var/www/sencha/medco/build/production/rcm/resources;i;	@;	@;
 [ :
@@ -955,11 +956,11 @@ $relative-image-path-for-uis: $ext-theme-classic-resource-path;
 [ ;""include-ext-form-field-numbero;;0;iÚ;o;;F;iÚ;	@;	@;
 [ ;""include-ext-form-field-pickero;;0;iÛ;o;;F;iÛ;	@;	@;
 [ ;"!include-ext-form-field-radioo;;0;iÜ;o;;F;iÜ;	@;	@;
-[ ;"#include-ext-form-field-spinnero;;0;iÝ;o;;F;iÝ;	@;	@;
+[ ;"#include-ext-form-field-spinnero;;0;iÝ;o;;T;iÝ;	@;	@;
 [ ;" include-ext-form-field-texto;;0;iÞ;o;;F;iÞ;	@;	@;
 [ ;"$include-ext-form-field-textareao;;0;iß;o;;F;iß;	@;	@;
 [ ;" include-ext-form-field-timeo;;0;ià;o;;F;ià;	@;	@;
-[ ;"#include-ext-form-field-triggero;;0;iá;o;;F;iá;	@;	@;
+[ ;"#include-ext-form-field-triggero;;0;iá;o;;T;iá;	@;	@;
 [ ;""include-ext-form-field-vtypeso;;0;iâ;o;;T;iâ;	@;	@;
 [ ;"include-ext-fx-animo;;0;iã;o;;T;iã;	@;	@;
 [ ;"include-ext-fx-animatoro;;0;iä;o;;T;iä;	@;	@;
@@ -1043,7 +1044,7 @@ $relative-image-path-for-uis: $ext-theme-classic-resource-path;
 [ ;"-include-ext-layout-component-field-fieldo;;0;i0;o;;F;i0;	@;	@;
 [ ;"6include-ext-layout-component-field-fieldcontainero;;0;i1;o;;F;i1;	@;	@;
 [ ;"2include-ext-layout-component-field-htmleditoro;;0;i2;o;;F;i2;	@;	@;
-[ ;".include-ext-layout-component-field-slidero;;0;i3;o;;F;i3;	@;	@;
+[ ;".include-ext-layout-component-field-slidero;;0;i3;o;;T;i3;	@;	@;
 [ ;",include-ext-layout-component-field-texto;;0;i4;o;;F;i4;	@;	@;
 [ ;"0include-ext-layout-component-field-textareao;;0;i5;o;;F;i5;	@;	@;
 [ ;"/include-ext-layout-component-field-triggero;;0;i6;o;;F;i6;	@;	@;
@@ -1577,56 +1578,58 @@ $relative-image-path-for-uis: $ext-theme-classic-resource-path;
 [ o;
 ;i¼;0;"K../../../../../ext/packages/ext-theme-neutral/sass/src/form/field/Base;	@;
 [ o;
-;i½;0;"G../../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date;	@;
+;i½;0;"K../../../../../ext/packages/ext-theme-neutral/sass/src/form/field/Text;	@;
 [ o;
-;i¾;0;"G../../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table;	@;
+;i¾;0;"G../../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date;	@;
 [ o;
-;i¿;0;"P../../../../../ext/packages/ext-theme-neutral/sass/src/grid/header/DropZone;	@;
+;i¿;0;"G../../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table;	@;
 [ o;
-;iÀ;0;"Q../../../../../ext/packages/ext-theme-neutral/sass/src/grid/header/Container;	@;
+;iÀ;0;"P../../../../../ext/packages/ext-theme-neutral/sass/src/grid/header/DropZone;	@;
 [ o;
-;iÁ;0;"N../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Column;	@;
+;iÁ;0;"Q../../../../../ext/packages/ext-theme-neutral/sass/src/grid/header/Container;	@;
 [ o;
-;iÂ;0;"S../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/RowNumberer;	@;
+;iÂ;0;"N../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Column;	@;
 [ o;
-;iÃ;0;"Q../../../../../ext/packages/ext-theme-neutral/sass/src/grid/feature/Grouping;	@;
+;iÃ;0;"S../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/RowNumberer;	@;
 [ o;
-;iÄ;0;"Q../../../../../ext/packages/ext-theme-neutral/sass/src/grid/locking/Lockable;	@;
+;iÄ;0;"Q../../../../../ext/packages/ext-theme-neutral/sass/src/grid/feature/Grouping;	@;
 [ o;
-;iÅ;0;"O../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing;	@;
+;iÅ;0;"Q../../../../../ext/packages/ext-theme-neutral/sass/src/grid/locking/Lockable;	@;
 [ o;
-;iÆ;0;"S../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/CellEditing;	@;
+;iÆ;0;"O../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing;	@;
 [ o;
-;iÇ;0;"L../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter;	@;
+;iÇ;0;"S../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/CellEditing;	@;
 [ o;
-;iÈ;0;"S../../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Border;	@;
+;iÈ;0;"L../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter;	@;
 [ o;
-;iÉ;0;"E../../../../../ext/packages/ext-theme-neutral/sass/src/menu/Menu;	@;
+;iÉ;0;"S../../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Border;	@;
 [ o;
-;iÊ;0;"F../../../../../ext/packages/ext-theme-neutral/sass/src/panel/Tool;	@;
+;iÊ;0;"E../../../../../ext/packages/ext-theme-neutral/sass/src/menu/Menu;	@;
 [ o;
-;iË;0;"K../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Resizer;	@;
+;iË;0;"F../../../../../ext/packages/ext-theme-neutral/sass/src/panel/Tool;	@;
 [ o;
-;iÌ;0;"C../../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab;	@;
+;iÌ;0;"K../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Resizer;	@;
 [ o;
-;iÍ;0;"C../../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar;	@;
+;iÍ;0;"C../../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab;	@;
 [ o;
-;iÎ;0;"S../../../../../ext/packages/ext-theme-neutral/sass/src/selection/CheckboxModel;	@;
+;iÎ;0;"C../../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar;	@;
 [ o;
-;iÏ;0;"F../../../../../ext/packages/ext-theme-neutral/sass/src/tree/Panel;	@;
-[ o;;"./* including package ext-theme-classic */;0;iÐ;[ ;	@;0;
-[ o;;"!default;iÑ;o;	;;;"images;iÑ;	@;	@;
-[ ;"$ext-theme-classic-resource-patho;;0;iÒ;o;	;iÒ;	@;"$ext_theme_classic_resource_path;"$ext-theme-classic-resource-path;	@;
+;iÏ;0;"S../../../../../ext/packages/ext-theme-neutral/sass/src/selection/CheckboxModel;	@;
+[ o;
+;iÐ;0;"F../../../../../ext/packages/ext-theme-neutral/sass/src/tree/Panel;	@;
+[ o;;"./* including package ext-theme-classic */;0;iÑ;[ ;	@;0;
+[ o;;"!default;iÒ;o;	;;;"images;iÒ;	@;	@;
+[ ;"$ext-theme-classic-resource-patho;;0;iÓ;o;	;iÓ;	@;"$ext_theme_classic_resource_path;"$ext-theme-classic-resource-path;	@;
 [ ;" relative-image-path-for-uiso;
-;iÓ;0;"G../../../../../ext/packages/ext-theme-classic/sass/src/dom/Element;	@;
+;iÔ;0;"G../../../../../ext/packages/ext-theme-classic/sass/src/dom/Element;	@;
 [ o;
-;iÔ;0;"K../../../../../ext/packages/ext-theme-classic/sass/src/toolbar/Toolbar;	@;
+;iÕ;0;"K../../../../../ext/packages/ext-theme-classic/sass/src/toolbar/Toolbar;	@;
 [ o;
-;iÕ;0;"N../../../../../ext/packages/ext-theme-classic/sass/src/grid/column/Column;	@;
+;iÖ;0;"N../../../../../ext/packages/ext-theme-classic/sass/src/grid/column/Column;	@;
 [ o;
-;iÖ;0;"O../../../../../ext/packages/ext-theme-classic/sass/src/grid/plugin/Editing;	@;
+;i×;0;"O../../../../../ext/packages/ext-theme-classic/sass/src/grid/plugin/Editing;	@;
 [ o;
-;i×;0;"K../../../../../ext/packages/ext-theme-classic/sass/src/resizer/Resizer;	@;
+;iØ;0;"K../../../../../ext/packages/ext-theme-classic/sass/src/resizer/Resizer;	@;
 [ o;
-;iØ;0;"E../../../../../ext/packages/ext-theme-classic/sass/src/tab/Panel;	@;
+;iÙ;0;"E../../../../../ext/packages/ext-theme-classic/sass/src/tab/Panel;	@;
 [ 
