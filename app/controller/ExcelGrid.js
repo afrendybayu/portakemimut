@@ -29,8 +29,8 @@ Ext.define('rcm.controller.ExcelGrid', {
 		var me = this;
         me.control({
 			'excelgrid': {
-				recordedit: me.updateGrid
-				//EqClick: me.equipClick
+				recordedit: me.updateGrid,
+				EqClick: me.equipClick
 				//specialkey: me.handleSpecialKey,
 			},
 			'taskTanggalan': {
@@ -39,6 +39,21 @@ Ext.define('rcm.controller.ExcelGrid', {
 			
 		});
     },
+    
+    equipClick: function(catx)	{
+		var t;
+		if (rcmSettings.tgl==0)	{
+			t=new Date();
+			//console.log("masuk sini: "+ t);
+		}
+		else t = new Date(rcmSettings.tgl);
+		//alert(t);
+		//else t = rcmSettings.tgl;
+		var pt = ''+(t.getFullYear()-2000)+"-"+rcm.view.Util.Upad(t.getMonth()+1)+"-"+rcm.view.Util.Upad(t.getDate())+'';
+		Ext.suspendLayouts();
+		this.getExcelgrid().reconfigure(this.getRunningHourStore().load({ params:{tgl:pt, cat:catx} }), rcm.view.Util.UxcolGrid());
+		Ext.resumeLayouts(true);
+	},
     
     updateGrid: function(view, e) {
         var me=this, tv=e.value; drow=this.getRunningHourStore().getAt(e.rowIdx);
@@ -77,8 +92,12 @@ Ext.define('rcm.controller.ExcelGrid', {
 	},
     
     onLaunch: function() {
+		var t = new Date();
 		this.ubahFieldRH();
-        //alert("ini muncul: onLaunch");
+		//Ext.util.Cookies.set('tgl','asas');
+		//rcm.view.Util.setCookie("tgl",t);
+		//alert("t: "+t+"  cook: "+Ext.decode(rcm.view.Util.getCookie("tgl")));
+        //alert("tgl: "+Ext.decode(Ext.util.Cookies.get('tgl')));
 	}
 
 });
