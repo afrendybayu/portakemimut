@@ -8,10 +8,6 @@ Ext.define('rcm.controller.ExcelGrid', {
 		'dataentry.ExcelGrid'
     ],
 
-    controllers: [
-
-    ],
-
     stores: [
 		'Hirarki',
 		'RunningHour'
@@ -21,6 +17,13 @@ Ext.define('rcm.controller.ExcelGrid', {
 		'RunningHour'
     ],
     
+    refs: [{
+		ref: 'excelgrid',
+		selector: 'excelgrid'
+	},{
+		ref: 'taskTanggalan',
+		selector: 'taskTanggalan'
+	}],
     //*
     init: function() {
 		var me = this;
@@ -29,38 +32,53 @@ Ext.define('rcm.controller.ExcelGrid', {
 				recordedit: me.updateGrid
 				//EqClick: me.equipClick
 				//specialkey: me.handleSpecialKey,
+			},
+			'taskTanggalan': {
+				klikKalender: me.KalenderClick
 			}
 			
 		});
     },
     
     updateGrid: function(view, e) {
-        //var me=this, tv=e.value; drow=this.getRunningHourStore().getAt(e.rowIdx);
-        alert("muncul dulu controller");
+        var me=this, tv=e.value; drow=this.getRunningHourStore().getAt(e.rowIdx);
         //var at=e.row;
         //rcmSettings.asa = this.getRunningHourStore().getAt(e.rowIdx).data;
-        //var alertText = ' ';   for (property in e) { alertText += property + ':' + e[property]+'; ';   }
-		//console.log("updateGrid isi: "+tv);
-		/*
+		//*
 		if ((tv=='')||(tv==e.originalValue))	{		//||
-			//console.log("updateGrid numpang lewat");
+			alert("updateGrid numpang lewat");
 		} else if (tv==e.originalValue)	{
 			//console.log("update nilai, sudah beda");
 		} else if ((tv==24)||(tv=="24:00"))	{
 			//this.simpanRH(e);
 		} else {
 			//this.buildFormGagal(e);
+			alert("Form Gagal: "+tv+ " tgl: "+rcmSettings.tgl);
 		}
 		//*/
 	},
     //*/
-    ubahFieldRH: function()	{
-		this.getRunningHourModel().setFields(rcm.view.Util.Ublntgl());
+    ubahFieldRH: function(x)	{
+		this.getRunningHourModel().setFields(rcm.view.Util.Ublntgl(x));
+	},
+	
+	KalenderClick: function(pt)	{
+		rcmSettings.tgl = pt;
+		//alert("KalenderClick tgl: "+pt);
+		var tab=rcmSettings.tab.split("_");
+		//console.log("tab: "+tab[0]+", no: "+tab[1]);
+		if ((tab[0].localeCompare("tu")==0) && (tab[1].localeCompare("rh")==0))	{
+			this.ubahFieldRH(pt);
+			//*
+			Ext.suspendLayouts();			
+			this.getExcelgrid().reconfigure(this.getRunningHourStore().load({ params:{tgl:pt, cat:rcmSettings.cat} }), rcm.view.Util.UxcolGrid());
+			Ext.resumeLayouts(true);
+		}
 	},
     
     onLaunch: function() {
 		this.ubahFieldRH();
-        alert("ini muncul: onLaunch");
+        //alert("ini muncul: onLaunch");
 	}
 
 });

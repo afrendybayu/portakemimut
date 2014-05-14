@@ -19,8 +19,9 @@ Ext.define('rcm.view.nav.Tanggalan', {
 			'select': {
 				fn: function(dp, dt){
 					var t = new Date(dt);
-					//alert(Ext.Date.format(t, 'y-m-d'));
-					this.fireEvent('klikKalender', Ext.Date.format(t, 'Y-m-d'));
+					//alert(Ext.Date.format(t, 'y-m-d')+"    "+t);
+					//this.fireEvent('klikKalender', Ext.Date.format(t, 'Y-m-d'));
+					this.fireEvent('klikKalender', t);
 				},
 				scope: this
 			}

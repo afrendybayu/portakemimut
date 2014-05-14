@@ -16,6 +16,18 @@ Ext.define('rcm.controller.Nav', {
     
     models: [
 		//'Hirarki',
-    ]
-    //*/
+    ],
+    
+    refs: [{
+		
+	}],
+    
+    init: function() {
+		var me = this;
+        me.control({
+			
+		});
+    }
+    
+    
 });

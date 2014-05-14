@@ -2,7 +2,7 @@
 Ext.define('rcm.model.Hirarki', {
     extend: 'Ext.data.Model',
     requires:[
-		'Ext.data.proxy.Ajax',
+		'Ext.data.proxy.Ajax'
     ],
     fields: [
 		{ name: 'id', type: 'int' },
