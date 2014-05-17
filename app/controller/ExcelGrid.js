@@ -1,3 +1,4 @@
+
 Ext.define('rcm.controller.ExcelGrid', {
     extend: 'Ext.app.Controller',
 
@@ -94,10 +95,10 @@ Ext.define('rcm.controller.ExcelGrid', {
     onLaunch: function() {
 		var t = new Date();
 		this.ubahFieldRH();
-		//Ext.util.Cookies.set('tgl','asas');
+		Ext.util.Cookies.set('tgl',t);
 		//rcm.view.Util.setCookie("tgl",t);
 		//alert("t: "+t+"  cook: "+Ext.decode(rcm.view.Util.getCookie("tgl")));
-        //alert("tgl: "+Ext.decode(Ext.util.Cookies.get('tgl')));
+        //alert("tgl: "+Ext.util.Cookies.get('tgl'));
 	}
 
 });

@@ -3,6 +3,7 @@
     needed for your application, but these edits will have to be merged by
     Sencha Cmd when upgrading.
 */
+//Ext.util.Cookies.set('greet', 'Greet from Sencha');
 Ext.Loader.setConfig({
     enabled: true,
     disableCaching: false,
@@ -13,6 +14,11 @@ Ext.Loader.setConfig({
     }
 });
 
+Ext.syncRequire([
+  'Ext.util.Observable',
+  'Ext.util.Cookies'
+]);
+//*
 Ext.application({
     name: 'rcm',
 
@@ -21,3 +27,15 @@ Ext.application({
     autoCreateViewport: true
 
 });
+//*/
+
+/*
+Ext.application({
+    name: 'rcm',
+
+    launch: function() {
+        Ext.util.Cookies.set('greet', 'Greet from Sencha');
+        Ext.Msg.alert('Sencha', Ext.util.Cookies.get('greet'));
+    }
+});
+//*/
