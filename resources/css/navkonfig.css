@@ -1,0 +1,43 @@
+
+
+
+.tasks-delete-folder {
+    background-image: url('../modul/icons/delete_folder.png');
+}
+.tasks-new-folder {
+    background-image: url('../modul/icons/new_folder.png');
+}
+
+.price-fall .x-change-cell {
+    background-color: #FFB0C4;
+    color:red;
+}
+.price-rise .x-change-cell {
+    background-color: #B0FFC5;
+    color:green;
+}
+.Dashboard {
+    background-image: url('./images/Dashboard.png');
+}
+.bullets {
+    background-image: url('./images/bullets.png');
+}
+.Konfigurasi {
+	background-image: url('./images/config.png');
+}
+.sap {
+	background-image: url('./images/report_check.png');
+}
+.Reliability {
+	background-image: url('./images/report.png');
+}
+.RunnningHour {
+	background-image: url('./images/edit1.png');
+}
+.icon-grid  {
+	background-image: url('./images/application_go.png');
+}
+
+.Compressor {
+	background-image: url('./images/comp16.png');
+}
