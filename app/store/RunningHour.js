@@ -4,6 +4,17 @@ Ext.define('rcm.store.RunningHour', {
     model: 'rcm.model.RunningHour',
     requires: 'rcm.model.RunningHour',
     groupField : 'Lokasi',
-    autoLoad: true //--> load read.php
+    autoLoad: true, //--> load read.php
 	//autoSync: true,
+	
+	proxy: {
+		type: 'ajax',
+		//url: 'php/hirarki/read.php',
+		url: 'ci/index.php/rRunningHour',
+        reader: {
+            type: 'json',
+            root: 'runninghour',
+            messageProperty: 'message'
+        }
+    }
 });

@@ -3,9 +3,10 @@ Ext.define('rcm.model.RunningHour', {
     extend: 'Ext.data.Model',
     requires:[
 		'Ext.data.proxy.Ajax'
-    ],
+    ]
         
     //fields: [],
+    /*
     proxy: {
 		type: 'ajax',
 		api: {
@@ -17,4 +18,5 @@ Ext.define('rcm.model.RunningHour', {
             messageProperty: 'message'
         }
     }
+    //*/
 });
