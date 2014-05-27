@@ -15,7 +15,8 @@ Ext.define('rcm.store.Hirarki', {
 
     proxy: {
 		type: 'ajax',
-		url: 'php/hirarki/read.php',
+		//url: 'php/hirarki/read.php',
+		url: 'ci/index.php/rHirarki',
         reader: {
             type: 'json',
             root: 'hirarki',
