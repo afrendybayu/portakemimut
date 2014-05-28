@@ -6,12 +6,15 @@ Ext.define('rcm.controller.ExcelGrid', {
 		'Ext.form.field.Text',
 		
 		'rcm.view.Util',
-		'dataentry.ExcelGrid'
+		'rcm.view.MonthYear',
+		'dataentry.ExcelGrid',
+		'dataentry.DetailInfo'
     ],
 
     stores: [
-		'Hirarki',
-		'RunningHour'
+		'Hirarki'
+		,'RunningHour'
+		,'DaftarGagal'
     ],
     
     models: [

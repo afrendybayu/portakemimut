@@ -831,15 +831,25 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.controller.ExcelGrid": [],
   "rcm.controller.Main": [],
   "rcm.controller.Nav": [],
+  "rcm.model.DaftarGagal": [],
   "rcm.model.Hirarki": [],
   "rcm.model.RunningHour": [],
+  "rcm.store.DaftarGagal": [],
   "rcm.store.Hirarki": [],
   "rcm.store.RunningHour": [],
   "rcm.view.Content": [],
   "rcm.view.Main": [],
+  "rcm.view.MonthYear": [
+    "Ext.form.MonthField",
+    "Ext.form.Month"
+  ],
   "rcm.view.Util": [],
   "rcm.view.Viewport": [],
+  "rcm.view.dataentry.BlnGagal": [],
+  "rcm.view.dataentry.DaftarGagal": [],
+  "rcm.view.dataentry.DetailInfo": [],
   "rcm.view.dataentry.ExcelGrid": [],
+  "rcm.view.dataentry.PropGrid": [],
   "rcm.view.nav.AppHeader": [],
   "rcm.view.nav.Navigation": [],
   "rcm.view.nav.Tanggalan": []
@@ -1833,8 +1843,10 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.controller.ExcelGrid": [],
   "rcm.controller.Main": [],
   "rcm.controller.Nav": [],
+  "rcm.model.DaftarGagal": [],
   "rcm.model.Hirarki": [],
   "rcm.model.RunningHour": [],
+  "rcm.store.DaftarGagal": [],
   "rcm.store.Hirarki": [],
   "rcm.store.RunningHour": [],
   "rcm.view.Content": [
@@ -1843,10 +1855,26 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.Main": [
     "widget.app-main"
   ],
+  "rcm.view.MonthYear": [
+    "widget.monthfield"
+  ],
   "rcm.view.Util": [],
   "rcm.view.Viewport": [],
+  "rcm.view.dataentry.BlnGagal": [
+    "widget.tblnGagal"
+  ],
+  "rcm.view.dataentry.DaftarGagal": [
+    "widget.daftarGagal",
+    "widget.taskDaftarGagal"
+  ],
+  "rcm.view.dataentry.DetailInfo": [
+    "widget.detailInfo"
+  ],
   "rcm.view.dataentry.ExcelGrid": [
     "widget.excelgrid"
+  ],
+  "rcm.view.dataentry.PropGrid": [
+    "widget.propgrid"
   ],
   "rcm.view.nav.AppHeader": [
     "widget.appHeader"

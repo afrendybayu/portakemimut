@@ -5,6 +5,7 @@ Ext.define('rcm.view.Content', {
 	require: [
 		'Ext.panel.Panel',
 		'rcm.view.dataentry.ExcelGrid'
+		//'rcm.view.dataentry.DetailInfo'
 		//'Extensible.calendar.data.MemoryEventStore',
 		//'Extensible.calendar.CalendarPanel',
 		//'Extensible.example.calendar.data.Events'
@@ -62,19 +63,23 @@ Ext.define('rcm.view.Content', {
 					type: 'border'
 				},
 				items: [{
-						//xtype: 'daftarGagal',
+						xtype: 'daftarGagal',
 						region: 'center',
 						id: 'app-gagal',
 						flex: 1
 					},{
+						id: 'bgDetail',
 						collapsible: true,
+						collapsed: true,
 						split: true,
-						minHeight: 300,
+						minHeight: 220,
 						maxHeight: 400,
+						height: 220,
 						region: 'south',
 						title: 'Info Detail DownTime',
-						html: 'testing dulu'
-						//icon: 'modul/icons/more.png',
+						icon: 'modul/icons/more.png',
+						//html: 'detailInfo'
+						xtype: 'detailInfo'
 				}]
 			/*
 			},{
