@@ -149,18 +149,18 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
     CompClick: function()	{
 		rcmSettings.cat = 5;
 		//console.log("rcmSettings.cat: "+rcmSettings.cat)
-		this.fireEvent('EqClick', 5);
+		this.fireEvent('EqClick', 5, "GC");
 	},
 	
 	GensetClick: function()	{
 		rcmSettings.cat = 7;
 		//console.log("rcmSettings.cat: "+rcmSettings.cat)
-		this.fireEvent('EqClick', 7);
+		this.fireEvent('EqClick', 7, "GS");
 	},
 	PumpClick: function()	{
 		rcmSettings.cat = 6;
 		//console.log("rcmSettings.cat: "+rcmSettings.cat)
-		this.fireEvent('EqClick', 6);
+		this.fireEvent('EqClick', 6, "PM");
 	}
 	//*/
 });

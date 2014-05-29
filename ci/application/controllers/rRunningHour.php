@@ -14,16 +14,28 @@ class rRunningHour extends CI_Controller {
 			$eq = 0; $jml = 0;
 			$tisi = array();
 
-			$tgl = (isset($_GET['tgl']))?$this->db->escape($_GET['tgl']):'0';
+			$tgl = (isset($_GET['tgl']))?str_replace("'",'',$this->db->escape($_GET['tgl'])):'0';
+			//$tgl = (isset($_GET['tgl']))?($_GET['tgl']):'0';
 			$cat = (isset($_GET['cat']))?$this->db->escape($_GET['cat']):5;
 			
 			if ($tgl==null || $tgl=='0')	{
 				$tgl=date("Y-m-d");	
-				//echo "tgl: $tgl<br/>";
+			//	echo "tgl: $tgl<br/>";
 			}
+			//echo "tgl: $tgl, cat: $cat<br/>";
 			
+			/*
 			list($y,$m,$t) = explode("-", $tgl);
-	
+			$m = (int) $m;
+			$y = (int) $y;
+			//$y = 2014;
+			$t = (int) $t;
+			
+			//*/
+			$m = date('n', strtotime($tgl));
+			$y = date('Y', strtotime($tgl));
+			$t = date('d', strtotime($tgl));
+			//echo "y: $y, m: $m, t: $t<br/>";
 
 			$sql["tbl"][0] = "rh_".date("Ym", mktime(0, 0, 0, $m, $t, $y));
 			$sql["bts"][0] = date("Y-m-d", mktime(0, 0, 0, $m, $t, $y)); 	
@@ -43,7 +55,7 @@ class rRunningHour extends CI_Controller {
 				 "/*,(select h.parent from hirarki h where hh.parent = h.id) as parent*/ ".
 				 ",(select hhh.nama from hirarki hhh where hhh.id = (select hh.parent from hirarki hh where h.parent = hh.id)) as hlok ".
 				 ",(select hhh.urut from hirarki hhh where hhh.id = (select hh.parent from hirarki hh where h.parent = hh.id)) as urut ".
-				 "from hirarki h where level = 3 and flag = ? ".
+				 "from hirarki h where level = 3 and flag = $cat ".
 				 "order by urut asc, nama asc;";
 			
 			//echo "sql: $s<br/>";
@@ -74,6 +86,7 @@ class rRunningHour extends CI_Controller {
 			$query = $this->db->query($s, array($sql['bts'][1],$sql['bts'][0]) );
 			//$query = $this->db->query($s);
 			
+			$time = '';
 			if ($query->num_rows() > 0)	{
 				//echo "jml:";
 				foreach ($query->result() as $row)	{
@@ -89,15 +102,22 @@ class rRunningHour extends CI_Controller {
 					}
 					//echo "<br/>ada<br/><br/>";
 					$time = strtotime($row->tgl);
+					//echo "time: $time<br/>";
 					$ii = ($row->rh);
 					//$ii = format_rh_time($row->rh);
 					$tisi[$eq]["k".date('ymd',$time)] = ($ii?:'-');
 					//*/
 				}
 			} 
+			/*
+			else {
+				$time = $time = strtotime('now');
+			}
+			//*/
+			
 			
 			//*
-			if (!isset($tisi[$eq]["k".date('ymd',$time)]))	{
+			if (!isset($tisi[$eq]["k".date('ymd',($time))]))	{
 				foreach ($fas as $a)	{
 					//echo " -->".$a['id']."<br/>";
 					for($i=13;$i>=0; $i--)	{
@@ -107,6 +127,7 @@ class rRunningHour extends CI_Controller {
 				}
 				
 			} else {
+				//echo "tembus <br/>";
 				foreach ($tisi as $data)	{
 					//if ($fas[$data['id']]!=null)	{
 					if(@isset($fas[$data['id']]))	{

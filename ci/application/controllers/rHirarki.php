@@ -19,7 +19,7 @@ class rHirarki extends CI_Controller {
 			$sql =	"SELECT id, nama as text FROM hirarki WHERE parent=$parent_id  ORDER BY nama ASC";
 			//echo "sql: $sql<br/>";
 			//$sql = "SELECT * FROM some_table WHERE id = ? AND status = ? AND author = ?"; 
-			$query = $this->db->query($sql, array($parent_id));
+			$query = $this->db->query($sql, $parent_id);
 			
 			
 			//$this->db->select('id, nama')->from('listEvent');

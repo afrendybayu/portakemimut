@@ -53,9 +53,9 @@ Ext.define('rcm.controller.ExcelGrid', {
 		else t = new Date(rcmSettings.tgl);
 		//alert(t);
 		//else t = rcmSettings.tgl;
-		var pt = ''+(t.getFullYear()-2000)+"-"+rcm.view.Util.Upad(t.getMonth()+1)+"-"+rcm.view.Util.Upad(t.getDate())+'';
+		var pt = (t.getFullYear())+"-"+rcm.view.Util.Upad(t.getMonth()+1)+"-"+rcm.view.Util.Upad(t.getDate());
 		Ext.suspendLayouts();
-		this.getExcelgrid().reconfigure(this.getRunningHourStore().load({ params:{tgl:pt, cat:catx} }), rcm.view.Util.UxcolGrid());
+		this.getExcelgrid().reconfigure(this.getRunningHourStore().load({ params:{tgl:t, cat:catx} }), rcm.view.Util.UxcolGrid());
 		Ext.resumeLayouts(true);
 	},
     
@@ -87,6 +87,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		var tab=rcmSettings.tab.split("_");
 		//console.log("tab: "+tab[0]+", no: "+tab[1]);
 		if ((tab[0].localeCompare("tu")==0) && (tab[1].localeCompare("rh")==0))	{
+			//pt = (t.getFullYear())+"-"+rcm.view.Util.Upad(t.getMonth()+1)+"-"+rcm.view.Util.Upad(t.getDate());
 			this.ubahFieldRH(pt);
 			//*
 			Ext.suspendLayouts();			
