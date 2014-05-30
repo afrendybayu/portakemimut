@@ -145,7 +145,8 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 			}, {
 				xtype:'actioncolumn',
 				width:25,
-				icon: 'modul/icons/edit.png',  // Use a URL in the icon config
+				iconCls: 'editEvent',
+				//icon: 'modul/icons/edit.png',  // Use a URL in the icon config
 				tooltip: 'Edit Kejadian',
 				handler: Ext.bind(me.hdlEditDGClick, me)
 				//handler: hdlEditDGClick
@@ -159,7 +160,8 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 			}, {
 				xtype:'actioncolumn',
 				width:25,
-				icon: 'modul/icons/delete.gif',  // Use a URL in the icon config
+				iconCls: 'hpsEvent',
+				//icon: 'modul/icons/delete.gif',  // Use a URL in the icon config
 				tooltip: 'Hapus Kejadian',
 				handler: Ext.bind(me.hdlHapusDGClick, me)
 				/*

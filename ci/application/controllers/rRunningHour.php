@@ -13,10 +13,16 @@ class rRunningHour extends CI_Controller {
 			$sql = array();
 			$eq = 0; $jml = 0;
 			$tisi = array();
-
-			$tgl = (isset($_GET['tgl']))?str_replace("'",'',$this->db->escape($_GET['tgl'])):'0';
+			
+			$tgl = $this->input->get('tgl')?:'0';
+			$cat = $this->input->get('cat')?:5;
+			//echo $tgl;
+			//return;
+			//$tgl = (isset($this->input->get('tgl',TRUE)))?str_replace("'",'',$this->db->escape($this->input->get('tgl',TRUE))):'0';
+			//$tgl = (isset($_GET['tgl']))?str_replace("'",'',$this->db->escape($_GET['tgl'])):'0';
+			//$tgl =
 			//$tgl = (isset($_GET['tgl']))?($_GET['tgl']):'0';
-			$cat = (isset($_GET['cat']))?$this->db->escape($_GET['cat']):5;
+			//$cat = (isset($_GET['cat']))?$this->db->escape($_GET['cat']):5;
 			
 			if ($tgl==null || $tgl=='0')	{
 				$tgl=date("Y-m-d");	
@@ -55,7 +61,7 @@ class rRunningHour extends CI_Controller {
 				 "/*,(select h.parent from hirarki h where hh.parent = h.id) as parent*/ ".
 				 ",(select hhh.nama from hirarki hhh where hhh.id = (select hh.parent from hirarki hh where h.parent = hh.id)) as hlok ".
 				 ",(select hhh.urut from hirarki hhh where hhh.id = (select hh.parent from hirarki hh where h.parent = hh.id)) as urut ".
-				 "from hirarki h where level = 3 and flag = $cat ".
+				 "from hirarki h where level = 3 and flag = ? ".
 				 "order by urut asc, nama asc;";
 			
 			//echo "sql: $s<br/>";

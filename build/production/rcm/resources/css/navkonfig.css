@@ -41,3 +41,16 @@
 .Compressor {
 	background-image: url('./images/comp16.png');
 }
+
+.editEvent {
+	background-image: url('./images/edit.png');
+}
+
+.hpsEvent {
+	background-image: url('./images/delete.png');
+}
+
+.moreInfo {
+	background-image: url('./images/more.png');
+}
+

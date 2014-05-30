@@ -77,7 +77,8 @@ Ext.define('rcm.view.Content', {
 						height: 220,
 						region: 'south',
 						title: 'Info Detail DownTime',
-						icon: 'modul/icons/more.png',
+						iconCls: 'moreInfo',
+						//icon: 'modul/icons/more.png',
 						//html: 'detailInfo'
 						xtype: 'detailInfo'
 				}]
