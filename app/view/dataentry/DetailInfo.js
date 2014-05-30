@@ -6,6 +6,7 @@ Ext.define('rcm.view.dataentry.DetailInfo', {
 	
 	require: [
 		'rcm.view.dataentry.PropGrid'
+		,'rcm.view.dataentry.InfoFMEA'
 	],
 	
 	layout: 'border',
@@ -21,8 +22,8 @@ Ext.define('rcm.view.dataentry.DetailInfo', {
 			id: 'idinfofmea',
 			title: 'Unit Failure List',
 			region: 'center',
-			flex: 1
-			//xtype: 'infofmea'
+			flex: 1,
+			xtype: 'infofmea'
 		},{
 			split: true,
 			id: 'htmleddet',
@@ -30,7 +31,7 @@ Ext.define('rcm.view.dataentry.DetailInfo', {
 			//width: 600,
 			region: 'south',
 			//xtype: 'htmleditor',
-			//xtype: 'textarea',
+			xtype: 'textarea',
 			flex: 1
 	}]
 });

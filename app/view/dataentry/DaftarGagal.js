@@ -71,7 +71,7 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 				me.row1Click(record.get('eqid'));
 			},
 			itemdblclick: function(dv, record, item, index, e)	{
-			//	alert("double click");
+				alert("double click, "+record.get('idevent'));
 				me.row2Click(record.get('id'), record.get('idevent'));	//	record.raw.value
 			}
 		},

@@ -54,3 +54,15 @@
 	background-image: url('./images/more.png');
 }
 
+.rusak .x-change-cell {
+    /*background-color: #FFB0C4;*/
+    color:red;
+}
+.sip .x-change-cell {
+    /*background-color: #B0FFC5;*/
+    color:green;
+}
+.baik .x-change-cell {
+    /*background-color: #B0FFC5;*/
+    color:blue;
+}

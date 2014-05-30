@@ -856,6 +856,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.dataentry.DaftarGagal": [],
   "rcm.view.dataentry.DetailInfo": [],
   "rcm.view.dataentry.ExcelGrid": [],
+  "rcm.view.dataentry.InfoFMEA": [],
   "rcm.view.dataentry.PropGrid": [],
   "rcm.view.nav.AppHeader": [],
   "rcm.view.nav.Navigation": [],
@@ -1886,6 +1887,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.dataentry.ExcelGrid": [
     "widget.excelgrid"
+  ],
+  "rcm.view.dataentry.InfoFMEA": [
+    "widget.infofmea"
   ],
   "rcm.view.dataentry.PropGrid": [
     "widget.propgrid"

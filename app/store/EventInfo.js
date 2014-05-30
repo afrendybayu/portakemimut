@@ -7,7 +7,8 @@ Ext.define('rcm.store.EventInfo', {
     
     proxy: {
 		type: 'ajax',
-		url: 'php/gagal/detailfmea.php',
+		//url: 'php/gagal/detailfmea.php',
+		url: 'ci/index.php/rDetailFMEA',
         reader: {
             type: 'json',
             root: 'detail',

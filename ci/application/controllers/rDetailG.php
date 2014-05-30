@@ -39,27 +39,28 @@ class rDetailG extends CI_Controller {
 			$isi = array(); $dd = ''; $td = '';	
 			
 			$mdar = Array(); $tar = Array(); $prop=array();
-			echo "jml: {$query->num_rows()}<br/>";
+			//echo "jml: {$query->num_rows()}<br/>";
 			if ($query->num_rows() > 0)	{
 				//$row = $query->result();
-				//print_r($row);
+				
 				foreach ($query->result() as $row)	{
-					print_r($row);
-					$prop['tag'] = '['.$row->kode.': '.$row->tag.'] ';//.$prop['tag'];
-					echo '['.$row->kode.': '.$row->tag.'] ';
+					//print_r($row); echo "<br/><br/>";
+					
+					if (isset($prop['tag']) && ($prop['tag']!=''))
+						$prop['tag'] = '['.$row->kode.': '.$row->tag.'] '.$prop['tag'];
+					else
+						$prop['tag'] = '['.$row->kode.': '.$row->tag.'] ';	//.$prop['tag'];
+					//echo '['.$row->kode.': '.$row->tag.'] ';
 		
 					if (($row->downt==$dd) && ($row->downj==$td)) {
 						//echo "SAMA: $dd - $td ";
-						//$isi[$jml]['id'] .= 'e'.$row['id'];
 						$prop['id'] .= 'e'.$row->id;
 						$ax = $row->idevent;
 						if ($ax==2) {
 							//echo "masuk 2 ".$row['namapm']."<br/>";
-							if (isset($row->namapm)) {
-								if (strlen($isi[$jml]['fm'])>0)
-									//$isi[$jml]['fm'] .= "&nbsp;&nbsp;";
+							if (isset($row->namapm) && ($row->namapm!="")) {
+								if ( (isset($isi[$jml]['fm'])) && ($isi[$jml]['fm']!=""))
 									$prop['event'] .= "&nbsp;&nbsp;";
-								//$isi[$jml]['fm'] .= "[{$row['kode']}: {$row['namapm']}]";
 								//$prop['fm'] .= "[{$row['kode']}: {$row['namapm']}]";
 								$prop['event'] .= " [{$row->kode}: {$row->namapm}]";
 							}
@@ -67,96 +68,52 @@ class rDetailG extends CI_Controller {
 							//echo "fm: {$row['fm']}<br/>";
 							if (isset($row->fm)) {
 								if (strlen($isi[$jml]['fm'])>0)		{
-									//$isi[$jml]['fm'] .= "&nbsp;&nbsp;";
 									//$prop['event'] .= "&nbsp;&nbsp;";
 								}
-								//$isi[$jml]['fm'] .= "[{$row['kode']}: {$row['fm']}]";
 								//$prop['fm'] .= "[{$row['kode']}: {$row['namapm']}]";
 								//$prop['event'] .= " [{$row['kode']}: {$row['namapm']}]";
 							}
 						}
-					} else {
+					}
+					else {
 						$jml++;
 						$mdar = Array();
-					//if (($row['downt']!=$dd) && ($row['downj']!=$td)) {
-						/*
-						$isi[$jml]['event'] = $row['event'];
-						$isi[$jml]['id'] = 'e'.$row['id'];
-						$isi[$jml]['unit_id'] = $row['unit_id'];
-						$isi[$jml]['nama'] = $row['nama'];
-						$isi[$jml]['lok'] = $row['lok'];
-						//*/
 
 						$prop['id'] = 'e'.$row->id;
 						$prop['func'] =  $row->nama." @".$row->lok;
 						$prop['event'] = $row->event;
 						//$prop['tag'] = '['.$row['kode'].': '.$row['tag'].'] ';
-						echo "id: {$prop['id']}, func: {$prop['func']}, ebent: {$prop['event']}<br/>";
+						//echo "id: {$prop['id']}, func: {$prop['func']}, ebent: {$prop['event']}<br/>";
 						
 						if ($row->idevent==1) { 		// standby
-							/*
-							$isi[$jml]['startt'] = '';		$isi[$jml]['startj'] = '';
-							$isi[$jml]['endt'] = '';		$isi[$jml]['endj'] = '';
-							$isi[$jml]['tipeev'] = '';
-							$isi[$jml]['idevent'] = $row['idevent'];
-							//*/
+
 						} else if ($row->idevent==2) {	// PM
-							/*
-							$isi[$jml]['startt'] = date('d-m-Y',strtotime("{$row["startt"]} {$row["startj"]}"));
-							$isi[$jml]['startj'] = date('H:i',	strtotime("{$row["startt"]} {$row["startj"]}"));
-							$isi[$jml]['endt'] = date('d-m-Y',	strtotime("{$row["endt"]} {$row["endj"]}"));
-							$isi[$jml]['endj'] = date('H:i',	strtotime("{$row["endt"]} {$row["endj"]}"));
-							//*/
+
 							$prop['start'] = date('d M Y H:i',strtotime("{$row->startt} {$row->startj}"));
 							$prop['end']   = date('d M Y H:i',strtotime("{$row->endt} {$row->endj}"));
 							//echo "fm: {$row['namapm']}<br/>";
 							if (isset($row->namapm)) {
 								//echo "---- ada fm<br/>";
-								//$isi[$jml]['fm'] = "[{$row['kode']}: {$row['namapm']}]";
 								$prop['event'] .= " [{$row->kode}: {$row->namapm}]";
 							}
 						} else {
-							// senin 
-							/*
-							$isi[$jml]['startt'] = date('d-m-Y',strtotime("{$row["startt"]} {$row["startj"]}"));
-							$isi[$jml]['startj'] = date('H:i',	strtotime("{$row["startt"]} {$row["startj"]}"));
-							$isi[$jml]['endt'] = date('d-m-Y',	strtotime("{$row["endt"]} {$row["endj"]}"));
-							$isi[$jml]['endj'] = date('H:i',	strtotime("{$row["endt"]} {$row["endj"]}"));
-							if (isset($row['fm'])) {
-								$isi[$jml]['fm'] = "[{$row['kode']}: {$row['fm']}]";
-								//array_push($tar,$row['fm']);
-								//$mdar[$row['kode']] = $row['kode'];
-								//array_push($mdar,$tar);
-								//print_r($mdar);
-								//echo $row['kode']." > ".$row['fm']."----<br/>";
-							}
-							//*/
 							$prop['start'] = date('d M Y H:i',strtotime("{$row->startt} {$row->startj}"));
 							$prop['end']   = date('d M Y H:i',strtotime("{$row->endt} {$row->endj}"));
 							//$prop['event'] .= " [{$row['kode']}: {$row['fm']}]";
 						}
-						/*
-						$isi[$jml]['downt'] = date('d-m-Y',strtotime("{$row['downt']} {$row["downj"]}"));
-						$isi[$jml]['downj'] = date('H:i',	strtotime("{$row['downt']} {$row["downj"]}"));
 						
-						$isi[$jml]['upt'] = date('d-m-Y',	strtotime("{$row['upt']} {$row["upj"]}"));
-						$isi[$jml]['upj'] = date('H:i',	strtotime("{$row['upt']} {$row["upj"]}"));
-						//*/
 						$prop['down'] = date('d M Y H:i',strtotime("{$row->downt} {$row->downj}"));
 						$prop['up']   = date('d M Y H:i',strtotime("{$row->upt} {$row->upj}"));
 
-						$dd = $row['downt'];	$td = $row->downj;
+						$dd = $row->downt;	$td = $row->downj;
 						$prop['tag'] = '['.$row->kode.': '.$row->tag.'] ';
 						
 						$prop['exe'] = $row->exe;
-					//} else {
-						//echo ($jml)." >> AWAL: $dd - $td<br/>";
-						
 					}
 				}
-			} 
+			}
 
-			print_r($prop);
+			//print_r($prop);
 			
 			
 
@@ -213,7 +170,7 @@ class rDetailG extends CI_Controller {
 			
 			$jsonResult = array(
 				'success' => true,
-				'gagal' => $hsl
+				'gagal' => $isi
 			);
 		}
 		catch (Exception $e)	{

@@ -65,7 +65,7 @@ Ext.define('rcm.controller.DetailInfo', {
 			scope: this,
 			callback: function(rec, operation, success) {
 				if (success) {
-					//Ext.getCmp('htmleddet').setValue(rec[0].get('ket'));
+					Ext.getCmp('htmleddet').setValue(rec[0].get('ket'));
 				}
 			}
 		});
