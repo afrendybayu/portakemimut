@@ -7,7 +7,8 @@ Ext.define('rcm.store.Note', {
     
     proxy: {
 		type: 'ajax',
-		url: 'php/gagal/readnote.php',
+		url: 'ci/index.php/rNote',
+		//url: 'php/gagal/readnote.php',
         reader: {
             type: 'json',
             root: 'note',

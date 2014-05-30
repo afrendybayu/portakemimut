@@ -10,7 +10,8 @@ Ext.define('rcm.model.DetailGagal', {
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'php/gagal/detailgagal.php'
+			//read: 'php/gagal/detailgagal.php'
+			read: 'ci/index.php/rDetailG'
         },
         reader: {
             type: 'json',

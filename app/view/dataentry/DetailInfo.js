@@ -4,13 +4,15 @@ Ext.define('rcm.view.dataentry.DetailInfo', {
 	//alias: 'widget.detailInfo',
 	xtype: 'detailInfo',
 	
-	
+	require: [
+		'rcm.view.dataentry.PropGrid'
+	],
 	
 	layout: 'border',
 	items: [{
 			region: 'west',
 			width: '28%',
-			//xtype: 'propgrid',
+			xtype: 'propgrid',
 			weight: 100
 		}, {
 			title: 'Failure List',
