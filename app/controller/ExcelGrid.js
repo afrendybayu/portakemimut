@@ -101,7 +101,7 @@ Ext.define('rcm.controller.ExcelGrid', {
         //rcmSettings.asa = this.getRunningHourStore().getAt(e.rowIdx).data;
 		//*
 		if ((tv=='')||(tv==e.originalValue))	{		//||
-			alert("updateGrid numpang lewat");
+			//alert("updateGrid numpang lewat");
 		} else if (tv==e.originalValue)	{
 			//console.log("update nilai, sudah beda");
 		} else if ((tv==24)||(tv=="24:00"))	{

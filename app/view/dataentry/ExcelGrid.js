@@ -12,7 +12,7 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 		'Ext.grid.column.RowNumberer',
 		'Ext.grid.feature.Grouping'
 	],
-	features: [{ftype:'grouping',startCollapsed:true,hideGroupedHeader:true,
+	features: [{ftype:'grouping',/*startCollapsed:true,*/hideGroupedHeader:true,
 				groupHeaderTpl: '{columnName}: {name} [{rows.length} Unit]'}],
 
 	store: 'RunningHour',
@@ -21,6 +21,7 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 
 	columns: {
 		defaults: {
+			enableGroupingMenu: false,
 			draggable: false,
 			resizable: false,
 			hideable: false,
