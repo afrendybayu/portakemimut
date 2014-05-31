@@ -97,9 +97,7 @@ Ext.define('rcm.controller.ExcelGrid', {
     
     updateGrid: function(view, e) {
         var me=this, tv=e.value; drow=this.getRunningHourStore().getAt(e.rowIdx);
-        //var at=e.row;
-        //rcmSettings.asa = this.getRunningHourStore().getAt(e.rowIdx).data;
-		//*
+
 		if ((tv=='')||(tv==e.originalValue))	{		//||
 			//alert("updateGrid numpang lewat");
 		} else if (tv==e.originalValue)	{
@@ -108,11 +106,8 @@ Ext.define('rcm.controller.ExcelGrid', {
 			//this.simpanRH(e);
 		} else {
 			this.buildFormGagal(e);
-			
 		}
-		//*/
 	},
-    //*/
     ubahFieldRH: function(x)	{
 		this.getRunningHourModel().setFields(rcm.view.Util.Ublntgl(x));
 	},
@@ -133,6 +128,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 	},
     
     onLaunch: function() {
+		Ext.getCmp('idwest').collapse();
 		var t = new Date();
 		this.ubahFieldRH();
 		Ext.util.Cookies.set('tgl',t);
