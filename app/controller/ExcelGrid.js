@@ -39,7 +39,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		ref: 'taskTanggalan',
 		selector: 'taskTanggalan'
 	}],
-    //*
+
     init: function() {
 		var me = this;
         me.control({
