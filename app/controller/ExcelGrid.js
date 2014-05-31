@@ -3,18 +3,19 @@ Ext.define('rcm.controller.ExcelGrid', {
     extend: 'Ext.app.Controller',
 
     views: [
-		'Ext.form.field.Text',
+		'Ext.form.field.Text'
 		
-		'rcm.view.Util',
-		'rcm.view.MonthYear',
-		'dataentry.ExcelGrid',
-		'dataentry.DetailInfo'
+		,'rcm.view.Util'
+		,'rcm.view.MonthYear'
+		,'dataentry.ExcelGrid'
+		,'dataentry.DetailInfo'
+		,'dataentry.FormGagal'
+		,'dataentry.IsiTabForm'
     ],
 
     stores: [
 		'Hirarki'
 		,'RunningHour'
-		//,'DaftarGagal'
     ],
     
     models: [
@@ -24,6 +25,16 @@ Ext.define('rcm.controller.ExcelGrid', {
     refs: [{
 		ref: 'excelgrid',
 		selector: 'excelgrid'
+	},{
+		ref: 'taskFormGagal',
+		selector: 'taskFormGagal',
+		xtype: 'taskFormGagal',
+		autoCreate: true
+	},{
+		ref: 'taskIsiFormGagal',
+		selector: 'taskIsiFormGagal',
+		xtype: 'taskIsiFormGagal',
+		autoCreate: true
 	},{
 		ref: 'taskTanggalan',
 		selector: 'taskTanggalan'
@@ -58,6 +69,16 @@ Ext.define('rcm.controller.ExcelGrid', {
 		this.getExcelgrid().reconfigure(this.getRunningHourStore().load({ params:{tgl:t, cat:catx} }), rcm.view.Util.UxcolGrid());
 		Ext.resumeLayouts(true);
 	},
+	
+	buildFormGagal: function(e)	{
+		var me = this,
+            taskFormGagal = me.getTaskFormGagal();
+            
+		taskFormGagal.setWidth(500);
+		taskFormGagal.show();
+		
+		alert("Form Gagal: "+ " tgl: "+rcmSettings.tgl);
+	},
     
     updateGrid: function(view, e) {
         var me=this, tv=e.value; drow=this.getRunningHourStore().getAt(e.rowIdx);
@@ -71,8 +92,8 @@ Ext.define('rcm.controller.ExcelGrid', {
 		} else if ((tv==24)||(tv=="24:00"))	{
 			//this.simpanRH(e);
 		} else {
-			//this.buildFormGagal(e);
-			alert("Form Gagal: "+tv+ " tgl: "+rcmSettings.tgl);
+			this.buildFormGagal(e);
+			
 		}
 		//*/
 	},
