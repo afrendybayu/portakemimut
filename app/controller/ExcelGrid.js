@@ -50,8 +50,10 @@ Ext.define('rcm.controller.ExcelGrid', {
 			},
 			'taskTanggalan': {
 				klikKalender: me.KalenderClick
+			},
+			'#cancel-eg': {
+				click: me.hideFormGagal
 			}
-			
 		});
     },
     
@@ -70,6 +72,11 @@ Ext.define('rcm.controller.ExcelGrid', {
 		Ext.resumeLayouts(true);
 	},
 	
+	hideFormGagal: function()	{
+		this.getTaskFormGagal().close();
+		this.getRunningHourStore().reload();
+	},
+	
 	buildFormGagal: function(e)	{
 		var me = this,
             taskFormGagal = me.getTaskFormGagal();
@@ -77,7 +84,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		taskFormGagal.setWidth(500);
 		taskFormGagal.show();
 		
-		alert("Form Gagal: "+ " tgl: "+rcmSettings.tgl);
+		//alert("Form Gagal: "+ " tgl: "+rcmSettings.tgl);
 	},
     
     updateGrid: function(view, e) {
