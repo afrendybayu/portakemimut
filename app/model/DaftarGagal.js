@@ -17,10 +17,11 @@ Ext.define('rcm.model.DaftarGagal', {
     ,proxy: {
         type: 'ajax',
         api: {
-            create: 'php/gagal/create.php',
-            read: 'php/gagal/read.php',
-            update: 'php/gagal/update.php',
-            destroy: 'php/gagal/delete.php'
+            
+            //create: 'php/gagal/create.php',
+            read: 'ci/index.php/rDaftarG'
+            //update: 'php/gagal/update.php',
+            //destroy: 'php/gagal/delete.php'
         },
         reader: {
             type: 'json',

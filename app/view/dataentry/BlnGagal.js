@@ -17,13 +17,23 @@ Ext.define('rcm.view.dataentry.BlnGagal', {
 			layout: 'hbox',
 
 			items: [{
-					id:  'iblnDG',
-					xtype: 'monthfield',
+					id:  'iblnDGaw',
+					xtype: 'datefield',
+					submitFormat: 'Y-m-d',
+					//value: new Date().add(Date.MONTH, -2),
+					value: Ext.Date.add(new Date(), Ext.Date.MONTH, -2),
+					fieldLabel: '<b>Pilih Waktu Awal</b>',
+					format: 'd M Y'
+					//format: 'F Y',
+					//margin: '0 10 0 10'
+				},{
+					id:  'iblnDGak',
+					xtype: 'datefield',
 					submitFormat: 'Y-m-d',
 					value: new Date(),
-					fieldLabel: '<b>Pilih Waktu</b>',
-					format: 'F Y',
-					margin: '0 10'
+					fieldLabel: '<b>Waktu Akhir</b>',
+					format: 'd M Y',
+					margin: '0 10 0 10'
 				},{
 					id: 'btnCariDGx',
 					xtype: 'button',

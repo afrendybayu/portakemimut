@@ -71,7 +71,7 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 				me.row1Click(record.get('eqid'));
 			},
 			itemdblclick: function(dv, record, item, index, e)	{
-				alert("double click, "+record.get('idevent'));
+				//alert("double click, "+record.get('idevent')+"-- "+record.get('event'));
 				me.row2Click(record.get('id'), record.get('idevent'));	//	record.raw.value
 			}
 		},
@@ -146,17 +146,8 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 				xtype:'actioncolumn',
 				width:25,
 				iconCls: 'editEvent',
-				//icon: 'modul/icons/edit.png',  // Use a URL in the icon config
 				tooltip: 'Edit Kejadian',
 				handler: Ext.bind(me.hdlEditDGClick, me)
-				//handler: hdlEditDGClick
-				/*
-				function(grid, rowIndex, colIndex) {
-					var rec = grid.getStore().getAt(rowIndex);
-					//alert("Edit kejadian "+ rec.get('event')+" "+rec.get('nama'));
-					//grid.getStore().removeAt(rowIndex);
-				}
-				//*/
 			}, {
 				xtype:'actioncolumn',
 				width:25,
@@ -164,17 +155,6 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 				//icon: 'modul/icons/delete.gif',  // Use a URL in the icon config
 				tooltip: 'Hapus Kejadian',
 				handler: Ext.bind(me.hdlHapusDGClick, me)
-				/*
-				handler: function(grid, rowIndex, colIndex) {
-					var rec = grid.getStore().getAt(rowIndex);
-					var hps = rec.get('event')+" "+rec.get('nama');
-					Ext.MessageBox.confirm(hps,'Hapus '+hps+' ?',function(btn){
-						if (btn === 'yes') {
-							//grid.getStore().removeAt(rowIndex);
-						}
-					});
-				}
-				//*/
 			}
 		]};
 		me.callParent(arguments);

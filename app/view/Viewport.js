@@ -24,7 +24,7 @@ Ext.define('rcm.view.Viewport', {
 		xtype: 'content'
 	//*
 	}, {
-	
+		id: 'idwest',
 		region: 'west',
 		title: 'South Sumatera Extension',
 		//icon: 'modul/icons/bullets.png',

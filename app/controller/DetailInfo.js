@@ -11,7 +11,8 @@ Ext.define('rcm.controller.DetailInfo', {
     ],
 
     stores: [
-		'DetailGagal'
+		'DaftarGagal'
+		,'DetailGagal'
 		,'EventInfo'
 		,'Note'
     ],
@@ -32,6 +33,9 @@ Ext.define('rcm.controller.DetailInfo', {
 				editDGClick: me.edDG
 				,hapusDGClick: me.hpsDG
 				,infoDetailGagal: me.infoDG
+			},
+			'#btnCariDGx': {
+				click: me.cariDG
 			}
 			
 		});
@@ -81,6 +85,11 @@ Ext.define('rcm.controller.DetailInfo', {
 		Ext.getCmp('bgDetail').expand();
 		
 		//alert("Controller infoDG");
-	}
+	},
 
+	cariDG: function()	{
+		alert("tampil tanggal: "+Ext.getCmp("iblnDGaw").getValue()+" "+Ext.getCmp("iblnDGak").getValue());
+		this.getDaftarGagalStore().load({ 
+			params:{ tw:Ext.getCmp("iblnDGaw").getValue(), tk:Ext.getCmp("iblnDGak").getValue() } });
+	}
 });

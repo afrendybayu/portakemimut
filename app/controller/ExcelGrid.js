@@ -14,7 +14,7 @@ Ext.define('rcm.controller.ExcelGrid', {
     stores: [
 		'Hirarki'
 		,'RunningHour'
-		,'DaftarGagal'
+		//,'DaftarGagal'
     ],
     
     models: [
