@@ -3,9 +3,9 @@ Ext.define('rcm.store.EventList', {
     extend: 'Ext.data.Store',
     model: 'rcm.model.EventList',
     requires: 'rcm.model.EventList',
-    autoLoad: true,
-    
-    proxy: {
+    autoLoad: true
+    /*
+	proxy: {
 		type: 'ajax',
 		url: 'ci/index.php/rEventList',
         reader: {
@@ -14,4 +14,5 @@ Ext.define('rcm.store.EventList', {
             messageProperty: 'message'
         }
     }
+    //*/
 });

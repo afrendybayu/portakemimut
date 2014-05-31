@@ -59,10 +59,12 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 				emptyText:      'Pilih Tipe Kejadian ... ',
 				name:           'tfevent',
 				id: 'idtfevent',
-				displayField:   'name',
+				displayField:   'nama',
 					//defaultMargins: {top: 0, right: 5, bottom: 0, left: 0},
-				valueField: 'value',
+				valueField: 'id',
 				queryMode: 'local',
+				store: 'EventList',
+				/*
 				store:          Ext.create('Ext.data.Store', {
 					fields : ['name', 'value'],
 					data   : [
@@ -72,6 +74,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 						{name : 'Breakdown', value: 4}
 					]
 				}),
+				//*/
 				maxWidth: 405,
 				listConfig: {
 					listeners: {
@@ -83,6 +86,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 			},{			// 1 Tipe PM
 				xtype: 'combo',
 				mode: 'local',
+				hidden: true,
 				//triggerAction:  'all',
 				forceSelection: true,
 				editable: false,
@@ -141,6 +145,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 				id: 'TFmt',
 				//name: 'timemulai',
 				combineErrors: true,
+				hidden: true,
 				msgTarget : 'side',
 				layout: 'hbox',
 				defaults: {
@@ -220,6 +225,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 				xtype: 'fieldcontainer',
 				fieldLabel: 'Selesai Tindakan',
 				combineErrors: true,
+				hidden: true,
 				msgTarget : 'side',
 				id: 'TFst',
 				layout: 'hbox',
@@ -262,6 +268,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 				id: 'TFTmbl',
 				combineErrors: true,
 				msgTarget : 'side',
+				hidden: true,
 				layout: 'hbox',
 				defaults: {
 					flex: 1,
@@ -284,7 +291,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 				msgTarget: 'side',
 				flex: 1,
 				height: 80
-			},{
+			},{			// 9 Pelaksana
 				xtype: 'textfield',
 				width:509,
 				hidden: true,
@@ -305,7 +312,74 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 		me.callParent(arguments);
 	},
 	
-	pilihEventG: function(rec)	{
-		
+	updateErrorState: function(a) {		
+		var me = this, errorCmp, fields, errors;
+		var ev = Ext.getCmp('idtfevent').getSubmitValue(),
+			dd = Ext.getCmp('datedown').getSubmitValue(),
+			td = Ext.getCmp('timedown').getSubmitValue(),
+			du = Ext.getCmp('dateup').getSubmitValue(),
+			tu = Ext.getCmp('timeup').getSubmitValue();
+		var ex = Ext.getCmp('idexe').getSubmitValue();
+		//console.log("ev: "+ev+", dd: "+dd+", td: "+td+", du"+du+", tu: "+tu);
+		//if (ev && ev==1)	{		// standby
+		if (a==1) {
+			if (dd && td && du && tu)	{
+				Ext.getCmp('save-task-fg-btn').enable();
+			} else {
+				Ext.getCmp('save-task-fg-btn').disable();
+			}
+		}
+		else if (a==2)	{	// PM
+		//else if (ev && ev==2)	{	// PM
+			var pm = Ext.getCmp('tipepm').getSubmitValue();
+			
+			//console.log("pm: "+pm);
+			if (dd && td && du && tu && pm && ex)	{
+				Ext.getCmp('save-task-fg-btn').enable();
+			} else {
+				Ext.getCmp('save-task-fg-btn').disable();
+			}
+		}
+		else if (a==3 || a==4)	{	// CR | BD
+			//console.log("ev: "+ev+",pjg: "+ex.length);
+			if (dd && td && du && tu && ex && ex.length>=2)	{
+				Ext.getCmp('save-task-fg-btn').enable();
+			} else {
+				Ext.getCmp('save-task-fg-btn').disable();
+			}
+		}
+		else {
+			Ext.getCmp('save-task-fg-btn').disable();
+		}
+	},
+	
+	pilihEventG: function(n)	{
+		var ev = Ext.getCmp('idtfevent').getSubmitValue();
+		//this.fireEvent('plhEventGagalXY', n);
+		if (n==1)	{		// StandBy
+			Ext.getCmp('tipepm').setVisible(false);
+			Ext.getCmp('TFmt').setVisible(false);
+			Ext.getCmp('TFst').setVisible(false);
+			Ext.getCmp('TFTmbl').setVisible(false);
+			//Ext.getCmp('TFGrid').setVisible(false);
+			Ext.getCmp('idexe').setVisible(false);
+		} 
+		else if (n==2)	{
+			Ext.getCmp('tipepm').setVisible(true);
+			Ext.getCmp('TFmt').setVisible(true);
+			Ext.getCmp('TFst').setVisible(true);
+			Ext.getCmp('TFTmbl').setVisible(false);
+			Ext.getCmp('idexe').setVisible(true);
+			//Ext.getCmp('TFGrid').setVisible(false);
+			//*/
+		} else	{ // BD & CR
+			Ext.getCmp('tipepm').setVisible(false);
+			Ext.getCmp('TFmt').setVisible(true);
+			Ext.getCmp('TFst').setVisible(true);
+			Ext.getCmp('TFTmbl').setVisible(true);
+			Ext.getCmp('idexe').setVisible(true);
+			//Ext.getCmp('TFGrid').setVisible(true);
+		}
+		this.updateErrorState(n);
 	}
 });

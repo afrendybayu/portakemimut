@@ -6,4 +6,16 @@ Ext.define('rcm.model.EventList', {
 	],
 
 	fields: [ 'id','nama']
+	
+	,proxy: {
+        type: 'ajax',
+        api: {
+            read: 'ci/index.php/rEventList'
+        },
+        reader: {
+            type: 'json',
+            root: 'event',
+            messageProperty: 'message'
+        }
+    }
 });
