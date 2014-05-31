@@ -54,6 +54,9 @@ Ext.define('rcm.controller.ExcelGrid', {
 			},
 			'#cancel-eg': {
 				click: me.hideFormGagal
+			},
+			'taskIsiFormGagal': {
+				plhEventGagalXY: me.pilihEventGagalXY
 			}
 		});
     },
@@ -71,6 +74,10 @@ Ext.define('rcm.controller.ExcelGrid', {
 		Ext.suspendLayouts();
 		this.getExcelgrid().reconfigure(this.getRunningHourStore().load({ params:{tgl:t, cat:catx} }), rcm.view.Util.UxcolGrid());
 		Ext.resumeLayouts(true);
+	},
+	
+	pilihEventGagalXY: function(n)	{
+		this.getTaskFormGagal().ubahLebar(n);
 	},
 	
 	hideFormGagal: function()	{

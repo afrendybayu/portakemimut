@@ -52,7 +52,6 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 		me.items = [{	// 0 tipe kejadian
 				xtype:          'combo',
 				fieldLabel: 'Tipe Kejadian',
-				mode:           'local',
 				triggerAction:  'all',
 				forceSelection: true,
 				editable:       false,
@@ -60,26 +59,14 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 				name:           'tfevent',
 				id: 'idtfevent',
 				displayField:   'nama',
-					//defaultMargins: {top: 0, right: 5, bottom: 0, left: 0},
 				valueField: 'id',
 				queryMode: 'local',
 				store: 'EventList',
-				/*
-				store:          Ext.create('Ext.data.Store', {
-					fields : ['name', 'value'],
-					data   : [
-						{name : 'Stand By',  value: 1},							
-						{name : 'PM', value: 2},
-						{name : 'Corrective', value: 3},
-						{name : 'Breakdown', value: 4}
-					]
-				}),
-				//*/
 				maxWidth: 405,
 				listConfig: {
 					listeners: {
 						itemclick: function(list, record) {
-							me.pilihEventG(record.raw.value);
+							me.pilihEventG(record.get('id'));
 						}
 					}
 				}
@@ -354,8 +341,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 	},
 	
 	pilihEventG: function(n)	{
-		var ev = Ext.getCmp('idtfevent').getSubmitValue();
-		//this.fireEvent('plhEventGagalXY', n);
+		this.fireEvent('plhEventGagalXY', n);
 		if (n==1)	{		// StandBy
 			Ext.getCmp('tipepm').setVisible(false);
 			Ext.getCmp('TFmt').setVisible(false);
