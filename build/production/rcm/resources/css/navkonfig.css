@@ -66,3 +66,13 @@
     /*background-color: #B0FFC5;*/
     color:blue;
 }
+
+.rusak .x-change-cell12 {
+    background-color: #FFB0C4;
+    color:red;
+}
+
+.baik .x-change-cell12 {
+    background-color: #B0FFC5;
+    color:green;
+}

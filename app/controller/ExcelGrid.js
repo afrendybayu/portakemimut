@@ -87,10 +87,32 @@ Ext.define('rcm.controller.ExcelGrid', {
 	
 	buildFormGagal: function(e)	{
 		var me = this,
-            taskFormGagal = me.getTaskFormGagal();
-            
-		taskFormGagal.setWidth(500);
-		taskFormGagal.show();
+            tFG = me.getTaskFormGagal(),
+			form =  tFG.down('form').getForm(),
+			sDG = Ext.create('rcm.model.DaftarGagal'),
+			dRHs = this.getRunningHourStore().getAt(e.rowIdx).data,
+			dRHsJ = dRHs.eq+" @"+dRHs.Lokasi;
+		
+		sDG.set('eq',rcmSettings.eqx); sDG.set('nama',dRHsJ); 
+		sDG.set('downt',rcmSettings.tgl); //sDG.set('server','rcmSettings.server');
+		tFG.down('form').getForm().reset();
+		
+		//form.findField('eq').setValue(dRHsJ);
+		//form.findField('fgid').setValue(dRHs.id); 
+		//form.findField('datedown').setValue(rcmSettings.tgl);
+		
+		Ext.getCmp('fmEq').setValue(dRHsJ);
+		Ext.getCmp('fgid').setValue(dRHs.id);
+		Ext.getCmp('idtfevent').setValue(1);
+		Ext.getCmp('datedown').setValue(Ext.util.Cookies.get('tgl'));
+		
+		tFG.down('form').loadRecord(sDG);
+		tFG.setTitle('Form Notifikasi ' + dRHsJ);
+		
+		me.getTaskIsiFormGagal().pilihEventG(1);
+		
+		//tFG.setWidth(500);
+		tFG.show();
 		
 		//alert("Form Gagal: "+ " tgl: "+rcmSettings.tgl);
 	},
@@ -129,9 +151,10 @@ Ext.define('rcm.controller.ExcelGrid', {
     
     onLaunch: function() {
 		Ext.getCmp('idwest').collapse();
-		var t = new Date();
+		//var t = new Date();
 		this.ubahFieldRH();
-		Ext.util.Cookies.set('tgl',t);
+		//Ext.util.Cookies.set('tgl',t);
+		Ext.util.Cookies.set('now',Ext.Date.format(new Date(),"Y-m-d"));
 		//rcm.view.Util.setCookie("tgl",t);
 		//alert("t: "+t+"  cook: "+Ext.decode(rcm.view.Util.getCookie("tgl")));
         //alert("tgl: "+Ext.util.Cookies.get('tgl'));

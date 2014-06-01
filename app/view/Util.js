@@ -121,7 +121,7 @@ Ext.define('rcm.view.Util', {
 				
 				xwkt="k"+(tgl.getFullYear()-2000)+""+this.Upad(tgl.getMonth()+1)+""+this.Upad(tgl.getDate());
 				//grid={header:tgl.getDate(),dataIndex:xwkt,width:50,editor:'textfield', tdCls: 'x-change-cell'};
-				grid={header:tgl.getDate(),dataIndex:xwkt,width:50,editor:'textfield'
+				grid={header:tgl.getDate(),dataIndex:xwkt,width:50,editor:'textfield',tdCls: 'x-change-cell'+i
 					/*
 					renderer: function(value, meta) {
 						if (value === '24:00') { 

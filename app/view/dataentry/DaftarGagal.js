@@ -37,31 +37,7 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 	initComponent: function() {
 		var me=this, ceditp=Ext.create('Ext.grid.plugin.RowEditing');//clicksToEdit: 1
 		//me.plugins = [ceditp];
-		/*
-		var fl = Ext.create('Ext.ux.grid.FiltersFeature', { 
-			local: local,   // defaults to false (remote filtering)
-			filters: [{
-				type: 'boolean',
-				dataIndex: 'visible'
-			}]
-		});
-		
-		//*/
-		/*
-		me.features = [{
-			ftype: 'filters',
-			// encode and local configuration options defined previously for easier reuse
-			encode: false, // json encode the filter query
-			local: true,   // defaults to false (remote filtering)
 
-			// Filters are most naturally placed in the column definition, but can also be
-			// added here.
-			filters: [{
-				type: 'boolean',
-				dataIndex: 'visible'
-			}]
-		}];
-		//*/
 		me.listeners = {
 			itemclick: function(dv, record, item, index, e) {
 				//me.rowClick(record.get('id'), record.get('idevent'));	//	record.raw.value
