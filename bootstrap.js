@@ -901,6 +901,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.controller.Login": [],
   "rcm.controller.Main": [],
   "rcm.controller.Nav": [],
+  "rcm.controller.Sap": [],
   "rcm.model.Aksi": [],
   "rcm.model.AvGroup": [],
   "rcm.model.AvHome": [],
@@ -920,6 +921,13 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.PM": [],
   "rcm.model.ReHome": [],
   "rcm.model.RunningHour": [],
+  "rcm.model.SapCause": [],
+  "rcm.model.SapCauseInfo": [],
+  "rcm.model.SapDamage": [],
+  "rcm.model.SapEPO": [],
+  "rcm.model.SapHistori": [],
+  "rcm.model.SapOPart": [],
+  "rcm.model.SapSymptom": [],
   "rcm.store.Aksi": [],
   "rcm.store.AvGroup": [],
   "rcm.store.AvHome": [],
@@ -941,6 +949,23 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.ReHome": [],
   "rcm.store.ReSpeedo": [],
   "rcm.store.RunningHour": [],
+  "rcm.store.SapCause": [],
+  "rcm.store.SapCauseInfo": [],
+  "rcm.store.SapDamage": [],
+  "rcm.store.SapDamageInfo": [],
+  "rcm.store.SapEPO": [],
+  "rcm.store.SapHistori": [],
+  "rcm.store.SapOPart": [],
+  "rcm.store.SapOPartInfo": [],
+  "rcm.store.SapSymptom": [],
+  "rcm.store.SapSymptomInfo": [],
+  "rcm.store.SpAvGcUt": [],
+  "rcm.store.SpAvGsUt": [],
+  "rcm.store.SpAvPmUt": [],
+  "rcm.store.SpAvReUt": [],
+  "rcm.store.SpReGcUt": [],
+  "rcm.store.SpReGsUt": [],
+  "rcm.store.SpRePmUt": [],
   "rcm.view.Content": [],
   "rcm.view.Main": [],
   "rcm.view.MonthYear": [
@@ -965,6 +990,26 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.lapobama.BlnAv": [],
   "rcm.view.lapobama.ReHome": [],
   "rcm.view.lapobama.SpeedoAv": [],
+  "rcm.view.laporan.Chart": [],
+  "rcm.view.laporan.ConMon": [],
+  "rcm.view.laporan.ConMonUnit": [],
+  "rcm.view.laporan.EPO": [],
+  "rcm.view.laporan.EPOCol": [],
+  "rcm.view.laporan.EPOPie": [],
+  "rcm.view.laporan.GridCause": [],
+  "rcm.view.laporan.GridCauseInfo": [],
+  "rcm.view.laporan.GridConMon": [],
+  "rcm.view.laporan.GridWork": [],
+  "rcm.view.laporan.SapCause": [],
+  "rcm.view.laporan.SapChartDet": [],
+  "rcm.view.laporan.SapDamage": [],
+  "rcm.view.laporan.SapHistori": [],
+  "rcm.view.laporan.SapOPart": [],
+  "rcm.view.laporan.UploadFile": [],
+  "rcm.view.laporan.WOComp": [],
+  "rcm.view.laporan.WOManCP": [],
+  "rcm.view.laporan.WOStack": [],
+  "rcm.view.laporan.WaktuSAP": [],
   "rcm.view.login.LoginAuth": [],
   "rcm.view.login.LogoutInfo": [],
   "rcm.view.nav.AppHeader": [],
@@ -1986,6 +2031,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.controller.Login": [],
   "rcm.controller.Main": [],
   "rcm.controller.Nav": [],
+  "rcm.controller.Sap": [],
   "rcm.model.Aksi": [],
   "rcm.model.AvGroup": [],
   "rcm.model.AvHome": [],
@@ -2005,6 +2051,13 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.PM": [],
   "rcm.model.ReHome": [],
   "rcm.model.RunningHour": [],
+  "rcm.model.SapCause": [],
+  "rcm.model.SapCauseInfo": [],
+  "rcm.model.SapDamage": [],
+  "rcm.model.SapEPO": [],
+  "rcm.model.SapHistori": [],
+  "rcm.model.SapOPart": [],
+  "rcm.model.SapSymptom": [],
   "rcm.store.Aksi": [],
   "rcm.store.AvGroup": [],
   "rcm.store.AvHome": [],
@@ -2026,6 +2079,23 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.ReHome": [],
   "rcm.store.ReSpeedo": [],
   "rcm.store.RunningHour": [],
+  "rcm.store.SapCause": [],
+  "rcm.store.SapCauseInfo": [],
+  "rcm.store.SapDamage": [],
+  "rcm.store.SapDamageInfo": [],
+  "rcm.store.SapEPO": [],
+  "rcm.store.SapHistori": [],
+  "rcm.store.SapOPart": [],
+  "rcm.store.SapOPartInfo": [],
+  "rcm.store.SapSymptom": [],
+  "rcm.store.SapSymptomInfo": [],
+  "rcm.store.SpAvGcUt": [],
+  "rcm.store.SpAvGsUt": [],
+  "rcm.store.SpAvPmUt": [],
+  "rcm.store.SpAvReUt": [],
+  "rcm.store.SpReGcUt": [],
+  "rcm.store.SpReGsUt": [],
+  "rcm.store.SpRePmUt": [],
   "rcm.view.Content": [
     "widget.content"
   ],
@@ -2087,6 +2157,70 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.lapobama.SpeedoAv": [
     "widget.tAvSpeedo"
+  ],
+  "rcm.view.laporan.Chart": [
+    "widget.tabChart"
+  ],
+  "rcm.view.laporan.ConMon": [
+    "widget.tConMon"
+  ],
+  "rcm.view.laporan.ConMonUnit": [
+    "widget.tConMonUnit"
+  ],
+  "rcm.view.laporan.EPO": [
+    "widget.tEPO"
+  ],
+  "rcm.view.laporan.EPOCol": [
+    "widget.tEPOCol"
+  ],
+  "rcm.view.laporan.EPOPie": [
+    "widget.tEPOPie"
+  ],
+  "rcm.view.laporan.GridCause": [
+    "widget.gridCause",
+    "widget.taskGridCause"
+  ],
+  "rcm.view.laporan.GridCauseInfo": [
+    "widget.gridCause",
+    "widget.taskGridCauseInfo"
+  ],
+  "rcm.view.laporan.GridConMon": [
+    "widget.gridConMon",
+    "widget.tGridConMon"
+  ],
+  "rcm.view.laporan.GridWork": [
+    "widget.gridWork",
+    "widget.tGridWork"
+  ],
+  "rcm.view.laporan.SapCause": [
+    "widget.causechart"
+  ],
+  "rcm.view.laporan.SapChartDet": [
+    "widget.tSapDet"
+  ],
+  "rcm.view.laporan.SapDamage": [
+    "widget.damagechart"
+  ],
+  "rcm.view.laporan.SapHistori": [
+    "widget.tHistori"
+  ],
+  "rcm.view.laporan.SapOPart": [
+    "widget.opartchart"
+  ],
+  "rcm.view.laporan.UploadFile": [
+    "widget.uploadfile"
+  ],
+  "rcm.view.laporan.WOComp": [
+    "widget.tWOComp"
+  ],
+  "rcm.view.laporan.WOManCP": [
+    "widget.tWOManCP"
+  ],
+  "rcm.view.laporan.WOStack": [
+    "widget.tWOStack"
+  ],
+  "rcm.view.laporan.WaktuSAP": [
+    "widget.twaktusap"
   ],
   "rcm.view.login.LoginAuth": [
     "widget.authlogin"

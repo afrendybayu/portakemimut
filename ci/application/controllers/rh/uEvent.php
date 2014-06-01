@@ -9,7 +9,7 @@ class uEvent extends CI_Controller {
 			if (!isset($params))	{
 				throw new Exception("Input Data Tidak Ada");
 			}
-			print_r ($params);
+			//print_r ($params);
 			$this->load->model('event');
 			
 			$ret = array();

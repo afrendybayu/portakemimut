@@ -6,6 +6,7 @@ Ext.define('rcm.view.Content', {
 		'Ext.panel.Panel'
 		,'rcm.view.dataentry.ExcelGrid'
 		,'rcm.view.lapobama.AvReChart' //--
+		,'rcm.view.laporan.Chart'
 		
 		//'rcm.view.dataentry.DetailInfo'
 		//'Extensible.calendar.data.MemoryEventStore',
@@ -37,8 +38,9 @@ Ext.define('rcm.view.Content', {
 		},{
 			id: 'tu_sap',
 			title: 'SAP Report',
+			xtype: 'tabChart',
 			iconCls: 'sap'
-			//xtype: 'tabChart',
+
 		/*
 		},{
 			id: 'tu_pr',

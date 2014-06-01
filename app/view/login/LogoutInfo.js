@@ -6,9 +6,10 @@ Ext.define('rcm.view.login.LogoutInfo', {
 	id	: 'p_logout',	
 	
 	items: [{
+				margin: '5 10 0 10',
 				xtype : 'text',
 				text : 'welcome administrator'
-			
+/*			
 			},{
 				xtype : 'textfield',
 				inputType: 'password',
@@ -17,6 +18,7 @@ Ext.define('rcm.view.login.LogoutInfo', {
 				//fieldLabel: 'Username'
 				allowBlank: false,
 				emptyText : 'Password'
+//*/
 			},{
 				xtype : 'button',
 				text : 'Logout',
