@@ -66,13 +66,49 @@
     /*background-color: #B0FFC5;*/
     color:blue;
 }
+/*
+.rusak .x-change-cell9 {
+    color:red;
+}
 
-.rusak .x-change-cell12 {
+.baik .x-change-cell9 {
+    color:green;
+}
+
+.rusak .x-change-cell10 {
+    color:red;
+}
+
+.baik .x-change-cell10 {
+    color:green;
+}
+
+.rusak1 .x-change-cell11 {
+    color:red;
+}
+
+.baik1 .x-change-cell11 {
+    background-color: #B0FFC5;
+    color:green;
+}
+
+.rusak2 .x-change-cell12 {
     background-color: #FFB0C4;
     color:red;
 }
 
-.baik .x-change-cell12 {
+.baik2 .x-change-cell12 {
     background-color: #B0FFC5;
     color:green;
 }
+
+.rusak .x-change-cell {
+    background-color: #FFB0C4;
+    color:red;
+}
+
+.baik .x-change-cell {
+    background-color: #B0FFC5;
+    color:green;
+}
+//*/

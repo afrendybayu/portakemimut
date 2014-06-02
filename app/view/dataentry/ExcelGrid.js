@@ -32,13 +32,19 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
     
     viewConfig: {
         getRowClass: function(record, index) {
+			/*
 			var c = record.get('k140521');
-			if (c==24)	{
-				return 'baik';
-			}
-			else {
-				return 'rusak';
-			}
+			if (c==24)	return 'baik2';
+			else 		return 'rusak2';
+			
+			c = record.get('k140522');
+			if (c==24)	return 'baik1';
+			else 		return 'rusak1';
+			
+			var cc = record.get('k140524');
+			if (cc==24)	return 'sip';
+			else 		return 'rusak';
+			//*/
 			/*
 			var alertText = "record: "+index+' --- ';
 			for (property in record.data) {
@@ -47,30 +53,16 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 					if (record.data[property]==24)	{
 						//alert(index+": rusak "+ property);
 						alertText += "baik --";
-						return 'baik';
+						//return 'baik';
 					}
 					else {
 						alertText += "rusak --";
-						return 'rusak';
+						//return 'rusak';
 					}
 				}
 			}
-			//alert(alertText);
+			alert(alertText);
 			//*/
-			/*
-			Ext.each(record.data, function(a) {
-				//var k = myArray[0];
-				console.log(a+" ");
-			});
-			//*/
-            /*
-            var c = record.get('k140426');
-            if (c.localeCompare("24:00")) {
-                return 'price-fall';
-            } else {
-                return 'price-rise';
-            }
-            //*/
         }
     },
 	
