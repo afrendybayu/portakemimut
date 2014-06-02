@@ -49,8 +49,8 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = 'tentakel';
+$db['default']['username'] = 'monita';
+$db['default']['password'] = 'monita2011';
 $db['default']['database'] = 'medco';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
