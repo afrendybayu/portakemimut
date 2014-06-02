@@ -1,2 +1,3 @@
 *.scssc
-./build/
+./build/tes/
+./build/production/
