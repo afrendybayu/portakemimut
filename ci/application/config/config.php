@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/medco/ci/';
+$config['base_url']	= 'http://localhost/daunbiru/portakemimut/ci'; //medco/ci/';
 
 /*
 |--------------------------------------------------------------------------
