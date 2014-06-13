@@ -8,70 +8,32 @@ class rRunningHour extends CI_Controller {
     }
 	
 	public function index()	{
-		//$this->load->view('welcome_message');
+		
 		try	{
 			$sql = array();
 			$eq = 0; $jml = 0;
-			$tisi = array();
+			$tisi = array(); 
+			//$tgl = $this->input->get('tgl')?:'0';
+			$tgl = $this->input->get('tgl')?:date('Y-m-d'); 
+			$cat = $this->input->get('cat')?:5;  	
 			
-			$tgl = $this->input->get('tgl')?:'0';
-			$cat = $this->input->get('cat')?:5;
-			//echo $tgl;
-			//return;
-			//$tgl = (isset($this->input->get('tgl',TRUE)))?str_replace("'",'',$this->db->escape($this->input->get('tgl',TRUE))):'0';
-			//$tgl = (isset($_GET['tgl']))?str_replace("'",'',$this->db->escape($_GET['tgl'])):'0';
-			//$tgl =
-			//$tgl = (isset($_GET['tgl']))?($_GET['tgl']):'0';
-			//$cat = (isset($_GET['cat']))?$this->db->escape($_GET['cat']):5;
+			$m = date('n', strtotime($tgl)); //month 1-12 tanpa 0
+			$y = date('Y', strtotime($tgl)); //year
+			$t = date('d', strtotime($tgl)); //day 00-31
 			
-			if ($tgl==null || $tgl=='0')	{
-				$tgl=date("Y-m-d");	
-			//	echo "tgl: $tgl<br/>";
-			}
-			//echo "tgl: $tgl, cat: $cat<br/>";
+			$bts_0 = date("Y-m-d", mktime(0, 0, 0, $m, $t, $y));
+			$bts_1 = date("Y-m-d", mktime(0, 0, 0, $m, $t-13, $y));
 			
-			/*
-			list($y,$m,$t) = explode("-", $tgl);
-			$m = (int) $m;
-			$y = (int) $y;
-			//$y = 2014;
-			$t = (int) $t;
+			$s = "SELECT h3.id, h3.nama, h3.flag as cat, h1.nama as hlok, h1.urut as urut FROM hirarki AS h1
+					LEFT JOIN hirarki AS h2 ON h2.parent = h1.id
+					LEFT JOIN hirarki AS h3 ON h3.parent = h2.id
+					WHERE h1.parent =0 and h3.flag = ? order by h1.urut asc, h1.nama asc;"; 
 			
-			//*/
-			$m = date('n', strtotime($tgl));
-			$y = date('Y', strtotime($tgl));
-			$t = date('d', strtotime($tgl));
-			//echo "y: $y, m: $m, t: $t<br/>";
-
-			$sql["tbl"][0] = "rh_".date("Ym", mktime(0, 0, 0, $m, $t, $y));
-			$sql["bts"][0] = date("Y-m-d", mktime(0, 0, 0, $m, $t, $y)); 	
-			$sql["tbl"][1] = "rh_".date("Ym", mktime(0, 0, 0, $m, $t, $y)-(13*24));
-			$sql["bts"][1] = date("Y-m-d", mktime(0, 0, 0, $m, $t-13, $y));
-			
-			//echo "tbl: {$sql["tbl"][0]}, bts: {$sql["bts"][0]}, tbl: {$sql["tbl"][1]}, bts: {$sql["bts"][1]}<br/>";
-			//echo "tbl: {$sql["tbl"][0]}, bts0: {$sql["bts"][0]}, bts1: {$sql["bts"][1]}<br/>";
-			
-			$dum = array();
-			for ($tgl=0; $tgl<14; $tgl++)	{
-				//$dum["k".date("ymd", mktime(0, 0, 0, $m, $t-13+$tgl, $y))] = '00:00';
-				$dum[$tgl] = "k".date("ymd", mktime(0, 0, 0, $m, $t-13+$tgl, $y));
-			}
-			
-			$s = "select id,nama,flag as cat, parent as idparent,ket /*level*/ ".
-				 "/*,(select h.parent from hirarki h where hh.parent = h.id) as parent*/ ".
-				 ",(select hhh.nama from hirarki hhh where hhh.id = (select hh.parent from hirarki hh where h.parent = hh.id)) as hlok ".
-				 ",(select hhh.urut from hirarki hhh where hhh.id = (select hh.parent from hirarki hh where h.parent = hh.id)) as urut ".
-				 "from hirarki h where level = 3 and flag = ? ".
-				 "order by urut asc, nama asc;";
-			
-			//echo "sql: $s<br/>";
 			$query = $this->db->query($s, $cat);
 			
 			$fas = array();	$tisi = array();
 			if ($query->num_rows() > 0)	{
 				foreach ($query->result() as $row)	{
-					//print_r($row); echo "<br/>";
-					//*
 					$fas[$row->id]['id'] = $row->id;
 					$fas[$row->id]['eq'] = $row->nama;//." ".$row['tag'];
 					$fas[$row->id]['cat'] = $row->cat;
@@ -80,55 +42,34 @@ class rRunningHour extends CI_Controller {
 				}
 			}
 			
-			$loop = ($sql["tbl"][0]!=$sql["tbl"][1])?2:1;
-			$limit = '';
-			if ($t>=14)	{
-				$limit = " tgl>='{$sql["bts"][1]}' and";
-			}
 			
-			//$s = "SELECT * FROM rh_201311 WHERE tgl BETWEEN '{$sql['bts'][1]}' AND '{$sql['bts'][0]}' ";
 			$s = "SELECT * FROM rh_201311 WHERE tgl BETWEEN ? AND ? ";
-			//echo "sql: $s<br/>";
-			$query = $this->db->query($s, array($sql['bts'][1],$sql['bts'][0]) );
-			//$query = $this->db->query($s);
+			$query = $this->db->query($s, array($bts_1,$bts_0));
+			//$query = $this->db->query($s, array($sql['bts'][1],$sql['bts'][0]) );
 			
 			$time = '';
 			if ($query->num_rows() > 0)	{
-				//echo "jml:";
 				foreach ($query->result() as $row)	{
-					//print_r($row); echo "<br/>";
-					//*
-					if ($eq != $row->eq)	{
-						//echo "-- ";
+					if ($eq != $row->eq){
 						$eq = $row->eq;
 						//$isi[$eq] = $row;	
 						$tisi[$eq]['id'] = $row->eq;
 						$tisi[$eq]['tgl'] = $row->tgl;
 						//$jml=$jml+1;
 					}
-					//echo "<br/>ada<br/><br/>";
-					$time = strtotime($row->tgl);
-					//echo "time: $time<br/>";
+					$time = strtotime($row->tgl); 
 					$ii = ($row->rh);
-					//$ii = format_rh_time($row->rh);
-					$tisi[$eq]["k".date('ymd',$time)] = ($ii?:'-');
-					//*/
+					$tisi[$eq]["k".date('ymd',$time)] = ($ii?:'0');
 				}
+				
 			} 
-			/*
-			else {
-				$time = $time = strtotime('now');
-			}
-			//*/
 			
-			
-			//*
-			if (!isset($tisi[$eq]["k".date('ymd',($time))]))	{
+			if (!isset($tisi[$eq]["k".date('ymd',$time)]))	{
 				foreach ($fas as $a)	{
 					//echo " -->".$a['id']."<br/>";
 					for($i=13;$i>=0; $i--)	{
 						//echo "eq: ".$a['id']." ".date("ymd", mktime(0, 0, 0, $m, $t-$i, $y))."<br/>";
-						$fas[$a['id']]["k".date("ymd", mktime(0, 0, 0, $m, $t-$i, $y))] = '-';
+						$fas[$a['id']]["k".date("ymd", mktime(0, 0, 0, $m, $t-$i, $y))] = '0';
 					}
 				}
 				
@@ -141,14 +82,12 @@ class rRunningHour extends CI_Controller {
 					}
 				}
 			}
-			//*/
+
 			$isi = array();
 			foreach ($fas as $data)	{
 				array_push($isi, $data);
 			}
-			
-			
-			//print_r($arr);
+			//print_r ($isi);
 
 			$jsonResult = array(
 				'success' => true,
