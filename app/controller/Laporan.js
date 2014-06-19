@@ -9,6 +9,7 @@ Ext.define('rcm.controller.Laporan', {
 		'lapobama.AvReChart'
 		,'lapobama.AvGroup'
 		,'lapobama.AvHome'
+		,'lapobama.ReHome'
     ],
 
     controllers: [
@@ -20,12 +21,14 @@ Ext.define('rcm.controller.Laporan', {
         // TODO: add stores here
         'AvGroup'
 		,'AvHome'
+		,'ReHome'
     ],
     
     models: [
 		
 		'AvGroup'
 		,'AvHome'
+		,'ReHome'
     ],
     
     refs: [{

@@ -70,7 +70,7 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 				},{
 					//*
 					id: 'ReBar3',
-					//xtype: 'tReHome',
+					xtype: 'tReHome',
 					title : 'Realibiliti Chart',
 					width: '50%',
 					height: '33.3%',
