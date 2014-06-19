@@ -9,6 +9,8 @@ Ext.define('rcm.controller.Laporan', {
 		'lapobama.AvReChart'
 		,'lapobama.AvGroup'
 		,'lapobama.AvHome'
+		,'lapobama.ReHome'
+		,'lapobama.SpeedoAv'
     ],
 
     controllers: [
@@ -20,12 +22,15 @@ Ext.define('rcm.controller.Laporan', {
         // TODO: add stores here
         'AvGroup'
 		,'AvHome'
+		,'ReHome'
+		
     ],
     
     models: [
 		
 		'AvGroup'
 		,'AvHome'
+		,'ReHome'
     ],
     
     refs: [{
@@ -34,6 +39,9 @@ Ext.define('rcm.controller.Laporan', {
 	},{
 		ref : 'tAvGroup',
 		selector : 'tAvGroup'
+	},{
+		ref : 'tAvSpeedo',
+		selector : 'tAvSpeedo'
 		
 	}],
     
@@ -52,15 +60,15 @@ Ext.define('rcm.controller.Laporan', {
 		var	wkt=this.getTAvGroup().waktu;
 		console.log ("pencet avgroup " + plh + wkt );
 		//Ext.getCmp('iflAvRe').setText(plh.nama+", id:"+plh.id+", w: "+wkt);
-		/*Ext.getCmp('iflAvRe').setText(plh.nama+", "+wkt);
+		Ext.getCmp('iflAvRe').setText(plh.nama+", "+wkt);
 		this.getTAvSpeedo().chartConfig.min = rcm.view.Util.Ubb(plh.av);
 		this.getAvSpeedoStore().getAt(0).set('av',plh.av);
-		this.getReSpeedoStore().getAt(0).set('av',plh.re);
+		//this.getReSpeedoStore().getAt(0).set('av',plh.re);
 		this.getTAvSpeedo().setTitle(plh.kode);
 		this.getTAvSpeedo().setSubTitle("Availability "+wkt);
 		this.getAvReUnitStore().load({ params:{tgl:wkt, eq:plh.id} });
 		//this.getTAvReChart().items.items[1].items.items[0].items.items[0].setTitle('Reliability '+wkt);
-		
+		/*
 		Ext.getCmp('spAvR').setTitle(plh.kode);
 		Ext.getCmp('spAvR').setSubTitle("Availability "+wkt);
 		

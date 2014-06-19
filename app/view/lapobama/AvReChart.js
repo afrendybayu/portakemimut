@@ -70,7 +70,7 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 				},{
 					//*
 					id: 'ReBar3',
-					//xtype: 'tReHome',
+					xtype: 'tReHome',
 					title : 'Realibiliti Chart',
 					width: '50%',
 					height: '33.3%',
@@ -88,7 +88,8 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 				items:[{
 					id:'spAvR',
 					width: '50%',
-					//xtype: 'tAvSpeedo',
+					xtype: 'tAvSpeedo',
+					//title: 'panel Av SPeedo',
 					fldY: ['av2014'],
 					jdl: 'Availability',
 					dstore: 'AvSpeedo'
