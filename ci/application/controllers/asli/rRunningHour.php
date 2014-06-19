@@ -47,7 +47,7 @@ class rRunningHour extends CI_Controller {
 			$query = $this->db->query($s, array($bts_1,$bts_0));
 			//$query = $this->db->query($s, array($sql['bts'][1],$sql['bts'][0]) );
 			
-			$time = time();
+			$time = '';
 			if ($query->num_rows() > 0)	{
 				foreach ($query->result() as $row)	{
 					if ($eq != $row->eq){

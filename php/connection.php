@@ -4,8 +4,8 @@
 //include("global.inc.php");
 
 $server =  'localhost';//'192.168.1.140';
-$username = 'root' ;// 'root';
-$password = 'tentakel';//'monita2010';
+$username = 'monita' ;// 'root';
+$password = 'monita2011';//'tentakel';//'monita2010';
 $database = 'medco';//'monita3';
 //$database = 'medco2';//'monita3';
 

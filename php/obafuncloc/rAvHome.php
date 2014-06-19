@@ -228,7 +228,7 @@ try {
 	$obj2 = new stdClass();
 	
 	if (strcmp($avre,"av")==0)	{
-		$obj1->th1 = ($arAvRe['d'][5]['av'])?:0;
+		//$obj1->th1 = ($arAvRe['d'][5]['av'])?:0;
 		$obj1->avg = ($arAvRe['a'][5]['av'])?:0;
 		$obj1->bln = ($arAvRe['b'][5]['av'])?:0;
 		$obj1->tgt = '98';
@@ -236,21 +236,21 @@ try {
 		array_push($arAR,$obj1);
 		
 		
-		$obj->th1 = ($arAvRe['d'][7]['av'])?:0;
+		//$obj->th1 = ($arAvRe['d'][7]['av'])?:0;
 		$obj->avg = ($arAvRe['a'][7]['av'])?:0;
 		$obj->bln = ($arAvRe['b'][7]['av'])?:0;
 		$obj->tgt = '98';
 		$obj->m = "Generator Set";
 		array_push($arAR,$obj);
 		
-		$obj2->th1 = ($arAvRe['d'][6]['av'])?:0;
+		//$obj2->th1 = ($arAvRe['d'][6]['av'])?:0;
 		$obj2->avg = ($arAvRe['a'][6]['av'])?:0;
 		$obj2->bln = ($arAvRe['b'][6]['av'])?:0;
 		$obj2->tgt = '98';
 		$obj2->m = "Pump";
 		array_push($arAR,$obj2);
 	} else if (strcmp($avre,"re")==0)	{
-		$obj1->th1 = ($arAvRe['d'][5]['re'])?:0;
+		//$obj1->th1 = ($arAvRe['d'][5]['re'])?:0;
 		$obj1->avg = ($arAvRe['a'][5]['re'])?:0;
 		$obj1->bln = ($arAvRe['b'][5]['re'])?:0;
 		$obj1->tgt = '98';
@@ -258,14 +258,14 @@ try {
 		array_push($arAR,$obj1);
 		
 		
-		$obj->th1 = ($arAvRe['d'][7]['re'])?:0;
+		//$obj->th1 = ($arAvRe['d'][7]['re'])?:0;
 		$obj->avg = ($arAvRe['a'][7]['re'])?:0;
 		$obj->bln = ($arAvRe['b'][7]['re'])?:0;
 		$obj->tgt = '98';
 		$obj->m = "Generator Set";
 		array_push($arAR,$obj);
 		
-		$obj2->th1 = ($arAvRe['d'][6]['av'])?:0;
+		//$obj2->th1 = ($arAvRe['d'][6]['av'])?:0;
 		$obj2->avg = ($arAvRe['a'][6]['av'])?:0;
 		$obj2->bln = ($arAvRe['b'][6]['av'])?:0;
 		$obj2->tgt = '98';

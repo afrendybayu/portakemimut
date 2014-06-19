@@ -1,5 +1,4 @@
 
-
 Ext.define('rcm.Application', {
     name: 'rcm',
 
@@ -11,9 +10,10 @@ Ext.define('rcm.Application', {
 
     controllers: [
         // TODO: add controllers here
-		//'Main'
+		//'Main',
 		'ExcelGrid',
-		'DetailInfo'
+		'DetailInfo',
+		'Laporan'
     ],
 
     stores: [
