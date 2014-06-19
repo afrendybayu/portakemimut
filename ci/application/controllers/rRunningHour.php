@@ -59,7 +59,7 @@ class rRunningHour extends CI_Controller {
 					}
 					$time = strtotime($row->tgl); 
 					$ii = ($row->rh);
-					$tisi[$eq]["k".date('ymd',$time)] = ($ii?:'0');
+					$tisi[$eq]["k".date('ymd',$time)] = ($ii?:'-');
 				}
 				
 			} 
@@ -69,7 +69,7 @@ class rRunningHour extends CI_Controller {
 					//echo " -->".$a['id']."<br/>";
 					for($i=13;$i>=0; $i--)	{
 						//echo "eq: ".$a['id']." ".date("ymd", mktime(0, 0, 0, $m, $t-$i, $y))."<br/>";
-						$fas[$a['id']]["k".date("ymd", mktime(0, 0, 0, $m, $t-$i, $y))] = '0';
+						$fas[$a['id']]["k".date("ymd", mktime(0, 0, 0, $m, $t-$i, $y))] = '-';
 					}
 				}
 				
