@@ -92,7 +92,7 @@ class rRunningHour extends CI_Controller {
 			$query = $this->db->query($s, array($sql['bts'][1],$sql['bts'][0]) );
 			//$query = $this->db->query($s);
 			
-			$time = '';
+			$time = time();
 			if ($query->num_rows() > 0)	{
 				//echo "jml:";
 				foreach ($query->result() as $row)	{
