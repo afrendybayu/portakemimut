@@ -11,7 +11,7 @@ Ext.define('rcm.controller.Nav', {
 
     stores: [
         // TODO: add stores here
-        'Hirarki'
+        //'Hirarki'
     ],
     
     models: [

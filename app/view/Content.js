@@ -4,7 +4,9 @@ Ext.define('rcm.view.Content', {
 	
 	require: [
 		'Ext.panel.Panel',
-		'rcm.view.dataentry.ExcelGrid'
+		'rcm.view.dataentry.ExcelGrid',
+		'rcm.view.lapobama.AvReChart', //--
+		
 		//'rcm.view.dataentry.DetailInfo'
 		//'Extensible.calendar.data.MemoryEventStore',
 		//'Extensible.calendar.CalendarPanel',
@@ -30,8 +32,8 @@ Ext.define('rcm.view.Content', {
 		},{	
 			id: 'tu_re',
 			title: 'Reliability',
-			iconCls: 'Reliability'
-			//xtype: 'tAvReChart',
+			iconCls: 'Reliability',
+			xtype: 'tAvReChart',
 		},{
 			id: 'tu_sap',
 			title: 'SAP Report',
@@ -58,6 +60,7 @@ Ext.define('rcm.view.Content', {
 				//layout: 'accordion',
 				align: 'stretch',
 				title: 'Daftar DownTime Unit',
+				iconCls : 'icon-downtime',
 				//icon: 'modul/icons/grid.png',
 				layout: {
 					type: 'border'
@@ -149,17 +152,17 @@ Ext.define('rcm.view.Content', {
 			this.setActiveTab(this.items.length-2);
 		}
 		
-		//console.log("tab: "+tab.title+", id: "+this.getActiveTab().getId()+" view/Content.js");
-		//console.log("tab: "+rcmSettings.tab);
+		console.log("tab: "+tab.title+", id: "+this.getActiveTab().getId()+" view/Content.js");
+		console.log("tab: "+rcmSettings.tab);
 	},
 	
 	TambahClick: function()	{
-		//console.log("tambah: ");
+		console.log("tambah: ");
 		rcmSettings.sas = this.getEl();//.getActiveTab();
-		//console.log("tab: "+rcmSettings.sas);
+		console.log("tab: "+rcmSettings.sas);
 	},
 	
 	KurangClick: function()	{
-		//console.log("Kurang: ");
+		console.log("Kurang: ");
 	}
 })

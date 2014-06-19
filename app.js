@@ -6,17 +6,20 @@
 //Ext.util.Cookies.set('greet', 'Greet from Sencha');
 Ext.Loader.setConfig({
     enabled: true,
-    disableCaching: false,
+    disableCaching: false, 
     paths: {
-        "Extensible": "./modul/extensible-1.5.2/src/",
-        "Extensible.example": "./modul/extensible-1.5.2/examples/",
-        "Chart" : "./modul/Chart/"
+        //"Extensible": "./modul/extensible-1.5.2/src/",
+        //"Extensible.example": "./modul/extensible-1.5.2/examples/",
+        'Chart' : './modul/Chart'
     }
 });
 
+
+
 Ext.syncRequire([
   'Ext.util.Observable',
-  'Ext.util.Cookies'
+  'Ext.util.Cookies',
+  
 ]);
 //*
 Ext.application({

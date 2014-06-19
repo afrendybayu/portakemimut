@@ -11,16 +11,19 @@ Ext.define('rcm.controller.ExcelGrid', {
 		,'dataentry.DetailInfo'
 		,'dataentry.FormGagal'
 		,'dataentry.IsiTabForm'
+		
     ],
 
     stores: [
 		'Hirarki'
 		,'RunningHour'
 		,'EventList'
+		
     ],
     
     models: [
 		'RunningHour'
+		
     ],
     
     refs: [{
@@ -52,12 +55,15 @@ Ext.define('rcm.controller.ExcelGrid', {
 			'taskTanggalan': {
 				klikKalender: me.KalenderClick
 			},
+			
 			'#cancel-eg': {
 				click: me.hideFormGagal
 			},
 			'taskIsiFormGagal': {
 				plhEventGagalXY: me.pilihEventGagalXY
 			}
+			
+			
 		});
     },
     
@@ -118,7 +124,8 @@ Ext.define('rcm.controller.ExcelGrid', {
 	},
     
     updateGrid: function(view, e) {
-        var me=this, tv=e.value; drow=this.getRunningHourStore().getAt(e.rowIdx);
+        var me		=this, tv=e.value; 
+			drow	=this.getRunningHourStore().getAt(e.rowIdx);
 
 		if ((tv=='')||(tv==e.originalValue))	{		//||
 			//alert("updateGrid numpang lewat");
@@ -148,6 +155,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 			Ext.resumeLayouts(true);
 		}
 	},
+
     
     onLaunch: function() {
 		Ext.getCmp('idwest').collapse();

@@ -18,6 +18,7 @@ Ext.define('rcm.view.dataentry.FormGagal', {
 	//height: 500,
 	minWidth: 500,
 	layout: 'fit',
+	bodypadding : '10',
 	/*
 	dockedItems: [{
 		xtype: 'container',
@@ -89,10 +90,12 @@ Ext.define('rcm.view.dataentry.FormGagal', {
 				id: 'fmEq',
 				labelAlign: 'left',
 				labelWidth: 120,
-				fieldLabel: '<b>Function Location</b>'
+				fieldLabel: '<b>Function Location</b>',
+				
 			},{
-				xtype: 'isiFormGagal'
-				//xtype:'label'
+				xtype: 'isiFormGagal'  //isiTabForm js
+				//padding : 10
+				//xtype:'label',
 				//text: 'aa'
 			},{
 				xtype: 'hiddenfield',
