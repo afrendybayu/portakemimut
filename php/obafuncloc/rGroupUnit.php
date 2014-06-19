@@ -58,7 +58,7 @@ try {
 	//$eq = 54;
 	
 	
-	$wktx = explode("-",$tgl);
+	//$wktx = explode("-",$tgl);
 	$skrg = date('Y-m-d');	$wkt = explode("-",date('Y-m'));
 	//echo "wktx: ";	print_r($wktx);	echo "<br/>";
 	//echo "wkt : ";	print_r($wkt);	echo "<br/>";

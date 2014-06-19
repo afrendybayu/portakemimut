@@ -5,7 +5,7 @@ Ext.define('rcm.model.RunningHour', {
 		'Ext.data.proxy.Ajax'
     ]
         
-    //fields: [],
+    //fields: ['dasd','adssa'],
     /*
     proxy: {
 		type: 'ajax',

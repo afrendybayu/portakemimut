@@ -34,6 +34,9 @@
 .RunnningHour {
 	background-image: url('./images/edit1.png');
 }
+.icon-downtime {
+	background-image: url('./images/grid.png');
+}
 .icon-grid  {
 	background-image: url('./images/application_go.png');
 }

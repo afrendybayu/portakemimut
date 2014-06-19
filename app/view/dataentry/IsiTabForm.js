@@ -16,7 +16,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 			type: 'hbox',
 			align: 'middle'
 		},
-		padding: '5 0 0 0',
+		padding: '15',//'5 0 0 0',
 		items: [{
 				xtype: 'component',
 				flex: 1
@@ -166,7 +166,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 						id: 'samadown-fmea-btn',
 						//params: {'datedown','datemulai','timedown','timemulai'},
 						icon: 'modul/icons/connect.png'
-				//*/
+				
 				}]
 			},{			// 4 Unit Beroperasi
 				xtype: 'fieldcontainer',

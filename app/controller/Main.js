@@ -2,8 +2,8 @@ Ext.define('rcm.controller.Main', {
     extend: 'Ext.app.Controller',
 
     views: [
-		'rcm.view.Util',
-		'dataentry.ExcelGrid'
+		//'rcm.view.Util',
+		//'dataentry.ExcelGrid'
     ],
 
     controllers: [
@@ -11,8 +11,8 @@ Ext.define('rcm.controller.Main', {
     ],
 
     stores: [
-		'Hirarki',
-		'RunningHour'
+		//'Hirarki',
+		//'RunningHour'
     ],
     
     models: [

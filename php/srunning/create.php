@@ -5,7 +5,7 @@ include '../connection.php';
 try {
 	$params = json_decode(file_get_contents('php://input'));
 	
-	//print_r($params);
+	print_r($params);
 	//echo "eq: ".$params->eq.", rh: ".$params->rh;
 	$tgl = substr($params->tgl,-6);
 	
