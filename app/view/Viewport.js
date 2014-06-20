@@ -8,15 +8,16 @@ Ext.define('rcm.view.Viewport', {
         
 		//'rcm.view.lapobama.AvReChart',
 		
-		'rcm.view.Content',
-		
-		'Chart.ux.Highcharts',
+		'rcm.view.Content'
+		/*
+		,'Chart.ux.Highcharts',
 		'Chart.ux.Highcharts.Serie',
 		'Chart.ux.Highcharts.SplineSerie',
 		'Chart.ux.Highcharts.GaugeSerie',
 		'Chart.ux.Highcharts.ColumnSerie',
 		'Chart.ux.Highcharts.BarSerie',
 		'Chart.ux.Highcharts.PieSerie'
+		//*/
     ],
 
 	/*

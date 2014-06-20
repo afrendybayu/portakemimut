@@ -10,7 +10,7 @@ Ext.Loader.setConfig({
     paths: {
         //"Extensible": "./modul/extensible-1.5.2/src/",
         //"Extensible.example": "./modul/extensible-1.5.2/examples/",
-        'Chart' : './modul/Chart'
+        'Chart' : './modul/Chart/'
     }
 });
 
@@ -18,8 +18,8 @@ Ext.Loader.setConfig({
 
 Ext.syncRequire([
   'Ext.util.Observable',
-  'Ext.util.Cookies',
-  
+  'Ext.util.Cookies'
+  //,'Chart.ux.Highcharts'
 ]);
 //*
 Ext.application({

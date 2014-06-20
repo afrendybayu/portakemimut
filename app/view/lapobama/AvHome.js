@@ -1,22 +1,22 @@
 // afrendyBayu,26Jan2014 //
 Ext.define('rcm.view.lapobama.AvHome', {
     xtype: 'tAvHome',
-	extend: 'Chart.ux.Highcharts',
+	//extend: 'Chart.ux.Highcharts',
 	loadMask: true,
 	
 	requires:[
-		'rcm.view.Util',
+		'rcm.view.Util'
     ],
 	
 	series : [{
 		dataIndex: 'th1',
-		name: rcm.view.Util.Uthm1(),
+		name: rcm.view.Util.Uthm1()
 	},{
 		dataIndex: 'avg',
-		name: rcm.view.Util.Uytd(),
+		name: rcm.view.Util.Uytd()
 	},{
 		dataIndex: 'bln',
-		name: rcm.view.Util.Ublnini(),
+		name: rcm.view.Util.Ublnini()
 	}],
 	
 	store: 'AvHome',
@@ -36,13 +36,13 @@ Ext.define('rcm.view.lapobama.AvHome', {
 			},
 			colors: ['#0d233a','#2f7ed8','#8bbc21'],
 			title : {
-					text: me.jdl,
+					text: me.jdl
 					//x: -40
 				},
 				xAxis : [{
 					title : {
 						//text : 'Waktu',
-					},
+					}
 				}],
 				yAxis : {
 					max: 100,

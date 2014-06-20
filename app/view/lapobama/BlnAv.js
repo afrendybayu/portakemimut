@@ -30,15 +30,15 @@ Ext.define('rcm.view.lapobama.BlnAv', {
 					id: 'btnCariAVx',
 					xtype: 'button',
 					width: 100,
-					text: 'Submit',
+					text: 'Submit'
 				},{
 					xtype: 'label',
 					id: 'iflAvRe',
 					flex: 1,
 					itemId: 'funclocAvRe',
 					cls: 'flAvReCh',
-					text: 'Tampilkan Grafik dengan klik FuncLoc',
-			}],
+					text: 'Tampilkan Grafik dengan klik FuncLoc'
+			}]
 		}];
 		
 		me.listeners = {

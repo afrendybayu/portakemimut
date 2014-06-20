@@ -2,7 +2,7 @@
 Ext.define('rcm.view.lapobama.SpeedoAv', {
     //xtype: 'tAvSpeedo',
     alias: 'widget.tAvSpeedo',
-	extend: 'Chart.ux.Highcharts',
+	//extend: 'Chart.ux.Highcharts',
 	jdl: '-',
 	subjdl: '-',
 	dstore: 'AvSpeedo',
@@ -26,7 +26,7 @@ Ext.define('rcm.view.lapobama.SpeedoAv', {
 			x: 5,
 			style: {
 				fontSize: '24px',
-				fontFamily: 'digital',
+				fontFamily: 'digital'
 				//fontStyle: 'italic'
 			},
 			formatter: function() {
@@ -36,7 +36,7 @@ Ext.define('rcm.view.lapobama.SpeedoAv', {
 		zIndex: 1,
 		pivot: {
 			radius: '0'
-		},
+		}
 	}],
 	
 	initComponent: function() {
@@ -84,11 +84,11 @@ Ext.define('rcm.view.lapobama.SpeedoAv', {
 
 			title : {
 				//text : 'Gas Compressor #2@ Borang',
-				text: this.jdl,
+				text: this.jdl
 			},
 			subtitle: {
 				//text: 'Availability'
-				text: this.subjdl,
+				text: this.subjdl
 			},
 			yAxis : {
 					min: 50,
@@ -130,7 +130,7 @@ Ext.define('rcm.view.lapobama.SpeedoAv', {
 						from: 0,
 						to: 100,
 						innerRadius: '40%',
-						outerRadius: '65%',
+						outerRadius: '65%'
 						/*
 						color: {linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
 							stops: [
@@ -160,13 +160,13 @@ Ext.define('rcm.view.lapobama.SpeedoAv', {
                             enabled: true,
                             color: Highcharts.getOptions().colors[3],
                             style: {
-                                fontWeight: 'bold',
+                                fontWeight: 'bold'
                                 //margin: '10 0',
                             },
                             formatter: function() {
                                 return this.y+'%';
                             }
-                        },
+                        }
 					}
 				},
 				tooltip : {

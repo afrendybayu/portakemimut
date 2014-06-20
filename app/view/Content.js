@@ -3,9 +3,9 @@ Ext.define('rcm.view.Content', {
     xtype: 'content',
 	
 	require: [
-		'Ext.panel.Panel',
-		'rcm.view.dataentry.ExcelGrid',
-		'rcm.view.lapobama.AvReChart', //--
+		'Ext.panel.Panel'
+		,'rcm.view.dataentry.ExcelGrid'
+		,'rcm.view.lapobama.AvReChart' //--
 		
 		//'rcm.view.dataentry.DetailInfo'
 		//'Extensible.calendar.data.MemoryEventStore',
@@ -33,7 +33,7 @@ Ext.define('rcm.view.Content', {
 			id: 'tu_re',
 			title: 'Reliability',
 			iconCls: 'Reliability',
-			xtype: 'tAvReChart',
+			xtype: 'tAvReChart'
 		},{
 			id: 'tu_sap',
 			title: 'SAP Report',

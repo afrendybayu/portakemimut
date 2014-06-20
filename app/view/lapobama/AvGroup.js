@@ -2,16 +2,16 @@
 Ext.define('rcm.view.lapobama.AvGroup', {
     xtype: 'tAvGroup',
 	extend: 'Chart.ux.Highcharts',
-	waktu: 'Mei 2014444',
+	waktu: 'Mei 2014',
 	//jdl: 'dqwdwqd',
 	loadMask: true,
 
 	series : [{
 		dataIndex: 'av',
-		name: 'Availability',
+		name: 'Availability'
 	},{
 		dataIndex: 're',
-		name: 'Reliability',		
+		name: 'Reliability'		
 	}],
 	store: 'AvGroup',
 	xField: 'kode',
@@ -28,11 +28,11 @@ Ext.define('rcm.view.lapobama.AvGroup', {
 					duration: 1500,
 					easing: 'swing'
 				},
-				backgroundColor: '#d9e9ef',
+				backgroundColor: '#d9e9ef'
 			},
 			
 			title : {
-				text: me.jdl,
+				text: me.jdl
 				
 			},
 			yAxis : {
@@ -71,7 +71,7 @@ Ext.define('rcm.view.lapobama.AvGroup', {
 						}
 					},
 					data: {
-						id: 'id',
+						id: 'id'
 					}
 				}
 			},

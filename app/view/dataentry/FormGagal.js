@@ -90,7 +90,7 @@ Ext.define('rcm.view.dataentry.FormGagal', {
 				id: 'fmEq',
 				labelAlign: 'left',
 				labelWidth: 120,
-				fieldLabel: '<b>Function Location</b>',
+				fieldLabel: '<b>Function Location</b>'
 				
 			},{
 				xtype: 'isiFormGagal'  //isiTabForm js

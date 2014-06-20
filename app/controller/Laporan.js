@@ -1,14 +1,16 @@
 Ext.define('rcm.controller.Laporan', {
     extend: 'Ext.app.Controller',
-    //*
-    
-	
+    /*
+    requires: [
+		//'Chart.ux.Highcharts'
+    ],
+	//*/
 	views: [
         // TODO: add views here
 		
 		'lapobama.AvReChart'
 		,'lapobama.AvGroup'
-		,'lapobama.AvHome'
+		//,'lapobama.AvHome'
 		,'lapobama.ReHome'
 		,'lapobama.SpeedoAv'
     ],
@@ -42,7 +44,11 @@ Ext.define('rcm.controller.Laporan', {
 	},{
 		ref : 'tAvSpeedo',
 		selector : 'tAvSpeedo'
-		
+	/*
+	},{
+		ref : 'tAvHome',
+		selector : 'tAvHome'
+	//*/
 	}],
     
     init: function() {
@@ -58,7 +64,7 @@ Ext.define('rcm.controller.Laporan', {
 	AvGroupClick: function(d,nama) 	{
 		var plh=this.getAvGroupStore().getAt(d.point.x).data;
 		var	wkt=this.getTAvGroup().waktu;
-		console.log ("pencet avgroup " + plh + wkt );
+		//console.log ("pencet avgroup " + plh + wkt );
 		//Ext.getCmp('iflAvRe').setText(plh.nama+", id:"+plh.id+", w: "+wkt);
 		Ext.getCmp('iflAvRe').setText(plh.nama+", "+wkt);
 		this.getTAvSpeedo().chartConfig.min = rcm.view.Util.Ubb(plh.av);
@@ -77,19 +83,8 @@ Ext.define('rcm.controller.Laporan', {
 		
 		Ext.getCmp('Av2Thn').setTitle("Availability "+plh.kode+" Annually");
 		Ext.getCmp('Re2Thn').setTitle("Reliability "+plh.kode+" Annually");
-		
-		/*
-		var sp  = this.getTAvReChart().items.items[0].items.items[1],
-			sp2 = sp.items.items[1].items.items[1],
-			sp3 = sp.items.items[2];
-		//sp2.setTitle(plh.kode);
-		//sp2.setSubTitle('Reliability '+wkt);
-		
-		var jdl2 = rcm.view.Util.Ujdl2(wkt); alert("jdl2: "+jdl2);
-		//Ext.getCmp('spAvR').setTitle("Availability "+jdl2);
-		sp3.items.items[0].setTitle("Availability "+jdl2);
-		sp3.items.items[1].setTitle("Reliability "+jdl2);
 		//*/
+
 	},
 	
 	onPanelRendered: function(){

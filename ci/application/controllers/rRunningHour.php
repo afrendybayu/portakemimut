@@ -38,7 +38,10 @@ class rRunningHour extends CI_Controller {
 					$fas[$row->id]['eq'] = $row->nama;//." ".$row['tag'];
 					$fas[$row->id]['cat'] = $row->cat;
 					$fas[$row->id]['Lokasi'] = $row->hlok;
-					//*/
+					
+					for ($u=0;$u<14; $u++)	{		 // inisialisasi nilai [-]
+						$fas[$row->id]["k".date('ymd', mktime(0, 0, 0, $m, $t-$u, $y))] = '-';
+					}
 				}
 			}
 			
@@ -79,6 +82,7 @@ class rRunningHour extends CI_Controller {
 					//if ($fas[$data['id']]!=null)	{
 					if(@isset($fas[$data['id']]))	{
 						$fas[$data['id']] = @array_merge($fas[$data['id']],$data);
+						//print_r($data); echo "<br/>";
 					}
 				}
 			}
