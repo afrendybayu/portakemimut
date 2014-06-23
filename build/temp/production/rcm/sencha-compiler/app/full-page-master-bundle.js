@@ -1,2 +1,2 @@
 // @tag full-page
-// @require /var/www/sencha/medco/app.js
+// @require C:\xampp\htdocs\daunbiru\portakemimut\app.js

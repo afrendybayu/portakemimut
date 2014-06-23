@@ -23,7 +23,7 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 	layout: {
         type: 'hbox',
         align: 'stretch',
-		columns: 2,
+		columns: 2
         
 	},
 
@@ -36,7 +36,7 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 		xtype: 'container',
 		layout: {
 			type: 'hbox',
-			align: 'stretch',
+			align: 'stretch'
 		},
 		border:0,
 		items:[{
@@ -44,19 +44,19 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 			//title : 'judul tAvGroup',
 			flex: 1,
 			fldY: ['av2014'],
-			jdl: 'Availability Group',
+			jdl: 'Availability Group'
 		},{
 			width: '60%',
 			layout: {
 				type: 'vbox',
-				align: 'stretch',
+				align: 'stretch'
 			},
 			items: [{
 				//height: '33.3%',
 				flex: 4,
 				layout: {
 					type: 'hbox',
-					align: 'stretch',
+					align: 'stretch'
 				},
 				border: 0,
 				items:[{
@@ -71,10 +71,10 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 					//*
 					id: 'ReBar3',
 					xtype: 'tReHome',
-					title : 'Realibiliti Chart',
+					//title : 'judul tReHome',
 					width: '50%',
 					height: '33.3%',
-					jdl: 'Summary Reliability',
+					jdl: 'Summary Reliability'
 					//*/
 				}]
 			},{
@@ -82,13 +82,13 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 				flex: 3,
 				layout: {
 					type: 'hbox',
-					align: 'stretch',
+					align: 'stretch'
 				},
 				//border: 0,
 				items:[{
 					id:'spAvR',
 					width: '50%',
-					xtype: 'tAvSpeedo',
+					//xtype: 'tAvSpeedo',
 					//title: 'panel Av SPeedo',
 					fldY: ['av2014'],
 					jdl: 'Availability',
@@ -106,7 +106,7 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 				flex: 5,
 				layout: {
 					type: 'hbox',
-					align: 'stretch',
+					align: 'stretch'
 				},
 				border: 0,
 				items:[{
@@ -117,7 +117,7 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 					fldY: ['av2014'],
 					jdl: 'Availability',
 					avrem1: 'av2013',
-					avre: 'av2014',
+					avre: 'av2014'
 				},{
 					id: 'Re2Thn',
 					//xtype: 'tAvReUnitx',
@@ -126,7 +126,7 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 					//height: '33.3%',
 					jdl: 'Reliability',
 					avrem1: 're2013',
-					avre: 're2014',
+					avre: 're2014'
 				}]
 			}]
 		}]

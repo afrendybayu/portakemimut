@@ -2,7 +2,7 @@
 Ext.define('rcm.model.AvHome', {
     extend: 'Ext.data.Model',
     requires:[
-		'Ext.data.proxy.Ajax',
+		'Ext.data.proxy.Ajax'
     ],
     fields: [ 'm',
 				{ name:'tgt',type:'float' },

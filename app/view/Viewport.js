@@ -5,18 +5,9 @@ Ext.define('rcm.view.Viewport', {
         'rcm.view.nav.Tanggalan',
         'rcm.view.nav.Navigation',
         'rcm.view.nav.AppHeader',
-        
-		//'rcm.view.lapobama.AvReChart',
 		
-		'rcm.view.Content',
+		'rcm.view.Content'
 		
-		'Chart.ux.Highcharts',
-		'Chart.ux.Highcharts.Serie',
-		'Chart.ux.Highcharts.SplineSerie',
-		'Chart.ux.Highcharts.GaugeSerie',
-		'Chart.ux.Highcharts.ColumnSerie',
-		'Chart.ux.Highcharts.BarSerie',
-		'Chart.ux.Highcharts.PieSerie'
     ],
 
 	/*

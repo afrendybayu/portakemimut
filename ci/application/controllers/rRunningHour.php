@@ -38,7 +38,10 @@ class rRunningHour extends CI_Controller {
 					$fas[$row->id]['eq'] = $row->nama;//." ".$row['tag'];
 					$fas[$row->id]['cat'] = $row->cat;
 					$fas[$row->id]['Lokasi'] = $row->hlok;
-					//*/
+					
+					for ($u=0;$u<14; $u++)	{		 // inisialisasi nilai [-]
+						$fas[$row->id]["k".date('ymd', mktime(0, 0, 0, $m, $t-$u, $y))] = '-';
+					}
 				}
 			}
 			
@@ -47,7 +50,7 @@ class rRunningHour extends CI_Controller {
 			$query = $this->db->query($s, array($bts_1,$bts_0));
 			//$query = $this->db->query($s, array($sql['bts'][1],$sql['bts'][0]) );
 			
-			$time = '';
+			$time = time();
 			if ($query->num_rows() > 0)	{
 				foreach ($query->result() as $row)	{
 					if ($eq != $row->eq){
@@ -59,7 +62,7 @@ class rRunningHour extends CI_Controller {
 					}
 					$time = strtotime($row->tgl); 
 					$ii = ($row->rh);
-					$tisi[$eq]["k".date('ymd',$time)] = ($ii?:'0');
+					$tisi[$eq]["k".date('ymd',$time)] = ($ii?:'-');
 				}
 				
 			} 
@@ -69,7 +72,7 @@ class rRunningHour extends CI_Controller {
 					//echo " -->".$a['id']."<br/>";
 					for($i=13;$i>=0; $i--)	{
 						//echo "eq: ".$a['id']." ".date("ymd", mktime(0, 0, 0, $m, $t-$i, $y))."<br/>";
-						$fas[$a['id']]["k".date("ymd", mktime(0, 0, 0, $m, $t-$i, $y))] = '0';
+						$fas[$a['id']]["k".date("ymd", mktime(0, 0, 0, $m, $t-$i, $y))] = '-';
 					}
 				}
 				
@@ -79,6 +82,7 @@ class rRunningHour extends CI_Controller {
 					//if ($fas[$data['id']]!=null)	{
 					if(@isset($fas[$data['id']]))	{
 						$fas[$data['id']] = @array_merge($fas[$data['id']],$data);
+						//print_r($data); echo "<br/>";
 					}
 				}
 			}
