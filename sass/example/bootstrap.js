@@ -5,12 +5,68 @@
  * metadata-driven class system features 
  */
 Ext.Loader.addClassPathMappings({
+  "Chart": "../../ext/src/Chart",
   "Ext": "../../ext/src",
   "Ext.Msg": "../../ext/src/window/MessageBox.js",
+  "Ext.chart": "../../ext/src/chart__",
   "Ext.rtl.EventObjectImpl": "../../ext/src/rtl/EventObject.js",
   "rcm": "../../app"
 });
 Ext.ClassManager.addNameAlternateMappings({
+  "Chart.ux.Highcharts": [],
+  "Chart.ux.Highcharts.AreaRangeSerie": [
+    "highcharts.arearange"
+  ],
+  "Chart.ux.Highcharts.AreaSerie": [
+    "highcharts.area"
+  ],
+  "Chart.ux.Highcharts.AreaSplineRangeSerie": [
+    "highcharts.areasplinerange"
+  ],
+  "Chart.ux.Highcharts.AreaSplineSerie": [
+    "highcharts.areaspline"
+  ],
+  "Chart.ux.Highcharts.BarSerie": [
+    "highcharts.bar"
+  ],
+  "Chart.ux.Highcharts.BoxPlotSerie": [
+    "highcharts.boxplot"
+  ],
+  "Chart.ux.Highcharts.BubbleSerie": [
+    "highcharts.bubble"
+  ],
+  "Chart.ux.Highcharts.ColumnRangeSerie": [
+    "highcharts.columnrange"
+  ],
+  "Chart.ux.Highcharts.ColumnSerie": [
+    "highcharts.column"
+  ],
+  "Chart.ux.Highcharts.ErrorBarSerie": [
+    "highcharts.errorbar"
+  ],
+  "Chart.ux.Highcharts.FunnelSerie": [
+    "highcharts.funnel"
+  ],
+  "Chart.ux.Highcharts.GaugeSerie": [
+    "highcharts.gauge"
+  ],
+  "Chart.ux.Highcharts.LineSerie": [
+    "highcharts.line"
+  ],
+  "Chart.ux.Highcharts.PieSerie": [
+    "highcharts.pie"
+  ],
+  "Chart.ux.Highcharts.RangeSerie": [],
+  "Chart.ux.Highcharts.ScatterSerie": [
+    "highcharts.scatter"
+  ],
+  "Chart.ux.Highcharts.Serie": [],
+  "Chart.ux.Highcharts.SplineSerie": [
+    "highcharts.spline"
+  ],
+  "Chart.ux.Highcharts.WaterfallSerie": [
+    "highcharts.waterfall"
+  ],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
   "Ext.AbstractPlugin": [],
@@ -882,6 +938,28 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.nav.Tanggalan": []
 });
 Ext.ClassManager.addNameAliasMappings({
+  "Chart.ux.Highcharts": [
+    "widget.highchart"
+  ],
+  "Chart.ux.Highcharts.AreaRangeSerie": [],
+  "Chart.ux.Highcharts.AreaSerie": [],
+  "Chart.ux.Highcharts.AreaSplineRangeSerie": [],
+  "Chart.ux.Highcharts.AreaSplineSerie": [],
+  "Chart.ux.Highcharts.BarSerie": [],
+  "Chart.ux.Highcharts.BoxPlotSerie": [],
+  "Chart.ux.Highcharts.BubbleSerie": [],
+  "Chart.ux.Highcharts.ColumnRangeSerie": [],
+  "Chart.ux.Highcharts.ColumnSerie": [],
+  "Chart.ux.Highcharts.ErrorBarSerie": [],
+  "Chart.ux.Highcharts.FunnelSerie": [],
+  "Chart.ux.Highcharts.GaugeSerie": [],
+  "Chart.ux.Highcharts.LineSerie": [],
+  "Chart.ux.Highcharts.PieSerie": [],
+  "Chart.ux.Highcharts.RangeSerie": [],
+  "Chart.ux.Highcharts.ScatterSerie": [],
+  "Chart.ux.Highcharts.Serie": [],
+  "Chart.ux.Highcharts.SplineSerie": [],
+  "Chart.ux.Highcharts.WaterfallSerie": [],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
   "Ext.AbstractPlugin": [],

@@ -14,7 +14,8 @@ Ext.Loader.setConfig({
     }
 });
 
-
+//Ext.require('Chart.ux.Highcharts');
+//Ext.require('Chart.ux.Highcharts.BarSerie');
 
 Ext.syncRequire([
   'Ext.util.Observable',

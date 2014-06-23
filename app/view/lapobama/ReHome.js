@@ -1,7 +1,7 @@
 // afrendyBayu,12Feb2014 //
 Ext.define('rcm.view.lapobama.ReHome', {
     xtype: 'tReHome',
-	//extend: 'Chart.ux.Highcharts',
+	extend: 'Chart.ux.Highcharts',
 	loadMask: true,
 	
 	series : [{

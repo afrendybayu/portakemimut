@@ -40,7 +40,7 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 		},
 		border:0,
 		items:[{
-			//xtype: 'tAvGroup',
+			xtype: 'tAvGroup',
 			//title : 'judul tAvGroup',
 			flex: 1,
 			fldY: ['av2014'],
@@ -62,16 +62,16 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 				items:[{
 					id: 'AvBar3',
 					width: '50%',
-					//xtype: 'tAvHome',
-					title : 'judul tAvHome',
+					xtype: 'tAvHome',
+					//title : 'judul tAvHome',
 					fldY: ['av2014'],
 					jdl: 'Summary Availability ',
 					subJdl: 'Gas Compressor'
 				},{
 					//*
 					id: 'ReBar3',
-					//xtype: 'tReHome',
-					title : 'judul tReHome',
+					xtype: 'tReHome',
+					//title : 'judul tReHome',
 					width: '50%',
 					height: '33.3%',
 					jdl: 'Summary Reliability'

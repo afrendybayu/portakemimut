@@ -1,18 +1,24 @@
 Ext.define('rcm.controller.Laporan', {
     extend: 'Ext.app.Controller',
-    /*
+    
     requires: [
-		//'Chart.ux.Highcharts'
+		'Chart.ux.Highcharts',
+		'Chart.ux.Highcharts.BarSerie',
+		'Chart.ux.Highcharts.Serie',
+		'Chart.ux.Highcharts.SplineSerie',
+		'Chart.ux.Highcharts.GaugeSerie',
+		'Chart.ux.Highcharts.ColumnSerie',
+		'Chart.ux.Highcharts.PieSerie'
     ],
-	//*/
+	
 	views: [
         // TODO: add views here
 		
 		'lapobama.AvReChart'
 		,'lapobama.AvGroup'
-		//,'lapobama.AvHome'
+		,'lapobama.AvHome'
 		,'lapobama.ReHome'
-		,'lapobama.SpeedoAv'
+		//,'lapobama.SpeedoAv'
     ],
 
     controllers: [

@@ -1,7 +1,7 @@
 // afrendyBayu,26Jan2014 //
 Ext.define('rcm.view.lapobama.AvHome', {
     xtype: 'tAvHome',
-	//extend: 'Chart.ux.Highcharts',
+	extend: 'Chart.ux.Highcharts',
 	loadMask: true,
 	
 	requires:[
