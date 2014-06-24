@@ -88,18 +88,18 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 				items:[{
 					id:'spAvR',
 					width: '50%',
-					//xtype: 'tAvSpeedo',
+					xtype: 'tAvSpeedo',
 					//title: 'panel Av SPeedo',
 					fldY: ['av2014'],
 					jdl: 'Availability',
-					dstore: 'AvSpeedo'
+					//dstore: 'AvSpeedo'
 				},{
 					id:'spReR',
 					width: '50%',
-					//xtype: 'tAvSpeedo',
+					xtype: 'tAvSpeedo',
 					fldY: ['re2014'],
 					jdl: 'Reliability',
-					dstore: 'ReSpeedo'
+					//dstore: 'ReSpeedo'
 				}]
 			},{
 				//height: '43.3%',

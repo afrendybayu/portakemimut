@@ -70,9 +70,9 @@ Ext.define('rcm.controller.Laporan', {
 	AvGroupClick: function(d,nama) 	{
 		var plh=this.getAvGroupStore().getAt(d.point.x).data;
 		var	wkt=this.getTAvGroup().waktu;
-		//console.log ("pencet avgroup " + plh + wkt );
+		console.log ("pencet avgroup " + plh + wkt );
 		//Ext.getCmp('iflAvRe').setText(plh.nama+", id:"+plh.id+", w: "+wkt);
-		Ext.getCmp('iflAvRe').setText(plh.nama+", "+wkt);
+		/*Ext.getCmp('iflAvRe').setText(plh.nama+", "+wkt);
 		this.getTAvSpeedo().chartConfig.min = rcm.view.Util.Ubb(plh.av);
 		this.getAvSpeedoStore().getAt(0).set('av',plh.av);
 		//this.getReSpeedoStore().getAt(0).set('av',plh.re);

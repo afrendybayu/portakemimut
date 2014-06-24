@@ -1,8 +1,8 @@
 // afrendyBayu,26Jan2014 //
 Ext.define('rcm.view.lapobama.SpeedoAv', {
-    //xtype: 'tAvSpeedo',
-    alias: 'widget.tAvSpeedo',
-	//extend: 'Chart.ux.Highcharts',
+    xtype: 'tAvSpeedo',
+    //alias: 'widget.tAvSpeedo',
+	extend: 'Chart.ux.Highcharts',
 	jdl: '-',
 	subjdl: '-',
 	dstore: 'AvSpeedo',
