@@ -1,6 +1,6 @@
 <?php
 // Afrendy Bayu, 25 Jan 2014
-//   SokaKetikaSaatSendiri
+//   SokaKetikaSaatSendiri_
 
 include '../connection.php';
 include '../util.php';
