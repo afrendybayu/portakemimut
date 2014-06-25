@@ -27,7 +27,7 @@ class rRunningHour extends CI_Controller {
 			$s = "SELECT h3.id, h3.nama, h3.flag as cat, h1.nama as hlok, h1.urut as urut FROM hirarki AS h1
 					LEFT JOIN hirarki AS h2 ON h2.parent = h1.id
 					LEFT JOIN hirarki AS h3 ON h3.parent = h2.id
-					WHERE h1.parent =0 and h3.flag = ? order by h1.urut asc, h1.nama asc;"; 
+					WHERE h1.parent =0 and h3.flag = ? order by h1.urut asc, h3.nama asc;"; 
 			
 			$query = $this->db->query($s, $cat);
 			
