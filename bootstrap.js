@@ -891,6 +891,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.controller.Nav": [],
   "rcm.model.AvGroup": [],
   "rcm.model.AvHome": [],
+  "rcm.model.AvReUnit": [],
   "rcm.model.AvSpeedo": [],
   "rcm.model.DaftarGagal": [],
   "rcm.model.DetailGagal": [],
@@ -902,6 +903,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.RunningHour": [],
   "rcm.store.AvGroup": [],
   "rcm.store.AvHome": [],
+  "rcm.store.AvReUnit": [],
   "rcm.store.AvSpeedo": [],
   "rcm.store.DaftarGagal": [],
   "rcm.store.DetailGagal": [],
@@ -910,6 +912,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.Hirarki": [],
   "rcm.store.Note": [],
   "rcm.store.ReHome": [],
+  "rcm.store.ReSpeedo": [],
   "rcm.store.RunningHour": [],
   "rcm.view.Content": [],
   "rcm.view.Main": [],
@@ -927,6 +930,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.dataentry.InfoFMEA": [],
   "rcm.view.dataentry.IsiTabForm": [],
   "rcm.view.dataentry.PropGrid": [],
+  "rcm.view.lapobama.Av2Thn": [],
   "rcm.view.lapobama.AvGroup": [],
   "rcm.view.lapobama.AvHome": [],
   "rcm.view.lapobama.AvReChart": [],
@@ -1952,6 +1956,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.controller.Nav": [],
   "rcm.model.AvGroup": [],
   "rcm.model.AvHome": [],
+  "rcm.model.AvReUnit": [],
   "rcm.model.AvSpeedo": [],
   "rcm.model.DaftarGagal": [],
   "rcm.model.DetailGagal": [],
@@ -1963,6 +1968,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.RunningHour": [],
   "rcm.store.AvGroup": [],
   "rcm.store.AvHome": [],
+  "rcm.store.AvReUnit": [],
   "rcm.store.AvSpeedo": [],
   "rcm.store.DaftarGagal": [],
   "rcm.store.DetailGagal": [],
@@ -1971,6 +1977,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.Hirarki": [],
   "rcm.store.Note": [],
   "rcm.store.ReHome": [],
+  "rcm.store.ReSpeedo": [],
   "rcm.store.RunningHour": [],
   "rcm.view.Content": [
     "widget.content"
@@ -2008,6 +2015,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.dataentry.PropGrid": [
     "widget.propgrid"
+  ],
+  "rcm.view.lapobama.Av2Thn": [
+    "widget.tAv2Thn"
   ],
   "rcm.view.lapobama.AvGroup": [
     "widget.tAvGroup"

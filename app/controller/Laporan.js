@@ -95,7 +95,7 @@ Ext.define('rcm.controller.Laporan', {
 		Ext.getCmp('iflAvRe').setText(plh.nama+", "+wkt);
 		this.getTAvSpeedo().chartConfig.min = rcm.view.Util.Ubb(plh.av);
 		this.getAvSpeedoStore().getAt(0).set('av',plh.av);
-		//this.getReSpeedoStore().getAt(0).set('av',plh.re);
+		this.getReSpeedoStore().getAt(0).set('av',plh.re);
 		this.getTAvSpeedo().setTitle(plh.kode);
 		this.getTAvSpeedo().setSubTitle("Availability "+wkt);
 		this.getAvReUnitStore().load({ params:{tgl:wkt, eq:plh.id} });

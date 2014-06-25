@@ -2,7 +2,7 @@
 Ext.define('rcm.model.AvReUnit', {
     extend: 'Ext.data.Model',
     requires:[
-		'Ext.data.proxy.Ajax',
+		'Ext.data.proxy.Ajax'
     ],
     //fields: [],
     fields: ['m','b',

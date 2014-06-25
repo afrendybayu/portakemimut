@@ -10,7 +10,7 @@ Ext.define('rcm.view.lapobama.Av2Thn', {
 	series : [{
 		dataIndex: 'av2013',
 		//dataIndex: avrem1,
-		name: 'av2013',
+		name: 'av2013'
 	},{
 		type: 'spline',
 		dataIndex: 'av2013',
@@ -24,7 +24,7 @@ Ext.define('rcm.view.lapobama.Av2Thn', {
 		}
 	},{
 		dataIndex: 'av2014',
-		name: 'av2014',
+		name: 'av2014'
 	},{
 		type: 'spline',
 		dataIndex: 'av2014',
@@ -54,13 +54,13 @@ Ext.define('rcm.view.lapobama.Av2Thn', {
 				backgroundColor: '#d9e9ef'
 			},
 				title : {
-				text: me.jdl,
+				text: me.jdl
 				//x: 0
 			},
 			xAxis : [{
 				title : {
-					text : 'Waktu',
-				},
+					text : 'Waktu'
+				}
 			}],
 			yAxis : {
 				max: 100,

@@ -91,7 +91,7 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 					xtype: 'tAvSpeedo',
 					//title: 'gauge Av SPeedo',
 					fldY: ['av2014'],
-					jdl: 'Availability',
+					jdl: 'Availability'
 					//dstore: 'AvSpeedo'
 				},{
 					id:'spReR',
@@ -99,7 +99,7 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 					xtype: 'tAvSpeedo',
 					//title: 'gauge Re SPeedo',
 					fldY: ['re2014'],
-					jdl: 'Reliability',
+					jdl: 'Reliability'
 					//dstore: 'ReSpeedo'
 				}]
 			},{
