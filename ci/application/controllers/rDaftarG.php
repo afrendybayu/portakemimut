@@ -4,7 +4,7 @@ class rDaftarG extends CI_Controller {
 	
 	
 	public function index()	{
-		//$this->load->view('welcome_message');
+		
 		try	{
 			
 			$yl = 2;		// TOTAL LIST 2 BULAN

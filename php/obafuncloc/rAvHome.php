@@ -5,8 +5,8 @@
 include '../connection.php';
 include '../util.php';
 
+	$avre = $_GET['tp'];
 
-$avre = $_GET['tp'];
 if (isset($_GET['wkt']))	{
 	$th = date("Y");
 	$bl = date("n");
@@ -14,6 +14,8 @@ if (isset($_GET['wkt']))	{
 	$th = date("Y");
 	$bl = date("n");
 }
+
+//echo $th .' ' .$bl;
 
 try {
 	
@@ -227,7 +229,7 @@ try {
 	$obj1 = new stdClass();
 	$obj2 = new stdClass();
 	
-	if (strcmp($avre,"av")==0)	{
+	if (strcmp($avre,"av")==0) /*jika av=av*/	{
 		//$obj1->th1 = ($arAvRe['d'][5]['av'])?:0;
 		$obj1->avg = ($arAvRe['a'][5]['av'])?:0;
 		$obj1->bln = ($arAvRe['b'][5]['av'])?:0;

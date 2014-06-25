@@ -72,7 +72,7 @@ class rGroupUnit extends CI_Controller {
 			{
 			   foreach ($q->result() as $row)
 			   {
-					$data[$row->id]['id'] 	= $row->id;
+					$data[$row->id]['id'] 		= $row->id;
 					$data[$row->id]['kode'] 	= $row->init."@".$row->hlok;
 					$data[$row->id]['nama'] 	= "{$row->nama}, {$row->unit} @{$row->lok}";
 					$data[$row->id]['urut'] 	= $row->urut;

@@ -50,11 +50,11 @@ Ext.define('rcm.controller.Laporan', {
 	},{
 		ref : 'tAvSpeedo',
 		selector : 'tAvSpeedo'
-	/*
+	
 	},{
 		ref : 'tAvHome',
 		selector : 'tAvHome'
-	//*/
+	//
 	}],
     
     init: function() {
@@ -62,10 +62,23 @@ Ext.define('rcm.controller.Laporan', {
         me.control({
 			'tAvGroup': {
 				AvGroupCl: me.AvGroupClick
+			},
+			'tAvHome' : {
+				AvHomeCl: me.AvHomeClick
 			}
+			
+			
 		});
 		
     },
+	
+	AvHomeClick: function(d, nama, id)	{
+		console.log("group: "+id);
+		/*this.getAvGroupStore().load({ params:{gr:id, tgl: d.series.name} });
+		this.getTAvGroup().setTitle('Availability & Reliability');
+		this.getTAvGroup().setSubTitle(nama+" "+d.series.name);
+		this.getTAvGroup().waktu = d.series.name;
+	*/},
 	
 	AvGroupClick: function(d,nama) 	{
 		var plh=this.getAvGroupStore().getAt(d.point.x).data;

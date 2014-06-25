@@ -63,7 +63,7 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 					id: 'AvBar3',
 					width: '50%',
 					xtype: 'tAvHome',
-					//title : 'judul tAvHome',
+					title : 'judul tAvHome',
 					fldY: ['av2014'],
 					jdl: 'Summary Availability ',
 					subJdl: 'Gas Compressor'
