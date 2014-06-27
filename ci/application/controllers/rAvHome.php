@@ -59,64 +59,61 @@ class rAvHome extends CI_Controller {
 			$obj2 = new stdClass();
 			
 			if (strcmp($avre,"av")==0) /*jika av=av*/	{
-				//$obj1->th1 = ($arAvRe['d'][5]['av'])?:0;
-				$obj1->avg = isset($arAvRe['a'][5]['av'])?:0;
-				$obj1->bln = ($arAvRe['b'][5]['av'])?:0;
+				$obj1->th1 = isset($arAvRe['d'][5]['av'])?($arAvRe['d'][5]['av']):0;
+				$obj1->avg = isset($arAvRe['a'][5]['av'])?($arAvRe['a'][5]['av']):0;
+				$obj1->bln = isset($arAvRe['b'][5]['av'])?($arAvRe['b'][5]['av']):0;
 				$obj1->tgt = '98';
 				$obj1->m = "Gas Comp";
 				array_push($arAR,$obj1);
 				
 				
-				//$obj->th1 = ($arAvRe['d'][7]['av'])?:0;
-				$obj->avg = isset($arAvRe['a'][7]['av'])?:0;
-				$obj->bln = isset($arAvRe['b'][7]['av'])?:0;
+				$obj->th1 = isset($arAvRe['d'][7]['av'])?($arAvRe['d'][7]['av']):0;
+				$obj->avg = isset($arAvRe['a'][7]['av'])?($arAvRe['a'][7]['av']):0;
+				$obj->bln = isset($arAvRe['b'][7]['av'])?($arAvRe['b'][7]['av']):0;
 				$obj->tgt = '98';
 				$obj->m = "Generator Set";
 				array_push($arAR,$obj);
 				
-				//$obj2->th1 = ($arAvRe['d'][6]['av'])?:0;
-				$obj2->avg = isset($arAvRe['a'][6]['av'])?:0;
-				$obj2->bln = isset($arAvRe['b'][6]['av'])?:0;
+				$obj2->th1 = isset($arAvRe['d'][6]['av'])?($arAvRe['d'][6]['av']):0;
+				$obj2->avg = isset($arAvRe['a'][6]['av'])?($arAvRe['a'][6]['av']):0;
+				$obj2->bln = isset($arAvRe['b'][6]['av'])?($arAvRe['b'][6]['av']):0;
 				$obj2->tgt = '98';
 				$obj2->m = "Pump";
 				array_push($arAR,$obj2);
 			} else if (strcmp($avre,"re")==0)	{
-<<<<<<< HEAD
-				//$obj1->th1 = ($arAvRe['d'][5]['re'])?:0;
-				$obj1->avg = isset($arAvRe['a'][5]['re'])?:0;
-				$obj1->bln = isset($arAvRe['b'][5]['re'])?:0;
-=======
+
+				$obj1->th1 = isset($arAvRe['d'][5]['re'])?($arAvRe['d'][5]['re']):0;
+				$obj1->avg = isset($arAvRe['a'][5]['re'])?($arAvRe['a'][5]['re']):0;
+				$obj1->bln = isset($arAvRe['b'][5]['re'])?($arAvRe['b'][5]['re']):0;
 				$obj1->th1 = ($arAvRe['d'][5]['re'])?:0;
 				$obj1->avg = ($arAvRe['a'][5]['re'])?:0;
 				$obj1->bln = ($arAvRe['b'][5]['re'])?:0;
->>>>>>> 632c9bb8d63f9ba25dec4644b7027c92ec7deeda
 				$obj1->tgt = '98';
 				$obj1->m = "Gas Comp";
 				array_push($arAR,$obj1);
 				
 				
-<<<<<<< HEAD
-				//$obj->th1 = ($arAvRe['d'][7]['re'])?:0;
-				$obj->avg = isset($arAvRe['a'][7]['re'])?:0;
-				$obj->bln = isset($arAvRe['b'][7]['re'])?:0;
-=======
+				$obj->th1 = isset($arAvRe['d'][7]['re'])?($arAvRe['d'][7]['re']):0;
+				$obj->avg = isset($arAvRe['a'][7]['re'])?($arAvRe['a'][7]['re']):0;
+				$obj->bln = isset($arAvRe['b'][7]['re'])?($arAvRe['b'][7]['re']):0;
+
 				$obj->th1 = ($arAvRe['d'][7]['re'])?:0;
 				$obj->avg = ($arAvRe['a'][7]['re'])?:0;
 				$obj->bln = ($arAvRe['b'][7]['re'])?:0;
->>>>>>> 632c9bb8d63f9ba25dec4644b7027c92ec7deeda
+
 				$obj->tgt = '98';
 				$obj->m = "Generator Set";
 				array_push($arAR,$obj);
 				
-<<<<<<< HEAD
-				//$obj2->th1 = ($arAvRe['d'][6]['av'])?:0;
-				$obj2->avg = isset($arAvRe['a'][6]['av'])?:0;
-				$obj2->bln = isset($arAvRe['b'][6]['av'])?:0;
-=======
+
+				$obj2->th1 = isset($arAvRe['d'][6]['av'])?($arAvRe['d'][6]['av']):0;
+				$obj2->avg = isset($arAvRe['a'][6]['av'])?($arAvRe['a'][6]['av']):0;
+				$obj2->bln = isset($arAvRe['b'][6]['av'])?($arAvRe['b'][6]['av']):0;
+
 				$obj2->th1 = ($arAvRe['d'][6]['av'])?:0;
 				$obj2->avg = ($arAvRe['a'][6]['av'])?:0;
 				$obj2->bln = ($arAvRe['b'][6]['av'])?:0;
->>>>>>> 632c9bb8d63f9ba25dec4644b7027c92ec7deeda
+
 				$obj2->tgt = '98';
 				$obj2->m = "Pump";
 				array_push($arAR,$obj2);
