@@ -9,7 +9,9 @@ class rDetailG extends CI_Controller {
 			
 			$rid = explode("e", $id);
 			//print_r(array_filter($rid));
+			$rid = array_unique($rid);
 			$id = implode(",",array_filter($rid));
+			
 			//echo "id: $id<br/>";
 
 			$sql =	"SELECT waktudown.id,event as idevent,tipeev,eqid,kode,fm,tag ".
@@ -113,7 +115,7 @@ class rDetailG extends CI_Controller {
 			//print_r($prop);
 			
 			
-
+/*
 			$obj0 = new stdClass();
 			$obj0->nama = "ID";
 			$obj0->nilai = $prop['id'];

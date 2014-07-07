@@ -25,13 +25,15 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 				text: 'Batal',
 				width: 70,
 				id: 'cancel-eg',
-				icon: 'modul/icons/cross.gif',
+				//icon: 'modul/icons/cross.gif',
+				iconCls: 'cross',
 				margin: '0 10 0 0'
 			},{
 				xtype: 'button',
                 //formBind: true,
                 id:'save-task-fg-btn',
-                icon: 'modul/icons/savedisk.png',
+                //icon: 'modul/icons/savedisk.png',
+                iconCls: 'savedisk',
                 disabled: true,
                 text: 'Simpan Data',
                 width: 140
@@ -39,7 +41,8 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 				xtype: 'button',
                 //formBind: true,
                 id:'update-rh',
-                icon: 'modul/icons/savedisk.png',
+                //icon: 'modul/icons/savedisk.png',
+                iconCls: 'savedisk',
                 hidden: true,
                 text: 'Update',
                 width: 140
@@ -165,7 +168,8 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 						maxWidth: 120,
 						id: 'samadown-fmea-btn',
 						//params: {'datedown','datemulai','timedown','timemulai'},
-						icon: 'modul/icons/connect.png'
+						//icon: 'modul/icons/connect.png'
+						iconCls: 'connect',
 				
 				}]
 			},{			// 4 Unit Beroperasi
@@ -247,7 +251,8 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 						id: 'samarun-fmea-btn',
 						//id: 'samawaktu-fmea-btn',
 						//params: {'dateup','dateselesai','timeup','timeselesai'},
-						icon: 'modul/icons/connect.png'
+						//icon: 'modul/icons/connect.png'
+						iconCls: 'connect',
 				}]
 			},{			// 6 Kegagalan Button
 				xtype: 'fieldcontainer',
@@ -264,7 +269,8 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 				items: [{
 						xtype: 'button',
 						id: 'tambah-fmea-btn',
-						icon: 'modul/icons/add.png',
+						//icon: 'modul/icons/add.png',
+						iconCls: 'add',
 						margin: '0 0 0 665',
 						text: 'Tambah',
 						maxWidth: 80
