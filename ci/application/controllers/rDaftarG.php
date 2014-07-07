@@ -69,7 +69,7 @@ class rDaftarG extends CI_Controller {
 			//$yl = 2;		// TOTAL LIST 2 BULAN
 			//$tglaw = date('Y-m-01', strtotime("-$yl month"));
 			//echo "----> awal: $tglaw, akhir: $tglak<br/>";
-			
+			/*
 			$sql =  "SELECT waktudown.id,event as idevent,tipeev ".
 					",(select pmdef.nama from pmdef where pmdef.id = (select pmlist.pm from pmlist where pmlist.id=tipeev)) as namapm ".
 					",eqid,waktudown.unit_id,kode,fm,downt,downj,upt,upj,startt,startj,endt,endj,waktudown.ket,exe ".
@@ -84,7 +84,23 @@ class rDaftarG extends CI_Controller {
 					"LEFT JOIN event ON event.down_id = waktudown.id ".
 					"WHERE downt BETWEEN ? AND ? ".
 					"order by downt desc, downj desc;";
-			
+			//*/	
+			$sql =  "SELECT waktudown.id,event as idevent,tipeev ".
+					",(select pmdef.nama from pmdef where pmdef.id = (select pmlist.pm from pmlist where pmlist.id=tipeev)) as namapm ".
+					",eqid,waktudown.unit_id,kode".
+					",(select nama from failuremode where failuremode.id = event.fm) as fm".
+					",downt,downj,upt,upj,startt,startj,endt,endj,waktudown.ket,exe ".
+					",(select hirarki.nama from hirarki where hirarki.id ".
+					"	= (select hirarki.parent from hirarki where hirarki.id ".
+					"	= (select hirarki.parent from hirarki where hirarki.id = equip.unit_id))) as lok ".
+					",listEvent.nama as event, equip.unit_id ".
+					",(select nama from hirarki where hirarki.id = (select unit_id from equip where id = waktudown.eqid)) as nama ".
+					"FROM waktudown ".
+					"LEFT JOIN listEvent ON listEvent.id = waktudown.event ".
+					"LEFT JOIN equip ON equip.id = waktudown.eqid ".
+					"LEFT JOIN event ON event.down_id = waktudown.id ".
+					"WHERE downt BETWEEN ? AND ? ".
+					"order by downt desc, downj desc, id desc";
 			//echo "sql: $sql<br/>";
 			$query = $this->db->query($sql, array($tglaw,$tglak));
 			
@@ -94,25 +110,43 @@ class rDaftarG extends CI_Controller {
 			if ($query->num_rows() > 0)	{
 				foreach ($query->result() as $row)	{
 					//print_r($row); echo "<br/>";
+					//echo "id: {$row->id}, event: {$row->idevent},pm: {$row->namapm}<br/>";
 					if (($row->downt==$dd) && ($row->downj==$td)) {
-						//echo "SAMA: $dd - $td ";
+						//echo "----------------->SAMA: $dd - $td <br/>";
 						$isi[$jml]['id'] .= 'e'.$row->id;
 						$ax = $row->idevent;
 						if ($ax==2) {
 							//echo "masuk 2 ".$row->namapm."<br/>";
-							if (isset($row->namapm) && isset($isi[$jml]['fm'])) {
-								if ((strlen($isi[$jml]['fm'])>0))	{
+							//if (isset($row->namapm) && isset($isi[$jml]['fm'])) {
+							if (isset($row->namapm) ) {
+								//echo "krsini <br/>";
+								//*
+								if (isset($isi[$jml]['fm']))	{
 									$isi[$jml]['fm'] .= "&nbsp;&nbsp;";
 								}
-								$isi[$jml]['fm'] .= "[{$row->kode}: {$row->namapm}]";
+								//*/
+								if (isset($isi[$jml]['fm']))
+									$isi[$jml]['fm'] .= "[{$row->kode}: {$row->namapm}]";
+								else
+									$isi[$jml]['fm'] = "[{$row->kode}: {$row->namapm}]";
 								$isi[$jml]['tipeev'] .= ",".'e'.$row->eqid.'pm'.$row->tipeev;
 							}
+							
 						} else if (($ax==3) || ($ax==4)) {
 							//echo "fm: {$row['fm']}<br/>";
+							/*
 							if (isset($row->fm) && ($row->fm!="") && (isset($isi[$jml]['fm']))) {
 								if (strlen($isi[$jml]['fm'])>0)
 									$isi[$jml]['fm'] .= "&nbsp;&nbsp;";
 								$isi[$jml]['fm'] .= "[{$row->kode}: {$row->fm}]";
+							}
+							//*/
+							if (isset($row->fm) && ($row->fm!=""))	{
+								if ( isset($isi[$jml]['fm']))	{
+									$isi[$jml]['fm'] .= "&nbsp;&nbsp;[{$row->kode}: {$row->fm}]";
+								}
+								else 
+									$isi[$jml]['fm'] = "[{$row->kode}: {$row->fm}]";
 							}
 						}
 					} else {
@@ -140,7 +174,7 @@ class rDaftarG extends CI_Controller {
 							$isi[$jml]['startj'] = date('H:i',	strtotime("{$row->startt} {$row->startj}"));
 							$isi[$jml]['endt'] = date('d-m-Y',	strtotime("{$row->endt} {$row->endj}"));
 							$isi[$jml]['endj'] = date('H:i',	strtotime("{$row->endt} {$row->endj}"));
-							//echo "fm: {$row['namapm']}<br/>";
+							//echo "{$row->idevent} <br/>";//fm: {$row['namapm']}
 							if (isset($row->namapm)) {
 								//echo "---- ada fm<br/>";
 								$isi[$jml]['fm'] = "[{$row->kode}: {$row->namapm}]";
@@ -150,6 +184,8 @@ class rDaftarG extends CI_Controller {
 							$isi[$jml]['startj'] = date('H:i',	strtotime("{$row->startt} {$row->startj}"));
 							$isi[$jml]['endt'] = date('d-m-Y',	strtotime("{$row->endt} {$row->endj}"));
 							$isi[$jml]['endj'] = date('H:i',	strtotime("{$row->endt} {$row->endj}"));
+							
+							//echo $row->kode." > ".$row->fm."----<br/>";
 							if (isset($row->fm) && $row->fm!='') {
 								$isi[$jml]['fm'] = "[{$row->kode}: {$row->fm}]";
 								//array_push($tar,$row['fm']);
@@ -176,7 +212,7 @@ class rDaftarG extends CI_Controller {
 			
 			$hsl = array();
 			foreach ($isi as $data)	{
-				//print_r($data); echo "<br/>";
+				//print_r($data); echo "<br/>===========================<br/>";
 				array_push($hsl, $data);
 			}
 			

@@ -61,6 +61,7 @@ class rDetailG extends CI_Controller {
 							}
 						} else if (($ax==3) || ($ax==4)) {
 							//echo "fm: {$row['fm']}<br/>";
+							/*
 							if (isset($row->fm)) {
 								if (strlen($isi[$jml]['fm'])>0)		{
 									//$prop['event'] .= "&nbsp;&nbsp;";
@@ -68,6 +69,7 @@ class rDetailG extends CI_Controller {
 								//$prop['fm'] .= "[{$row['kode']}: {$row['namapm']}]";
 								//$prop['event'] .= " [{$row['kode']}: {$row['namapm']}]";
 							}
+							//*/
 						}
 					}
 					else {
