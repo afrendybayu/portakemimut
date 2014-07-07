@@ -14,6 +14,7 @@ Ext.define('rcm.Application', {
 		'ExcelGrid'
 		,'DetailInfo'
 		,'Laporan'
+		,'FMEA'
     ],
 
     stores: [

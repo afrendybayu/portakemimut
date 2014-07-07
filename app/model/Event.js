@@ -5,20 +5,20 @@ Ext.define('rcm.model.Event', {
 		'Ext.data.proxy.Ajax'
 	],
 
-	fields: [ 'iddown','cat','eql','ideql','opart','idopart','mode','idmode','cause','idcause','aksi','idaksi' ]
+	fields: [ 'iddown','cat','eql','ideql','opart','idopart','mode','idmode','cause','idcause','aksi','idaksi' ],
 	
-	/*
     proxy: {
 		type: 'ajax',
 		api: {
-			//read: 'php/event/read.php'
-			create: 'php/event/create.php'
+			create: 'php/event/create.php',
+			update: 'php/event/update.php',
+			read: 'php/event/readEv.php',
+			destroy: 'php/event/delete.php'
         },
         reader: {
             type: 'json',
-            root: 'equip',
+            root: 'event',
             messageProperty: 'message'
         }
     }
-    //*/
 });

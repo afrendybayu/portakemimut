@@ -11,6 +11,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		,'dataentry.DetailInfo'
 		,'dataentry.FormGagal'
 		,'dataentry.IsiTabForm'
+		,'dataentry.FMEAGrid'
 		
     ],
 
@@ -18,6 +19,11 @@ Ext.define('rcm.controller.ExcelGrid', {
 		'Hirarki'
 		,'RunningHour'
 		,'EventList'
+		
+		,'Equip'
+		,'OPart'
+		,'FMode'
+		,'PM'
 		
     ],
     
@@ -141,6 +147,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 			this.buildFormGagal(e);
 		}
 	},
+    
     ubahFieldRH: function(x)	{
 		this.getRunningHourModel().setFields(rcm.view.Util.Ublntgl(x));
 	},

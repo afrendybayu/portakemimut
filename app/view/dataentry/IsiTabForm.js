@@ -7,6 +7,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 	require: [
 		'Ext.form.TextField',
 		'Ext.grid.Panel'
+		,'rcm.view.dataentry.FMEAGrid'
 	],
 
 	dockedItems: [{
@@ -271,10 +272,16 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 						id: 'tambah-fmea-btn',
 						//icon: 'modul/icons/add.png',
 						iconCls: 'add',
-						margin: '0 0 0 665',
+						margin: '0 0 0 765',
 						text: 'Tambah',
 						maxWidth: 80
 				}]
+			},{			// 7 Grid FMEA
+				//xtype: 'gridpanel',
+				layout: 'fit',
+				id: 'TFGrid',
+				height: 120,
+				xtype: 'taskFMEAGrid',
 			},{			// 8 KetEditor
 				width:509,
 				xtype: 'textarea',
@@ -353,7 +360,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 			Ext.getCmp('TFmt').setVisible(false);
 			Ext.getCmp('TFst').setVisible(false);
 			Ext.getCmp('TFTmbl').setVisible(false);
-			//Ext.getCmp('TFGrid').setVisible(false);
+			Ext.getCmp('TFGrid').setVisible(false);
 			Ext.getCmp('idexe').setVisible(false);
 		} 
 		else if (n==2)	{
@@ -362,7 +369,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 			Ext.getCmp('TFst').setVisible(true);
 			Ext.getCmp('TFTmbl').setVisible(false);
 			Ext.getCmp('idexe').setVisible(true);
-			//Ext.getCmp('TFGrid').setVisible(false);
+			Ext.getCmp('TFGrid').setVisible(false);
 			//*/
 		} else	{ // BD & CR
 			Ext.getCmp('tipepm').setVisible(false);
@@ -370,7 +377,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 			Ext.getCmp('TFst').setVisible(true);
 			Ext.getCmp('TFTmbl').setVisible(true);
 			Ext.getCmp('idexe').setVisible(true);
-			//Ext.getCmp('TFGrid').setVisible(true);
+			Ext.getCmp('TFGrid').setVisible(true);
 		}
 		this.updateErrorState(n);
 	}

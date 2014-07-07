@@ -179,7 +179,7 @@ Ext.define('rcm.view.Util', {
 			}
 			//tglbln[i+4] = 'k140426';
 			//*/
-			console.log("item judul: "+tglbln);
+			//console.log("item judul: "+tglbln);
 			//alert("item judul: "+tglbln);
 			return tglbln;
 		},

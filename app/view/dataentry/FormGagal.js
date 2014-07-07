@@ -123,6 +123,6 @@ Ext.define('rcm.view.dataentry.FormGagal', {
 		var me = this;
 		if (n=='1')	me.setWidth(500);
 		else if  (n=='2')		me.setWidth(700);
-		else	me.setWidth(970);
+		else	me.setWidth(1000);
 	}
 });
