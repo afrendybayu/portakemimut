@@ -53,8 +53,20 @@
 	background-image: url('./images/delete.png');
 }
 
-.moreInfo {
-	background-image: url('./images/more.png');
+.cross {
+	background-image: url('./images/cross.png');
+}
+
+.savedisk {
+	background-image: url('./images/savedisk.png');
+}
+
+.add {
+	background-image: url('./images/add.png');
+}
+
+.connect {
+	background-image: url('./images/connect.png');
 }
 
 .rusak .x-change-cell {
@@ -69,49 +81,3 @@
     /*background-color: #B0FFC5;*/
     color:blue;
 }
-/*
-.rusak .x-change-cell9 {
-    color:red;
-}
-
-.baik .x-change-cell9 {
-    color:green;
-}
-
-.rusak .x-change-cell10 {
-    color:red;
-}
-
-.baik .x-change-cell10 {
-    color:green;
-}
-
-.rusak1 .x-change-cell11 {
-    color:red;
-}
-
-.baik1 .x-change-cell11 {
-    background-color: #B0FFC5;
-    color:green;
-}
-
-.rusak2 .x-change-cell12 {
-    background-color: #FFB0C4;
-    color:red;
-}
-
-.baik2 .x-change-cell12 {
-    background-color: #B0FFC5;
-    color:green;
-}
-
-.rusak .x-change-cell {
-    background-color: #FFB0C4;
-    color:red;
-}
-
-.baik .x-change-cell {
-    background-color: #B0FFC5;
-    color:green;
-}
-//*/

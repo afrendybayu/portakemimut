@@ -9,6 +9,7 @@ $kal = array(1 => "Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep",
 if (isset($_GET['eq']))	{
 	$eq = $_GET['eq'];
 }
+else { $eq = 0;}
 
 if (isset($_GET['tgl']))	{
 	$tgl = $_GET['tgl'];
@@ -51,9 +52,12 @@ try {
 		$arAvRe[$i]['re'.$thnm1] = 0;
 		$arAvRe[$i]['av'.$thn] = 0;
 		$arAvRe[$i]['re'.$thn] = 0;
-		$arAvRe[$i]['b'] = $i;
-		$arAvRe[$i]['m'] = nmbulan($i,1);
+		$arAvRe[$i]['b'] = $i+1;
+		//$arAvRe[$i]['m'] = nmbulan($i,1);
+		$arAvRe[$i]['m'] = $kal[$i+1];
 	}
+	
+	print_r($arAvRe);
 	
 	$s = "SELECT bln,thn,(SELECT DAY(LAST_DAY(tgl))*24) as jml, sum(rh_av) AS av,sum(rh_re) AS re FROM rh_201311 ".
 		 "WHERE eq='$eq' and (thn='$thn' or thn='$thnm1') GROUP BY bln,thn ORDER BY thn, bln ASC";
@@ -92,10 +96,10 @@ try {
 	);
 }
 
-echo json_encode($jsonResult);
+//echo json_encode($jsonResult);
 
 //echo "eq: $eq bln: $bln, thn: $thn<br/>";
-
+/*
 return;
 
 try {
@@ -132,7 +136,7 @@ try {
 		
 	}
 	//*/
-	echo "tgl: $tgl, no: $no<br/>";
+/*	echo "tgl: $tgl, no: $no<br/>";
 	
 	//return;
 	//$tgl = "2014-2";
@@ -264,5 +268,5 @@ try {
 }
 
 echo json_encode($jsonResult);
-
+*/
 ?>

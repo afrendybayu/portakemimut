@@ -86,8 +86,8 @@ Ext.define('rcm.view.lapobama.AvHome', {
 				},
 				credits : {
 					text : 'hc'
-				},
-				legend : {
+				}
+				/*legend : {
 					/*
 					layout : 'vertical',
 					align : 'right',
@@ -96,8 +96,9 @@ Ext.define('rcm.view.lapobama.AvHome', {
 					//y : 100,
 					borderWidth : 0
 					//*/
-				}
-			};
+				/*}*/
+			
+		};
 		me.callParent(arguments);
 	}
 });

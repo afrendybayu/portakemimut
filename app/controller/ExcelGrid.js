@@ -23,7 +23,6 @@ Ext.define('rcm.controller.ExcelGrid', {
     
     models: [
 		'RunningHour'
-		
     ],
     
     refs: [{
@@ -96,7 +95,7 @@ Ext.define('rcm.controller.ExcelGrid', {
             tFG = me.getTaskFormGagal(),
 			form =  tFG.down('form').getForm(),
 			sDG = Ext.create('rcm.model.DaftarGagal'),
-			dRHs = this.getRunningHourStore().getAt(e.rowIdx).data,
+			dRHs = me.getRunningHourStore().getAt(e.rowIdx).data,
 			dRHsJ = dRHs.eq+" @"+dRHs.Lokasi;
 		
 		sDG.set('eq',rcmSettings.eqx); sDG.set('nama',dRHsJ); 
@@ -119,6 +118,11 @@ Ext.define('rcm.controller.ExcelGrid', {
 		
 		//tFG.setWidth(500);
 		tFG.show();
+		
+		me.getEquipStore().load({ params:{unit:dRHs.id} });
+		me.getOPartStore().load({ params:{unit:dRHs.id} });
+		me.getFModeStore().load({ params:{unit:dRHs.id} });
+		me.getPMStore().load({ params:{unit:dRHs.id} });
 		
 		//alert("Form Gagal: "+ " tgl: "+rcmSettings.tgl);
 	},
@@ -166,6 +170,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		//rcm.view.Util.setCookie("tgl",t);
 		//alert("t: "+t+"  cook: "+Ext.decode(rcm.view.Util.getCookie("tgl")));
         //alert("tgl: "+Ext.util.Cookies.get('tgl'));
+        //Ext.getCmp('idwest').collapse();
 	}
 
 });

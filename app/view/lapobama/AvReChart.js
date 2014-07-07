@@ -89,16 +89,17 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 					id:'spAvR',
 					width: '50%',
 					xtype: 'tAvSpeedo',
-					//title: 'panel Av SPeedo',
+					//title: 'gauge Av SPeedo',
 					fldY: ['av2014'],
-					jdl: 'Availability',
+					jdl: 'Availability'
 					//dstore: 'AvSpeedo'
 				},{
 					id:'spReR',
 					width: '50%',
 					xtype: 'tAvSpeedo',
+					//title: 'gauge Re SPeedo',
 					fldY: ['re2014'],
-					jdl: 'Reliability',
+					jdl: 'Reliability'
 					//dstore: 'ReSpeedo'
 				}]
 			},{
@@ -113,7 +114,8 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 					id: 'Av2Thn',
 					width: '50%',
 					//xtype: 'tAvReUnitx',
-					//xtype: 'tAv2Thn',
+					xtype: 'tAv2Thn',
+					//title : 'chart av2thn',
 					fldY: ['av2014'],
 					jdl: 'Availability',
 					avrem1: 'av2013',
@@ -121,7 +123,8 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 				},{
 					id: 'Re2Thn',
 					//xtype: 'tAvReUnitx',
-					//xtype: 'tAv2Thn',
+					xtype: 'tAv2Thn',
+					//title : 'chart re2thn',
 					width: '50%',
 					//height: '33.3%',
 					jdl: 'Reliability',
