@@ -11,10 +11,12 @@ Ext.define('rcm.controller.FMEA', {
 		,'OPart'
 		,'FMode'
 		,'PM'
+		,'Event'
     ],
     
     models: [
 		//'RunningHour'
+		'Event'
     ],
     
 	refs: [{
@@ -42,6 +44,11 @@ Ext.define('rcm.controller.FMEA', {
     //*/
     
     tmbhFMEAClick: function()	{
+		var rec = new rcm.model.Event({
+            eql:'',ideql:'',opart:'',idopart:'',mode:'',idmode:'',cause:'',idcause:'',aksi:'',idaksi:''
+        });
+        this.getEventStore().insert(0, rec);
+        this.getTaskFMEAGrid().getView().refresh();
 		alert('tambah FNMEA');
 	}
 	/*

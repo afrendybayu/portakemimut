@@ -90,7 +90,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 				multiSelect: true,
 				queryMode: 'local',
 				combineErrors: true,
-				//store: 'PM',
+				store: 'PM',
 				maxWidth: 405,
 				allowBlank: false
 			},{			// 2 Unit Stop
@@ -310,6 +310,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 		}],
 		
 		me.callParent(arguments);
+		
 	},
 	
 	updateErrorState: function(a) {		
@@ -352,7 +353,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 			Ext.getCmp('save-task-fg-btn').disable();
 		}
 	},
-	
+		
 	pilihEventG: function(n)	{
 		this.fireEvent('plhEventGagalXY', n);
 		if (n==1)	{		// StandBy

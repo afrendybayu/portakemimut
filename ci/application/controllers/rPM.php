@@ -55,7 +55,7 @@ class rPM extends CI_Controller {
 
 			$jsonResult = array(
 				'success' => true,
-				'equip' => $arr
+				'pm' => $arr
 			);
 		}
 		catch (Exception $e)	{

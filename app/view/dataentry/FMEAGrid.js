@@ -10,7 +10,7 @@ Ext.define('rcm.view.dataentry.FMEAGrid', {
 	],
 	//features: [{ftype:'grouping',startCollapsed:true,hideGroupedHeader:true}],
 
-	//store: 'Event',
+	store: 'Event',
     columnLines: true,
 	enableColumnHide: false,
 	
@@ -51,7 +51,9 @@ Ext.define('rcm.view.dataentry.FMEAGrid', {
 						listConfig: { listeners: { itemclick: function(list, record) { me.pilihAksiGagal(record); } } }
 					} },
 					{ xtype:'actioncolumn',	width:25,
-						icon: 'modul/icons/delete.gif', tooltip: 'Hapus',
+						//icon: 'modul/icons/delete.gif', 
+						iconCls:  'hpsEvent',
+						tooltip: 'Hapus',
 						handler: Ext.bind(me.hdlHapusFMEAClick, me)
 				/*
 				handler: function(grid, rowIndex, colIndex) {
