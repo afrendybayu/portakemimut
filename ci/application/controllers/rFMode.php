@@ -33,7 +33,7 @@ class rFMode extends CI_Controller {
 
 			$jsonResult = array(
 				'success' => true,
-				'equip' => $mode
+				'mode' => $mode
 			);
 		}
 		catch (Exception $e)	{

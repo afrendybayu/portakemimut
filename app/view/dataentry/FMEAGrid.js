@@ -6,7 +6,16 @@ Ext.define('rcm.view.dataentry.FMEAGrid', {
 	//id: 'idfmeagrid',
 	
 	requires: [
-		//'rcm.view.Util',
+		/*
+		'Ext.form.field.ComboBox',
+		'Ext.form.FieldContainer',
+		'Ext.form.field.Time',
+		'Ext.grid.column.Action',
+		'Ext.form.Label',
+		'Ext.form.field.Hidden'
+		//*/
+		'Ext.form.*',
+		'Ext.grid.*'
 	],
 	//features: [{ftype:'grouping',startCollapsed:true,hideGroupedHeader:true}],
 

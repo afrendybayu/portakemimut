@@ -12,6 +12,8 @@ Ext.define('rcm.controller.FMEA', {
 		,'FMode'
 		,'PM'
 		,'Event'
+		,'Aksi'
+		,'Cause'
     ],
     
     models: [
@@ -55,7 +57,7 @@ Ext.define('rcm.controller.FMEA', {
 	plhFilterClick: function(n)		{
 		var me=this;
 		//rcmSettings.aaaa = me.getEventStore();
-		alert(n.col+" pilihFMEAGagal "+me.getEventStore()+"<--");
+		//alert(n.col+" pilihFMEAGagal "+me.getEventStore()+"<--");
 		if (n.col==2)	{		// col 2 = OPart
 			console.log("masuk Opart");
 			me.getOPartStore().clearFilter(true);
@@ -71,7 +73,7 @@ Ext.define('rcm.controller.FMEA', {
 	plhEquipClick: function(drow)	{
 		var me=this, rec=me.getEventStore().getRange()[drow.row];
 		
-		console.log("ideq: "+drow.ideq+", cat: "+drow.cat+", row: "+drow.row);
+		//console.log("ideq: "+drow.ideq+", cat: "+drow.cat+", row: "+drow.row);
 		rec.set('ideql',drow.ideq);
 		rec.set('cat',drow.cat);
 	}
