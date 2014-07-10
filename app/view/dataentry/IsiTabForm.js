@@ -9,6 +9,15 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 		'Ext.grid.Panel'
 		,'rcm.view.dataentry.FMEAGrid'
 	],
+	
+	listeners: {
+		fieldvaliditychange: function() {
+			this.updateErrorState(Ext.getCmp('idtfevent').getSubmitValue());
+		},
+		fielderrorchange: function() {
+			this.updateErrorState(Ext.getCmp('idtfevent').getSubmitValue());
+		}
+	},
 
 	dockedItems: [{
 		dock: 'bottom',
@@ -32,7 +41,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 			},{
 				xtype: 'button',
                 //formBind: true,
-                id:'save-task-fg-btn',
+                id:'save-rh',
                 //icon: 'modul/icons/savedisk.png',
                 iconCls: 'savedisk',
                 disabled: true,
@@ -54,45 +63,68 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 		var me=this,ed=Ext.create('Ext.grid.plugin.CellEditing',{ clicksToEdit: 1	});
 		
 		me.items = [{	// 0 tipe kejadian
-				xtype:          'combo',
+				xtype: 'fieldcontainer',
 				fieldLabel: 'Tipe Kejadian',
-				triggerAction:  'all',
-				forceSelection: true,
-				editable:       false,
-				emptyText:      'Pilih Tipe Kejadian ... ',
-				name:           'tfevent',
-				id: 'idtfevent',
-				displayField:   'nama',
-				valueField: 'id',
-				queryMode: 'local',
-				store: 'EventList',
-				maxWidth: 405,
-				listConfig: {
-					listeners: {
-						itemclick: function(list, record) {
-							me.pilihEventG(record.get('id'));
+				combineErrors: true,
+				msgTarget : 'side',
+				layout: 'hbox',
+				defaults: {
+					flex: 1,
+					hideLabel: true
+				},
+				items: [{	
+					xtype:          'combo',
+					fieldLabel: 'Tipe Kejadian',
+					triggerAction:  'all',
+					forceSelection: true,
+					editable:       false,
+					emptyText:      'Pilih Tipe Kejadian ... ',
+					name:           'tfevent',
+					id: 'idtfevent',
+					displayField:   'nama',
+					valueField: 'id',
+					queryMode: 'local',
+					store: 'EventList',
+					maxWidth: 405,
+					layout: 'fit',
+					listConfig: {
+						listeners: {
+							itemclick: function(list, record) {
+								me.pilihEventG(record.get('id'));
+							}
 						}
 					}
-				}
+				}]
 			},{			// 1 Tipe PM
-				xtype: 'combo',
-				mode: 'local',
-				hidden: true,
-				//triggerAction:  'all',
-				forceSelection: true,
-				editable: false,
-				fieldLabel: 'Penyebab',
-				emptyText: 'Pilih Tipe PM ... ',
-				name: 'tipepm',
-				id: 'tipepm',
-				displayField: 'nama',
-				valueField: 'id',
-				multiSelect: true,
-				queryMode: 'local',
+				xtype: 'fieldcontainer',
+				id: 'TFpm',
+				fieldLabel: 'Tipe PM',
 				combineErrors: true,
-				store: 'PM',
-				maxWidth: 405,
-				allowBlank: false
+				msgTarget : 'side',
+				layout: 'hbox',
+				defaults: {
+					flex: 1,
+					hideLabel: true
+				},
+				items: [{
+					xtype: 'combo',
+					mode: 'local',
+					//triggerAction:  'all',
+					forceSelection: true,
+					editable: false,
+					fieldLabel: 'Penyebab',
+					emptyText: 'Pilih Tipe PM ... ',
+					name: 'tipepm',
+					id: 'tipepm',
+					displayField: 'nama',
+					valueField: 'id',
+					multiSelect: true,
+					queryMode: 'local',
+					combineErrors: true,
+					store: 'PM',
+					maxWidth: 405,
+					allowBlank: false
+				}]
 			},{			// 2 Unit Stop
 				xtype: 'fieldcontainer',
 				fieldLabel: 'Unit Stop',
@@ -111,13 +143,13 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 						format: 'd-m-Y',
 						emptyText: 'Pilih Tanggal ... ',
 						margin: '0 5 0 0',
-						//vtype: 'daterange',
+						vtype: 'daterange',
 						endDateField: 'dateup',
 						maxWidth: 200,
 						allowBlank: false
 					}, {
 						xtype: 'timefield',
-						//vtype: 'timerange',
+						vtype: 'timerange',
 						name: 'timedown',
 						id: 'timedown',
 						endTimeField: 'timeup',
@@ -187,7 +219,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 						xtype: 'datefield',
 						name: 'dateup',
 						id: 'dateup',
-						//vtype: 'daterange',
+						vtype: 'daterange',
 						startDateField: 'datedown',
 						startTimeField: 'timedown',
 						endTimeField: 'timeup',
@@ -202,7 +234,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 						xtype: 'timefield',
 						name: 'timeup',
 						id: 'timeup',
-						//vtype: 'timerange',
+						vtype: 'timerange',
 						startTimeField: 'timedown',
 						startDateField: 'datedown',
 						endDateField: 'dateup',
@@ -281,7 +313,8 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 				layout: 'fit',
 				id: 'TFGrid',
 				height: 120,
-				xtype: 'taskFMEAGrid'
+				xtype: 'taskFMEAGrid',
+				margin: '0 0 0 10'
 			},{			// 8 KetEditor
 				width:509,
 				xtype: 'textarea',
@@ -313,6 +346,14 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 		
 	},
 	
+	enaSave: function()	{
+		Ext.getCmp('save-rh').enable();
+	},
+	
+	disSave: function()	{
+		Ext.getCmp('save-rh').disable();
+	},
+	
 	updateErrorState: function(a) {		
 		var me = this, errorCmp, fields, errors;
 		var ev = Ext.getCmp('idtfevent').getSubmitValue(),
@@ -325,9 +366,11 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 		//if (ev && ev==1)	{		// standby
 		if (a==1) {
 			if (dd && td && du && tu)	{
-				Ext.getCmp('save-task-fg-btn').enable();
+				me.enaSave();
+				//Ext.getCmp('save-rh').enable();
 			} else {
-				Ext.getCmp('save-task-fg-btn').disable();
+				//Ext.getCmp('save-rh').disable();
+				me.disSave();
 			}
 		}
 		else if (a==2)	{	// PM
@@ -336,28 +379,33 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 			
 			//console.log("pm: "+pm);
 			if (dd && td && du && tu && pm && ex)	{
-				Ext.getCmp('save-task-fg-btn').enable();
+				me.enaSave();
+				//Ext.getCmp('save-rh').enable();
 			} else {
-				Ext.getCmp('save-task-fg-btn').disable();
+				//Ext.getCmp('save-rh').disable();
+				me.disSave();
 			}
 		}
 		else if (a==3 || a==4)	{	// CR | BD
 			//console.log("ev: "+ev+",pjg: "+ex.length);
 			if (dd && td && du && tu && ex && ex.length>=2)	{
-				Ext.getCmp('save-task-fg-btn').enable();
+				//Ext.getCmp('save-rh').enable();
+				me.enaSave();
 			} else {
-				Ext.getCmp('save-task-fg-btn').disable();
+				//Ext.getCmp('save-task-fg-btn').disable();
+				me.disSave();
 			}
 		}
 		else {
-			Ext.getCmp('save-task-fg-btn').disable();
+			//Ext.getCmp('save-task-fg-btn').disable();
+			me.disSave();
 		}
 	},
 		
 	pilihEventG: function(n)	{
 		this.fireEvent('plhEventGagalXY', n);
 		if (n==1)	{		// StandBy
-			Ext.getCmp('tipepm').setVisible(false);
+			Ext.getCmp('TFpm').setVisible(false);
 			Ext.getCmp('TFmt').setVisible(false);
 			Ext.getCmp('TFst').setVisible(false);
 			Ext.getCmp('TFTmbl').setVisible(false);
@@ -365,7 +413,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 			Ext.getCmp('idexe').setVisible(false);
 		} 
 		else if (n==2)	{
-			Ext.getCmp('tipepm').setVisible(true);
+			Ext.getCmp('TFpm').setVisible(true);
 			Ext.getCmp('TFmt').setVisible(true);
 			Ext.getCmp('TFst').setVisible(true);
 			Ext.getCmp('TFTmbl').setVisible(false);
@@ -373,7 +421,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 			Ext.getCmp('TFGrid').setVisible(false);
 			//*/
 		} else	{ // BD & CR
-			Ext.getCmp('tipepm').setVisible(false);
+			Ext.getCmp('TFpm').setVisible(false);
 			Ext.getCmp('TFmt').setVisible(true);
 			Ext.getCmp('TFst').setVisible(true);
 			Ext.getCmp('TFTmbl').setVisible(true);
