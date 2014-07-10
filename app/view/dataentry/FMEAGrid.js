@@ -43,7 +43,7 @@ Ext.define('rcm.view.dataentry.FMEAGrid', {
 						xtype: 'combo', store: 'Cause',editable: false,	emptyText: 'Pilih Penyebab... ',
 						queryParam: 'tipe',name : 'cause',displayField: 'nama',valueField: 'nama',queryMode: 'local',
 						listConfig: { listeners: { itemclick: function(list, record) { me.pilihCauseGagal(record); }}, 
-								getInnerTpl: function() {	return '<div data-qtip="{nama}: {ket}">{nama}</div>'; }}, 
+								getInnerTpl: function() {	return '<div data-qtip="{nama}: {ket}">{nama}</div>'; }}
 					} },
 					{ text: "Tindakan", dataIndex: 'aksi', width:100, editor: {
 						xtype: 'combo', store: 'Aksi',editable: false,	emptyText: 'Pilih Tindakan... ',

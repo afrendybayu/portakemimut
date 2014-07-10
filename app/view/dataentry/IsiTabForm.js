@@ -170,7 +170,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 						id: 'samadown-fmea-btn',
 						//params: {'datedown','datemulai','timedown','timemulai'},
 						//icon: 'modul/icons/connect.png'
-						iconCls: 'connect',
+						iconCls: 'connect'
 				
 				}]
 			},{			// 4 Unit Beroperasi
@@ -253,7 +253,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 						//id: 'samawaktu-fmea-btn',
 						//params: {'dateup','dateselesai','timeup','timeselesai'},
 						//icon: 'modul/icons/connect.png'
-						iconCls: 'connect',
+						iconCls: 'connect'
 				}]
 			},{			// 6 Kegagalan Button
 				xtype: 'fieldcontainer',

@@ -9,7 +9,7 @@ Ext.define('rcm.model.FMode', {
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'php/fmode/read.php?'
+			read: 'ci/index.php/rFMode'
         },
         reader: {
             type: 'json',
