@@ -149,12 +149,15 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 						allowBlank: false
 					}, {
 						xtype: 'timefield',
-						vtype: 'timerange',
 						name: 'timedown',
 						id: 'timedown',
-						endTimeField: 'timeup',
-						startDateField: 'datedown',
-						endDateField: 'dateup',
+						vtype: 'timerange',
+						endTimeField: 'timeup',		
+						
+						
+						//startDateField: 'datedown',
+						//startTimeField: 'timedown',	
+						//endDateField: 'dateup',
 						emptyText: 'Pilih jam ...',
 						labelAlign: 'top',
 						format: 'H:i',
@@ -221,9 +224,10 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 						id: 'dateup',
 						vtype: 'daterange',
 						startDateField: 'datedown',
-						startTimeField: 'timedown',
-						endTimeField: 'timeup',
-						endDateField: 'dateup',
+						endTimeField: 'timeup', // diakses ketika tanggal sama !!!
+						startTimeField: 'timedown',		// diakses untuk cari waktu down !!!
+						
+						//endDateField: 'dateup',
 						fieldLabel: 'Tanggal',
 						format: 'd-m-Y',
 						emptyText: 'Pilih Tanggal ... ',
@@ -236,8 +240,11 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 						id: 'timeup',
 						vtype: 'timerange',
 						startTimeField: 'timedown',
+						
 						startDateField: 'datedown',
 						endDateField: 'dateup',
+						
+						//endTimeField: 'timeup',
 						emptyText: 'Pilih jam ...',
 						labelAlign: 'top',
 						format: 'H:i',
