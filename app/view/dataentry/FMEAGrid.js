@@ -66,7 +66,12 @@ Ext.define('rcm.view.dataentry.FMEAGrid', {
 		
 		me.callParent(arguments);
 		me.addEvents(
-			'edit'
+			'edit',
+			'plhOPartGagal',
+			'plhEquipGagal',
+			'plhModeGagal',
+			'plhCauseGagal',
+			'plhAksiGagal'
         );
         ed.on('edit', me.handleCellEdit, this);
 	},

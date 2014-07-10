@@ -31,8 +31,8 @@ Ext.define('rcm.controller.FMEA', {
 		var me = this;
         me.control({
 			'taskFMEAGrid': {
-				//editDGClick: me.edDG
-				//,hapusDGClick: me.hpsDG
+				plhFilterFMEA: me.plhFilterClick,
+				plhEquipGagal: me.plhEquipClick
 				//,infoDetailGagal: me.infoDG
 			},
 			'#tambah-fmea-btn': {
@@ -49,7 +49,31 @@ Ext.define('rcm.controller.FMEA', {
         });
         this.getEventStore().insert(0, rec);
         this.getTaskFMEAGrid().getView().refresh();
-		alert('tambah FNMEA');
+		//alert('tambah FNMEA');
+	},
+	
+	plhFilterClick: function(n)		{
+		var me=this;
+		//rcmSettings.aaaa = me.getEventStore();
+		alert(n.col+" pilihFMEAGagal "+me.getEventStore()+"<--");
+		if (n.col==2)	{		// col 2 = OPart
+			console.log("masuk Opart");
+			me.getOPartStore().clearFilter(true);
+			me.getOPartStore().filter('cat',n.cat);
+		}
+		else if (n.col==3)	{	// col 3 = FMode
+			console.log("masuk FMode");
+			me.getFModeStore().clearFilter(true);
+			me.getFModeStore().filter('cat',n.cat);
+		}
+	},
+	
+	plhEquipClick: function(drow)	{
+		var me=this, rec=me.getEventStore().getRange()[drow.row];
+		
+		console.log("ideq: "+drow.ideq+", cat: "+drow.cat+", row: "+drow.row);
+		rec.set('ideql',drow.ideq);
+		rec.set('cat',drow.cat);
 	}
 	/*
 	edDG: function()	{
