@@ -314,7 +314,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 				id: 'TFGrid',
 				height: 120,
 				xtype: 'taskFMEAGrid',
-				margin: '0 0 0 10'
+				margin: '0 0 10 0'
 			},{			// 8 KetEditor
 				width:509,
 				xtype: 'textarea',
