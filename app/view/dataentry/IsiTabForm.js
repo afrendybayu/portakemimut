@@ -383,7 +383,6 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 		else if (a==2)	{	// PM
 		//else if (ev && ev==2)	{	// PM
 			var pm = Ext.getCmp('tipepm').getSubmitValue();
-			
 			//console.log("pm: "+pm);
 			if (dd && td && du && tu && pm && ex)	{
 				me.enaSave();

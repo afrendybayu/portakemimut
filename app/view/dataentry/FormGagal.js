@@ -19,40 +19,6 @@ Ext.define('rcm.view.dataentry.FormGagal', {
 	minWidth: 500,
 	layout: 'fit',
 	bodypadding : '10',
-	/*
-	dockedItems: [{
-		xtype: 'container',
-		dock: 'bottom',
-		layout: {
-			type: 'hbox',
-			align: 'middle'
-		},
-		padding: '10 10 5',
-		items: [{
-				xtype: 'button',
-				formBind: true,
-				text: 'Batal',
-			},{
-				xtype: 'button',
-				formBind: true,
-				disabled: true,
-				text: 'Simpan',
-				handler: function() {
-					var form = this.up('form').getForm();
-					form.submit({
-						clientValidation: true,
-						url: '',
-                        success: function(form, action) {
-                           //...
-                        },
-                        failure: function(form, action) {
-                            //...
-                        }
-					});
-				}
-		}]
-	}],
-	//*/
 
 	initComponent: function() {
 		var me=this;

@@ -70,6 +70,9 @@ Ext.define('rcm.controller.ExcelGrid', {
 			'#samarun-fmea-btn': {
 				click: me.samarunFMEAClick
 			},
+			'#save-rh': {
+				click: me.simpanGagalClick
+			},
 			'taskIsiFormGagal': {
 				plhEventGagalXY: me.pilihEventGagalXY
 			}
@@ -309,6 +312,97 @@ Ext.define('rcm.controller.ExcelGrid', {
 		});
         
         
+	},
+	
+	simpanGagalClick: function()	{
+		this.simpanFormGagal();
+		this.getTaskFormGagal().close();
+		
+		//this.updateAVReDash();
+	},
+	
+	ambilDataForm: function()	{
+		var taskFormGagal = this.getTaskFormGagal(),
+            windowEl = taskFormGagal.getEl(),
+            form = taskFormGagal.down('form').getForm(),
+            me = this,
+            task = form.getRecord(),
+            o = {};
+
+		o.id = form.findField('fgid').getValue();
+		o.eq = form.findField('eq'), cat = rcmSettings.cat;
+		o.event = form.findField('tfevent').getValue();
+		o.tipeev = form.findField('tipepm').getValue();
+		o.ket = form.findField('tfket').getValue();
+		o.exe = form.findField('exe').getValue();
+		o.dd = this.getDate(form.findField('datedown').getValue()); 
+		o.td = this.getTime(form.findField('timedown').getValue());
+		o.dm = this.getDate(form.findField('datemulai').getValue()); 
+		o.tm = this.getTime(form.findField('timemulai').getValue());
+		o.ds = this.getDate(form.findField('dateselesai').getValue()); 
+		o.ts = this.getTime(form.findField('timeselesai').getValue());
+		o.du = this.getDate(form.findField('dateup').getValue()); 
+		o.tu = this.getTime(form.findField('timeup').getValue());
+		
+		return o;
+	},
+	
+	simpanFormGagal: function()	{
+		var me=this,
+			o = me.ambilDataForm();
+			
+		var rec = new rcm.model.DaftarGagal({ edit:0,
+			id:'u'+o.id,downt:o.dd,downj:o.td,startt:o.dm,startj:o.tm,endt:o.ds,endj:o.ts,upt:o.du,upj:o.tu,
+			event:o.event,tipeev:o.tipeev,ket:o.ket,exe:o.exe,server:rcmSettings.server,cat:rcmSettings.cat
+        });
+        
+        rec.save({				// update
+            success: function(respon, operation) {
+				var resp = operation.request.scope.reader.jsonData["tasks"];
+				var recx = me.getEventStore().getRange();
+				if (event>2)	{
+					for (var i=0, len1=resp.length; i<len1; ++i) {
+						for (var j=0,len2=recx.length; j<len2; ++j)	{
+							if (recx[j].data.ideql==resp[i].eq)	{
+								recx[j].set('iddown',resp[i].id);
+							}
+						}
+					}
+					//console.log("masuk sini");
+					me.getEventStore().sync({
+						//*
+						success: function()	{
+							me.getDaftarGagalStore().reload();
+							//console.log("sukses getEventStore");
+						},
+						failure: function()	{
+							//console.log("gagal getEventStore");
+						},
+						callback: function()	{
+							//console.log("callback getEventStore");
+						}										
+					});				// create ()
+					//*/
+					//me.getEventStore().removeAll();
+					//console.log("keluar selamat !!!");
+				}
+				me.getDaftarGagalStore().reload();
+				me.getRunningHourStore().reload();
+            },
+            failure: function(task, operation) {
+                var error = operation.getError(),
+                    msg = Ext.isObject(error) ? error.status + ' ' + error.statusText : error;
+
+                Ext.MessageBox.show({
+                    title: 'Update Task Failed',
+                    msg: msg,
+                    icon: Ext.Msg.ERROR,
+                    buttons: Ext.Msg.OK
+                });
+                me.getDaftarGagalStore().reload();
+				me.getRunningHourStore().reload();
+            }
+        });
 	}
 
 });
