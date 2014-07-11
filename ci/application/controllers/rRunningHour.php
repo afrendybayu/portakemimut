@@ -1,9 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
+
 class rRunningHour extends CI_Controller {
 	
 	public function index()	{
-		
+		$this->load->helper('util');
+		//echo test_method("ngetes");
 		try	{
 			$sql = array();
 			$eq = 0; $jml = 0;
@@ -56,7 +59,9 @@ class rRunningHour extends CI_Controller {
 						//$jml=$jml+1;
 					}
 					$time = strtotime($row->tgl); 
-					$ii = ($row->rh);
+					//$ii = ($row->rh);
+					$ii = format_rh_time($row->rh);
+					
 					$tisi[$eq]["k".date('ymd',$time)] = ($ii?:'-');
 				}
 				

@@ -1,5 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
+if ( ! function_exists('format_rh_time'))	{
+    function format_rh_time($a)	{
+		//echo ">>>>>>>>>"; print_r($a);	echo "<br/>";
+		return float2min($a);
+	}
+}
+
 if ( ! function_exists('isDate'))	{
 	function isDate($date)	{
 		$date = str_replace(array('.', '-', '\\'), '/', $date);
@@ -25,6 +33,13 @@ if ( ! function_exists('nmbulan'))	{
 	}
 }
 
+if ( ! function_exists('blnthn'))	{
+	function blnthn($b, $t)	{
+		return "$t".pad($b);
+	}
+}
+
+/*
 if ( ! function_exists('cek_unit'))	{
 	function cek_unit($id)	{
 		$sqlawal = "select kode from cat_equip where parent=0 and id=$id";
@@ -41,12 +56,6 @@ if ( ! function_exists('cek_unit'))	{
 		return ($row['kode']);
 	}
 	
-}
-
-if ( ! function_exists('blnthn'))	{
-	function blnthn($b, $t)	{
-		return "$t".pad($b);
-	}
 }
 
 if ( ! function_exists('cek_tole_hari'))	{
@@ -104,7 +113,7 @@ if ( ! function_exists('cek_waktu_range'))	{
 		return $w;
 	}
 }
-
+//*/
 if ( ! function_exists('kombinasi_waktu'))	{
 	function kombinasi_waktu($ar1, $ar2, $ar3, $ar4)	{
 		$xar=array(); $urut=array();
@@ -167,7 +176,7 @@ if ( ! function_exists('float2min'))	{
 		return (sprintf("%02s", floor($s)).":".sprintf("%02s", round(60*($s-$hour))));
 	}
 }
-
+/*
 if ( ! function_exists('cek_tgl_rh_ada'))	{
 	function cek_tgl_rh_ada($id, $tgl) {
 		//$sql = "select tgl from rh_201311 where id='$id' and tgl>='{$downt}' and tgl<='{$upt}'";
@@ -193,7 +202,7 @@ if ( ! function_exists('cek_tgl_rh_ada'))	{
 		return $adaTgl;
 	}
 }
-
+//*/
 if ( ! function_exists('format_rh'))	{
 	function format_rh($a)	{
 		//echo ">>>>>>>>>"; print_r($a);	echo "<br/>";
