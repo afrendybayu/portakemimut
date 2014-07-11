@@ -74,7 +74,7 @@ if ( ! function_exists('cek_tole_hari'))	{
 	}
 	
 }
-
+//*/
 if ( ! function_exists('cek_waktu_range'))	{
 	function cek_waktu_range($id, $downt, $downj, $upt, $upj, $flag=0, $event, $edit, $idid)	{
 	//echo "cek_waktu_range flag: $flag, event: $event<br/>";
@@ -85,6 +85,16 @@ if ( ! function_exists('cek_waktu_range'))	{
 				"OR upt BETWEEN '".hari_dengan_tole($upt,-cek_tole_hari())."' AND '".hari_dengan_tole($upt,cek_tole_hari())."') ";
 		if ($edit) $sql .= "AND id NOT IN (".implode(',',$idid).")";
 
+
+		$query = $this->db->query($s);
+			
+		$aksi = array();
+		if ($query->num_rows() > 0)	{
+			foreach ($query->result() as $row)	{
+				$aksi[] = $row;
+			}
+		}
+
 		$q = db_query($sql);
 		if (!$q)	{
 			//echo "DB Error, could not query the database\n";
@@ -93,9 +103,9 @@ if ( ! function_exists('cek_waktu_range'))	{
 			exit;
 		}
 		while ($row = mysql_fetch_assoc($q)) {
-			$dt[$ii]  = $row['downt'];		$dj[$ii]  = $row['downj'];
-			$ut[$ii]  = $row['upt'];		$uj[$ii]  = $row['upj'];
-			$ev[$ii]  = $row['event'];
+			$dt[$ii]  = $row->downt;	$dj[$ii]  = $row->downj;
+			$ut[$ii]  = $row->upt;		$uj[$ii]  = $row->upj;
+			$ev[$ii]  = $row->event;
 			$ii++;
 		}
 		mysql_free_result($q);
@@ -113,7 +123,7 @@ if ( ! function_exists('cek_waktu_range'))	{
 		return $w;
 	}
 }
-//*/
+
 if ( ! function_exists('kombinasi_waktu'))	{
 	function kombinasi_waktu($ar1, $ar2, $ar3, $ar4)	{
 		$xar=array(); $urut=array();
@@ -304,7 +314,7 @@ if ( ! function_exists('rh'))	{
 }
 
 if ( ! function_exists('bwaktu'))	{
-	function bwaktu($d, $t="0:0:0") {
+	function bwaktu($d, $t="00:00:00") {
 		$w = new stdClass();
 		$dd = explode("-", $d);	
 		$tt = explode(":", $t);	
@@ -314,9 +324,9 @@ if ( ! function_exists('bwaktu'))	{
 		$w->bln = $dd[1];
 		$w->tgl = $dd[2];
 		
-		$w->jam = $tt[0];
-		$w->min = $tt[1];
-		$w->det = $tt[2];
+		$w->jam = isset($tt[0])?:0;
+		$w->min = isset($tt[1])?:0;
+		$w->det = isset($tt[2])?:0;
 		
 		$w->t = mktime( $w->jam,$w->min,$w->det, $w->bln,$w->tgl,$w->thn);
 		//echo "bwaktu() >> t: ".$w->t."<br/>";

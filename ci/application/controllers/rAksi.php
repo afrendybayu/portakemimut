@@ -3,23 +3,13 @@
 class rAksi extends CI_Controller {
 	
 	public function index()	{
-		
 		try	{
 			//$id = $this->input->get('id')?:'0';
-			
-			$s = "SELECT id,nama FROM aksi order by nama asc";
-			$query = $this->db->query($s);
-			
-			$aksi = array();
-			if ($query->num_rows() > 0)	{
-				foreach ($query->result() as $row)	{
-					$aksi[] = $row;
-				}
-			}
+			$this->load->model('fmea');
 			
 			$jsonResult = array(
 				'success' => true,
-				'aksi' => $aksi
+				'aksi' => $this->fmea->get_aksi()
 			);
 		}
 		catch (Exception $e)	{
@@ -28,7 +18,12 @@ class rAksi extends CI_Controller {
 				'message' => $e->getMessage()
 			);
 		}
-		//$this->load->view('welcome_message');
-		echo json_encode($jsonResult);
+		$hasil['json'] = $jsonResult;
+
+		$this->load->view('json',$hasil);
+		//$this->output->set_content_type('application/json');
+		//$this->output->set_output(json_encode($jsonResult));
+		//$this->output->enable_profiler(TRUE);
+		
 	}
 }

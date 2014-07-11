@@ -5,7 +5,7 @@
 class rRunningHour extends CI_Controller {
 	
 	public function index()	{
-		$this->load->helper('util');
+		//$this->load->helper('util');
 		//echo test_method("ngetes");
 		try	{
 			$sql = array();
@@ -105,6 +105,13 @@ class rRunningHour extends CI_Controller {
 			);
 		}
 		//$this->load->view('welcome_message');
-		echo json_encode($jsonResult);
+		//echo json_encode($jsonResult);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($jsonResult));
+		//$this->output->enable_profiler(TRUE);
 	}
+	
 }
+
+
+

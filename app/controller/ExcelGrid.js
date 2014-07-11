@@ -24,7 +24,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		,'OPart'
 		,'FMode'
 		,'PM'
-		
+		,'DaftarGagal'
     ],
     
     models: [
@@ -308,7 +308,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 				}
 				return true;
 			},
-			timerangeText: 'Start Time must be less than end time',
+			timerangeText: 'Start Time must be less than end time'
 		});
         
         

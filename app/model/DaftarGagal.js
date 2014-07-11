@@ -20,7 +20,7 @@ Ext.define('rcm.model.DaftarGagal', {
             
             //create: 'php/gagal/create.php',
             read: 'ci/index.php/rDaftarG',
-			update: 'ci/index.php/uDaftarG',
+			update: 'ci/index.php/uDaftarG'
             //update: 'php/gagal/update.php',
             //destroy: 'php/gagal/delete.php'
         },
