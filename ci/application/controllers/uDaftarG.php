@@ -35,6 +35,7 @@ class uDaftarG extends CI_Controller {
 			$xid = $params->id; $idAr = array(); $catAr = array(); $idJml=0;
 			$tipeev = $params->tipeev;
 			$cc = isset($params->cat)?:0;
+			$idid = 0;
 			
 			if (intval($xid)==0) {
 				echo "xid: $xid<br/>";
@@ -100,9 +101,17 @@ class uDaftarG extends CI_Controller {
 			}
 			echo "<br/>idAr: ";print_r($idAr); echo "-------<br/><br/>";
 			// CEK WAKTU range di database
-			//$wkt = cek_waktu_range($idAr[0], $params->downt, $params->downj, $params->upt, $params->upj);
-			$wkt = cek_waktu_range($idAr[0], $params->downt, $params->downj, $params->upt, $params->upj,0, $params->event, $edit, $idid);
-			//$wkt = cek_waktu_range($id, $params->downt, $params->downj, $params->upt, $params->upj);
+			$this->load->model('waktudown');
+			$tole = $this->waktudown->cek_tole_hari();
+			
+			//*
+			$wkt = $this->waktudown->get_event($idAr[0],$params->downt,$params->downj,$params->upt,$params->upj,0,
+					$params->event, $edit, $idid,
+					hari_dengan_tole($params->downt,-$tole),hari_dengan_tole($params->downt,$tole),
+					hari_dengan_tole($params->upt,-$tole),hari_dengan_tole($params->upt,$tole) );
+			//*/
+			//$wkt = cek_waktu_range($idAr[0], $params->downt, $params->downj, $params->upt, $params->upj,0, $params->event, $edit, $idid);
+
 			echo "Cek waktu range: <br/>";	print_r($wkt); echo "<br/><br/>";
 			
 			$kw = kombinasi_waktu($wkt->dt, $wkt->dj, $wkt->ut, $wkt->uj);

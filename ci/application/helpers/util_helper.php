@@ -74,7 +74,7 @@ if ( ! function_exists('cek_tole_hari'))	{
 	}
 	
 }
-//*/
+
 if ( ! function_exists('cek_waktu_range'))	{
 	function cek_waktu_range($id, $downt, $downj, $upt, $upj, $flag=0, $event, $edit, $idid)	{
 	//echo "cek_waktu_range flag: $flag, event: $event<br/>";
@@ -123,7 +123,7 @@ if ( ! function_exists('cek_waktu_range'))	{
 		return $w;
 	}
 }
-
+//*/
 if ( ! function_exists('kombinasi_waktu'))	{
 	function kombinasi_waktu($ar1, $ar2, $ar3, $ar4)	{
 		$xar=array(); $urut=array();
