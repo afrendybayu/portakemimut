@@ -27,6 +27,7 @@ $config['base_url']	= 'http://localhost/daunbiru/portakemimut/ci'; //medco/ci/';
 |
 */
 $config['index_page'] = 'index.php?';
+//$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------

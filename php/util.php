@@ -174,6 +174,7 @@ function float2min($s) {
 	return (sprintf("%02s", floor($s)).":".sprintf("%02s", round(60*($s-$hour))));
 }
 
+/*
 function cek_tgl_rh_ada($id, $tgl) {
 	//$sql = "select tgl from rh_201311 where id='$id' and tgl>='{$downt}' and tgl<='{$upt}'";
 	$sql = "select id from rh_201311 where eq='$id' and tgl='{$tgl}'";
@@ -197,7 +198,7 @@ function cek_tgl_rh_ada($id, $tgl) {
 	$adaTgl->jml = count($ar);
 	return $adaTgl;
 }
-
+//*/
 function format_rh($a)	{
 	//echo ">>>>>>>>>"; print_r($a);	echo "<br/>";
 	$b = array();

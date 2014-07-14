@@ -142,7 +142,7 @@ if ( ! function_exists('kombinasi_waktu'))	{
 				}
 			}
 		}
-		//print_r($xar);
+		print_r($xar);
 		return $xar;
 	}
 }

@@ -39,7 +39,9 @@
 */
 
 $route['default_controller'] = "welcome";
+//$route['default_controller'] = "rDaftarG";
 $route['404_override'] = '';
+$route['avre'] = "avre/welcome";
 
 
 /* End of file routes.php */
