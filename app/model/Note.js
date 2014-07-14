@@ -5,18 +5,18 @@ Ext.define('rcm.model.Note', {
 		'Ext.data.proxy.Ajax'
 	],
 
-	fields: [ 'ket' ]
+	fields: [ 'ket' ],
 	
-	/*
+	//*
     proxy: {
 		type: 'ajax',
 		api: {
 			//read: 'php/event/read.php'
-			create: 'php/event/create.php'
+			read:  'ci/index.php/rh/rNote'
         },
         reader: {
             type: 'json',
-            root: 'equip',
+            root: 'note',
             messageProperty: 'message'
         }
     }

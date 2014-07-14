@@ -2,9 +2,9 @@
 Ext.define('rcm.store.Note', {
     extend: 'Ext.data.Store',
     model: 'rcm.model.Note',
-    requires: 'rcm.model.Note',
+    requires: 'rcm.model.Note'
     //autoLoad: true,
-    
+    /*
     proxy: {
 		type: 'ajax',
 		url: 'ci/index.php/rNote',
@@ -15,4 +15,5 @@ Ext.define('rcm.store.Note', {
             messageProperty: 'message'
         }
     }
+    //*/
 });
