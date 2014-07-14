@@ -19,6 +19,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		'Hirarki'
 		,'RunningHour'
 		,'EventList'
+		,'Event'
 		
 		,'Equip'
 		,'OPart'

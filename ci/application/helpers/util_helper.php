@@ -142,7 +142,7 @@ if ( ! function_exists('kombinasi_waktu'))	{
 				}
 			}
 		}
-		print_r($xar);
+		//print_r($xar);
 		return $xar;
 	}
 }
@@ -309,6 +309,7 @@ if ( ! function_exists('rh'))	{
 			$tmp+= $shari;
 			$i++;
 		} while(($tmp<=$tglak->t) && ($i<365));
+		//echo "rh: ";	print_r($w); echo "<br/>";
 		return $w;
 	}
 }

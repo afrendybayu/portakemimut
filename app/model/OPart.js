@@ -9,7 +9,7 @@ Ext.define('rcm.model.OPart', {
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/rOPart'
+			read: 'ci/index.php/rh/rOPart'
         },
         reader: {
             type: 'json',

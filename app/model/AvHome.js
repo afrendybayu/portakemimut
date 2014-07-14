@@ -13,7 +13,7 @@ Ext.define('rcm.model.AvHome', {
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/rAvHome?tp=av'
+			read: 'ci/index.php/avre/rAvHome?tp=av'
         },
 		reader: {
             type: 'json',

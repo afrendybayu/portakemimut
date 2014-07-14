@@ -5,8 +5,8 @@ class uDaftarG extends CI_Controller {
 	public function index()	{
 		
 		try	{
-			//$params = json_decode(file_get_contents('php://input'));
-			//*
+			$params = json_decode(file_get_contents('php://input'));
+			/*
 			$params = new stdClass();
 			$params->id = 'u22';
 			$params->lok = '';
@@ -33,7 +33,7 @@ class uDaftarG extends CI_Controller {
 				throw new Exception("Waktu tidak sesuai !!<br/>Input Data Tidak disimpan");
 			}
 			$xid = $params->id; $idAr = array(); $catAr = array(); $idJml=0;
-			$tipeev = $params->tipeev;
+			
 			//echo "tipeev: $tipeev<br/>";
 			$cc = isset($params->cat)?:0;
 			$server = isset($params->server)?$params->server:0;
@@ -70,10 +70,10 @@ class uDaftarG extends CI_Controller {
 					//mysql_free_result($q);
 					
 					
-					echo "level e"; print_r($idAr);
+					//echo "level e"; print_r($idAr);
 				} else if ($level=='u')	{	// level unit
 					$sql = "SELECT id,cat from equip where unit_id = $id";
-					echo "unit sql: $sql<br/>";
+					//echo "unit sql: $sql<br/>";
 
 					$query = $this->db->query($sql);
 					//$aksi = array();
@@ -107,7 +107,7 @@ class uDaftarG extends CI_Controller {
 			//echo "Cek waktu range: <br/>";	print_r($wkt); echo "<br/><br/>";
 			
 			$kw = kombinasi_waktu($wkt->dt, $wkt->dj, $wkt->ut, $wkt->uj);
-			echo "kw: $kw<br/>";
+			//echo "kw: "; print_r($kw); echo "<br/>";
 
 			if (count($kw)>0)	{
 				for ($i=0; $i<count($kw); $i++)	{
@@ -148,6 +148,8 @@ class uDaftarG extends CI_Controller {
 					}
 					$l++;
 				}
+				//echo "<br/>hrh_re: "; print_r($hrh_re);
+				
 				if (($wkt->ev[$k])>1) {		// Availability
 					$ar_av = rh($wkt->dt[$k], $wkt->dj[$k], $wkt->ut[$k], $wkt->uj[$k]);
 					if ($m==0)	{
@@ -159,6 +161,7 @@ class uDaftarG extends CI_Controller {
 					}
 					$m++;
 				}
+				//echo "<br/>hrh_av: "; print_r($hrh_av);
 				//echo "jmlAr[$k]: ".sizeof($ar)."<br/>"; print_r($ar);  
 				//echo "<br/>---------------------<br/>";
 
@@ -170,13 +173,13 @@ class uDaftarG extends CI_Controller {
 			}
 			
 			$rh = format_rh_float($hrh);
-			echo "<br/>Format_rh RunnningHour: "; print_r($rh); echo "<br/>";
+			//echo "<br/>Format_rh RunnningHour: "; print_r($rh); echo "<br/>";
 			//$rh_av = format_rh($hrh_av);
-			$rh_av = format_rh_float($hrh_av);
-			echo "Format_rh Availability: "; print_r($rh_av); echo "<br/>";
+			$rh_av = isset($hrh_av)?format_rh_float($hrh_av):array(date('Y-m-d') => 24);
+			//echo "Format_rh Availability: "; print_r($rh_av); echo "<br/>";
 			//$rh_re = format_rh($hrh_re);
-			$rh_re = format_rh_float($hrh_re);
-			echo "Format_rh Reliability : "; print_r($rh_re); echo "<br/><br/>";
+			$rh_re = isset($hrh_av)?format_rh_float($hrh_re):array(date('Y-m-d') => 24);
+			//echo "Format_rh Reliability : "; print_r($rh_re); echo "<br/><br/>";
 			
 			$k=0;	
 			// $params->downt = '2013-12-16';
@@ -188,7 +191,7 @@ class uDaftarG extends CI_Controller {
 			//*
 			do {
 				$u = $t + (60*60*24*$k);
-				echo "t: $t, u: $u, s: $s ".date('d-m-Y', $u)."<br/>";
+				//echo "t: $t, u: $u, s: $s ".date('d-m-Y', $u)."<br/>";
 				$tglx = date('Y-m-d', $u);
 				
 				//echo "id: $id, tglx: $tglx<br/>";
@@ -239,20 +242,19 @@ class uDaftarG extends CI_Controller {
 						$sql =  "UPDATE rh_201311 SET rh='{$rh[$tglx]}',rh_av='{$rh_av[$tglx]}',rh_re='{$rh_re[$tglx]}', ".
 								"bln='".bwaktu($tglx)->bln."',thn='".bwaktu($tglx)->thn."' ".
 								"where id = ".$adatgl->id[0]->id;
-						echo "sql: $sql<br/>";
 						$q = db_query($sql);
-						echo "sql: $sql<br/>";
 						//*/
 					}
 				}
-				//echo "sql: $sql<br/>";
 				//*/
 				$k++;
 			} while($u<$s);
 			
 			$pm = array();
-			$jmlpm = strlen($tipeev)>0?count($tipeev):0;
-			echo "jmlpm: $jmlpm";
+			//echo "tipeev: $tipeev,".strlen($tipeev)."<br/>";
+
+			$jmlpm = count($params->tipeev)>0?count($tipeev):0;
+			//echo "jmlpm: $jmlpm";
 			//$tipeev = array("e34pm1", "e33pm15");
 			for($i=0; $i<$jmlpm; $i++)	{
 				//*
@@ -266,7 +268,7 @@ class uDaftarG extends CI_Controller {
 			}
 			
 			$now = date("Y-m-d H:i:s");
-			$hasil = array();
+			$hasil = array();	$insrt = 0;
 			if ($level=='u') {
 				//echo "waktudown unit insert<br/>";
 				for($i=0; $i<$idJml; $i++)	{
@@ -291,7 +293,8 @@ class uDaftarG extends CI_Controller {
 								'endj'	 => isset($params->endj)?$params->endj:date('H:i')
 							);
 						
-						$this->waktudown->insert_waktudown($params->event,$data,$repair);
+						$insrt += (int) $this->waktudown->insert_waktudown($params->event,$data,$repair);
+						
 						/*
 						// INPUT data EVENT down ke tabel waktudown
 						if ($params->event==1) {		// standby
@@ -330,6 +333,9 @@ class uDaftarG extends CI_Controller {
 							mysql_free_result($q);
 						}
 						//*/
+				}
+				if ($insrt>0)	{
+					$hasil = $this->waktudown->get_waktudown_limit($insrt);
 				}
 			}
 			else if ($level=='e')	{
@@ -401,7 +407,8 @@ class uDaftarG extends CI_Controller {
 		}
 		
 		$hasil['json'] = $jsonResult;
-		$this->load->view('json',$hasil);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($jsonResult));
 		//echo json_encode($jsonResult);
 		
 	}

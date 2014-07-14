@@ -50,13 +50,19 @@ class Waktudown extends CI_Model {
     function insert_waktudown($event, $data, $data_ex)	{
 		if ($event==1)	{
 			$this->db->set($data);
-			$this->db->insert('waktudown');
 		}
 		else {
-			$data = array_merge($data, $data_ex);
-			$this->db->set($data);
-			$this->db->insert('waktudown');
+			$this->db->set(array_merge($data, $data_ex));
 		}
+		return $this->db->insert('waktudown');
+	}
+	
+	function get_waktudown_limit($n)	{
+		$query = $this->db->select('id,eqid AS eq');
+		$query = $this->db->get('waktudown',$n,0);
+		
+		//print_r($query->result());
+		return $query->result();
 	}
 }
 

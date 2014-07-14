@@ -9,7 +9,7 @@ Ext.define('rcm.model.Cause', {
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/rCause'
+			read: 'ci/index.php/rh/rCause'
         },
         reader: {
             type: 'json',

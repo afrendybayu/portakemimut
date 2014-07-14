@@ -9,7 +9,7 @@ Ext.define('rcm.model.Aksi', {
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/rAksi'
+			read: 'ci/index.php/rh/rAksi'
         },
         reader: {
             type: 'json',

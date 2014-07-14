@@ -8,7 +8,7 @@ Ext.define('rcm.model.PM', {
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/rPM'
+			read: 'ci/index.php/rh/rPM'
         },
         reader: {
             type: 'json',
