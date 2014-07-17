@@ -355,10 +355,12 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 	
 	enaSave: function()	{
 		Ext.getCmp('save-rh').enable();
+		Ext.getCmp('update-rh').enable();
 	},
 	
 	disSave: function()	{
 		Ext.getCmp('save-rh').disable();
+		Ext.getCmp('update-rh').disable();
 	},
 	
 	updateErrorState: function(a) {		
@@ -435,5 +437,34 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 			Ext.getCmp('TFGrid').setVisible(true);
 		}
 		this.updateErrorState(n);
+	},
+
+	setNilai: function(rec)	{
+		Ext.getCmp('save-rh').setVisible(false);
+		Ext.getCmp('update-rh').setVisible(true);
+		
+		//alert(Ext.getCmp('idtfevent').getValue());
+		
+		//alert("masuk "+(rec.get('idevent')+1)+", event: "+rec.get('event'));
+		rcmSettings.bbb = rec;
+		//var ev = parseInt(rec.get('idevent'));
+		Ext.getCmp('fmEq').setValue(rec.get('nama')+" @"+rec.get('lok'));
+		Ext.getCmp('fgid').setValue(rec.get('id'));
+		Ext.getCmp('idtfevent').setValue(rec.get('idevent'));
+		//Ext.getCmp('idtfevent').setValue(parseInt(rec.get('idevent'));
+		//Ext.getCmp('idtfevent').setValue(rec.get('event'));
+		Ext.getCmp('datedown').setValue(rec.get('downt'));
+		Ext.getCmp('timedown').setValue(rec.get('downj'));
+		Ext.getCmp('dateup').setValue(rec.get('upt'));
+		Ext.getCmp('timeup').setValue(rec.get('upj'));
+		Ext.getCmp('idexe').setValue(rec.get('exe'));
+		Ext.getCmp('idtfket').setValue(rec.get('ket'));
+		Ext.getCmp('datemulai').setValue(rec.get('startt'));
+		Ext.getCmp('timemulai').setValue(rec.get('startj'));
+		Ext.getCmp('dateselesai').setValue(rec.get('endt'));
+		Ext.getCmp('timeselesai').setValue(rec.get('endj'));
+		
+		//alert(Ext.getCmp('idtfevent').getValue());
+		//return (rec.get('tipeev'));
 	}
 });

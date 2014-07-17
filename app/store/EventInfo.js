@@ -4,11 +4,11 @@ Ext.define('rcm.store.EventInfo', {
     model: 'rcm.model.Event',
     requires: 'rcm.model.Event',
     //autoLoad: true,
-    
+
     proxy: {
 		type: 'ajax',
 		//url: 'php/gagal/detailfmea.php',
-		url: 'ci/index.php/rDetailFMEA',
+		url: 'ci/index.php/rh/rDetailFMEA',
         reader: {
             type: 'json',
             root: 'detail',

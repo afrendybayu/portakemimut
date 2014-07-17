@@ -114,7 +114,7 @@ Ext.define('rcm.view.Content', {
 			}, {
 				align: 'stretch',
 				region: 'center',
-				//xtype: 'tabpanel',
+				xtype: 'tabpanel',
 				items: [{
 					title: 'Keterangan Hirarki',
 					html: 'Keterangan Hirarki',

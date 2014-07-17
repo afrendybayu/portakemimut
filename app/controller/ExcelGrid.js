@@ -20,6 +20,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		,'RunningHour'
 		,'EventList'
 		,'Event'
+		,'EventInfo'
 		
 		,'Equip'
 		,'OPart'
@@ -74,8 +75,15 @@ Ext.define('rcm.controller.ExcelGrid', {
 			'#save-rh': {
 				click: me.simpanGagalClick
 			},
+			'#update-rh': {
+				click: me.updateGagalClick
+			},
 			'taskIsiFormGagal': {
 				plhEventGagalXY: me.pilihEventGagalXY
+			},
+			'taskDaftarGagal': {
+				editDGClick: me.edDGClick
+				,hapusDGClick: me.hpsDGClick
 			}
 			
 			
@@ -95,6 +103,77 @@ Ext.define('rcm.controller.ExcelGrid', {
 		Ext.suspendLayouts();
 		this.getExcelgrid().reconfigure(this.getRunningHourStore().load({ params:{tgl:t, cat:catx} }), rcm.view.Util.UxcolGrid());
 		Ext.resumeLayouts(true);
+	},
+	
+	edDGClick: function(rec)	{
+		//alert("Controller editDG ganti ke ExcelGrid");
+		var me = this, ev = rec.get('idevent'), un = rec.get('eqid'),
+            tFG = me.getTaskFormGagal();
+		
+		tFG.down('form').getForm().reset();
+		
+		me.getTaskIsiFormGagal().pilihEventG(rec.get('idevent'));
+		me.getTaskIsiFormGagal().setNilai(rec);
+		if (ev==2)	{
+			me.getPMStore().load({ 
+				params:{unit:un},
+				scope: this,
+				callback: function(dt, operation, success) {
+					if (success) {
+						Ext.getCmp('tipepm').setValue(rec.get('tipeev').split(","));
+					}
+				}
+			});
+			
+		}
+		
+		if (ev>2)	{
+			me.getEquipStore().load({ params:{unit:un} });
+			me.getOPartStore().load({ params:{unit:un} });
+			me.getFModeStore().load({ params:{unit:un} });
+			me.getEventStore().load({ params:{down:rec.get('id')} });
+		}
+		//Ext.getCmp('idtfket').setValue('cobacoab');
+
+		tFG.setTitle('Edit Form Notifikasi');
+		tFG.show();
+	},
+	
+	hpsDGClick: function(task)	{
+		//alert("Controller hpsDG ganti ke ExcelGrid");
+		var de = this,
+			ee = task.get('event')+" "+task.get('nama');
+
+		Ext.Msg.show({
+            title: ee,
+            msg: 'Hapus Kejadian '+ee,
+            buttons: Ext.Msg.YESNO,
+            fn: function(response) {
+                if(response === 'yes') {
+                    task.destroy({
+                        success: function(task, operation) {
+							console.log("----- mulai running hour");
+							de.refreshRH();
+							de.getTaskDaftarGagal().getView().refresh();
+							//rcmSettings.aaa = this;
+							console.log("----- sukses cek running hour");
+                        },
+                        failure: function(task, operation) {
+                            var error = operation.getError(),
+                                msg = Ext.isObject(error) ? error.status + ' ' + error.statusText : error;
+
+                            Ext.MessageBox.show({
+                                title: 'Hapus Kejadian Gagal',
+                                msg: msg,
+                                icon: Ext.Msg.ERROR,
+                                buttons: Ext.Msg.OK
+                            });
+                        }
+                    });
+                }
+            }
+        });
+		
 	},
 	
 	pilihEventGagalXY: function(n)	{
@@ -404,6 +483,75 @@ Ext.define('rcm.controller.ExcelGrid', {
 				me.getRunningHourStore().reload();
             }
         });
+	},
+
+	updateGagalClick: function()	{
+		var me=this;
+		var o = me.ambilDataForm();
+		
+		var rec = new rcm.model.DaftarGagal({ edit:1,
+			id:o.id,downt:o.dd,downj:o.td,startt:o.dm,startj:o.tm,endt:o.ds,endj:o.ts,upt:o.du,upj:o.tu,
+			event:o.event,tipeev:o.tipeev,ket:o.ket,exe:o.exe,server:rcmSettings.server,cat:rcmSettings.cat
+        });
+        
+        
+        rec.save({
+            success: function(respon, operation) {
+				var resp = operation.request.scope.reader.jsonData["tasks"];
+				var recx = me.getEventStore().getRange();
+				if (o.event!=1)	{
+					for (var i=0, len1=resp.length; i<len1; ++i) {
+						for (var j=0,len2=recx.length; j<len2; ++j)	{
+							if (recx[j].data.ideql==resp[i].eq)	{
+								recx[j].set('iddown',resp[i].id);
+							}
+						}
+					}
+					//console.log("sukses rec DaftarGagal");
+					//me.getEventStore().sync();
+					//me.getEventStore().removeAll();
+				}
+				me.getDaftarGagalStore().reload();
+				me.getRunningHourStore().reload();
+            },
+            failure: function(task, operation) {
+                var error = operation.getError(),
+                    msg = Ext.isObject(error) ? error.status + ' ' + error.statusText : error;
+
+                Ext.MessageBox.show({
+                    title: 'Update Task Failed',
+                    msg: msg,
+                    icon: Ext.Msg.ERROR,
+                    buttons: Ext.Msg.OK
+                });
+            },
+            callback : function(respon, operation)	{
+				console.log("apa ini callback o.event: "+o.event);
+				var resp = operation.request.scope.reader.jsonData["tasks"];
+				//rcmSettings.fff = resp;
+				var recx = me.getEventStore().getRange();
+				if (o.event!=1)	{
+					console.log("apa ini callback resp.length: "+resp.length);
+					for (var i=0, len1=resp.length; i<len1; ++i) {
+						for (var j=0,len2=recx.length; j<len2; ++j)	{
+							//console.log("apa ini callback ideql: "+recx[j].get('ideql')+", eq: "+resp[i].eq);
+							if (recx[j].get('ideql')==resp[i].eq)	{
+								recx[j].set('iddown',resp[i].id);
+							}
+						}
+					}
+					//console.log("apa ini callback 4");
+					me.getEventStore().sync();
+				}
+				me.getDaftarGagalStore().reload();
+				me.getRunningHourStore().reload();
+			}
+        });
+        //*/
+
+		me.getTaskFormGagal().close();
+		//me.getEventInfoStore().reload();
+		//me.updateAVReDash();
 	}
 
 });
