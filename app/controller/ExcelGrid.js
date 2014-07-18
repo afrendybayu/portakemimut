@@ -293,7 +293,6 @@ Ext.define('rcm.controller.ExcelGrid', {
 		form.findField('timeselesai').setValue(rcm.view.Util.Utime(td));
 	},
 
-    
     onLaunch: function() {
 		Ext.getCmp('idwest').collapse();
 		//var t = new Date();
@@ -526,7 +525,7 @@ Ext.define('rcm.controller.ExcelGrid', {
                 });
             },
             callback : function(respon, operation)	{
-				console.log("apa ini callback o.event: "+o.event);
+				//console.log("apa ini callback o.event: "+o.event);
 				var resp = operation.request.scope.reader.jsonData["tasks"];
 				//rcmSettings.fff = resp;
 				var recx = me.getEventStore().getRange();

@@ -7,6 +7,7 @@ class rPM extends CI_Controller {
 		try	{
 			$id = $this->input->get('unit')?:'0';
 			
+			/*
 			$s = "SELECT id,kode,cat FROM equip WHERE unit_id=?";
 			
 			$query = $this->db->query($s, $id);
@@ -32,30 +33,15 @@ class rPM extends CI_Controller {
 
 			$arr = array(); $k=0;
 			$query = $this->db->query($sql);
+			//*/
 			
-			$arreq = array();	$arid=array();
-			if ($query->num_rows() > 0)	{
-				foreach ($query->result() as $row)	{
-					//*
-					$z=0;
-					for ($z=0; $z<count($arreq); $z++)	{
-						if ($row->eqcat==$arreq[$z]['cat'])
-							$arr[$k]['id'] = 'e'.$arreq[$z]['id'].'pm'.$row->id;
-							//$arr[$k]['id'] = 'id'.$row['id'].'c'.$arreq[$z]['cat'];
-					}
-					
-					//$arr[$k]['id'] = $row['id'];
-					$arr[$k]['cat'] = $row->eqcat;
-					$arr[$k]['nama'] = '['.$row->kode.'] '.$row->nama;
-					$k++;
-					//*/
-				}
-			}
-
+			$this->load->model('pm');
+			$query = $this->pm->get_pm($id);
+			
 
 			$jsonResult = array(
 				'success' => true,
-				'pm' => $arr
+				'pm' => $query
 			);
 		}
 		catch (Exception $e)	{

@@ -172,7 +172,7 @@ class uDaftarG extends CI_Controller {
 			$rh_av = isset($hrh_av)?format_rh_float($hrh_av):array(date('Y-m-d') => 24);
 			//echo "Format_rh Availability: "; print_r($rh_av); echo "<br/>";
 			//$rh_re = format_rh($hrh_re);
-			$rh_re = isset($hrh_av)?format_rh_float($hrh_re):array(date('Y-m-d') => 24);
+			$rh_re = isset($hrh_re)?format_rh_float($hrh_re):array(date('Y-m-d') => 24);
 			//echo "Format_rh Reliability : "; print_r($rh_re); echo "<br/><br/>";
 			
 			$k=0;	
@@ -247,12 +247,12 @@ class uDaftarG extends CI_Controller {
 			$pm = array();
 			//echo "tipeev: $tipeev,".strlen($tipeev)."<br/>";
 
-			$jmlpm = count($params->tipeev)>0?count($tipeev):0;
+			$jmlpm = count($params->tipeev)>0?count($params->tipeev):0;
 			//echo "jmlpm: $jmlpm";
 			//$tipeev = array("e34pm1", "e33pm15");
 			for($i=0; $i<$jmlpm; $i++)	{
 				//*
-				$pmx  = explode("pm", $tipeev[$i]);
+				$pmx  = explode("pm", $params->tipeev[$i]);
 				//print_r($pmx); echo "<br/>";
 				$ideq = explode("e", $pmx[0]);
 				//echo "id: {$ideq[1]}<br/>";
@@ -279,13 +279,17 @@ class uDaftarG extends CI_Controller {
 							'exe'	 => $params->exe,
 							'nginput'=> $now
 						);
-							$repair = array(
-								'tipeev' => '',
-								'startt' => isset($params->startt)?$params->startt:date('Y-m-d'),
-								'startj' => isset($params->startj)?$params->startj:date('H:i'),
-								'endt'	 => isset($params->endt)?$params->endt:date('Y-m-d'),
-								'endj'	 => isset($params->endj)?$params->endj:date('H:i')
-							);
+						for($w=0; $w<$jmlpm; $w++)	{
+							if ($idAr[$i]==$pm[$w][0])	break;
+						}
+						$repair = array(
+							'tipeev' => $pm[$w][1],
+							'startt' => isset($params->startt)?$params->startt:date('Y-m-d'),
+							'startj' => isset($params->startj)?$params->startj:date('H:i'),
+							'endt'	 => isset($params->endt)?$params->endt:date('Y-m-d'),
+							'endj'	 => isset($params->endj)?$params->endj:date('H:i')
+						);
+						
 						
 						$insrt += (int) $this->waktudown->insert_waktudown($params->event,$data,$repair);
 						
@@ -371,8 +375,11 @@ class uDaftarG extends CI_Controller {
 						'exe'	 => $params->exe,
 						'nginput'=> $now
 					);
+					for($w=0; $w<$jmlpm; $w++)	{
+						if ($idAr[$i]==$pm[$w][0])	break;
+					}
 					$repair = array(
-						//'tipeev' => '',
+						'tipeev' => ($params->event==2)?$pm[$w][1]:'-',
 						'startt' => isset($params->startt)?$params->startt:date('Y-m-d'),
 						'startj' => isset($params->startj)?$params->startj:date('H:i'),
 						'endt'	 => isset($params->endt)?$params->endt:date('Y-m-d'),

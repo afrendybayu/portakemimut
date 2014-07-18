@@ -10,10 +10,10 @@ Ext.define('rcm.model.Event', {
     proxy: {
 		type: 'ajax',
 		api: {
-			create: 'php/event/create.php',
-			update: 'php/event/update.php',
-			read: 'php/event/readEv.php',
-			destroy: 'php/event/delete.php'
+			create: 'ci/index.php/rh/cEvent',
+			update: 'ci/index.php/rh/uEvent',
+			read: 'ci/index.php/rh/rEvent',
+			destroy: 'ci/index.php/rh/dEvent'
         },
         reader: {
             type: 'json',
