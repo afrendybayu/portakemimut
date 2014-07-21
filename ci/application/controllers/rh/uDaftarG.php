@@ -385,6 +385,7 @@ class uDaftarG extends CI_Controller {
 						'endt'	 => isset($params->endt)?$params->endt:date('Y-m-d'),
 						'endj'	 => isset($params->endj)?$params->endj:date('H:i')
 					);
+					//echo "event: {$params->event}, id: ".$idid[$i]."<br/>";
 					$insrt += (int) $this->waktudown->update_waktudown($params->event, $idid[$i], $data, $repair);
 
 					/*

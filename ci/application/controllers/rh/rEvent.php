@@ -4,12 +4,15 @@ class rEvent extends CI_Controller {
 	
 	public function index()	{
 		try	{
-			//$id = $this->input->get('id')?:'0';
+			$id = $this->input->get('down')?:'0';
+			$idar = array_filter(explode("e",$id));
+			$idx = implode(",",$idar);
+			
 			$this->load->model('event');
 			
 			$jsonResult = array(
 				'success' => true,
-				'aksi' => $this->event->get_listevent()
+				'event' => $this->event->get_event($idx)
 			);
 		}
 		catch (Exception $e)	{

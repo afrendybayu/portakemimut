@@ -26,16 +26,22 @@ Ext.define('rcm.controller.ExcelGrid', {
 		,'OPart'
 		,'FMode'
 		,'PM'
+		,'Aksi'
+		,'Cause'
 		,'DaftarGagal'
     ],
     
     models: [
-		'RunningHour'
+		'RunningHour',
+		'Event'
     ],
     
     refs: [{
 		ref: 'excelgrid',
 		selector: 'excelgrid'
+	},{
+		ref: 'taskFMEAGrid',
+		selector: 'taskFMEAGrid'
 	},{
 		ref: 'taskFormGagal',
 		selector: 'taskFormGagal',
@@ -66,29 +72,119 @@ Ext.define('rcm.controller.ExcelGrid', {
 			'#cancel-eg': {
 				click: me.hideFormGagal
 			},
+			'#tambah-fmea-btn': {
+				click: me.tmbhFMEAClick
+			},
 			'#samadown-fmea-btn': {
 				click: me.samadownFMEAClick
 			},
 			'#samarun-fmea-btn': {
 				click: me.samarunFMEAClick
 			},
+			//*
 			'#save-rh': {
 				click: me.simpanGagalClick
 			},
 			'#update-rh': {
 				click: me.updateGagalClick
 			},
+			//*/
 			'taskIsiFormGagal': {
 				plhEventGagalXY: me.pilihEventGagalXY
+			},
+			'taskFMEAGrid': {
+				plhFilterFMEA: me.plhFilterClick,
+				plhEquipGagal: me.plhEquipClick,
+				plhCauseGagal: me.plhCauseClick,
+				plhAksiGagal: me.plhAksiClick,
+				plhModeGagal: me.plhModeClick,
+				plhOPartGagal: me.plhOPartClick,
+				hpsFMEAGagal: me.hapusFMEAClick
+				//,infoDetailGagal: me.infoDG
 			},
 			'taskDaftarGagal': {
 				editDGClick: me.edDGClick
 				,hapusDGClick: me.hpsDGClick
 			}
-			
+			//*/
 			
 		});
     },
+    
+	tmbhFMEAClick: function()	{
+		var rec = new rcm.model.Event({
+            eql:'',ideql:'',opart:'',idopart:'',mode:'',idmode:'',cause:'',idcause:'',aksi:'',idaksi:''
+        });
+        this.getEventStore().insert(0, rec);
+        this.getTaskFMEAGrid().getView().refresh();
+		//alert('tambah FNMEA');
+	},
+    
+    plhFilterClick: function(n)		{
+		var me=this;
+		//rcmSettings.aaaa = me.getEventStore();
+		//alert(n.col+" pilihFMEAGagal "+me.getEventStore()+"<--");
+		if (n.col==2)	{		// col 2 = OPart
+			//console.log("masuk Opart");
+			me.getOPartStore().clearFilter(true);
+			me.getOPartStore().filter('cat',n.cat);
+		}
+		else if (n.col==3)	{	// col 3 = FMode
+			//console.log("masuk FMode");
+			me.getFModeStore().clearFilter(true);
+			me.getFModeStore().filter('cat',n.cat);
+		}
+	},
+	
+	plhEquipClick: function(drow)	{
+		var me=this, rec=me.getEventStore().getRange()[drow.row];
+		
+		//console.log("ideq: "+drow.ideq+", cat: "+drow.cat+", row: "+drow.row);
+		rec.set('ideql',drow.ideq);
+		rec.set('cat',drow.cat);
+	},
+	
+	plhCauseClick: function(dd,drow)	{
+		var rec = this.getEventStore().getRange()[drow.row];
+		rec.set('idcause',drow.cause);
+	},
+	
+	plhAksiClick: function(dd, drow)	{
+		var rec = this.getEventStore().getRange()[drow.row];
+		rec.set('idaksi',drow.aksi);
+	},
+	
+	plhModeClick: function(dd, drow)	{
+		var rec = this.getEventStore().getRange()[drow.row];
+		rec.set('idmode',drow.mode);
+	},
+	
+	plhOPartClick: function(dd, drow)	{
+		var rec = this.getEventStore().getRange()[drow.row];
+		rec.set('idopart',drow.opart);
+	},
+	
+	hapusFMEAClick: function(dd, drow)	{
+		var de=this;
+		var ee=grid.get('eql')+"\nObject Part "+grid.get('opart');
+		Ext.Msg.show({
+            title: ee,
+            msg: 'Hapus FMEA '+ee,
+            buttons: Ext.Msg.YESNO,
+            fn: function(response) {
+                if(response === 'yes') {
+					//console.log("hapus !!");
+
+					rcmSettings.aaaaa = grid;
+					grid.destroy({
+						 success: function(grid, operation) {
+							 
+						 }
+					 });
+                }
+            }
+        });
+	},
     
     equipClick: function(catx)	{
 		var t;
@@ -399,7 +495,8 @@ Ext.define('rcm.controller.ExcelGrid', {
 		
 		//this.updateAVReDash();
 	},
-	
+
+//*
 	ambilDataForm: function()	{
 		var taskFormGagal = this.getTaskFormGagal(),
             windowEl = taskFormGagal.getEl(),
@@ -452,18 +549,13 @@ Ext.define('rcm.controller.ExcelGrid', {
 						//*
 						success: function()	{
 							me.getDaftarGagalStore().reload();
-							//console.log("sukses getEventStore");
 						},
 						failure: function()	{
-							//console.log("gagal getEventStore");
 						},
 						callback: function()	{
-							//console.log("callback getEventStore");
 						}										
 					});				// create ()
-					//*/
-					//me.getEventStore().removeAll();
-					//console.log("keluar selamat !!!");
+
 				}
 				me.getDaftarGagalStore().reload();
 				me.getRunningHourStore().reload();
@@ -507,8 +599,6 @@ Ext.define('rcm.controller.ExcelGrid', {
 						}
 					}
 					//console.log("sukses rec DaftarGagal");
-					//me.getEventStore().sync();
-					//me.getEventStore().removeAll();
 				}
 				me.getDaftarGagalStore().reload();
 				me.getRunningHourStore().reload();
@@ -527,7 +617,7 @@ Ext.define('rcm.controller.ExcelGrid', {
             callback : function(respon, operation)	{
 				//console.log("apa ini callback o.event: "+o.event);
 				var resp = operation.request.scope.reader.jsonData["tasks"];
-				//rcmSettings.fff = resp;
+				rcmSettings.fff = resp;
 				var recx = me.getEventStore().getRange();
 				if (o.event!=1)	{
 					console.log("apa ini callback resp.length: "+resp.length);
@@ -546,11 +636,10 @@ Ext.define('rcm.controller.ExcelGrid', {
 				me.getRunningHourStore().reload();
 			}
         });
-        //*/
 
 		me.getTaskFormGagal().close();
 		//me.getEventInfoStore().reload();
 		//me.updateAVReDash();
 	}
-
+//*/
 });

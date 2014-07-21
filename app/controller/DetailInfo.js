@@ -40,22 +40,12 @@ Ext.define('rcm.controller.DetailInfo', {
 			
 		});
     },
-/*
-	edDG: function()	{
-		alert("Controller edDG");
-	},
-	
-	hpsDG: function()	{
-		alert("Controller hpsDG");
-		
-		
-	},
-//*/	
+
 	infoDG: function(id, ev)	{
 		this.getDetailGagalStore().load({ params:{id:id} });
 		
 		this.getEventInfoStore().load({ 
-			params:{id:id}
+			params:{down:id}
 			,scope: this
 			/*
 			,callback: function(rec, operation, success) {

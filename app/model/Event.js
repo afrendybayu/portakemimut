@@ -5,7 +5,7 @@ Ext.define('rcm.model.Event', {
 		'Ext.data.proxy.Ajax'
 	],
 
-	fields: [ 'iddown','cat','eql','ideql','opart','idopart','mode','idmode','cause','idcause','aksi','idaksi' ],
+	fields: [ 'no','id', 'iddown','cat','eql','ideql','opart','idopart','mode','idmode','cause','idcause','aksi','idaksi' ],
 	
     proxy: {
 		type: 'ajax',
