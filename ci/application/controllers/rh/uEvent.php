@@ -8,11 +8,17 @@ class cEvent extends CI_Controller {
 	
 			if (is_array($params))	{
 				foreach ($params as $obj)	{
-					
+					$data = array(
+						'down_id'	=> ,
+						'eq'		=> ,
+						
+					);
 				}
 			}
 			if (is_object($params))	{
-				
+				$data = array(
+					
+				);
 				
 			}
 		

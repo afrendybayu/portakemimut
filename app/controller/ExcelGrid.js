@@ -544,10 +544,11 @@ Ext.define('rcm.controller.ExcelGrid', {
 							}
 						}
 					}
-					//console.log("masuk sini");
+					console.log("getEventStore masuk sini");
 					me.getEventStore().sync({
 						//*
 						success: function()	{
+							console.log("getEventStore sukses");
 							me.getDaftarGagalStore().reload();
 						},
 						failure: function()	{
@@ -620,7 +621,8 @@ Ext.define('rcm.controller.ExcelGrid', {
 				rcmSettings.fff = resp;
 				var recx = me.getEventStore().getRange();
 				if (o.event!=1)	{
-					console.log("apa ini callback resp.length: "+resp.length);
+					console.log("apa ini callback resp.length: ");
+					/*
 					for (var i=0, len1=resp.length; i<len1; ++i) {
 						for (var j=0,len2=recx.length; j<len2; ++j)	{
 							//console.log("apa ini callback ideql: "+recx[j].get('ideql')+", eq: "+resp[i].eq);
@@ -629,6 +631,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 							}
 						}
 					}
+					//*/
 					//console.log("apa ini callback 4");
 					me.getEventStore().sync();
 				}

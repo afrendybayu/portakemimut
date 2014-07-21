@@ -35,35 +35,35 @@ Ext.define('rcm.view.dataentry.FMEAGrid', {
 			{ xtype:'rownumberer',width:25 },
 			{ text: "Equipment", dataIndex: 'eql', width:150, editor: {
 				xtype: 'combo', store: 'Equip',editable: false,	emptyText: 'Pilih Equipment... ', flex:1,
-						queryParam: 'tipe',name : 'eql',displayField: 'nama',valueField: 'nama',queryMode: 'local',
-						listConfig: { listeners: { itemclick: function(list, record) { me.pilihEquipGagal(record,list); } } }
+				queryParam: 'tipe',name : 'eql',displayField: 'nama',valueField: 'nama',queryMode: 'local',
+				listConfig: { listeners: { itemclick: function(list, record) { me.pilihEquipGagal(record,list); } } }
 			} },
-					{ text: "Object Part", dataIndex: 'opart', /*flex:1*/width:250, editor: {
-						xtype: 'combo', editable: false, emptyText: 'Pilih Object Part.. ', store: 'OPart',queryMode: 'local',
-						queryParam: 'tipe',name : 'opart',displayField: 'nama',valueField: 'nama',
-						listConfig: { listeners: { itemclick: function(list,record) { me.pilihOPartGagal(record, list); } } }
-					} },
-					{ text: "Failure Mode", dataIndex: 'mode', width:200,editor: {
-						xtype: 'combo', store: 'FMode',editable: false,	emptyText: 'Pilih Mode... ',queryMode: 'local',
-						queryParam: 'tipe',name : 'mode',displayField: 'nama',valueField: 'nama',
-						listConfig: { listeners: { itemclick: function(list, record) { me.pilihModeGagal(record,list); } } }
-					} },
-					{ text: "Cause", dataIndex: 'cause', width:200, editor: {
-						xtype: 'combo', store: 'Cause',editable: false,	emptyText: 'Pilih Penyebab... ',
-						queryParam: 'tipe',name : 'cause',displayField: 'nama',valueField: 'nama',queryMode: 'local',
-						listConfig: { listeners: { itemclick: function(list, record) { me.pilihCauseGagal(record); }}, 
-								getInnerTpl: function() {	return '<div data-qtip="{nama}: {ket}">{nama}</div>'; }}
-					} },
-					{ text: "Tindakan", dataIndex: 'aksi', width:100, editor: {
-						xtype: 'combo', store: 'Aksi',editable: false,	emptyText: 'Pilih Tindakan... ',
-						queryParam: 'tipe',name : 'aksi',displayField: 'nama',valueField: 'nama',queryMode: 'local',
-						listConfig: { listeners: { itemclick: function(list, record) { me.pilihAksiGagal(record); } } }
-					} },
-					{ xtype:'actioncolumn',	width:25,
-						//icon: 'modul/icons/delete.gif', 
-						iconCls:  'hpsEvent',
-						tooltip: 'Hapus',
-						handler: Ext.bind(me.hdlHapusFMEAClick, me)
+			{ text: "Object Part", dataIndex: 'opart', /*flex:1*/width:250, editor: {
+				xtype: 'combo', editable: false, emptyText: 'Pilih Object Part.. ', store: 'OPart',queryMode: 'local',
+				queryParam: 'tipe',name : 'opart',displayField: 'nama',valueField: 'nama',
+				listConfig: { listeners: { itemclick: function(list,record) { me.pilihOPartGagal(record, list); } } }
+			} },
+			{ text: "Failure Mode", dataIndex: 'mode', width:200,editor: {
+				xtype: 'combo', store: 'FMode',editable: false,	emptyText: 'Pilih Mode... ',queryMode: 'local',
+				queryParam: 'tipe',name : 'mode',displayField: 'nama',valueField: 'nama',
+				listConfig: { listeners: { itemclick: function(list, record) { me.pilihModeGagal(record,list); } } }
+			} },
+			{ text: "Cause", dataIndex: 'cause', width:200, editor: {
+				xtype: 'combo', store: 'Cause',editable: false,	emptyText: 'Pilih Penyebab... ',
+				queryParam: 'tipe',name : 'cause',displayField: 'nama',valueField: 'nama',queryMode: 'local',
+				listConfig: { listeners: { itemclick: function(list, record) { me.pilihCauseGagal(record); }}, 
+				getInnerTpl: function() {	return '<div data-qtip="{nama}: {ket}">{nama}</div>'; }}
+			} },
+			{ text: "Tindakan", dataIndex: 'aksi', width:100, editor: {
+				xtype: 'combo', store: 'Aksi',editable: false,	emptyText: 'Pilih Tindakan... ',
+				queryParam: 'tipe',name : 'aksi',displayField: 'nama',valueField: 'nama',queryMode: 'local',
+				listConfig: { listeners: { itemclick: function(list, record) { me.pilihAksiGagal(record); } } }
+			} },
+			{ xtype:'actioncolumn',	width:25,
+				//icon: 'modul/icons/delete.gif', 
+				iconCls:  'hpsEvent',
+				tooltip: 'Hapus',
+				handler: Ext.bind(me.hdlHapusFMEAClick, me)
 				/*
 				handler: function(grid, rowIndex, colIndex) {
 					var rec = grid.getStore().getAt(rowIndex);
