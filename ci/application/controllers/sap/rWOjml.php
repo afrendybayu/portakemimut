@@ -62,11 +62,13 @@ class rWOjml extends CI_Controller {
 	public function WoOpen()	{
 		try {
 			$group = $this->input->get('gr')?:'0';
+			$thn = $this->input->get('tgl')?:date('Y');
 			$this->load->model('sap');
-			$hsl = $this->sap->get_selisih_WO();
+			$hsl = $this->sap->get_selisih_WO($thn);
 			
 			//echo "group: $group, jml: ".count($hsl)."<br/>";
 			//print_r($hsl); echo "<br/>";
+			
 			if (isset($hsl))	{
 				for ($i=0; $i<count($hsl); $i++)	{
 					if ($hsl[$i]->flak==$group)	{
@@ -78,6 +80,7 @@ class rWOjml extends CI_Controller {
 				}
 			}
 			if (!isset($sap))	{
+				$sap = new stdClass();
 				$sap->jml = 0;
 				$sap->persen = 0;
 			}

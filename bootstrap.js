@@ -915,6 +915,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.EventList": [],
   "rcm.model.FMode": [],
   "rcm.model.Hirarki": [],
+  "rcm.model.HoMan": [],
+  "rcm.model.HoOrderC": [],
+  "rcm.model.HoTeco": [],
   "rcm.model.LoginAuth": [],
   "rcm.model.Note": [],
   "rcm.model.OPart": [],
@@ -943,6 +946,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.EventList": [],
   "rcm.store.FMode": [],
   "rcm.store.Hirarki": [],
+  "rcm.store.HoMan": [],
+  "rcm.store.HoOrderC": [],
+  "rcm.store.HoTeco": [],
   "rcm.store.LoginAuth": [],
   "rcm.store.Note": [],
   "rcm.store.OPart": [],
@@ -1016,6 +1022,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.laporan.WOManCP": [],
   "rcm.view.laporan.WOStack": [],
   "rcm.view.laporan.WaktuSAP": [],
+  "rcm.view.laporan.WoPie": [],
   "rcm.view.login.LoginAuth": [],
   "rcm.view.login.LogoutInfo": [],
   "rcm.view.nav.AppHeader": [],
@@ -2051,6 +2058,9 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.EventList": [],
   "rcm.model.FMode": [],
   "rcm.model.Hirarki": [],
+  "rcm.model.HoMan": [],
+  "rcm.model.HoOrderC": [],
+  "rcm.model.HoTeco": [],
   "rcm.model.LoginAuth": [],
   "rcm.model.Note": [],
   "rcm.model.OPart": [],
@@ -2079,6 +2089,9 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.EventList": [],
   "rcm.store.FMode": [],
   "rcm.store.Hirarki": [],
+  "rcm.store.HoMan": [],
+  "rcm.store.HoOrderC": [],
+  "rcm.store.HoTeco": [],
   "rcm.store.LoginAuth": [],
   "rcm.store.Note": [],
   "rcm.store.OPart": [],
@@ -2235,6 +2248,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.laporan.WaktuSAP": [
     "widget.twaktusap"
+  ],
+  "rcm.view.laporan.WoPie": [
+    "widget.tWoPie"
   ],
   "rcm.view.login.LoginAuth": [
     "widget.authlogin"

@@ -6,18 +6,41 @@ class rTeco extends CI_Controller {
 		echo "index";
 	}
 	
-	public function sapTecoMW()	{
+	public function sapPersenTeco()	{
 		try {
+			$thn = $this->input->get('tgl')?:date('Y');
+
 			$this->load->model('sap');
 			
-			$hsl = $this->sap->get_teco_manwork();
+			$hsl = $this->sap->get_teco_persen($thn);
+			//print_r($hsl);
+			$jsonResult = array(
+				'success' => true,
+				'hoteco' => $hsl
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+	}
+	
+	public function sapTecoMW()	{
+		try {
+			$thn = $this->input->get('tgl')?:date('Y');
+
+			$this->load->model('sap');
+			
+			$hsl = $this->sap->get_teco_manwork($thn);
 			//print_r($hsl);
 			$jsonResult = array(
 				'success' => true,
 				'homan' => $hsl
 			);
-			
-			//print_r($arAR);
 		}
 		catch (Exception $e){
 			$jsonResult = array(

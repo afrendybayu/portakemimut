@@ -187,7 +187,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 						callback: function(dd, operation) {
 							//console.log('callback hapusFMEAClick');
 							//alert('callback hapusFMEAClick');
-						},
+						}
 					});
 					//*/
                 }
@@ -641,22 +641,22 @@ Ext.define('rcm.controller.ExcelGrid', {
         
         rec.save({
             success: function(respon, operation) {
-				console.log('masuk updateGagalClick sukses');
+				//console.log('masuk updateGagalClick sukses');
 				resp = operation.request.scope.reader.jsonData["tasks"];
 				var recx = me.getEventStore().getRange();
 				//rcmSettings.ttt = me.getEventStore();
-				rcmSettings.zzz = resp;
-				rcmSettings.qqq = recx;
+				//rcmSettings.zzz = resp;
+				//rcmSettings.qqq = recx;
 				if (o.event!=1)	{
-					for (var i=0, len1=resp.length; i<len1; ++i) {
-						for (var j=0,len2=recx.length; j<len2; ++j)	{
+					for (var i=0, len1=resp.length; i<len1; i++) {
+						for (var j=0,len2=recx.length; j<len2; j++)	{
 							//console.log("resp: "+i+",recx: "+j+", apa ini callback ideql: "+recx[j].get('ideql')+", eq: "+resp[i].eq);
 							if (recx[j].data.ideql==resp[i].eq)	{
 								recx[j].set('iddown',resp[i].id);
 							}
 						}
 					}
-					console.log("sukses rec DaftarGagal");
+					//console.log("sukses rec DaftarGagal");
 				}
 				me.getDaftarGagalStore().reload();
 				me.getRunningHourStore().reload();
@@ -673,10 +673,10 @@ Ext.define('rcm.controller.ExcelGrid', {
                 });
             },
             callback : function(respon, operation)	{
-				console.log("------ pa ini callback o.event: "+o.event);
+				//console.log("------ pa ini callback o.event: "+o.event);
 				resp = operation.request.scope.reader.jsonData["tasks"];
 				var recx = me.getEventStore().getRange();
-				rcmSettings.fff = resp;
+				//rcmSettings.fff = resp;
 				//alert(this.cariID(resp));
 				//rcmSettings.hhh = recx;
 				if (o.event!=1)	{

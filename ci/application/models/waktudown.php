@@ -45,6 +45,7 @@ class Waktudown extends CI_Model {
 			$ev[$ii]  = $event;
 		}
 		
+		$w = new stdClass();
 		$w->dt=$dt;		 $w->dj = $dj;
 		$w->ut=$ut;		 $w->uj = $uj;
 		$w->ev=$ev;

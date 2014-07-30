@@ -17,7 +17,7 @@ Ext.define('rcm.controller.Sap', {
 		'HoTeco','HoMan','HoOrderC'
 		,'SapEPO'
         ,'WoOpen7','WoOpen30','WoOpen60','WoOpenL60'
-        ,'SapCause','SapDamage','SapOPart','SapSymptom'
+        ,'SapCause','SapDamage','SapOPart'/*,'SapSymptom'*/
 		,'SapCauseInfo','SapDamageInfo','SapOPartInfo','SapSymptomInfo'
 		,'SapHistori'
     ],
