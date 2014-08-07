@@ -49,7 +49,7 @@ class uDaftarG extends CI_Controller {
 				//echo "level: $level, id: $id<br/>";
 				if ($level=='e')	{	// level equipment
 					$idid = array_unique(array_filter(explode("e",$id)));	// id dari id
-					echo "idid: "; print_r($idid); echo "<br/><br/>";
+					//echo "idid: "; print_r($idid); echo "<br/><br/>";
 					$sql = "SELECT eqid,unit_id,id from waktudown where id in (".implode(',',$idid).")";
 					
 					$query = $this->db->query($sql);

@@ -28,7 +28,7 @@ class Event extends CI_Model {
 	function update_event($data,$id)		{
 		$this->db->set($data);
 		$this->db->where('id', $id);
-		return $this->db->update('waktudown');
+		return $this->db->update('event');
 	}
 	
 	function insert_event($data)		{
