@@ -21,6 +21,9 @@ class uDaftarG extends CI_Controller {
 			$params->ket ='';
 			$params->exe = '';
 			//*/
+			if (!isset($params))	{
+				throw new Exception("Data Tidak ada !!");
+			}
 			$edit = isset($params->edit)?$params->edit:0;
 			//echo "edit: $edit-----<br/>";
 			$aw = bwaktu($params->downt, $params->downj);
@@ -328,7 +331,7 @@ class uDaftarG extends CI_Controller {
 		}
 		
 		
-		$hasil['json'] = $jsonResult;
+		//$hasil['json'] = $jsonResult;
 		$this->output->set_content_type('application/json');
 		$this->output->set_output(json_encode($jsonResult));
 		//echo json_encode($jsonResult);
