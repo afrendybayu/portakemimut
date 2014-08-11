@@ -264,7 +264,7 @@ class uDaftarG extends CI_Controller {
 							if ($idAr[$i]==$pm[$w][0])	break;
 						}
 						$repair = array(
-							'tipeev' => $pm[$w][1],
+							'tipeev' => isset($pm[$w][1])?:'',
 							'startt' => isset($params->startt)?$params->startt:date('Y-m-d'),
 							'startj' => isset($params->startj)?$params->startj:date('H:i'),
 							'endt'	 => isset($params->endt)?$params->endt:date('Y-m-d'),

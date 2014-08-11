@@ -31,13 +31,18 @@ class Event extends CI_Model {
 		return $this->db->update('event');
 	}
 	
+	function delete_event($id)	{
+		
+		$this->db->where('id', $id);
+		if ($this->db->delete('event'))	{
+			return array('id' => $id);
+		}
+		return array('id' => -1);
+	}
+	
 	function insert_event($data)		{
 		$this->db->set($data);
 		return $this->db->insert('event');
-	}
-	
-	function delete_event($id)	{
-		$this->db->delete('event', array('id' => $id)); 
 	}
 }
 

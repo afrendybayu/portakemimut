@@ -117,7 +117,7 @@ Ext.define('rcm.controller.ExcelGrid', {
         });
         this.getEventStore().insert(0, rec);
         this.getTaskFMEAGrid().getView().refresh();
-		//alert('tambah FNMEA');
+		alert('tambah FNMEA');
 	},
     
     plhFilterClick: function(n)		{
@@ -166,19 +166,17 @@ Ext.define('rcm.controller.ExcelGrid', {
 	
 	hapusFMEAClick: function(dd, drow)	{
 		var de=this;
-		var ee=grid.get('eql')+"\nObject Part "+grid.get('opart');
+		var ee=dd.get('eql')+"<br/>Object Part "+dd.get('opart');
 		Ext.Msg.show({
-            title: ee,
+            title: 'Hapus FMEA '+dd.get('eql'),
             msg: 'Hapus FMEA '+ee,
             buttons: Ext.Msg.YESNO,
             fn: function(response) {
                 if(response === 'yes') {
-					//console.log("hapus !!");
-
-					rcmSettings.aaaaa = grid;
-					grid.destroy({
-						 success: function(grid, operation) {
-							 
+					//rcmSettings.aaaaa = dd;
+					dd.destroy({
+						 success: function(dd, operation) {
+							 this.getTaskFMEAGrid().getView().refresh();
 						 }
 					 });
                 }

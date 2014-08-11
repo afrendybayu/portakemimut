@@ -5,7 +5,12 @@ class dDaftarG extends CI_Controller {
 	public function index()	{
 		try	{
 			$params = json_decode(file_get_contents('php://input'));
+
+			$id = isset($params->id)?$params->id:"e0";
+			$ids = array_filter(explode("e",$id));
 			
+			$this->load->model('waktudown');
+			$hasil = $this->waktudown->delete_waktudown($ids);
 			
 			
 			$jsonResult = array(

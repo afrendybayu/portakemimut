@@ -95,8 +95,21 @@ class Waktudown extends CI_Model {
 	}
 
 	function delete_waktudown($ids)	{
-		$this->db->where_in('id', $ids)
-		$this->db->delete('waktudown'); 
+		
+		$this->db->where_in('id', $ids);
+		if ($this->db->delete('waktudown'))	{
+		//*
+			$hsl = array();
+			foreach($ids as $id)	{
+				array_push($hsl, array('id' => $id));
+			}
+			return $hsl;
+		//*/
+		}
+		else {
+			return array('id'=>'0');
+		}
+		
 	}
 }
 
