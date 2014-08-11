@@ -7,6 +7,7 @@ class uEvent extends CI_Controller {
 			$params = json_decode(file_get_contents('php://input'));
 			$this->load->model('event');
 			
+			$ret = array();
 			if (is_array($params))	{
 				foreach ($params as $obj)	{
 					$data = array(
@@ -18,23 +19,27 @@ class uEvent extends CI_Controller {
 						'fm'		=> $obj->idmode
 					);
 					$hasil = $this->event->update_event($data, $obj->id);
+					if ($hasil)	{
+						array_push($ret, array('id' => $obj->id));
+					}
 				}
 			}
 			if (is_object($params))	{
 				$data = array(
 					'down_id'	=> $params->iddown,
 					'eq'		=> $params->ideql,
-					'aksi'	=> $params->idaksi,
-					'cause'	=> $params->idcause,
-					'opart'	=> $params->idopart,
-					'fm'	=> $params->idmode
+					'aksi'		=> $params->idaksi,
+					'cause'		=> $params->idcause,
+					'opart'		=> $params->idopart,
+					'fm'		=> $params->idmode
 				);
 				$hasil = $this->event->update_event($data, $params->id);
+				array_push($ret, array('id' => $params->id));
 			}
 
 			$jsonResult = array(
 				'success' => true,
-				'event' => $hasil
+				'event' => $ret
 			);
 		}
 		catch (Exception $e)	{
@@ -43,6 +48,7 @@ class uEvent extends CI_Controller {
 				'message' => $e->getMessage()
 			);
 		}
+		$hasil = array();
 		$hasil['json'] = $jsonResult;
 
 		//$this->load->view('json',$hasil);
