@@ -19,7 +19,7 @@ Ext.define('rcm.view.dataentry.InfoFMEA', {
 			{ text: 'Object Part', dataIndex: 'opart', width:220 },
 			{ text: 'Failure Mode', dataIndex: 'mode', width:140 },
 			{ text: 'Cause', dataIndex: 'cause', width:180 },
-			{ text: 'Action', dataIndex: 'aksi', width:120 }
+			{ text: 'Action', dataIndex: 'aksi', width:120, handler: Ext.bind(this.hdlHapusE, this) }
 		]
     },
 	
@@ -27,6 +27,10 @@ Ext.define('rcm.view.dataentry.InfoFMEA', {
 		var me=this;
 
 		me.callParent(arguments);
+	},
+	
+	hdlHapusE: function()	{
+		alert("tess hos");
 	}
 	
 });

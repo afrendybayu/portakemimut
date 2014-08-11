@@ -327,6 +327,7 @@ class uDaftarG extends CI_Controller {
 			);
 		}
 		
+		
 		$hasil['json'] = $jsonResult;
 		$this->output->set_content_type('application/json');
 		$this->output->set_output(json_encode($jsonResult));

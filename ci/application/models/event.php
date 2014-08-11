@@ -35,6 +35,10 @@ class Event extends CI_Model {
 		$this->db->set($data);
 		return $this->db->insert('event');
 	}
+	
+	function delete_event($id)	{
+		$this->db->delete('event', array('id' => $id)); 
+	}
 }
 
 /* End of file option.php */

@@ -20,7 +20,8 @@ class dDaftarG extends CI_Controller {
 			);
 		}
 		
-		$hasil['json'] = $jsonResult;
+		$hsl = array();
+		$hsl['json'] = $jsonResult;
 		$this->output->set_content_type('application/json');
 		$this->output->set_output(json_encode($jsonResult));
 		//echo json_encode($jsonResult);

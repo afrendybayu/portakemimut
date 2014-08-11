@@ -93,6 +93,11 @@ class Waktudown extends CI_Model {
 		$this->db->where('id', $id);
 		return $this->db->update('waktudown');
 	}
+
+	function delete_waktudown($ids)	{
+		$this->db->where_in('id', $ids)
+		$this->db->delete('waktudown'); 
+	}
 }
 
 /* End of file waktudown.php */
