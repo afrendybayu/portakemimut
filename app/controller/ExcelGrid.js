@@ -174,12 +174,15 @@ Ext.define('rcm.controller.ExcelGrid', {
             buttons: Ext.Msg.YESNO,
             fn: function(response) {
                 if(response === 'yes') {
-					//rcmSettings.aaaaa = dd;
-					dd.destroy({
-						 success: function(dd, operation) {
-							 this.getTaskFMEAGrid().getView().refresh();
-						 }
-					 });
+					rcmSettings.aaaaa = dd;
+					dd.destroy(/*{
+						
+						success: function(dd, operation) {
+							//alert();
+							//this.getTaskFMEAGrid().getView().refresh();
+						}
+						
+					}//*/);					
                 }
             }
         });
@@ -399,7 +402,36 @@ Ext.define('rcm.controller.ExcelGrid', {
         //alert("tgl: "+Ext.util.Cookies.get('tgl'));
         //Ext.getCmp('idwest').collapse();
         
-        
+        Ext.define('Ext.view.override.Table', {
+			override: 'Ext.view.Table',
+		 
+			doStripeRows: function(startRow, endRow) {
+				var me = this,
+					rows,
+					rowsLn,
+					i,
+					row;
+		 
+		 
+				if (me.rendered && me.stripeRows) {
+					rows = me.getNodes(startRow, endRow);
+		 
+					for (i = 0, rowsLn = rows.length; i < rowsLn; i++) {
+						row = rows[i];
+		 
+						if (row) { // self updating; check for row existence
+							row.className = row.className.replace(me.rowClsRe, ' ');
+							startRow++;
+		 
+							if (startRow % 2 === 0) {
+								row.className += (' ' + me.altRowCls);
+							}
+						}
+					}
+				}
+			}
+		 
+		});
         
         Ext.apply(Ext.form.field.VTypes, {
 			daterange: function(val, field) {
@@ -575,11 +607,20 @@ Ext.define('rcm.controller.ExcelGrid', {
             }
         });
 	},
+	
+	cariID: function(obj)	{
+		var id='';
+		for(var i=0; i<obj.length; i++)	{
+			id = 'e'+obj[i].id+id;
+		}
+		return id;
+	},
 
 	updateGagalClick: function()	{
 		console.log('masuk updateGagalClick');
 		var me=this;
 		var o = me.ambilDataForm();
+		var resp,id;
 		
 		var rec = new rcm.model.DaftarGagal({ edit:1,
 			id:o.id,downt:o.dd,downj:o.td,startt:o.dm,startj:o.tm,endt:o.ds,endj:o.ts,upt:o.du,upj:o.tu,
@@ -590,11 +631,11 @@ Ext.define('rcm.controller.ExcelGrid', {
         rec.save({
             success: function(respon, operation) {
 				console.log('masuk updateGagalClick sukses');
-				var resp = operation.request.scope.reader.jsonData["tasks"];
+				resp = operation.request.scope.reader.jsonData["tasks"];
 				var recx = me.getEventStore().getRange();
 				//rcmSettings.ttt = me.getEventStore();
-				//rcmSettings.zzz = resp;
-				//rcmSettings.qqq = recx;
+				rcmSettings.zzz = resp;
+				rcmSettings.qqq = recx;
 				if (o.event!=1)	{
 					for (var i=0, len1=resp.length; i<len1; ++i) {
 						for (var j=0,len2=recx.length; j<len2; ++j)	{
@@ -604,7 +645,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 							}
 						}
 					}
-					//console.log("sukses rec DaftarGagal");
+					console.log("sukses rec DaftarGagal");
 				}
 				me.getDaftarGagalStore().reload();
 				me.getRunningHourStore().reload();
@@ -621,10 +662,11 @@ Ext.define('rcm.controller.ExcelGrid', {
                 });
             },
             callback : function(respon, operation)	{
-				//console.log("------ pa ini callback o.event: "+o.event);
-				var resp = operation.request.scope.reader.jsonData["tasks"];
+				console.log("------ pa ini callback o.event: "+o.event);
+				resp = operation.request.scope.reader.jsonData["tasks"];
 				var recx = me.getEventStore().getRange();
-				//rcmSettings.fff = resp;
+				rcmSettings.fff = resp;
+				//alert(this.cariID(resp));
 				//rcmSettings.hhh = recx;
 				if (o.event!=1)	{
 					
@@ -646,11 +688,19 @@ Ext.define('rcm.controller.ExcelGrid', {
 				// matikan dulu, nanti hidupkan lagi
 				me.getDaftarGagalStore().reload();
 				me.getRunningHourStore().reload();
+				
+				id='';
+				for(var i=0; i<resp.length; i++)	{
+					id = 'e'+resp[i].id+id;
+				}
+				//alert(id);
+				me.getEventInfoStore().load({params:{down:id}});
 			}
         });
 
 		me.getTaskFormGagal().close();
-		me.getEventInfoStore().reload();
+		
+		
 		//me.updateAVReDash();
 	}
 //*/
