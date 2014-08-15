@@ -117,7 +117,8 @@ Ext.define('rcm.controller.ExcelGrid', {
         });
         this.getEventStore().insert(0, rec);
         this.getTaskFMEAGrid().getView().refresh();
-		alert('tambah FNMEA');
+        //rcmSettings.ggg = this.getTaskFMEAGrid().getView();
+		//alert('tambah FNMEA');
 	},
     
     plhFilterClick: function(n)		{
@@ -576,6 +577,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 	},
 
 	updateGagalClick: function()	{
+		console.log('masuk updateGagalClick');
 		var me=this;
 		var o = me.ambilDataForm();
 		
@@ -587,11 +589,16 @@ Ext.define('rcm.controller.ExcelGrid', {
         
         rec.save({
             success: function(respon, operation) {
+				console.log('masuk updateGagalClick sukses');
 				var resp = operation.request.scope.reader.jsonData["tasks"];
 				var recx = me.getEventStore().getRange();
+				//rcmSettings.ttt = me.getEventStore();
+				//rcmSettings.zzz = resp;
+				//rcmSettings.qqq = recx;
 				if (o.event!=1)	{
 					for (var i=0, len1=resp.length; i<len1; ++i) {
 						for (var j=0,len2=recx.length; j<len2; ++j)	{
+							//console.log("resp: "+i+",recx: "+j+", apa ini callback ideql: "+recx[j].get('ideql')+", eq: "+resp[i].eq);
 							if (recx[j].data.ideql==resp[i].eq)	{
 								recx[j].set('iddown',resp[i].id);
 							}
@@ -614,32 +621,36 @@ Ext.define('rcm.controller.ExcelGrid', {
                 });
             },
             callback : function(respon, operation)	{
-				//console.log("apa ini callback o.event: "+o.event);
+				//console.log("------ pa ini callback o.event: "+o.event);
 				var resp = operation.request.scope.reader.jsonData["tasks"];
-				rcmSettings.fff = resp;
 				var recx = me.getEventStore().getRange();
+				//rcmSettings.fff = resp;
+				//rcmSettings.hhh = recx;
 				if (o.event!=1)	{
-					console.log("apa ini callback resp.length: ");
-					/*
-					for (var i=0, len1=resp.length; i<len1; ++i) {
-						for (var j=0,len2=recx.length; j<len2; ++j)	{
-							//console.log("apa ini callback ideql: "+recx[j].get('ideql')+", eq: "+resp[i].eq);
+					
+					//*
+					for (var i=0, len1=resp.length; i<len1; i++) {
+						for (var j=0,len2=recx.length; j<len2; j++)	{
+							//console.log("resp: "+i+",recx: "+j+", apa ini callback ideql: "+recx[j].get('ideql')+", eq: "+resp[i].eq);
 							if (recx[j].get('ideql')==resp[i].eq)	{
 								recx[j].set('iddown',resp[i].id);
+								break;
 							}
 						}
 					}
 					//*/
 					//console.log("apa ini callback 4");
 					me.getEventStore().sync();
+					//console.log("apa ini callback resp.length: ");
 				}
+				// matikan dulu, nanti hidupkan lagi
 				me.getDaftarGagalStore().reload();
 				me.getRunningHourStore().reload();
 			}
         });
 
 		me.getTaskFormGagal().close();
-		//me.getEventInfoStore().reload();
+		me.getEventInfoStore().reload();
 		//me.updateAVReDash();
 	}
 //*/

@@ -149,7 +149,7 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 	},
 
 	row2Click: function(id, ev, dv, record, item, index, e)	{
-		alert(id);
+		//alert(id);
 		this.fireEvent('infoDetailGagal', id,ev);
 		//rcmSettings.asa = record;
 		//rcmSettings.sas = record.raw.value;

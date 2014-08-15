@@ -2,11 +2,81 @@
 
 class rDaftarG extends CI_Controller {
 	
-	
 	public function index()	{
 		
-		try	{
+		try {
+			$this->load->model('option');
+			$this->load->model('waktudown');
 			
+			$yl = $this->option->cek_bulan_gagal();
+			//echo "yl: $yl<br/>";
+			
+			if ($this->input->get('tw') && $this->input->get('tk'))	{
+				$tglaw = $this->input->get('tw');
+				$tglak = $this->input->get('tk');
+				
+				if (strtotime($tglak)>=strtotime("now"))	{
+					//echo "1 akhir ngebut<br/>";
+					$tglak = date('Y-m-d');
+					if (strtotime($tglaw)>=strtotime("now"))	{
+						//echo "1 awal ngebut<br/>";
+						$tglaw = date('Y-m-01', strtotime("-$yl month"));
+					}
+					else {
+						$tglaw = date('Y-m-d', strtotime($tglaw));
+					}
+					//echo "masuk sini<br/>";
+				}
+				else if (strtotime($tglaw)>=strtotime("now"))	{
+					//echo "2 awal ngebut<br/>";
+					$tglaw = date('Y-m-01', strtotime("-$yl month"));
+					if (strtotime($tglak)>=strtotime("now"))	{
+						$tglak = date('Y-m-d');
+					}
+					else {
+						$tglak = date('Y-m-d', strtotime($tglak));
+					}
+				}
+				else {
+					//echo "normatif<br/>";
+					$tglaw = date('Y-m-d', strtotime($tglaw));
+					$tglak = date('Y-m-d', strtotime($tglak));
+				}
+				//echo "tgl aw: $tglaw, ak: $tglak<br/>";
+			}
+			else {
+				$tglak = date('Y-m-d');
+				$tglaw = date('Y-m-01', strtotime("-$yl month"));
+			}
+			
+			if (strtotime($tglak)==strtotime($tglaw))	{
+				$tglak = date('Y-m-d');
+				$tglaw = date('Y-m-01', strtotime("-$yl month"));
+			}
+			//echo "----> awal: $tglaw, akhir: $tglak<br/>";
+			$hsl = $this->waktudown->get_waktudown_list($tglaw, $tglak);
+			
+			
+			$jsonResult = array(
+				'success' => true,
+				'gagal' => $hsl
+			);
+		}
+		catch (Exception $e)	{
+			 $jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		//$this->load->view('welcome_message');
+		//$this->output->set_content_type('application/json');
+		//$this->output->set_output(json_encode($jsonResult));
+		echo json_encode($jsonResult);
+	}
+	
+	public function indexx()	{
+		
+		try	{
 			$yl = 2;		// TOTAL LIST 2 BULAN
 			if ($this->input->get('tw') && $this->input->get('tk'))	{
 				$tglaw = $this->input->get('tw');
@@ -50,41 +120,11 @@ class rDaftarG extends CI_Controller {
 				$tglak = date('Y-m-d');
 				$tglaw = date('Y-m-01', strtotime("-$yl month"));
 			}
-			/*
-			if ($tgl = $this->input->get('tw'))	{
-				if (strtotime($tgl)>=strtotime("now"))	{
-					$tglak = date('Y-m-d');
-					//echo "masuk sini<br/>";
-				}
-				else {
-					$tglak = date('Y-m-t',strtotime($tgl));
-					//echo "2 masuk sini<br/>";
-				}
-			}
-			else {
-				$tglak = date('Y-m-d');
-			}
-			//*/
 			
 			//$yl = 2;		// TOTAL LIST 2 BULAN
 			//$tglaw = date('Y-m-01', strtotime("-$yl month"));
 			//echo "----> awal: $tglaw, akhir: $tglak<br/>";
-			/*
-			$sql =  "SELECT waktudown.id,event as idevent,tipeev ".
-					",(select pmdef.nama from pmdef where pmdef.id = (select pmlist.pm from pmlist where pmlist.id=tipeev)) as namapm ".
-					",eqid,waktudown.unit_id,kode,fm,downt,downj,upt,upj,startt,startj,endt,endj,waktudown.ket,exe ".
-					",(select hirarki.nama from hirarki where hirarki.id ".
-					"	= (select hirarki.parent from hirarki where hirarki.id ".
-					"	= (select hirarki.parent from hirarki where hirarki.id = equip.unit_id))) as lok ".
-					",listEvent.nama as event, equip.unit_id ".
-					",(select nama from hirarki where hirarki.id = (select unit_id from equip where id = waktudown.eqid)) as nama ".
-					"FROM waktudown ".
-					"LEFT JOIN listEvent ON listEvent.id = waktudown.event ".
-					"LEFT JOIN equip ON equip.id = waktudown.eqid ".
-					"LEFT JOIN event ON event.down_id = waktudown.id ".
-					"WHERE downt BETWEEN ? AND ? ".
-					"order by downt desc, downj desc;";
-			//*/	
+
 			$sql =  "SELECT waktudown.id,event as idevent,tipeev ".
 					",(select pmdef.nama from pmdef where pmdef.id = (select pmlist.pm from pmlist where pmlist.id=tipeev)) as namapm ".
 					",eqid,waktudown.unit_id,kode".
@@ -101,7 +141,7 @@ class rDaftarG extends CI_Controller {
 					"LEFT JOIN event ON event.down_id = waktudown.id ".
 					"WHERE downt BETWEEN ? AND ? ".
 					"order by downt desc, downj desc, id desc";
-			//echo "sql: $sql<br/>";
+			//echo "sql: $sql, tglaw: $tglaw, tglak: $tglak<br/>";
 			$query = $this->db->query($sql, array($tglaw,$tglak));
 			
 			$isi = array();	$jml=0;
@@ -134,13 +174,6 @@ class rDaftarG extends CI_Controller {
 							
 						} else if (($ax==3) || ($ax==4)) {
 							//echo "fm: {$row['fm']}<br/>";
-							/*
-							if (isset($row->fm) && ($row->fm!="") && (isset($isi[$jml]['fm']))) {
-								if (strlen($isi[$jml]['fm'])>0)
-									$isi[$jml]['fm'] .= "&nbsp;&nbsp;";
-								$isi[$jml]['fm'] .= "[{$row->kode}: {$row->fm}]";
-							}
-							//*/
 							if (isset($row->fm) && ($row->fm!=""))	{
 								if ( isset($isi[$jml]['fm']))	{
 									$isi[$jml]['fm'] .= "&nbsp;&nbsp;[{$row->kode}: {$row->fm}]";
@@ -203,12 +236,11 @@ class rDaftarG extends CI_Controller {
 						$dd = $row->downt;	$td = $row->downj;
 					//} else {
 						//echo ($jml)." >> AWAL: $dd - $td<br/>";
-						
 					}
 				}
 			}
 			
-			//print_r($isi);
+			//echo "<br/><br/>";print_r($isi);
 			
 			$hsl = array();
 			foreach ($isi as $data)	{
@@ -228,6 +260,8 @@ class rDaftarG extends CI_Controller {
 			);
 		}
 		//$this->load->view('welcome_message');
-		echo json_encode($jsonResult);
+		//$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($jsonResult));
+		//echo json_encode($jsonResult);
 	}
 }

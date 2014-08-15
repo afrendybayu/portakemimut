@@ -22,7 +22,7 @@ Ext.define('rcm.view.dataentry.DetailInfo', {
 			id: 'idinfofmea',
 			title: 'Unit Failure List',
 			region: 'center',
-			flex: 1,
+			flex: 2,
 			xtype: 'infofmea'
 		},{
 			split: true,
