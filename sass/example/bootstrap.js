@@ -10,6 +10,16 @@ Ext.Loader.addClassPathMappings({
   "Ext.Msg": "../../ext/src/window/MessageBox.js",
   "Ext.chart": "../../ext/src/chart__",
   "Ext.rtl.EventObjectImpl": "../../ext/src/rtl/EventObject.js",
+  "Ext.view": "../../app/view",
+  "Ext.view.AbstractView": "../../ext/src/view/AbstractView.js",
+  "Ext.view.BoundList": "../../ext/src/view/BoundList.js",
+  "Ext.view.BoundListKeyNav": "../../ext/src/view/BoundListKeyNav.js",
+  "Ext.view.DragZone": "../../ext/src/view/DragZone.js",
+  "Ext.view.DropZone": "../../ext/src/view/DropZone.js",
+  "Ext.view.NodeCache": "../../ext/src/view/NodeCache.js",
+  "Ext.view.Table": "../../ext/src/view/Table.js",
+  "Ext.view.TableLayout": "../../ext/src/view/TableLayout.js",
+  "Ext.view.View": "../../ext/src/view/View.js",
   "rcm": "../../app"
 });
 Ext.ClassManager.addNameAlternateMappings({
@@ -879,6 +889,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.view.View": [
     "Ext.DataView"
   ],
+  "Ext.view.override.Table": [],
   "Ext.window.MessageBox": [],
   "Ext.window.Window": [
     "Ext.Window"
@@ -887,6 +898,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.controller.DetailInfo": [],
   "rcm.controller.ExcelGrid": [],
   "rcm.controller.Laporan": [],
+  "rcm.controller.Login": [],
   "rcm.controller.Main": [],
   "rcm.controller.Nav": [],
   "rcm.model.Aksi": [],
@@ -902,6 +914,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.EventList": [],
   "rcm.model.FMode": [],
   "rcm.model.Hirarki": [],
+  "rcm.model.LoginAuth": [],
   "rcm.model.Note": [],
   "rcm.model.OPart": [],
   "rcm.model.PM": [],
@@ -921,6 +934,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.EventList": [],
   "rcm.store.FMode": [],
   "rcm.store.Hirarki": [],
+  "rcm.store.LoginAuth": [],
   "rcm.store.Note": [],
   "rcm.store.OPart": [],
   "rcm.store.PM": [],
@@ -951,6 +965,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.lapobama.BlnAv": [],
   "rcm.view.lapobama.ReHome": [],
   "rcm.view.lapobama.SpeedoAv": [],
+  "rcm.view.login.LoginAuth": [],
+  "rcm.view.login.LogoutInfo": [],
   "rcm.view.nav.AppHeader": [],
   "rcm.view.nav.Navigation": [],
   "rcm.view.nav.Tanggalan": []
@@ -1956,6 +1972,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.view.View": [
     "widget.dataview"
   ],
+  "Ext.view.override.Table": [],
   "Ext.window.MessageBox": [
     "widget.messagebox"
   ],
@@ -1966,6 +1983,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.controller.DetailInfo": [],
   "rcm.controller.ExcelGrid": [],
   "rcm.controller.Laporan": [],
+  "rcm.controller.Login": [],
   "rcm.controller.Main": [],
   "rcm.controller.Nav": [],
   "rcm.model.Aksi": [],
@@ -1981,6 +1999,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.EventList": [],
   "rcm.model.FMode": [],
   "rcm.model.Hirarki": [],
+  "rcm.model.LoginAuth": [],
   "rcm.model.Note": [],
   "rcm.model.OPart": [],
   "rcm.model.PM": [],
@@ -2000,6 +2019,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.EventList": [],
   "rcm.store.FMode": [],
   "rcm.store.Hirarki": [],
+  "rcm.store.LoginAuth": [],
   "rcm.store.Note": [],
   "rcm.store.OPart": [],
   "rcm.store.PM": [],
@@ -2067,6 +2087,12 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.lapobama.SpeedoAv": [
     "widget.tAvSpeedo"
+  ],
+  "rcm.view.login.LoginAuth": [
+    "widget.authlogin"
+  ],
+  "rcm.view.login.LogoutInfo": [
+    "widget.authlogout"
   ],
   "rcm.view.nav.AppHeader": [
     "widget.appHeader"
