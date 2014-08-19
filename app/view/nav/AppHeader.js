@@ -3,6 +3,10 @@ Ext.define('rcm.view.nav.AppHeader', {
 	extend: 'Ext.container.Container',
 	//extend: 'Ext.Component',
 	xtype: 'appHeader',
+	requires : ['rcm.view.login.LogoutInfo',
+				'rcm.view.login.LoginAuth'
+				],
+	
 	layout: 'hbox',
 	//dock: 'top',
 	//bodyStyle: "background:url('modul/image/front_image.png') no-repeat;  padding:10px;",
@@ -14,6 +18,11 @@ Ext.define('rcm.view.nav.AppHeader', {
 			html: document.title,
 			flex: 1
 		}, {
-			html: 'ini untuk LOGIN appHeader.js'
-	}]
+			
+			xtype : 'authlogin',
+			//title : 'login'
+		},{
+			xtype : 'authlogout',
+			hidden : true
+		}]
 });
