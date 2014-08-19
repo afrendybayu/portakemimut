@@ -175,14 +175,21 @@ Ext.define('rcm.controller.ExcelGrid', {
             fn: function(response) {
                 if(response === 'yes') {
 					rcmSettings.aaaaa = dd;
-					dd.destroy(/*{
+					//dd.destroy();
+					//this.getEventStore.destroy();
+					/*
+					dd.destroy({
 						
 						success: function(dd, operation) {
-							//alert();
-							//this.getTaskFMEAGrid().getView().refresh();
-						}
-						
-					}//*/);					
+							console.log('sukses hapusFMEAClick');
+							this.getTaskFMEAGrid().getView().refresh();
+						},
+						callback: function(dd, operation) {
+							console.log('callback hapusFMEAClick');
+							//alert('callback hapusFMEAClick');
+						},
+					});
+					//*/
                 }
             }
         });
@@ -312,6 +319,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		tFG.down('form').loadRecord(sDG);
 		tFG.setTitle('Form Notifikasi ' + dRHsJ);
 		
+		me.getEventStore().loadData([],false);
 		me.getTaskIsiFormGagal().pilihEventG(1);
 		
 		//tFG.setWidth(500);
@@ -402,6 +410,7 @@ Ext.define('rcm.controller.ExcelGrid', {
         //alert("tgl: "+Ext.util.Cookies.get('tgl'));
         //Ext.getCmp('idwest').collapse();
         
+        /*
         Ext.define('Ext.view.override.Table', {
 			override: 'Ext.view.Table',
 		 
@@ -432,6 +441,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 			}
 		 
 		});
+		//*/
         
         Ext.apply(Ext.form.field.VTypes, {
 			daterange: function(val, field) {

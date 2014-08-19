@@ -54,23 +54,6 @@ class Waktudown extends CI_Model {
     
     function get_waktudown_list($tglaw, $tglak)	{
 		/*
-		$sql =  "SELECT waktudown.id,event as idevent,tipeev ".
-				",(select concat('[',kode,': ',(select pmdef.nama from pmdef where pmdef.id = (select pmlist.pm from pmlist where pmlist.id=tipeev)),']')) as namapm ".
-				",eqid,waktudown.unit_id".
-				",(select concat('[',kode,': ',(select nama from failuremode where failuremode.id = event.fm),']')) as fm".
-				",downt,downj,upt,upj,startt,startj,endt,endj,waktudown.ket,exe ".
-				",(select hirarki.nama from hirarki where hirarki.id ".
-				"	= (select hirarki.parent from hirarki where hirarki.id ".
-				"	= (select hirarki.parent from hirarki where hirarki.id = equip.unit_id))) as lok ".
-				",listEvent.nama as event, equip.unit_id ".
-				",(select nama from hirarki where hirarki.id = (select unit_id from equip where id = waktudown.eqid)) as nama ".
-				"FROM waktudown ".
-				"LEFT JOIN listEvent ON listEvent.id = waktudown.event ".
-				"LEFT JOIN equip ON equip.id = waktudown.eqid ".
-				"LEFT JOIN event ON event.down_id = waktudown.id ".
-				"WHERE downt BETWEEN ? AND ? ".
-				"order by downt desc, downj desc, id desc";
-		//*/
 		$sql =	"SELECT waktudown.id,event as idevent,tipeev ".
 				",(select concat('[',kode,': ',(select pmdef.nama from pmdef where pmdef.id ".
 				"= (select pmlist.pm from pmlist where pmlist.id=tipeev)),']')) as namapm ".
@@ -85,13 +68,32 @@ class Waktudown extends CI_Model {
 				"LEFT JOIN equip ON equip.id = waktudown.eqid ".
 				"LEFT JOIN event ON event.down_id = waktudown.id ".
 				"WHERE downt BETWEEN ? AND ? group by id order by downt desc, downj desc, id desc";
+		//*/
+		$sql =	"SELECT (select group_concat((select concat('e',waktudown.id)) separator '')) as id,event as idevent,tipeev ".
+				",(select concat('[',kode,': ',(select pmdef.nama from pmdef where pmdef.id ".
+				"= (select pmlist.pm from pmlist where pmlist.id=tipeev)),']')) as namapm ".
+				",waktudown.unit_id as eqid ".
+				",(select group_concat((select concat('[',kode,': ',(select nama from failuremode where failuremode.id = event.fm),']')) separator ' ') ) as fm ".
+				",downt,(select date_format(downj,'%H:%i')) as downj".
+				",upt,(select date_format(upj,'%H:%i')) as upj".
+				",startt,(select date_format(startj,'%H:%i')) as startj".
+				",endt,(select date_format(endj,'%H:%i')) as endj,waktudown.ket,exe ".
+				",(select hirarki.nama from hirarki where hirarki.id = (select hirarki.parent from hirarki where hirarki.id ".
+					"= (select hirarki.parent from hirarki where hirarki.id = equip.unit_id))) as lok ".
+				",listEvent.nama as event, equip.unit_id ".
+				",(select nama from hirarki where hirarki.id = (select unit_id from equip where id = waktudown.eqid)) as nama ".
+				"FROM waktudown LEFT JOIN listEvent ON listEvent.id = waktudown.event ".
+				"LEFT JOIN equip ON equip.id = waktudown.eqid ".
+				"LEFT JOIN event ON event.down_id = waktudown.id ".
+				"WHERE downt BETWEEN ? AND ? group by downt,downj,upt,upj order by downt desc, downj desc, id desc";
 		//echo "sql: $sql, tglaw: $tglaw, tglak: $tglak<br/>";
 		$query = $this->db->query($sql, array($tglaw,$tglak));
 		
 		$isi = array();	$jml=-1;
 		if ($query->num_rows() > 0)	{
 			$dd = ''; $td = '';
-			//*
+			
+			/*
 			//echo "=====> jml: $jml<br/>";
 			foreach ($query->result() as $row)	{
 				//echo "->idevent: {$row->idevent}<br/>";
@@ -114,21 +116,23 @@ class Waktudown extends CI_Model {
 				}
 				else {
 					$jml++;
+					$isi[$jml]['id'] = 'e'.$row->id;
 					$isi[$jml]['downt'] = date('d-m-Y',strtotime("{$row->downt} {$row->downj}"));
 					$isi[$jml]['downj'] = date('H:i',	strtotime("{$row->downt} {$row->downj}"));
 					$isi[$jml]['upt'] = date('d-m-Y',	strtotime("{$row->upt} {$row->upj}"));
 					$isi[$jml]['upj'] = date('H:i',	strtotime("{$row->upt} {$row->upj}"));
 					
-					$isi[$jml]['event'] = $row->event;
-					$isi[$jml]['eqid'] = $row->unit_id;
-					$isi[$jml]['id'] = 'e'.$row->id;
+					//$isi[$jml]['event'] = $row->event;
+					//$isi[$jml]['eqid'] = $row->unit_id;
+					$isi[$jml]['idevent'] = $row->idevent;
+					
 					$isi[$jml]['unit_id'] = $row->unit_id;
 					$isi[$jml]['nama'] = $row->nama;
 					$isi[$jml]['lok'] = $row->lok;
-					$isi[$jml]['idevent'] = $row->idevent;
+					
 					$isi[$jml]['ket'] = $row->ket;
 					$isi[$jml]['exe'] = $row->exe;
-					
+
 					$dd = $row->downt;	$td = $row->downj;
 					
 					
@@ -258,6 +262,7 @@ class Waktudown extends CI_Model {
 				array_push($hsl, $data);
 			}
 			
+			return $query->result();
 			//return $query->num_rows();
 			return $hsl;
 		}
