@@ -36,9 +36,7 @@ class AuthLogin extends CI_Controller {
 		try{
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
-			
 			//echo $username.' dan '.$password; 
-			
 			$query = $this->login->ValidLogin($username,$password);
 			
 			if ($query->num_rows == 1){
@@ -46,24 +44,12 @@ class AuthLogin extends CI_Controller {
 					'status' => 'success',
 					'isAuthenticated' => 'true')
 				));
-				/*
 				
-				$log[] = array(
-					"status"=>'success',
-					'isAuthenticated' => 'true');*/
 			}
 			else{
 				$this->output->set_output(json_encode( array('status' => 'failure')));
 				// $log[] = array("status"=>'failure');
 			}
-			/*
-			$jsonResult = array(
-						'success' => true,
-						'logged' => $log
-					);
-			echo json_encode($jsonResult);
-			
-			*/
 		}
 		catch(Exception $e){
 			$jsonResult = array(
