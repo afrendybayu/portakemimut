@@ -42,7 +42,7 @@ Ext.define('rcm.controller.Login', {
 		if (frm.isValid()) {
 				console.log ('username : '+userget+' & password : '+passget );
 				Ext.Ajax.request({
-					url : '/daunbiru/portakemimut/ci/index.php/AuthLogin/isLoggin',
+					url : 'ci/index.php/AuthLogin/isLoggin',
 					params: { username : userget , password : passget},
 					success : function(resp){
 						var pesan = Ext.decode(resp.responseText);

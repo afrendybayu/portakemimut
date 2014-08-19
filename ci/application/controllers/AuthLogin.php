@@ -32,7 +32,6 @@ class AuthLogin extends CI_Controller {
 	}
 	
 	public function isLoggin(){
-		
 		try{
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');

@@ -5,6 +5,11 @@ class uEvent extends CI_Controller {
 	public function index()	{
 		try	{
 			$params = json_decode(file_get_contents('php://input'));
+			
+			if (!isset($params))	{
+				throw new Exception("Input Data Tidak Ada");
+			}
+			print_r ($params);
 			$this->load->model('event');
 			
 			$ret = array();
