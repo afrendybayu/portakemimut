@@ -39,21 +39,23 @@ class AuthLogin extends CI_Controller {
 			//echo $username.' dan '.$password; 
 			$query = $this->login->ValidLogin($username,$password);
 			
+						
 			if ($query->num_rows == 1){
-				$this->output->set_output(json_encode(array(
+				$logged = array (
 					'status' => 'success',
-					'isAuthenticated' => 'true')
-				));
-				
+					'isAutenticated' => 'true'
+				);
+				$jsonResult = array(
+					'success' 	=> true,
+					'logged'	=> $logged
+				);
 			}
-			else{
-				$this->output->set_output(json_encode( array('status' => 'failure')));
-				// $log[] = array("status"=>'failure');
-			}
+			echo json_encode($jsonResult);
+			
 		}
 		catch(Exception $e){
 			$jsonResult = array(
-				// 'success' => false,
+				'success' => false,
 				'message' => $e->getMessage()
 			);	
 		}

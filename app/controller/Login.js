@@ -25,6 +25,9 @@ Ext.define('rcm.controller.Login', {
 			
 			'#btn_login' : {
 				click : this.tblLogin
+			},
+			'#btn_logout' : {
+				click : this.tblLogout
 			}
 		
 		});
@@ -42,12 +45,12 @@ Ext.define('rcm.controller.Login', {
 		if (frm.isValid()) {
 				console.log ('username : '+userget+' & password : '+passget );
 				Ext.Ajax.request({
-					url : '/daunbiru/portakemimut/ci/index.php/AuthLogin/isLoggin',
+					// url : '/daunbiru/portakemimut/ci/index.php/AuthLogin/isLoggin',
+					url : 'ci/index.php/AuthLogin/isLoggin',
 					params: { username : userget , password : passget},
 					success : function(resp){
 						var pesan = Ext.decode(resp.responseText);
-												
-						if(pesan.status === 'success') {
+						if (pesan.success){						
 							Ext.MessageBox.show({
 								title : 'Login Info',
 								msg   : 'User is Authenticated.',
@@ -69,7 +72,7 @@ Ext.define('rcm.controller.Login', {
 						
 						}
 						
-						rcmSettings.aaaaa = pesan;	
+						// rcmSettings.aaaaa = pesan;	
 					}
 					
 				});//*/
@@ -86,6 +89,26 @@ Ext.define('rcm.controller.Login', {
 
 		
 	},
+	
+	tblLogout : function(b_logout){
+		console.log('klik tombol logout');
+		Ext.MessageBox.show({
+			title : 'Logout Info',
+			msg   : 'Apakah Anda ingin Logout ?',
+			buttons: Ext.MessageBox.OKCANCEL,
+			icon  : Ext.MessageBox.WARNING,
+			fn	: function (blout){
+				if (blout === 'ok'){ 
+					Ext.getCmp('p_login').setVisible(true);
+					Ext.getCmp('p_logout').setVisible(false);
+				}
+				else {
+					Ext.getCmp('p_login').setVisible(false);
+					Ext.getCmp('p_logout').setVisible(true);
+				}
+			}
+		});
+	}
 	
 	
 	
