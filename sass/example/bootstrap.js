@@ -927,6 +927,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.SapEPO": [],
   "rcm.model.SapHistori": [],
   "rcm.model.SapOPart": [],
+  "rcm.model.SapSpeedo": [],
   "rcm.model.SapSymptom": [],
   "rcm.store.Aksi": [],
   "rcm.store.AvGroup": [],
@@ -966,6 +967,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.SpReGcUt": [],
   "rcm.store.SpReGsUt": [],
   "rcm.store.SpRePmUt": [],
+  "rcm.store.WoOpen30": [],
+  "rcm.store.WoOpen60": [],
+  "rcm.store.WoOpen7": [],
+  "rcm.store.WoOpenL60": [],
   "rcm.view.Content": [],
   "rcm.view.Main": [],
   "rcm.view.MonthYear": [
@@ -1005,6 +1010,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.laporan.SapDamage": [],
   "rcm.view.laporan.SapHistori": [],
   "rcm.view.laporan.SapOPart": [],
+  "rcm.view.laporan.SpeedoSap": [],
   "rcm.view.laporan.UploadFile": [],
   "rcm.view.laporan.WOComp": [],
   "rcm.view.laporan.WOManCP": [],
@@ -2057,6 +2063,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.SapEPO": [],
   "rcm.model.SapHistori": [],
   "rcm.model.SapOPart": [],
+  "rcm.model.SapSpeedo": [],
   "rcm.model.SapSymptom": [],
   "rcm.store.Aksi": [],
   "rcm.store.AvGroup": [],
@@ -2096,6 +2103,10 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.SpReGcUt": [],
   "rcm.store.SpReGsUt": [],
   "rcm.store.SpRePmUt": [],
+  "rcm.store.WoOpen30": [],
+  "rcm.store.WoOpen60": [],
+  "rcm.store.WoOpen7": [],
+  "rcm.store.WoOpenL60": [],
   "rcm.view.Content": [
     "widget.content"
   ],
@@ -2206,6 +2217,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.laporan.SapOPart": [
     "widget.opartchart"
+  ],
+  "rcm.view.laporan.SpeedoSap": [
+    "widget.tSapSpeedo"
   ],
   "rcm.view.laporan.UploadFile": [
     "widget.uploadfile"
