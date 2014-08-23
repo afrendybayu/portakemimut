@@ -132,6 +132,44 @@ class rFMEA extends CI_Controller {
 		}
 		echo json_encode($jsonResult);
 	}
+
+	public function getOPart()	{
+		try {
+			$this->load->model('sap');
+
+			$jsonResult = array(
+				'success' => true,
+				'sapopart' => $this->sap->get_opart()
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		echo json_encode($jsonResult);
+	}
+
+	public function getOPartInfo()	{
+		try {
+			$damage = $this->input->get('cause')?:'';
+			$this->load->model('sap');
+
+			$jsonResult = array(
+				'success' => true,
+				'sapcause' => $this->sap->get_opart_info($damage)
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		echo json_encode($jsonResult);
+	}
+
 }
 
 /* End of file rFMEA.php */

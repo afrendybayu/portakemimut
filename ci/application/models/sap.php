@@ -98,6 +98,31 @@ class Sap extends CI_Model {
 		
 		return $query->result();
 	}
+	
+	function get_symptom()	{
+		$s = "select count(*) as jml, opart as kode, ".
+			 "(select nama from opart where opart.kode = sapfmea.opart limit 0,1) as nama, ".
+			 "ROUND((100*count(*)/(select count(*) from sapfmea)),2) as persen ".
+			 "from sapfmea ".
+			 "group by symptom order by jml desc";
+		$query = $this->db->query($s);
+		
+		return $query->result();
+	}
+	
+	function get_symptom_info($opart)	{
+		$sql = "SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,opart,eqkode AS equip,".
+				"notiftype AS tipe,ordertype,downstart ".
+				"FROM sapfmea ".
+				"LEFT JOIN sap ON sap.pid = sapfmea.pid";
+		
+		if (strlen($damage)>0)	{
+			$sql .= "WHERE opart LIKE '%$opart%'";
+		}
+		$query = $this->db->query($sql);
+		
+		return $query->result();
+	}
 }
 
 /* End of file sap.php */

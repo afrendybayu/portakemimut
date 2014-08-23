@@ -80,6 +80,7 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	onLaunch: function() {
+		alert("tes");
 		this.ubahLabelWO();
 	},
 	
@@ -89,11 +90,16 @@ Ext.define('rcm.controller.Sap', {
 			this.getSapCauseInfoStore().clearFilter();
 		} else if ((tab[0].localeCompare("ts")==0) && (tab[1]=='da'))	{
 			this.getSapDamageInfoStore().clearFilter();
+		} else if ((tab[0].localeCompare("ts")==0) && (tab[1]=='ob'))	{
+			this.getSapOPartInfoStore().clearFilter();
+		} else if ((tab[0].localeCompare("ts")==0) && (tab[1]=='sm'))	{
+			this.getSapSymptomInfoStore().clearFilter();
 		}
 		
 	},
 	
 	grafikFilter: function(n, d)	{
+		alert(n);
 		if (n.localeCompare("dam")==0)	{
 			this.getSapDamageInfoStore().clearFilter(true);
 			this.getSapDamageInfoStore().filter('damage',d.kode);
