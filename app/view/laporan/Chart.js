@@ -25,8 +25,8 @@ Ext.define('rcm.view.laporan.Chart', {
 		me.items = [{
 				id: 'ts_in',
 				title: 'Input Laporan',
-				xtype: 'uploadfile',
-				margin: '10 10',
+				xtype: 'tUploadfile',
+				margin: '10 10'
 			},{
 				id: 'ts_mo',
 				title: 'Maintenance Order',
@@ -42,7 +42,7 @@ Ext.define('rcm.view.laporan.Chart', {
 			},{
 				id: 'ts_pdm',
 				title: 'Histori',
-				//xtype:'tHistori'
+				xtype:'tHistori'
 			},{
 				id: 'ts_ca',
 				title: 'Cause',

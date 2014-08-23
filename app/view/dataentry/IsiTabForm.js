@@ -112,7 +112,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 					//triggerAction:  'all',
 					forceSelection: true,
 					editable: false,
-					fieldLabel: 'Penyebab',
+					//fieldLabel: 'Penyebab',
 					emptyText: 'Pilih Tipe PM ... ',
 					name: 'tipepm',
 					id: 'tipepm',

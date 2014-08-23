@@ -23,6 +23,10 @@ class Welcome extends CI_Controller {
 		echo exec('git remote -v');	echo "<br/>";
 		echo exec('git pull');		echo "<br/>selesai";
 	}
+	
+	public function guide()	{
+		$this->load->view('welcome_message');
+	}
 }
 
 /* End of file welcome.php */

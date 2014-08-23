@@ -17,7 +17,8 @@ Ext.define('rcm.controller.Sap', {
 		'SapEPO'
         ,'WoOpen7','WoOpen30','WoOpen60','WoOpenL60'
         ,'SapCause','SapDamage','SapOPart','SapSymptom'
-		,'SapCauseInfo','SapDamageInfo','SapOPartInfo','SapSymptomInfo',
+		,'SapCauseInfo','SapDamageInfo','SapOPartInfo','SapSymptomInfo'
+		,'SapHistori'
     ],
     
     models: [
@@ -32,6 +33,11 @@ Ext.define('rcm.controller.Sap', {
 			selector: 'taskGridCause',
 			xtype: 'taskGridCause',
 			autoCreate: true
+		},{
+			ref: 'tUploadfile',
+			selector: 'tUploadfile',
+			xtype: 'tUploadfile',
+			autoCreate: true
 	}],
     
     init: function() {
@@ -41,12 +47,16 @@ Ext.define('rcm.controller.Sap', {
 			'taskGridCause': {
 				sapFilter: me.grafikFilter,
 				clrChartCause: me.grafikCauseClear
-			}
-			/*
-			'causechart': {
-				chartFilterCause: me.grafikCauseClick
-			}
-			//*/
+			},
+			'#btnUplBpm3': {
+				click: me.hdUplBpm3
+			},
+			'#btnUplBiaya': {
+				click: me.hdUplBiaya
+			},
+			'#btnUplCM': {
+				click: me.hdUplCM
+			},
 		});
     },
     
@@ -80,37 +90,78 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	onLaunch: function() {
-		alert("tes");
+		//alert("tes");
 		this.ubahLabelWO();
 	},
 	
 	grafikCauseClear: function()	{
-		var tab=rcmSettings.tsp.split("_");
+		var me=this,
+			tab=rcmSettings.tsp.split("_");
 		if ((tab[0].localeCompare("ts")==0) && (tab[1]=='ca'))	{
-			this.getSapCauseInfoStore().clearFilter();
+			me.getSapCauseInfoStore().clearFilter();
 		} else if ((tab[0].localeCompare("ts")==0) && (tab[1]=='da'))	{
-			this.getSapDamageInfoStore().clearFilter();
+			me.getSapDamageInfoStore().clearFilter();
 		} else if ((tab[0].localeCompare("ts")==0) && (tab[1]=='ob'))	{
-			this.getSapOPartInfoStore().clearFilter();
+			me.getSapOPartInfoStore().clearFilter();
 		} else if ((tab[0].localeCompare("ts")==0) && (tab[1]=='sm'))	{
-			this.getSapSymptomInfoStore().clearFilter();
+			me.getSapSymptomInfoStore().clearFilter();
 		}
 		
 	},
 	
 	grafikFilter: function(n, d)	{
-		alert(n);
+		//alert(n);
+		var me=this;
 		if (n.localeCompare("dam")==0)	{
-			this.getSapDamageInfoStore().clearFilter(true);
-			this.getSapDamageInfoStore().filter('damage',d.kode);
+			me.getSapDamageInfoStore().clearFilter(true);
+			me.getSapDamageInfoStore().filter('damage',d.kode);
 		} else if (n.localeCompare("cau")==0)	{
-			this.getSapCauseInfoStore().clearFilter(true);
-			this.getSapCauseInfoStore().filter('cause',d.kode);
+			me.getSapCauseInfoStore().clearFilter(true);
+			me.getSapCauseInfoStore().filter('cause',d.kode);
 		} else if (n.localeCompare("opt")==0)	{
-			this.getSapOPartInfoStore().clearFilter(true);
-			this.getSapOPartInfoStore().filter('opart',d.kode);
+			me.getSapOPartInfoStore().clearFilter(true);
+			me.getSapOPartInfoStore().filter('opart',d.kode);
+		} else if (n.localeCompare("sym")==0)	{
+			me.getSapSymptomInfoStore().clearFilter(true);
+			me.getSapSymptomInfoStore().filter('symptom',d.kode);
 		}
-		//*/
 	},
-    
+	
+	hdUplBpm3: function(btn)	{
+		var tpl = new Ext.XTemplate(
+			'File processed on the server.<br />',
+			'Name: {fileName}<br />',
+			'Size: {fileSize:fileSize}'
+		);
+		var msg = function(title, msg) {
+			Ext.Msg.show({
+				title: title,
+				msg: msg,
+				minWidth: 200,
+				modal: true,
+				icon: Ext.Msg.INFO,
+				buttons: Ext.Msg.OK
+			});
+		};
+
+		var form = btn.up('form').getForm();
+		if(form.isValid()){
+			form.submit({
+				url: 'file-upload.php',
+				waitMsg: 'Uploading your file...',
+				success: function(fp, o) {
+					msg('Success', tpl.apply(o.result));
+				}
+			});
+		}
+	},
+	
+	hdUplBiaya: function(btn)	{
+		
+	},
+	
+	hdUplCM: function(btn)		{
+		
+	}
+	
 });

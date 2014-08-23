@@ -12,7 +12,7 @@ Ext.define('rcm.model.SapHistori', {
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'php/sap/rHistori.php'
+			read: 'ci/index.php/sap/rHistori'
         },
         reader: {
             type: 'json',
