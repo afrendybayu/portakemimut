@@ -65,12 +65,19 @@ class rWOjml extends CI_Controller {
 			$this->load->model('sap');
 			$hsl = $this->sap->get_selisih_WO();
 			
-			//print_r($hsl);
-			if (isset($hsl[$group-1]->jml))	{
-				$sap->jml = $hsl[$group-1]->jml;
-				$sap->persen = $hsl[$group-1]->persen;
+			//echo "group: $group, jml: ".count($hsl)."<br/>";
+			//print_r($hsl); echo "<br/>";
+			if (isset($hsl))	{
+				for ($i=0; $i<count($hsl); $i++)	{
+					if ($hsl[$i]->flak==$group)	{
+						//echo "sampe sini<br/>";
+						$sap->jml = $hsl[$i]->jml;
+						$sap->persen = $hsl[$i]->persen;
+						break;
+					}
+				}
 			}
-			else {
+			if (!isset($sap))	{
 				$sap->jml = 0;
 				$sap->persen = 0;
 			}

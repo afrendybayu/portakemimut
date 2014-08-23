@@ -6,7 +6,7 @@ Ext.define('rcm.view.laporan.EPO', {
 	requires: [
 		'rcm.view.laporan.EPOCol'
 		,'rcm.view.laporan.EPOPie'
-		,'rcm.view.laporan.SpeedoSap'
+	//	,'rcm.view.laporan.SpeedoSap'
 	//	'rcm.view.laporan.WOStack'
 	],
 	

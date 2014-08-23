@@ -1,5 +1,5 @@
 // afrendyBayu,26Jan2014 //
-Ext.define('rcm.view.lapobama.SpeedoSap', {
+Ext.define('rcm.view.laporan.SpeedoSap', {
     xtype: 'tSapSpeedo',
     //alias: 'widget.tAvSpeedo',
 	extend: 'Chart.ux.Highcharts',
@@ -9,14 +9,13 @@ Ext.define('rcm.view.lapobama.SpeedoSap', {
 	min: 0,
 	hijau:10,
 	kuning:40,
-	
 
 	ukur: 15,
 	loadMask: true,
 	
 	series : [{
 		type: 'gauge',
-		name: 'persen',
+		name: 'av',
 		tooltip: {
 			valueSuffix: 'Persen'
 		},

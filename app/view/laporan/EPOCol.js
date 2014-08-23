@@ -6,7 +6,7 @@ Ext.define('rcm.view.laporan.EPOCol', {
 	
 	series : [{
 		colorField: 'color',
-		dataIndex: 'av',
+		dataIndex: 'wo',
 		name: 'Maintenance Order'
 	}],
 	

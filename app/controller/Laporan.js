@@ -20,7 +20,7 @@ Ext.define('rcm.controller.Laporan', {
 		,'lapobama.ReHome'
 		,'lapobama.SpeedoAv'
 		,'lapobama.Av2Thn'
-		,'lapobama.SpeedoSap'
+		//,'lapobama.SpeedoSap'
     ],
 
     controllers: [
