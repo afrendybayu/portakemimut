@@ -36,7 +36,41 @@ Ext.define('rcm.controller.Sap', {
         me.control({
 			
 		});
-    }
-    
+    },
+
+	
+	
+	ubahLabelWO: function()	{
+		var me=this;
+		//console.log("onLauch SAP");
+		me.getWoOpen7Store().load({
+			scope: this,
+			callback: function(rec) {
+				Ext.getCmp('wo3s7').setText(rec[0].get('teks'));
+			}
+		});
+		me.getWoOpen30Store().load({
+			scope: this,
+			callback: function(rec) {
+				Ext.getCmp('wo7s30').setText(rec[0].get('teks'));
+			}
+		});
+		me.getWoOpen60Store().load({
+			scope: this,
+			callback: function(rec) {
+				Ext.getCmp('wo30s60').setText(rec[0].get('teks'));
+			}
+		});
+		me.getWoOpenL60Store().load({
+			scope: this,
+			callback: function(rec) {
+				Ext.getCmp('wo60').setText(rec[0].get('teks'));
+			}
+		});
+	},
+	
+	onLaunch: function() {
+		this.ubahLabelWO();
+	},
     
 });

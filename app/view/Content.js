@@ -25,12 +25,14 @@ Ext.define('rcm.view.Content', {
     initComponent: function() {
 		var me=this;
 		me.items = [{
+			/*
 			id: 'tu_ho',
 			title: 'Dashboard Home',
 			iconCls: 'Dashboard'
 			//icon: 'modul/icons/Dashboard.png',
 			//xtype: 'tHoChart',
-		},{	
+		},{
+		//*/
 			id: 'tu_re',
 			title: 'Reliability',
 			iconCls: 'Reliability',
@@ -99,7 +101,9 @@ Ext.define('rcm.view.Content', {
 				//}),
 			//*/
 			}]
+		/*
 		},{
+		
 			id: 'tu_kf',
 			title: 'Konfigurasi',
 			iconCls: 'Konfigurasi',
@@ -131,6 +135,7 @@ Ext.define('rcm.view.Content', {
 					icon: 'modul/icons/application_go.png'
 				}]
 			}]
+		//*/
 		}];
 		
 		me.callParent(arguments);

@@ -400,6 +400,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 	},
 
     onLaunch: function() {
+		//console.log("onLauch ExcelGrid");
 		Ext.getCmp('idwest').collapse();
 		//var t = new Date();
 		this.ubahFieldRH();
