@@ -13,13 +13,10 @@ Ext.define('rcm.controller.Sap', {
     ],
 
     stores: [
-        // TODO: add stores here
-        //'Hirarki'
-        'SapEPO'
-        ,'WoOpen7'
-        ,'WoOpen30'
-        ,'WoOpen60'
-        ,'WoOpenL60'
+		'SapEPO'
+        ,'WoOpen7','WoOpen30','WoOpen60','WoOpenL60'
+        ,'SapCause','SapDamage','SapOPart','SapSymptom'
+		,'SapCauseInfo','SapDamageInfo','SapOPartInfo','SapSymptomInfo',
     ],
     
     models: [
@@ -37,9 +34,7 @@ Ext.define('rcm.controller.Sap', {
 			
 		});
     },
-
-	
-	
+    
 	ubahLabelWO: function()	{
 		var me=this;
 		//console.log("onLauch SAP");

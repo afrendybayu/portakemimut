@@ -46,7 +46,7 @@ Ext.define('rcm.view.laporan.Chart', {
 			},{
 				id: 'ts_ca',
 				title: 'Cause',
-				//xtype: 'tSapDet',
+				xtype: 'tSapDet',
 				jdlGr: 'Grafik Cause Frequent',
 				jdlTb: 'Tabel Cause Frequent',
 				jdlDet: 'Info Detail Chart Cause Frequent',
@@ -57,7 +57,7 @@ Ext.define('rcm.view.laporan.Chart', {
 			},{
 				id: 'ts_da',
 				title: 'Damage',
-				//xtype: 'tSapDet',
+				xtype: 'tSapDet',
 				jdlGr: 'Grafik Damage Frequent',
 				jdlTb: 'Tabel Damage Frequent',
 				jdlDet: 'Info Detail Chart Damage Frequent',
@@ -68,7 +68,7 @@ Ext.define('rcm.view.laporan.Chart', {
 			},{
 				id: 'ts_ob',
 				title: 'Object Part',
-				//xtype: 'tSapDet',
+				xtype: 'tSapDet',
 				jdlGr: 'Grafik Object Part Frequent',
 				jdlTb: 'Tabel Object Part Frequent',
 				jdlDet: 'Info Detail Chart Object Part Frequent',
@@ -79,7 +79,7 @@ Ext.define('rcm.view.laporan.Chart', {
 			},{
 				id: 'ts_sm',
 				title: 'Symptom',
-				//xtype: 'tSapDet',
+				xtype: 'tSapDet',
 				jdlGr: 'Grafik Symptom Frequent',
 				jdlTb: 'Tabel Symptom Frequent',
 				jdlDet: 'Info Detail Chart Symptom Frequent',

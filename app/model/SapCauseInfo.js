@@ -5,11 +5,11 @@ Ext.define('rcm.model.SapCauseInfo', {
 		'Ext.data.proxy.Ajax'
 	],
 
-	fields: ['id','noorder','equip','damage','cause','opart','mainwork','tipe','downtime','biaya'],
+	fields: ['id','noorder','equip','damage','cause','opart','mainwork','tipe','downstart','biaya'],
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'php/sapfmea/rCauseInfo.php'
+			read: 'ci/index.php/sap/rFMEA/getCauseInfo'
         },
         reader: {
             type: 'json',
