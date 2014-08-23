@@ -61,13 +61,8 @@ class rFMEA extends CI_Controller {
 	
 	public function getCause()	{
 		try {
-			$group = $this->input->get('gr')?:'0';
 			$this->load->model('sap');
-			//$hsl = $this->sap->get_cause();
-			
-			//echo "group: $group, jml: ".count($hsl)."<br/>";
-			//print_r($hsl); echo "<br/>";
-			
+
 			$jsonResult = array(
 				'success' => true,
 				'sapcause' => $this->sap->get_cause()
@@ -90,6 +85,43 @@ class rFMEA extends CI_Controller {
 			$jsonResult = array(
 				'success' => true,
 				'sapcause' => $this->sap->get_cause_info($cause)
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		echo json_encode($jsonResult);
+	}
+	
+	public function getDamage()	{
+		try {
+			$this->load->model('sap');
+
+			$jsonResult = array(
+				'success' => true,
+				'sapdamage' => $this->sap->get_damage()
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		echo json_encode($jsonResult);
+	}
+
+	public function getDamageInfo()	{
+		try {
+			$damage = $this->input->get('cause')?:'';
+			$this->load->model('sap');
+
+			$jsonResult = array(
+				'success' => true,
+				'sapcause' => $this->sap->get_damage_info($damage)
 			);
 		}
 		catch (Exception $e){

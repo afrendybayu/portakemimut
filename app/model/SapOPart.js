@@ -11,7 +11,7 @@ Ext.define('rcm.model.SapOPart', {
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'php/sapfmea/rOPart.php'
+			read: 'ci/index.php/sap/rFMEA/getOPart'
         },
         reader: {
             type: 'json',

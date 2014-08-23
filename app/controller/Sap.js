@@ -6,6 +6,7 @@ Ext.define('rcm.controller.Sap', {
         'laporan.Chart'
         ,'laporan.UploadFile'
         ,'laporan.SpeedoSap'
+        ,'laporan.GridCause'
     ],
 
     controllers: [
@@ -24,14 +25,28 @@ Ext.define('rcm.controller.Sap', {
     ],
     
     refs: [{
-		ref: 'tabChart',
-		selector: 'tabChart'
+			ref: 'tabChart',
+			selector: 'tabChart'
+		},{
+			ref: 'taskGridCause',
+			selector: 'taskGridCause',
+			xtype: 'taskGridCause',
+			autoCreate: true
 	}],
     
     init: function() {
 		var me = this;
         me.control({
-			
+			//*
+			'taskGridCause': {
+				sapFilter: me.grafikFilter,
+				clrChartCause: me.grafikCauseClear
+			}
+			/*
+			'causechart': {
+				chartFilterCause: me.grafikCauseClick
+			}
+			//*/
 		});
     },
     
@@ -66,6 +81,30 @@ Ext.define('rcm.controller.Sap', {
 	
 	onLaunch: function() {
 		this.ubahLabelWO();
+	},
+	
+	grafikCauseClear: function()	{
+		var tab=rcmSettings.tsp.split("_");
+		if ((tab[0].localeCompare("ts")==0) && (tab[1]=='ca'))	{
+			this.getSapCauseInfoStore().clearFilter();
+		} else if ((tab[0].localeCompare("ts")==0) && (tab[1]=='da'))	{
+			this.getSapDamageInfoStore().clearFilter();
+		}
+		
+	},
+	
+	grafikFilter: function(n, d)	{
+		if (n.localeCompare("dam")==0)	{
+			this.getSapDamageInfoStore().clearFilter(true);
+			this.getSapDamageInfoStore().filter('damage',d.kode);
+		} else if (n.localeCompare("cau")==0)	{
+			this.getSapCauseInfoStore().clearFilter(true);
+			this.getSapCauseInfoStore().filter('cause',d.kode);
+		} else if (n.localeCompare("opt")==0)	{
+			this.getSapOPartInfoStore().clearFilter(true);
+			this.getSapOPartInfoStore().filter('opart',d.kode);
+		}
+		//*/
 	},
     
 });
