@@ -2,8 +2,6 @@
 Ext.define('rcm.view.laporan.UploadFile', {
 	xtype: 'tUploadfile',
 	extend: 'Ext.form.Panel',
-	//width:300,
-	//height:100,
 	
 	require: [
 		'Ext.form.TextField'

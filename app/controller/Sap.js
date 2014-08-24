@@ -147,7 +147,8 @@ Ext.define('rcm.controller.Sap', {
 		var form = btn.up('form').getForm();
 		if(form.isValid()){
 			form.submit({
-				url: 'file-upload.php',
+				//url: 'file-upload.php',
+				url: 'ci/index.php/sap/rUpload/getUplBpm3',
 				waitMsg: 'Uploading your file...',
 				success: function(fp, o) {
 					msg('Success', tpl.apply(o.result));

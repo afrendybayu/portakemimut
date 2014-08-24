@@ -14,6 +14,46 @@ if ( ! function_exists('numtoa'))	{
 	}
 }
 
+if ( ! function_exists('ambilFile'))	{
+	function ambilFile($f)	{
+		try {
+			$file = $_FILES[$f];
+			$fName = $file['name'];
+			$fType = $file['type'];
+			$fSize = $file['size'];
+			$fLokasi = $file['tmp_name'];
+			if (!$fSize) {
+				$fSize = $_SERVER['CONTENT_LENGTH'];
+			}
+
+			$max_upload = (int)(ini_get('upload_max_filesize'));
+			$max_post = (int)(ini_get('post_max_size'));
+			$memory_limit = (int)(ini_get('memory_limit'));
+			$upload_mb = min($max_upload, $max_post, $memory_limit);
+				
+				
+			switch ($file['error']) {
+				case UPLOAD_ERR_OK:
+					break;
+				case UPLOAD_ERR_NO_FILE:
+					throw new RuntimeException('No file sent.');
+				case UPLOAD_ERR_INI_SIZE:
+				case UPLOAD_ERR_FORM_SIZE:
+					throw new RuntimeException("Exceeded filesize limit.");
+				default:
+					throw new RuntimeException('Unknown errors.');
+			}
+			$hsl = array("sukses"=>true, "nama"=>$fName, "lokasi"=>$fLokasi,
+					"size"=>$fSize);
+		}
+		catch (Exception $e)	{
+			$hsl = array("sukses"=>true, "error"=>$e->getMessage());
+		}
+		//echo "nama: $fileName, size: $fileSize, lokasi: $fileLokasi<br/>";
+		return $hsl;
+	}
+}
+
 if ( ! function_exists('cariLokasi'))	{
 	function cariLokasi($x)	{
 		$l = explode("-",$x);
