@@ -19,7 +19,7 @@ Ext.define('rcm.view.nav.AppHeader', {
 			flex: 1
 		}, {
 			
-			xtype : 'authlogin',
+			xtype : 'authlogin'
 			//title : 'login'
 		},{
 			xtype : 'authlogout',

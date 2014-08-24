@@ -14,7 +14,7 @@ Ext.define('rcm.view.laporan.SapCause', {
 		var me=this;
 		me.series = [{
 			dataIndex: 'jml',
-			name: me.param,
+			name: me.param
 		}];
 		me.store= me.dstore;
 		me.chartConfig= {
@@ -25,11 +25,11 @@ Ext.define('rcm.view.laporan.SapCause', {
 				duration: 1500,
 					easing: 'swing'
 				},
-				backgroundColor: '#d9e9ef',
+				backgroundColor: '#d9e9ef'
 			},
 			
 			title : {
-				text: me.jdl,
+				text: me.jdl
 			},
 			yAxis : {
 				title : {
@@ -75,9 +75,9 @@ Ext.define('rcm.view.laporan.SapCause', {
 				align : 'right',
 				verticalAlign : 'top',
 				x : -10,
-				y : 100,
+				y : 100
 				//borderWidth : 0
-			},
+			}
 		};
 		me.callParent(arguments);
 	}

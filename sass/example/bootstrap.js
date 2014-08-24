@@ -2222,7 +2222,7 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.tSapSpeedo"
   ],
   "rcm.view.laporan.UploadFile": [
-    "widget.uploadfile"
+    "widget.tUploadfile"
   ],
   "rcm.view.laporan.WOComp": [
     "widget.tWOComp"

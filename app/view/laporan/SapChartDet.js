@@ -21,7 +21,7 @@ Ext.define('rcm.view.laporan.SapChartDet', {
 			region: 'center',
 			dstore: me.dstore,
 			jdl: me.jdlGr,
-			param: me.param,
+			param: me.param
 		},{
 			title: me.jdlTb,
 			xtype: 'taskGridCause',
@@ -30,7 +30,7 @@ Ext.define('rcm.view.laporan.SapChartDet', {
 			width:320,
 			collapsible: true,
 			split: true,
-			icon: 'modul/icons/edit1.png',
+			iconCls: 'editEvent',
 			btnFilter: me.btnFilter
 		},{
 			collapsible: true,
@@ -42,7 +42,7 @@ Ext.define('rcm.view.laporan.SapChartDet', {
 			title: me.jdlDet,
 			dstore: me.dstoreD,
 			xtype: 'taskGridCauseInfo',
-			icon: 'modul/icons/more.png',
+			iconCls: 'more'
 		}];
 		me.callParent(arguments);
 	}

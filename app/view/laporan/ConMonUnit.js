@@ -14,7 +14,7 @@ Ext.define('rcm.view.laporan.ConMonUnit', {
 		var me=this;
 		me.series = [{
 			dataIndex: me.param,
-			name: 'Maintenance Order',
+			name: 'Maintenance Order'
 		}];
 		me.chartConfig = {
 				colors: ['#FF6600'],
@@ -29,7 +29,7 @@ Ext.define('rcm.view.laporan.ConMonUnit', {
 				},
 
 				title : {
-					text: me.jdl,
+					text: me.jdl
 					//x: -40
 				},
 				xAxis : [{

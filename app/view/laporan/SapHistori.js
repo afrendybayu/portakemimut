@@ -11,7 +11,7 @@ Ext.define('rcm.view.laporan.SapHistori', {
 			name: 'Within',
 			marker: {
                	lineWidth: 2,
-               	lineColor: 'green',
+               	lineColor: 'green'
 			}
 		},{
 			type: 'column',
@@ -19,7 +19,7 @@ Ext.define('rcm.view.laporan.SapHistori', {
 			name: 'Overdue',
 			marker: {
                	lineWidth: 2,
-               	lineColor: 'white',
+               	lineColor: 'white'
                	//fillColor: 'white'
 			}
 		},{
@@ -51,8 +51,8 @@ Ext.define('rcm.view.laporan.SapHistori', {
 			},
 			xAxis : [{
 				title : {
-					text : 'Waktu',
-				},
+					text : 'Waktu'
+				}
 			}],
 			yAxis : [{
 				title : {
@@ -93,7 +93,7 @@ Ext.define('rcm.view.laporan.SapHistori', {
 							//return this.y;
 						}
 					}
-				},
+				}
 			},
 			tooltip : {
 				formatter : function() {

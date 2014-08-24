@@ -14,7 +14,7 @@ Ext.define('rcm.view.laporan.WOManCP', {
 
 			series : [{
 				dataIndex: 'woc',
-				name: 'Persen Teco',
+				name: 'Persen Teco'
 			}],
 			store: 'HoMan',
 			xField: 'nama',
@@ -31,7 +31,7 @@ Ext.define('rcm.view.laporan.WOManCP', {
 				},
 
 				title : {
-					text: me.jdl,
+					text: me.jdl
 					//x: -40
 				},
 				xAxis : [{
@@ -67,7 +67,7 @@ Ext.define('rcm.view.laporan.WOManCP', {
 								return this.y+'%';
 							}
 						}
-					},
+					}
 				},
 				tooltip : {
 					formatter : function() {

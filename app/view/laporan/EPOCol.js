@@ -27,7 +27,7 @@ Ext.define('rcm.view.laporan.EPOCol', {
 				backgroundColor: '#d9e9ef'
 			},
 			title : {
-				text: me.jdl,
+				text: me.jdl
 				//x: -40
 			},
 			xAxis : [{
@@ -66,7 +66,7 @@ Ext.define('rcm.view.laporan.EPOCol', {
 							return this.y;
 						}
 					}
-				},
+				}
 			},
 			tooltip : {
 				formatter : function() {

@@ -33,7 +33,7 @@ Ext.define('rcm.view.laporan.GridCause', {
 		};
 		me.bbar = [{
 			text: 'Hapus Filter',
-			icon: 'modul/icons/clrFilter.png',
+			iconCls: 'clrFilter',
 			scope: this,
 			handler: this.clearChartCause
 		}];

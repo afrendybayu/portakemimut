@@ -31,7 +31,7 @@ Ext.define('rcm.view.laporan.SapDamage', {
 				position: 'bottom',
 				fields: ['jml'],
 				grid: true,
-				minimum: 0,
+				minimum: 0
 			},{
 				title: 'Damage',
 				type: 'Category',
@@ -49,7 +49,7 @@ Ext.define('rcm.view.laporan.SapDamage', {
 				highlight: true,
 				axis: 'bottom',
 				xField: 'nama',
-				yField: ['jml'],
+				yField: ['jml']
 		}];
 		me.items = [{
 			type: 'text',

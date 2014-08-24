@@ -2,7 +2,7 @@
 Ext.define('rcm.model.SapEPO', {
     extend: 'Ext.data.Model',
     requires:[
-		'Ext.data.proxy.Ajax',
+		'Ext.data.proxy.Ajax'
     ],
     fields: [ 'nama','kode','color',
 				{ name:'wo',type:'int' },

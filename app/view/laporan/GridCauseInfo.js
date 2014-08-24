@@ -26,6 +26,6 @@ Ext.define('rcm.view.laporan.GridCauseInfo', {
 		me.addEvents(
 			//'grcause'
         );
-	},
+	}
 	
 });

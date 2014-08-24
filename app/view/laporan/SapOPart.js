@@ -28,7 +28,7 @@ Ext.define('rcm.view.laporan.SapOPart', {
 				fields: ['jml'],
 				grid: true,
 				minimum: 0,
-				maximum: 250,
+				maximum: 250
 			},{
 				title: 'Object Part',
 				type: 'Category',
@@ -46,7 +46,7 @@ Ext.define('rcm.view.laporan.SapOPart', {
 				highlight: true,
 				axis: 'bottom',
 				xField: 'nama',
-				yField: ['jml'],
+				yField: ['jml']
 		}];
 		me.items = [{
 			type: 'text',

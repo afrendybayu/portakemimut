@@ -33,7 +33,7 @@ Ext.define('rcm.view.laporan.WOStack', {
 			colors:['#FF0000', '#00FF00'],
 			
 			title : {
-				text:'Work Order Compliance',
+				text:'Work Order Compliance'
 			},
 			yAxis : {
 				max: 100,

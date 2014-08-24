@@ -16,13 +16,13 @@ Ext.define('rcm.view.lapobama.AvHome', {
 
 			series : [{
 				dataIndex: 'th1',
-				name: '2013',
+				name: '2013'
 			},{
 				dataIndex: 'avg',
-				name: 'YTD/Avg 2014',
+				name: 'YTD/Avg 2014'
 			},{
 				dataIndex: 'bln',
-				name: 'Feb 2014',
+				name: 'Feb 2014'
 			/*
 			},{
 				type: 'spline',
@@ -45,7 +45,7 @@ Ext.define('rcm.view.lapobama.AvHome', {
 				},
 
 				title : {
-					text: me.jdl,
+					text: me.jdl
 					//x: -40
 				},
 				xAxis : [{

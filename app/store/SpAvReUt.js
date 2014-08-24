@@ -1,7 +1,7 @@
 /* AfrendyBayu 24Apr2014 */
 Ext.define('rcm.store.SpAvReUt', {
 	extend: 'Ext.data.Store',
-	model: 'rcm.model.AvSpeedo',
+	model: 'rcm.model.AvSpeedo'
 	
 	
 	/*

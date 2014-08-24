@@ -56,7 +56,7 @@ Ext.define('rcm.controller.Sap', {
 			},
 			'#btnUplCM': {
 				click: me.hdUplCM
-			},
+			}
 		});
     },
     
