@@ -32,7 +32,7 @@ Ext.define('rcm.view.laporan.UploadFile', {
 						id: 'btnUplBpm3',
 						xtype: 'button',
 						width: 100,
-						text: 'Upload'
+						text: 'Upload BPM3'
 				}]
 			},{
 				xtype: 'fieldcontainer',
@@ -53,12 +53,11 @@ Ext.define('rcm.view.laporan.UploadFile', {
 						id: 'btnUplBiaya',
 						xtype: 'button',
 						width: 100,
-						text: 'Upload'
+						text: 'Upload Biaya'
 				}]
 			},{
 				xtype: 'fieldcontainer',
 				layout: 'hbox',
-				//combineErrors: true,
 				msgTarget : 'side',
 				items: [{	
 						xtype: 'filefield',
@@ -74,7 +73,7 @@ Ext.define('rcm.view.laporan.UploadFile', {
 						id: 'btnUplCM',
 						xtype: 'button',
 						width: 100,
-						text: 'Upload'
+						text: 'Upload ConMon'
 				}]
 		}];
 		me.callParent(arguments);
