@@ -177,15 +177,15 @@ Ext.define('rcm.controller.ExcelGrid', {
 					rcmSettings.aaaaa = dd;
 					//dd.destroy();
 					//this.getEventStore.destroy();
-					/*
+					//*
 					dd.destroy({
 						
 						success: function(dd, operation) {
-							console.log('sukses hapusFMEAClick');
+							//console.log('sukses hapusFMEAClick');
 							this.getTaskFMEAGrid().getView().refresh();
 						},
 						callback: function(dd, operation) {
-							console.log('callback hapusFMEAClick');
+							//console.log('callback hapusFMEAClick');
 							//alert('callback hapusFMEAClick');
 						},
 					});
