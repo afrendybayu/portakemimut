@@ -14,7 +14,8 @@ Ext.define('rcm.controller.Sap', {
     ],
 
     stores: [
-		'SapEPO'
+		'HoTeco','HoMan','HoOrderC'
+		,'SapEPO'
         ,'WoOpen7','WoOpen30','WoOpen60','WoOpenL60'
         ,'SapCause','SapDamage','SapOPart','SapSymptom'
 		,'SapCauseInfo','SapDamageInfo','SapOPartInfo','SapSymptomInfo'
@@ -129,9 +130,12 @@ Ext.define('rcm.controller.Sap', {
 	
 	hdUplBpm3: function(btn)	{
 		var tpl = new Ext.XTemplate(
-			'File processed on the server.<br />',
-			'Name: {fileName}<br />',
-			'Size: {fileSize:fileSize}'
+			'File processed on the server.<br/>',
+			'Name: {fNama}<br/>',
+			'Size: {fSize}.<br/>',
+			'Read time : {tBacaF}.<br/>',
+			'Save time: {tSaveF}.<br/>',
+			'Used Memory: {mem}.<br/>'
 		);
 		var msg = function(title, msg) {
 			Ext.Msg.show({
@@ -145,16 +149,21 @@ Ext.define('rcm.controller.Sap', {
 		};
 
 		var form = btn.up('form').getForm();
+		rcmSettings.uuuu = form;
+		//*
 		if(form.isValid()){
 			form.submit({
-				//url: 'file-upload.php',
 				url: 'ci/index.php/sap/rUpload/getUplBpm3',
 				waitMsg: 'Uploading your file...',
 				success: function(fp, o) {
 					msg('Success', tpl.apply(o.result));
+				},
+				falure: function(fp, o)	{
+					Ext.Msg.alert("Error", Ext.JSON.decode(this.response.responseText).message);
 				}
 			});
 		}
+		//*/
 	},
 	
 	hdUplBiaya: function(btn)	{

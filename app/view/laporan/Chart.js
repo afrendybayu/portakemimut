@@ -7,6 +7,7 @@ Ext.define('rcm.view.laporan.Chart', {
     requires: [
 		//'rcm.view.laporan.SapChartDet',
 		'rcm.view.laporan.EPO'
+		,'rcm.view.laporan.WOComp'
 		//'rcm.view.laporan.ConMon',
 		//'laporan.Chart',
         //'rcm.view.laporan.UploadFile',
@@ -34,7 +35,7 @@ Ext.define('rcm.view.laporan.Chart', {
 			},{
 				id: 'ts_wo',
 				title: 'WO Compliance',
-				//xtype:'tWOComp'
+				xtype:'tWOComp'
 			},{
 				id: 'ts_hi',
 				title: 'Condition Monitoring',

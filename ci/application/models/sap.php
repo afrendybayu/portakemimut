@@ -123,7 +123,20 @@ class Sap extends CI_Model {
 		
 		return $query->result();
 	}
+	
+	function get_teco_manwork()	{
+		$sql =	"select refer.nama, (count(teco)) as tot, ".
+				"sum(if(teco!=0,1,0)) as `teco`, ".
+				"sum(if(teco!=0,0,1)) as `open`,".
+				"ROUND((100*(sum(if(teco!=0,1,0)))/count(teco)),2) as woc, ".
+				"ROUND((100*(sum(if(teco!=0,0,1)))/count(teco)),2) as woo ".
+				"from sap left join refer on refer.kode = sap.manwork ".
+				"where manwork != '' group by manwork";
 
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
 	function get_histori($thn)	{
 		//*
 		$sql = "SELECT COUNT(*) AS jml,MONTH(planend)-1 AS nbln,DATE_FORMAT(planend, '%b') AS bulan ".

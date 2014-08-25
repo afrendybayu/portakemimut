@@ -4,9 +4,10 @@ Ext.define('rcm.view.laporan.WOComp', {
 	extend: 'Ext.container.Container',
 
 	requires: [
-		'rcm.view.laporan.WOManCP',
-		'rcm.view.laporan.GridWork',
-		'rcm.view.laporan.WOStack'
+		'rcm.view.laporan.WOManCP'
+		,'rcm.view.laporan.GridWork'
+		,'rcm.view.laporan.WOStack'
+		,'rcm.view.laporan.WoPie'
 	],
 	
 	layout: {
@@ -32,7 +33,7 @@ Ext.define('rcm.view.laporan.WOComp', {
 				align: 'stretch'
 			},
 			items: [{
-					xtype: 'tHoPie',
+					xtype: 'tWoPie',
 					flex: 1,
 					jdl: 'WO Compliance'
 				},{

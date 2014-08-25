@@ -22,9 +22,11 @@ if ( ! function_exists('ambilFile'))	{
 			$fType = $file['type'];
 			$fSize = $file['size'];
 			$fLokasi = $file['tmp_name'];
+			/*
 			if (!$fSize) {
 				$fSize = $_SERVER['CONTENT_LENGTH'];
 			}
+			//*/
 
 			$max_upload = (int)(ini_get('upload_max_filesize'));
 			$max_post = (int)(ini_get('post_max_size'));
@@ -47,7 +49,7 @@ if ( ! function_exists('ambilFile'))	{
 					"size"=>$fSize);
 		}
 		catch (Exception $e)	{
-			$hsl = array("sukses"=>true, "error"=>$e->getMessage());
+			$hsl = array("sukses"=>false, "error"=>$e->getMessage());
 		}
 		//echo "nama: $fileName, size: $fileSize, lokasi: $fileLokasi<br/>";
 		return $hsl;
