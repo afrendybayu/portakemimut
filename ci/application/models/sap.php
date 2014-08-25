@@ -138,57 +138,16 @@ class Sap extends CI_Model {
 	}
 	
 	function get_histori($thn)	{
-		//*
-		$sql = "SELECT COUNT(*) AS jml,MONTH(planend)-1 AS nbln,DATE_FORMAT(planend, '%b') AS bulan ".
-				",IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco>0,1,0) AS selesai ".
-				"FROM sap WHERE YEAR(planend)=$thn ".
-				"GROUP BY nbln,selesai";
+		$sql =	"SELECT DATE_FORMAT(planend, '%b') AS bulan, MONTH(planend)-1 AS nbln ".
+				",SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,0,1)) AS `teco` ".
+				",SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)) AS `open` ".
+				",SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1)) AS jml ".
+				",ROUND((SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)))*100/(SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1))),2) as persen ".
+				"FROM sap WHERE YEAR(planstart)=$thn GROUP BY nbln";
+		//echo "sql: $sql";		
+		
 		$query = $this->db->query($sql);
-
-		$hitori = (object) array();	$kk=-1;
-		//$obj = ;
-		for ($i=0; $i<12; $i++)		{
-			$hitori->$i->teco = 0;
-			$hitori->$i->open = 0;
-			$hitori->$i->persen = 0;
-			$hitori->$i->jml = 0;
-			//$hitori->$i->bulan = $i;
-			//
-		}
-		print_r($hitori); echo "<br/>";
-		
-		echo "----------<br/>";
-		$hsl = $query->result();
-		for ($i=0; $i<count($hsl); $i++)		{
-			$bln = $hsl[$i]->nbln;
-			print_r($hsl[$i]);	echo "----------".$hsl[$i]->nbln."<br/>";
-			
-			if ($hsl[$i]->selesai)		$hitori->$bln->teco = $hsl[$i]->jml;
-			else						$hitori->$bln->open = $hsl[$i]->jml;
-			//$hitori->$bln->persen = $hsl[$i]->persen;
-			
-			//print_r($hitori); echo "<br/>";
-		}
-		
-		echo "----------<br/>";
-		print_r($hitori);
-		/*
-		$hitori = array();	$kk=-1;
-		foreach ($query->result() as $row)	{
-			print_r($row);
-			if ($kk!=$row->nbln)	{
-				$kk++;
-				$hitori[$kk]['persen'] = $hitori[$kk]['open']*100/($hitori[$kk]['teco']+$hitori[$kk]['open']);
-			}
-			$hitori[$kk]['bulan'] = $row->bulan;
-			if ($row['selesai'])	$hitori[$kk]['teco'] = $row->jml;
-			else					$hitori[$kk]['open'] = $row->jml;
-			$hitori[$kk]['persen'] = number_format($hitori[$kk]['open']*100/($hitori[$kk]['teco']+$hitori[$kk]['open']),2);
-		}
-		//*/
-		//print_r($hitori);
-		
-		//return $hitori;
+		return $query->result();
 	}
 
 }

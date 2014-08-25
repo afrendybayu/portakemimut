@@ -77,6 +77,7 @@ Ext.define('rcm.view.laporan.Chart', {
 				dstore: 'SapOPart',
 				dstoreD:'SapOPartInfo',
 				btnFilter: 'opt'
+			/*
 			},{
 				id: 'ts_sm',
 				title: 'Symptom',
@@ -88,6 +89,7 @@ Ext.define('rcm.view.laporan.Chart', {
 				dstore: 'SapSymptom',
 				dstoreD:'SapSymptomInfo',
 				btnFilter: 'sym'
+			//*/
 		}];
 
 		me.callParent(arguments);

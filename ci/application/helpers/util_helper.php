@@ -27,7 +27,16 @@ if ( ! function_exists('pad'))	{
 if ( ! function_exists('nmbulan'))	{
 	function nmbulan($i, $l)	{
 		$bln   = array("Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des");
-		$bulan = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desesember");
+		$bulan = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+		
+		return ($l>0)?$bln[$i]:$bulan[$i];
+	}
+}
+
+if ( ! function_exists('nmMonth'))	{
+	function nmMonth($i, $l)	{
+		$bln   = array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+		$bulan = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
 		
 		return ($l>0)?$bln[$i]:$bulan[$i];
 	}
