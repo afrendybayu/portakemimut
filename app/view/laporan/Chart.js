@@ -24,11 +24,6 @@ Ext.define('rcm.view.laporan.Chart', {
 	initComponent: function() {
 		var me=this;
 		me.items = [{
-				id: 'ts_in',
-				title: 'Input Laporan',
-				xtype: 'tUploadfile',
-				margin: '10 10'
-			},{
 				id: 'ts_mo',
 				title: 'Maintenance Order',
 				xtype:'tEPO'
@@ -36,10 +31,12 @@ Ext.define('rcm.view.laporan.Chart', {
 				id: 'ts_wo',
 				title: 'WO Compliance',
 				xtype:'tWOComp'
+			/*
 			},{
 				id: 'ts_hi',
 				title: 'Condition Monitoring',
 				//xtype:'tConMon'
+			//*/
 			},{
 				id: 'ts_pdm',
 				title: 'Histori',
@@ -90,6 +87,11 @@ Ext.define('rcm.view.laporan.Chart', {
 				dstoreD:'SapSymptomInfo',
 				btnFilter: 'sym'
 			//*/
+			},{
+				id: 'ts_in',
+				title: 'Input Laporan',
+				xtype: 'tUploadfile',
+				margin: '10 10'
 		}];
 
 		me.callParent(arguments);

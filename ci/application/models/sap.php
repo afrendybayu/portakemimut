@@ -14,10 +14,11 @@ class Sap extends CI_Model {
     
     function get_selisih_WO()	{
 		$sql =	"select (datediff(curdate(), planend)) as beda, count(*) as jml ".
-				",ROUND((100*count(*)/(select count(*) from sap where downend='0000-00-00' and planend<curdate())),2) as persen ".
+				",ROUND((100*count(*)/(select count(*) from sap where teco=0 and planend<curdate())),2) as persen ".
 				",(select CASE WHEN beda<7 THEN 1 WHEN beda<30 THEN 2 WHEN beda<60 THEN 3 ELSE 4 END) AS flak ".
 				"from sap ".
-				"where downend='0000-00-00' and planend<curdate() group by flak";
+				"where teco=0 and planend<curdate() group by flak";
+		//		"where downend='0000-00-00' and planend<curdate() group by flak";
 		// WHEN beda<3 THEN 0 
 		$query = $this->db->query($sql);
 		
@@ -143,7 +144,7 @@ class Sap extends CI_Model {
 				",SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)) AS `open` ".
 				",SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1)) AS jml ".
 				",ROUND((SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)))*100/(SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1))),2) as persen ".
-				"FROM sap WHERE YEAR(planstart)=$thn GROUP BY nbln";
+				"FROM sap WHERE YEAR(planstart)=$thn GROUP BY nbln ORDER BY nbln ASC";
 		//echo "sql: $sql";		
 		
 		$query = $this->db->query($sql);
