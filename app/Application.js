@@ -16,7 +16,7 @@ Ext.define('rcm.Application', {
 		,'Laporan'
 		,'Sap'
 		,'Login'
-		//,'AvRe'
+		,'AvRe'
     ],
 
     stores: [
