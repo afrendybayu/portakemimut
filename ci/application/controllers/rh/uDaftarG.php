@@ -116,7 +116,7 @@ class uDaftarG extends CI_Controller {
 						throw new Exception("Waktu Konflik dengan Kegagalan Lain selama $crash jam");
 				}
 			}
-			return;
+//			return;
 			$ar=array();	$ar_av=array();	$ar_re=array();	$l=0; $m=0;
 			for ($k=0; $k<count($wkt->dt); $k++)	{
 				//echo "$k: ".$wkt->dt[$k].", event: ".$wkt->ev[$k]."<br/>";
