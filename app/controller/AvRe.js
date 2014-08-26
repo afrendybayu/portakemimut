@@ -3,7 +3,7 @@ Ext.define('rcm.controller.AvRe', {
     //*
     views: [
 		'lapobama.AvGroup'
-		,'lapobama.SpeedoAv',
+		,'lapobama.SpeedoAv'
     ],
 
     controllers: [

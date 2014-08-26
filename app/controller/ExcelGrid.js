@@ -12,7 +12,11 @@ Ext.define('rcm.controller.ExcelGrid', {
 		,'dataentry.FormGagal'
 		,'dataentry.IsiTabForm'
 		,'dataentry.FMEAGrid'
-		
+		,'dataentry.PropGrid'
+		,'dataentry.InfoFMEA'
+		,'dataentry.DaftarGagal'
+		,'Ext.ux.grid.FiltersFeature'
+		,'Ext.draw.Text'
     ],
 
     stores: [
@@ -176,22 +180,23 @@ Ext.define('rcm.controller.ExcelGrid', {
             buttons: Ext.Msg.YESNO,
             fn: function(response) {
                 if(response === 'yes') {
-					rcmSettings.aaaaa = grid.getStore();
-					//dd.destroy();
+					//rcmSettings.aaaaa = grid.getStore();
+					dd.destroy();
 					//this.getEventStore.destroy();
 					
-					//*
+					/*
 					dd.destroy({
 						
 						success: function(dd, operation) {
 							console.log('sukses hapusFMEAClick');
-							this.getTaskFMEAGrid().getView().refresh();
+							//this.getTaskFMEAGrid().getView().refresh();
 						},
 						callback: function(dd, operation) {
 							console.log('callback hapusFMEAClick');
 							//alert('callback hapusFMEAClick');
 						}
 					});
+					this.getTaskFMEAGrid().getView().refresh();
 					//*/
                 }
             }
@@ -436,7 +441,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		});
         //*/
         
-        /*
+        //*
         Ext.define('Ext.view.override.Table', {
 			override: 'Ext.view.Table',
 		 
