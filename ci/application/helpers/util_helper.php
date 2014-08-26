@@ -329,14 +329,19 @@ if ( ! function_exists('bwaktu'))	{
 		$dd = explode("-", $d);	
 		$tt = explode(":", $t);	
 		//print_r($dd); echo "<br/>";	print_r($tt); echo "<br/>";
-		
+		//echo "{$dd[0]} {$dd[1]} {$dd[2]} {$tt[0]} {$tt[1]} {$tt[2]}";
+		//echo "{$dd[0]} {$dd[1]} {$dd[2]} {$tt[0]} {$tt[1]}  ";
 		$w->thn = $dd[0];
 		$w->bln = $dd[1];
 		$w->tgl = $dd[2];
 		
-		$w->jam = isset($tt[0])?:0;
-		$w->min = isset($tt[1])?:0;
-		$w->det = isset($tt[2])?:0;
+		$w->jam = isset($tt[0])?$tt[0]:0;
+		$w->min = isset($tt[1])?$tt[1]:0;
+		$w->det = isset($tt[2])?$tt[2]:0;
+		
+		//$w->jam = $tt[0];
+		//$w->min = $tt[1];
+		//$w->det = $tt[2];
 		
 		$w->t = mktime( $w->jam,$w->min,$w->det, $w->bln,$w->tgl,$w->thn);
 		//echo "bwaktu() >> t: ".$w->t."<br/>";

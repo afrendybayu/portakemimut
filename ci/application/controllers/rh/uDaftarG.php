@@ -8,13 +8,13 @@ class uDaftarG extends CI_Controller {
 			$params = json_decode(file_get_contents('php://input'));
 			/*
 			$params = new stdClass();
-			$params->id = 'u22';
+			$params->id = 'u21';
 			$params->lok = '';
 			$params->nama = '';
-			$params->downt = '2014-07-08';
-			$params->downj = '10:30' ;
-			$params->upt = '2014-07-09';
-			$params->upj = '20:40'; 
+			$params->downt = '2014-08-15';
+			$params->downj = '01:00' ;
+			$params->upt = '2014-08-15';
+			$params->upj = '01:10'; 
 			$params->event = '4' ;		// 1: standby
 			$params->idevent = ''; 
 			$params->tipeev = '';
@@ -24,6 +24,7 @@ class uDaftarG extends CI_Controller {
 			if (!isset($params))	{
 				throw new Exception("Data Tidak ada !!");
 			}
+			
 			$edit = isset($params->edit)?$params->edit:0;
 			//echo "edit: $edit-----<br/>";
 			$aw = bwaktu($params->downt, $params->downj);
@@ -115,7 +116,7 @@ class uDaftarG extends CI_Controller {
 						throw new Exception("Waktu Konflik dengan Kegagalan Lain selama $crash jam");
 				}
 			}
-			
+			return;
 			$ar=array();	$ar_av=array();	$ar_re=array();	$l=0; $m=0;
 			for ($k=0; $k<count($wkt->dt); $k++)	{
 				//echo "$k: ".$wkt->dt[$k].", event: ".$wkt->ev[$k]."<br/>";
@@ -332,9 +333,9 @@ class uDaftarG extends CI_Controller {
 		
 		
 		//$hasil['json'] = $jsonResult;
-		$this->output->set_content_type('application/json');
-		$this->output->set_output(json_encode($jsonResult));
-		//echo json_encode($jsonResult);
+		//$this->output->set_content_type('application/json');
+		//$this->output->set_output(json_encode($jsonResult));
+		echo json_encode($jsonResult);
 		
 	}
 }
