@@ -1,25 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Sesi extends CI_Controller {
+class Coba extends CI_Controller {
 	function __construct() {
         parent::__construct();
-		
+		$this->load->model('login');
     }
 	
 	public function index()	{
+		
 		try {
-			
-			$session_data = $this->session->userdata('log_sesi');
-			//echo $session_data['nama'];
-			
-			$rule = array(
-				'userid' 	=> $session_data['userid'],
-				'level'		=> $session_data['nama']			
-			);
-			
+			$query = $this->login->getLogAuth();
+			foreach ($query->result() as $row)
+			{
+			   $logid[] = array(
+					"userid"=>$row->userid,
+					"pass"=>$row->pass,
+					"nama"=>$row->nama);
+			}
 			$jsonResult = array(
 						'success' => true,
-						'rule' => $rule
+						'user' => $logid
 					);
 			echo json_encode($jsonResult);
 		}
@@ -28,12 +28,10 @@ class Sesi extends CI_Controller {
 				'success' => false,
 				'message' => $e->getMessage()
 			);	
-		}
-		
-		
-	
-	
+		}	
 	}
+	
+	
 }
 
 /* End of file welcome.php */

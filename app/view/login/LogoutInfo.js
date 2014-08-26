@@ -1,13 +1,14 @@
 Ext.define('rcm.view.login.LogoutInfo', {
-	extend: 'Ext.form.Panel',
-	xtype: 'authlogout',
-	layout: 'hbox',
-	frame : true,
-	id	: 'p_logout',	
+	extend	: 'Ext.form.Panel',
+	xtype	: 'authlogout',
+	layout	: 'hbox',
+	frame 	: true,
+	id		: 'p_logout',	
+	//store	: 'LoginAuth',
 	
 	items: [{
 				xtype : 'text',
-				text : 'welcome administrator'
+				text : 'welcome '
 			
 			},{
 				xtype : 'button',
@@ -16,22 +17,10 @@ Ext.define('rcm.view.login.LogoutInfo', {
 				// action : 'logout',
 				
 								
-			}]
-	/*		
-	initComponent : function(){
-		this.buttons = [{
-			name : 'login_btn',
-			text : 'Login',
-			action : 'login',
-			id : 'btn_login'
+			}],
+			
+	 initComponent : function(){
 		
-		},{
-			name : 'logout_btn',
-			text : 'LogOut',
-			action : 'logout',
-			id : 'btn_logout',
-			hidden : true
-		}];
 	
 		this.callParent(arguments);
 	} //*/
