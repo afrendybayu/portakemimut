@@ -12,7 +12,7 @@ Ext.define('rcm.model.HoOrderC', {
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'php/utama/rHoOrderC.php'
+			read: 'ci/index.php/home/rOrderCost/sapOCost'
         },
         reader: {
             type: 'json',

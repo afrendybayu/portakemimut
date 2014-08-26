@@ -165,7 +165,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		rec.set('idopart',drow.opart);
 	},
 	
-	hapusFMEAClick: function(dd, drow)	{
+	hapusFMEAClick: function(dd, drow, grid)	{
 		var de=this;
 		var ee=dd.get('eql')+"<br/>Object Part "+dd.get('opart');
 		Ext.Msg.show({
@@ -174,18 +174,19 @@ Ext.define('rcm.controller.ExcelGrid', {
             buttons: Ext.Msg.YESNO,
             fn: function(response) {
                 if(response === 'yes') {
-					rcmSettings.aaaaa = dd;
+					rcmSettings.aaaaa = grid.getStore();
 					//dd.destroy();
 					//this.getEventStore.destroy();
+					
 					//*
 					dd.destroy({
 						
 						success: function(dd, operation) {
-							//console.log('sukses hapusFMEAClick');
+							console.log('sukses hapusFMEAClick');
 							this.getTaskFMEAGrid().getView().refresh();
 						},
 						callback: function(dd, operation) {
-							//console.log('callback hapusFMEAClick');
+							console.log('callback hapusFMEAClick');
 							//alert('callback hapusFMEAClick');
 						}
 					});
@@ -244,7 +245,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		tFG.show();
 	},
 	
-	hpsDGClick: function(task)	{
+	hpsDGClick: function(task,row,grid)	{
 		//alert("Controller hpsDG ganti ke ExcelGrid");
 		var de = this,
 			ee = task.get('event')+" "+task.get('nama');
@@ -255,11 +256,21 @@ Ext.define('rcm.controller.ExcelGrid', {
             buttons: Ext.Msg.YESNO,
             fn: function(response) {
                 if(response === 'yes') {
-                    task.destroy({
+					console.log("sukses mau hapus");
+					rcmSettings.cccccc = de;
+					rcmSettings.dddddd = this;
+					//task.destroy();
+					console.log("----- mulai running hour1 ");
+					//de.refreshRH();
+					de.getRunningHourStore().reload();
+					console.log("----- mulai running hour2");
+					//de.getTaskDaftarGagal().getView().refresh();
+					console.log("----- mulai running hour3");
+					/*
+                    task.store.remove({
                         success: function(task, operation) {
 							console.log("----- mulai running hour");
-							de.refreshRH();
-							de.getTaskDaftarGagal().getView().refresh();
+							
 							//rcmSettings.aaa = this;
 							console.log("----- sukses cek running hour");
                         },
@@ -275,6 +286,7 @@ Ext.define('rcm.controller.ExcelGrid', {
                             });
                         }
                     });
+                    //*/
                 }
             }
         });
@@ -402,14 +414,24 @@ Ext.define('rcm.controller.ExcelGrid', {
     onLaunch: function() {
 		//console.log("onLauch ExcelGrid");
 		Ext.getCmp('idwest').collapse();
-		//var t = new Date();
+
+		Ext.getCmp('htmleddet').setReadOnly(true);
 		this.ubahFieldRH();
 		//Ext.util.Cookies.set('tgl',t);
 		Ext.util.Cookies.set('now',Ext.Date.format(new Date(),"Y-m-d"));
-		//rcm.view.Util.setCookie("tgl",t);
+
 		//alert("t: "+t+"  cook: "+Ext.decode(rcm.view.Util.getCookie("tgl")));
-        //alert("tgl: "+Ext.util.Cookies.get('tgl'));
-        //Ext.getCmp('idwest').collapse();
+
+        /*
+        this.getAvGroupStore().load({
+			scope: this,
+			callback: function(rec, operation, success) {
+				if (success) {
+					me.AvGroupClick(0,0);
+				}
+			}
+		});
+        //*/
         
         /*
         Ext.define('Ext.view.override.Table', {

@@ -91,7 +91,7 @@ Ext.define('rcm.view.dataentry.FMEAGrid', {
 		//alert("hapus kejadian "+ rec.get('event')+" "+rec.get('nama'));
 		//alert("hapus kejadian ");
 		//grid.getStore().removeAt(rowIndex);
-		this.fireEvent('hpsFMEAGagal', rec, row, col);
+		this.fireEvent('hpsFMEAGagal', rec, row, grid);
 	},
 	
 	pilihOPartGagal: function(n, l) {

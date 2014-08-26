@@ -72,6 +72,7 @@ class rWOjml extends CI_Controller {
 			if (isset($hsl))	{
 				for ($i=0; $i<count($hsl); $i++)	{
 					if ($hsl[$i]->flak==$group)	{
+						$sap = new stdClass();
 						//echo "sampe sini<br/>";
 						$sap->jml = $hsl[$i]->jml;
 						$sap->persen = $hsl[$i]->persen;

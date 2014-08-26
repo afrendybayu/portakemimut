@@ -18,5 +18,5 @@ class Pm extends CI_Model {
     }
 }
 
-/* End of file waktudown.php */
-/* Location: ./application/models/waktudown.php */
+/* End of file pm.php */
+/* Location: ./application/models/pm.php */
