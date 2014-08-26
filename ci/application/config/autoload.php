@@ -110,7 +110,8 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array();
+$autoload['model'] = array('sap','waktudown','option');
+//$autoload['model'] = array();
 
 
 /* End of file autoload.php */

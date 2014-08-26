@@ -43,7 +43,7 @@ Ext.define('rcm.view.lapobama.ReHome', {
 				}],
 				yAxis : {
 					max: 100,
-					//min: 60,
+					min: 60,
 					title : {
 						text : 'Persen [%]'
 					}

@@ -1,7 +1,6 @@
 // afrendyBayu,26Jan2014 //
 Ext.define('rcm.view.lapobama.Av2Thn', {
     xtype: 'tAv2Thn',
-	//alias: 'widget.tAv2Th',
 	extend: 'Chart.ux.Highcharts',
 
 	jdl: '-',

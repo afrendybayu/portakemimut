@@ -29,6 +29,8 @@ Ext.define('rcm.controller.ExcelGrid', {
 		,'Aksi'
 		,'Cause'
 		,'DaftarGagal'
+		
+		
     ],
     
     models: [
@@ -422,6 +424,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 
 		//alert("t: "+t+"  cook: "+Ext.decode(rcm.view.Util.getCookie("tgl")));
 
+		//this.getAvGroupStore().load();
         /*
         this.getAvGroupStore().load({
 			scope: this,

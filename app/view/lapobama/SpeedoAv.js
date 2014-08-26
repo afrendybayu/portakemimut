@@ -4,45 +4,47 @@ Ext.define('rcm.view.lapobama.SpeedoAv', {
     //alias: 'widget.tAvSpeedo',
 	extend: 'Chart.ux.Highcharts',
 	jdl: '-',
-	subjdl: '-',
+	//subjdl: '-',
 	dstore: 'AvSpeedo',
-	min: 50,
-
+	//kode: 'xx',
 	ukur: 15,
+	min: 50,
+	//nama: 'av',
 	loadMask: true,
-	
-	series : [{
-		type: 'gauge',
-		name: 'av',
-		tooltip: {
-			valueSuffix: 'Persen'
-		},
-		//store: 'AvSpeedo',
-		dataIndex: 'av',
-
-		dataLabels: {
-			//color: '#E58964',
-			borderWidth: 0,
-			y: -40,
-			x: 5,
-			style: {
-				fontSize: '24px',
-				fontFamily: 'digital'
-				//fontStyle: 'italic'
-			},
-			formatter: function() {
-				return (this.y+ '%')
-			}
-		},
-		zIndex: 1,
-		pivot: {
-			radius: '0'
-		}
-	}],
 	
 	initComponent: function() {
 		var me=this;
 		me.store=me.dstore;
+		me.series= [{
+			type: 'gauge',
+			//name: 'xx',
+			name: me.nama,
+			tooltip: {
+				valueSuffix: 'Persen'
+			},
+			//store: 'AvSpeedo',
+			dataIndex: 'av',
+			//dataIndex: this.nama,
+
+			dataLabels: {
+				//color: '#E58964',
+				borderWidth: 0,
+				y: -40,
+				x: 5,
+				style: {
+					fontSize: '24px',
+					fontFamily: 'digital'
+					//fontStyle: 'italic'
+				},
+				formatter: function() {
+					return (this.y+ '%')
+				}
+			},
+			zIndex: 1,
+			pivot: {
+				radius: '0'
+			}
+		}],
 		me.chartConfig={
 			chart: {
 				type: 'gauge',
@@ -153,6 +155,17 @@ Ext.define('rcm.view.lapobama.SpeedoAv', {
 						animation : {
 							duration : 1000,
 							easing : 'swing'
+						},
+						cursor: 'pointer',
+						point: {
+							events: {
+								click: function(evt) {
+									//rcmSettings.bbbb = evt;
+									//rcmSettings.cccc = me;
+									//alert("id: "+me.id+", kode: "+me.kode);		// me.id
+									me.fireEvent('SpeedoCl', me.id, me.kode);
+								}
+							}
 						}
 					},
 					column: {
