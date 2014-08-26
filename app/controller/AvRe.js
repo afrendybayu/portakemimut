@@ -27,7 +27,7 @@ Ext.define('rcm.controller.AvRe', {
 		var me = this;
         me.control({
 			'tAvGroup': {
-				AvGroupCl: me.AvGroupClick,
+				AvGroupCl: me.AvGroupClick
 			}
 		});
     },

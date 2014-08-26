@@ -7,7 +7,6 @@ Ext.define('rcm.view.Content', {
 		,'rcm.view.dataentry.ExcelGrid'
 		,'rcm.view.lapobama.AvReChart' //--
 		,'rcm.view.laporan.Chart'
-		
 		//'rcm.view.dataentry.DetailInfo'
 		//'Extensible.calendar.data.MemoryEventStore',
 		//'Extensible.calendar.CalendarPanel',

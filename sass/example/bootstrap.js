@@ -895,6 +895,7 @@ Ext.ClassManager.addNameAlternateMappings({
     "Ext.Window"
   ],
   "rcm.Application": [],
+  "rcm.controller.AvRe": [],
   "rcm.controller.DetailInfo": [],
   "rcm.controller.ExcelGrid": [],
   "rcm.controller.Laporan": [],
@@ -2038,6 +2039,7 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.window"
   ],
   "rcm.Application": [],
+  "rcm.controller.AvRe": [],
   "rcm.controller.DetailInfo": [],
   "rcm.controller.ExcelGrid": [],
   "rcm.controller.Laporan": [],

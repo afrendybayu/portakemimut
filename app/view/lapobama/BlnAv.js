@@ -47,7 +47,7 @@ Ext.define('rcm.view.lapobama.BlnAv', {
 				fn: function(dp, dt){
 					alert("BlnAv.js select");
 					//this.fireEvent('klikKalender', dt);
-				},
+				}
 				//scope: this
 			}
 			//*/
