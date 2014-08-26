@@ -259,10 +259,10 @@ Ext.define('rcm.controller.ExcelGrid', {
 					console.log("sukses mau hapus");
 					rcmSettings.cccccc = de;
 					rcmSettings.dddddd = this;
-					//task.destroy();
+					task.destroy();
 					console.log("----- mulai running hour1 ");
 					//de.refreshRH();
-					de.getRunningHourStore().reload();
+					//de.getRunningHourStore().reload();
 					console.log("----- mulai running hour2");
 					//de.getTaskDaftarGagal().getView().refresh();
 					console.log("----- mulai running hour3");

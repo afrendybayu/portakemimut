@@ -16,6 +16,7 @@ class Option extends CI_Model {
 		$query = $this->db->where('nama','list_bulan_gagal');
 		$query = $this->db->get('options');
 		
+		$hsl = new stdClass();
 		$hsl = $query->result();
 		return $hsl[0]->nilai;
 	}
