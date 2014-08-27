@@ -15,10 +15,9 @@ class dDaftarG extends CI_Controller {
 			$params->upt = '2014-08-22';
 			$params->upj = '03:00'; 
 			$params->event = '1' ;
-			$params->id = "e63e64";
+			$params->id = "e121e122";
+			//print_r($params); echo "<br/>";
 			//*/
-			//print_r($params);
-			
 			if (!isset($params))	{
 				throw new Exception("Data Tidak ada !!");
 			}
@@ -31,11 +30,11 @@ class dDaftarG extends CI_Controller {
 			$this->load->model('runninghour');
 			$this->load->model('option');
 			
-			$hasil = $this->waktudown->delete_waktudown($ids);
+			//$hasil = $this->waktudown->delete_waktudown($ids);
 			$tole = $this->option->cek_tole_hari();
 			//echo "eq: $eq, tole: $tole, ids: "; print_r($ids); echo "<br/>";
 			
-			$edit = 0; $idid = 0;
+			$edit = 1; $idid = $ids;
 			$wkt = $this->waktudown->get_waktudown($eq,$params->downt,$params->downj,$params->upt,$params->upj,1,
 					$params->event, $edit, $idid,
 					hari_dengan_tole($params->downt,-$tole),hari_dengan_tole($params->downt,$tole),
@@ -44,11 +43,12 @@ class dDaftarG extends CI_Controller {
 			//echo "wkt: "; print_r($wkt); echo "<br/>";
 			//return;
 			//$wktrange = cek_waktu_range($idwd,$wkt[0]['tgl'],$wkt[0]['jam'],$wkt[1]['tgl'],$wkt[1]['jam'], 1);
+			//echo "jml: ".count($wkt)."<br/>";
 			if (isset($wkt->dt))	{
 				$wkt_unik = $wkt->dt;
-				$jmlw = count($wkt);
+				$jmlw = count($wkt->dt);
 				$kw = kombinasi_waktu($wkt->dt, $wkt->dj, $wkt->ut, $wkt->uj);
-			//	echo "kombinasi: "; print_r($kw);	echo "<br/>";
+				//echo "kombinasi: "; print_r($kw);	echo "<br/>";
 			}
 			else {
 				$jmlw = 0;
@@ -57,7 +57,7 @@ class dDaftarG extends CI_Controller {
 			
 			$ar=array();	$ar_av=array();	$ar_re=array();	$l=0; $m=0;
 			for ($k=0; $k<$jmlw; $k++)	{
-				//echo "$k $jmlw : ".$wkt->dt[$k].", event: ".$wkt->ev[$k]."<br/>";
+			//	echo "$k $jmlw : ".$wkt->dt[$k].", event: ".$wkt->ev[$k]."<br/>";
 				$ar = rh($wkt->dt[$k], $wkt->dj[$k], $wkt->ut[$k], $wkt->uj[$k]);
 				//echo "jmlAr[$k]: ".sizeof($ar)."<br/>"; print_r($ar);  
 
@@ -100,13 +100,16 @@ class dDaftarG extends CI_Controller {
 			
 			if ($jmlw>0)	{
 				$rh = format_rh($hrh,"");
-				//echo "Format rh: <br/>"; print_r($rh); echo "<br/>";
 				$rh_av = isset($hrh_av)?format_rh($hrh_av, $hrh):array();
-				//echo "Format_rh Availability: <br/>"; print_r($rh_av); echo "<br/>";
 				$rh_re = isset($hrh_re)?format_rh($hrh_re, $hrh):array();
-				//echo "Format_rh reliability : <br/>"; print_r($rh_re); echo "<br/>";
+				
 				//$t = isset($wkt[0])?bwaktu($wkt[0]['tgl'])->t:strtotime($params->downt);
 				//$s = isset($wkt[1])?bwaktu($wkt[1]['tgl'])->t:strtotime($params->upt);
+				/*
+				echo "Format rh: <br/>"; print_r($rh); echo "<br/>";
+				echo "Format_rh Availability: <br/>"; print_r($rh_av); echo "<br/>";
+				echo "Format_rh reliability : <br/>"; print_r($rh_re); echo "<br/>";
+				//*/
 			}
 			//echo "waktu: ".$wkt[0];	//.", bwaktu: ".bwaktu($wkt[0]['tgl']);	//.",strd: ".strtotime($params->downt);
 			//echo "waktu: ".strtotime($params->downt);
@@ -158,7 +161,7 @@ class dDaftarG extends CI_Controller {
 				$k++;
 			} while($u<$s);
 			
-			//$hasil = $this->waktudown->delete_waktudown($ids);
+			$hasil = $this->waktudown->delete_waktudown($ids);
 			//print_r($hasil);
 			
 			$jsonResult = array(

@@ -179,12 +179,14 @@ if ( ! function_exists('hitung_hrh'))	{
 if ( ! function_exists('rh'))	{
 	function rh($taw, $jaw, $tak, $jak) {
 		//$w = new stdClass();
+		//echo "taw: "; print_r($taw); echo "<br/>";
+		//echo "tak: "; print_r($tak); echo "<br/>";
 		$w = array();
 		$tglaw = bwaktu($taw);	
 		$tglak = bwaktu($tak);
 		
-		//echo "<br/>thn: {$tglaw->thn}, bln: {$tglaw->bln}, tgl: {$tglaw->tgl} --->{$tglaw->t}<br/>";
-		//echo "thn: {$tglak->thn}, bln: {$tglak->bln}, tgl: {$tglak->tgl} --->{$tglak->t}<br/>";
+		//echo "<br/>thn: {$tglaw->thn}, bln: {$tglaw->bln}, tgl: {$tglaw->tgl} {$tglaw->jam}:{$tglaw->min} --->{$tglaw->t}<br/>";
+		//echo "thn: {$tglak->thn}, bln: {$tglak->bln}, tgl: {$tglak->tgl}  {$tglak->jam}:{$tglak->min}--->{$tglak->t}<br/>";
 		
 		$i=0; $shari=(60*60*24); $rh=0;
 		do {	// cari TOTAL waktu down perhari !!! bukan running hour

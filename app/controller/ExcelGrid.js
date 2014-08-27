@@ -178,24 +178,13 @@ Ext.define('rcm.controller.ExcelGrid', {
             buttons: Ext.Msg.YESNO,
             fn: function(response) {
                 if(response === 'yes') {
-					//rcmSettings.aaaaa = grid.getStore();
 					dd.destroy();
 					//this.getEventStore.destroy();
-					
-					/*
 					dd.destroy({
-						
-						success: function(dd, operation) {
-							console.log('sukses hapusFMEAClick');
-							//this.getTaskFMEAGrid().getView().refresh();
-						},
 						callback: function(dd, operation) {
-							console.log('callback hapusFMEAClick');
-							//alert('callback hapusFMEAClick');
-						}
+							console.log('sukses hapusFMEAClick');
+							this.getTaskFMEAGrid().getView().refresh();
 					});
-					this.getTaskFMEAGrid().getView().refresh();
-					//*/
                 }
             }
         });
@@ -261,38 +250,15 @@ Ext.define('rcm.controller.ExcelGrid', {
             buttons: Ext.Msg.YESNO,
             fn: function(response) {
                 if(response === 'yes') {
-					//console.log("sukses mau hapus");
-					//rcmSettings.cccccc = de;
-					//rcmSettings.dddddd = this;
-					task.destroy();
-					//console.log("----- mulai running hour1 ");
-					//de.refreshRH();
-					de.getRunningHourStore().reload();
-					de.getDaftarGagalStore().reload();
-					//console.log("----- mulai running hour2");
-					//de.getTaskDaftarGagal().getView().refresh();
-					//console.log("----- mulai running hour3");
-					/*
-                    task.store.remove({
-                        success: function(task, operation) {
-							console.log("----- mulai running hour");
-							
-							//rcmSettings.aaa = this;
-							console.log("----- sukses cek running hour");
-                        },
-                        failure: function(task, operation) {
-                            var error = operation.getError(),
-                                msg = Ext.isObject(error) ? error.status + ' ' + error.statusText : error;
-
-                            Ext.MessageBox.show({
-                                title: 'Hapus Kejadian Gagal',
-                                msg: msg,
-                                icon: Ext.Msg.ERROR,
-                                buttons: Ext.Msg.OK
-                            });
-                        }
-                    });
-                    //*/
+					//task.destroy();
+					//*
+					task.destroy({
+						callback: function() {
+							//alert("masuk");
+							de.getRunningHourStore().reload();
+							de.getDaftarGagalStore().reload();
+						}
+					});
                 }
             }
         });
