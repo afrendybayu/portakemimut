@@ -1,5 +1,4 @@
 // afrendyBayu,26Jan2014 //
-
 Ext.define('rcm.view.lapobama.AvGroup', {
     xtype: 'tAvGroup',
 	extend: 'Chart.ux.Highcharts',

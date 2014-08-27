@@ -41,10 +41,11 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 		border:0,
 		items:[{
 			xtype: 'tAvGroup',
-			//title : 'judul tAvGroup',
+			id: 'tavgr',
 			flex: 1,
 			fldY: ['av2014'],
-			jdl: 'Availability Group'
+			jdl: 'Availability & Reliability',
+			subJdl: 'Gas Comp '+rcm.view.Util.Ublnini()
 		},{
 			width: '60%',
 			layout: {
@@ -63,7 +64,6 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 					id: 'AvBar3',
 					width: '50%',
 					xtype: 'tAvHome',
-					//title : 'judul tAvHome',
 					fldY: ['av2014'],
 					jdl: 'Summary Availability ',
 					subJdl: 'Gas Compressor'
@@ -71,15 +71,14 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 					//*
 					id: 'ReBar3',
 					xtype: 'tReHome',
-					//title : 'judul tReHome',
 					width: '50%',
 					height: '33.3%',
 					jdl: 'Summary Reliability'
-					//*/
 				}]
 			},{
 				//height: '23.3%',
-				flex: 3,
+				height: 140,
+				//flex: 3,
 				layout: {
 					type: 'hbox',
 					align: 'stretch'
@@ -89,18 +88,20 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 					id:'spAvR',
 					width: '50%',
 					xtype: 'tAvSpeedo',
-					//title: 'gauge Av SPeedo',
 					fldY: ['av2014'],
-					jdl: 'Availability'
-					//dstore: 'AvSpeedo'
+					//jdl: 'Availability',
+					nama: 'Av',
+					dstore: 'AvSpeedo',
+					min: 50
 				},{
 					id:'spReR',
 					width: '50%',
 					xtype: 'tAvSpeedo',
-					//title: 'gauge Re SPeedo',
 					fldY: ['re2014'],
-					jdl: 'Reliability'
-					//dstore: 'ReSpeedo'
+					//jdl: 'Reliability',
+					nama: 'Re',
+					dstore: 'ReSpeedo',
+					min: 50
 				}]
 			},{
 				//height: '43.3%',
@@ -115,7 +116,6 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 					width: '50%',
 					//xtype: 'tAvReUnitx',
 					xtype: 'tAv2Thn',
-					//title : 'chart av2thn',
 					fldY: ['av2014'],
 					jdl: 'Availability',
 					avrem1: 'av2013',
@@ -124,7 +124,6 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 					id: 'Re2Thn',
 					//xtype: 'tAvReUnitx',
 					xtype: 'tAv2Thn',
-					//title : 'chart re2thn',
 					width: '50%',
 					//height: '33.3%',
 					jdl: 'Reliability',

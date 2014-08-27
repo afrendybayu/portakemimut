@@ -9,6 +9,7 @@ Ext.define('rcm.view.login.LoginAuth', {
 				//id : 'userid',
 				name: 'username',
 				itemid : 'userid',
+				width: 70,
 				//fieldLabel: 'Username'
 				allowBlank: false,
 				emptyText : 'Username'
@@ -18,6 +19,7 @@ Ext.define('rcm.view.login.LoginAuth', {
 				inputType: 'password',
 				name: 'password',
 				itemid : 'passid',
+				width: 70,
 				//fieldLabel: 'Username'
 				allowBlank: false,
 				emptyText : 'Password'

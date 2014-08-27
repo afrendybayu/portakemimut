@@ -6,6 +6,7 @@ Ext.define('rcm.view.Content', {
 		'Ext.panel.Panel'
 		,'rcm.view.dataentry.ExcelGrid'
 		,'rcm.view.lapobama.AvReChart' //--
+		,'rcm.view.laporan.Chart'
 		
 		//'rcm.view.dataentry.DetailInfo'
 		//'Extensible.calendar.data.MemoryEventStore',
@@ -24,12 +25,14 @@ Ext.define('rcm.view.Content', {
     initComponent: function() {
 		var me=this;
 		me.items = [{
+			/*
 			id: 'tu_ho',
 			title: 'Dashboard Home',
 			iconCls: 'Dashboard'
 			//icon: 'modul/icons/Dashboard.png',
 			//xtype: 'tHoChart',
-		},{	
+		},{
+		//*/
 			id: 'tu_re',
 			title: 'Reliability',
 			iconCls: 'Reliability',
@@ -37,8 +40,9 @@ Ext.define('rcm.view.Content', {
 		},{
 			id: 'tu_sap',
 			title: 'SAP Report',
+			xtype: 'tabChart',
 			iconCls: 'sap'
-			//xtype: 'tabChart',
+
 		/*
 		},{
 			id: 'tu_pr',
@@ -80,7 +84,7 @@ Ext.define('rcm.view.Content', {
 						height: 220,
 						region: 'south',
 						title: 'Info Detail DownTime',
-						iconCls: 'moreInfo',
+						iconCls: 'more',
 						//icon: 'modul/icons/more.png',
 						//html: 'detailInfo'
 						xtype: 'detailInfo'
@@ -97,7 +101,9 @@ Ext.define('rcm.view.Content', {
 				//}),
 			//*/
 			}]
+		/*
 		},{
+		
 			id: 'tu_kf',
 			title: 'Konfigurasi',
 			iconCls: 'Konfigurasi',
@@ -114,7 +120,7 @@ Ext.define('rcm.view.Content', {
 			}, {
 				align: 'stretch',
 				region: 'center',
-				//xtype: 'tabpanel',
+				xtype: 'tabpanel',
 				items: [{
 					title: 'Keterangan Hirarki',
 					html: 'Keterangan Hirarki',
@@ -129,6 +135,7 @@ Ext.define('rcm.view.Content', {
 					icon: 'modul/icons/application_go.png'
 				}]
 			}]
+		//*/
 		}];
 		
 		me.callParent(arguments);
@@ -152,17 +159,17 @@ Ext.define('rcm.view.Content', {
 			this.setActiveTab(this.items.length-2);
 		}
 		
-		console.log("tab: "+tab.title+", id: "+this.getActiveTab().getId()+" view/Content.js");
-		console.log("tab: "+rcmSettings.tab);
+		//console.log("tab: "+tab.title+", id: "+this.getActiveTab().getId()+" view/Content.js");
+		//console.log("tab: "+rcmSettings.tab);
 	},
 	
 	TambahClick: function()	{
-		console.log("tambah: ");
+		//console.log("tambah: ");
 		rcmSettings.sas = this.getEl();//.getActiveTab();
-		console.log("tab: "+rcmSettings.sas);
+		//console.log("tab: "+rcmSettings.sas);
 	},
 	
 	KurangClick: function()	{
-		console.log("Kurang: ");
+		//console.log("Kurang: ");
 	}
 })

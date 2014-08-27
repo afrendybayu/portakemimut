@@ -44,7 +44,7 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 				//console.log("ide: "+record.get('idevent')+", ev: "+record.idevent);
 				//rcmSettings.asa = record.;
 				//alert("unit_id: "+record.get('eqid')+", event: "+record.get('idevent'));
-				me.row1Click(record.get('eqid'));
+				//me.row1Click(record.get('eqid'));
 			},
 			itemdblclick: function(dv, record, item, index, e)	{
 				//alert("double click, "+record.get('idevent')+"-- "+record.get('event'));

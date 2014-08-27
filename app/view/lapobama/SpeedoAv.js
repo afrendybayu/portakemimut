@@ -6,6 +6,7 @@ Ext.define('rcm.view.lapobama.SpeedoAv', {
 	jdl: '-',
 	subjdl: '-',
 	dstore: 'AvSpeedo',
+	min: 50,
 
 	ukur: 15,
 	loadMask: true,
@@ -91,7 +92,7 @@ Ext.define('rcm.view.lapobama.SpeedoAv', {
 				text: this.subjdl
 			},
 			yAxis : {
-					min: 50,
+					min: this.min,
 					max: 100,
 					//*
 					minorTickInterval: 'auto',

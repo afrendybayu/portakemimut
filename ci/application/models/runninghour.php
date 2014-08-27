@@ -9,7 +9,7 @@ class Runninghour extends CI_Model {
 		$query = $this->db->get('rh_201311');
 		
 		//$hsl = $query->result();
-		
+		$adaTgl = new stdClass();
 		$adaTgl->id = $query->result();
 		$adaTgl->jml = count($query->result());
 		//echo "<br/>adaTgl: ";	print_r($adaTgl); 

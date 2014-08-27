@@ -25,8 +25,7 @@ Ext.define('rcm.view.dataentry.InfoFMEA', {
 	
 	initComponent: function() {
 		var me=this;
-		
-		
+
 		me.callParent(arguments);
 	}
 	

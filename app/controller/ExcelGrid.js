@@ -20,21 +20,28 @@ Ext.define('rcm.controller.ExcelGrid', {
 		,'RunningHour'
 		,'EventList'
 		,'Event'
+		,'EventInfo'
 		
 		,'Equip'
 		,'OPart'
 		,'FMode'
 		,'PM'
+		,'Aksi'
+		,'Cause'
 		,'DaftarGagal'
     ],
     
     models: [
-		'RunningHour'
+		'RunningHour',
+		'Event'
     ],
     
     refs: [{
 		ref: 'excelgrid',
 		selector: 'excelgrid'
+	},{
+		ref: 'taskFMEAGrid',
+		selector: 'taskFMEAGrid'
 	},{
 		ref: 'taskFormGagal',
 		selector: 'taskFormGagal',
@@ -65,22 +72,129 @@ Ext.define('rcm.controller.ExcelGrid', {
 			'#cancel-eg': {
 				click: me.hideFormGagal
 			},
+			'#tambah-fmea-btn': {
+				click: me.tmbhFMEAClick
+			},
 			'#samadown-fmea-btn': {
 				click: me.samadownFMEAClick
 			},
 			'#samarun-fmea-btn': {
 				click: me.samarunFMEAClick
 			},
+			//*
 			'#save-rh': {
 				click: me.simpanGagalClick
 			},
+			'#update-rh': {
+				click: me.updateGagalClick
+			},
+			//*/
 			'taskIsiFormGagal': {
 				plhEventGagalXY: me.pilihEventGagalXY
+			},
+			'taskFMEAGrid': {
+				plhFilterFMEA: me.plhFilterClick,
+				plhEquipGagal: me.plhEquipClick,
+				plhCauseGagal: me.plhCauseClick,
+				plhAksiGagal: me.plhAksiClick,
+				plhModeGagal: me.plhModeClick,
+				plhOPartGagal: me.plhOPartClick,
+				hpsFMEAGagal: me.hapusFMEAClick
+				//,infoDetailGagal: me.infoDG
+			},
+			'taskDaftarGagal': {
+				editDGClick: me.edDGClick
+				,hapusDGClick: me.hpsDGClick
 			}
-			
+			//*/
 			
 		});
     },
+    
+	tmbhFMEAClick: function()	{
+		var rec = new rcm.model.Event({
+            eql:'',ideql:'',opart:'',idopart:'',mode:'',idmode:'',cause:'',idcause:'',aksi:'',idaksi:''
+        });
+        this.getEventStore().insert(0, rec);
+        this.getTaskFMEAGrid().getView().refresh();
+        //rcmSettings.ggg = this.getTaskFMEAGrid().getView();
+		//alert('tambah FNMEA');
+	},
+    
+    plhFilterClick: function(n)		{
+		var me=this;
+		//rcmSettings.aaaa = me.getEventStore();
+		//alert(n.col+" pilihFMEAGagal "+me.getEventStore()+"<--");
+		if (n.col==2)	{		// col 2 = OPart
+			//console.log("masuk Opart");
+			me.getOPartStore().clearFilter(true);
+			me.getOPartStore().filter('cat',n.cat);
+		}
+		else if (n.col==3)	{	// col 3 = FMode
+			//console.log("masuk FMode");
+			me.getFModeStore().clearFilter(true);
+			me.getFModeStore().filter('cat',n.cat);
+		}
+	},
+	
+	plhEquipClick: function(drow)	{
+		var me=this, rec=me.getEventStore().getRange()[drow.row];
+		
+		//console.log("ideq: "+drow.ideq+", cat: "+drow.cat+", row: "+drow.row);
+		rec.set('ideql',drow.ideq);
+		rec.set('cat',drow.cat);
+	},
+	
+	plhCauseClick: function(dd,drow)	{
+		var rec = this.getEventStore().getRange()[drow.row];
+		rec.set('idcause',drow.cause);
+	},
+	
+	plhAksiClick: function(dd, drow)	{
+		var rec = this.getEventStore().getRange()[drow.row];
+		rec.set('idaksi',drow.aksi);
+	},
+	
+	plhModeClick: function(dd, drow)	{
+		var rec = this.getEventStore().getRange()[drow.row];
+		rec.set('idmode',drow.mode);
+	},
+	
+	plhOPartClick: function(dd, drow)	{
+		var rec = this.getEventStore().getRange()[drow.row];
+		rec.set('idopart',drow.opart);
+	},
+	
+	hapusFMEAClick: function(dd, drow, grid)	{
+		var de=this;
+		var ee=dd.get('eql')+"<br/>Object Part "+dd.get('opart');
+		Ext.Msg.show({
+            title: 'Hapus FMEA '+dd.get('eql'),
+            msg: 'Hapus FMEA '+ee,
+            buttons: Ext.Msg.YESNO,
+            fn: function(response) {
+                if(response === 'yes') {
+					rcmSettings.aaaaa = grid.getStore();
+					//dd.destroy();
+					//this.getEventStore.destroy();
+					
+					//*
+					dd.destroy({
+						
+						success: function(dd, operation) {
+							console.log('sukses hapusFMEAClick');
+							this.getTaskFMEAGrid().getView().refresh();
+						},
+						callback: function(dd, operation) {
+							console.log('callback hapusFMEAClick');
+							//alert('callback hapusFMEAClick');
+						}
+					});
+					//*/
+                }
+            }
+        });
+	},
     
     equipClick: function(catx)	{
 		var t;
@@ -95,6 +209,88 @@ Ext.define('rcm.controller.ExcelGrid', {
 		Ext.suspendLayouts();
 		this.getExcelgrid().reconfigure(this.getRunningHourStore().load({ params:{tgl:t, cat:catx} }), rcm.view.Util.UxcolGrid());
 		Ext.resumeLayouts(true);
+	},
+	
+	edDGClick: function(rec)	{
+		//alert("Controller editDG ganti ke ExcelGrid");
+		var me = this, ev = rec.get('idevent'), un = rec.get('eqid'),
+            tFG = me.getTaskFormGagal();
+		
+		tFG.down('form').getForm().reset();
+		
+		me.getTaskIsiFormGagal().pilihEventG(rec.get('idevent'));
+		me.getTaskIsiFormGagal().setNilai(rec);
+		if (ev==2)	{
+			me.getPMStore().load({ 
+				params:{unit:un},
+				scope: this,
+				callback: function(dt, operation, success) {
+					if (success) {
+						Ext.getCmp('tipepm').setValue(rec.get('tipeev').split(","));
+					}
+				}
+			});
+			
+		}
+		
+		if (ev>2)	{
+			me.getEquipStore().load({ params:{unit:un} });
+			me.getOPartStore().load({ params:{unit:un} });
+			me.getFModeStore().load({ params:{unit:un} });
+			me.getEventStore().load({ params:{down:rec.get('id')} });
+		}
+		//Ext.getCmp('idtfket').setValue('cobacoab');
+
+		tFG.setTitle('Edit Form Notifikasi');
+		tFG.show();
+	},
+	
+	hpsDGClick: function(task,row,grid)	{
+		//alert("Controller hpsDG ganti ke ExcelGrid");
+		var de = this,
+			ee = task.get('event')+" "+task.get('nama');
+
+		Ext.Msg.show({
+            title: ee,
+            msg: 'Hapus Kejadian '+ee,
+            buttons: Ext.Msg.YESNO,
+            fn: function(response) {
+                if(response === 'yes') {
+					console.log("sukses mau hapus");
+					rcmSettings.cccccc = de;
+					rcmSettings.dddddd = this;
+					task.destroy();
+					console.log("----- mulai running hour1 ");
+					//de.refreshRH();
+					//de.getRunningHourStore().reload();
+					console.log("----- mulai running hour2");
+					//de.getTaskDaftarGagal().getView().refresh();
+					console.log("----- mulai running hour3");
+					/*
+                    task.store.remove({
+                        success: function(task, operation) {
+							console.log("----- mulai running hour");
+							
+							//rcmSettings.aaa = this;
+							console.log("----- sukses cek running hour");
+                        },
+                        failure: function(task, operation) {
+                            var error = operation.getError(),
+                                msg = Ext.isObject(error) ? error.status + ' ' + error.statusText : error;
+
+                            Ext.MessageBox.show({
+                                title: 'Hapus Kejadian Gagal',
+                                msg: msg,
+                                icon: Ext.Msg.ERROR,
+                                buttons: Ext.Msg.OK
+                            });
+                        }
+                    });
+                    //*/
+                }
+            }
+        });
+		
 	},
 	
 	pilihEventGagalXY: function(n)	{
@@ -135,6 +331,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		tFG.down('form').loadRecord(sDG);
 		tFG.setTitle('Form Notifikasi ' + dRHsJ);
 		
+		me.getEventStore().loadData([],false);
 		me.getTaskIsiFormGagal().pilihEventG(1);
 		
 		//tFG.setWidth(500);
@@ -214,19 +411,60 @@ Ext.define('rcm.controller.ExcelGrid', {
 		form.findField('timeselesai').setValue(rcm.view.Util.Utime(td));
 	},
 
-    
     onLaunch: function() {
+		//console.log("onLauch ExcelGrid");
 		Ext.getCmp('idwest').collapse();
-		//var t = new Date();
+
+		Ext.getCmp('htmleddet').setReadOnly(true);
 		this.ubahFieldRH();
 		//Ext.util.Cookies.set('tgl',t);
 		Ext.util.Cookies.set('now',Ext.Date.format(new Date(),"Y-m-d"));
-		//rcm.view.Util.setCookie("tgl",t);
+
 		//alert("t: "+t+"  cook: "+Ext.decode(rcm.view.Util.getCookie("tgl")));
-        //alert("tgl: "+Ext.util.Cookies.get('tgl'));
-        //Ext.getCmp('idwest').collapse();
+
+        /*
+        this.getAvGroupStore().load({
+			scope: this,
+			callback: function(rec, operation, success) {
+				if (success) {
+					me.AvGroupClick(0,0);
+				}
+			}
+		});
+        //*/
         
-        
+        /*
+        Ext.define('Ext.view.override.Table', {
+			override: 'Ext.view.Table',
+		 
+			doStripeRows: function(startRow, endRow) {
+				var me = this,
+					rows,
+					rowsLn,
+					i,
+					row;
+		 
+		 
+				if (me.rendered && me.stripeRows) {
+					rows = me.getNodes(startRow, endRow);
+		 
+					for (i = 0, rowsLn = rows.length; i < rowsLn; i++) {
+						row = rows[i];
+		 
+						if (row) { // self updating; check for row existence
+							row.className = row.className.replace(me.rowClsRe, ' ');
+							startRow++;
+		 
+							if (startRow % 2 === 0) {
+								row.className += (' ' + me.altRowCls);
+							}
+						}
+					}
+				}
+			}
+		 
+		});
+		//*/
         
         Ext.apply(Ext.form.field.VTypes, {
 			daterange: function(val, field) {
@@ -321,7 +559,8 @@ Ext.define('rcm.controller.ExcelGrid', {
 		
 		//this.updateAVReDash();
 	},
-	
+
+//*
 	ambilDataForm: function()	{
 		var taskFormGagal = this.getTaskFormGagal(),
             windowEl = taskFormGagal.getEl(),
@@ -369,23 +608,19 @@ Ext.define('rcm.controller.ExcelGrid', {
 							}
 						}
 					}
-					//console.log("masuk sini");
+					console.log("getEventStore masuk sini");
 					me.getEventStore().sync({
 						//*
 						success: function()	{
+							console.log("getEventStore sukses");
 							me.getDaftarGagalStore().reload();
-							//console.log("sukses getEventStore");
 						},
 						failure: function()	{
-							//console.log("gagal getEventStore");
 						},
 						callback: function()	{
-							//console.log("callback getEventStore");
 						}										
 					});				// create ()
-					//*/
-					//me.getEventStore().removeAll();
-					//console.log("keluar selamat !!!");
+
 				}
 				me.getDaftarGagalStore().reload();
 				me.getRunningHourStore().reload();
@@ -404,6 +639,102 @@ Ext.define('rcm.controller.ExcelGrid', {
 				me.getRunningHourStore().reload();
             }
         });
-	}
+	},
+	
+	cariID: function(obj)	{
+		var id='';
+		for(var i=0; i<obj.length; i++)	{
+			id = 'e'+obj[i].id+id;
+		}
+		return id;
+	},
 
+	updateGagalClick: function()	{
+		console.log('masuk updateGagalClick');
+		var me=this;
+		var o = me.ambilDataForm();
+		var resp,id;
+		
+		var rec = new rcm.model.DaftarGagal({ edit:1,
+			id:o.id,downt:o.dd,downj:o.td,startt:o.dm,startj:o.tm,endt:o.ds,endj:o.ts,upt:o.du,upj:o.tu,
+			event:o.event,tipeev:o.tipeev,ket:o.ket,exe:o.exe,server:rcmSettings.server,cat:rcmSettings.cat
+        });
+        
+        
+        rec.save({
+            success: function(respon, operation) {
+				//console.log('masuk updateGagalClick sukses');
+				resp = operation.request.scope.reader.jsonData["tasks"];
+				var recx = me.getEventStore().getRange();
+				//rcmSettings.ttt = me.getEventStore();
+				//rcmSettings.zzz = resp;
+				//rcmSettings.qqq = recx;
+				if (o.event!=1)	{
+					for (var i=0, len1=resp.length; i<len1; i++) {
+						for (var j=0,len2=recx.length; j<len2; j++)	{
+							//console.log("resp: "+i+",recx: "+j+", apa ini callback ideql: "+recx[j].get('ideql')+", eq: "+resp[i].eq);
+							if (recx[j].data.ideql==resp[i].eq)	{
+								recx[j].set('iddown',resp[i].id);
+							}
+						}
+					}
+					//console.log("sukses rec DaftarGagal");
+				}
+				me.getDaftarGagalStore().reload();
+				me.getRunningHourStore().reload();
+            },
+            failure: function(task, operation) {
+                var error = operation.getError(),
+                    msg = Ext.isObject(error) ? error.status + ' ' + error.statusText : error;
+
+                Ext.MessageBox.show({
+                    title: 'Update Task Failed',
+                    msg: msg,
+                    icon: Ext.Msg.ERROR,
+                    buttons: Ext.Msg.OK
+                });
+            },
+            callback : function(respon, operation)	{
+				//console.log("------ pa ini callback o.event: "+o.event);
+				resp = operation.request.scope.reader.jsonData["tasks"];
+				var recx = me.getEventStore().getRange();
+				//rcmSettings.fff = resp;
+				//alert(this.cariID(resp));
+				//rcmSettings.hhh = recx;
+				if (o.event!=1)	{
+					
+					//*
+					for (var i=0, len1=resp.length; i<len1; i++) {
+						for (var j=0,len2=recx.length; j<len2; j++)	{
+							//console.log("resp: "+i+",recx: "+j+", apa ini callback ideql: "+recx[j].get('ideql')+", eq: "+resp[i].eq);
+							if (recx[j].get('ideql')==resp[i].eq)	{
+								recx[j].set('iddown',resp[i].id);
+								break;
+							}
+						}
+					}
+					//*/
+					//console.log("apa ini callback 4");
+					me.getEventStore().sync();
+					//console.log("apa ini callback resp.length: ");
+				}
+				// matikan dulu, nanti hidupkan lagi
+				me.getDaftarGagalStore().reload();
+				me.getRunningHourStore().reload();
+				
+				id='';
+				for(var i=0; i<resp.length; i++)	{
+					id = 'e'+resp[i].id+id;
+				}
+				//alert(id);
+				me.getEventInfoStore().load({params:{down:id}});
+			}
+        });
+
+		me.getTaskFormGagal().close();
+		
+		
+		//me.updateAVReDash();
+	}
+//*/
 });

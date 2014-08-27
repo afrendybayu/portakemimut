@@ -2,8 +2,7 @@ Ext.define('rcm.controller.Login', {
     extend: 'Ext.app.Controller', 
 	
 	requires : [
-		'rcm.view.login.LoginAuth',
-		//'rcm.view.login.CobaUser'
+		'rcm.view.login.LoginAuth' 
 	],
 	
 	views: [
@@ -12,13 +11,11 @@ Ext.define('rcm.controller.Login', {
 
     stores: [
 		'LoginAuth',
-		'CobaUser'
-    ],
+	],
     
     models: [
 		'LoginAuth',
-		'CobaUser'
-    ],
+	],
 	
 	init: function(){
 		this.control({
@@ -34,136 +31,57 @@ Ext.define('rcm.controller.Login', {
 			}
 		
 		});
-	
-	
 	}, 
 	
 	tblLogin : function(btn){
-		console.log('klik login tombol');
-		
+		// console.log('klik login tombol');
 		var frm 	= btn.up('form').getForm(),
 			userget = frm.getValues().username,
 			passget	= frm.getValues().password;
-		var datalogin = this.getCobaUserStore();
+		var data = new rcm.model.LoginAuth({userid:userget,pass:passget});
 		
-		var data = new rcm.model.LoginAuth({ 
-				userid 	: userget,
-				pass	: passget
-        });
-					
-		// data.save().
-		
-		//console.log(datalogin.load());
-		// rcmSettings.aaaaa = data;
-
 		if (frm.isValid()) {
-			// console.log(data),
 			data.save({
 				success: function(respon, operation) {
-					var res = operation.request.scope.reader.jsonData["isAutenticated"];
-					alert('user : '+res.session+' & level : '+res.level);
-				
-				// datalogin.reload();
-				
-				// me.getRunningHourStore().reload();
-				}
-				
-			});
-			
-			//console.log(data);
-			
-
-			/*
-			frm.submit({
-				
-				url : 'ci/index.php/AuthLogin/isLoggin',
-				params: { username : userget , password : passget},
-				success : function(resp){
-					console.log ('username submit : '+userget+' & password : '+passget );
-					var pesan = Ext.decode(resp.responseText);
-					if (pesan.success){						
-						Ext.MessageBox.show({
-							title : 'Login Info',
-							msg   : 'User is Authenticated.',
-							buttons: Ext.MessageBox.OK,
-							icon  : Ext.MessageBox.INFO
-						});
-							//Ext.getCmp('btn_login').setVisible(false);
-							//Ext.getCmp('btn_logout').setVisible(true);
-						Ext.getCmp('p_login').setVisible(false);
-						Ext.getCmp('p_logout').setVisible(true);
-					}
-					else {
-						Ext.MessageBox.show({
+					var res = operation.request.scope.reader.jsonData["rule"];
+					Ext.MessageBox.show({
 						title : 'Login Info',
-						msg   : 'Username or Password no valid',
+						msg   : 'Selamat Datang '+res.session,
+						buttons: Ext.MessageBox.OK,
+						icon  : Ext.MessageBox.INFO
+					});
+					
+					Ext.getCmp('p_login').setVisible(false);
+					Ext.getCmp('p_logout').setVisible(true);
+					Ext.getCmp('t_welcome').setText('Selamat Datang '+res.session);
+				},
+				failure : function(respon, operation){
+					Ext.MessageBox.show({
+						title : 'Login Info',
+						msg   : 'Silahkan Login Kembali, Username atau Password tidak Terdaftar',
 						buttons: Ext.MessageBox.OK,
 						icon  : Ext.MessageBox.WARNING
-						});
-						
-					}
-						
-						// rcmSettings.aaaaa = pesan;	
+					});
 				}
 			});
-				
-				// getLoginAuthStore().load();
-				
-				
-				/*
-			
-				Ext.Ajax.request({
-					// url : '/daunbiru/portakemimut/ci/index.php/AuthLogin/isLoggin',
-					url : 'ci/index.php/AuthLogin/isLoggin',
-					params: { username : userget , password : passget},
-					success : function(resp){
-						var pesan = Ext.decode(resp.responseText);
-						if (pesan.success){						
-							Ext.MessageBox.show({
-								title : 'Login Info',
-								msg   : 'User is Authenticated.',
-								buttons: Ext.MessageBox.OK,
-								icon  : Ext.MessageBox.INFO
-							});
-							//Ext.getCmp('btn_login').setVisible(false);
-							//Ext.getCmp('btn_logout').setVisible(true);
-							Ext.getCmp('p_login').setVisible(false);
-							Ext.getCmp('p_logout').setVisible(true);
-						}
-						else {
-							Ext.MessageBox.show({
-							  title : 'Login Info',
-							  msg   : 'Username or Password no valid',
-							  buttons: Ext.MessageBox.OK,
-							  icon  : Ext.MessageBox.WARNING
-							});
-						
-						}
-						
-						*/// rcmSettings.aaaaa = pesan;	
-		/*}
-			
-					
-	/*});//*/
-				//btn.getForm().reset();
-				
-				// btn.up('form').getForm().reset();
-				frm.reset();
-				
-        } 
+			// rcmSettings.aaaaa = pesan;	
+			frm.reset();
+		} 
 		else {
-                    Ext.Msg.alert( "Error!", "Your form is invalid!" );
+            Ext.MessageBox.show({
+				title : 'Login Error',
+				msg   : 'Masukkan Username dan Password Anda',
+				buttons: Ext.MessageBox.OK,
+				icon  : Ext.MessageBox.ERROR
+			});
 		}
-	
-
-		
 	},
 	
 	tblLogout : function(b_logout){
-		console.log('klik tombol logout');
+		// console.log('klik tombol logout');
 		Ext.MessageBox.show({
 			title : 'Logout Info',
-			msg   : 'Apakah Anda ingin Logout ?',
+			msg   : 'Apakah Anda ingin Keluar ?',
 			buttons: Ext.MessageBox.OKCANCEL,
 			icon  : Ext.MessageBox.WARNING,
 			fn	: function (blout){
@@ -178,7 +96,4 @@ Ext.define('rcm.controller.Login', {
 			}
 		});
 	}
-	
-	
-	
-	});
+});

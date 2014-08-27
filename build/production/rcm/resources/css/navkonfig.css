@@ -46,11 +46,19 @@
 }
 
 .editEvent {
-	background-image: url('./images/edit.png');
+	background-image: url('./images/edit1.png');
 }
 
 .hpsEvent {
 	background-image: url('./images/delete.png');
+}
+
+.clrFilter {
+	background-image: url('./images/clrFilter.png');
+}
+
+.more {
+	background-image: url('./images/more.png');
 }
 
 .cross {
@@ -80,4 +88,8 @@
 .baik .x-change-cell {
     /*background-color: #B0FFC5;*/
     color:blue;
+}
+.cTextAlign {
+	text-align: center;
+	/*color:blue;*/
 }

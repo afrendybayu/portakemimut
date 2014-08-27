@@ -9,7 +9,17 @@ class Option extends CI_Model {
 		
 		$hsl = $query->result();
 		return $hsl[0]->nilai;
-	}	
+	}
+	
+	function cek_bulan_gagal()	{
+		$query = $this->db->select('nilai');
+		$query = $this->db->where('nama','list_bulan_gagal');
+		$query = $this->db->get('options');
+		
+		$hsl = new stdClass();
+		$hsl = $query->result();
+		return $hsl[0]->nilai;
+	}
 }
 
 /* End of file option.php */

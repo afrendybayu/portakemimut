@@ -21,6 +21,9 @@ class uDaftarG extends CI_Controller {
 			$params->ket ='';
 			$params->exe = '';
 			//*/
+			if (!isset($params))	{
+				throw new Exception("Data Tidak ada !!");
+			}
 			$edit = isset($params->edit)?$params->edit:0;
 			//echo "edit: $edit-----<br/>";
 			$aw = bwaktu($params->downt, $params->downj);
@@ -32,9 +35,8 @@ class uDaftarG extends CI_Controller {
 			if ($aw->t > $ak->t)	{
 				throw new Exception("Waktu tidak sesuai !!<br/>Input Data Tidak disimpan");
 			}
-			$xid = $params->id; $idAr = array(); $catAr = array(); $idJml=0;
 			
-			//echo "tipeev: $tipeev<br/>";
+			$xid = $params->id; $idAr = array(); $catAr = array(); $idJml=0;
 			$cc = isset($params->cat)?:0;
 			$server = isset($params->server)?$params->server:0;
 			$idid = 0;
@@ -49,27 +51,18 @@ class uDaftarG extends CI_Controller {
 				$id = substr($xid,1);
 				//echo "level: $level, id: $id<br/>";
 				if ($level=='e')	{	// level equipment
-					$idid = array_filter(explode("e",$id));	// id dari id
+					$idid = array_unique(array_filter(explode("e",$id)));	// id dari id
 					//echo "idid: "; print_r($idid); echo "<br/><br/>";
 					$sql = "SELECT eqid,unit_id,id from waktudown where id in (".implode(',',$idid).")";
-					//echo "sql u: $sql<br/>";
-					$q = db_query($sql);
-					if (!$q)	{
-						//echo "DB Error, could not query the database\n";
-						throw new Exception("DB Error, could not query the database");
-						echo 'MySQL Error: ' . mysql_error();
-						exit;
-					}
-
-					while ($row = mysql_fetch_assoc($q)) {
-						//$arx[] = $row;
-						$idAr[$idJml]  = $row['eqid'];
-						$id = $row['unit_id'];
-						$idJml++;
-					}
-					//mysql_free_result($q);
 					
-					
+					$query = $this->db->query($sql);
+					if ($query->num_rows() > 0)	{
+						foreach ($query->result() as $row)	{
+							$idAr[$idJml]  = $row->eqid;
+							$id = $row->unit_id;
+							$idJml++;
+						}
+					}
 					//echo "level e"; print_r($idAr);
 				} else if ($level=='u')	{	// level unit
 					$sql = "SELECT id,cat from equip where unit_id = $id";
@@ -107,7 +100,7 @@ class uDaftarG extends CI_Controller {
 			//echo "Cek waktu range: <br/>";	print_r($wkt); echo "<br/><br/>";
 			
 			$kw = kombinasi_waktu($wkt->dt, $wkt->dj, $wkt->ut, $wkt->uj);
-			//echo "kw: "; print_r($kw); echo "<br/>";
+			//echo "kombinasi waktu: ".count($kw)."<br/>"; print_r($kw);	echo "<br/>";
 
 			if (count($kw)>0)	{
 				for ($i=0; $i<count($kw); $i++)	{
@@ -120,8 +113,6 @@ class uDaftarG extends CI_Controller {
 					//echo "------------------crash: $crash<br/>";
 					if ($crash>0)
 						throw new Exception("Waktu Konflik dengan Kegagalan Lain selama $crash jam");
-					//die();
-					//if ($crash>0)	exit;
 				}
 			}
 			
@@ -178,7 +169,7 @@ class uDaftarG extends CI_Controller {
 			$rh_av = isset($hrh_av)?format_rh_float($hrh_av):array(date('Y-m-d') => 24);
 			//echo "Format_rh Availability: "; print_r($rh_av); echo "<br/>";
 			//$rh_re = format_rh($hrh_re);
-			$rh_re = isset($hrh_av)?format_rh_float($hrh_re):array(date('Y-m-d') => 24);
+			$rh_re = isset($hrh_re)?format_rh_float($hrh_re):array(date('Y-m-d') => 24);
 			//echo "Format_rh Reliability : "; print_r($rh_re); echo "<br/><br/>";
 			
 			$k=0;	
@@ -224,26 +215,10 @@ class uDaftarG extends CI_Controller {
 				);
 				//*
 				if ($adatgl->jml==0)	{
-					
 					$this->runninghour->insert_rh($dtrh);
-					/*
-					$sql =	"INSERT INTO rh_201311 (eq,tgl,rh,rh_av, rh_re,flag,bln,thn,cat) VALUES ".
-							"('{$id}','$tglx','{$rh[$tglx]}','{$rh_av[$tglx]}','{$rh_re[$tglx]}','e".implode("e", $idAr)."',".
-							"'".bwaktu($tglx)->bln."','".bwaktu($tglx)->thn."','$cc')";
-					echo "sql: $sql<br/>";
-					$q = db_query($sql);
-					echo "sql: $sql<br/>";
-					//*/
 				} else {
 					if ($adatgl->jml==1) {
 						$this->runninghour->update_rh($dtrh,$adatgl->id[0]->id);
-						/*
-						//$sql = "UPDATE rh_201311 SET rh='".$rh[$tglx]."' where id = ".$adatgl->id[0];
-						$sql =  "UPDATE rh_201311 SET rh='{$rh[$tglx]}',rh_av='{$rh_av[$tglx]}',rh_re='{$rh_re[$tglx]}', ".
-								"bln='".bwaktu($tglx)->bln."',thn='".bwaktu($tglx)->thn."' ".
-								"where id = ".$adatgl->id[0]->id;
-						$q = db_query($sql);
-						//*/
 					}
 				}
 				//*/
@@ -253,12 +228,12 @@ class uDaftarG extends CI_Controller {
 			$pm = array();
 			//echo "tipeev: $tipeev,".strlen($tipeev)."<br/>";
 
-			$jmlpm = count($params->tipeev)>0?count($tipeev):0;
+			$jmlpm = count($params->tipeev)>0?count($params->tipeev):0;
 			//echo "jmlpm: $jmlpm";
 			//$tipeev = array("e34pm1", "e33pm15");
 			for($i=0; $i<$jmlpm; $i++)	{
 				//*
-				$pmx  = explode("pm", $tipeev[$i]);
+				$pmx  = explode("pm", $params->tipeev[$i]);
 				//print_r($pmx); echo "<br/>";
 				$ideq = explode("e", $pmx[0]);
 				//echo "id: {$ideq[1]}<br/>";
@@ -285,54 +260,17 @@ class uDaftarG extends CI_Controller {
 							'exe'	 => $params->exe,
 							'nginput'=> $now
 						);
-							$repair = array(
-								'tipeev' => '',
-								'startt' => isset($params->startt)?$params->startt:date('Y-m-d'),
-								'startj' => isset($params->startj)?$params->startj:date('H:i'),
-								'endt'	 => isset($params->endt)?$params->endt:date('Y-m-d'),
-								'endj'	 => isset($params->endj)?$params->endj:date('H:i')
-							);
-						
+						for($w=0; $w<$jmlpm; $w++)	{
+							if ($idAr[$i]==$pm[$w][0])	break;
+						}
+						$repair = array(
+							'tipeev' => isset($pm[$w][1])?:'',
+							'startt' => isset($params->startt)?$params->startt:date('Y-m-d'),
+							'startj' => isset($params->startj)?$params->startj:date('H:i'),
+							'endt'	 => isset($params->endt)?$params->endt:date('Y-m-d'),
+							'endj'	 => isset($params->endj)?$params->endj:date('H:i')
+						);
 						$insrt += (int) $this->waktudown->insert_waktudown($params->event,$data,$repair);
-						
-						/*
-						// INPUT data EVENT down ke tabel waktudown
-						if ($params->event==1) {		// standby
-							
-							$sql = "INSERT INTO waktudown (server,eqid,unit_id,downt,downj,upt,upj,event,ket,exe,nginput) ".
-									"VALUES ('$server','{$idAr[$i]}','{$id}','{$params->downt}','{$params->downj}', '{$params->upt}', '{$params->upj}', ".
-									"'{$params->event}','{$params->ket}','{$params->exe}','{$now}' )";							
-						} else {
-							for($w=0; $w<$jmlpm; $w++)	{
-								if ($idAr[$i]==$pm[$w][0])	break;
-							}
-							$sql = "INSERT INTO waktudown (server,eqid,unit_id,downt,downj,upt,upj,startt,startj,endt,endj,".
-									"event,tipeev,ket,exe,nginput) ".
-									"VALUES ('$server','{$idAr[$i]}','{$id}','{$params->downt}','{$params->downj}', '{$params->upt}', '{$params->upj}', ".
-									"'{$params->startt}','{$params->startj}', '{$params->endt}', '{$params->endj}',".
-									"'{$params->event}','{$pm[$w][1]}','{$params->ket}','{$params->exe}','{$now}' )";
-						}
-						//echo "sql u: $sql<br/>";
-						$q = db_query($sql);
-						if (!$q)	{
-							echo "DB Error, could not query the database\n";
-							echo 'MySQL Error: ' . mysql_error();
-							exit;
-						} else {
-							$sql = "SELECT id, eqid FROM waktudown order by id desc limit 0,1";
-							//echo "sql u: $sql<br/>";
-							
-							$q = db_query($sql);
-							$row = mysql_fetch_assoc($q);
-							
-							$x = new stdClass();
-							$x->id = $row['id'];
-							$x->eq = $row['eqid'];
-							array_push($hasil, $x);
-							
-							mysql_free_result($q);
-						}
-						//*/
 				}
 				if ($insrt>0)	{
 					$hasil = $this->waktudown->get_waktudown_limit($insrt);
@@ -340,63 +278,49 @@ class uDaftarG extends CI_Controller {
 			}
 			else if ($level=='e')	{
 				$idid = array_unique($idid);
-				//echo "idid: "; print_r($idid); echo "<br/>";
-				$sql = "SELECT id,eqid AS eq, unit_id FROM waktudown WHERE id IN (".implode(',',$idid).")";
-				//echo "sql: $sql<br/><br/>";
-					
-				$q = db_query($sql);
-				if (!$q)	{
-					throw new Exception("DB Error, could not query the database");
-					echo 'MySQL Error: ' . mysql_error();
-					exit;
-				}
-					
-				$arx = array();
-				while ($row = mysql_fetch_assoc($q)) {
-					$arx[] = $row;
-				}
-				//echo "<br/><br/>--- sampai sini sodara2: jml: ".count($arx)."<br/><br/>";
-				//echo "ar: "; print_r($arx); echo "<br/>";
-				
+				$arx = $this->waktudown->get_waktudown_equip($idid);
+
 				//$idid = 0;
-				for ($i=0; $i<count($arx); $i++)	{
-
-					if ($params->event==1) {		// standby
-						//echo " STAND BY";
-						$sql = "UPDATE waktudown SET server=$server,eqid='{$idAr[$i]}',downt='{$params->downt}',downj='{$params->downj}',".
-							"upt='{$params->upt}',upj='{$params->upj}',event='{$params->event}',ket='{$params->ket}', ".
-							"exe='{$params->exe}',nginput='{$now}' ".
-							"WHERE id='{$idid[$i]}'";
-					} else {
-						for($j=0; $j<count($pm); $j++)	{
-							if ($pm[$j][0]==$idid[$i])
-								break;
-						}
-						$sql = "UPDATE waktudown SET server=$server,eqid='{$arx[$i]['eq']}',downt='{$params->downt}',downj='{$params->downj}',".
-							"upt='{$params->upt}',upj='{$params->upj}',startt='{$params->startt}',startj='{$params->startj}',".
-							"endt='{$params->endt}',endj='{$params->endj}',".
-							"event='{$params->event}',tipeev='".$pm[$i][1]."',ket='{$params->ket}',exe='{$params->exe}',nginput='{$now}' ".
-							"WHERE id='{$arx[$i]['id']}'";
+				$i = 0;
+				//for ($i=0; $i<count($arx); $i++)	{
+				foreach($idid as $idx)	{
+					$data = array(
+						'server' => $server,
+						'eqid'	 => $idAr[$i],
+						'downt'	 => $params->downt,
+						'downj'	 => $params->downj,
+						'upt'	 => $params->upt,
+						'upj'	 => $params->upj,
+						'event'	 => $params->event,
+						'ket'	 => $params->ket,
+						'exe'	 => $params->exe,
+						'nginput'=> $now
+					);
+					for($w=0; $w<$jmlpm; $w++)	{
+						if ($idAr[$i]==$pm[$w][0])	break;
 					}
-					//echo "<br/>___edit__________sql: $sql";
+					$repair = array(
+						'tipeev' => ($params->event==2)?$pm[$w][1]:'-',
+						'startt' => isset($params->startt)?$params->startt:date('Y-m-d'),
+						'startj' => isset($params->startj)?$params->startj:date('H:i'),
+						'endt'	 => isset($params->endt)?$params->endt:date('Y-m-d'),
+						'endj'	 => isset($params->endj)?$params->endj:date('H:i')
+					);
+					//echo "event: {$params->event}, id: ".$idid[$i]."<br/>";
+					//echo "id: ".$idid[$i]." ---- 350<br/>";
+					//echo "repair: ";	print_r($repair); echo "<br/>";
+					$insrt += (int) $this->waktudown->update_waktudown($params->event, $idx, $data, $repair);
 					
-					$q = db_query($sql);
-					if (!$q)	{
-						//echo "DB Error, could not query the database\n";
-						throw new Exception("DB Error, could not query the database");
-						echo 'MySQL Error: ' . mysql_error();
-						exit;
-					}
+					$i++;
 				}
-				$hasil = $arx;
-
-				mysql_free_result($q);
-				//print_r($hasil);
+				if ($insrt>0)	{
+					$hasil = $this->waktudown->get_waktudown_limit($insrt);
+				}
 			}
+		
 			$jsonResult = array(
 				'success' => true,
 				'tasks' => $hasil
-				//'gagal' => $params
 			);
 		}
 		catch (Exception $e)	{
@@ -406,7 +330,8 @@ class uDaftarG extends CI_Controller {
 			);
 		}
 		
-		$hasil['json'] = $jsonResult;
+		
+		//$hasil['json'] = $jsonResult;
 		$this->output->set_content_type('application/json');
 		$this->output->set_output(json_encode($jsonResult));
 		//echo json_encode($jsonResult);

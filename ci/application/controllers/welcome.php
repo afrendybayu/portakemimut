@@ -17,8 +17,14 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
+	public function index()	{
+		//$this->load->view('welcome_message');
+		echo exec('pwd'); echo "<br/>";
+		echo exec('git remote -v');	echo "<br/>";
+		echo exec('git pull');		echo "<br/>selesai";
+	}
+	
+	public function guide()	{
 		$this->load->view('welcome_message');
 	}
 }

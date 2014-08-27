@@ -5,7 +5,7 @@ class rDetailFMEA extends CI_Controller {
 	public function index()	{
 		
 		try	{
-			$id = $this->input->get('id')?:'0';
+			$id = $this->input->get('down')?:'0';
 			
 			$rid = explode("e", $id);
 			//print_r(array_filter($rid));

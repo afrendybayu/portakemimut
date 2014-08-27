@@ -30,9 +30,9 @@ Ext.define('rcm.controller.DetailInfo', {
 		var me = this;
         me.control({
 			'taskDaftarGagal': {
-				editDGClick: me.edDG
-				,hapusDGClick: me.hpsDG
-				,infoDetailGagal: me.infoDG
+				//editDGClick: me.edDG
+				//,hapusDGClick: me.hpsDG
+				infoDetailGagal: me.infoDG
 			},
 			'#btnCariDGx': {
 				click: me.cariDG
@@ -41,19 +41,11 @@ Ext.define('rcm.controller.DetailInfo', {
 		});
     },
 
-	edDG: function()	{
-		alert("Controller edDG");
-	},
-	
-	hpsDG: function()	{
-		alert("Controller hpsDG");
-	},
-	
 	infoDG: function(id, ev)	{
 		this.getDetailGagalStore().load({ params:{id:id} });
 		
 		this.getEventInfoStore().load({ 
-			params:{id:id}
+			params:{down:id}
 			,scope: this
 			/*
 			,callback: function(rec, operation, success) {
