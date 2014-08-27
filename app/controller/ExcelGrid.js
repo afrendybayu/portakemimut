@@ -445,25 +445,22 @@ Ext.define('rcm.controller.ExcelGrid', {
 		Ext.util.Cookies.set('now',Ext.Date.format(new Date(),"Y-m-d"));
 		
 		var LSesi = this.getLoginSesiStore();
-		
 		LSesi.load({
 			scope: this,
 			callback: function(records, operation, success) {
 				var res = operation.request.scope.reader.jsonData["sesi"];
 				if (success){
-					console.log('masuk sebagai admin');
+					// console.log('masuk sebagai admin');
 					Ext.getCmp('p_login').setVisible(false);
 					Ext.getCmp('p_logout').setVisible(true);
 					Ext.getCmp('t_welcome').setText('Selamat Datang '+res.nama);
 				}
 				else{
-					console.log('tidak jelas');
+					// console.log('tidak jelas');
 					Ext.getCmp('p_login').setVisible(true);
 					Ext.getCmp('p_logout').setVisible(false);
 				}
-				// the operation object
-				// contains all of the details of the load operation
-				console.log(res.nama);
+				// console.log(res.nama);
 			}
 		});
 		
