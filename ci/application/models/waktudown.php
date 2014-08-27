@@ -4,18 +4,15 @@ class Waktudown extends CI_Model {
 
 	function get_waktudown($id,$downt,$downj,$upt,$upj,$flag=0,$event,$edit,$idid,$da,$db,$ua,$ub)    {
 		/*
-		$query = $this->db->select('id,downt AS dt,downj AS dj,upt AS ut,upj AS uj,event AS ev');
-		$query = $this->db->where('eqid',$id);
-		$query = $this->db->where("(downt BETWEEN '$da' AND '$db' OR upt BETWEEN '$ua' AND '$ub')");
-		//$query = $this->db->where("downt BETWEEN '$da' AND '$db'");
-		//$query = $this->db->where("upt BETWEEN '$ua' AND '$ub'");
-		if ($edit)		$query = $this->db->where_not_in('id',implode(',',$idid));
-		$query = $this->db->get('waktudown');
-		//*/
-		//*
 		$sql =	"SELECT id,downt AS dt,downj AS dj,upt AS ut, upj AS uj,event AS ev FROM waktudown WHERE eqid='{$id}' ".
 				"AND (downt BETWEEN '$da' AND '$db' OR upt BETWEEN '$ua' AND '$ub') ";
+		//*/		
+		$sql =	"SELECT id,downt AS dt,downj AS dj,upt AS ut, upj AS uj,event AS ev FROM waktudown WHERE unit_id='{$id}' ".
+				"AND (downt BETWEEN '$da' AND '$db' OR upt BETWEEN '$ua' AND '$ub') ";
 		if ($edit) $sql .= "AND id NOT IN (".implode(',',$idid).")";
+		$sql .=	" group by downt, downj, upt,upj ";
+		
+		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql);
 		
 		/*
@@ -46,9 +43,13 @@ class Waktudown extends CI_Model {
 		}
 		
 		$w = new stdClass();
-		$w->dt=$dt;		 $w->dj = $dj;
-		$w->ut=$ut;		 $w->uj = $uj;
-		$w->ev=$ev;
+		if (isset($dt))	{
+			$w->dt=$dt;		 
+			$w->dj=$dj;
+			$w->ut=$ut;		 
+			$w->uj=$uj;
+			$w->ev=$ev;
+		}
 		//print_r($w);
 		return $w;
     }

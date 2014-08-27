@@ -1,7 +1,7 @@
 /* AfrendyBayu, 20Jan2014 */
 Ext.define('rcm.view.laporan.GridCauseInfo', {
 	extend: 'Ext.grid.Panel',
-	alias: 'widget.gridCause',
+	//alias: 'widget.gridCause',
 	xtype: 'taskGridCauseInfo',
     
     dstore: '-',

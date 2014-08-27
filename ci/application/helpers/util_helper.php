@@ -112,13 +112,23 @@ if ( ! function_exists('float2min'))	{
 }
 
 if ( ! function_exists('format_rh'))	{
-	function format_rh($a)	{
+	function format_rh($a, $rh)	{
 		//echo ">>>>>>>>>"; print_r($a);	echo "<br/>";
 		$b = array();
-		for($i=0; $i<count($a); $i++)	{
-			$a[$i]['jam'] = float2min(24+$a[$i]['jam']);
-			$b[$a[$i]['tgl']] = $a[$i]['jam'];
-			//echo ": ".$a[$i]['tgl']." ---> ".$a[$i]['jam']."<br/>";
+		$jml = count($a);
+		if ($jml>0)	{
+			for($i=0; $i<count($a); $i++)	{
+				$a[$i]['jam'] = float2min(24+$a[$i]['jam']);
+				$b[$a[$i]['tgl']] = $a[$i]['jam'];
+				//echo ": ".$a[$i]['tgl']." ---> ".$a[$i]['jam']."<br/>";
+			}
+		}
+		else {
+			for($i=0; $i<count($rh); $i++)	{
+				//$a[$i]['jam'] = float2min(24+$a[$i]['jam']);
+				$b[$rh[$i]['tgl']] = float2min(24);
+				//echo ": ".$a[$i]['tgl']." ---> ".$a[$i]['jam']."<br/>";
+			}
 		}
 		//print_r($b);
 		return $b;

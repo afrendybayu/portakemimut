@@ -13,10 +13,10 @@ Ext.define('rcm.Application', {
 		//'Main',
 		'ExcelGrid'
 		,'DetailInfo'
-		,'Laporan'
+		//,'Laporan'
 		,'Sap'
-		,'Login'
-		,'AvRe'
+		//,'Login'
+		//,'AvRe'
     ],
 
     stores: [

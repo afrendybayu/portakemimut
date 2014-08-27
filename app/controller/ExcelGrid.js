@@ -22,6 +22,7 @@ Ext.define('rcm.controller.ExcelGrid', {
     stores: [
 		'Hirarki'
 		,'RunningHour'
+		,'DaftarGagal'
 		,'EventList'
 		,'Event'
 		,'EventInfo'
@@ -32,9 +33,6 @@ Ext.define('rcm.controller.ExcelGrid', {
 		,'PM'
 		,'Aksi'
 		,'Cause'
-		,'DaftarGagal'
-		
-		
     ],
     
     models: [
@@ -263,16 +261,17 @@ Ext.define('rcm.controller.ExcelGrid', {
             buttons: Ext.Msg.YESNO,
             fn: function(response) {
                 if(response === 'yes') {
-					console.log("sukses mau hapus");
-					rcmSettings.cccccc = de;
-					rcmSettings.dddddd = this;
+					//console.log("sukses mau hapus");
+					//rcmSettings.cccccc = de;
+					//rcmSettings.dddddd = this;
 					task.destroy();
-					console.log("----- mulai running hour1 ");
+					//console.log("----- mulai running hour1 ");
 					//de.refreshRH();
 					de.getRunningHourStore().reload();
-					console.log("----- mulai running hour2");
+					de.getDaftarGagalStore().reload();
+					//console.log("----- mulai running hour2");
 					//de.getTaskDaftarGagal().getView().refresh();
-					console.log("----- mulai running hour3");
+					//console.log("----- mulai running hour3");
 					/*
                     task.store.remove({
                         success: function(task, operation) {
@@ -297,7 +296,7 @@ Ext.define('rcm.controller.ExcelGrid', {
                 }
             }
         });
-		
+
 	},
 	
 	pilihEventGagalXY: function(n)	{

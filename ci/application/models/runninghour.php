@@ -3,9 +3,9 @@
 class Runninghour extends CI_Model {
 	//function get_event($id,$downt,$downj,$upt,$upj,$flag=0,$event,$edit,$idid,$da,$db,$ua,$ub)    {
 	function cek_tgl_rh_ada($id, $tgl) {
-		$query = $this->db->select('id');
-		$query = $this->db->where('eq',$id);
-		$query = $this->db->where('tgl',$tgl);
+		$this->db->select('id');
+		$this->db->where('eq',$id);
+		$this->db->where('tgl',$tgl);
 		$query = $this->db->get('rh_201311');
 		
 		//$hsl = $query->result();

@@ -11,21 +11,24 @@ class uDaftarG extends CI_Controller {
 			$params->id = 'u21';
 			$params->lok = '';
 			$params->nama = '';
-			$params->downt = '2014-08-15';
-			$params->downj = '01:00' ;
-			$params->upt = '2014-08-15';
-			$params->upj = '01:10'; 
-			$params->event = '4' ;		// 1: standby
+			$params->downt = '2014-08-22';
+			$params->downj = '02:00' ;
+			$params->upt = '2014-08-22';
+			$params->upj = '02:15'; 
+			$params->event = '1' ;		// 1: standby
 			$params->idevent = ''; 
 			$params->tipeev = '';
 			$params->ket ='';
 			$params->exe = '';
+			
+			//print_r($params);
 			//*/
 			if (!isset($params))	{
 				throw new Exception("Data Tidak ada !!");
 			}
 			
 			$edit = isset($params->edit)?$params->edit:0;
+			//$eq = isset($params->eqid)?$params->eqid:"0";
 			//echo "edit: $edit-----<br/>";
 			$aw = bwaktu($params->downt, $params->downj);
 			$ak = bwaktu($params->upt, $params->upj);
@@ -89,20 +92,17 @@ class uDaftarG extends CI_Controller {
 			// CEK WAKTU range di database
 			
 			$tole = $this->option->cek_tole_hari();
-			
-			//*
-			$wkt = $this->waktudown->get_waktudown($idAr[0],$params->downt,$params->downj,$params->upt,$params->upj,0,
+			$wkt = $this->waktudown->get_waktudown($id,$params->downt,$params->downj,$params->upt,$params->upj,0,
+			//$wkt = $this->waktudown->get_waktudown($eq,$params->downt,$params->downj,$params->upt,$params->upj,0,
 					$params->event, $edit, $idid,
 					hari_dengan_tole($params->downt,-$tole),hari_dengan_tole($params->downt,$tole),
 					hari_dengan_tole($params->upt,-$tole),hari_dengan_tole($params->upt,$tole) );
-			//*/
-			//$wkt = cek_waktu_range($idAr[0], $params->downt, $params->downj, $params->upt, $params->upj,0, $params->event, $edit, $idid);
 
 			//echo "Cek waktu range: <br/>";	print_r($wkt); echo "<br/><br/>";
 			
 			$kw = kombinasi_waktu($wkt->dt, $wkt->dj, $wkt->ut, $wkt->uj);
 			//echo "kombinasi waktu: ".count($kw)."<br/>"; print_r($kw);	echo "<br/>";
-
+			
 			if (count($kw)>0)	{
 				for ($i=0; $i<count($kw); $i++)	{
 					$taw1 = bwaktu($kw[$i][0],$kw[$i][1]);	//echo "taw1 : ".$taw1->t."<br/>";
@@ -116,7 +116,7 @@ class uDaftarG extends CI_Controller {
 						throw new Exception("Waktu Konflik dengan Kegagalan Lain selama $crash jam");
 				}
 			}
-//			return;
+			//return;
 			$ar=array();	$ar_av=array();	$ar_re=array();	$l=0; $m=0;
 			for ($k=0; $k<count($wkt->dt); $k++)	{
 				//echo "$k: ".$wkt->dt[$k].", event: ".$wkt->ev[$k]."<br/>";
@@ -228,7 +228,7 @@ class uDaftarG extends CI_Controller {
 			
 			$pm = array();
 			//echo "tipeev: $tipeev,".strlen($tipeev)."<br/>";
-
+			//return;
 			$jmlpm = count($params->tipeev)>0?count($params->tipeev):0;
 			//echo "jmlpm: $jmlpm";
 			//$tipeev = array("e34pm1", "e33pm15");
