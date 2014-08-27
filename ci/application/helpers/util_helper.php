@@ -118,8 +118,10 @@ if ( ! function_exists('format_rh'))	{
 		$jml = count($a);
 		if ($jml>0)	{
 			for($i=0; $i<count($a); $i++)	{
-				$a[$i]['jam'] = float2min(24+$a[$i]['jam']);
-				$b[$a[$i]['tgl']] = $a[$i]['jam'];
+				//$a[$i]['jam'] = float2min(24+$a[$i]['jam']);
+				//$b[$a[$i]['tgl']] = $a[$i]['jam'];
+				$b[$a[$i]['tgl']] = 24+$a[$i]['jam'];
+				
 				//echo ": ".$a[$i]['tgl']." ---> ".$a[$i]['jam']."<br/>";
 			}
 		}
@@ -166,7 +168,7 @@ if ( ! function_exists('hitung_hrh'))	{
 				}
 			}
 			if ($flag>0)	{
-				//echo "tgl: {$b[$j]['tgl']} flag: $flag<br/>";
+				echo "tgl: {$b[$j]['tgl']} flag: $flag<br/>";
 				array_push($a,$b[$j]);
 				//echo "array_push !!!<br/>";
 			}
@@ -184,10 +186,10 @@ if ( ! function_exists('rh'))	{
 		$w = array();
 		$tglaw = bwaktu($taw);	
 		$tglak = bwaktu($tak);
-		
-		//echo "<br/>thn: {$tglaw->thn}, bln: {$tglaw->bln}, tgl: {$tglaw->tgl} {$tglaw->jam}:{$tglaw->min} --->{$tglaw->t}<br/>";
-		//echo "thn: {$tglak->thn}, bln: {$tglak->bln}, tgl: {$tglak->tgl}  {$tglak->jam}:{$tglak->min}--->{$tglak->t}<br/>";
-		
+		/*
+		echo "<br/>thn: {$tglaw->thn}, bln: {$tglaw->bln}, tgl: {$tglaw->tgl} {$jaw} --->{$tglaw->t}<br/>";
+		echo "thn: {$tglak->thn}, bln: {$tglak->bln}, tgl: {$tglak->tgl}  {$jak}--->{$tglak->t}<br/>";
+		//*/
 		$i=0; $shari=(60*60*24); $rh=0;
 		do {	// cari TOTAL waktu down perhari !!! bukan running hour
 			if ($i==0)	{

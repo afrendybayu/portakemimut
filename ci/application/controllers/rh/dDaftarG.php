@@ -11,12 +11,12 @@ class dDaftarG extends CI_Controller {
 			$params->lok = '';
 			$params->nama = '';
 			$params->downt = '2014-08-22';
-			$params->downj = '02:00' ;
+			$params->downj = '00:15' ;
 			$params->upt = '2014-08-22';
-			$params->upj = '03:00'; 
+			$params->upj = '00:30'; 
 			$params->event = '1' ;
-			$params->id = "e121e122";
-			//print_r($params); echo "<br/>";
+			$params->id = "e131e132";
+			print_r($params); echo "<br/>";
 			//*/
 			if (!isset($params))	{
 				throw new Exception("Data Tidak ada !!");

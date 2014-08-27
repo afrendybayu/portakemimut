@@ -184,6 +184,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 						callback: function(dd, operation) {
 							console.log('sukses hapusFMEAClick');
 							this.getTaskFMEAGrid().getView().refresh();
+						}
 					});
                 }
             }
