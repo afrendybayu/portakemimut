@@ -387,6 +387,8 @@ Ext.define('rcm.controller.ExcelGrid', {
     onLaunch: function() {
 		//console.log("onLauch ExcelGrid");
 		Ext.getCmp('idwest').collapse();
+		
+		rcmSettings.qqqq = this.getExcelgrid();
 
 		Ext.getCmp('htmleddet').setReadOnly(true);
 		this.ubahFieldRH();
@@ -624,7 +626,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 	},
 
 	updateGagalClick: function()	{
-		console.log('masuk updateGagalClick');
+		//console.log('masuk updateGagalClick');
 		var me=this;
 		var o = me.ambilDataForm();
 		var resp,id;
@@ -633,9 +635,8 @@ Ext.define('rcm.controller.ExcelGrid', {
 			id:o.id,downt:o.dd,downj:o.td,startt:o.dm,startj:o.tm,endt:o.ds,endj:o.ts,upt:o.du,upj:o.tu,
 			event:o.event,tipeev:o.tipeev,ket:o.ket,exe:o.exe,server:rcmSettings.server,cat:rcmSettings.cat
         });
-        
-        
-        rec.save({
+
+        rec.save({			//rec.sync({ tidak ada 
             success: function(respon, operation) {
 				//console.log('masuk updateGagalClick sukses');
 				resp = operation.request.scope.reader.jsonData["tasks"];

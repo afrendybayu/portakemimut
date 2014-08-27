@@ -2,6 +2,25 @@
 
 class Waktudown extends CI_Model {
 
+	function get_waktudown_edit($id)	{
+		/*
+		$this->db->select('id,downt,downj,upt,upj,eqid,unit_id,id');
+		$this->db->where_in('id',$id);
+		$this->db->group_by(array('downt', 'downj', 'upt', 'upj');
+		$query = $this->db->get('waktudown');
+		//*/
+		$ids = @implode(',',$id);
+		$sql =	"select group_concat(id separator ',') as id,group_concat(eqid separator 'e') as eqeq, ".
+				"unit_id, downt, downj, upt, upj ".
+				"from waktudown where id in ($ids) ".
+				"group by downt,downj,upt,upj";
+		//echo "sql: $ids : $sql<br/><br/>";
+		
+		$query = $this->db->query($sql);
+		//print_r($query->result()); echo "<br/><br/>";
+		return $query->result();
+	}
+
 	function get_waktudown($id,$downt,$downj,$upt,$upj,$flag=0,$event,$edit,$idid,$da,$db,$ua,$ub)    {
 		/*
 		$sql =	"SELECT id,downt AS dt,downj AS dj,upt AS ut, upj AS uj,event AS ev FROM waktudown WHERE eqid='{$id}' ".

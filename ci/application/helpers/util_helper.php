@@ -168,13 +168,35 @@ if ( ! function_exists('hitung_hrh'))	{
 				}
 			}
 			if ($flag>0)	{
-				echo "tgl: {$b[$j]['tgl']} flag: $flag<br/>";
+				//echo "tgl: {$b[$j]['tgl']} flag: $flag<br/>";
 				array_push($a,$b[$j]);
 				//echo "array_push !!!<br/>";
 			}
 			$flag = 0;
 		}
 		return $a;
+	}
+}
+
+if ( ! function_exists('goleki_wayah'))	{
+	function goleki_wayah($pd, $pu, $dd, $du, $tole) {
+		$baw_def_a = strtotime(hari_dengan_tole($pd,-$tole));
+		$baw_def_b = strtotime(hari_dengan_tole($pd,$tole));
+		$bak_def_a = strtotime(hari_dengan_tole($pu,-$tole));
+		$bak_def_b = strtotime(hari_dengan_tole($pu,$tole));
+			//*
+		$baw_db_a = strtotime(hari_dengan_tole($dd,-$tole));
+		$baw_db_b = strtotime(hari_dengan_tole($dd,$tole));
+		$bak_db_a = strtotime(hari_dengan_tole($du,-$tole));
+		$bak_db_b = strtotime(hari_dengan_tole($du,$tole));
+		
+		$baw_a = date('Y-m-d',($baw_def_a<$baw_db_a)?$baw_def_a:$baw_db_a);
+		$baw_b = date('Y-m-d',($baw_def_b>$baw_db_b)?$baw_def_b:$baw_db_b);
+		$bak_a = date('Y-m-d',($bak_def_a<$bak_db_a)?$bak_def_a:$bak_db_a);
+		$bak_b = ($bak_def_b>$bak_db_b)?$bak_def_b:$bak_db_b;
+		$bak_b = ($bak_b<strtotime(date('Y-m-d')))?date('Y-m-d',($bak_b)):date('Y-m-d');
+		
+		return array("baw_a" => $baw_a, "baw_b" => $baw_b, "bak_a" => $bak_a, "bak_b" => $bak_b);
 	}
 }
 

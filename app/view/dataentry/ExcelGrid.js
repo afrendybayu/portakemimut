@@ -70,7 +70,7 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 		var me=this, 
 			cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing', { clicksToEdit: 1 });
 		
-		me.plugins = [cellEditingPlugin];
+		me.plugins = cellEditingPlugin;
 		//*
 		me.bbar = [{
 			text: 'Compressor',
