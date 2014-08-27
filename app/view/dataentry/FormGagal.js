@@ -19,7 +19,7 @@ Ext.define('rcm.view.dataentry.FormGagal', {
 	minWidth: 500,
 	layout: 'fit',
 	bodypadding : '10',
-
+	// hidden : true,
 	initComponent: function() {
 		var me=this;
 		/*
@@ -50,6 +50,7 @@ Ext.define('rcm.view.dataentry.FormGagal', {
             bodyPadding: 10,
             border: false,
             frame: true,
+			
             items: [{
 				xtype: 'displayfield',
 				name: 'eq',

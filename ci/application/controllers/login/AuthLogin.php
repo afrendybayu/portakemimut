@@ -63,6 +63,53 @@ class AuthLogin extends CI_Controller {
 			);	
 		}
 	}
+	public function isSession(){
+		$sesi = $this->session->userdata('log_sesi');
+		try{
+			
+			// print_r($sesi);
+			if ($sesi){
+				$sessi = array ('nama' => $sesi['nama'],'akses' => $sesi['level'] );
+				$jsonResult = array(
+					'success'	=> true,
+					'sesi' 		=> $sessi
+				);
+			}
+			else {
+				
+				$jsonResult = array(
+					'success'	=> false,
+					'sesi' 		=> 'Belum Login'
+				);
+			}
+			
+			
+			
+			echo json_encode($jsonResult);
+		}
+		catch(Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+	}
+	public function isUnset(){
+		$usesi = $this->session->unset_userdata('log_sesi');
+		try{
+			$jsonResult = array(
+				'success'	=> true,
+				'unset' 	=> 'sukses'
+			);
+			echo json_encode($jsonResult);
+		}
+		catch(Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+	}
 }
 
 ?>
