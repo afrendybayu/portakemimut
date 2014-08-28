@@ -4,13 +4,13 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 	extend: 'Ext.grid.Panel',
 	alias: 'widget.daftarGagal',
 	xtype: 'taskDaftarGagal',
-	//id: 'daftargagal',
+	id: 'daftargagal',
 	store: 'DaftarGagal',
-	
+	visible : false,
 	requires: [
 		'rcm.view.dataentry.BlnGagal'
 	],
-	enableColumnHide: false,
+	// enableColumnHide: false,
 	
 	viewConfig: {
         getRowClass: function(record, index) {
@@ -55,9 +55,9 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 		me.columns = {	
 			items: [
 			{ xtype:'rownumberer',width:25 },
-			{ header:'Lokasi',dataIndex:'lok',width:100,filter: { 	type: 'string'  } },
-			{ header:'Nama Unit',dataIndex:'nama',width:135,filter: { type: 'string' } },
-			{ header:'Kejadian',dataIndex:'event',width:75, tdCls: 'x-change-cell',
+			{ header:'Lokasi',dataIndex:'lok',width:100, hideable : false, filter: { 	type: 'string'  } },
+			{ header:'Nama Unit',dataIndex:'nama',width:135, hideable : false, filter: { type: 'string' } },
+			{ header:'Kejadian',dataIndex:'event',width:75, tdCls: 'x-change-cell', hideable : false,
 			//*	
 				filter: {
 					type: 'string',
@@ -65,6 +65,7 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 				}//*/
 			},
 			{ header:'Unit Down',
+				hideable : false,
 				columns: 
 					[	{ header: 'Tanggal', dataIndex: 'downt', width:80,
 							editor: {
@@ -79,6 +80,7 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 						{ header:'Jam',dataIndex:'downj',width:60,editor: {xtype:'timefield',format:'H:i'} }
 					]
 			},{ text:'Mulai Perbaikan', 
+				hideable : false,
 				columns: 
 					[	{ header:'Tanggal',dataIndex:'startt',width:80, 
 							editor: {
@@ -92,6 +94,7 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 						{ header:'Jam',dataIndex:'startj',width:60,editor:{xtype:'timefield',allowBlank:true,format:'H:i'} }
 					]
 			},{ text:'Selesai Perbaikan',
+				hideable : false,
 				columns: 
 					[	{ header: 'Tanggal', dataIndex: 'endt', width:80, 
 							editor: {
@@ -105,6 +108,7 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 						{ header: 'Jam', dataIndex: 'endj', width:60, editor: {xtype: 'timefield',allowBlank:true,format:'H:i'} }
 					]
 			},{ header: 'Unit Running', 
+				hideable : false,
 				columns: 
 					[	{ header: 'Tanggal', dataIndex: 'upt', width:80, 
 							editor: {
@@ -117,17 +121,24 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 						} },
 						{ header:'Jam',dataIndex:'upj',width:60,editor: {xtype:'timefield',format:'H:i'} }
 					]
-			}, { header: 'Mode Kegagalan / Keterangan', dataIndex: 'fm', flex:1
+			}, { header: 'Mode Kegagalan / Keterangan', dataIndex: 'fm', flex:1, hideable : false
 			}, {
 				xtype:'actioncolumn',
 				width:25,
 				iconCls: 'editEvent',
+				hidden : true,
+				id	: 'gridedit',
+				hideable : false,
 				tooltip: 'Edit Kejadian',
 				handler: Ext.bind(me.hdlEditDGClick, me)
+				
 			}, {
 				xtype:'actioncolumn',
 				width:25,
 				iconCls: 'hpsEvent',
+				hidden : true,
+				hideable : false,
+				id	: 'griddel',
 				//icon: 'modul/icons/delete.gif',  // Use a URL in the icon config
 				tooltip: 'Hapus Kejadian',
 				handler: Ext.bind(me.hdlHapusDGClick, me)

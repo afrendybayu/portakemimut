@@ -213,6 +213,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 	},
 	
 	edDGClick: function(rec)	{
+	
 		//alert("Controller editDG ganti ke ExcelGrid");
 		var me = this, ev = rec.get('idevent'), un = rec.get('eqid'),
             tFG = me.getTaskFormGagal();
@@ -311,9 +312,9 @@ Ext.define('rcm.controller.ExcelGrid', {
 			form =  tFG.down('form').getForm(),
 			sDG = Ext.create('rcm.model.DaftarGagal'),
 			dRHs = me.getRunningHourStore().getAt(e.rowIdx).data,
-			dRHsJ = dRHs.eq+" @"+dRHs.Lokasi,
+			dRHsJ = dRHs.eq+" @"+dRHs.Lokasi;
 			//DSesi = Ext.create('rcm.model.LoginSesi');
-			DSesi = me.getLoginSesiStore();
+			
 		
 		sDG.set('eq',rcmSettings.eqx); sDG.set('nama',dRHsJ); 
 		sDG.set('downt',rcmSettings.tgl); //sDG.set('server','rcmSettings.server');
@@ -342,6 +343,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		//tFG.setWidth(500);
 		// tFG.show();
 		// tFG.hide()
+		var DSesi = me.getLoginSesiStore();
 		DSesi.load({
 			scope: this,
 			callback: function(records, operation, success) {
@@ -358,7 +360,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 				// contains all of the details of the load operation
 				console.log(res.nama);
 			}
-		});
+		});//*/
 		
 		
 		me.getEquipStore().load({ params:{unit:dRHs.id} });
@@ -444,25 +446,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		//Ext.util.Cookies.set('tgl',t);
 		Ext.util.Cookies.set('now',Ext.Date.format(new Date(),"Y-m-d"));
 		
-		var LSesi = this.getLoginSesiStore();
-		LSesi.load({
-			scope: this,
-			callback: function(records, operation, success) {
-				var res = operation.request.scope.reader.jsonData["sesi"];
-				if (success){
-					// console.log('masuk sebagai admin');
-					Ext.getCmp('p_login').setVisible(false);
-					Ext.getCmp('p_logout').setVisible(true);
-					Ext.getCmp('t_welcome').setText('Selamat Datang '+res.nama);
-				}
-				else{
-					// console.log('tidak jelas');
-					Ext.getCmp('p_login').setVisible(true);
-					Ext.getCmp('p_logout').setVisible(false);
-				}
-				// console.log(res.nama);
-			}
-		});
+		
 		
 		//alert("t: "+t+"  cook: "+Ext.decode(rcm.view.Util.getCookie("tgl")));
 

@@ -2,29 +2,38 @@ Ext.define('rcm.controller.Login', {
     extend: 'Ext.app.Controller', 
 	
 	requires : [
-		'rcm.view.login.LoginAuth'
+		'rcm.view.login.LoginAuth',
+		'rcm.view.dataentry.DaftarGagal'
 			
 	],
 	
 	views: [
 		'nav.AppHeader'
-		,'dataentry.FormGagal'	
+		,'dataentry.FormGagal'
+		,'dataentry.DaftarGagal'
+		// ,'dataentry.IsiTabForm'
+		
     ],
 
     stores: [
 		'LoginAuth'
 		,'UnsetSesi'
+		,'LoginSesi'
 	],
     
     models: [
 		'LoginAuth'
 		,'UnsetSesi'
+		,'LoginSesi'
 	],
 	
 	refs : [{
-		ref: 'excelgrid',
-		selector: 'cellEditingPlugin',
-		xtype: 'excelgrid',
+			ref: 'taskFormGagal',
+			selector: 'taskFormGagal',
+			xtype: 'taskFormGagal'
+		},{
+			ref: 'excelgrid',
+			selector: 'excelgrid'
 		}],
 	
 	init: function(){
@@ -32,19 +41,56 @@ Ext.define('rcm.controller.Login', {
 			/*'authlogin button[action=login]' : {
 				click : this.tblLogin
 			}*/
+			/*'excelgrid': {
+				recordedit: this.updateTGrid
+				
+			},*/
 			
 			'#btn_login' : {
 				click : this.tblLogin
 			},
 			'#btn_logout' : {
 				click : this.tblLogout
+			},
+			'actioncolumn#gridedit' : {
+				click : this.handlegridedit
 			}
 		
 		});
+		
 	}, 
+	
+	
+	/*bfGagal : function(){
+		// var FGagal 	= this.getTaskFormGagal();
+		var DSesi	= this.getLoginSesiStore();
+		DSesi.load({
+						scope: this,
+						callback: function(records, operation, success) {
+							var res = operation.request.scope.reader.jsonData["sesi"];
+							if (res.nama == 'Administrator'){
+								console.log('masuk sebagai admin');
+								// FGagal.show();
+							}
+							else{
+								console.log('tidak jelas');
+								FGagal.hide();
+							}
+							// the operation object
+							// contains all of the details of the load operation
+							console.log(res.nama);
+						}
+					});
+	},*/
+	handlegridedit :function(){
+		// Ext.bind(me.hdlEditDGClick, me)
+		
+	},
 	
 	tblLogin : function(btn){
 		// console.log('klik login tombol');
+		// 
+		
 		var frm 	= btn.up('form').getForm(),
 			userget = frm.getValues().username,
 			passget	= frm.getValues().password;
@@ -64,7 +110,18 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('p_login').setVisible(false);
 					Ext.getCmp('p_logout').setVisible(true);
 					Ext.getCmp('t_welcome').setText('Selamat Datang '+res.session);
-					// tFG.show();
+					Ext.getCmp('griddel').setVisible(true);
+					Ext.getCmp('gridedit').setVisible(true);
+					Ext.getCmp('btnUplBpm3').setDisabled(false);
+					Ext.getCmp('bwbpm3').setDisabled(false);
+					
+					
+					// rcmSettings.aaaaa = Ext.getCmp('grid_edit1111');	
+					/*	var me 	= this,
+							uFG = me.getTaskFormGagal();
+							uFG.show();
+					*/
+					
 				},
 				failure : function(respon, operation){
 					Ext.MessageBox.show({
@@ -103,18 +160,25 @@ Ext.define('rcm.controller.Login', {
 						scope: this,
 						callback: function(records, operation, success) {
 							// var res = operation.request.scope.reader.jsonData["sesi"];
-							rcmSettings.gggf = records;
 							if (success){
-								console.log('Session Unset');
-								// Ext.getCmp('p_login').setVisible(false);
-								// Ext.getCmp('p_logout').setVisible(true);
-								// Ext.getCmp('t_welcome').setText('Selamat Datang '+res.nama);
+								// console.log('Session Unset');
+								Ext.MessageBox.show({
+									title : 'Logout Info',
+									msg   : 'Terimakasih',
+									buttons: Ext.MessageBox.OK,
+									icon  : Ext.MessageBox.INFO,
+								});
+								// alert('Login Info','Terimakasih');
 							}
 						}
 					});
 					
 					Ext.getCmp('p_login').setVisible(true);
 					Ext.getCmp('p_logout').setVisible(false);
+					Ext.getCmp('griddel').setVisible(false);
+					Ext.getCmp('gridedit').setVisible(false);
+					Ext.getCmp('btnUplBpm3').setDisabled(true);
+					Ext.getCmp('bwbpm3').setDisabled(true);
 				}
 				else {
 					Ext.getCmp('p_login').setVisible(false);
@@ -124,6 +188,35 @@ Ext.define('rcm.controller.Login', {
 		});
 	},
 	onLaunch: function(){
-		
+		// console.log('launch sesi login');
+		var LSesi = this.getLoginSesiStore();
+		LSesi.load({
+			scope: this,
+			callback: function(records, operation, success) {
+				var res = operation.request.scope.reader.jsonData["sesi"];
+				if (success){
+					console.log('masuk sebagai admin');
+					Ext.getCmp('p_login').setVisible(false);
+					Ext.getCmp('p_logout').setVisible(true);
+					Ext.getCmp('t_welcome').setText('Selamat Datang '+res.nama);
+					Ext.getCmp('griddel').setVisible(true);
+					Ext.getCmp('gridedit').setVisible(true);
+					Ext.getCmp('btnUplBpm3').setDisabled(false);
+					Ext.getCmp('bwbpm3').setDisabled(false);
+					
+					
+				}
+				else{
+					console.log('sesine ilang je');
+					Ext.getCmp('p_login').setVisible(true);
+					Ext.getCmp('p_logout').setVisible(false);
+					Ext.getCmp('griddel').setVisible(false);
+					Ext.getCmp('gridedit').setVisible(false);
+					Ext.getCmp('btnUplBpm3').setDisabled(true);
+					Ext.getCmp('bwbpm3').setDisabled(true);
+				}
+				// console.log(res.nama);
+			}
+		});
 	}
 });
