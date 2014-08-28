@@ -26,6 +26,17 @@ class Runninghour extends CI_Model {
 		$this->db->update('rh_201311',$data);
 	}
 	
+	function get_spAvReU($avre, $cat, $bln, $thn)	{
+		$sql =	"select ROUND(ifnull((sum($avre)/count(id))*(100/24),0),2) as hsl from rh_201311 ".
+				"where thn=$thn and bln = $bln and cat = $cat";
+		
+		$query = $this->db->query($sql);
+		
+		//echo "<br/>sql: $sql<br/>";
+		//echo "hsl : "; print_r($query->result());
+		return $query->result();
+	}
+	
 	function get_avre_awaltahun($th)	{
 		$sql =	"select cat, sum(rh_av) as av,sum(rh_re) as re,".
 				"count(id) as jmleq from rh_201311 where thn=? group by cat";

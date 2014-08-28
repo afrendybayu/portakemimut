@@ -6,7 +6,8 @@ Ext.define('rcm.store.SpReGsUt', {
 	autoLoad: true,
 	proxy: {
 		type: 'ajax',
-		url: 'php/utama/spAvReU.php?qe=regs',
+		//url: 'php/utama/spAvReU.php?qe=regs',
+		url: 'ci/index.php/home/rSpAvReU?qe=regs',
         reader: {
             type: 'json',
             root: 'greq',

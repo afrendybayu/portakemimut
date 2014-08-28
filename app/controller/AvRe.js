@@ -4,14 +4,15 @@ Ext.define('rcm.controller.AvRe', {
     views: [
 		'lapobama.AvGroup'
 		,'lapobama.SpeedoAv'
-    ],
-
-    controllers: [
-        // TODO: add controllers here
+		
+		,'utama.HoChart'
     ],
 
     stores: [
 		'AvReUnit','AvHome','ReHome','AvGroup','AvSpeedo','ReSpeedo'
+		
+		,'SpAvGcUt','SpAvGsUt','SpAvPmUt','SpReGcUt','SpReGsUt','SpRePmUt'
+		,'HoOrderC','HoMan'
     ],
     
     models: [
@@ -55,7 +56,6 @@ Ext.define('rcm.controller.AvRe', {
 	},
 	
 	updateAvRe: function() {
-		//alert("AvRe Contrtoller updateAvRe");
 		var me = this;
 		me.getAvGroupStore().load({
 			scope: me,

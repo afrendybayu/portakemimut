@@ -7,10 +7,7 @@ Ext.define('rcm.view.Content', {
 		,'rcm.view.dataentry.ExcelGrid'
 		,'rcm.view.lapobama.AvReChart' //--
 		,'rcm.view.laporan.Chart'
-		//'rcm.view.dataentry.DetailInfo'
-		//'Extensible.calendar.data.MemoryEventStore',
-		//'Extensible.calendar.CalendarPanel',
-		//'Extensible.example.calendar.data.Events'
+		,'rcm.view.utama.HoChart'
 	],
 
     layout: {
@@ -24,14 +21,11 @@ Ext.define('rcm.view.Content', {
     initComponent: function() {
 		var me=this;
 		me.items = [{
-			/*
 			id: 'tu_ho',
 			title: 'Dashboard Home',
-			iconCls: 'Dashboard'
-			//icon: 'modul/icons/Dashboard.png',
-			//xtype: 'tHoChart',
+			iconCls: 'Dashboard',
+			xtype: 'tHoChart'
 		},{
-		//*/
 			id: 'tu_re',
 			title: 'Reliability',
 			iconCls: 'Reliability',
