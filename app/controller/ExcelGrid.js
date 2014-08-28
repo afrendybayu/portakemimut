@@ -182,7 +182,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 					//this.getEventStore.destroy();
 					dd.destroy({
 						callback: function(dd, operation) {
-							console.log('sukses hapusFMEAClick');
+							//console.log('sukses hapusFMEAClick');
 							this.getTaskFMEAGrid().getView().refresh();
 						}
 					});
@@ -575,11 +575,9 @@ Ext.define('rcm.controller.ExcelGrid', {
         rec.save({				// update
             success: function(respon, operation) {
 				var resp = operation.request.scope.reader.jsonData["tasks"];
-				console.log("getEventStore masuk sini 1");
 				var recx = me.getEventStore().getRange();
-				console.log("getEventStore masuk sini 2"+ event);
+
 				if (o.event>2)	{
-					console.log("getEventStore masuk sini 3");
 					for (var i=0, len1=resp.length; i<len1; ++i) {
 						for (var j=0,len2=recx.length; j<len2; ++j)	{
 							if (recx[j].data.ideql==resp[i].eq)	{
@@ -587,17 +585,15 @@ Ext.define('rcm.controller.ExcelGrid', {
 							}
 						}
 					}
-					console.log("getEventStore masuk sini 4");
 					me.getEventStore().sync({
 						success: function()	{
-							console.log("getEventStore sukses");
 							me.getDaftarGagalStore().reload();
 						},
 						failure: function()	{
-							console.log("getEventStore gagal");
+							//console.log("getEventStore gagal");
 						},
 						callback: function()	{
-							console.log("getEventStore callback");
+							//console.log("getEventStore callback");
 						}										
 					});				// create ()
 

@@ -90,6 +90,7 @@ class Waktudown extends CI_Model {
 				"LEFT JOIN event ON event.down_id = waktudown.id ".
 				"WHERE downt BETWEEN ? AND ? group by id order by downt desc, downj desc, id desc";
 		//*/
+		/*
 		$sql =	"SELECT (select group_concat((select concat('e',waktudown.id)) separator '')) as id,event as idevent,tipeev ".
 				",(select concat('[',kode,': ',(select pmdef.nama from pmdef where pmdef.id ".
 				"= (select pmlist.pm from pmlist where pmlist.id=tipeev)),']')) as namapm ".
@@ -107,6 +108,22 @@ class Waktudown extends CI_Model {
 				"LEFT JOIN equip ON equip.id = waktudown.eqid ".
 				"LEFT JOIN event ON event.down_id = waktudown.id ".
 				"WHERE downt BETWEEN ? AND ? group by downt,downj,upt,upj order by downt desc, downj desc, id desc";
+		//*/
+		$sql =	"SELECT (select group_concat((select concat('e',waktudown.id)) separator '')) as id, ".
+				"waktudown.unit_id as eqid ,event as idevent,tipeev ".
+				",concat(ifnull((select group_concat('[',kode,': ',(select pmdef.nama from pmdef where pmdef.id ".
+				"= (select pmlist.pm from pmlist where pmlist.id=tipeev)),']')),'') ".
+				",ifnull((select group_concat((select concat('[',kode,': ',(select nama from failuremode where failuremode.id = event.fm),']')) ".
+				"separator ' ') ),'') ) as fm ".
+				",downt,(select date_format(downj,'%H:%i')) as downj,upt,(select date_format(upj,'%H:%i')) as upj ".
+				",startt,(select date_format(startj,'%H:%i')) as startj,endt,(select date_format(endj,'%H:%i')) as endj,waktudown.ket,exe ".
+				",(select hirarki.nama from hirarki where hirarki.id = (select hirarki.parent from hirarki where hirarki.id ".
+				"= (select hirarki.parent from hirarki where hirarki.id = equip.unit_id))) as lok ,listEvent.nama as event, equip.unit_id ".
+				",(select nama from hirarki where hirarki.id = (select unit_id from equip where id = waktudown.eqid)) as nama ".
+				"FROM waktudown LEFT JOIN listEvent ON listEvent.id = waktudown.event ".
+				"LEFT JOIN equip ON equip.id = waktudown.eqid ".
+				"LEFT JOIN event ON event.down_id = waktudown.id WHERE downt BETWEEN ? AND ? ".
+				"group by downt,downj,upt,upj order by downt desc, downj desc, id desc ";
 		//echo "sql: $sql <br/>tglaw: $tglaw, tglak: $tglak<br/>";
 		$query = $this->db->query($sql, array($tglaw,$tglak));
 		

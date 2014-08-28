@@ -2207,7 +2207,6 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.taskGridCause"
   ],
   "rcm.view.laporan.GridCauseInfo": [
-    "widget.gridCause",
     "widget.taskGridCauseInfo"
   ],
   "rcm.view.laporan.GridConMon": [
