@@ -40,9 +40,11 @@ Ext.define('rcm.view.utama.GridOrderC', {
 					},{ header: 'Service Cost',dataIndex:'srvcost'
 					},{ header: 'Total Actual Cost',dataIndex:'taccost'
 					}]
-				},
-				{ header:'Budget 2014',dataIndex:'budget',flex:1 },
+				}
+				/*
+				,{ header:'Budget 2014',dataIndex:'budget',flex:1 },
 				{ header:'% Budget 2014',dataIndex:'persen',flex:1 }
+				//*/
 		]};
 		me.callParent(arguments);
 		me.addEvents(

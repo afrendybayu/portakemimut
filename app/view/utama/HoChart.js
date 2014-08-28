@@ -30,7 +30,7 @@ Ext.define('rcm.view.utama.HoChart', {
 			height: 140,
 			xtype: 'tHoSpeedo'
 		},{
-			icon: 'modul/icons/accept.png',
+			iconCls: 'accept',
 			title: 'WO Compliance',
 			xtype: 'panel',
 			layout: {
@@ -53,7 +53,7 @@ Ext.define('rcm.view.utama.HoChart', {
 			}],
 			flex: 5
 		},{
-			icon: 'modul/icons/dollar.png',
+			iconCls: 'dollar',
 			xtype: 'tGridOrderC',
 			flex: 4,
 			title: 'Order Costing'
