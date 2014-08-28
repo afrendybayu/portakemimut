@@ -110,6 +110,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 				editDGClick: me.edDGClick
 				,hapusDGClick: me.hpsDGClick
 			}
+			
 			//*/
 			
 		});
@@ -411,7 +412,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		});
         //*/
         
-        //*
+        /*
         Ext.define('Ext.view.override.Table', {
 			override: 'Ext.view.Table',
 		 

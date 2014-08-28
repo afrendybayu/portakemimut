@@ -21,6 +21,9 @@ Ext.define('rcm.controller.AvRe', {
     refs: [{
 		ref: 'tAvGroup',
 		selector: 'tAvGroup'
+	},{
+		ref: 'content',
+		selector: 'content'
 	}],
     
     init: function() {
@@ -28,12 +31,16 @@ Ext.define('rcm.controller.AvRe', {
         me.control({
 			'tAvGroup': {
 				AvGroupCl: me.AvGroupClick
+			},
+			'content': {
+				updateAvRe: me.updateAvRe
 			}
 		});
     },
 	
 	onLaunch: function() {
-		console.log("AvRe");
+		//console.log("AvRe");
+		/*
 		this.getAvGroupStore().load({
 			scope: this,
 			callback: function(rec, operation, success) {
@@ -42,7 +49,23 @@ Ext.define('rcm.controller.AvRe', {
 				}
 			}
 		});
+		//*/
+		this.updateAvRe();
 		//this.ubahLabelWO();
+	},
+	
+	updateAvRe: function() {
+		//alert("AvRe Contrtoller updateAvRe");
+		this.getAvGroupStore().load({
+			scope: this,
+			callback: function(rec, operation, success) {
+				if (success) {
+					this.AvGroupClick(0,0);
+				}
+			}
+		});
+		this.getAvHomeStore().load();
+		this.getReHomeStore().load();
 	},
 	
 	AvGroupClick: function(d,app,bln) 	{

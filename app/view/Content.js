@@ -144,12 +144,18 @@ Ext.define('rcm.view.Content', {
              * Fires when a record is edited using the CellEditing plugin or the statuscolumn
              * @param {SimpleTasks.model.Task} task     The task record that was edited
              */
-			//'recordedit'
+			'updateAvRe'
         );
         this.on('tabchange', me.handleContentTab, this);
 	},
 	handleContentTab: function()	{
-		rcmSettings.tab = this.getActiveTab().getId();
+		var tt = this.getActiveTab().getId();
+		rcmSettings.tab = tt;
+		if (tt.localeCompare("tu_re")==0)	{
+			//alert("masuk Reliability");
+			this.fireEvent('updateAvRe');
+		}
+		/*
 		var tab = this.getActiveTab();
 		if (tab.getId()=="tTC")	{
 			this.insert((this.items.length-1),{
@@ -157,7 +163,7 @@ Ext.define('rcm.view.Content', {
 			});
 			this.setActiveTab(this.items.length-2);
 		}
-		
+		//*/
 		//console.log("tab: "+tab.title+", id: "+this.getActiveTab().getId()+" view/Content.js");
 		//console.log("tab: "+rcmSettings.tab);
 	},
