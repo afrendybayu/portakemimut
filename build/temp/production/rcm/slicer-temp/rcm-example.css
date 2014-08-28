@@ -2913,28 +2913,34 @@
  * The border-style of grid column headers
  */
 /**
- * @class Ext.grid.plugin.Editing
- */
-/**
- * The height of grid editor text fields.  Defaults to $form-field-height.  If grid row
- * height is smaller than $form-field-height, defaults to the grid row height.  Grid row
- * height is caluclated by adding $grid-row-cell-line-height to the top and bottom values of
- * $grid-cell-inner-padding.
- */
-/**
- * The padding of grid editor text fields.
+ * @class Ext.grid.column.Action
  */
 /**
  * @var {number}
- * The font size of the grid editor text
+ * The height of action column icons
+ */
+/**
+ * @var {number}
+ * The width of action column icons
  */
 /**
  * @var {string}
- * The font-weight of the grid editor text
+ * The type of cursor to display when the cursor is over an action column icon
  */
 /**
- * @var {string}
- * The font-family of the grid editor text
+ * @var {number}
+ * The opacity of disabled action column icons
+ */
+/**
+ * @var {number}
+ * The amount of padding to add to the left and right of the action column cell
+ */
+/**
+ * @class Ext.grid.column.CheckColumn
+ */
+/**
+ * @var {number}
+ * Opacity of disabled CheckColumns
  */
 /**
  * @class Ext.grid.column.RowNumberer
@@ -3001,68 +3007,6 @@
  * as the left value and setting the remaining sides to 0.
  */
 /**
- * @class Ext.resizer.Splitter
- */
-/**
- * @var {number}
- * The size of the Splitter
- */
-/**
- * @var {color}
- * The background-color of the active Splitter (the Splitter currently being dragged)
- */
-/**
- * @var {number}
- * The opacity of the active Splitter (the Splitter currently being dragged)
- */
-/**
- * @var {number}
- * The opacity of the collapse tool on the active Splitter (the Splitter currently being dragged)
- */
-/**
- * @var {string}
- * The the type of cursor to display when the cursor is over the collapse tool
- */
-/**
- * @var {number}
- * The size of the collapse tool. This becomes the width of the collapse tool for
- * horizontal splitters, and the height for vertical splitters.
- */
-/**
- * @class Ext.layout.container.Border
- */
-/**
- * @var {color}
- * The background-color of the Border layout element
- */
-/**
- * @class Ext.slider.Multi
- */
-/**
- * @var {number}
- * The horizontal slider thumb width
- */
-/**
- * @var {number}
- * The horizontal slider thumb height
- */
-/**
- * @var {number}
- * The width of the horizontal slider end caps
- */
-/**
- * @var {number}
- * The vertical slider thumb width
- */
-/**
- * @var {number}
- * The vertical slider thumb height
- */
-/**
- * @var {number}
- * The height of the vertical slider end caps
- */
-/**
  * @class Ext.grid.feature.RowBody
  */
 /**
@@ -3086,13 +3030,6 @@
  * The padding of the RowBody
  */
 /**
- * @class Ext.grid.column.CheckColumn
- */
-/**
- * @var {number}
- * Opacity of disabled CheckColumns
- */
-/**
  * @class Ext.grid.feature.RowWrap
  */
 /**
@@ -3113,6 +3050,30 @@
 /**
  * @var {string}
  * The border-style of the border between the locked views
+ */
+/**
+ * @class Ext.grid.plugin.Editing
+ */
+/**
+ * The height of grid editor text fields.  Defaults to $form-field-height.  If grid row
+ * height is smaller than $form-field-height, defaults to the grid row height.  Grid row
+ * height is caluclated by adding $grid-row-cell-line-height to the top and bottom values of
+ * $grid-cell-inner-padding.
+ */
+/**
+ * The padding of grid editor text fields.
+ */
+/**
+ * @var {number}
+ * The font size of the grid editor text
+ */
+/**
+ * @var {string}
+ * The font-weight of the grid editor text
+ */
+/**
+ * @var {string}
+ * The font-family of the grid editor text
  */
 /**
  * @class Ext.grid.plugin.RowEditing
@@ -3162,45 +3123,6 @@
  * Space to add before each list item on the error tooltip
  */
 /**
- * @class Ext.grid.column.Action
- */
-/**
- * @var {number}
- * The height of action column icons
- */
-/**
- * @var {number}
- * The width of action column icons
- */
-/**
- * @var {string}
- * The type of cursor to display when the cursor is over an action column icon
- */
-/**
- * @var {number}
- * The opacity of disabled action column icons
- */
-/**
- * @var {number}
- * The amount of padding to add to the left and right of the action column cell
- */
-/**
- * @class Ext.grid.property.Grid
- */
-/**
- * @var {string}
- * The background-image of property grid cells
- */
-/**
- * @var {string}
- * The background-position of property grid cells
- */
-/**
- * @var {number/string}
- * The padding to add before the text of property grid cells to make room for the
- * background-image. Only applies if $grid-property-cell-background-image is not null
- */
-/**
  * @class Ext.grid.plugin.RowExpander
  */
 /**
@@ -3222,6 +3144,22 @@
 /**
  * @var {string}
  * The cursor for the RowExpander icon
+ */
+/**
+ * @class Ext.grid.property.Grid
+ */
+/**
+ * @var {string}
+ * The background-image of property grid cells
+ */
+/**
+ * @var {string}
+ * The background-position of property grid cells
+ */
+/**
+ * @var {number/string}
+ * The padding to add before the text of property grid cells to make room for the
+ * background-image. Only applies if $grid-property-cell-background-image is not null
  */
 /**
  * @class Ext.layout.container.Accordion
@@ -3277,6 +3215,41 @@
 /**
  * @var {string}
  * The sprite image to use for {@link Ext.panel.Tool Tools} in Accordion headers
+ */
+/**
+ * @class Ext.resizer.Splitter
+ */
+/**
+ * @var {number}
+ * The size of the Splitter
+ */
+/**
+ * @var {color}
+ * The background-color of the active Splitter (the Splitter currently being dragged)
+ */
+/**
+ * @var {number}
+ * The opacity of the active Splitter (the Splitter currently being dragged)
+ */
+/**
+ * @var {number}
+ * The opacity of the collapse tool on the active Splitter (the Splitter currently being dragged)
+ */
+/**
+ * @var {string}
+ * The the type of cursor to display when the cursor is over the collapse tool
+ */
+/**
+ * @var {number}
+ * The size of the collapse tool. This becomes the width of the collapse tool for
+ * horizontal splitters, and the height for vertical splitters.
+ */
+/**
+ * @class Ext.layout.container.Border
+ */
+/**
+ * @var {color}
+ * The background-color of the Border layout element
  */
 /**
  * @class Ext.menu.Menu
@@ -3455,6 +3428,33 @@
 /**
  * @var {string}
  * The sprite to use as the background-image for Tools
+ */
+/**
+ * @class Ext.slider.Multi
+ */
+/**
+ * @var {number}
+ * The horizontal slider thumb width
+ */
+/**
+ * @var {number}
+ * The horizontal slider thumb height
+ */
+/**
+ * @var {number}
+ * The width of the horizontal slider end caps
+ */
+/**
+ * @var {number}
+ * The vertical slider thumb width
+ */
+/**
+ * @var {number}
+ * The vertical slider thumb height
+ */
+/**
+ * @var {number}
+ * The height of the vertical slider end caps
  */
 /**
  * @class Ext.tab.Tab
@@ -5284,20 +5284,16 @@ svg, vml {
   text-align: center;
 }
 
-/* line 2, ../../../../../ext/packages/ext-theme-base/sass/src/grid/plugin/Editing.scss */
-.x-grid-editor .x-form-cb-wrap {
-  text-align: center;
+/* line 1, ../../../../../ext/packages/ext-theme-base/sass/src/grid/column/Action.scss */
+.x-grid-cell-inner-action-col {
+  line-height: 0;
+  font-size: 0;
 }
 
-/* line 9, ../../../../../ext/packages/ext-theme-base/sass/src/grid/plugin/Editing.scss */
-.x-grid-editor .x-form-display-field {
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-}
-/* line 17, ../../../../../ext/packages/ext-theme-base/sass/src/grid/plugin/Editing.scss */
-.x-grid-editor div.x-form-action-col-field {
+/* line 1, ../../../../../ext/packages/ext-theme-base/sass/src/grid/column/CheckColumn.scss */
+.x-grid-cell-inner-checkcolumn {
   line-height: 0;
+  font-size: 0;
 }
 
 /* line 1, ../../../../../ext/packages/ext-theme-base/sass/src/grid/column/RowNumberer.scss */
@@ -5320,6 +5316,71 @@ svg, vml {
 /* line 11, ../../../../../ext/packages/ext-theme-base/sass/src/grid/feature/Grouping.scss */
 .x-grid-row-body-hidden, .x-grid-group-collapsed {
   display: none;
+}
+
+/* line 1, ../../../../../ext/packages/ext-theme-base/sass/src/grid/feature/RowBody.scss */
+.x-grid-rowbody {
+  zoom: 1;
+}
+
+/* line 5, ../../../../../ext/packages/ext-theme-base/sass/src/grid/feature/RowBody.scss */
+.x-grid-row-body-hidden {
+  display: none;
+}
+
+/* line 3, ../../../../../ext/packages/ext-theme-base/sass/src/grid/feature/RowWrap.scss */
+td.x-grid-rowwrap .x-grid-table {
+  border: 0;
+}
+/* line 6, ../../../../../ext/packages/ext-theme-base/sass/src/grid/feature/RowWrap.scss */
+td.x-grid-rowwrap .x-grid-cell {
+  border-bottom: 0;
+  background-color: transparent;
+}
+
+/* line 2, ../../../../../ext/packages/ext-theme-base/sass/src/grid/plugin/Editing.scss */
+.x-grid-editor .x-form-cb-wrap {
+  text-align: center;
+}
+
+/* line 9, ../../../../../ext/packages/ext-theme-base/sass/src/grid/plugin/Editing.scss */
+.x-grid-editor .x-form-display-field {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+/* line 17, ../../../../../ext/packages/ext-theme-base/sass/src/grid/plugin/Editing.scss */
+.x-grid-editor div.x-form-action-col-field {
+  line-height: 0;
+}
+
+/* line 1, ../../../../../ext/packages/ext-theme-base/sass/src/grid/plugin/RowEditing.scss */
+.x-grid-row-editor {
+  position: absolute;
+  overflow: visible;
+  z-index: 1;
+}
+
+/* line 7, ../../../../../ext/packages/ext-theme-base/sass/src/grid/plugin/RowEditing.scss */
+.x-grid-row-editor-buttons {
+  position: absolute;
+  white-space: nowrap;
+}
+
+/* line 1, ../../../../../ext/packages/ext-theme-base/sass/src/grid/plugin/RowExpander.scss */
+.x-grid-row-expander {
+  font-size: 0;
+  line-height: 0;
+}
+
+/* line 1, ../../../../../ext/packages/ext-theme-base/sass/src/layout/container/Absolute.scss */
+.x-abs-layout-ct {
+  position: relative;
+}
+
+/* line 5, ../../../../../ext/packages/ext-theme-base/sass/src/layout/container/Absolute.scss */
+.x-abs-layout-item {
+  position: absolute !important;
 }
 
 /* line 1, ../../../../../ext/packages/ext-theme-base/sass/src/resizer/Splitter.scss */
@@ -5376,106 +5437,6 @@ svg, vml {
 /* line 14, ../../../../../ext/packages/ext-theme-base/sass/src/layout/container/Border.scss */
 .x-region-collapsed-placeholder {
   z-index: 4;
-}
-
-/* line 1, ../../../../../ext/packages/ext-theme-base/sass/src/slider/Multi.scss */
-.x-slider {
-  outline: none;
-  zoom: 1;
-  position: relative;
-}
-
-/* line 9, ../../../../../ext/packages/ext-theme-base/sass/src/slider/Multi.scss */
-.x-slider-inner {
-  position: relative;
-  left: 0;
-  top: 0;
-  overflow: visible;
-  zoom: 1;
-}
-/* line 17, ../../../../../ext/packages/ext-theme-base/sass/src/slider/Multi.scss */
-.x-slider-vert .x-slider-inner {
-  background: repeat-y 0 0;
-}
-
-/* line 23, ../../../../../ext/packages/ext-theme-base/sass/src/slider/Multi.scss */
-.x-slider-end {
-  zoom: 1;
-}
-
-/* line 28, ../../../../../ext/packages/ext-theme-base/sass/src/slider/Multi.scss */
-.x-slider-thumb {
-  position: absolute;
-  background: no-repeat 0 0;
-}
-/* line 31, ../../../../../ext/packages/ext-theme-base/sass/src/slider/Multi.scss */
-.x-slider-horz .x-slider-thumb {
-  left: 0;
-}
-/* line 34, ../../../../../ext/packages/ext-theme-base/sass/src/slider/Multi.scss */
-.x-slider-vert .x-slider-thumb {
-  bottom: 0;
-}
-
-/* line 1, ../../../../../ext/packages/ext-theme-base/sass/src/grid/feature/RowBody.scss */
-.x-grid-rowbody {
-  zoom: 1;
-}
-
-/* line 5, ../../../../../ext/packages/ext-theme-base/sass/src/grid/feature/RowBody.scss */
-.x-grid-row-body-hidden {
-  display: none;
-}
-
-/* line 1, ../../../../../ext/packages/ext-theme-base/sass/src/grid/column/CheckColumn.scss */
-.x-grid-cell-inner-checkcolumn {
-  line-height: 0;
-  font-size: 0;
-}
-
-/* line 3, ../../../../../ext/packages/ext-theme-base/sass/src/grid/feature/RowWrap.scss */
-td.x-grid-rowwrap .x-grid-table {
-  border: 0;
-}
-/* line 6, ../../../../../ext/packages/ext-theme-base/sass/src/grid/feature/RowWrap.scss */
-td.x-grid-rowwrap .x-grid-cell {
-  border-bottom: 0;
-  background-color: transparent;
-}
-
-/* line 1, ../../../../../ext/packages/ext-theme-base/sass/src/grid/plugin/RowEditing.scss */
-.x-grid-row-editor {
-  position: absolute;
-  overflow: visible;
-  z-index: 1;
-}
-
-/* line 7, ../../../../../ext/packages/ext-theme-base/sass/src/grid/plugin/RowEditing.scss */
-.x-grid-row-editor-buttons {
-  position: absolute;
-  white-space: nowrap;
-}
-
-/* line 1, ../../../../../ext/packages/ext-theme-base/sass/src/grid/column/Action.scss */
-.x-grid-cell-inner-action-col {
-  line-height: 0;
-  font-size: 0;
-}
-
-/* line 1, ../../../../../ext/packages/ext-theme-base/sass/src/grid/plugin/RowExpander.scss */
-.x-grid-row-expander {
-  font-size: 0;
-  line-height: 0;
-}
-
-/* line 1, ../../../../../ext/packages/ext-theme-base/sass/src/layout/container/Absolute.scss */
-.x-abs-layout-ct {
-  position: relative;
-}
-
-/* line 5, ../../../../../ext/packages/ext-theme-base/sass/src/layout/container/Absolute.scss */
-.x-abs-layout-item {
-  position: absolute !important;
 }
 
 /* line 1, ../../../../../ext/packages/ext-theme-base/sass/src/layout/container/Column.scss */
@@ -5577,6 +5538,45 @@ td.x-grid-rowwrap .x-grid-cell {
   background-color: #fff;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
+}
+
+/* line 1, ../../../../../ext/packages/ext-theme-base/sass/src/slider/Multi.scss */
+.x-slider {
+  outline: none;
+  zoom: 1;
+  position: relative;
+}
+
+/* line 9, ../../../../../ext/packages/ext-theme-base/sass/src/slider/Multi.scss */
+.x-slider-inner {
+  position: relative;
+  left: 0;
+  top: 0;
+  overflow: visible;
+  zoom: 1;
+}
+/* line 17, ../../../../../ext/packages/ext-theme-base/sass/src/slider/Multi.scss */
+.x-slider-vert .x-slider-inner {
+  background: repeat-y 0 0;
+}
+
+/* line 23, ../../../../../ext/packages/ext-theme-base/sass/src/slider/Multi.scss */
+.x-slider-end {
+  zoom: 1;
+}
+
+/* line 28, ../../../../../ext/packages/ext-theme-base/sass/src/slider/Multi.scss */
+.x-slider-thumb {
+  position: absolute;
+  background: no-repeat 0 0;
+}
+/* line 31, ../../../../../ext/packages/ext-theme-base/sass/src/slider/Multi.scss */
+.x-slider-horz .x-slider-thumb {
+  left: 0;
+}
+/* line 34, ../../../../../ext/packages/ext-theme-base/sass/src/slider/Multi.scss */
+.x-slider-vert .x-slider-thumb {
+  bottom: 0;
 }
 
 /* line 1, ../../../../../ext/packages/ext-theme-base/sass/src/tab/Tab.scss */
@@ -16169,6 +16169,43 @@ a.x-color-picker-item:hover {
   background-color: #0f0f0f;
 }
 
+/* line 1, ../../../../../ext/packages/ext-theme-neutral/sass/src/view/DropZone.scss */
+.x-grid-drop-indicator {
+  position: absolute;
+  height: 1px;
+  line-height: 0px;
+  background-color: #77BC71;
+  overflow: visible;
+  pointer-events: none;
+}
+/* line 9, ../../../../../ext/packages/ext-theme-neutral/sass/src/view/DropZone.scss */
+.x-grid-drop-indicator .x-grid-drop-indicator-left {
+  position: absolute;
+  top: -8px;
+  left: -12px;
+  background-image: url(images/grid/dd-insert-arrow-right.png);
+  height: 16px;
+  width: 16px;
+}
+/* line 18, ../../../../../ext/packages/ext-theme-neutral/sass/src/view/DropZone.scss */
+.x-grid-drop-indicator .x-grid-drop-indicator-right {
+  position: absolute;
+  top: -8px;
+  right: -11px;
+  background-image: url(images/grid/dd-insert-arrow-left.png);
+  height: 16px;
+  width: 16px;
+}
+
+/* line 29, ../../../../../ext/packages/ext-theme-neutral/sass/src/view/DropZone.scss */
+.x-ie6 .x-grid-drop-indicator-left {
+  background-image: url(images/grid/dd-insert-arrow-right.gif);
+}
+/* line 33, ../../../../../ext/packages/ext-theme-neutral/sass/src/view/DropZone.scss */
+.x-ie6 .x-grid-drop-indicator-right {
+  background-image: url(images/grid/dd-insert-arrow-left.gif);
+}
+
 /* line 2, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/header/DropZone.scss */
 .col-move-top,
 .col-move-bottom {
@@ -16368,61 +16405,54 @@ a.x-color-picker-item:hover {
 
 /*</if slicer>*/
 /* */
-/* line 4, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
-.x-grid-editor .x-form-text {
-  font: normal 11px/15px tahoma, arial, verdana, sans-serif;
-  padding: 1px 5px 2px 5px;
-  height: 20px;
-}
-/* line 15, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
-.x-content-box .x-grid-editor .x-form-text {
-  height: 15px;
-}
-/* line 21, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
-.x-gecko .x-grid-editor .x-form-text {
-  padding-left: 4px;
-  padding-right: 4px;
-}
-/* line 31, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
-.x-grid-editor .x-form-trigger {
-  height: 20px;
-}
-/* line 39, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
-.x-grid-editor .x-form-spinner-up, .x-grid-editor .x-form-spinner-down {
-  height: 10px;
-}
-/* line 47, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
-.x-grid-editor .x-form-cb {
-  margin-top: 4px;
-}
-/* line 51, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
-.x-grid-editor .x-form-cb-wrap {
-  height: 20px;
-}
-/* line 58, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
-.x-grid-editor .x-form-display-field-body {
-  height: 20px;
-}
-/* line 62, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
-.x-grid-editor .x-form-display-field {
-  font: normal 11px/15px tahoma, arial, verdana, sans-serif;
-  padding: 2px 6px 3px 6px;
-  text-overflow: ellipsis;
-}
-/* line 73, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
-.x-grid-editor .x-form-action-col-field {
+/* line 1, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Action.scss */
+.x-grid-cell-inner-action-col {
   padding: 2px 2px 2px 2px;
 }
-
-/* line 3, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/CellEditing.scss */
-.x-tree-cell-editor .x-form-text {
-  padding-left: 2px;
-  padding-right: 2px;
+/* line 5, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Action.scss */
+.x-grid-no-row-lines .x-grid-row-focused .x-grid-cell-inner-action-col {
+  padding-top: 1px;
+  padding-bottom: 1px;
 }
-/* line 8, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/CellEditing.scss */
-.x-gecko .x-tree-cell-editor .x-form-text {
-  padding-left: 1px;
-  padding-right: 1px;
+
+/* line 12, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Action.scss */
+.x-action-col-cell .x-item-disabled {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+  opacity: 0.3;
+}
+
+/* line 16, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Action.scss */
+.x-action-col-icon {
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+}
+
+/* line 1, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/CheckColumn.scss */
+.x-grid-cell-inner-checkcolumn {
+  padding: 4px 6px 3px 6px;
+}
+/* line 5, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/CheckColumn.scss */
+.x-grid-no-row-lines .x-grid-row-focused .x-grid-cell-inner-checkcolumn {
+  padding-top: 3px;
+  padding-bottom: 2px;
+}
+
+/* line 12, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/CheckColumn.scss */
+.x-grid-checkcolumn {
+  width: 13px;
+  height: 13px;
+  background: url(images/form/checkbox.gif) 0 0 no-repeat;
+}
+/* line 17, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/CheckColumn.scss */
+.x-item-disabled .x-grid-checkcolumn {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+  opacity: 0.3;
+}
+
+/* line 22, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/CheckColumn.scss */
+.x-grid-checkcolumn-checked {
+  background-position: 0 -13px;
 }
 
 /* line 1, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/RowNumberer.scss */
@@ -16485,247 +16515,6 @@ a.x-color-picker-item:hover {
   background-image: url(images/grid/group-by.gif);
 }
 
-/* line 1, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
-.x-collapse-el {
-  cursor: pointer;
-}
-
-/* line 6, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
-.x-layout-split-left,
-.x-layout-split-right {
-  top: 50%;
-  margin-top: -18px;
-  width: 5px;
-  height: 35px;
-}
-
-/* line 14, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
-.x-layout-split-top,
-.x-layout-split-bottom {
-  left: 50%;
-  width: 35px;
-  height: 5px;
-  margin-left: -18px;
-}
-
-/* line 21, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
-.x-layout-split-left {
-  background-image: url(images/util/splitter/mini-left.gif);
-}
-
-/* line 25, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
-.x-layout-split-right {
-  background-image: url(images/util/splitter/mini-right.gif);
-}
-
-/* line 31, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
-.x-rtl.x-layout-split-left {
-  background-image: url(images/util/splitter/mini-right.gif);
-}
-/* line 35, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
-.x-rtl.x-layout-split-right {
-  background-image: url(images/util/splitter/mini-left.gif);
-}
-
-/* line 41, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
-.x-layout-split-top {
-  background-image: url(images/util/splitter/mini-top.gif);
-}
-
-/* line 45, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
-.x-layout-split-bottom {
-  background-image: url(images/util/splitter/mini-bottom.gif);
-}
-
-/* line 50, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
-.x-splitter-collapsed .x-layout-split-left {
-  background-image: url(images/util/splitter/mini-right.gif);
-}
-/* line 54, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
-.x-splitter-collapsed .x-layout-split-right {
-  background-image: url(images/util/splitter/mini-left.gif);
-}
-/* line 60, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
-.x-splitter-collapsed .x-rtl.x-layout-split-left {
-  background-image: url(images/util/splitter/mini-left.gif);
-}
-/* line 64, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
-.x-splitter-collapsed .x-rtl.x-layout-split-right {
-  background-image: url(images/util/splitter/mini-right.gif);
-}
-/* line 70, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
-.x-splitter-collapsed .x-layout-split-top {
-  background-image: url(images/util/splitter/mini-bottom.gif);
-}
-/* line 74, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
-.x-splitter-collapsed .x-layout-split-bottom {
-  background-image: url(images/util/splitter/mini-top.gif);
-}
-
-/* line 79, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
-.x-splitter-active {
-  background-color: #b4b4b4;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
-  opacity: 0.8;
-}
-/* line 83, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
-.x-splitter-active .x-collapse-el {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
-  opacity: 0.3;
-}
-
-/* line 1, ../../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Border.scss */
-.x-border-layout-ct {
-  background-color: #dfe8f6;
-}
-
-/* Horizontal styles */
-/* line 2, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
-.x-slider-horz {
-  padding-left: 7px;
-  background: no-repeat 0 -15px;
-}
-/* line 6, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
-.x-slider-horz .x-slider-end {
-  padding-right: 7px;
-  background: no-repeat right -30px;
-}
-
-/* line 12, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
-.x-slider-horz .x-slider-inner {
-  height: 15px;
-}
-
-/* line 20, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
-.x-ie6 .x-form-item .x-slider-horz,
-.x-ie7 .x-form-item .x-slider-horz,
-.x-quirks .x-ie .x-form-item .x-slider-horz {
-  margin-top: 4px;
-}
-
-/* line 26, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
-.x-slider-horz .x-slider-thumb {
-  width: 14px;
-  height: 15px;
-  margin-left: -7px;
-  background-image: url(images/slider/slider-thumb.png);
-}
-
-/* line 33, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
-.x-slider-horz .x-slider-thumb-over {
-  background-position: -14px -15px;
-}
-
-/* line 37, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
-.x-slider-horz .x-slider-thumb-drag {
-  background-position: -28px -30px;
-}
-
-/* line 42, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
-.x-rtl.x-slider-horz {
-  padding-left: 0;
-  padding-right: 7px;
-  background-position: right -30px;
-}
-/* line 47, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
-.x-rtl.x-slider-horz .x-slider-end {
-  padding-right: 0;
-  padding-left: 7px;
-  background-position: left -15px;
-}
-/* line 53, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
-.x-rtl.x-slider-horz .x-slider-thumb {
-  margin-right: -7px;
-}
-
-/* Vertical styles */
-/* line 60, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
-.x-slider-vert {
-  padding-top: 7px;
-  background: no-repeat -30px 0;
-}
-
-/* line 65, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
-.x-slider-vert .x-slider-end {
-  padding-bottom: 7px;
-  background: no-repeat -15px bottom;
-  width: 15px;
-}
-
-/* line 71, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
-.x-slider-vert .x-slider-inner {
-  width: 15px;
-}
-
-/* line 75, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
-.x-slider-vert .x-slider-thumb {
-  width: 15px;
-  height: 14px;
-  margin-bottom: -7px;
-  background-image: url(images/slider/slider-v-thumb.png);
-}
-
-/* line 82, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
-.x-slider-vert .x-slider-thumb-over {
-  background-position: -15px -14px;
-}
-
-/* line 86, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
-.x-slider-vert .x-slider-thumb-drag {
-  background-position: -30px -28px;
-}
-
-/* line 92, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
-.x-slider-horz,
-.x-slider-horz .x-slider-end,
-.x-slider-horz .x-slider-inner {
-  background-image: url(images/slider/slider-bg.png);
-}
-
-/* line 98, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
-.x-slider-vert,
-.x-slider-vert .x-slider-end,
-.x-slider-vert .x-slider-inner {
-  background-image: url(images/slider/slider-v-bg.png);
-}
-
-/* line 1, ../../../../../ext/packages/ext-theme-neutral/sass/src/view/DropZone.scss */
-.x-grid-drop-indicator {
-  position: absolute;
-  height: 1px;
-  line-height: 0px;
-  background-color: #77BC71;
-  overflow: visible;
-  pointer-events: none;
-}
-/* line 9, ../../../../../ext/packages/ext-theme-neutral/sass/src/view/DropZone.scss */
-.x-grid-drop-indicator .x-grid-drop-indicator-left {
-  position: absolute;
-  top: -8px;
-  left: -12px;
-  background-image: url(images/grid/dd-insert-arrow-right.png);
-  height: 16px;
-  width: 16px;
-}
-/* line 18, ../../../../../ext/packages/ext-theme-neutral/sass/src/view/DropZone.scss */
-.x-grid-drop-indicator .x-grid-drop-indicator-right {
-  position: absolute;
-  top: -8px;
-  right: -11px;
-  background-image: url(images/grid/dd-insert-arrow-left.png);
-  height: 16px;
-  width: 16px;
-}
-
-/* line 29, ../../../../../ext/packages/ext-theme-neutral/sass/src/view/DropZone.scss */
-.x-ie6 .x-grid-drop-indicator-left {
-  background-image: url(images/grid/dd-insert-arrow-right.gif);
-}
-/* line 33, ../../../../../ext/packages/ext-theme-neutral/sass/src/view/DropZone.scss */
-.x-ie6 .x-grid-drop-indicator-right {
-  background-image: url(images/grid/dd-insert-arrow-left.gif);
-}
-
 /* line 1, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/feature/RowBody.scss */
 .x-grid-rowbody {
   font: normal 11px/13px tahoma, arial, verdana, sans-serif;
@@ -16735,33 +16524,6 @@ a.x-color-picker-item:hover {
 .x-grid-no-row-lines .x-grid-row-focused .x-grid-rowbody {
   padding-top: 6px;
   padding-bottom: 4px;
-}
-
-/* line 1, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/CheckColumn.scss */
-.x-grid-cell-inner-checkcolumn {
-  padding: 4px 6px 3px 6px;
-}
-/* line 5, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/CheckColumn.scss */
-.x-grid-no-row-lines .x-grid-row-focused .x-grid-cell-inner-checkcolumn {
-  padding-top: 3px;
-  padding-bottom: 2px;
-}
-
-/* line 12, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/CheckColumn.scss */
-.x-grid-checkcolumn {
-  width: 13px;
-  height: 13px;
-  background: url(images/form/checkbox.gif) 0 0 no-repeat;
-}
-/* line 17, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/CheckColumn.scss */
-.x-item-disabled .x-grid-checkcolumn {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
-  opacity: 0.3;
-}
-
-/* line 22, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/CheckColumn.scss */
-.x-grid-checkcolumn-checked {
-  background-position: 0 -13px;
 }
 
 /* line 1, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/feature/RowWrap.scss */
@@ -16839,6 +16601,63 @@ a.x-color-picker-item:hover {
 /* line 43, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/locking/Lockable.scss */
 .x-hmenu-unlock .x-menu-item-icon {
   background-image: url(images/grid/hmenu-unlock.gif);
+}
+
+/* line 4, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
+.x-grid-editor .x-form-text {
+  font: normal 11px/15px tahoma, arial, verdana, sans-serif;
+  padding: 1px 5px 2px 5px;
+  height: 20px;
+}
+/* line 15, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
+.x-content-box .x-grid-editor .x-form-text {
+  height: 15px;
+}
+/* line 21, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
+.x-gecko .x-grid-editor .x-form-text {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+/* line 31, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
+.x-grid-editor .x-form-trigger {
+  height: 20px;
+}
+/* line 39, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
+.x-grid-editor .x-form-spinner-up, .x-grid-editor .x-form-spinner-down {
+  height: 10px;
+}
+/* line 47, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
+.x-grid-editor .x-form-cb {
+  margin-top: 4px;
+}
+/* line 51, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
+.x-grid-editor .x-form-cb-wrap {
+  height: 20px;
+}
+/* line 58, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
+.x-grid-editor .x-form-display-field-body {
+  height: 20px;
+}
+/* line 62, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
+.x-grid-editor .x-form-display-field {
+  font: normal 11px/15px tahoma, arial, verdana, sans-serif;
+  padding: 2px 6px 3px 6px;
+  text-overflow: ellipsis;
+}
+/* line 73, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/Editing.scss */
+.x-grid-editor .x-form-action-col-field {
+  padding: 2px 2px 2px 2px;
+}
+
+/* line 3, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/CellEditing.scss */
+.x-tree-cell-editor .x-form-text {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+/* line 8, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/CellEditing.scss */
+.x-gecko .x-tree-cell-editor .x-form-text {
+  padding-left: 1px;
+  padding-right: 1px;
 }
 
 /* line 2, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/RowEditing.scss */
@@ -17229,37 +17048,6 @@ body.x-nbr .x-grid-row-editor-buttons-default-top-frameInfo {
   margin-right: 15px;
 }
 
-/* line 1, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Action.scss */
-.x-grid-cell-inner-action-col {
-  padding: 2px 2px 2px 2px;
-}
-/* line 5, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Action.scss */
-.x-grid-no-row-lines .x-grid-row-focused .x-grid-cell-inner-action-col {
-  padding-top: 1px;
-  padding-bottom: 1px;
-}
-
-/* line 12, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Action.scss */
-.x-action-col-cell .x-item-disabled {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
-  opacity: 0.3;
-}
-
-/* line 16, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Action.scss */
-.x-action-col-icon {
-  height: 16px;
-  width: 16px;
-  cursor: pointer;
-}
-
-/* line 2, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/property/Grid.scss */
-.x-grid-cell-inner-property-name {
-  background-image: url(images/grid/property-cell-bg.gif);
-  background-repeat: no-repeat;
-  background-position: -16px 2px;
-  padding-left: 12px;
-}
-
 /* line 1, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/RowExpander.scss */
 .x-grid-cell-inner-row-expander {
   padding: 6px 7px 5px 7px;
@@ -17280,6 +17068,14 @@ body.x-nbr .x-grid-row-editor-buttons-default-top-frameInfo {
 /* line 20, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/plugin/RowExpander.scss */
 .x-grid-row-collapsed .x-grid-row-expander {
   background-image: url(images/grid/group-expand.gif);
+}
+
+/* line 2, ../../../../../ext/packages/ext-theme-neutral/sass/src/grid/property/Grid.scss */
+.x-grid-cell-inner-property-name {
+  background-image: url(images/grid/property-cell-bg.gif);
+  background-repeat: no-repeat;
+  background-position: -16px 2px;
+  padding-left: 12px;
 }
 
 /* line 1, ../../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Accordion.scss */
@@ -17342,6 +17138,100 @@ body.x-nbr .x-grid-row-editor-buttons-default-top-frameInfo {
 /* line 61, ../../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Accordion.scss */
 .x-accordion-hd .x-tool-img {
   background-color: #d9e7f8;
+}
+
+/* line 1, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
+.x-collapse-el {
+  cursor: pointer;
+}
+
+/* line 6, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
+.x-layout-split-left,
+.x-layout-split-right {
+  top: 50%;
+  margin-top: -18px;
+  width: 5px;
+  height: 35px;
+}
+
+/* line 14, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
+.x-layout-split-top,
+.x-layout-split-bottom {
+  left: 50%;
+  width: 35px;
+  height: 5px;
+  margin-left: -18px;
+}
+
+/* line 21, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
+.x-layout-split-left {
+  background-image: url(images/util/splitter/mini-left.gif);
+}
+
+/* line 25, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
+.x-layout-split-right {
+  background-image: url(images/util/splitter/mini-right.gif);
+}
+
+/* line 31, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
+.x-rtl.x-layout-split-left {
+  background-image: url(images/util/splitter/mini-right.gif);
+}
+/* line 35, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
+.x-rtl.x-layout-split-right {
+  background-image: url(images/util/splitter/mini-left.gif);
+}
+
+/* line 41, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
+.x-layout-split-top {
+  background-image: url(images/util/splitter/mini-top.gif);
+}
+
+/* line 45, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
+.x-layout-split-bottom {
+  background-image: url(images/util/splitter/mini-bottom.gif);
+}
+
+/* line 50, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
+.x-splitter-collapsed .x-layout-split-left {
+  background-image: url(images/util/splitter/mini-right.gif);
+}
+/* line 54, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
+.x-splitter-collapsed .x-layout-split-right {
+  background-image: url(images/util/splitter/mini-left.gif);
+}
+/* line 60, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
+.x-splitter-collapsed .x-rtl.x-layout-split-left {
+  background-image: url(images/util/splitter/mini-left.gif);
+}
+/* line 64, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
+.x-splitter-collapsed .x-rtl.x-layout-split-right {
+  background-image: url(images/util/splitter/mini-right.gif);
+}
+/* line 70, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
+.x-splitter-collapsed .x-layout-split-top {
+  background-image: url(images/util/splitter/mini-bottom.gif);
+}
+/* line 74, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
+.x-splitter-collapsed .x-layout-split-bottom {
+  background-image: url(images/util/splitter/mini-top.gif);
+}
+
+/* line 79, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
+.x-splitter-active {
+  background-color: #b4b4b4;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+}
+/* line 83, ../../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
+.x-splitter-active .x-collapse-el {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+  opacity: 0.3;
+}
+
+/* line 1, ../../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Border.scss */
+.x-border-layout-ct {
+  background-color: #dfe8f6;
 }
 
 /* line 14, ../../../../../ext/packages/ext-theme-neutral/sass/src/menu/Menu.scss */
@@ -18129,6 +18019,116 @@ a.x-rtl .x-menu-item-text {
 .x-resizable-pinned .x-resizable-handle-southwest {
   background-position: top right;
   background-image: url(images/sizer/sw-handle.gif);
+}
+
+/* Horizontal styles */
+/* line 2, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
+.x-slider-horz {
+  padding-left: 7px;
+  background: no-repeat 0 -15px;
+}
+/* line 6, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
+.x-slider-horz .x-slider-end {
+  padding-right: 7px;
+  background: no-repeat right -30px;
+}
+
+/* line 12, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
+.x-slider-horz .x-slider-inner {
+  height: 15px;
+}
+
+/* line 20, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
+.x-ie6 .x-form-item .x-slider-horz,
+.x-ie7 .x-form-item .x-slider-horz,
+.x-quirks .x-ie .x-form-item .x-slider-horz {
+  margin-top: 4px;
+}
+
+/* line 26, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
+.x-slider-horz .x-slider-thumb {
+  width: 14px;
+  height: 15px;
+  margin-left: -7px;
+  background-image: url(images/slider/slider-thumb.png);
+}
+
+/* line 33, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
+.x-slider-horz .x-slider-thumb-over {
+  background-position: -14px -15px;
+}
+
+/* line 37, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
+.x-slider-horz .x-slider-thumb-drag {
+  background-position: -28px -30px;
+}
+
+/* line 42, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
+.x-rtl.x-slider-horz {
+  padding-left: 0;
+  padding-right: 7px;
+  background-position: right -30px;
+}
+/* line 47, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
+.x-rtl.x-slider-horz .x-slider-end {
+  padding-right: 0;
+  padding-left: 7px;
+  background-position: left -15px;
+}
+/* line 53, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
+.x-rtl.x-slider-horz .x-slider-thumb {
+  margin-right: -7px;
+}
+
+/* Vertical styles */
+/* line 60, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
+.x-slider-vert {
+  padding-top: 7px;
+  background: no-repeat -30px 0;
+}
+
+/* line 65, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
+.x-slider-vert .x-slider-end {
+  padding-bottom: 7px;
+  background: no-repeat -15px bottom;
+  width: 15px;
+}
+
+/* line 71, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
+.x-slider-vert .x-slider-inner {
+  width: 15px;
+}
+
+/* line 75, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
+.x-slider-vert .x-slider-thumb {
+  width: 15px;
+  height: 14px;
+  margin-bottom: -7px;
+  background-image: url(images/slider/slider-v-thumb.png);
+}
+
+/* line 82, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
+.x-slider-vert .x-slider-thumb-over {
+  background-position: -15px -14px;
+}
+
+/* line 86, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
+.x-slider-vert .x-slider-thumb-drag {
+  background-position: -30px -28px;
+}
+
+/* line 92, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
+.x-slider-horz,
+.x-slider-horz .x-slider-end,
+.x-slider-horz .x-slider-inner {
+  background-image: url(images/slider/slider-bg.png);
+}
+
+/* line 98, ../../../../../ext/packages/ext-theme-neutral/sass/src/slider/Multi.scss */
+.x-slider-vert,
+.x-slider-vert .x-slider-end,
+.x-slider-vert .x-slider-inner {
+  background-image: url(images/slider/slider-v-bg.png);
 }
 
 /**
@@ -20845,27 +20845,6 @@ body.x-nbr .x-tab-default-right-frameInfo {
   background-image: url(images/form/spinner-small-rtl.gif);
 }
 
-/* line 6, ../../../../../ext/packages/ext-theme-classic/sass/src/slider/Multi.scss */
-.x-ie6 .x-slider-horz,
-.x-ie6 .x-slider-horz .x-slider-end,
-.x-ie6 .x-slider-horz .x-slider-inner {
-  background-image: url(images/slider/slider-bg.gif);
-}
-/* line 10, ../../../../../ext/packages/ext-theme-classic/sass/src/slider/Multi.scss */
-.x-ie6 .x-slider-horz .x-slider-thumb {
-  background-image: url(images/slider/slider-thumb.gif);
-}
-/* line 16, ../../../../../ext/packages/ext-theme-classic/sass/src/slider/Multi.scss */
-.x-ie6 .x-slider-vert,
-.x-ie6 .x-slider-vert .x-slider-end,
-.x-ie6 .x-slider-vert .x-slider-inner {
-  background-image: url(images/slider/slider-v-bg.gif);
-}
-/* line 20, ../../../../../ext/packages/ext-theme-classic/sass/src/slider/Multi.scss */
-.x-ie6 .x-slider-vert .x-slider-thumb {
-  background-image: url(images/slider/slider-v-thumb.gif);
-}
-
 /* line 1, ../../../../../ext/packages/ext-theme-classic/sass/src/layout/container/Accordion.scss */
 .x-accordion-hd {
   border-width: 1px 0 !important;
@@ -20914,6 +20893,27 @@ body.x-nbr .x-tab-default-right-frameInfo {
 .x-resizable-over .x-resizable-handle-southwest,
 .x-resizable-pinned .x-resizable-handle-southwest {
   background-position: top right;
+}
+
+/* line 6, ../../../../../ext/packages/ext-theme-classic/sass/src/slider/Multi.scss */
+.x-ie6 .x-slider-horz,
+.x-ie6 .x-slider-horz .x-slider-end,
+.x-ie6 .x-slider-horz .x-slider-inner {
+  background-image: url(images/slider/slider-bg.gif);
+}
+/* line 10, ../../../../../ext/packages/ext-theme-classic/sass/src/slider/Multi.scss */
+.x-ie6 .x-slider-horz .x-slider-thumb {
+  background-image: url(images/slider/slider-thumb.gif);
+}
+/* line 16, ../../../../../ext/packages/ext-theme-classic/sass/src/slider/Multi.scss */
+.x-ie6 .x-slider-vert,
+.x-ie6 .x-slider-vert .x-slider-end,
+.x-ie6 .x-slider-vert .x-slider-inner {
+  background-image: url(images/slider/slider-v-bg.gif);
+}
+/* line 20, ../../../../../ext/packages/ext-theme-classic/sass/src/slider/Multi.scss */
+.x-ie6 .x-slider-vert .x-slider-thumb {
+  background-image: url(images/slider/slider-v-thumb.gif);
 }
 
 /* line 1, ../../../../../ext/packages/ext-theme-classic/sass/src/tab/Panel.scss */

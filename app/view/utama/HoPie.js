@@ -62,7 +62,7 @@ Ext.define('rcm.view.utama.HoPie', {
 				borderWidth : 0
 			},
 			credits: {
-				text: 'hc',
+				text: 'hc'
 			}
 		};
 		me.callParent(arguments);

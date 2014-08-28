@@ -8,7 +8,7 @@ Ext.define('rcm.view.utama.HoChart', {
 		,'rcm.view.utama.GridWO'
 		,'rcm.view.utama.HoPie'
 		,'rcm.view.utama.HoSpeedo'
-		,'rcm.view.utama.HoHistori'
+		//,'rcm.view.utama.HoHistori'
 	],
 	
 	layout: {
@@ -28,7 +28,7 @@ Ext.define('rcm.view.utama.HoChart', {
         },
 		items:[{
 			height: 140,
-			xtype: 'tHoSpeedo',
+			xtype: 'tHoSpeedo'
 		},{
 			icon: 'modul/icons/accept.png',
 			title: 'WO Compliance',
@@ -54,7 +54,7 @@ Ext.define('rcm.view.utama.HoChart', {
 			flex: 5
 		},{
 			icon: 'modul/icons/dollar.png',
-			//xtype: 'tGridOrderC',
+			xtype: 'tGridOrderC',
 			flex: 4,
 			title: 'Order Costing'
 		}]

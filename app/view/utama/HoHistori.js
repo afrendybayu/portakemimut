@@ -52,8 +52,8 @@ Ext.define('rcm.view.utama.HoHistori', {
 			}],
 			xAxis : [{
 				title : {
-					text : 'Waktu',
-				},
+					text : 'Waktu'
+				}
 			}],
 			yAxis : [{
 				//max: 100,
@@ -80,7 +80,7 @@ Ext.define('rcm.view.utama.HoHistori', {
 				
 				plotLines : [{
 					value : 0,
-					width : 1,
+					width : 1
 					//color : '#808080'
 				}],
 				opposite: true

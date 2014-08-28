@@ -19,25 +19,25 @@ Ext.define('rcm.view.utama.GridOrderC', {
             },
             //*/
 			items: [
-				{ xtype:'rownumberer' },		// ,width:25
-				{ header:'Order Costing (Object Type)',flex:3,
+				{ xtype:'rownumberer',width:25 },		// 
+				{ header:'Order Costing (Object Type)',//flex:3,
 					columns: [{ 
-						header: 'Object Type',dataIndex:'otipe',
-					},{ header: 'Description',dataIndex:'desc'/*,width: 180*/
+						header: 'Object Type',dataIndex:'otipe'
+					},{ header: 'Description',dataIndex:'desc',width: 170
 					}]
 				},
-				{ header:'Planned Cost',flex:1,
+				{ header:'Planned Cost',//flex:1,
 					columns: [{ 
-						header: 'WH Stock Cost',dataIndex:'plstcost',
-					},{ header: 'Internal Cost',dataIndex:'plincost',
+						header: 'WH Stock Cost',dataIndex:'plstcost'
+					},{ header: 'Internal Cost',dataIndex:'plincost'
 					},{ header: 'Total Planning Cost',dataIndex:'tplcost',flex:2
 					}]
 				},
-				{ header:'Actual',flex:1,
+				{ header:'Actual',//flex:1,
 					columns: [{ 
-						header: 'WH Stock Cost',dataIndex:'acstcost',
-					},{ header: 'Internal Cost',dataIndex:'acincost',
-					},{ header: 'Service Cost',dataIndex:'srvcost',
+						header: 'WH Stock Cost',dataIndex:'acstcost'
+					},{ header: 'Internal Cost',dataIndex:'acincost'
+					},{ header: 'Service Cost',dataIndex:'srvcost'
 					},{ header: 'Total Actual Cost',dataIndex:'taccost'
 					}]
 				},

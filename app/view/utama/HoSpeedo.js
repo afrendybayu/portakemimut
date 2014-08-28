@@ -26,7 +26,7 @@ Ext.define('rcm.view.utama.HoSpeedo', {
 			subjdl: 'Avail '+rcm.view.Util.Ublnini(),
 			dstore: 'SpAvGcUt',
 			nama: 'Av',
-			min: 50,
+			min: 50
 		},{
 			id: 'AvGS',
 			flex: 1,
@@ -35,7 +35,7 @@ Ext.define('rcm.view.utama.HoSpeedo', {
 			subjdl: 'Avail '+rcm.view.Util.Ublnini(),
 			dstore: 'SpAvGsUt',
 			nama: 'Av',
-			min: 50,
+			min: 50
 		},{
 			id: 'AvPm',
 			flex: 1,
@@ -44,7 +44,7 @@ Ext.define('rcm.view.utama.HoSpeedo', {
 			subjdl: 'Avail '+rcm.view.Util.Ublnini(),
 			dstore: 'SpAvPmUt',
 			nama: 'Av',
-			min: 50,
+			min: 50
 		},{
 			id: 'ReGC',
 			flex: 1,
@@ -53,7 +53,7 @@ Ext.define('rcm.view.utama.HoSpeedo', {
 			subjdl: 'Reliability '+rcm.view.Util.Ublnini(),
 			dstore: 'SpReGcUt',
 			nama: 'Re',
-			min: 50,
+			min: 50
 		},{
 			id: 'ReGS',
 			flex: 1,
@@ -62,7 +62,7 @@ Ext.define('rcm.view.utama.HoSpeedo', {
 			subjdl: 'Reliability '+rcm.view.Util.Ublnini(),
 			dstore: 'SpReGsUt',
 			nama: 'Re',
-			min: 50,
+			min: 50
 		},{
 			id: 'RePm',
 			flex: 1,
@@ -71,7 +71,7 @@ Ext.define('rcm.view.utama.HoSpeedo', {
 			subjdl: 'Reliability '+rcm.view.Util.Ublnini(),
 			dstore: 'SpRePmUt',
 			nama: 'Re',
-			min: 50,
+			min: 50
 		}]
 	}]
 });
