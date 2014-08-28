@@ -1,3 +1,4 @@
 *.scssc
 ./build/tes/*
 ./build/production/*
+./build/production/rcm/resources/css/ext-theme-classic/images/shared/*
