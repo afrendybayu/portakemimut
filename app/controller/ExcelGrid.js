@@ -12,12 +12,17 @@ Ext.define('rcm.controller.ExcelGrid', {
 		,'dataentry.FormGagal'
 		,'dataentry.IsiTabForm'
 		,'dataentry.FMEAGrid'
-		
+		,'dataentry.PropGrid'
+		,'dataentry.InfoFMEA'
+		,'dataentry.DaftarGagal'
+		,'Ext.ux.grid.FiltersFeature'
+		,'Ext.draw.Text'
     ],
 
     stores: [
 		'Hirarki'
 		,'RunningHour'
+		,'DaftarGagal'
 		,'EventList'
 		,'Event'
 		,'EventInfo'
@@ -28,7 +33,6 @@ Ext.define('rcm.controller.ExcelGrid', {
 		,'PM'
 		,'Aksi'
 		,'Cause'
-		,'DaftarGagal'
     ],
     
     models: [
@@ -107,6 +111,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 				editDGClick: me.edDGClick
 				,hapusDGClick: me.hpsDGClick
 			}
+			
 			//*/
 			
 		});
@@ -175,23 +180,14 @@ Ext.define('rcm.controller.ExcelGrid', {
             buttons: Ext.Msg.YESNO,
             fn: function(response) {
                 if(response === 'yes') {
-					rcmSettings.aaaaa = grid.getStore();
-					//dd.destroy();
+					dd.destroy();
 					//this.getEventStore.destroy();
-					
-					//*
 					dd.destroy({
-						
-						success: function(dd, operation) {
-							console.log('sukses hapusFMEAClick');
-							this.getTaskFMEAGrid().getView().refresh();
-						},
 						callback: function(dd, operation) {
-							console.log('callback hapusFMEAClick');
-							//alert('callback hapusFMEAClick');
+							//console.log('sukses hapusFMEAClick');
+							this.getTaskFMEAGrid().getView().refresh();
 						}
 					});
-					//*/
                 }
             }
         });
@@ -222,11 +218,13 @@ Ext.define('rcm.controller.ExcelGrid', {
 		
 		me.getTaskIsiFormGagal().pilihEventG(rec.get('idevent'));
 		me.getTaskIsiFormGagal().setNilai(rec);
+
 		if (ev==2)	{
 			me.getPMStore().load({ 
 				params:{unit:un},
 				scope: this,
 				callback: function(dt, operation, success) {
+					//alert("success: "+rec.get('tipeev'));
 					if (success) {
 						Ext.getCmp('tipepm').setValue(rec.get('tipeev').split(","));
 					}
@@ -258,41 +256,19 @@ Ext.define('rcm.controller.ExcelGrid', {
             buttons: Ext.Msg.YESNO,
             fn: function(response) {
                 if(response === 'yes') {
-					console.log("sukses mau hapus");
-					rcmSettings.cccccc = de;
-					rcmSettings.dddddd = this;
-					task.destroy();
-					console.log("----- mulai running hour1 ");
-					//de.refreshRH();
-					//de.getRunningHourStore().reload();
-					console.log("----- mulai running hour2");
-					//de.getTaskDaftarGagal().getView().refresh();
-					console.log("----- mulai running hour3");
-					/*
-                    task.store.remove({
-                        success: function(task, operation) {
-							console.log("----- mulai running hour");
-							
-							//rcmSettings.aaa = this;
-							console.log("----- sukses cek running hour");
-                        },
-                        failure: function(task, operation) {
-                            var error = operation.getError(),
-                                msg = Ext.isObject(error) ? error.status + ' ' + error.statusText : error;
-
-                            Ext.MessageBox.show({
-                                title: 'Hapus Kejadian Gagal',
-                                msg: msg,
-                                icon: Ext.Msg.ERROR,
-                                buttons: Ext.Msg.OK
-                            });
-                        }
-                    });
-                    //*/
+					//task.destroy();
+					//*
+					task.destroy({
+						callback: function() {
+							//alert("masuk");
+							de.getRunningHourStore().reload();
+							de.getDaftarGagalStore().reload();
+						}
+					});
                 }
             }
         });
-		
+
 	},
 	
 	pilihEventGagalXY: function(n)	{
@@ -440,6 +416,8 @@ Ext.define('rcm.controller.ExcelGrid', {
     onLaunch: function() {
 		//console.log("onLauch ExcelGrid");
 		Ext.getCmp('idwest').collapse();
+		
+		rcmSettings.qqqq = this.getExcelgrid();
 
 		Ext.getCmp('htmleddet').setReadOnly(true);
 		this.ubahFieldRH();
@@ -450,6 +428,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		
 		//alert("t: "+t+"  cook: "+Ext.decode(rcm.view.Util.getCookie("tgl")));
 
+		//this.getAvGroupStore().load();
         /*
         this.getAvGroupStore().load({
 			scope: this,
@@ -598,7 +577,8 @@ Ext.define('rcm.controller.ExcelGrid', {
             o = {};
 
 		o.id = form.findField('fgid').getValue();
-		o.eq = form.findField('eq'), cat = rcmSettings.cat;
+		o.eq = form.findField('eq');
+		o.cat = rcmSettings.cat;
 		o.event = form.findField('tfevent').getValue();
 		o.tipeev = form.findField('tipepm').getValue();
 		o.ket = form.findField('tfket').getValue();
@@ -628,7 +608,8 @@ Ext.define('rcm.controller.ExcelGrid', {
             success: function(respon, operation) {
 				var resp = operation.request.scope.reader.jsonData["tasks"];
 				var recx = me.getEventStore().getRange();
-				if (event>2)	{
+
+				if (o.event>2)	{
 					for (var i=0, len1=resp.length; i<len1; ++i) {
 						for (var j=0,len2=recx.length; j<len2; ++j)	{
 							if (recx[j].data.ideql==resp[i].eq)	{
@@ -636,16 +617,15 @@ Ext.define('rcm.controller.ExcelGrid', {
 							}
 						}
 					}
-					console.log("getEventStore masuk sini");
 					me.getEventStore().sync({
-						//*
 						success: function()	{
-							console.log("getEventStore sukses");
 							me.getDaftarGagalStore().reload();
 						},
 						failure: function()	{
+							//console.log("getEventStore gagal");
 						},
 						callback: function()	{
+							//console.log("getEventStore callback");
 						}										
 					});				// create ()
 
@@ -678,7 +658,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 	},
 
 	updateGagalClick: function()	{
-		console.log('masuk updateGagalClick');
+		//console.log('masuk updateGagalClick');
 		var me=this;
 		var o = me.ambilDataForm();
 		var resp,id;
@@ -687,9 +667,8 @@ Ext.define('rcm.controller.ExcelGrid', {
 			id:o.id,downt:o.dd,downj:o.td,startt:o.dm,startj:o.tm,endt:o.ds,endj:o.ts,upt:o.du,upj:o.tu,
 			event:o.event,tipeev:o.tipeev,ket:o.ket,exe:o.exe,server:rcmSettings.server,cat:rcmSettings.cat
         });
-        
-        
-        rec.save({
+
+        rec.save({			//rec.sync({ tidak ada 
             success: function(respon, operation) {
 				//console.log('masuk updateGagalClick sukses');
 				resp = operation.request.scope.reader.jsonData["tasks"];

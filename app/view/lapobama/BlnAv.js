@@ -42,12 +42,12 @@ Ext.define('rcm.view.lapobama.BlnAv', {
 		}];
 		
 		me.listeners = {
-			/*
+			//*
 			'select': {
 				fn: function(dp, dt){
 					alert("BlnAv.js select");
 					//this.fireEvent('klikKalender', dt);
-				},
+				}
 				//scope: this
 			}
 			//*/

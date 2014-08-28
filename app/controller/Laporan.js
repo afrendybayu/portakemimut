@@ -14,7 +14,7 @@ Ext.define('rcm.controller.Laporan', {
 	views: [
         // TODO: add views here
 		
-		'lapobama.AvReChart'
+		 'lapobama.AvReChart'
 		,'lapobama.AvGroup'
 		,'lapobama.AvHome'
 		,'lapobama.ReHome'

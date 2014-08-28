@@ -2,6 +2,10 @@
 Ext.define('rcm.view.laporan.SapHistori', {
     xtype: 'tHistori',
 	extend: 'Chart.ux.Highcharts',
+	
+	require: [
+		'rcm.view.Util'
+	],
 
 	loadMask: true,
 	

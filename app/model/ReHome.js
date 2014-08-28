@@ -14,7 +14,7 @@ Ext.define('rcm.model.ReHome', {
 		type: 'ajax',
 		api: {
 			//read: 'php/obafuncloc/rReHome.php'
-			read: 'php/obafuncloc/rAvHome.php?tp=re'
+			read: 'ci/index.php/avre/rAvHome?tp=re'
         },
 		reader: {
             type: 'json',

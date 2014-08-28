@@ -555,6 +555,7 @@ $include-ext-view-view: true;
 $include-ext-window-messagebox: true;
 $include-ext-window-window: true;
 $include-rcm-application: true;
+$include-rcm-controller-avre: true;
 $include-rcm-controller-detailinfo: true;
 $include-rcm-controller-excelgrid: true;
 $include-rcm-controller-laporan: true;
@@ -685,6 +686,12 @@ $include-rcm-view-login-logoutinfo: true;
 $include-rcm-view-nav-appheader: true;
 $include-rcm-view-nav-navigation: true;
 $include-rcm-view-nav-tanggalan: true;
+$include-rcm-view-utama-gridorderc: true;
+$include-rcm-view-utama-gridwo: true;
+$include-rcm-view-utama-hochart: true;
+$include-rcm-view-utama-hohistori: true;
+$include-rcm-view-utama-hopie: true;
+$include-rcm-view-utama-hospeedo: true;
 /* including package ext-theme-base */
 @import '../../../../../ext/packages/ext-theme-base/sass/etc/all';
 /* including package ext-theme-neutral */

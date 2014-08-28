@@ -175,6 +175,7 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 	
 	hdlHapusDGClick: function(grid, row, col, column, e) {
 		var rec = grid.getStore().getAt(row);
+		//var rec = grid.getStore();
 		//alert("hapus kejadian "+ rec.get('event')+" "+rec.get('nama'));
 		//grid.getStore().removeAt(rowIndex);
 		this.fireEvent('hapusDGClick', rec, row, col);

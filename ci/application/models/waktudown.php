@@ -2,20 +2,36 @@
 
 class Waktudown extends CI_Model {
 
-	function get_waktudown($id,$downt,$downj,$upt,$upj,$flag=0,$event,$edit,$idid,$da,$db,$ua,$ub)    {
+	function get_waktudown_edit($id)	{
 		/*
-		$query = $this->db->select('id,downt AS dt,downj AS dj,upt AS ut,upj AS uj,event AS ev');
-		$query = $this->db->where('eqid',$id);
-		$query = $this->db->where("(downt BETWEEN '$da' AND '$db' OR upt BETWEEN '$ua' AND '$ub')");
-		//$query = $this->db->where("downt BETWEEN '$da' AND '$db'");
-		//$query = $this->db->where("upt BETWEEN '$ua' AND '$ub'");
-		if ($edit)		$query = $this->db->where_not_in('id',implode(',',$idid));
+		$this->db->select('id,downt,downj,upt,upj,eqid,unit_id,id');
+		$this->db->where_in('id',$id);
+		$this->db->group_by(array('downt', 'downj', 'upt', 'upj');
 		$query = $this->db->get('waktudown');
 		//*/
-		//*
+		$ids = @implode(',',$id);
+		$sql =	"select group_concat(id separator ',') as id,group_concat(eqid separator 'e') as eqeq, ".
+				"unit_id, downt, downj, upt, upj ".
+				"from waktudown where id in ($ids) ".
+				"group by downt,downj,upt,upj";
+		//echo "sql: $ids : $sql<br/><br/>";
+		
+		$query = $this->db->query($sql);
+		//print_r($query->result()); echo "<br/><br/>";
+		return $query->result();
+	}
+
+	function get_waktudown($id,$downt,$downj,$upt,$upj,$flag=0,$event,$edit,$idid,$da,$db,$ua,$ub)    {
+		/*
 		$sql =	"SELECT id,downt AS dt,downj AS dj,upt AS ut, upj AS uj,event AS ev FROM waktudown WHERE eqid='{$id}' ".
 				"AND (downt BETWEEN '$da' AND '$db' OR upt BETWEEN '$ua' AND '$ub') ";
+		//*/		
+		$sql =	"SELECT id,downt AS dt,downj AS dj,upt AS ut, upj AS uj,event AS ev FROM waktudown WHERE unit_id='{$id}' ".
+				"AND (downt BETWEEN '$da' AND '$db' OR upt BETWEEN '$ua' AND '$ub') ";
 		if ($edit) $sql .= "AND id NOT IN (".implode(',',$idid).")";
+		$sql .=	" group by downt, downj, upt,upj ";
+		
+		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql);
 		
 		/*
@@ -46,9 +62,13 @@ class Waktudown extends CI_Model {
 		}
 		
 		$w = new stdClass();
-		$w->dt=$dt;		 $w->dj = $dj;
-		$w->ut=$ut;		 $w->uj = $uj;
-		$w->ev=$ev;
+		if (isset($dt))	{
+			$w->dt=$dt;		 
+			$w->dj=$dj;
+			$w->ut=$ut;		 
+			$w->uj=$uj;
+			$w->ev=$ev;
+		}
 		//print_r($w);
 		return $w;
     }
@@ -70,6 +90,7 @@ class Waktudown extends CI_Model {
 				"LEFT JOIN event ON event.down_id = waktudown.id ".
 				"WHERE downt BETWEEN ? AND ? group by id order by downt desc, downj desc, id desc";
 		//*/
+		/*
 		$sql =	"SELECT (select group_concat((select concat('e',waktudown.id)) separator '')) as id,event as idevent,tipeev ".
 				",(select concat('[',kode,': ',(select pmdef.nama from pmdef where pmdef.id ".
 				"= (select pmlist.pm from pmlist where pmlist.id=tipeev)),']')) as namapm ".
@@ -87,7 +108,23 @@ class Waktudown extends CI_Model {
 				"LEFT JOIN equip ON equip.id = waktudown.eqid ".
 				"LEFT JOIN event ON event.down_id = waktudown.id ".
 				"WHERE downt BETWEEN ? AND ? group by downt,downj,upt,upj order by downt desc, downj desc, id desc";
-		//echo "sql: $sql, tglaw: $tglaw, tglak: $tglak<br/>";
+		//*/
+		$sql =	"SELECT (select group_concat((select concat('e',waktudown.id)) separator '')) as id, ".
+				"waktudown.unit_id as eqid ,event as idevent,group_concat(if(tipeev=0,'',concat('e',eqid,'pm',tipeev))) as tipeev ".
+				",concat(ifnull((select group_concat('[',kode,': ',(select pmdef.nama from pmdef where pmdef.id ".
+				"= (select pmlist.pm from pmlist where pmlist.id=tipeev)),']')),'') ".
+				",ifnull((select group_concat((select concat('[',kode,': ',(select nama from failuremode where failuremode.id = event.fm),']')) ".
+				"separator ' ') ),'') ) as fm ".
+				",downt,(select date_format(downj,'%H:%i')) as downj,upt,(select date_format(upj,'%H:%i')) as upj ".
+				",startt,(select date_format(startj,'%H:%i')) as startj,endt,(select date_format(endj,'%H:%i')) as endj,waktudown.ket,exe ".
+				",(select hirarki.nama from hirarki where hirarki.id = (select hirarki.parent from hirarki where hirarki.id ".
+				"= (select hirarki.parent from hirarki where hirarki.id = equip.unit_id))) as lok ,listEvent.nama as event, equip.unit_id ".
+				",(select nama from hirarki where hirarki.id = (select unit_id from equip where id = waktudown.eqid)) as nama ".
+				"FROM waktudown LEFT JOIN listEvent ON listEvent.id = waktudown.event ".
+				"LEFT JOIN equip ON equip.id = waktudown.eqid ".
+				"LEFT JOIN event ON event.down_id = waktudown.id WHERE downt BETWEEN ? AND ? ".
+				"group by downt,downj,upt,upj order by downt desc, downj desc, id desc ";
+		//echo "sql: $sql <br/>tglaw: $tglaw, tglak: $tglak<br/>";
 		$query = $this->db->query($sql, array($tglaw,$tglak));
 		
 		$isi = array();	$jml=-1;
@@ -282,7 +319,8 @@ class Waktudown extends CI_Model {
 	}
 	
 	function get_waktudown_limit($n)	{
-		$query = $this->db->select('id,eqid AS eq');
+		$this->db->select('id,eqid AS eq');
+		$this->db->order_by('id', 'desc'); 
 		$query = $this->db->get('waktudown',$n,0);
 		
 		//print_r($query->result());

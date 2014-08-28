@@ -8,6 +8,10 @@ Ext.define('rcm.view.laporan.Chart', {
 		//'rcm.view.laporan.SapChartDet',
 		'rcm.view.laporan.EPO'
 		,'rcm.view.laporan.WOComp'
+		,'rcm.view.laporan.SapHistori'
+		,'rcm.view.laporan.SapChartDet'
+		,'rcm.view.laporan.SapCause'
+		,'rcm.view.laporan.GridCauseInfo'
 		//'rcm.view.laporan.ConMon',
 		//'laporan.Chart',
         //'rcm.view.laporan.UploadFile',

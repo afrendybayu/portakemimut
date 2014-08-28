@@ -10,7 +10,7 @@ Ext.define('rcm.view.dataentry.BlnGagal', {
 		var me=this;
 		me.items=[{
 			xtype: 'form',
-			padding: '5 20 5 80',
+			padding: '5 20 5 10',
 			border: 0,
 			combineErrors: true,
 			flex: 1,
@@ -23,6 +23,7 @@ Ext.define('rcm.view.dataentry.BlnGagal', {
 					//value: new Date().add(Date.MONTH, -2),
 					value: Ext.Date.add(new Date(), Ext.Date.MONTH, -2),
 					fieldLabel: '<b>Pilih Waktu Awal</b>',
+					labelWidth: 110,
 					format: 'd M Y'
 					//format: 'F Y',
 					//margin: '0 10 0 10'

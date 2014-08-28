@@ -891,6 +891,7 @@ Ext.ClassManager.addNameAlternateMappings({
     "Ext.Window"
   ],
   "rcm.Application": [],
+  "rcm.controller.AvRe": [],
   "rcm.controller.DetailInfo": [],
   "rcm.controller.ExcelGrid": [],
   "rcm.controller.Laporan": [],
@@ -1023,7 +1024,13 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.login.LogoutInfo": [],
   "rcm.view.nav.AppHeader": [],
   "rcm.view.nav.Navigation": [],
-  "rcm.view.nav.Tanggalan": []
+  "rcm.view.nav.Tanggalan": [],
+  "rcm.view.utama.GridOrderC": [],
+  "rcm.view.utama.GridWO": [],
+  "rcm.view.utama.HoChart": [],
+  "rcm.view.utama.HoHistori": [],
+  "rcm.view.utama.HoPie": [],
+  "rcm.view.utama.HoSpeedo": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Chart.ux.Highcharts": [
@@ -2033,6 +2040,7 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.window"
   ],
   "rcm.Application": [],
+  "rcm.controller.AvRe": [],
   "rcm.controller.DetailInfo": [],
   "rcm.controller.ExcelGrid": [],
   "rcm.controller.Laporan": [],
@@ -2200,7 +2208,6 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.taskGridCause"
   ],
   "rcm.view.laporan.GridCauseInfo": [
-    "widget.gridCause",
     "widget.taskGridCauseInfo"
   ],
   "rcm.view.laporan.GridConMon": [
@@ -2262,6 +2269,24 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.nav.Tanggalan": [
     "widget.tanggalan",
     "widget.taskTanggalan"
+  ],
+  "rcm.view.utama.GridOrderC": [
+    "widget.tGridOrderC"
+  ],
+  "rcm.view.utama.GridWO": [
+    "widget.tGridWO"
+  ],
+  "rcm.view.utama.HoChart": [
+    "widget.tHoChart"
+  ],
+  "rcm.view.utama.HoHistori": [
+    "widget.tHoHistori"
+  ],
+  "rcm.view.utama.HoPie": [
+    "widget.tHoPie"
+  ],
+  "rcm.view.utama.HoSpeedo": [
+    "widget.tHoSpeedo"
   ]
 });
 Ext.setVersion("ext-theme-base", "4.2.1");

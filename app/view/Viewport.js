@@ -5,9 +5,7 @@ Ext.define('rcm.view.Viewport', {
         'rcm.view.nav.Tanggalan',
         'rcm.view.nav.Navigation',
         'rcm.view.nav.AppHeader',
-		
 		'rcm.view.Content'
-		
     ],
 
 	/*

@@ -5,6 +5,7 @@ Ext.define('rcm.store.DaftarGagal', {
     requires: 'rcm.model.DaftarGagal',
     
 	autoLoad: true
+	//,autoSync: true
 	/*
 	,proxy: {
         type: 'ajax',

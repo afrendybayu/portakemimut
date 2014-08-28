@@ -48,91 +48,6 @@ if ( ! function_exists('blnthn'))	{
 	}
 }
 
-/*
-if ( ! function_exists('cek_unit'))	{
-	function cek_unit($id)	{
-		$sqlawal = "select kode from cat_equip where parent=0 and id=$id";
-		//echo "sql u: $sqlawal<br/>";
-		$q = db_query($sqlawal);
-		if (!$q)	{
-			echo "DB Error, could not query the database\n";
-			echo 'MySQL Error: ' . mysql_error();
-			exit;
-			//throw new Exception('Query Equipment pada Unit SALAH');
-		}
-		$row = mysql_fetch_assoc($q);
-		//echo ($row['nilai']);
-		return ($row['kode']);
-	}
-	
-}
-
-if ( ! function_exists('cek_tole_hari'))	{
-	function cek_tole_hari()	{
-		$sqlawal = "select nilai from options where nama = 'tole_hari'";
-		//echo "sql u: $sqlawal<br/>";
-		$q = db_query($sqlawal);
-		if (!$q)	{
-			echo "DB Error, could not query the database\n";
-			echo 'MySQL Error: ' . mysql_error();
-			exit;
-		}
-		$row = mysql_fetch_assoc($q);
-		//echo ($row['nilai']);
-		return ($row['nilai']);
-	}
-	
-}
-
-if ( ! function_exists('cek_waktu_range'))	{
-	function cek_waktu_range($id, $downt, $downj, $upt, $upj, $flag=0, $event, $edit, $idid)	{
-	//echo "cek_waktu_range flag: $flag, event: $event<br/>";
-		$w = new stdClass();
-		$ii=0; $dt=array(); $dj=array(); $ut=array(); $uj=array(); $ev=array();
-		$sql =	"SELECT id,downt,downj,upt,upj,event FROM waktudown WHERE eqid='{$id}' ".
-				"AND (downt BETWEEN '".hari_dengan_tole($downt,-cek_tole_hari())."' AND '".hari_dengan_tole($downt,cek_tole_hari())."' ".
-				"OR upt BETWEEN '".hari_dengan_tole($upt,-cek_tole_hari())."' AND '".hari_dengan_tole($upt,cek_tole_hari())."') ";
-		if ($edit) $sql .= "AND id NOT IN (".implode(',',$idid).")";
-
-
-		$query = $this->db->query($s);
-			
-		$aksi = array();
-		if ($query->num_rows() > 0)	{
-			foreach ($query->result() as $row)	{
-				$aksi[] = $row;
-			}
-		}
-
-		$q = db_query($sql);
-		if (!$q)	{
-			//echo "DB Error, could not query the database\n";
-			throw new Exception("DB Error, could not query the database");
-			echo 'MySQL Error: ' . mysql_error();
-			exit;
-		}
-		while ($row = mysql_fetch_assoc($q)) {
-			$dt[$ii]  = $row->downt;	$dj[$ii]  = $row->downj;
-			$ut[$ii]  = $row->upt;		$uj[$ii]  = $row->upj;
-			$ev[$ii]  = $row->event;
-			$ii++;
-		}
-		mysql_free_result($q);
-		
-		if ($flag==0)	{	// flag = 0 jika 
-			$dt[$ii]  = $downt;		$dj[$ii]  = $downj;
-			$ut[$ii]  = $upt;		$uj[$ii]  = $upj;
-			$ev[$ii]  = $event;
-		}
-		//print_r($dt);
-		$w->dt=$dt;		 $w->dj = $dj;
-		$w->ut=$ut;		 $w->uj = $uj;
-		$w->ev=$ev;
-		//print_r($w);
-		return $w;
-	}
-}
-//*/
 if ( ! function_exists('kombinasi_waktu'))	{
 	function kombinasi_waktu($ar1, $ar2, $ar3, $ar4)	{
 		$xar=array(); $urut=array();
@@ -195,41 +110,27 @@ if ( ! function_exists('float2min'))	{
 		return (sprintf("%02s", floor($s)).":".sprintf("%02s", round(60*($s-$hour))));
 	}
 }
-/*
-if ( ! function_exists('cek_tgl_rh_ada'))	{
-	function cek_tgl_rh_ada($id, $tgl) {
-		//$sql = "select tgl from rh_201311 where id='$id' and tgl>='{$downt}' and tgl<='{$upt}'";
-		$sql = "select id from rh_201311 where eq='$id' and tgl='{$tgl}'";
-		//$sql = "select count(tgl) as jml from rh_201311 where eq=54 and tgl='$tgl'";
-		//echo "sql: $sql<br/>";
-		$q = db_query($sql);
-		
-		$adaTgl = new stdClass(); $ar = array();
-		if (!$q)	{
-			echo "DB Error, could not query the database\n";
-			echo 'MySQL Error: ' . mysql_error();
-			exit;
-		}
-		while ($row = mysql_fetch_assoc($q)) {
-			$ar[] = $row['id'];
-		}
-		mysql_free_result($q);
-		
-		//echo "adaTgl: "; print_r($adaTgl); echo "<br/>";
-		$adaTgl->id = $ar;
-		$adaTgl->jml = count($ar);
-		return $adaTgl;
-	}
-}
-//*/
+
 if ( ! function_exists('format_rh'))	{
-	function format_rh($a)	{
+	function format_rh($a, $rh)	{
 		//echo ">>>>>>>>>"; print_r($a);	echo "<br/>";
 		$b = array();
-		for($i=0; $i<count($a); $i++)	{
-			$a[$i]['jam'] = float2min(24+$a[$i]['jam']);
-			$b[$a[$i]['tgl']] = $a[$i]['jam'];
-			//echo ": ".$a[$i]['tgl']." ---> ".$a[$i]['jam']."<br/>";
+		$jml = count($a);
+		if ($jml>0)	{
+			for($i=0; $i<count($a); $i++)	{
+				//$a[$i]['jam'] = float2min(24+$a[$i]['jam']);
+				//$b[$a[$i]['tgl']] = $a[$i]['jam'];
+				$b[$a[$i]['tgl']] = 24+$a[$i]['jam'];
+				
+				//echo ": ".$a[$i]['tgl']." ---> ".$a[$i]['jam']."<br/>";
+			}
+		}
+		else {
+			for($i=0; $i<count($rh); $i++)	{
+				//$a[$i]['jam'] = float2min(24+$a[$i]['jam']);
+				$b[$rh[$i]['tgl']] = float2min(24);
+				//echo ": ".$a[$i]['tgl']." ---> ".$a[$i]['jam']."<br/>";
+			}
 		}
 		//print_r($b);
 		return $b;
@@ -277,16 +178,40 @@ if ( ! function_exists('hitung_hrh'))	{
 	}
 }
 
+if ( ! function_exists('goleki_wayah'))	{
+	function goleki_wayah($pd, $pu, $dd, $du, $tole) {
+		$baw_def_a = strtotime(hari_dengan_tole($pd,-$tole));
+		$baw_def_b = strtotime(hari_dengan_tole($pd,$tole));
+		$bak_def_a = strtotime(hari_dengan_tole($pu,-$tole));
+		$bak_def_b = strtotime(hari_dengan_tole($pu,$tole));
+			//*
+		$baw_db_a = strtotime(hari_dengan_tole($dd,-$tole));
+		$baw_db_b = strtotime(hari_dengan_tole($dd,$tole));
+		$bak_db_a = strtotime(hari_dengan_tole($du,-$tole));
+		$bak_db_b = strtotime(hari_dengan_tole($du,$tole));
+		
+		$baw_a = date('Y-m-d',($baw_def_a<$baw_db_a)?$baw_def_a:$baw_db_a);
+		$baw_b = date('Y-m-d',($baw_def_b>$baw_db_b)?$baw_def_b:$baw_db_b);
+		$bak_a = date('Y-m-d',($bak_def_a<$bak_db_a)?$bak_def_a:$bak_db_a);
+		$bak_b = ($bak_def_b>$bak_db_b)?$bak_def_b:$bak_db_b;
+		$bak_b = ($bak_b<strtotime(date('Y-m-d')))?date('Y-m-d',($bak_b)):date('Y-m-d');
+		
+		return array("baw_a" => $baw_a, "baw_b" => $baw_b, "bak_a" => $bak_a, "bak_b" => $bak_b);
+	}
+}
+
 if ( ! function_exists('rh'))	{
 	function rh($taw, $jaw, $tak, $jak) {
 		//$w = new stdClass();
+		//echo "taw: "; print_r($taw); echo "<br/>";
+		//echo "tak: "; print_r($tak); echo "<br/>";
 		$w = array();
 		$tglaw = bwaktu($taw);	
 		$tglak = bwaktu($tak);
-		
-		//echo "<br/>thn: {$tglaw->thn}, bln: {$tglaw->bln}, tgl: {$tglaw->tgl} --->{$tglaw->t}<br/>";
-		//echo "thn: {$tglak->thn}, bln: {$tglak->bln}, tgl: {$tglak->tgl} --->{$tglak->t}<br/>";
-		
+		/*
+		echo "<br/>thn: {$tglaw->thn}, bln: {$tglaw->bln}, tgl: {$tglaw->tgl} {$jaw} --->{$tglaw->t}<br/>";
+		echo "thn: {$tglak->thn}, bln: {$tglak->bln}, tgl: {$tglak->tgl}  {$jak}--->{$tglak->t}<br/>";
+		//*/
 		$i=0; $shari=(60*60*24); $rh=0;
 		do {	// cari TOTAL waktu down perhari !!! bukan running hour
 			if ($i==0)	{
@@ -329,14 +254,19 @@ if ( ! function_exists('bwaktu'))	{
 		$dd = explode("-", $d);	
 		$tt = explode(":", $t);	
 		//print_r($dd); echo "<br/>";	print_r($tt); echo "<br/>";
-		
+		//echo "{$dd[0]} {$dd[1]} {$dd[2]} {$tt[0]} {$tt[1]} {$tt[2]}";
+		//echo "{$dd[0]} {$dd[1]} {$dd[2]} {$tt[0]} {$tt[1]}  ";
 		$w->thn = $dd[0];
 		$w->bln = $dd[1];
 		$w->tgl = $dd[2];
 		
-		$w->jam = isset($tt[0])?:0;
-		$w->min = isset($tt[1])?:0;
-		$w->det = isset($tt[2])?:0;
+		$w->jam = isset($tt[0])?$tt[0]:0;
+		$w->min = isset($tt[1])?$tt[1]:0;
+		$w->det = isset($tt[2])?$tt[2]:0;
+		
+		//$w->jam = $tt[0];
+		//$w->min = $tt[1];
+		//$w->det = $tt[2];
 		
 		$w->t = mktime( $w->jam,$w->min,$w->det, $w->bln,$w->tgl,$w->thn);
 		//echo "bwaktu() >> t: ".$w->t."<br/>";

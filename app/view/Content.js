@@ -7,11 +7,7 @@ Ext.define('rcm.view.Content', {
 		,'rcm.view.dataentry.ExcelGrid'
 		,'rcm.view.lapobama.AvReChart' //--
 		,'rcm.view.laporan.Chart'
-		
-		//'rcm.view.dataentry.DetailInfo'
-		//'Extensible.calendar.data.MemoryEventStore',
-		//'Extensible.calendar.CalendarPanel',
-		//'Extensible.example.calendar.data.Events'
+		,'rcm.view.utama.HoChart'
 	],
 
     layout: {
@@ -25,14 +21,11 @@ Ext.define('rcm.view.Content', {
     initComponent: function() {
 		var me=this;
 		me.items = [{
-			/*
 			id: 'tu_ho',
 			title: 'Dashboard Home',
-			iconCls: 'Dashboard'
-			//icon: 'modul/icons/Dashboard.png',
-			//xtype: 'tHoChart',
+			iconCls: 'Dashboard',
+			xtype: 'tHoChart'
 		},{
-		//*/
 			id: 'tu_re',
 			title: 'Reliability',
 			iconCls: 'Reliability',
@@ -145,12 +138,18 @@ Ext.define('rcm.view.Content', {
              * Fires when a record is edited using the CellEditing plugin or the statuscolumn
              * @param {SimpleTasks.model.Task} task     The task record that was edited
              */
-			//'recordedit'
+			'updateAvRe'
         );
         this.on('tabchange', me.handleContentTab, this);
 	},
 	handleContentTab: function()	{
-		rcmSettings.tab = this.getActiveTab().getId();
+		var tt = this.getActiveTab().getId();
+		rcmSettings.tab = tt;
+		if (tt.localeCompare("tu_re")==0)	{
+			//alert("masuk Reliability");
+			this.fireEvent('updateAvRe');
+		}
+		/*
 		var tab = this.getActiveTab();
 		if (tab.getId()=="tTC")	{
 			this.insert((this.items.length-1),{
@@ -158,7 +157,7 @@ Ext.define('rcm.view.Content', {
 			});
 			this.setActiveTab(this.items.length-2);
 		}
-		
+		//*/
 		//console.log("tab: "+tab.title+", id: "+this.getActiveTab().getId()+" view/Content.js");
 		//console.log("tab: "+rcmSettings.tab);
 	},

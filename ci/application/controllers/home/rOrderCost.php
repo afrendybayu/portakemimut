@@ -16,7 +16,7 @@ class rOrderCost extends CI_Controller {
 			//print_r($hsl);
 			$jsonResult = array(
 				'success' => true,
-				'hoteco' => $hsl
+				'hoorderc' => $hsl
 			);
 		}
 		catch (Exception $e){

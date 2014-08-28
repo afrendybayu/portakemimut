@@ -89,7 +89,6 @@ Ext.define('rcm.view.dataentry.FMEAGrid', {
 	hdlHapusFMEAClick: function(grid, row, col, column, e) {
 		var rec = grid.getStore().getAt(row);
 		//alert("hapus kejadian "+ rec.get('event')+" "+rec.get('nama'));
-		//alert("hapus kejadian ");
 		//grid.getStore().removeAt(rowIndex);
 		this.fireEvent('hpsFMEAGagal', rec, row, grid);
 	},
