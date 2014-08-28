@@ -74,16 +74,7 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 	initComponent: function() {
 		var me=this, 
 			 cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing', { clicksToEdit: 1});
-		
-<<<<<<< HEAD
-		me.plugins = [cellEditingPlugin];
-		
-		//*/
-		
-=======
 		me.plugins = cellEditingPlugin;
-		//*
->>>>>>> afrendy
 		me.bbar = [{
 			text: 'Compressor',
 			iconCls: 'Compressor',

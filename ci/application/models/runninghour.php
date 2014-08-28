@@ -44,6 +44,14 @@ class Runninghour extends CI_Model {
 		$query = $this->db->query($sql,$th);
 		return $query->result();
 	}
+	
+	function get_rhunit($eq,$tgl){
+		$this->db->select('eq,tgl');
+		$this->db->where('eq',$eq);
+		$this->db->where('tgl',$tgl);
+		$query = $this->db->get('rh_201311');
+		return $query->result();
+	}
 }
 
 /* End of file option.php */
