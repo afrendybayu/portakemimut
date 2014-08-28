@@ -4,6 +4,7 @@ Ext.define('rcm.controller.AvRe', {
     views: [
 		'lapobama.AvGroup'
 		,'lapobama.SpeedoAv'
+		,'lapobama.BlnAv'
 		
 		,'utama.HoChart'
     ],
@@ -25,6 +26,9 @@ Ext.define('rcm.controller.AvRe', {
 	},{
 		ref: 'content',
 		selector: 'content'
+	},{
+		ref: 'taskBlnAv',
+		selector: 'taskBlnAv'
 	}],
     
     init: function() {
@@ -36,6 +40,9 @@ Ext.define('rcm.controller.AvRe', {
 			'content': {
 				updateAvRe: me.updateAvRe,
 				updateHome: me.updateHome
+			},
+			'#btnCariAVx': {
+				click: me.filterAvRe
 			}
 		});
     },
@@ -71,7 +78,19 @@ Ext.define('rcm.controller.AvRe', {
 		
 		me.getHoOrderCStore().load();
 		me.getHoManStore().load();
-		alert("Home Update");
+		me.getAvReUnitStore().load();
+		//alert("Home Update");
+	},
+	
+	filterAvRe: function()	{
+		var me = this,
+			tFG = me.getTaskBlnAv(),
+            form = tFG.down('form').getForm();
+		var t = new Date(form.findField('iblnAvReU').getValue());
+		//var	dd = me.getDate(); 
+		alert(t.getMonth()+"-"+t.getFullYear());
+		
+		
 	},
 	
 	AvGroupClick: function(d,app,bln) 	{

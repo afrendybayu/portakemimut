@@ -37,13 +37,24 @@ class Runninghour extends CI_Model {
 		return $query->result();
 	}
 	
-	function get_avre_awaltahun($th)	{
-		$sql =	"select cat, sum(rh_av) as av,sum(rh_re) as re,".
-				"count(id) as jmleq from rh_201311 where thn=? group by cat";
+	function get_avre_sthn($thn)	{
+		$sql =	"select cat, count(id) as jmleq ".
+				",ROUND((sum(rh_av)*100/(count(id)*24)),2) as av,ROUND((sum(rh_re)*100/(count(id)*24)),2) as re ".
+				"from rh_201311 where thn=? group by cat";
 		//echo "sql: $sql<br/>";
-		$query = $this->db->query($sql,$th);
+		$query = $this->db->query($sql,$thn);
 		return $query->result();
 	}
+	
+	function get_avre_sbln($bln, $thn)	{
+		$sql =	"SELECT cat, count(id) AS jmleq ".
+				",ROUND((sum(rh_av)*100/(count(id)*24)),2) AS av,ROUND((sum(rh_re)*100/(count(id)*24)),2) AS re ".
+				"FROM rh_201311 WHERE thn=? and bln=? group by cat";
+		//echo "sql: $sql<br/>";
+		$query = $this->db->query($sql,$thn, $bln);
+		return $query->result();
+	}
+	
 }
 
 /* End of file option.php */

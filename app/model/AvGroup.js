@@ -12,7 +12,7 @@ Ext.define('rcm.model.AvGroup', {
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/rGroupUnit'
+			read: 'ci/index.php/avre/rGroupUnit'
 			//read: 'php/obafuncloc/rGroupUnit.php'
         },
 		reader: {

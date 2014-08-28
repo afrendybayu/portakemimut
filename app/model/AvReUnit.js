@@ -15,7 +15,7 @@ Ext.define('rcm.model.AvReUnit', {
 		type: 'ajax',
 		api: {
 			//read: 'php/obafuncloc/read.php'
-			read: 'ci/index.php/rAvReUnit'
+			read: 'ci/index.php/avre/rAvReUnit'
         },
 		reader: {
             type: 'json',

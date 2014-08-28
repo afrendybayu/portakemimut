@@ -8,6 +8,12 @@ class Equip extends CI_Model {
 		$this->db->get('equip');
 	}
 	
+	function get_tipe()	{
+		$this->db->select('id,nama');
+		$this->db->where('parent',0);
+		$this->db->get('equip');
+	}
+	
 	function get_equip_concat($unit)	{
 		$sql =	"SELECT GROUP_CONCAT(cat SEPARATOR 'e') AS cat, GROUP_CONCAT(id SEPARATOR 'e') AS eqeq, ".
 				"GROUP_CONCAT(kode) AS kode ".

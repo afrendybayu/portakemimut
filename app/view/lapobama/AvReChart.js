@@ -12,12 +12,26 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 	dockedItems: [{
 		xtype: 'taskBlnAv',
 		dock: 'top'
-	//*
 	},{
+		//*
 		xtype: 'label',
 		text: ' * Klik data kolom grafik untuk melihat detail',
+		//*/
+		/*
+		xtype: 'container',
+		layout: {
+			type: 'hbox',
+			align: 'stretch'
+		},
+		item:[{
+			xtype: 'label',
+			text: ' * Klik data kolom grafik untuk melihat detail',
+		},{
+			xtype: 'label',
+			text: 'Afrendy',
+		}],
+		//*/
 		dock: 'bottom'
-	//*/
     }],
 	
 	layout: {
