@@ -80,7 +80,7 @@ Ext.define('rcm.controller.DetailInfo', {
 	},
 
 	cariDG: function()	{
-		alert("tampil tanggal: "+Ext.getCmp("iblnDGaw").getValue()+" "+Ext.getCmp("iblnDGak").getValue());
+		//alert("tampil tanggal: "+Ext.getCmp("iblnDGaw").getValue()+" "+Ext.getCmp("iblnDGak").getValue());
 		this.getDaftarGagalStore().load({ 
 			params:{ tw:Ext.getCmp("iblnDGaw").getValue(), tk:Ext.getCmp("iblnDGak").getValue() } });
 	}

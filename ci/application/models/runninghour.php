@@ -27,7 +27,7 @@ class Runninghour extends CI_Model {
 	}
 	
 	function get_spAvReU($avre, $cat, $bln, $thn)	{
-		$sql =	"select ROUND(ifnull((sum($avre)/count(id))*(100/24),0),2) as hsl from rh_201311 ".
+		$sql =	"select ROUND(ifnull((sum($avre)/count(id))*(100/24),0),2) as av from rh_201311 ".
 				"where thn=$thn and bln = $bln and cat = $cat";
 		
 		$query = $this->db->query($sql);

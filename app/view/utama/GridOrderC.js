@@ -23,22 +23,22 @@ Ext.define('rcm.view.utama.GridOrderC', {
 				{ header:'Order Costing (Object Type)',//flex:3,
 					columns: [{ 
 						header: 'Object Type',dataIndex:'otipe'
-					},{ header: 'Description',dataIndex:'desc',width: 170
+					},{ header: 'Description',dataIndex:'desc',width: 160
 					}]
 				},
 				{ header:'Planned Cost',//flex:1,
 					columns: [{ 
-						header: 'WH Stock Cost',dataIndex:'plstcost'
-					},{ header: 'Internal Cost',dataIndex:'plincost'
-					},{ header: 'Total Planning Cost',dataIndex:'tplcost',flex:2
+						header: 'WH Stock Cost',dataIndex:'plstcost',align: 'right'
+					},{ header: 'Internal Cost',dataIndex:'plincost',align: 'right'
+					},{ header: 'Total Planning Cost',dataIndex:'tplcost',flex:2,align: 'right'
 					}]
 				},
 				{ header:'Actual',//flex:1,
 					columns: [{ 
-						header: 'WH Stock Cost',dataIndex:'acstcost'
-					},{ header: 'Internal Cost',dataIndex:'acincost'
-					},{ header: 'Service Cost',dataIndex:'srvcost'
-					},{ header: 'Total Actual Cost',dataIndex:'taccost'
+						header: 'WH Stock Cost',dataIndex:'acstcost',align: 'right'
+					},{ header: 'Internal Cost',dataIndex:'acincost',align: 'right'
+					},{ header: 'Service Cost',dataIndex:'srvcost',align: 'right'
+					},{ header: 'Total Actual Cost',dataIndex:'taccost',align: 'right'
 					}]
 				}
 				/*
