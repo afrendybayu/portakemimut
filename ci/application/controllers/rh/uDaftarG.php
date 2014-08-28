@@ -59,6 +59,7 @@ class uDaftarG extends CI_Controller {
 				//echo "level: $level, id: $id<br/>";
 				if ($level=='e')	{	// level equipment
 					$idid = array_unique(array_filter(explode("e",$id)));	// id dari id
+					$idJml = count($idid);
 					$hsl = $this->waktudown->get_waktudown_edit($idid);
 					$unit = $hsl[0]->unit_id;
 					$eqeq = $hsl[0]->eqeq;
@@ -67,49 +68,21 @@ class uDaftarG extends CI_Controller {
 					
 					$bts = goleki_wayah($params->downt, $params->upt, $hsl[0]->downt, $hsl[0]->upt, $tole);
 					//echo "jml: ".count($hsl);
-					/*
-					
-					//echo "idid: "; print_r($idid); echo "<br/><br/>";
-					$sql = "SELECT eqid,unit_id,id from waktudown where id in (".implode(',',$idid).")";
-					
-					$query = $this->db->query($sql);
-					if ($query->num_rows() > 0)	{
-						foreach ($query->result() as $row)	{
-							$idAr[$idJml]  = $row->eqid;
-							$id = $row->unit_id;
-							$idJml++;
-						}
-					}
-					//*/
-					//echo "level e"; print_r($idAr);
-				} else if ($level=='u')	{	// level unit
-					$hh = $this->equip->get_equip_concat($id);
-					$unit = $id;
-					$eqeq = $hh[0]->eqeq;
-					/*
-					$sql = "SELECT id,cat from equip where unit_id = $id";
-					$unit = $id;
-					$eqeq = 
-					//echo "unit sql: $sql<br/>";
 
-					$query = $this->db->query($sql);
-					//$aksi = array();
-					if ($query->num_rows() > 0)	{
-						foreach ($query->result() as $row)	{
-							$idAr[$idJml]  = $row->id;
-							$catAr[$idJml] = $row->cat;
-							$idJml++;
-						}
-					}
-					//*/
+				} else if ($level=='u')	{	// level unit
+					$unit = $id;
+					$hh = $this->equip->get_equip_concat($unit);					
+					$eqeq = $hh[0]->eqeq;
+					$idAr = explode("e",$eqeq);
+					$catAr = explode("e",$hh[0]->cat);
+					$idJml = count($idAr);
+
 					$bts = array(
 						'baw_a' => hari_dengan_tole($params->downt,-$tole),
 						'baw_b' => hari_dengan_tole($params->downt,$tole),
 						'bak_a' => hari_dengan_tole($params->upt,-$tole),
 						'bak_b' => hari_dengan_tole($params->upt,$tole),
 					);
-					//mysql_free_result($q);
-					//print_r($idAr);
 				} else {
 					//echo "masuk sini<br/>";
 					exit;
@@ -221,7 +194,7 @@ class uDaftarG extends CI_Controller {
 				$dtrh = array(
 					'eq'	=> $unit,
 					'tgl'	=> $tglx,
-					'rh'	=> $rh[$tglx],
+					'rh'	=> isset($rh[$tglx])?$rh[$tglx]:24,
 					'rh_av'	=> isset($rh_av[$tglx])?$rh_av[$tglx]:24,
 					'rh_re' => isset($rh_re[$tglx])?$rh_re[$tglx]:24,
 					'flag'	=> "e".$eqeq,
@@ -243,23 +216,28 @@ class uDaftarG extends CI_Controller {
 				$k++;
 			} while($u<$s);
 			//return;
+			
 			$pm = array();
-			//echo "tipeev: $tipeev,".strlen($tipeev)."<br/>";
-			//return;
 			$jmlpm = count($params->tipeev)>0?count($params->tipeev):0;
-			//echo "jmlpm: $jmlpm";
+
 			//$tipeev = array("e34pm1", "e33pm15");
-			for($i=0; $i<$jmlpm; $i++)	{
-				//*
-				$pmx  = explode("pm", $params->tipeev[$i]);
-				//print_r($pmx); echo "<br/>";
-				$ideq = explode("e", $pmx[0]);
-				//echo "id: {$ideq[1]}<br/>";
-				$pm[$i][0] = $ideq[1];
-				$pm[$i][1] = $pmx[1];
+			if ($jmlpm)	{
+				//echo "jmlpm: $jmlpm, tipeev: {$params->tipeev}<br/>";
+				for($i=0; $i<$jmlpm; $i++)	{
+					//echo "PM: {$params->tipeev[$i]}<br/>";
+					$pmx  = explode("pm", $params->tipeev[$i]);
+					$ideq = explode("e", $pmx[0]);
+					//echo "id: {$ideq[1]}<br/>";
+					$pm[$i][0] = $ideq[1];
+					$pm[$i][1] = $pmx[1];
+					//*/
+				}
+				/*
+				echo "pmx: "; print_r($pmx); echo "<br/>";
+				echo "pm: "; print_r($pm); echo "<br/>";
+				echo "eq: "; print_r($ideq); echo "<br/>";
 				//*/
 			}
-			
 			
 			// ------------- ISI TABEL WAKTUDOWN ----------------- //
 			$now = date("Y-m-d H:i:s");
@@ -284,7 +262,7 @@ class uDaftarG extends CI_Controller {
 							if ($idAr[$i]==$pm[$w][0])	break;
 						}
 						$repair = array(
-							'tipeev' => isset($pm[$w][1])?:'',
+							'tipeev' => isset($pm[$w][1])?$pm[$w][1]:'',
 							'startt' => isset($params->startt)?$params->startt:date('Y-m-d'),
 							'startj' => isset($params->startj)?$params->startj:date('H:i'),
 							'endt'	 => isset($params->endt)?$params->endt:date('Y-m-d'),

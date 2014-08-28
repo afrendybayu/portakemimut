@@ -107,7 +107,7 @@ class Waktudown extends CI_Model {
 				"LEFT JOIN equip ON equip.id = waktudown.eqid ".
 				"LEFT JOIN event ON event.down_id = waktudown.id ".
 				"WHERE downt BETWEEN ? AND ? group by downt,downj,upt,upj order by downt desc, downj desc, id desc";
-		//echo "sql: $sql, tglaw: $tglaw, tglak: $tglak<br/>";
+		//echo "sql: $sql <br/>tglaw: $tglaw, tglak: $tglak<br/>";
 		$query = $this->db->query($sql, array($tglaw,$tglak));
 		
 		$isi = array();	$jml=-1;
