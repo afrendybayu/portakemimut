@@ -302,7 +302,8 @@ class Waktudown extends CI_Model {
 	}
 	
 	function get_waktudown_limit($n)	{
-		$query = $this->db->select('id,eqid AS eq');
+		$this->db->select('id,eqid AS eq');
+		$this->db->order_by('id', 'desc'); 
 		$query = $this->db->get('waktudown',$n,0);
 		
 		//print_r($query->result());

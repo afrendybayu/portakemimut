@@ -584,11 +584,11 @@ Ext.define('rcm.controller.ExcelGrid', {
 							}
 						}
 					}
-					console.log("getEventStore masuk sini");
+					//console.log("getEventStore masuk sini");
 					me.getEventStore().sync({
 						//*
 						success: function()	{
-							console.log("getEventStore sukses");
+							//console.log("getEventStore sukses");
 							me.getDaftarGagalStore().reload();
 						},
 						failure: function()	{
