@@ -9,9 +9,9 @@ class RhSweep extends CI_Controller {
     }
 	public function index()	{
 		$awal = $this->input->get('awal') ? $this->input->get('awal') : date('Y-m-d',mktime(0,0,0,8,date('d')-1,2014));
-		$akhir = $this->input->get('akhir') ? $this->input->get('akhir') : date('Y-m-d',mktime(0,0,0,8,date('d')-1,2014));//(mktime(0, 0, 0, date('m')  , date('d')+1, date('Y')));
+		// $akhir = $this->input->get('akhir') ? $this->input->get('akhir') : date('Y-m-d',mktime(0,0,0,8,date('d')-1,2014));//(mktime(0, 0, 0, date('m')  , date('d')+1, date('Y')));
 		$level = 3;
-		echo 'tgl awal ==> '.$awal.' dan tgl akhir ==> '.$akhir.'</br>'; 
+		echo 'tgl awal ==> '.$awal;//.' dan tgl akhir ==> '.$akhir.'</br>'; 
 		$query = $this->hirarki->c_hirarki($level);
 		
 		foreach($query as $row){
