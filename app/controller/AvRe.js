@@ -56,16 +56,17 @@ Ext.define('rcm.controller.AvRe', {
 	
 	updateAvRe: function() {
 		//alert("AvRe Contrtoller updateAvRe");
-		this.getAvGroupStore().load({
-			scope: this,
+		var me = this;
+		me.getAvGroupStore().load({
+			scope: me,
 			callback: function(rec, operation, success) {
 				if (success) {
-					this.AvGroupClick(0,0);
+					me.AvGroupClick(0,0);
 				}
 			}
 		});
-		this.getAvHomeStore().load();
-		this.getReHomeStore().load();
+		me.getAvHomeStore().load();
+		me.getReHomeStore().load();
 	},
 	
 	AvGroupClick: function(d,app,bln) 	{
