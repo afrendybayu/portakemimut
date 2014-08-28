@@ -38,20 +38,20 @@ class Runninghour extends CI_Model {
 	}
 	
 	function get_avre_sthn($thn)	{
-		$sql =	"select cat, count(id) as jmleq ".
-				",ROUND((sum(rh_av)*100/(count(id)*24)),2) as av,ROUND((sum(rh_re)*100/(count(id)*24)),2) as re ".
+		$sql =	"select cat ".	// , count(id) as jmleq
+				",ROUND((sum(rh_av)*100/(count(id)*24)),3) as av,ROUND((sum(rh_re)*100/(count(id)*24)),3) as re ".
 				"from rh_201311 where thn=? group by cat";
 		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql,$thn);
 		return $query->result();
 	}
 	
-	function get_avre_sbln($bln, $thn)	{
-		$sql =	"SELECT cat, count(id) AS jmleq ".
-				",ROUND((sum(rh_av)*100/(count(id)*24)),2) AS av,ROUND((sum(rh_re)*100/(count(id)*24)),2) AS re ".
-				"FROM rh_201311 WHERE thn=? and bln=? group by cat";
+	function get_avre_sbln($bln, $thn)	{//  count(id) AS jmleq 
+		$sql =	"SELECT cat ".		
+				",ROUND((sum(rh_av)*100/(count(id)*24)),3) AS av,ROUND((sum(rh_re)*100/(count(id)*24)),3) AS re ".
+				"FROM rh_201311 WHERE thn=$thn AND bln=$bln GROUP BY cat";
 		//echo "sql: $sql<br/>";
-		$query = $this->db->query($sql,$thn, $bln);
+		$query = $this->db->query($sql,$thn);
 		return $query->result();
 	}
 	

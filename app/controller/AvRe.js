@@ -88,7 +88,8 @@ Ext.define('rcm.controller.AvRe', {
             form = tFG.down('form').getForm();
 		var t = new Date(form.findField('iblnAvReU').getValue());
 		//var	dd = me.getDate(); 
-		alert(t.getMonth()+"-"+t.getFullYear());
+		//alert(t.getMonth()+"-"+t.getFullYear());
+		alert(t.toJSON());
 		
 		
 	},
