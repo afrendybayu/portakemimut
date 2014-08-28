@@ -200,7 +200,7 @@ class uDaftarG extends CI_Controller {
 					'flag'	=> "e".$eqeq,
 					'bln'	=> bwaktu($tglx)->bln,
 					'thn'	=> bwaktu($tglx)->thn,
-					'cat'	=> $cc
+					'cat'	=> $params->cat
 				);
 				//*
 				if ($adatgl->jml==0)	{

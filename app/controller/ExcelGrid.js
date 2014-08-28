@@ -548,7 +548,8 @@ Ext.define('rcm.controller.ExcelGrid', {
             o = {};
 
 		o.id = form.findField('fgid').getValue();
-		o.eq = form.findField('eq'), cat = rcmSettings.cat;
+		o.eq = form.findField('eq');
+		o.cat = rcmSettings.cat;
 		o.event = form.findField('tfevent').getValue();
 		o.tipeev = form.findField('tipepm').getValue();
 		o.ket = form.findField('tfket').getValue();

@@ -31,6 +31,7 @@ class rAvHome extends CI_Controller {
 				
 			// AWAL TAHUN SAMPAI SEKARANG
 			$s = "select cat, sum(rh_av) as av,sum(rh_re) as re,count(id) as jmleq from rh_201311 where thn=$th group by cat;";
+			//echo "sql: $s<br/>";
 			$q = $this->db->query($s);
 			
 			if($q->num_rows>0){
@@ -85,9 +86,9 @@ class rAvHome extends CI_Controller {
 				$obj1->th1 = isset($arAvRe['d'][5]['re'])?($arAvRe['d'][5]['re']):0;
 				$obj1->avg = isset($arAvRe['a'][5]['re'])?($arAvRe['a'][5]['re']):0;
 				$obj1->bln = isset($arAvRe['b'][5]['re'])?($arAvRe['b'][5]['re']):0;
-				$obj1->th1 = ($arAvRe['d'][5]['re'])?:0;
-				$obj1->avg = ($arAvRe['a'][5]['re'])?:0;
-				$obj1->bln = ($arAvRe['b'][5]['re'])?:0;
+				$obj1->th1 = isset($arAvRe['d'][5]['re'])?($arAvRe['d'][5]['re']):0;
+				$obj1->avg = isset($arAvRe['a'][5]['re'])?($arAvRe['a'][5]['re']):0;
+				$obj1->bln = isset($arAvRe['b'][5]['re'])?($arAvRe['b'][5]['re']):0;
 				$obj1->tgt = '98';
 				$obj1->m = "Gas Comp";
 				array_push($arAR,$obj1);
@@ -97,9 +98,9 @@ class rAvHome extends CI_Controller {
 				$obj->avg = isset($arAvRe['a'][7]['re'])?($arAvRe['a'][7]['re']):0;
 				$obj->bln = isset($arAvRe['b'][7]['re'])?($arAvRe['b'][7]['re']):0;
 
-				$obj->th1 = ($arAvRe['d'][7]['re'])?:0;
-				$obj->avg = ($arAvRe['a'][7]['re'])?:0;
-				$obj->bln = ($arAvRe['b'][7]['re'])?:0;
+				$obj->th1 = isset($arAvRe['d'][7]['re'])?($arAvRe['d'][7]['re']):0;
+				$obj->avg = isset($arAvRe['a'][7]['re'])?($arAvRe['a'][7]['re']):0;
+				$obj->bln = isset($arAvRe['b'][7]['re'])?($arAvRe['b'][7]['re']):0;
 
 				$obj->tgt = '98';
 				$obj->m = "Generator Set";
@@ -110,9 +111,9 @@ class rAvHome extends CI_Controller {
 				$obj2->avg = isset($arAvRe['a'][6]['av'])?($arAvRe['a'][6]['av']):0;
 				$obj2->bln = isset($arAvRe['b'][6]['av'])?($arAvRe['b'][6]['av']):0;
 
-				$obj2->th1 = ($arAvRe['d'][6]['av'])?:0;
-				$obj2->avg = ($arAvRe['a'][6]['av'])?:0;
-				$obj2->bln = ($arAvRe['b'][6]['av'])?:0;
+				$obj2->th1 = isset($arAvRe['d'][6]['av'])?($arAvRe['d'][6]['av']):0;
+				$obj2->avg = isset($arAvRe['a'][6]['av'])?($arAvRe['a'][6]['av']):0;
+				$obj2->bln = isset($arAvRe['b'][6]['av'])?($arAvRe['b'][6]['av']):0;
 
 				$obj2->tgt = '98';
 				$obj2->m = "Pump";

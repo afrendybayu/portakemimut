@@ -25,6 +25,14 @@ class Runninghour extends CI_Model {
 		$this->db->where('id',$id);
 		$this->db->update('rh_201311',$data);
 	}
+	
+	function get_avre_awaltahun($th)	{
+		$sql =	"select cat, sum(rh_av) as av,sum(rh_re) as re,".
+				"count(id) as jmleq from rh_201311 where thn=? group by cat";
+		//echo "sql: $sql<br/>";
+		$query = $this->db->query($sql,$th);
+		return $query->result();
+	}
 }
 
 /* End of file option.php */
