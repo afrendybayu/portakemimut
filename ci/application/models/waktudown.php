@@ -110,7 +110,7 @@ class Waktudown extends CI_Model {
 				"WHERE downt BETWEEN ? AND ? group by downt,downj,upt,upj order by downt desc, downj desc, id desc";
 		//*/
 		$sql =	"SELECT (select group_concat((select concat('e',waktudown.id)) separator '')) as id, ".
-				"waktudown.unit_id as eqid ,event as idevent,tipeev ".
+				"waktudown.unit_id as eqid ,event as idevent,group_concat(if(tipeev=0,'',concat('e',eqid,'pm',tipeev))) as tipeev ".
 				",concat(ifnull((select group_concat('[',kode,': ',(select pmdef.nama from pmdef where pmdef.id ".
 				"= (select pmlist.pm from pmlist where pmlist.id=tipeev)),']')),'') ".
 				",ifnull((select group_concat((select concat('[',kode,': ',(select nama from failuremode where failuremode.id = event.fm),']')) ".

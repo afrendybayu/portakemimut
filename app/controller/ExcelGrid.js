@@ -215,11 +215,13 @@ Ext.define('rcm.controller.ExcelGrid', {
 		
 		me.getTaskIsiFormGagal().pilihEventG(rec.get('idevent'));
 		me.getTaskIsiFormGagal().setNilai(rec);
+
 		if (ev==2)	{
 			me.getPMStore().load({ 
 				params:{unit:un},
 				scope: this,
 				callback: function(dt, operation, success) {
+					//alert("success: "+rec.get('tipeev'));
 					if (success) {
 						Ext.getCmp('tipepm').setValue(rec.get('tipeev').split(","));
 					}
