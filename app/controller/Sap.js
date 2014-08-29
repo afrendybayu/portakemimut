@@ -151,7 +151,7 @@ Ext.define('rcm.controller.Sap', {
 		};
 
 		var form = btn.up('form').getForm();
-		rcmSettings.uuuu = form;
+		//rcmSettings.uuuu = form;
 		//*
 		if(form.isValid()){
 			form.submit({

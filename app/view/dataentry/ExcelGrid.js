@@ -25,8 +25,7 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 			draggable: false,
 			resizable: false,
 			hideable: false,
-			groupable: false,
-			
+			groupable: false
 		},
 		items: rcm.view.Util.UxcolGrid()
     },

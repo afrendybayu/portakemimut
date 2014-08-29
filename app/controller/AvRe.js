@@ -80,7 +80,7 @@ Ext.define('rcm.controller.AvRe', {
 	
 	onLaunch: function() {
 		//console.log("AvRe");
-		//this.updateAvRe();
+		this.updateAvRe();
 	},
 	
 	updateAvRe: function(t,n,id) {

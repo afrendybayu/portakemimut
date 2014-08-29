@@ -417,7 +417,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		//console.log("onLauch ExcelGrid");
 		Ext.getCmp('idwest').collapse();
 		
-		rcmSettings.qqqq = this.getExcelgrid();
+		//rcmSettings.qqqq = this.getExcelgrid();
 
 		Ext.getCmp('htmleddet').setReadOnly(true);
 		this.ubahFieldRH();
