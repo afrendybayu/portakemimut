@@ -45,7 +45,7 @@ class Runninghour extends CI_Model {
 		$query = $this->db->query($sql,$thn);
 		return $query->result();
 	}
-	
+
 	function get_avre_ytd($bln, $thn)	{
 		$sql =	"select cat ".	// , count(id) as jmleq
 				",ROUND((sum(rh_av)*100/(count(id)*24)),2) as av,ROUND((sum(rh_re)*100/(count(id)*24)),2) as re ".
@@ -55,6 +55,15 @@ class Runninghour extends CI_Model {
 		return $query->result();
 	}
 	
+
+	function get_rhunit($eq,$tgl){
+		$this->db->select('eq,tgl');
+		$this->db->where('eq',$eq);
+		$this->db->where('tgl',$tgl);
+		$query = $this->db->get('rh_201311');
+		return $query->result();
+	}
+
 	function get_avre_sbln($bln, $thn)	{//  count(id) AS jmleq 
 		$sql =	"SELECT cat ".		
 				",ROUND((sum(rh_av)*100/(count(id)*24)),2) AS av,ROUND((sum(rh_re)*100/(count(id)*24)),2) AS re ".
@@ -63,7 +72,7 @@ class Runninghour extends CI_Model {
 		$query = $this->db->query($sql,$thn);
 		return $query->result();
 	}
-	
+
 	function get_avre_sbln_eq($bln, $thn, $cat)	{//  count(id) AS jmleq 
 		/*
 		$sql =	"SELECT eq ".		
@@ -135,7 +144,6 @@ class Runninghour extends CI_Model {
 		$query = $this->db->query($sql,array($thn,$bln,$cat));
 		return $query->result();
 	}
-	
 }
 
 /* End of file option.php */

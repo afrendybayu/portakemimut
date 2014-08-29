@@ -12,7 +12,7 @@ Ext.define('rcm.view.laporan.Chart', {
 		,'rcm.view.laporan.SapChartDet'
 		,'rcm.view.laporan.SapCause'
 		,'rcm.view.laporan.GridCauseInfo'
-		//'rcm.view.laporan.ConMon',
+		,'rcm.view.laporan.ConMon'
 		//'laporan.Chart',
         //'rcm.view.laporan.UploadFile',
         //'laporan.SapCause',
@@ -35,11 +35,11 @@ Ext.define('rcm.view.laporan.Chart', {
 				id: 'ts_wo',
 				title: 'WO Compliance',
 				xtype:'tWOComp'
-			/*
+			
 			},{
 				id: 'ts_hi',
 				title: 'Condition Monitoring',
-				//xtype:'tConMon'
+				xtype:'tConMon'
 			//*/
 			},{
 				id: 'ts_pdm',

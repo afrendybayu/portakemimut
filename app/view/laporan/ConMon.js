@@ -4,12 +4,13 @@ Ext.define('rcm.view.laporan.ConMon', {
 	extend: 'Ext.container.Container',
 
 	requires: [
-		'rcm.view.laporan.GridConMon',
-		'rcm.view.laporan.ConMonUnit'
+		'rcm.view.laporan.GridConMon'
+		,'rcm.view.laporan.ConMonUnit'
+		,'rcm.view.laporan.ConMonInput'
 		//'rcm.view.laporan.EPOPie'
 
 	],
-	
+	border : 0,
 	layout: {
 		type: 'vbox',
 		align: 'stretch'
@@ -21,33 +22,36 @@ Ext.define('rcm.view.laporan.ConMon', {
 
     items: [{
 		xtype: 'container',
+		// html : 'isi container',
 		layout: {
 			type: 'vbox',
 			align: 'stretch'
-        },
+        },//*/
 		items:[{
 			xtype: 'panel',
 			height: 120,
-			//flex: 1,
+			//title : 'panel 1',
+			flex: 1,
 			layout: {
 				type: 'hbox',
 				align: 'stretch'
 			},
 			items: [{
-					html: ' ',
-					flex: 2
-				},{
-					//html: '',
+					html: ' aaaaa',
 					xtype: 'tGridConMon',
-					flex: 1
+					width : 200,
+					// flex: 1
 				},{
-					html: ' ',
-					flex: 2
-			}]
+					html: 'table conmon',
+					xtype: 'iConMon',
+					flex: 1
+				
+			}]//*/
 		},{
 			xtype: 'panel',
 			flex: 1,
-			layout: {
+			title : 'panel2',
+			/*layout: {
 				type: 'hbox',
 				align: 'stretch'
 			},
@@ -61,11 +65,12 @@ Ext.define('rcm.view.laporan.ConMon', {
 				},{
 					xtype: 'tEPOPie',
 					flex: 1
-			}]
+			}]*/
 		},{
 			xtype: 'panel',
 			flex: 1,
-			layout: {
+			title : 'panel3',
+			/*layout: {
 				type: 'hbox',
 				align: 'stretch'
 			},
@@ -79,7 +84,7 @@ Ext.define('rcm.view.laporan.ConMon', {
 				},{
 					xtype: 'tEPOPie',
 					flex: 1
-			}]
-		}]
+			}]//*/
+		}]//*/
 	}]
 });

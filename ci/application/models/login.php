@@ -14,22 +14,14 @@ class Login extends CI_Model {
         return $query;
 	}
 	
-	function ValidLogin($username,$password){
+	function ValidLogin($user,$pass){
 			
-		$this->db->select('userid,pass,nama');
-		$this->db->where('userid', $username);
-        $this->db->where('pass', $password);
+		$this->db->select('nama,akses');
+		$this->db->where('userid', $user);
+        $this->db->where('pass', $pass);
         $query = $this->db->get('user');
 		
 		return $query;
-		/*
-        if($query->num_rows == 1)
-        {
-            return $query;
-			return true;
-        }
-        
-        return false;//*/
 	}
 	/*
 	function jmlDataTime($waktu,$kapal){

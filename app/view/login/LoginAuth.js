@@ -6,33 +6,31 @@ Ext.define('rcm.view.login.LoginAuth', {
 	id	: 'p_login',	
 	items: [{
 				xtype : 'textfield',
-				//id : 'userid',
 				name: 'username',
 				itemid : 'userid',
 				width: 70,
-				//fieldLabel: 'Username'
 				allowBlank: false,
 				emptyText : 'Username'
-			
-			},{
+			},{xtype : 'tbspacer'},{
 				xtype : 'textfield',
 				inputType: 'password',
 				name: 'password',
 				itemid : 'passid',
 				width: 70,
-				//fieldLabel: 'Username'
 				allowBlank: false,
 				emptyText : 'Password'
-			},{
+			},{xtype : 'tbspacer'},{
 				xtype : 'button',
 				text : 'Login',
 				id	: 'btn_login',
-				action : 'login',
-				
+				action : 'login'
 								
 			}]
-	/*		
-	initComponent : function(){
+			
+	/*initComponent : function(){
+		
+		
+		
 		this.buttons = [{
 			name : 'login_btn',
 			text : 'Login',

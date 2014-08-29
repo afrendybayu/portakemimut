@@ -2,6 +2,12 @@
 
 class Equip extends CI_Model {
 	
+	function get_equip_gconcat($id){
+		$sql = "SELECT group_concat('e',id separator'') as eq,unit_id FROM equip where unit_id = ? GROUP BY unit_id";
+		$query = $this->db->query($sql,array($id));
+		return $query->result();
+	}
+	
 	function get_equip($id)	{
 		$this->db->select('id,cat,kode');
 		$this->db->where('unit_id',$id);
@@ -17,6 +23,7 @@ class Equip extends CI_Model {
 		
 		$query = $this->db->get('equip');
 		
+
 		return $query->result();
 	}
 	

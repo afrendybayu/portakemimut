@@ -1,6 +1,17 @@
 <?php
 
 class Hirarki extends CI_Model {
+	function __construct()	{
+        parent::__construct();
+    }
+
+	function c_hirarki($lvl)    {
+		$this->db->select('id,flag');
+		$this->db->where('level',$lvl);
+		$query = $this->db->get('hirarki');
+		return $query->result();
+		
+	}
 
 	function get_unit_group($gr)    {
 
@@ -20,5 +31,5 @@ class Hirarki extends CI_Model {
     }
 }
 
-/* End of file waktudown.php */
-/* Location: ./application/models/waktudown.php */
+/* End of file hirarki.php */
+/* Location: ./application/models/hirarki.php */

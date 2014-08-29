@@ -18,18 +18,23 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 	store: 'RunningHour',
     columnLines: true,
 	selType: 'cellmodel',
-
+	
 	columns: {
 		defaults: {
 			enableGroupingMenu: false,
 			draggable: false,
 			resizable: false,
 			hideable: false,
-			groupable: false
+			groupable: false,
+			
 		},
 		items: rcm.view.Util.UxcolGrid()
     },
-    
+    /*plugins: [
+        Ext.create('Ext.grid.plugin.CellEditing', {
+            clicksToEdit: 1
+        })
+    ],*/
     viewConfig: {
         getRowClass: function(record, index) {
 			/*
@@ -68,10 +73,8 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 	
 	initComponent: function() {
 		var me=this, 
-			cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing', { clicksToEdit: 1 });
-		
+			 cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing', { clicksToEdit: 1});
 		me.plugins = cellEditingPlugin;
-		//*
 		me.bbar = [{
 			text: 'Compressor',
 			iconCls: 'Compressor',

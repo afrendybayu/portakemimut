@@ -19,7 +19,7 @@ Ext.define('rcm.controller.Sap', {
         ,'WoOpen7','WoOpen30','WoOpen60','WoOpenL60'
         ,'SapCause','SapDamage','SapOPart'/*,'SapSymptom'*/
 		,'SapCauseInfo','SapDamageInfo','SapOPartInfo','SapSymptomInfo'
-		,'SapHistori'
+		,'SapHistori','ConMon','ConMonIn'
     ],
     
     models: [

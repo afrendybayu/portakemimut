@@ -26,7 +26,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		,'EventList'
 		,'Event'
 		,'EventInfo'
-		
+		,'LoginSesi'
 		,'Equip'
 		,'OPart'
 		,'FMode'
@@ -36,8 +36,9 @@ Ext.define('rcm.controller.ExcelGrid', {
     ],
     
     models: [
-		'RunningHour',
-		'Event'
+		'RunningHour'
+		,'Event'
+		,'LoginSesi'
     ],
     
     refs: [{
@@ -208,6 +209,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 	},
 	
 	edDGClick: function(rec)	{
+	
 		//alert("Controller editDG ganti ke ExcelGrid");
 		var me = this, ev = rec.get('idevent'), un = rec.get('eqid'),
             tFG = me.getTaskFormGagal();
@@ -279,12 +281,16 @@ Ext.define('rcm.controller.ExcelGrid', {
 	},
 	
 	buildFormGagal: function(e)	{
+		
+		
 		var me = this,
             tFG = me.getTaskFormGagal(),
 			form =  tFG.down('form').getForm(),
 			sDG = Ext.create('rcm.model.DaftarGagal'),
 			dRHs = me.getRunningHourStore().getAt(e.rowIdx).data,
 			dRHsJ = dRHs.eq+" @"+dRHs.Lokasi;
+			//DSesi = Ext.create('rcm.model.LoginSesi');
+			
 		
 		sDG.set('eq',rcmSettings.eqx); sDG.set('nama',dRHsJ); 
 		sDG.set('downt',rcmSettings.tgl); //sDG.set('server','rcmSettings.server');
@@ -311,7 +317,27 @@ Ext.define('rcm.controller.ExcelGrid', {
 		me.getTaskIsiFormGagal().pilihEventG(1);
 		
 		//tFG.setWidth(500);
-		tFG.show();
+		// tFG.show();
+		// tFG.hide()
+		var DSesi = me.getLoginSesiStore();
+		DSesi.load({
+			scope: this,
+			callback: function(records, operation, success) {
+				var res = operation.request.scope.reader.jsonData["sesi"];
+				if (res.nama == 'Administrator'){
+					console.log('masuk sebagai admin');
+					tFG.show();
+				}
+				else{
+					console.log('tidak jelas');
+					tFG.hide();
+				}
+				// the operation object
+				// contains all of the details of the load operation
+				console.log(res.nama);
+			}
+		});//*/
+		
 		
 		me.getEquipStore().load({ params:{unit:dRHs.id} });
 		me.getOPartStore().load({ params:{unit:dRHs.id} });
@@ -397,7 +423,9 @@ Ext.define('rcm.controller.ExcelGrid', {
 		this.ubahFieldRH();
 		//Ext.util.Cookies.set('tgl',t);
 		Ext.util.Cookies.set('now',Ext.Date.format(new Date(),"Y-m-d"));
-
+		
+		
+		
 		//alert("t: "+t+"  cook: "+Ext.decode(rcm.view.Util.getCookie("tgl")));
 
 		//this.getAvGroupStore().load();
