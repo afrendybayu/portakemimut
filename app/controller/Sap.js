@@ -64,6 +64,7 @@ Ext.define('rcm.controller.Sap', {
 	ubahLabelWO: function()	{
 		var me=this;
 		//console.log("onLauch SAP");
+		/*
 		me.getWoOpen7Store().load({
 			scope: this,
 			callback: function(rec) {
@@ -88,6 +89,7 @@ Ext.define('rcm.controller.Sap', {
 				Ext.getCmp('wo60').setText(rec[0].get('teks'));
 			}
 		});
+		//*/
 	},
 	
 	onLaunch: function() {
@@ -149,7 +151,7 @@ Ext.define('rcm.controller.Sap', {
 		};
 
 		var form = btn.up('form').getForm();
-		rcmSettings.uuuu = form;
+		//rcmSettings.uuuu = form;
 		//*
 		if(form.isValid()){
 			form.submit({

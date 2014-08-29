@@ -13,10 +13,19 @@ class rAvHome extends CI_Controller {
 		$avre = $this->input->get('tp')?:'av';
 		//echo "$avre";
 		if ($this->input->get('wkt'))	{
-			$wkt = strtotime($this->input->get('wkt'));
-			$thn = date('Y',$wkt);
-			$bln = date('n',$wkt);
-			$thnm1 = $thn-1;
+			$w = $this->input->get('wkt');
+			//echo "--> $w ";
+			if ($w==="")	{
+				$thn = date("Y");
+				$thnm1 = $thn-1;
+				$bln = date("n");
+			}
+			else {
+				$wkt = strtotime($w);
+				$thn = date('Y',$wkt);
+				$bln = date('n',$wkt);
+				$thnm1 = $thn-1;
+			}
 		}
 		else {
 			//echo "$avre";
@@ -31,7 +40,7 @@ class rAvHome extends CI_Controller {
 			$this->load->model("runninghour");
 			$this->load->model("catequip");
 			
-			$arUnit = $this->catequip->get_tipe();
+			$arUnit = $this->catequip->get_tipe('');
 			$nUnit = isset($arUnit)?count($arUnit):0;
 			//echo "n: $nUnit";
 			$arAvRe = array();
@@ -42,7 +51,7 @@ class rAvHome extends CI_Controller {
 
 			//echo "bln: $bln, thn: $thn, thnm1: $thnm1<br/>";
 			$arUnitB  = $this->runninghour->get_avre_sbln($bln, $thn);
-			$arUnitT  = $this->runninghour->get_avre_sthn($thn);
+			$arUnitT  = $this->runninghour->get_avre_ytd($bln, $thn);
 			$arUnitT1 = $this->runninghour->get_avre_sthn($thnm1);
 			/*
 			echo "arUnit: <br/>"; print_r($arUnit); echo "<br/>";

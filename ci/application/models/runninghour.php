@@ -39,14 +39,23 @@ class Runninghour extends CI_Model {
 	
 	function get_avre_sthn($thn)	{
 		$sql =	"select cat ".	// , count(id) as jmleq
-				",ROUND((sum(rh_av)*100/(count(id)*24)),3) as av,ROUND((sum(rh_re)*100/(count(id)*24)),3) as re ".
+				",ROUND((sum(rh_av)*100/(count(id)*24)),2) as av,ROUND((sum(rh_re)*100/(count(id)*24)),2) as re ".
 				"from rh_201311 where thn=? group by cat";
 		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql,$thn);
 		return $query->result();
 	}
+
+	function get_avre_ytd($bln, $thn)	{
+		$sql =	"select cat ".	// , count(id) as jmleq
+				",ROUND((sum(rh_av)*100/(count(id)*24)),2) as av,ROUND((sum(rh_re)*100/(count(id)*24)),2) as re ".
+				"from rh_201311 where thn=? and bln<=? group by cat";
+		//echo "sql: $sql<br/>";
+		$query = $this->db->query($sql,array($thn, $bln));
+		return $query->result();
+	}
 	
-//<<<<<<< HEAD
+
 	function get_rhunit($eq,$tgl){
 		$this->db->select('eq,tgl');
 		$this->db->where('eq',$eq);
@@ -54,17 +63,87 @@ class Runninghour extends CI_Model {
 		$query = $this->db->get('rh_201311');
 		return $query->result();
 	}
-//=======
+
 	function get_avre_sbln($bln, $thn)	{//  count(id) AS jmleq 
 		$sql =	"SELECT cat ".		
-				",ROUND((sum(rh_av)*100/(count(id)*24)),3) AS av,ROUND((sum(rh_re)*100/(count(id)*24)),3) AS re ".
+				",ROUND((sum(rh_av)*100/(count(id)*24)),2) AS av,ROUND((sum(rh_re)*100/(count(id)*24)),2) AS re ".
 				"FROM rh_201311 WHERE thn=$thn AND bln=$bln GROUP BY cat";
 		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql,$thn);
 		return $query->result();
 	}
+
+	function get_avre_sbln_eq($bln, $thn, $cat)	{//  count(id) AS jmleq 
+		/*
+		$sql =	"SELECT eq ".		
+				",ROUND((sum(rh_av)*100/(count(id)*24)),2) AS av,ROUND((sum(rh_re)*100/(count(id)*24)),2) AS re ".
+				"FROM rh_201311 WHERE thn=$thn AND bln=$bln AND cat=$cat GROUP BY eq";
+		echo "sql: $sql<br/>";
+		//*/
+		$sql =	"SELECT hirarki.id AS id ".
+				",CONCAT(hirarki.init,'@',(SELECT hhh.kode FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS kode ".
+				",CONCAT(hirarki.nama,', ',equip.nama,' @',(SELECT hhh.nama FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS nama ".
+				",(SELECT ifnull(ROUND((sum(rh_201311.rh_av)*100/(count(rh_201311.id)*24)),2),0) ".
+				"FROM rh_201311 WHERE eq = hirarki.id AND thn=$thn AND bln=$bln) AS av ".
+				",(SELECT ifnull(ROUND((sum(rh_201311.rh_re)*100/(count(rh_201311.id)*24)),2),0) ".
+				"FROM rh_201311 WHERE eq = hirarki.id AND thn=$thn AND bln=$bln) AS re ".
+				",(SELECT hhh.urut FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id)) AS urut ".
+				"FROM hirarki ".
+				"LEFT JOIN rh_201311 ON hirarki.id = rh_201311.eq ".
+				"LEFT JOIN equip ON hirarki.id = equip.unit_id AND equip.kode LIKE (SELECT kode FROM cat_equip WHERE cat_equip.id=$cat) ".
+				"WHERE hirarki.flag=$cat ".
+				"GROUP BY hirarki.id ORDER BY urut,init ASC;";
+		$query = $this->db->query($sql,array($thn,$bln,$cat));
+		return $query->result();
+	}
 	
-// >>>>>>> afrendy
+	function get_avre_sthn_eq($thn, $cat)	{//  count(id) AS jmleq 
+		/*
+		$sql =	"SELECT eq ".		
+				",ROUND((sum(rh_av)*100/(count(id)*24)),2) AS av,ROUND((sum(rh_re)*100/(count(id)*24)),2) AS re ".
+				"FROM rh_201311 WHERE thn=$thn AND cat=$cat GROUP BY eq";
+		//*/
+		$sql =	"SELECT hirarki.id AS id ".
+				",CONCAT(hirarki.init,'@',(SELECT hhh.kode FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS kode ".
+				",CONCAT(hirarki.nama,', ',equip.nama,' @',(SELECT hhh.nama FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS nama ".
+				",(SELECT ifnull(ROUND((sum(rh_201311.rh_av)*100/(count(rh_201311.id)*24)),2),0) ".
+				"FROM rh_201311 WHERE eq = hirarki.id AND thn=$thn) AS av ".
+				",(SELECT ifnull(ROUND((sum(rh_201311.rh_re)*100/(count(rh_201311.id)*24)),2),0) ".
+				"FROM rh_201311 WHERE eq = hirarki.id AND thn=$thn) AS re ".
+				",(SELECT hhh.urut FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id)) AS urut ".
+				"FROM hirarki ".
+				"LEFT JOIN rh_201311 ON hirarki.id = rh_201311.eq ".
+				"LEFT JOIN equip ON hirarki.id = equip.unit_id AND equip.kode LIKE (SELECT kode FROM cat_equip WHERE cat_equip.id=$cat) ".
+				"WHERE hirarki.flag=$cat ".
+				"GROUP BY hirarki.id ORDER BY urut,init ASC;";
+		//echo "sql: $sql<br/>";
+		$query = $this->db->query($sql,array($thn,$cat));
+		return $query->result();
+	}
+	
+	function get_avre_ytd_eq($bln, $thn, $cat)	{//  count(id) AS jmleq 
+		/*
+		$sql =	"SELECT eq ".		
+				",ROUND((sum(rh_av)*100/(count(id)*24)),2) AS av,ROUND((sum(rh_re)*100/(count(id)*24)),2) AS re ".
+				"FROM rh_201311 WHERE thn=$thn AND bln<=$bln AND cat=$cat GROUP BY eq";
+		//*/
+		$sql =	"SELECT hirarki.id AS id ".
+				",CONCAT(hirarki.init,'@',(SELECT hhh.kode FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS kode ".
+				",CONCAT(hirarki.nama,', ',equip.nama,' @',(SELECT hhh.nama FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS nama ".
+				",(SELECT ifnull(ROUND((sum(rh_201311.rh_av)*100/(count(rh_201311.id)*24)),2),0) ".
+				"FROM rh_201311 WHERE eq = hirarki.id AND thn=$thn AND bln<=$bln) AS av ".
+				",(SELECT ifnull(ROUND((sum(rh_201311.rh_re)*100/(count(rh_201311.id)*24)),2),0) ".
+				"FROM rh_201311 WHERE eq = hirarki.id AND thn=$thn AND bln<=$bln) AS re ".
+				",(SELECT hhh.urut FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id)) AS urut ".
+				"FROM hirarki ".
+				"LEFT JOIN rh_201311 ON hirarki.id = rh_201311.eq ".
+				"LEFT JOIN equip ON hirarki.id = equip.unit_id AND equip.kode LIKE (SELECT kode FROM cat_equip WHERE cat_equip.id=$cat) ".
+				"WHERE hirarki.flag=$cat ".
+				"GROUP BY hirarki.id ORDER BY urut,init ASC;";
+		//echo "sql: $sql<br/>";
+		$query = $this->db->query($sql,array($thn,$bln,$cat));
+		return $query->result();
+	}
 }
 
 /* End of file option.php */

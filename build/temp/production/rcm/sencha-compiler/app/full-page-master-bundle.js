@@ -1,2 +1,2 @@
 // @tag full-page
-// @require c:\xampp\htdocs\daunbiru\portakemimut\app.js
+// @require /var/www/sencha/portakemimut/app.js

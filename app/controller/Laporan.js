@@ -81,7 +81,7 @@ Ext.define('rcm.controller.Laporan', {
     },
 	
 	AvHomeClick: function(d, nama, id)	{
-		console.log("group: "+id);
+		//console.log("group: "+id);
 		/*this.getAvGroupStore().load({ params:{gr:id, tgl: d.series.name} });
 		this.getTAvGroup().setTitle('Availability & Reliability');
 		this.getTAvGroup().setSubTitle(nama+" "+d.series.name);
@@ -91,7 +91,7 @@ Ext.define('rcm.controller.Laporan', {
 	AvGroupClick: function(d,nama) 	{
 		var plh=this.getAvGroupStore().getAt(d.point.x).data;
 		var	wkt=this.getTAvGroup().waktu;
-		console.log ("pencet avgroup " + plh.nama + wkt );
+		//console.log ("pencet avgroup " + plh.nama + wkt );
 		//Ext.getCmp('iflAvRe').setText(plh.nama+", id:"+plh.id+", w: "+wkt);
 		Ext.getCmp('iflAvRe').setText(plh.nama+", "+wkt);
 		this.getTAvSpeedo().chartConfig.min = rcm.view.Util.Ubb(plh.av);
@@ -115,7 +115,7 @@ Ext.define('rcm.controller.Laporan', {
 	},
 	
 	onPanelRendered: function(){
-		console.log('cek laporan');
+		//console.log('cek laporan');
 	}
     
     

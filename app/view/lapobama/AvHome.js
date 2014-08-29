@@ -3,11 +3,7 @@ Ext.define('rcm.view.lapobama.AvHome', {
     xtype: 'tAvHome',
 	extend: 'Chart.ux.Highcharts',
 	loadMask: true,
-	
-	requires:[
-		'rcm.view.Util'
-    ],
-	
+
 	series : [{
 		dataIndex: 'th1',
 		name: rcm.view.Util.Uthm1()
@@ -16,11 +12,12 @@ Ext.define('rcm.view.lapobama.AvHome', {
 		name: rcm.view.Util.Uytd()
 	},{
 		dataIndex: 'bln',
-		name: rcm.view.Util.Ublnini()
+		name: rcm.view.Util.Ublnini('')
 	}],
 	
 	store: 'AvHome',
 	xField: 'm',
+	cat: '5',
 
 	initComponent: function() {
 		var me=this;
@@ -35,6 +32,7 @@ Ext.define('rcm.view.lapobama.AvHome', {
 				backgroundColor: '#d9e9ef'
 			},
 			colors: ['#0d233a','#2f7ed8','#8bbc21'],
+			//colors: ['#2f7ed8','#0d233a','#8bbc21'],
 			title : {
 				text: me.jdl
 				//x: -40
@@ -74,7 +72,8 @@ Ext.define('rcm.view.lapobama.AvHome', {
 					point: {
 						events: {
 							click: function(evt) {
-								//alert(this.category+": "+rcm.view.Util.cid(this.category) );
+								//alert(this.category+": "+rcm.view.Util.cid(this.category)+", "+ rcm.view.Util.Ublnini(''));
+								me.cat = this.category;
 								me.fireEvent('AvHomeCl', evt.currentTarget, this.category, rcm.view.Util.cid(this.category));
 							}
 						}

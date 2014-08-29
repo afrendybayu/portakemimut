@@ -25,11 +25,15 @@ Ext.define('rcm.view.Util', {
 			return strbln[no];
 		},
 		
-		Ublnini: function()	{
+		Ublnini: function(w)	{
 			var strbln = ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
-			var d = new Date();
-			return (strbln[d.getMonth()]+" "+d.getFullYear());
-			
+			if (w=="")	{
+				var d = new Date();
+			}
+			else {
+				var d = new Date(w);
+			}
+			return (strbln[d.getMonth()]+" "+d.getFullYear());		
 		},
         
         Upad: function(n)	{
@@ -122,14 +126,16 @@ Ext.define('rcm.view.Util', {
 				xwkt="k"+(tgl.getFullYear()-2000)+""+this.Upad(tgl.getMonth()+1)+""+this.Upad(tgl.getDate());
 				//grid={header:tgl.getDate(),dataIndex:xwkt,width:50,editor:'textfield', tdCls: 'x-change-cell'};
 				grid={header:tgl.getDate(),dataIndex:xwkt,width:50,editor:'textfield',tdCls: 'x-change-cell'
-					/*
-					renderer: function(value, meta) {
-						if (value === '24:00') { 
-							meta.tdCls = 'price-rise'; 
-							//return; 
+					//*
+					,renderer: function(value,meta)	{
+						if(value.localeCompare("24:00")==0) {
+							meta.style = "background-color:#a8ff94;";
+						} else if (value.localeCompare("-")==0) {
+							meta.style = "background-color:#feffac;";
 						} else {
-							meta.tdCls = 'price-fall'; 
+							meta.style = "background-color:#ffbdbd;";
 						}
+						return '<span style="color:black;">' + value + '</span>';
 					}
 					//*/
 				};

@@ -285,6 +285,27 @@ if ( ! function_exists('hitung_jambulan'))	{
 	}
 }
 
-
+if ( ! function_exists('cek_waktu_avre'))	{
+	function cek_waktu_avre($wkt)	{
+		$kal = array(1 => "Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des", "YTD/Avg");
+		$atgl = explode(" ",$wkt);
+		$n = count($atgl);
+		
+		if ($n==1)	{
+			//$tgl = $atgl[0]."-12";
+			$thn = $atgl[0];
+			$bln = 0;
+		} else if ($n==2)	{
+				
+			//echo "in: ".in_array($atgl[0], $kal)."<br/>";
+			if (in_array($atgl[0], $kal))	{
+				$bln = array_search($atgl[0], $kal);
+			}
+				//echo "no: $no<br/>";
+			$thn = $atgl[1];
+		}
+		return array($bln,$thn);
+	}
+}
 
 ?>

@@ -12,11 +12,12 @@ Ext.define('rcm.view.lapobama.ReHome', {
 		name: rcm.view.Util.Uytd()
 	},{
 		dataIndex: 'bln',
-		name: rcm.view.Util.Ublnini()
+		name: rcm.view.Util.Ublnini('')
 	}],
 	
 	store: 'ReHome',
 	xField: 'm',
+	cat: '5',
 	
 	initComponent: function() {
 		var me=this;
