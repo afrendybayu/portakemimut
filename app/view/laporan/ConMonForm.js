@@ -1,65 +1,77 @@
-Ext.define('rcm.view.laporan.ConMonInput', {
-    extend: 'Ext.grid.Panel',
-	xtype: 'iConMon',
-	requires : 'rcm.view.laporan.ConMonForm',
+Ext.define('rcm.view.laporan.ConMonForm', {
+    extend: 'Ext.form.Panel',
+	xtype: 'taskConMon',
 	
 	
-	//features: [{ftype:'grouping',startCollapsed:true,hideGroupedHeader:true}],
-
-	store: 'ConMonIn',
-    //columnLines: true,
-	enableColumnHide: false,
 	
-	dockedItems: [
-        {
-            xtype: 'taskConMon',
-            dock: 'top',
-            // the grid's column headers are a docked item with a weight of 100.
-            // giving this a weight of 101 causes it to be docked under the column headers
-            weight: 101,
-            bodyStyle: {
-                'background-color': '#E4E5E7'
-            }
-        }
-    ],
+	layout : 'hbox',
 	
+		
 	
 	initComponent: function() {
-		var me=this; 
-		ed=Ext.create('Ext.grid.plugin.CellEditing',{ clicksToEdit: 1	});
+		//var me=this; 
+		this.items = [
+            {
+                xtype: 'component',
+                // cls: 'tasks-new',
+                width: 25,
+                height: 25
+            },{
+				xtype: 'datefield',
+				value : new Date(),
+				format: 'Y-m-d',
+				width : 100
+			},{
+				xtype	:'textfield',
+				emptyText : 'Lokasi',
+				flex : 1,
+			},{
+				xtype	:'textfield',
+				emptyText : 'Unit',
+				flex : 1
+			},{
+				xtype	:'textfield',
+				emptyText : '#WO',
+				flex : 1
+			},{
+				xtype	:'textfield',
+				emptyText : '#SAP',
+				flex : 1
+			},{
+				xtype	:'textfield',
+				emptyText : 'url Link Laporan',
+				flex : 1
+			},{
+				xtype	:'textfield',
+				emptyText : 'Eksekutor',
+				flex : 1
+			},{
+				xtype	:'textfield',
+				emptyText : 'keterangan',
+				flex : 2
+			},{
+                xtype: 'component',
+                // cls: 'tasks-new',
+                width: 50,
+                height: 25
+            }
+			
+			
+        ];
+
+        this.callParent(arguments);
 		
-		me.plugins = [ed];
-		/*me.listeners = {
-			'cellclick' : me.rowFMEAclick
-		},//*/
-		
-		
-		/*me.dockedItems= [{
-		xtype: 'toolbar',
-			items: {
-				iconCls: 'add',
-				text: 'Tambah',
-				//scope: this,
-				//handler: this.onAddClick
-			}
-		}],*/
-		
-		me.columns = [
+		/*me.columns = [
 			{ xtype:'rownumberer',width:25 
 			},{
 				header : 'Tanggal',
-				width : 100,
-				dataIndex : 'tgl',
-				xtype : 'datecolumn',
-				editor : 'datefield',
-				format : 'Y-m-d'
+				width : 75,
+				dataIndex : 'tgl'
 			},{
 				header : 'Lokasi',
 				flex : 1,
 				// width : 75,
 				dataIndex : 'lokasi',
-				// xtype : 'textfield',
-				editor : 'textfield'
 			},{
 				header : 'Unit',
 				flex : 1,
@@ -70,14 +82,12 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 				header : '#WO',
 				flex : 1,
 				// width : 75,
-				dataIndex : 'wo',
-				editor : 'textfield'
+				dataIndex : 'wo'
 			},{
 				header : '#SAP',
 				flex : 1,
 				// width : 50,
-				dataIndex : 'sap',
-				editor : 'textfield'
+				dataIndex : 'sap'
 			},{
 				header : 'Laporan',
 				flex :1,
@@ -88,13 +98,11 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 				flex : 1,
 				// width : 75,
 				dataIndex : 'pic',
-				editor : 'textfield'
 			},{
 				header : 'Keterangan',
 				flex : 2,
 				// width : 150,
 				dataIndex : 'ket',
-				editor : 'textfield'
 			},{
 				xtype:'actioncolumn',
 				width:25,
@@ -151,9 +159,9 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 					grid.getStore().removeAt(rowIndex);
 				}
 				//*/
-		}],
+		//}],
 		
-		me.callParent(arguments);
+		//me.callParent(arguments);
 		/*me.addEvents(
 			'edit',
 			'plhOPartGagal',
