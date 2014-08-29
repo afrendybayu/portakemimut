@@ -44,7 +44,7 @@ class rAvHome extends CI_Controller {
 			$arUnitB  = $this->runninghour->get_avre_sbln($bln, $thn);
 			$arUnitT  = $this->runninghour->get_avre_sthn($thn);
 			$arUnitT1 = $this->runninghour->get_avre_sthn($thnm1);
-			//*
+			/*
 			echo "arUnit: <br/>"; print_r($arUnit); echo "<br/>";
 			echo "arUnitB: <br/>"; print_r($arUnitB); echo "<br/>";
 			echo "arUnitT: <br/>"; print_r($arUnitT); echo "<br/>";
