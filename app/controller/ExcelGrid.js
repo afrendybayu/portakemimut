@@ -281,8 +281,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 	},
 	
 	buildFormGagal: function(e)	{
-		
-		
+
 		var me = this,
             tFG = me.getTaskFormGagal(),
 			form =  tFG.down('form').getForm(),
@@ -295,7 +294,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		sDG.set('eq',rcmSettings.eqx); sDG.set('nama',dRHsJ); 
 		sDG.set('downt',rcmSettings.tgl); //sDG.set('server','rcmSettings.server');
 		tFG.down('form').getForm().reset();
-		
+
 		//alert("tgl: "+rcmSettings.tgl);
 		//form.findField('eq').setValue(dRHsJ);
 		//form.findField('fgid').setValue(dRHs.id); 
@@ -309,13 +308,13 @@ Ext.define('rcm.controller.ExcelGrid', {
 		Ext.getCmp('fgid').setValue(dRHs.id);
 		Ext.getCmp('idtfevent').setValue(1);
 		//Ext.getCmp('datedown').setValue(Ext.util.Cookies.get('tgl'));
-		
+
 		tFG.down('form').loadRecord(sDG);
 		tFG.setTitle('Form Notifikasi ' + dRHsJ);
 		
 		me.getEventStore().loadData([],false);
 		me.getTaskIsiFormGagal().pilihEventG(1);
-		
+
 		//tFG.setWidth(500);
 		// tFG.show();
 		// tFG.hide()
@@ -324,13 +323,17 @@ Ext.define('rcm.controller.ExcelGrid', {
 			scope: this,
 			callback: function(records, operation, success) {
 				var res = operation.request.scope.reader.jsonData["sesi"];
-				if (res.nama == 'Administrator'){
+				if (res.akses == 0){
 					console.log('masuk sebagai admin');
+					rcmSettings.eeee = me;
+					me.getExcelgrid().ngedit = 1;
 					tFG.show();
 				}
 				else{
 					console.log('tidak jelas');
-					tFG.hide();
+					me.getExcelgrid().ngedit = 0;
+					//tFG.hide();
+					return;
 				}
 				// the operation object
 				// contains all of the details of the load operation
@@ -415,6 +418,8 @@ Ext.define('rcm.controller.ExcelGrid', {
 
     onLaunch: function() {
 		//console.log("onLauch ExcelGrid");
+		//this.getExcelgrid().ngedit = 1;
+		//alert(this.getExcelgrid().ngedit);
 		Ext.getCmp('idwest').collapse();
 		
 		//rcmSettings.qqqq = this.getExcelgrid();

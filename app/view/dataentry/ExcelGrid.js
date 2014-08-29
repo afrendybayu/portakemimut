@@ -6,6 +6,8 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 	//xtype: 'taskExcelGrid',
 	//id: 'idexcelgrid',
 	
+	ngedit: 0,
+	
 	requires: [
 		'rcm.view.Util',
 		'Ext.grid.plugin.CellEditing',
@@ -94,6 +96,7 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 			'recordedit'
         );
         cellEditingPlugin.on('edit', me.handleCellEdit, this);
+        cellEditingPlugin.on('beforeedit', me.hdlCellEna, this);
 	},
 	/*
 	initComponent: function() {
@@ -171,6 +174,13 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
         this.fireEvent('recordedit', gridView, e);
         
     },
+    
+    hdlCellEna: function(editor,a,eOpts)	{
+		//alert(this.ngedit);
+		if (this.ngedit)	return true;
+		else return false;
+	},
+    
     //*
     CompClick: function()	{
 		rcmSettings.cat = 5;

@@ -2,9 +2,9 @@ Ext.define('rcm.controller.Login', {
     extend: 'Ext.app.Controller', 
 	
 	requires : [
-		'rcm.view.login.LoginAuth',
-		'rcm.view.dataentry.DaftarGagal'
-			
+		'rcm.view.login.LoginAuth'
+		,'rcm.view.dataentry.DaftarGagal'
+		,'rcm.view.dataentry.ExcelGrid'
 	],
 	
 	views: [
@@ -90,7 +90,7 @@ Ext.define('rcm.controller.Login', {
 	tblLogin : function(btn){
 		// console.log('klik login tombol');
 		// 
-		
+		var me = this;
 		var frm 	= btn.up('form').getForm(),
 			userget = frm.getValues().username,
 			passget	= frm.getValues().password;
@@ -115,7 +115,7 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('btnUplBpm3').setDisabled(false);
 					Ext.getCmp('bwbpm3').setDisabled(false);
 					
-					
+					me.getExcelgrid().ngedit = 1;
 					// rcmSettings.aaaaa = Ext.getCmp('grid_edit1111');	
 					/*	var me 	= this,
 							uFG = me.getTaskFormGagal();
@@ -147,6 +147,7 @@ Ext.define('rcm.controller.Login', {
 	
 	tblLogout : function(b_logout){
 		// console.log('klik tombol logout');
+		var me = this;
 		var delS = this.getUnsetSesiStore();
 		Ext.MessageBox.show({
 			title : 'Logout Info',
@@ -160,6 +161,7 @@ Ext.define('rcm.controller.Login', {
 						scope: this,
 						callback: function(records, operation, success) {
 							// var res = operation.request.scope.reader.jsonData["sesi"];
+							/*
 							if (success){
 								// console.log('Session Unset');
 								Ext.MessageBox.show({
@@ -170,9 +172,10 @@ Ext.define('rcm.controller.Login', {
 								});
 								// alert('Login Info','Terimakasih');
 							}
+							//*/
 						}
 					});
-					
+					me.getExcelgrid().ngedit = 0;
 					Ext.getCmp('p_login').setVisible(true);
 					Ext.getCmp('p_logout').setVisible(false);
 					Ext.getCmp('griddel').setVisible(false);
@@ -189,6 +192,7 @@ Ext.define('rcm.controller.Login', {
 	},
 	onLaunch: function(){
 		// console.log('launch sesi login');
+		var me = this;
 		var LSesi = this.getLoginSesiStore();
 		LSesi.load({
 			scope: this,
@@ -204,7 +208,7 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('btnUplBpm3').setDisabled(false);
 					Ext.getCmp('bwbpm3').setDisabled(false);
 					
-					
+					me.getExcelgrid().ngedit = 1;
 				}
 				else{
 					console.log('sesine ilang je');
