@@ -2,12 +2,28 @@
 
 class Equip extends CI_Model {
 	
-	function get_equip($id)	{
+	function get_equip_gconcat($id){
 		$sql = "SELECT group_concat('e',id separator'') as eq,unit_id FROM equip where unit_id = ? GROUP BY unit_id";
-		// $this->db->select('id,cat,kode');
-		// $this->db->where('unit_id',$id);
-		// $query = $this->db->get('equip');
 		$query = $this->db->query($sql,array($id));
+		return $query->result();
+	}
+	
+	function get_equip($id)	{
+		$this->db->select('id,cat,kode');
+		$this->db->where('unit_id',$id);
+		$query = $this->db->get('equip');
+		
+		return $query->result();
+	}
+	
+	function get_tipe()	{
+		$this->db->select('id,nama');
+		$this->db->where('parent',0);
+		$this->db->get('cat_equip');
+		
+		$query = $this->db->get('equip');
+		
+
 		return $query->result();
 	}
 	

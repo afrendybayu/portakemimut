@@ -2,7 +2,124 @@
 
 class rAvHome extends CI_Controller {
 	
-	public function index()	{
+	public function index()		{
+		/*
+		//$avre 	= isset($this->input->get('tp'))?$this->input->get('tp'):'av';
+		$wkt = strtotime("Thu Aug 28 2014 00:00:00 GMT+0700 (WIB)");
+		$thn = date('Y',$wkt);
+		$bln = date('n',$wkt);
+		//echo "Y: $thn, m: $bln<br/>";
+		//*/
+		$avre = $this->input->get('tp')?:'av';
+		//echo "$avre";
+		if ($this->input->get('wkt'))	{
+			$wkt = strtotime($this->input->get('wkt'));
+			$thn = date('Y',$wkt);
+			$bln = date('n',$wkt);
+			$thnm1 = $thn-1;
+		}
+		else {
+			//echo "$avre";
+			$thn = date("Y");
+			$thnm1 = $thn-1;
+			$bln = date("n");
+		}
+		
+		//echo "Y: $thn, m: $bln<br/>";
+		try {
+			
+			$this->load->model("runninghour");
+			$this->load->model("catequip");
+			
+			$arUnit = $this->catequip->get_tipe();
+			$nUnit = isset($arUnit)?count($arUnit):0;
+			//echo "n: $nUnit";
+			$arAvRe = array();
+			
+			if ($nUnit==0)	{
+				throw new Exception("Konfigurasi Unit Tidak ada !!");
+			}
+
+			//echo "bln: $bln, thn: $thn, thnm1: $thnm1<br/>";
+			$arUnitB  = $this->runninghour->get_avre_sbln($bln, $thn);
+			$arUnitT  = $this->runninghour->get_avre_sthn($thn);
+			$arUnitT1 = $this->runninghour->get_avre_sthn($thnm1);
+			//*
+			echo "arUnit: <br/>"; print_r($arUnit); echo "<br/>";
+			echo "arUnitB: <br/>"; print_r($arUnitB); echo "<br/>";
+			echo "arUnitT: <br/>"; print_r($arUnitT); echo "<br/>";
+			echo "arUnitT1: <br/>"; print_r($arUnitT1); echo "<br/><br/><br/>";
+			//*/
+			for ($i=0; $i<$nUnit; $i++)	{
+				$obj  = new stdClass();
+				if (strcmp($avre,"av")==0) 	{
+					$obj->m	  = $arUnit[$i]->nama;
+					for ($j=0; $j<count($arUnitB); $j++)	{
+						if ($arUnit[$i]->id == $arUnitB[$j]->cat)	{
+							$obj->bln = $arUnitB[$j]->av; break;
+						}
+					}
+					$obj->bln = isset($obj->bln)?$obj->bln:0;
+					for ($j=0; $j<count($arUnitT); $j++)	{
+						if ($arUnit[$i]->id == $arUnitT[$j]->cat)	{
+							$obj->avg = $arUnitT[$j]->av; break;
+						}
+					}
+					$obj->avg = isset($obj->avg)?$obj->avg:0;
+					for ($j=0; $j<count($arUnitT1); $j++)	{
+						if ($arUnit1[$i]->id == $arUnitT1[$j]->cat)	{
+							$obj->th1 = $arUnitT1[$j]->av; break;
+						}
+					}
+					$obj->th1 = isset($obj->th1)?$obj->th1:0;
+					//$obj->tgt = '98';
+				}
+				else if (strcmp($avre,"re")==0)	{
+					$obj->m	  = $arUnit[$i]->nama;
+					for ($j=0; $j<count($arUnitB); $j++)	{
+						if ($arUnit[$i]->id == $arUnitB[$j]->cat)	{
+							$obj->bln = $arUnitB[$j]->re; break;
+						}
+					}
+					$obj->bln = isset($obj->bln)?$obj->bln:0;
+					for ($j=0; $j<count($arUnitT); $j++)	{
+						if ($arUnit[$i]->id == $arUnitT[$j]->cat)	{
+							$obj->avg = $arUnitT[$j]->re; break;
+						}
+					}
+					$obj->avg = isset($obj->avg)?$obj->avg:0;
+					for ($j=0; $j<count($arUnitT1); $j++)	{
+						if ($arUnit1[$i]->id == $arUnitT1[$j]->cat)	{
+							$obj->th1 = $arUnitT1[$j]->re; break;
+						}
+					}
+					$obj->th1 = isset($obj->th1)?$obj->th1:0;
+				}
+				//print_r($obj);
+				array_push($arAvRe,$obj);
+				//echo "<br/>"; print_r($arAvRe);
+				//echo "<br/><br/>";
+			}
+			//print_r($arAvRe);
+			
+			$jsonResult = array(
+				'success' => true,
+				'avhome' => $arAvRe
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		//*/
+		echo json_encode($jsonResult);
+		
+		
+	}
+	
+	public function indexxxx()	{
 				
 		if (isset($_GET['wkt']) || isset($_GET['tp']))	{
 			$th 	= date("Y");

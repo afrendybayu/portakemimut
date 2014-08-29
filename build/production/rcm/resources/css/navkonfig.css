@@ -93,3 +93,10 @@
 	text-align: center;
 	/*color:blue;*/
 }
+.dollar {
+	background-image: url('./images/dollar.png');
+}
+
+.accept {
+	background-image: url('./images/accept.png');
+}

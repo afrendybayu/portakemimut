@@ -149,6 +149,10 @@ Ext.define('rcm.view.Content', {
 			//alert("masuk Reliability");
 			this.fireEvent('updateAvRe');
 		}
+		else if (tt.localeCompare("tu_ho")==0)	{
+			//alert("masuk update Home");
+			this.fireEvent('updateHome');
+		}
 		/*
 		var tab = this.getActiveTab();
 		if (tab.getId()=="tTC")	{

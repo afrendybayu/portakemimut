@@ -4,6 +4,7 @@ Ext.define('rcm.controller.AvRe', {
     views: [
 		'lapobama.AvGroup'
 		,'lapobama.SpeedoAv'
+		,'lapobama.BlnAv'
 		
 		,'utama.HoChart'
     ],
@@ -25,6 +26,9 @@ Ext.define('rcm.controller.AvRe', {
 	},{
 		ref: 'content',
 		selector: 'content'
+	},{
+		ref: 'taskBlnAv',
+		selector: 'taskBlnAv'
 	}],
     
     init: function() {
@@ -34,23 +38,17 @@ Ext.define('rcm.controller.AvRe', {
 				AvGroupCl: me.AvGroupClick
 			},
 			'content': {
-				updateAvRe: me.updateAvRe
+				updateAvRe: me.updateAvRe,
+				updateHome: me.updateHome
+			},
+			'#btnCariAVx': {
+				click: me.filterAvRe
 			}
 		});
     },
 	
 	onLaunch: function() {
 		//console.log("AvRe");
-		/*
-		this.getAvGroupStore().load({
-			scope: this,
-			callback: function(rec, operation, success) {
-				if (success) {
-					this.AvGroupClick(0,0);
-				}
-			}
-		});
-		//*/
 		this.updateAvRe();
 		//this.ubahLabelWO();
 	},
@@ -67,6 +65,33 @@ Ext.define('rcm.controller.AvRe', {
 		});
 		me.getAvHomeStore().load();
 		me.getReHomeStore().load();
+	},
+	
+	updateHome: function()		{
+		var me=this;
+		me.getSpAvGcUtStore().load();
+		me.getSpAvGsUtStore().load();
+		me.getSpAvPmUtStore().load();
+		me.getSpReGcUtStore().load();
+		me.getSpReGsUtStore().load();
+		me.getSpRePmUtStore().load();
+		
+		me.getHoOrderCStore().load();
+		me.getHoManStore().load();
+		me.getAvReUnitStore().load();
+		//alert("Home Update");
+	},
+	
+	filterAvRe: function()	{
+		var me = this,
+			tFG = me.getTaskBlnAv(),
+            form = tFG.down('form').getForm();
+		var t = new Date(form.findField('iblnAvReU').getValue());
+		//var	dd = me.getDate(); 
+		//alert(t.getMonth()+"-"+t.getFullYear());
+		alert(t.toJSON());
+		
+		
 	},
 	
 	AvGroupClick: function(d,app,bln) 	{

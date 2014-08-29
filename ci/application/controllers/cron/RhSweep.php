@@ -17,7 +17,7 @@ class RhSweep extends CI_Controller {
 		foreach($query as $row){
 			$d_query = $this->runninghour->get_rhunit($row->id,$awal);
 			if (count($d_query) == 0){
-				$eq_query = $this->equip->get_equip($row->id);
+				$eq_query = $this->equip->get_equip_gconcat($row->id);
 				foreach ($eq_query as $req){
 					$d_input = array(
 						'eq'=> $row->id , 

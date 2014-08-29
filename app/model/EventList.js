@@ -10,7 +10,7 @@ Ext.define('rcm.model.EventList', {
 	,proxy: {
         type: 'ajax',
         api: {
-            read: 'ci/index.php/rEventList'
+            read: 'ci/index.php/avre/rEventList'
         },
         reader: {
             type: 'json',

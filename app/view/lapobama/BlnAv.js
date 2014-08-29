@@ -19,7 +19,7 @@ Ext.define('rcm.view.lapobama.BlnAv', {
 			layout: 'hbox',
 
 			items: [{
-					id:  'iblnAvReU',
+					name:  'iblnAvReU',
 					xtype: 'monthfield',
 					submitFormat: 'Y-m-d',
 					value: new Date(),
