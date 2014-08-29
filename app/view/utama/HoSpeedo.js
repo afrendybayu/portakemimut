@@ -23,7 +23,7 @@ Ext.define('rcm.view.utama.HoSpeedo', {
 			flex: 1,
 			xtype: 'tAvSpeedo',
 			jdl: 'Gas Comp',
-			subjdl: 'Avail '+rcm.view.Util.Ublnini(),
+			subjdl: 'Avail '+rcm.view.Util.Ublnini(''),
 			dstore: 'SpAvGcUt',
 			nama: 'Av',
 			min: 50
@@ -32,7 +32,7 @@ Ext.define('rcm.view.utama.HoSpeedo', {
 			flex: 1,
 			xtype: 'tAvSpeedo',
 			jdl: 'Gen Set',
-			subjdl: 'Avail '+rcm.view.Util.Ublnini(),
+			subjdl: 'Avail '+rcm.view.Util.Ublnini(''),
 			dstore: 'SpAvGsUt',
 			nama: 'Av',
 			min: 50
@@ -41,7 +41,7 @@ Ext.define('rcm.view.utama.HoSpeedo', {
 			flex: 1,
 			xtype: 'tAvSpeedo',
 			jdl: 'Pump',
-			subjdl: 'Avail '+rcm.view.Util.Ublnini(),
+			subjdl: 'Avail '+rcm.view.Util.Ublnini(''),
 			dstore: 'SpAvPmUt',
 			nama: 'Av',
 			min: 50
@@ -50,7 +50,7 @@ Ext.define('rcm.view.utama.HoSpeedo', {
 			flex: 1,
 			xtype: 'tAvSpeedo',
 			jdl: 'Gas Comp',
-			subjdl: 'Reliability '+rcm.view.Util.Ublnini(),
+			subjdl: 'Reliability '+rcm.view.Util.Ublnini(''),
 			dstore: 'SpReGcUt',
 			nama: 'Re',
 			min: 50
@@ -59,7 +59,7 @@ Ext.define('rcm.view.utama.HoSpeedo', {
 			flex: 1,
 			xtype: 'tAvSpeedo',
 			jdl: 'Gen Set',
-			subjdl: 'Reliability '+rcm.view.Util.Ublnini(),
+			subjdl: 'Reliability '+rcm.view.Util.Ublnini(''),
 			dstore: 'SpReGsUt',
 			nama: 'Re',
 			min: 50
@@ -68,7 +68,7 @@ Ext.define('rcm.view.utama.HoSpeedo', {
 			flex: 1,
 			xtype: 'tAvSpeedo',
 			jdl: 'Pump',
-			subjdl: 'Reliability '+rcm.view.Util.Ublnini(),
+			subjdl: 'Reliability '+rcm.view.Util.Ublnini(''),
 			dstore: 'SpRePmUt',
 			nama: 'Re',
 			min: 50

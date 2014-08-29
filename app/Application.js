@@ -11,9 +11,9 @@ Ext.define('rcm.Application', {
     controllers: [
         // TODO: add controllers here
 		//'Main',
+		//,'Laporan'
 		'ExcelGrid'
-		,'DetailInfo'
-		,'Laporan'
+		,'DetailInfo'		
 		,'Sap'
 		,'Login'
 		,'AvRe'

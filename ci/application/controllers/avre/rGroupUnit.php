@@ -2,7 +2,55 @@
 
 class rGroupUnit extends CI_Controller {
 	
-	public function index()	{
+	public function index()		{
+		$kal = array(1 => "Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des", "YTD/Avg");
+		$this->load->model("runninghour");
+		$this->load->model("catequip");
+		$this->load->model("hirarki");
+
+		$gr = $this->input->get('gr')?:$this->catequip->get_tipe_id();
+		if ($this->input->get('wkt'))	{
+			list($bln,$thn) = cek_waktu_avre($this->input->get('wkt'));
+		}
+		else {
+			$thn = date("Y");
+			$bln = date("n");
+		}
+		//echo " $gr --- $thn --- $bln";
+		
+		try {
+			//echo $this->catequip->get_tipe_kode($gr)."<br/>";
+			//echo "jml: ".count($this->hirarki->get_unit_group($gr))."<br/>";
+			//print_r($this->hirarki->get_unit_group($gr));
+			
+			if ($bln==0)	{
+				$hsl = $this->runninghour->get_avre_sthn_eq($thn, $gr);
+			}
+			else if ($bln==13)	{
+				$hsl = $this->runninghour->get_avre_ytd_eq($bln, $thn, $gr);
+			}
+			else {
+				$hsl = $this->runninghour->get_avre_sbln_eq($bln, $thn, $gr);
+			}
+			//echo "<br/><br/>".count($hsl)."<br/>";
+			//print_r($hsl);
+			$jsonResult = array(
+				'success' => true,
+				'avGr' => $hsl
+			);
+			
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+	}
+	
+	public function indexxxx()	{
 		
 		$kal = array(1 => "Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des", "YTD/Avg");
 		if (isset($_GET['gr']))	{
@@ -10,7 +58,7 @@ class rGroupUnit extends CI_Controller {
 		} else {
 			$gr = 5;
 		}
-		
+		echo "$gr";
 		$ytd = 0;
 						
 		if (isset($_GET['tgl']))	{

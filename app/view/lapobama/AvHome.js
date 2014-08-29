@@ -16,11 +16,12 @@ Ext.define('rcm.view.lapobama.AvHome', {
 		name: rcm.view.Util.Uytd()
 	},{
 		dataIndex: 'bln',
-		name: rcm.view.Util.Ublnini()
+		name: rcm.view.Util.Ublnini('')
 	}],
 	
 	store: 'AvHome',
 	xField: 'm',
+	cat: '5',
 
 	initComponent: function() {
 		var me=this;
@@ -75,6 +76,7 @@ Ext.define('rcm.view.lapobama.AvHome', {
 						events: {
 							click: function(evt) {
 								//alert(this.category+": "+rcm.view.Util.cid(this.category) );
+								me.cat = this.category;
 								me.fireEvent('AvHomeCl', evt.currentTarget, this.category, rcm.view.Util.cid(this.category));
 							}
 						}

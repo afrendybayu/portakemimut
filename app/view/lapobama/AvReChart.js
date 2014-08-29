@@ -59,7 +59,7 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 			flex: 1,
 			fldY: ['av2014'],
 			jdl: 'Availability & Reliability',
-			subJdl: 'Gas Comp '+rcm.view.Util.Ublnini()
+			subJdl: 'Gas Comp '+rcm.view.Util.Ublnini('')
 		},{
 			width: '60%',
 			layout: {

@@ -25,11 +25,15 @@ Ext.define('rcm.view.Util', {
 			return strbln[no];
 		},
 		
-		Ublnini: function()	{
+		Ublnini: function(w)	{
 			var strbln = ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
-			var d = new Date();
-			return (strbln[d.getMonth()]+" "+d.getFullYear());
-			
+			if (w=="")	{
+				var d = new Date();
+			}
+			else {
+				var d = new Date(w);
+			}
+			return (strbln[d.getMonth()]+" "+d.getFullYear());		
 		},
         
         Upad: function(n)	{

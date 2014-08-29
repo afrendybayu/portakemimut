@@ -18,7 +18,8 @@ Ext.define('rcm.view.lapobama.AvGroup', {
 	
 	jdl: 'dqwdwqd',
 	subJdl: 'Gas Comp '+this.waktu,
-	waktu: rcm.view.Util.Ublnini(),
+	waktu: rcm.view.Util.Ublnini(''),
+	nama: 'Gas Comp',
 	store: 'AvGroup',
 	xField: 'kode',
 
