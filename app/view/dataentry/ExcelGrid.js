@@ -153,14 +153,16 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 	renderer: function(value, metadata, record, rowIndex, colIndex, store) {
 		//alert("jos renderer");
 		//console.log("value: "+value+", rowIx: "+rowIndex+", colIx: "+colIndex);
-		/*
-		if(value.localeCompare("24:00")) {
-			meta.style = "background-color:green;";
+		//*
+		if(value.localeCompare("24:00")==0) {
+			//meta.style = "background-color:green;";
+			return '<span style="color:green;">' + val + '</span>';
 		} else {
-			meta.style = "background-color:red;";
+			//meta.style = "background-color:red;";
+			return '<span style="color:red;">' + val + '</span>';
 		}
 		//*/
-		return colIndex;
+		//return colIndex;
 	},
 
     handleCellEdit: function(gridView, e) {

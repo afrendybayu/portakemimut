@@ -126,13 +126,14 @@ Ext.define('rcm.view.Util', {
 				xwkt="k"+(tgl.getFullYear()-2000)+""+this.Upad(tgl.getMonth()+1)+""+this.Upad(tgl.getDate());
 				//grid={header:tgl.getDate(),dataIndex:xwkt,width:50,editor:'textfield', tdCls: 'x-change-cell'};
 				grid={header:tgl.getDate(),dataIndex:xwkt,width:50,editor:'textfield',tdCls: 'x-change-cell'
-					/*
-					renderer: function(value, meta) {
-						if (value === '24:00') { 
-							meta.tdCls = 'price-rise'; 
-							//return; 
+					//*
+					,renderer: function(value)	{
+						if(value.localeCompare("24:00")==0) {
+							//meta.style = "background-color:green;";
+							return '<span style="color:green;">' + value + '</span>';
 						} else {
-							meta.tdCls = 'price-fall'; 
+							//meta.style = "background-color:red;";
+							return '<span style="color:red;">' + value + '</span>';
 						}
 					}
 					//*/
