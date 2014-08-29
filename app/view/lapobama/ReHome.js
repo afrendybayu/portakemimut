@@ -17,6 +17,7 @@ Ext.define('rcm.view.lapobama.ReHome', {
 	
 	store: 'ReHome',
 	xField: 'm',
+	cat: '5',
 	
 	initComponent: function() {
 		var me=this;
