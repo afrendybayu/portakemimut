@@ -3,7 +3,7 @@ Ext.define('rcm.view.laporan.GridConMon', {
 	extend: 'Ext.grid.Panel',
 	alias: 'widget.gridConMon',
 	xtype: 'tGridConMon',
-    //border: 0,
+    border: 0,
 	store: 'ConMon',
 	
 	initComponent: function() {
@@ -11,7 +11,7 @@ Ext.define('rcm.view.laporan.GridConMon', {
 		me.features = [{ftype: 'summary'}];
 		me.columns = {	
 			items: [
-			{ xtype:'rownumberer',width:25 },
+			{ xtype:'rownumberer',width:25, header : 'No' },
 			{ header:'Year',dataIndex:'thn',flex:1, 
 				summaryRenderer: function() {
 					return Ext.String.format('TOTAL'); 

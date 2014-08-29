@@ -17,7 +17,9 @@ class rConMon extends CI_Controller {
 						'unit'	=>$r->unit,
 						'wo'	=>$r->wo,
 						'sap'	=>$r->sap,
-						'url'	=>$r->url
+						'url'	=>$r->url,
+						'pic'	=>$r->pic,
+						'ket'	=>$r->ket
 					);
 				$jsonResult = array(
 					'success' => true,

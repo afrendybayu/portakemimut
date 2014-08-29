@@ -5,7 +5,7 @@ Ext.define('rcm.model.ConMonIn', {
 		'Ext.data.proxy.Ajax'
 	],
 	
-	fields: [ 'tgl','lokasi','unit','wo','sap','url'],
+	fields: [ 'tgl','lokasi','unit','wo','sap','url','pic','ket'],
     proxy: {
 		type: 'ajax',
 		api: {
