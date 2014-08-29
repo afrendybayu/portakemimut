@@ -206,7 +206,7 @@ Ext.define('rcm.controller.AvRe', {
 		Ext.getCmp('Av2Thn').setTitle("Availability "+plh.kode+" Annually");
 		Ext.getCmp('Re2Thn').setTitle("Reliability "+plh.kode+" Annually");
 
-	},
+	}
 	/*
 	cariAvRe: function()	{
 		var me=this, 

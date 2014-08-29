@@ -16,9 +16,9 @@ Ext.define('rcm.view.Viewport', {
     layout: 'border',
     
     items: [{
-	//*
-		region: 'north',
-        //xtype: 'appHeader'
+		//xtype: 'appHeader',
+		region: 'north'
+        
     }, {
 		region: 'center',
 		xtype: 'content'
