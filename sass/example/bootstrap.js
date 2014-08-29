@@ -20,8 +20,7 @@ Ext.Loader.addClassPathMappings({
   "Ext.view.Table": "../../ext/src/view/Table.js",
   "Ext.view.TableLayout": "../../ext/src/view/TableLayout.js",
   "Ext.view.View": "../../ext/src/view/View.js",
-  "rcm": "../../app",
-  "rcm.view.lapobama.WOManCJ": "../../app/view/laporan/WOManCJ.js"
+  "rcm": "../../app"
 });
 Ext.ClassManager.addNameAlternateMappings({
   "Chart.ux.Highcharts": [],
@@ -1011,7 +1010,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.lapobama.BlnAv": [],
   "rcm.view.lapobama.ReHome": [],
   "rcm.view.lapobama.SpeedoAv": [],
-  "rcm.view.lapobama.WOManCJ": [],
   "rcm.view.laporan.Chart": [],
   "rcm.view.laporan.ConMon": [],
   "rcm.view.laporan.ConMonInput": [],
@@ -2208,9 +2206,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.lapobama.SpeedoAv": [
     "widget.tAvSpeedo"
-  ],
-  "rcm.view.lapobama.WOManCJ": [
-    "widget.tWOManCJ"
   ],
   "rcm.view.laporan.Chart": [
     "widget.tabChart"

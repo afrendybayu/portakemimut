@@ -8,7 +8,7 @@ Ext.define('rcm.view.utama.GridOrderC', {
 	
 	initComponent: function() {
 		var me=this;//, sumFt=Ext.create('Ext.grid.feature.Summary');
-		//me.features = [{ftype: 'summary'}];
+		me.features = [{ftype: 'summary'}];
 		me.columns = {
 			/*
 			defaults: {
@@ -24,12 +24,24 @@ Ext.define('rcm.view.utama.GridOrderC', {
 					columns: [{ 
 						header: 'Object Type',dataIndex:'otipe'
 					},{ header: 'Description',dataIndex:'desc',width: 160
+						,summaryRenderer: function() {
+							return Ext.String.format('  TOTAL  '); 
+						} 
 					}]
 				},
 				{ header:'Planned Cost',//flex:1,
 					columns: [{ 
 						header: 'WH Stock Cost',dataIndex:'plstcost',align: 'right'
-					},{ header: 'Internal Cost',dataIndex:'plincost',align: 'right'
+					},{ header: 'Internal Cost',dataIndex:'plincost',align: 'right',
+						summaryType: function(records){
+							var i = 0,length = records.length,total = 0,record;
+
+							for (; i < length; i++) {
+								record = records[i];
+								total += parseFloat(record.get('tplcost'));
+							}
+							return total.toFixed(2);
+						}
 					},{ header: 'Total Planning Cost',dataIndex:'tplcost',flex:2,align: 'right'
 					}]
 				},
@@ -38,6 +50,15 @@ Ext.define('rcm.view.utama.GridOrderC', {
 						header: 'WH Stock Cost',dataIndex:'acstcost',align: 'right'
 					},{ header: 'Internal Cost',dataIndex:'acincost',align: 'right'
 					},{ header: 'Service Cost',dataIndex:'srvcost',align: 'right'
+						,summaryType: function(records){
+							var i = 0,length = records.length,total = 0,record;
+
+							for (; i < length; i++) {
+								record = records[i];
+								total += parseFloat(record.get('taccost'));
+							}
+							return total.toFixed(2);
+						}
 					},{ header: 'Total Actual Cost',dataIndex:'taccost',align: 'right'
 					}]
 				}

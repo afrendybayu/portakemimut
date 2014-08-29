@@ -127,14 +127,15 @@ Ext.define('rcm.view.Util', {
 				//grid={header:tgl.getDate(),dataIndex:xwkt,width:50,editor:'textfield', tdCls: 'x-change-cell'};
 				grid={header:tgl.getDate(),dataIndex:xwkt,width:50,editor:'textfield',tdCls: 'x-change-cell'
 					//*
-					,renderer: function(value)	{
+					,renderer: function(value,meta)	{
 						if(value.localeCompare("24:00")==0) {
-							//meta.style = "background-color:green;";
-							return '<span style="color:green;">' + value + '</span>';
+							meta.style = "background-color:#a8ff94;";
+						} else if (value.localeCompare("-")==0) {
+							meta.style = "background-color:#feffac;";
 						} else {
-							//meta.style = "background-color:red;";
-							return '<span style="color:red;">' + value + '</span>';
+							meta.style = "background-color:#ffbdbd;";
 						}
+						return '<span style="color:black;">' + value + '</span>';
 					}
 					//*/
 				};

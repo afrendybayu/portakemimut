@@ -53,7 +53,7 @@ Ext.define('rcm.view.nav.Navigation', {
 	//*/
 	//*
 	onExpandAllClick: function(){
-		console.log("expand Navigasi");
+		//console.log("expand Navigasi");
 		
         var me = this,
             toolbar = me.down('toolbar');
@@ -69,7 +69,7 @@ Ext.define('rcm.view.nav.Navigation', {
     },
     
     onCollapseAllClick: function(){
-		console.log("collapse Navigasi");
+		//console.log("collapse Navigasi");
 		//*
         var toolbar = this.down('toolbar');
         

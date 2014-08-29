@@ -81,7 +81,7 @@ Ext.define('rcm.controller.Laporan', {
     },
 	
 	AvHomeClick: function(d, nama, id)	{
-		console.log("group: "+id);
+		//console.log("group: "+id);
 		/*this.getAvGroupStore().load({ params:{gr:id, tgl: d.series.name} });
 		this.getTAvGroup().setTitle('Availability & Reliability');
 		this.getTAvGroup().setSubTitle(nama+" "+d.series.name);
@@ -115,7 +115,7 @@ Ext.define('rcm.controller.Laporan', {
 	},
 	
 	onPanelRendered: function(){
-		console.log('cek laporan');
+		//console.log('cek laporan');
 	}
     
     
