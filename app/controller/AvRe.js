@@ -90,8 +90,9 @@ Ext.define('rcm.controller.AvRe', {
 		//var	dd = me.getDate(); 
 		//alert(t.getMonth()+"-"+t.getFullYear());
 		alert(t.toJSON());
-		
-		
+		//me.getAvReUnitStore().load({param:{wkt: t.toJSON()} });
+		me.AvHomeStore().load({ param:{wkt: t.toJSON()} });
+		me.ReHomeStore().load({ param:{wkt: t.toJSON()} });
 	},
 	
 	AvGroupClick: function(d,app,bln) 	{
