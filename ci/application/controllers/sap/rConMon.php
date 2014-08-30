@@ -91,6 +91,35 @@ class rConMon extends CI_Controller {
 		echo json_encode($jsonResult);
 	
 	}
+	public function cbUnit()	{
+		try {
+			$id_lok = $this->input->get('id') ? $this->input->get('id') : 0; 
+			
+			$hsl = $this->hirarki->get_unitlokasi($id_lok);
+			
+			foreach ($hsl as $r){
+				// print_r ($r);
+				$data[] = array(
+						'lokasi'=>$r->lokasi,
+						'unit'=>$r->unit,
+						'unit_kode'	=>$r->lok_unit,
+						);
+				$jsonResult = array(
+					'success' => true,
+					'equnit' => $data
+				);
+			}
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+	
+	}
 	
 }
 

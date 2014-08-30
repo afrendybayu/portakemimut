@@ -36,6 +36,16 @@ class Hirarki extends CI_Model {
 		$query = $this->db->get('hirarki');
 		return $query->result();
 	}
+	
+	function get_unitlokasi($unit){
+		$sql = "select  h1.nama as lokasi, h3.nama as unit, concat('l',h1.id,'u', h3.id ) as lok_unit from hirarki h1
+				left join hirarki h2 on h1.id = h2.parent
+				left join hirarki h3 on h2.id = h3.parent
+				where h1.parent = 0 and h1.id = $unit";
+		$query = $this->db->query($sql);
+		return $query->result();
+	
+	}
 }
 
 /* End of file hirarki.php */

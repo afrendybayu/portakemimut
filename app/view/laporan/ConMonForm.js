@@ -23,6 +23,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				width : 100
 			},{
 				xtype	:'combobox',
+				itemId	: 'cbparent1',
 				//emptyText : 'Lokasi',
 				flex : 1,
 				store : 'CbParent',
@@ -33,7 +34,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				valueField 	: 'id',
 				queryMode 	: 'local',
 				// minwidth	: 50,
-				listeners       : {
+				/*listeners       : {
 					select  : function (list, records) {
 					
 					selected = true
@@ -45,7 +46,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 					}
 					
 					
-				}
+				}*/
 			},{
 				xtype	:'textfield',
 				emptyText : 'Unit',

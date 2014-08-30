@@ -3,10 +3,16 @@ rcmSettings = {
 	tgl: '0',
 	cat: 5,
 	//tab: 'tu_re',
-	tab: 'tu_sap',//'tu_ho',
+//<<<<<<< HEAD
+	//tab: 'tu_sap',//'tu_ho',
+//=======
+	//tab: 'tu_ho',
+	tab: 'tu_sap',
+//>>>>>>> afrendy
 	//tab: 'tu_rh',
 	//tab: 'tu_kf',
-	tsp: 'tu_ho',
+	//tsp: 'tu_ho',
+	tsp: 'ts_pdm',
 	asa: '',
 	sas: '',
 	server: 1

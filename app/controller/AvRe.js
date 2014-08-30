@@ -27,6 +27,7 @@ Ext.define('rcm.controller.AvRe', {
 
     stores: [
 		'AvReUnit','AvHome','ReHome','AvGroup','AvSpeedo','ReSpeedo'
+		,'SapHistoriUt'
 		
 		,'SpAvGcUt','SpAvGsUt','SpAvPmUt','SpReGcUt','SpReGsUt','SpRePmUt'
 		,'HoOrderC','HoMan'
@@ -80,6 +81,7 @@ Ext.define('rcm.controller.AvRe', {
 	
 	onLaunch: function() {
 		//console.log("AvRe");
+		this.getTAvGroup().cat = 5;
 		this.updateAvRe();
 	},
 	
@@ -130,10 +132,14 @@ Ext.define('rcm.controller.AvRe', {
 			bln=rcm.view.Util.Ublnini(t);
 
 		//me.getTAvGroup().waktu = bln;
+		
+		//var c = (me.getTAvGroup().cat)?me.getTAvGroup().cat:5;
+		alert(me.getTAvGroup().cat);
 		me.updateAvRe(bln,me.getTAvGroup().nama,me.getTAvGroup().cat);
 		//*
 		me.getAvHomeStore().load({ params:{wkt:d} });
 		me.getReHomeStore().load({ params:{wkt:d} });
+		//me.getAvReUnitStore().load({ params:{wkt:d,gr:me.getTAvGroup().cat} });
 		//*/
 		
 		av[0].config.name = thnm1;
@@ -192,7 +198,7 @@ Ext.define('rcm.controller.AvRe', {
 		me.getReSpeedoStore().getAt(0).set('av',plh.re);
 		//me.getTAvSpeedo().setTitle(plh.kode);
 		//me.getTAvSpeedo().setSubTitle("Availability "+wkt);
-		//me.getAvReUnitStore().load({ params:{tgl:wkt, eq:plh.id} });
+		me.getAvReUnitStore().load({ params:{wkt:wkt, gr:me.getTAvGroup().cat} });
 		
 		Ext.getCmp('spAvR').kode = Ext.getCmp('spReR').kode = plh.id+'@'+wkt;
 		//alert(me.getTAvSpeedo().kode);

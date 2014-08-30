@@ -3,6 +3,75 @@
 class rAvReUnit extends CI_Controller {
 	
 	public function index()	{
+		
+		$this->load->model("runninghour");
+		$this->load->model("catequip");
+			
+		$gr = $this->input->get('gr')?:$this->catequip->get_tipe_id();
+		//echo "gr: $gr ".$nowD = date('j')+1;
+		
+		if ($this->input->get('wkt'))	{
+			$w = $this->input->get('wkt');
+			if ($w==="")	{
+				$thn = date("Y");
+				$thnm1 = $thn-1;
+			}
+			else {
+				list($bln,$thn) = cek_waktu_avre($this->input->get('wkt'));
+				//$wkt = strtotime($w);
+				//$thn = date('Y',$wkt);
+				$thnm1 = $thn-1;
+			}
+		}
+		else {
+			$thn = date("Y");
+			$thnm1 = $thn-1;
+		}
+		//echo ", Y: $thn, thnm1: $thnm1<br/>";
+		
+		try {
+			$arAvRe = array();
+			
+			$hsl = $this->runninghour->get_avre_2th($gr, $thn, $thnm1);
+			for ($i=1; $i<=12; $i++)	{
+				$k=0;
+				for ($j=0; $j<count($hsl); $j++)	{
+					if ($i==$hsl[$j]->b)	{
+						$k=1;
+						array_push($arAvRe,$hsl[$j]);
+						break;
+					}
+				}
+				if (!$k) {
+					$obj = array();
+					$obj['b'] = $i;
+					$obj['m'] = nmMonth($i-1,1);
+					$obj['av'.$thnm1] = 0;
+					$obj['re'.$thnm1] = 0;
+					$obj['av'.$thn] = 0;
+					$obj['re'.$thn] = 0;
+					array_push($arAvRe,$obj);
+				}
+			}
+			//print_r($arAvRe);
+
+			$jsonResult = array(
+				'success' => true,
+				'avre' => $arAvRe
+			);
+			
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult); 
+		
+	}
+	
+	public function indexxx()	{
 		$kal = array(1 => "Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des", "YTD/Avg");
 		
 		if (isset($_GET['eq']))	{
@@ -37,7 +106,7 @@ class rAvReUnit extends CI_Controller {
 			
 			$s = "SELECT bln,thn,(SELECT DAY(LAST_DAY(tgl))*24) as jml, sum(rh_av) AS av,sum(rh_re) AS re FROM rh_201311 ".
 				 "WHERE eq='$eq' and (thn='$thn' or thn='$thnm1') GROUP BY bln,thn ORDER BY thn, bln ASC";
-			//echo "sql: $s<br/>";
+			echo "sql: $s<br/>";
 			$q = $this->db->query($s);
 			
 			if ($q->num_rows>0){

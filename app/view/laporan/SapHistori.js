@@ -2,11 +2,12 @@
 Ext.define('rcm.view.laporan.SapHistori', {
     xtype: 'tHistori',
 	extend: 'Chart.ux.Highcharts',
-	
+	//*
 	require: [
 		'rcm.view.Util'
+		//,'rcm.view.laporan.FilterHistori'
 	],
-
+	//*/
 	loadMask: true,
 	
 	series : [{
@@ -33,11 +34,13 @@ Ext.define('rcm.view.laporan.SapHistori', {
 			yAxis: 1
 	}],
 	
-	store: 'SapHistori',
+	//store:'SapHistori',
 	xField: 'bulan',
 	
 	initComponent: function() {
 		var me=this;
+		//me.store='SapHistori';
+		me.store=me.dstore;
 		me.chartConfig = {
 			chart: {
 				type: 'column',

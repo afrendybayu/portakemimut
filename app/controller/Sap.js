@@ -7,6 +7,7 @@ Ext.define('rcm.controller.Sap', {
         ,'laporan.UploadFile'
         ,'laporan.SpeedoSap'
         ,'laporan.GridCause'
+		,'laporan.ConMonForm'
     ],
 
     controllers: [
@@ -39,6 +40,9 @@ Ext.define('rcm.controller.Sap', {
 			selector: 'tUploadfile',
 			xtype: 'tUploadfile',
 			autoCreate: true
+		},{
+			ref : 'taskConMon',
+			selector : 'taskConMon',
 	}],
     
     init: function() {
@@ -57,10 +61,29 @@ Ext.define('rcm.controller.Sap', {
 			},
 			'#btnUplCM': {
 				click: me.hdUplCM
+			},
+			'#cbparent1':{
+				select : me.pilihComboParent,
+				change : me.dipilihpilih
+			
 			}
 		});
     },
     
+	pilihComboParent: function(list, records){
+		var dd = records[0].get('lokasi');
+		// vae ee = records.get();
+		Ext.Msg.alert('Item selected', 'Selected: ' + records[ 0 ].get('lokasi'));
+		console.log(dd );	
+	},
+	
+	dipilihpilih : function(rec){
+		var isi = rec.getValue();
+		console.log(isi);	
+		// var unit = this.get
+		
+	},
+	
 	ubahLabelWO: function()	{
 		var me=this;
 		//console.log("onLauch SAP");

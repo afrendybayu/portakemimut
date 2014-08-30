@@ -19,9 +19,9 @@ Ext.define('rcm.view.utama.GridWO', {
 				} 
 				//*/
 			},
-			{ header:'WO Compliance',dataIndex:'woc',width:110,xtype:'templatecolumn',tpl:'{woc} %',
+			{ header:'WO Compliance',dataIndex:'woc',width:110,xtype:'templatecolumn',tpl:'{woc} %',align: 'right'
 				//*
-				summaryType: function(rec){
+				,summaryType: function(rec){
 					var tot = rec.reduce(function(sums, rec){
 						return [sums[0] + rec.data.teco, 
 								sums[1] + rec.data.tot ];
