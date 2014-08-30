@@ -39,7 +39,7 @@ Ext.define('rcm.view.dataentry.FormGagal', {
 					for(i=1; i<me.items.length; i++)	{
 						//dd = me.remove();	//me.getId()
 						rcmSettings.grid = me.getComponent("TF"+i);
-						console.log("dihapus: "+dd+ ", id: ");
+						//console.log("dihapus: "+dd+ ", id: ");
 					}
 				}
 		}],

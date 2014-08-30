@@ -144,6 +144,19 @@ class Runninghour extends CI_Model {
 		$query = $this->db->query($sql,array($thn,$bln,$cat));
 		return $query->result();
 	}
+	
+	function get_avre_2th($cat, $thn, $thnm1)	{
+		$sql =	"SELECT bln AS b, DATE_FORMAT(tgl,'%b') AS m ".
+				",ROUND(ifnull(sum(rh_av)*100/(SELECT DAY(LAST_DAY(tgl))*24*(select count(*) from hirarki where flag = $cat and thn=$thn)),0),2) AS av2014 ".
+				",ROUND(ifnull(sum(rh_re)*100/(SELECT DAY(LAST_DAY(tgl))*24*(select count(*) from hirarki where flag = $cat and thn=$thn)),0),2) AS re2014 ".
+				",ROUND(ifnull(sum(rh_av)*100/(SELECT DAY(LAST_DAY(tgl))*24*(select count(*) from hirarki where flag = $cat and thn=$thnm1)),0),2) AS av2013 ".
+				",ROUND(ifnull(sum(rh_re)*100/(SELECT DAY(LAST_DAY(tgl))*24*(select count(*) from hirarki where flag = $cat and thn=$thnm1)),0),2) AS re2013 ".
+				"FROM rh_201311 ".
+				"WHERE cat=$cat and (thn='$thn' or thn='$thnm1') ".
+				"GROUP BY bln ORDER BY bln ASC";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 }
 
 /* End of file option.php */

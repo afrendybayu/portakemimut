@@ -69,16 +69,16 @@ Ext.define('rcm.controller.Login', {
 						callback: function(records, operation, success) {
 							var res = operation.request.scope.reader.jsonData["sesi"];
 							if (res.nama == 'Administrator'){
-								console.log('masuk sebagai admin');
+								//console.log('masuk sebagai admin');
 								// FGagal.show();
 							}
 							else{
-								console.log('tidak jelas');
+								//console.log('tidak jelas');
 								FGagal.hide();
 							}
 							// the operation object
 							// contains all of the details of the load operation
-							console.log(res.nama);
+							//console.log(res.nama);
 						}
 					});
 	},*/
@@ -199,7 +199,7 @@ Ext.define('rcm.controller.Login', {
 			callback: function(records, operation, success) {
 				var res = operation.request.scope.reader.jsonData["sesi"];
 				if (success){
-					console.log('masuk sebagai admin');
+					//console.log('masuk sebagai admin');
 					Ext.getCmp('p_login').setVisible(false);
 					Ext.getCmp('p_logout').setVisible(true);
 					Ext.getCmp('t_welcome').setText('Selamat Datang '+res.nama);
@@ -211,7 +211,7 @@ Ext.define('rcm.controller.Login', {
 					me.getExcelgrid().ngedit = 1;
 				}
 				else{
-					console.log('sesine ilang je');
+					//console.log('sesine ilang je');
 					Ext.getCmp('p_login').setVisible(true);
 					Ext.getCmp('p_logout').setVisible(false);
 					Ext.getCmp('griddel').setVisible(false);

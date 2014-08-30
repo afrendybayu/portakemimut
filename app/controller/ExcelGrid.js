@@ -324,20 +324,20 @@ Ext.define('rcm.controller.ExcelGrid', {
 			callback: function(records, operation, success) {
 				var res = operation.request.scope.reader.jsonData["sesi"];
 				if (res.akses == 0){
-					console.log('masuk sebagai admin');
-					rcmSettings.eeee = me;
+					//console.log('masuk sebagai admin');
+					//rcmSettings.eeee = me;
 					me.getExcelgrid().ngedit = 1;
 					tFG.show();
 				}
 				else{
-					console.log('tidak jelas');
+					//console.log('tidak jelas');
 					me.getExcelgrid().ngedit = 0;
 					//tFG.hide();
 					return;
 				}
 				// the operation object
 				// contains all of the details of the load operation
-				console.log(res.nama);
+				//console.log(res.nama);
 			}
 		});//*/
 		
