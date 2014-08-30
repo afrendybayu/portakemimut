@@ -170,6 +170,13 @@ class Sap extends CI_Model {
 		return $query->result();
 	}
 
+	function get_tahun()	{
+		$sql =	"select DATE_FORMAT(planstart,'%Y') AS thn FROM sap GROUP BY thn";
+		//echo "sql: $sql";		
+		
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 }
 
 /* End of file sap.php */

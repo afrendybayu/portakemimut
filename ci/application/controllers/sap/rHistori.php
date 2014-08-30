@@ -1,12 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class rHistori extends CI_Controller {
+	//*
+	function __construct() {
+        parent::__construct();
+		$this->load->model('sap');
+	}
+	//*/
+	public function index()	{
+		echo "tes";
+	}
 	
 	public function getHistori()	{
 
 		try {
 			$thn = $this->input->get('tgl')?:date('Y');
-			$this->load->model('sap');
+			//$this->load->model('sap');
 
 			$hsl = array();
 			$hsl = $this->sap->get_histori($thn);
@@ -62,7 +71,31 @@ class rHistori extends CI_Controller {
 	
 	}
 
+	
+	public function getThnSap()	{
+		//*
+		try {
+			$this->load->model('sap');
+			//*
+			$jsonResult = array(
+				'success' => true,
+				'sapthn' => $this->sap->get_tahun()
+			);
+			//*/
+		}	
+		catch (Exception $e)	{
+			//*
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+			//*/
+		}
+		//*/
+		echo json_encode($jsonResult);
+	}
+
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file rHistori.php */
+/* Location: ./application/controllers/rHistori.php */
