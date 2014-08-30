@@ -8,6 +8,7 @@ Ext.define('rcm.controller.Sap', {
         ,'laporan.SpeedoSap'
         ,'laporan.GridCause'
         ,'laporan.FilterHistori'
+		,'laporan.ConMonForm'
     ],
 
     controllers: [
@@ -20,9 +21,9 @@ Ext.define('rcm.controller.Sap', {
         ,'WoOpen7','WoOpen30','WoOpen60','WoOpenL60'
         ,'SapCause','SapDamage','SapOPart'/*,'SapSymptom'*/
 		,'SapCauseInfo','SapDamageInfo','SapOPartInfo','SapSymptomInfo'
-		,'SapHistori','ConMon','ConMonIn'
-		
+
 		,'SapThn','SapMwc','SapOType'
+		,'SapHistori','ConMon','ConMonIn','CbParent'
     ],
     
     models: [
@@ -45,6 +46,9 @@ Ext.define('rcm.controller.Sap', {
 			selector: 'tUploadfile',
 			xtype: 'tUploadfile',
 			autoCreate: true
+		},{
+			ref : 'taskConMon',
+			selector : 'taskConMon',
 	}],
     
     init: function() {
@@ -66,10 +70,28 @@ Ext.define('rcm.controller.Sap', {
 			},
 			'#btnClearSH': {
 				click: me.clrSapHist
+			},
+			'#cbparent1':{
+				select : me.pilihComboParent,
+				change : me.dipilihpilih
 			}
 		});
     },
     
+	pilihComboParent: function(list, records){
+		var dd = records[0].get('lokasi');
+		// vae ee = records.get();
+		Ext.Msg.alert('Item selected', 'Selected: ' + records[ 0 ].get('lokasi'));
+		console.log(dd );	
+	},
+	
+	dipilihpilih : function(rec){
+		var isi = rec.getValue();
+		console.log(isi);	
+		// var unit = this.get
+		
+	},
+	
 	ubahLabelWO: function()	{
 		var me=this;
 		//console.log("onLauch SAP");

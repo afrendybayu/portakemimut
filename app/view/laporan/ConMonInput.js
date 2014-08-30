@@ -1,26 +1,40 @@
 Ext.define('rcm.view.laporan.ConMonInput', {
     extend: 'Ext.grid.Panel',
 	xtype: 'iConMon',
+	requires : 'rcm.view.laporan.ConMonForm',
+	
 	
 	//features: [{ftype:'grouping',startCollapsed:true,hideGroupedHeader:true}],
 
 	store: 'ConMonIn',
-    columnLines: true,
+    //columnLines: true,
 	enableColumnHide: false,
 	
+	dockedItems: [
+        {
+            xtype: 'taskConMon',
+            dock: 'top',
+            // the grid's column headers are a docked item with a weight of 100.
+            // giving this a weight of 101 causes it to be docked under the column headers
+            weight: 101,
+            bodyStyle: {
+                'background-color': '#E4E5E7'
+            }
+        }
+    ],
 	
 	
 	initComponent: function() {
 		var me=this; 
-		/*ed=Ext.create('Ext.grid.plugin.CellEditing',{ clicksToEdit: 1	});
+		ed=Ext.create('Ext.grid.plugin.CellEditing',{ clicksToEdit: 1	});
 		
 		me.plugins = [ed];
-		me.listeners = {
+		/*me.listeners = {
 			'cellclick' : me.rowFMEAclick
 		},//*/
 		
 		
-		me.dockedItems= [{
+		/*me.dockedItems= [{
 		xtype: 'toolbar',
 			items: {
 				iconCls: 'add',
@@ -28,49 +42,94 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 				//scope: this,
 				//handler: this.onAddClick
 			}
-		}],
+		}],*/
 		
 		me.columns = [
 			{ xtype:'rownumberer',width:25 
 			},{
-				text : 'Tanggal',
+				header : {
+						xtype : 'textfield'
+					},
+				
+				// 'Tanggal',
 				width : 100,
-				dataIndex : 'tgl'
+				dataIndex : 'tgl',
+				xtype : 'datecolumn',
+				editor : 'datefield',
+				format : 'Y-m-d'
 			},{
-				text : 'Lokasi',
-				width : 100,
+				header : 'Lokasi',
+				flex : 1,
+				// width : 75,
 				dataIndex : 'lokasi',
+				editor : 'textfield',
+				/*editor : {
+					xtype : 'combo',
+					store : 'CbParent',
+					emptyText	: 'Loc',
+					queryParam 	: 'lokasi',
+					name		: 'lokasi',
+					displayField: 'nama',
+					valueField 	: 'kode',
+					queryMode 	: 'local'
+				
+				/*
+				editor: {
+				xtype: 'combo', store: 'Equip',editable: false,	emptyText: 'Pilih Equipment... ', flex:1,
+				queryParam: 'tipe',name : 'eql',displayField: 'nama',valueField: 'nama',queryMode: 'local',
+				listConfig: { listeners: { itemclick: function(list, record) { me.pilihEquipGagal(record,list); } } }
+						}*/
+				//},
 			},{
-				text : 'Unit',
-				width : 100,
+				header : 'Unit',
+				flex : 1,
+				// width : 75,
+				
 				dataIndex : 'unit',
 			},{
-				text : '#WO',
-				width : 100,
-				dataIndex : 'wo'
+				header : '#WO',
+				flex : 1,
+				// width : 75,
+				dataIndex : 'wo',
+				editor : 'textfield'
 			},{
-				text : '#SAP',
-				width : 100,
-				dataIndex : 'sap'
+				header : '#SAP',
+				flex : 1,
+				// width : 50,
+				dataIndex : 'sap',
+				editor : 'textfield'
 			},{
-				text : 'Link Laporan',
-				width : 100,
+				header : 'Laporan',
+				flex :1,
+				// width : 100,
 				dataIndex : 'url'
 			},{
-				text : 'Eksekutor',
-				width : 100,
-				//dataIndex : 'unit',
+				header : 'Eksekutor',
+				flex : 1,
+				// width : 75,
+				dataIndex : 'pic',
+				editor : 'textfield'
 			},{
-				text : 'Keterangan',
-				width : 150,
-				// dataIndex : 'unit',
+				header : 'Keterangan',
+				flex : 2,
+				// width : 150,
+				dataIndex : 'ket',
+				editor : 'textfield'
+			},{
+				xtype:'actioncolumn',
+				width:25,
+				iconCls: 'editEvent',
+				// hidden : true,
+				hideable : false,
+				tooltip: 'Edit',
+				// handler: Ext.bind(me.hdlHapusDGClick, me)
 			},{
 				xtype:'actioncolumn',
 				width:25,
 				iconCls: 'hpsEvent',
 				// hidden : true,
 				hideable : false,
-				tooltip: 'Hapus ConMon',
+				tooltip: 'Hapus',
 				// handler: Ext.bind(me.hdlHapusDGClick, me)
 				
 			

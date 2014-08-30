@@ -1,19 +1,19 @@
 /* Afrendy Bayu, 3Des2013 */
-Ext.define('rcm.model.ConMonIn', {
+Ext.define('rcm.model.CbUnit', {
 	extend: 'Ext.data.Model',
 	requires:[
 		'Ext.data.proxy.Ajax'
 	],
 	
-	fields: [ 'tgl','lokasi','unit','wo','sap','url','pic','ket'],
+	fields: [ 'lokasi','unit','unit_kode'],
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/sap/rConMon/ReadCMon'
+			read: 'ci/index.php/sap/rConMon/cbLokasi'
         },
         reader: {
             type: 'json',
-            root: 'condmon',
+            root: 'equnit',
             messageProperty: 'message'
         }
     }

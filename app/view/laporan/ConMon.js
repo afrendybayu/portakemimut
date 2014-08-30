@@ -5,6 +5,7 @@ Ext.define('rcm.view.laporan.ConMon', {
 
 	requires: [
 		'rcm.view.laporan.GridConMon'
+		,'Ext.toolbar.Spacer'
 		,'rcm.view.laporan.ConMonUnit'
 		,'rcm.view.laporan.ConMonInput'
 		//'rcm.view.laporan.EPOPie'
@@ -17,7 +18,7 @@ Ext.define('rcm.view.laporan.ConMon', {
 	},
 	defaults: {
 		flex: 1,
-		hideLabel: true
+		// hideLabel: true
 	},
 
     items: [{
@@ -29,62 +30,63 @@ Ext.define('rcm.view.laporan.ConMon', {
         },//*/
 		items:[{
 			xtype: 'panel',
-			height: 120,
-			//title : 'panel 1',
+			dockedItems:{
+				xtype : 'toolbar',
+				items : [{
+					xtype:'text',
+					text : 'Schedule Condition Monitoring'
+				},'->',{
+					xtype: 'button',
+					iconCls : 'cog',
+					text : 'Upload Data',
+					
+				},{
+					xtype: 'button',
+					iconCls : 'add',
+					// margin : '0 0 0 800',
+					text : 'Tambah',
+					
+				}]
+				
+			
+			},
+			//height: 120,
 			flex: 1,
 			layout: {
 				type: 'hbox',
 				align: 'stretch'
 			},
 			items: [{
-					html: ' aaaaa',
 					xtype: 'tGridConMon',
-					width : 200,
-					// flex: 1
+					// width : 200,
+					 flex: 1
 				},{
-					html: 'table conmon',
 					xtype: 'iConMon',
-					flex: 1
+					flex: 4
 				
 			}]//*/
 		},{
-			xtype: 'panel',
+			xtype: 'container',
 			flex: 1,
 			title : 'panel2',
-			/*layout: {
+			layout: {
 				type: 'hbox',
 				align: 'stretch'
 			},
 			items: [{
-					xtype: 'tEPOCol',
+					xtype: 'panel',
+					title : '1',
 					flex: 1,
-					jdl: 'Work Order Number'
+					// jdl: 'Work Order Number'
 				},{
-					xtype: 'tEPOPie',
+					xtype: 'panel',
+					title : '2',
 					flex: 1
 				},{
-					xtype: 'tEPOPie',
+					xtype: 'panel',
+					title : '3',
 					flex: 1
-			}]*/
-		},{
-			xtype: 'panel',
-			flex: 1,
-			title : 'panel3',
-			/*layout: {
-				type: 'hbox',
-				align: 'stretch'
-			},
-			items: [{
-					xtype: 'tEPOCol',
-					flex: 1,
-					jdl: 'Work Order Number'
-				},{
-					xtype: 'tEPOPie',
-					flex: 1
-				},{
-					xtype: 'tEPOPie',
-					flex: 1
-			}]//*/
+			}]
 		}]//*/
 	}]
 });
