@@ -1,12 +1,7 @@
 Ext.define('rcm.view.laporan.ConMonForm', {
     extend: 'Ext.form.Panel',
 	xtype: 'taskConMon',
-	
-	
-	
 	layout : 'hbox',
-	
-		
 	
 	initComponent: function() {
 		var me=this; 

@@ -47,11 +47,7 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 		me.columns = [
 			{ xtype:'rownumberer',width:25 
 			},{
-				header : {
-						xtype : 'textfield'
-					},
-				
-				// 'Tanggal',
+				header : 'Tanggal',
 				width : 100,
 				dataIndex : 'tgl',
 				xtype : 'datecolumn',
