@@ -8,6 +8,7 @@ Ext.define('rcm.controller.Sap', {
         ,'laporan.SpeedoSap'
         ,'laporan.GridCause'
         ,'laporan.FilterHistori'
+        ,'laporan.FilterMaint'
 		,'laporan.ConMonForm'
     ],
 
@@ -36,6 +37,9 @@ Ext.define('rcm.controller.Sap', {
 		},{
 			ref: 'tFHistori',
 			selector: 'tFHistori'
+		},{
+			ref: 'tFMaint',
+			selector: 'tFMaint'
 		},{
 			ref: 'taskGridCause',
 			selector: 'taskGridCause',
@@ -73,6 +77,12 @@ Ext.define('rcm.controller.Sap', {
 			},
 			'#btnCariSH' : {
 				click: me.cariSapHist
+			},
+			'#btnClearSM': {
+				click: me.clrSapMaint
+			},
+			'#btnCariSM' : {
+				click: me.cariSapMaint
 			},
 			'#cbparent1':{
 				select : me.pilihComboParent,
@@ -137,11 +147,20 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	cariSapHist: function()	{
-		//alert('cari');
-		var o = this.getTFHistori().sedotFilter();
-		//rcmSettings.eeee = o.iL;
-		//rcmSettings.ffff = o.iW;
+		var o = this.getTFMaint().sedotFilter();
 		this.getSapHistoriStore().load({params: {loc:o.iL,otp:o.iW,mwc:o.iM,tgl:o.iT }});
+		//alert("o.L: "+o.iL+", oW: "+o.iW+", oM: "+o.iM+", oT: "+o.iT);
+	},
+	
+	clrSapMaint: function()	{
+		this.getTFMaint().resetFilter();
+		//this.getSapHistoriStore().load();
+	},
+	
+	cariSapMaint: function()	{
+		//alert('cari');
+		var o = this.getTFMaint().sedotFilter();
+		//this.getSapHistoriStore().load({params: {loc:o.iL,otp:o.iW,mwc:o.iM,tgl:o.iT }});
 		//alert("o.L: "+o.iL+", oW: "+o.iW+", oM: "+o.iM+", oT: "+o.iT);
 	},
 	

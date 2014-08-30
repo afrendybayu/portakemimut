@@ -33,8 +33,8 @@ Ext.define('rcm.view.laporan.ConMon', {
 			dockedItems:{
 				xtype : 'toolbar',
 				items : [{
-					xtype:'text',
-					text : 'Schedule Condition Monitoring'
+					xtype:'label',
+					text : 'Condition Monitoring Schedule'
 				},'->',{
 					xtype: 'button',
 					iconCls : 'cog',

@@ -1,14 +1,20 @@
 // afrendyBayu,26Jan2014 //
 Ext.define('rcm.view.laporan.EPO', {
     xtype: 'tEPO',
-	extend: 'Ext.container.Container',
+	//extend: 'Ext.container.Container',
+	extend: 'Ext.form.Panel',
 
 	requires: [
 		'rcm.view.laporan.EPOCol'
 		,'rcm.view.laporan.EPOPie'
-	//	,'rcm.view.laporan.SpeedoSap'
+		,'rcm.view.laporan.FilterHistori'
 	//	'rcm.view.laporan.WOStack'
 	],
+	
+	dockedItems: [{
+		dock: 'top',
+		xtype: 'tFMaint'
+	}],
 	
 	layout: {
 		type: 'vbox',

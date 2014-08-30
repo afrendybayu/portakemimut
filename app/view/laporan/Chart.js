@@ -47,6 +47,7 @@ Ext.define('rcm.view.laporan.Chart', {
 				id: 'ts_pdm',
 				title: 'Histori',
 				xtype:'tpSapHistori',
+				//xtype: 'tHistori',
 				dstore: 'SapHistori'
 			},{
 				id: 'ts_ca',
