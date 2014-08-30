@@ -22,7 +22,7 @@ Ext.define('rcm.controller.Sap', {
         ,'SapCause','SapDamage','SapOPart'/*,'SapSymptom'*/
 		,'SapCauseInfo','SapDamageInfo','SapOPartInfo','SapSymptomInfo'
 
-		,'SapThn','SapMwc','SapOType'
+		,'SapThn','SapMwc','SapOType','SapLoc'
 		,'SapHistori','ConMon','ConMonIn','CbParent'
     ],
     
@@ -70,6 +70,9 @@ Ext.define('rcm.controller.Sap', {
 			},
 			'#btnClearSH': {
 				click: me.clrSapHist
+			},
+			'#btnCariSH' : {
+				click: me.cariSapHist
 			},
 			'#cbparent1':{
 				select : me.pilihComboParent,
@@ -131,6 +134,10 @@ Ext.define('rcm.controller.Sap', {
 	clrSapHist: function()	{
 		this.getTFHistori().resetFilter();
 	},
+	
+	cariSapHist: function()	{
+		
+	}
 	
 	grafikCauseClear: function()	{
 		var me=this,

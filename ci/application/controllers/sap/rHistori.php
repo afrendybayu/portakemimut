@@ -71,7 +71,6 @@ class rHistori extends CI_Controller {
 	
 	}
 
-	
 	public function getThnSap()	{
 		//*
 		try {
@@ -115,6 +114,35 @@ class rHistori extends CI_Controller {
 				'success' => true,
 				'sapmwc' => $hsl
 			);
+		}	
+		catch (Exception $e)	{
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		//*/
+		echo json_encode($jsonResult);
+	}
+	
+	public function getOTypeSap()	{
+		//*
+		try {
+			$hsl = array();
+			$obj = new stdClass();
+			$obj->otype = "ALL";
+			array_push($hsl, $obj);
+			
+			$otype = $this->sap->get_ordertype();
+			$jml = count($otype);
+			for($i=0; $i<$jml; $i++)	{
+				array_push($hsl, $otype[$i]);
+			}
+			//print_r($hsl);
+			$jsonResult = array(
+				'success' => true,
+				'sapotype' => $hsl
+			);
 			//*/
 		}	
 		catch (Exception $e)	{
@@ -129,15 +157,27 @@ class rHistori extends CI_Controller {
 		echo json_encode($jsonResult);
 	}
 	
-	public function getOTypeSap()	{
-		//*
+	public function getLocSap()	{
 		try {
-			//*
-			$hsl =  $this->sap->get_ordertype();
+			$this->load->model("hirarki");
+			
+			$hsl = array();
+			$obj = new stdClass();
+			$obj->nama = "ALL";
+			$obj->id = 0;
+			
+			array_push($hsl, $obj);
+			
+			$loc = $this->hirarki->get_parent();
+			$jml = count($loc);
+			//*/
+			for($i=0; $i<$jml; $i++)	{
+				array_push($hsl, $loc[$i]);
+			}
 			//print_r($hsl);
 			$jsonResult = array(
 				'success' => true,
-				'sapotype' => $this->sap->get_ordertype()
+				'saploc' => $hsl
 			);
 			//*/
 		}	
@@ -149,7 +189,6 @@ class rHistori extends CI_Controller {
 			);	
 			//*/
 		}
-		//*/
 		echo json_encode($jsonResult);
 	}
 }

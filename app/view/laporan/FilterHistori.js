@@ -23,7 +23,6 @@ Ext.define('rcm.view.laporan.FilterHistori', {
 			//*/
 			items: [{
 					id:  'iThnSaw',
-					//xtype: 'monthfield',
 					xtype: 'combo',
 					submitFormat: 'Y',
 					emptyText: 'Tahun '+rcm.view.Util.U1th(''),
@@ -39,23 +38,14 @@ Ext.define('rcm.view.laporan.FilterHistori', {
 					format: 'Y',
 					//format: 'F Y',
 					margin: '0 10 0 10'
-				/*
-				},{
-					id:  'iblnSak',
-					xtype: 'monthfield',
-					submitFormat: 'Y-m-d',
-					value: new Date(),
-					fieldLabel: '<b>Waktu Akhir</b>',
-					format: 'M Y',
-					labelWidth: 80,
-					width: 200,
-					//margin: '0 10 0 0'
-				//*/
 				},{
 					id:  'iLokS',
-					xtype: 'combo',
-					//submitFormat: 'Y-m-d',
+					xtype: 'combo',	
+					store: 'SapLoc',
 					labelWidth: 50,
+					value: 'ALL',
+					queryMode: 'local',
+					displayField: 'nama',
 					fieldLabel: '<b>Lokasi</b>',
 					margin: '0 10 0 10'
 				},{
