@@ -27,6 +27,7 @@ Ext.define('rcm.controller.AvRe', {
 
     stores: [
 		'AvReUnit','AvHome','ReHome','AvGroup','AvSpeedo','ReSpeedo'
+		,'SapHistoriUt'
 		
 		,'SpAvGcUt','SpAvGsUt','SpAvPmUt','SpReGcUt','SpReGsUt','SpRePmUt'
 		,'HoOrderC','HoMan'

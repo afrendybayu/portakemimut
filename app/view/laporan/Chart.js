@@ -13,6 +13,8 @@ Ext.define('rcm.view.laporan.Chart', {
 		,'rcm.view.laporan.SapCause'
 		,'rcm.view.laporan.GridCauseInfo'
 		,'rcm.view.laporan.ConMon'
+		,'rcm.view.laporan.PanelSap'
+		,'rcm.view.laporan.FilterHistori'
 		//'laporan.Chart',
         //'rcm.view.laporan.UploadFile',
         //'laporan.SapCause',
@@ -44,7 +46,8 @@ Ext.define('rcm.view.laporan.Chart', {
 			},{
 				id: 'ts_pdm',
 				title: 'Histori',
-				xtype:'tHistori'
+				xtype:'tpSapHistori',
+				dstore: 'SapHistori'
 			},{
 				id: 'ts_ca',
 				title: 'Cause',
