@@ -105,29 +105,33 @@ Ext.define('rcm.controller.Sap', {
 		
 	},
 	
-	ubahLabelWO: function()	{
+	ubahLabelWO: function(p)	{
 		var me=this;
 		//console.log("onLauch SAP");
-		/*
+		//*
 		me.getWoOpen7Store().load({
+			params: p,
 			scope: this,
 			callback: function(rec) {
 				Ext.getCmp('wo3s7').setText(rec[0].get('teks'));
 			}
 		});
 		me.getWoOpen30Store().load({
+			params: p,
 			scope: this,
 			callback: function(rec) {
 				Ext.getCmp('wo7s30').setText(rec[0].get('teks'));
 			}
 		});
 		me.getWoOpen60Store().load({
+			params: p,
 			scope: this,
 			callback: function(rec) {
 				Ext.getCmp('wo30s60').setText(rec[0].get('teks'));
 			}
 		});
 		me.getWoOpenL60Store().load({
+			params: p,
 			scope: this,
 			callback: function(rec) {
 				Ext.getCmp('wo60').setText(rec[0].get('teks'));
@@ -138,7 +142,7 @@ Ext.define('rcm.controller.Sap', {
 	
 	onLaunch: function() {
 		//alert("tes");
-		this.ubahLabelWO();
+		this.ubahLabelWO({});
 	},
 	
 	clrSapHist: function()	{
@@ -154,12 +158,13 @@ Ext.define('rcm.controller.Sap', {
 	
 	clrSapMaint: function()	{
 		this.getTFMaint().resetFilter();
-		//this.getSapHistoriStore().load();
+		this.ubahLabelWO();
 	},
 	
 	cariSapMaint: function()	{
-		//alert('cari');
-		var o = this.getTFMaint().sedotFilter();
+		var o = this.getTFMaint().sedotFilter(),
+			p = { loc:o.iL,otp:o.iW,mwc:o.iM,taw:o.iTw,tak:o.iTk };
+		this.ubahLabelWO(p);
 		//this.getSapHistoriStore().load({params: {loc:o.iL,otp:o.iW,mwc:o.iM,tgl:o.iT }});
 		//alert("o.L: "+o.iL+", oW: "+o.iW+", oM: "+o.iM+", oT: "+o.iT);
 	},

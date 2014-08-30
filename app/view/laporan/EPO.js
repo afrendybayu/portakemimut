@@ -14,6 +14,11 @@ Ext.define('rcm.view.laporan.EPO', {
 	dockedItems: [{
 		dock: 'top',
 		xtype: 'tFMaint'
+	/*
+	},{
+		dock: 'top',
+		xtype: 'tFMaint'
+	//*/
 	}],
 	
 	layout: {

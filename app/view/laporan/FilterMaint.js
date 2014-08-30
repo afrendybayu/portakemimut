@@ -26,7 +26,6 @@ Ext.define('rcm.view.laporan.FilterMaint', {
 					xtype: 'monthfield',
 					submitFormat: 'Y-m-d',
 					value: new Date(),
-					//value: Ext.Date.add(new Date()),
 					fieldLabel: '<b>Pilih Waktu Awal</b>',
 					displayField: 'thn',
 					width: 200,
@@ -126,8 +125,8 @@ Ext.define('rcm.view.laporan.FilterMaint', {
 		var o = {};
 		o.iW = Ext.getCmp('iWoTM').getValue();
 		o.iM = Ext.getCmp('iMtAcM').getValue();
-		o.iTw = Ext.getCmp('iThnAwM').getValue();
-		o.iTk = Ext.getCmp('iThnAkM').getValue();
+		o.iTw = Ext.getCmp('iThnAwM').getSubmitValue();
+		o.iTk = Ext.getCmp('iThnAkM').getSubmitValue();
 		o.iL = Ext.getCmp('iLokM').getSubmitValue();
 		return o;
 	}

@@ -63,8 +63,14 @@ class rWOjml extends CI_Controller {
 		try {
 			$group = $this->input->get('gr')?:'0';
 			$thn = $this->input->get('tgl')?:date('Y');
+			$taw = $this->input->get('baw')?:1;
+			$tak = $this->input->get('bak')?:12;
+			$lok = $this->input->get('loc')?:"_";
+			$otp = $this->input->get('otp')?:"_";
+			$mwc = $this->input->get('mwc')?:"_";
+			
 			$this->load->model('sap');
-			$hsl = $this->sap->get_selisih_WO($thn);
+			$hsl = $this->sap->get_selisih_WO($thn, $lok, $otp, $mwc);
 			
 			//echo "group: $group, jml: ".count($hsl)."<br/>";
 			//print_r($hsl); echo "<br/>";
