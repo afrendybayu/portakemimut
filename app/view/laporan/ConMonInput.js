@@ -47,7 +47,11 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 		me.columns = [
 			{ xtype:'rownumberer',width:25 
 			},{
-				header : 'Tanggal',
+				header : {
+						xtype : 'textfield'
+					},
+				
+				// 'Tanggal',
 				width : 100,
 				dataIndex : 'tgl',
 				xtype : 'datecolumn',
@@ -58,8 +62,24 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 				flex : 1,
 				// width : 75,
 				dataIndex : 'lokasi',
-				// xtype : 'textfield',
-				editor : 'textfield'
+				editor : 'textfield',
+				/*editor : {
+					xtype : 'combo',
+					store : 'CbParent',
+					emptyText	: 'Loc',
+					queryParam 	: 'lokasi',
+					name		: 'lokasi',
+					displayField: 'nama',
+					valueField 	: 'kode',
+					queryMode 	: 'local'
+				
+				/*
+				editor: {
+				xtype: 'combo', store: 'Equip',editable: false,	emptyText: 'Pilih Equipment... ', flex:1,
+				queryParam: 'tipe',name : 'eql',displayField: 'nama',valueField: 'nama',queryMode: 'local',
+				listConfig: { listeners: { itemclick: function(list, record) { me.pilihEquipGagal(record,list); } } }
+						}*/
+				//},
 			},{
 				header : 'Unit',
 				flex : 1,

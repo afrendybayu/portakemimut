@@ -72,6 +72,9 @@
 .add {
 	background-image: url('./images/add.png');
 }
+.cog {
+	background-image: url('./images/cog.png');
+}
 
 .connect {
 	background-image: url('./images/connect.png');

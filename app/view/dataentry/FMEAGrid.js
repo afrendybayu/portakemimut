@@ -128,7 +128,7 @@ Ext.define('rcm.view.dataentry.FMEAGrid', {
 	
 	pilihAksiGagal: function(n)	{
 		rcmSettings.asa.aksi = n.data.id;
-		this.fireEvent('plhAksiGagal', n, rcmSettings.asa);
+		this.fireEvent('plhAksiGagal', n, rcmSettings.asa); //rcmSettings.asa=n.get('id')
 	},
 
 	rowFMEAclick: function(grid, td, cellIndex, record, tr, rowIndex){

@@ -29,6 +29,13 @@ class Hirarki extends CI_Model {
 		
 		return $query->result();
     }
+	
+	function get_parent() {
+		$this->db->select('id,nama,kode');
+		$this->db->where('level',1);
+		$query = $this->db->get('hirarki');
+		return $query->result();
+	}
 }
 
 /* End of file hirarki.php */

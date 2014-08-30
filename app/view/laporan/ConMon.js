@@ -30,15 +30,22 @@ Ext.define('rcm.view.laporan.ConMon', {
         },//*/
 		items:[{
 			xtype: 'panel',
-			title : 'Condition Monitoring',
 			dockedItems:{
 				xtype : 'toolbar',
-				items : ['->',{
+				items : [{
+					xtype:'text',
+					text : 'Schedule Condition Monitoring'
+				},'->',{
+					xtype: 'button',
+					iconCls : 'cog',
+					text : 'Upload Data',
+					
+				},{
 					xtype: 'button',
 					iconCls : 'add',
 					// margin : '0 0 0 800',
 					text : 'Tambah',
-					style : 'float:right'
+					
 				}]
 				
 			
@@ -59,24 +66,27 @@ Ext.define('rcm.view.laporan.ConMon', {
 				
 			}]//*/
 		},{
-			xtype: 'panel',
+			xtype: 'container',
 			flex: 1,
 			title : 'panel2',
-			/*layout: {
+			layout: {
 				type: 'hbox',
 				align: 'stretch'
 			},
 			items: [{
-					xtype: 'tEPOCol',
+					xtype: 'panel',
+					title : '1',
 					flex: 1,
-					jdl: 'Work Order Number'
+					// jdl: 'Work Order Number'
 				},{
-					xtype: 'tEPOPie',
+					xtype: 'panel',
+					title : '2',
 					flex: 1
 				},{
-					xtype: 'tEPOPie',
+					xtype: 'panel',
+					title : '3',
 					flex: 1
-			}]*/
+			}]
 		}]//*/
 	}]
 });

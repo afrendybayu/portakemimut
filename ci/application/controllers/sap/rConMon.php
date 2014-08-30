@@ -4,6 +4,7 @@ class rConMon extends CI_Controller {
 	function __construct() {
         parent::__construct();
 		$this->load->model('cmon');
+		$this->load->model('hirarki');
 	}
 	public function ReadCMon()	{
 		try {
@@ -50,6 +51,33 @@ class rConMon extends CI_Controller {
 				$jsonResult = array(
 					'success' => true,
 					'conmonth' => $data
+				);
+			}
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+	
+	}
+	public function cbLokasi()	{
+		try {
+			$hsl = $this->hirarki->get_parent();
+			
+			foreach ($hsl as $r){
+				// print_r ($r);
+				$data[] = array(
+						'id'	=>$r->id,
+						'lokasi'=>$r->nama,
+						'kode'	=>$r->kode
+						);
+				$jsonResult = array(
+					'success' => true,
+					'lokasi' => $data
 				);
 			}
 		}
