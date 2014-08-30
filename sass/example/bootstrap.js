@@ -909,6 +909,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.AvReUnit": [],
   "rcm.model.AvSpeedo": [],
   "rcm.model.Cause": [],
+  "rcm.model.CbParent": [],
+  "rcm.model.CbUnit": [],
   "rcm.model.ConMon": [],
   "rcm.model.ConMonIn": [],
   "rcm.model.DaftarGagal": [],
@@ -933,9 +935,13 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.SapDamage": [],
   "rcm.model.SapEPO": [],
   "rcm.model.SapHistori": [],
+  "rcm.model.SapLoc": [],
+  "rcm.model.SapMwc": [],
   "rcm.model.SapOPart": [],
+  "rcm.model.SapOType": [],
   "rcm.model.SapSpeedo": [],
   "rcm.model.SapSymptom": [],
+  "rcm.model.SapThn": [],
   "rcm.model.UnsetSesi": [],
   "rcm.store.Aksi": [],
   "rcm.store.AvGroup": [],
@@ -943,6 +949,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.AvReUnit": [],
   "rcm.store.AvSpeedo": [],
   "rcm.store.Cause": [],
+  "rcm.store.CbParent": [],
+  "rcm.store.CbUnit": [],
   "rcm.store.ConMon": [],
   "rcm.store.ConMonIn": [],
   "rcm.store.DaftarGagal": [],
@@ -970,10 +978,15 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.SapDamageInfo": [],
   "rcm.store.SapEPO": [],
   "rcm.store.SapHistori": [],
+  "rcm.store.SapHistoriUt": [],
+  "rcm.store.SapLoc": [],
+  "rcm.store.SapMwc": [],
   "rcm.store.SapOPart": [],
   "rcm.store.SapOPartInfo": [],
+  "rcm.store.SapOType": [],
   "rcm.store.SapSymptom": [],
   "rcm.store.SapSymptomInfo": [],
+  "rcm.store.SapThn": [],
   "rcm.store.SpAvGcUt": [],
   "rcm.store.SpAvGsUt": [],
   "rcm.store.SpAvPmUt": [],
@@ -1012,15 +1025,18 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.lapobama.SpeedoAv": [],
   "rcm.view.laporan.Chart": [],
   "rcm.view.laporan.ConMon": [],
+  "rcm.view.laporan.ConMonForm": [],
   "rcm.view.laporan.ConMonInput": [],
   "rcm.view.laporan.ConMonUnit": [],
   "rcm.view.laporan.EPO": [],
   "rcm.view.laporan.EPOCol": [],
   "rcm.view.laporan.EPOPie": [],
+  "rcm.view.laporan.FilterHistori": [],
   "rcm.view.laporan.GridCause": [],
   "rcm.view.laporan.GridCauseInfo": [],
   "rcm.view.laporan.GridConMon": [],
   "rcm.view.laporan.GridWork": [],
+  "rcm.view.laporan.PanelSap": [],
   "rcm.view.laporan.SapCause": [],
   "rcm.view.laporan.SapChartDet": [],
   "rcm.view.laporan.SapDamage": [],
@@ -2068,6 +2084,8 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.AvReUnit": [],
   "rcm.model.AvSpeedo": [],
   "rcm.model.Cause": [],
+  "rcm.model.CbParent": [],
+  "rcm.model.CbUnit": [],
   "rcm.model.ConMon": [],
   "rcm.model.ConMonIn": [],
   "rcm.model.DaftarGagal": [],
@@ -2092,9 +2110,13 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.SapDamage": [],
   "rcm.model.SapEPO": [],
   "rcm.model.SapHistori": [],
+  "rcm.model.SapLoc": [],
+  "rcm.model.SapMwc": [],
   "rcm.model.SapOPart": [],
+  "rcm.model.SapOType": [],
   "rcm.model.SapSpeedo": [],
   "rcm.model.SapSymptom": [],
+  "rcm.model.SapThn": [],
   "rcm.model.UnsetSesi": [],
   "rcm.store.Aksi": [],
   "rcm.store.AvGroup": [],
@@ -2102,6 +2124,8 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.AvReUnit": [],
   "rcm.store.AvSpeedo": [],
   "rcm.store.Cause": [],
+  "rcm.store.CbParent": [],
+  "rcm.store.CbUnit": [],
   "rcm.store.ConMon": [],
   "rcm.store.ConMonIn": [],
   "rcm.store.DaftarGagal": [],
@@ -2129,10 +2153,15 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.SapDamageInfo": [],
   "rcm.store.SapEPO": [],
   "rcm.store.SapHistori": [],
+  "rcm.store.SapHistoriUt": [],
+  "rcm.store.SapLoc": [],
+  "rcm.store.SapMwc": [],
   "rcm.store.SapOPart": [],
   "rcm.store.SapOPartInfo": [],
+  "rcm.store.SapOType": [],
   "rcm.store.SapSymptom": [],
   "rcm.store.SapSymptomInfo": [],
+  "rcm.store.SapThn": [],
   "rcm.store.SpAvGcUt": [],
   "rcm.store.SpAvGsUt": [],
   "rcm.store.SpAvPmUt": [],
@@ -2213,6 +2242,9 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.laporan.ConMon": [
     "widget.tConMon"
   ],
+  "rcm.view.laporan.ConMonForm": [
+    "widget.taskConMon"
+  ],
   "rcm.view.laporan.ConMonInput": [
     "widget.iConMon"
   ],
@@ -2228,6 +2260,9 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.laporan.EPOPie": [
     "widget.tEPOPie"
   ],
+  "rcm.view.laporan.FilterHistori": [
+    "widget.tFHistori"
+  ],
   "rcm.view.laporan.GridCause": [
     "widget.gridCause",
     "widget.taskGridCause"
@@ -2242,6 +2277,9 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.laporan.GridWork": [
     "widget.gridWork",
     "widget.tGridWork"
+  ],
+  "rcm.view.laporan.PanelSap": [
+    "widget.tpSapHistori"
   ],
   "rcm.view.laporan.SapCause": [
     "widget.causechart"

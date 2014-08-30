@@ -157,14 +157,21 @@ class Sap extends CI_Model {
 		return $query->result();
 	}
 	
-	function get_histori($thn)	{
+	function get_histori($thn,$lok,$otp,$mwc)	{
 		$sql =	"SELECT DATE_FORMAT(planend, '%b') AS bulan, MONTH(planend)-1 AS nbln ".
 				",SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,0,1)) AS `teco` ".
 				",SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)) AS `open` ".
 				",SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1)) AS jml ".
 				",ROUND((SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)))*100/(SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1))),2) as persen ".
-				"FROM sap WHERE YEAR(planstart)=$thn GROUP BY nbln ORDER BY nbln ASC";
-		//echo "sql: $sql";		
+				"FROM sap WHERE YEAR(planstart)=$thn ";
+		
+		//echo "lok: $lok<br/>";
+
+		if ($lok!="ALL" and $lok!="_")		$sql .=	"AND lokasi=$lok ";
+		if ($otp!="ALL" and $otp!="_")		$sql .=	"AND ordertype like '%$otp%' ";
+		if ($mwc!="ALL" and $mwc!="_")		$sql .=	"AND manwork like '%$mwc%' ";
+		$sql .=	"GROUP BY nbln ORDER BY nbln ASC";
+		//echo "sql: $sql<br/><br/>";		
 		
 		$query = $this->db->query($sql);
 		return $query->result();

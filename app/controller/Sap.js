@@ -133,11 +133,17 @@ Ext.define('rcm.controller.Sap', {
 	
 	clrSapHist: function()	{
 		this.getTFHistori().resetFilter();
+		this.getSapHistoriStore().load();
 	},
 	
 	cariSapHist: function()	{
-		
-	}
+		//alert('cari');
+		var o = this.getTFHistori().sedotFilter();
+		//rcmSettings.eeee = o.iL;
+		//rcmSettings.ffff = o.iW;
+		this.getSapHistoriStore().load({params: {loc:o.iL,otp:o.iW,mwc:o.iM,tgl:o.iT }});
+		//alert("o.L: "+o.iL+", oW: "+o.iW+", oM: "+o.iM+", oT: "+o.iT);
+	},
 	
 	grafikCauseClear: function()	{
 		var me=this,

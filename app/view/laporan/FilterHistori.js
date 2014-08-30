@@ -22,7 +22,7 @@ Ext.define('rcm.view.laporan.FilterHistori', {
 			},
 			//*/
 			items: [{
-					id:  'iThnSaw',
+					id:  'iThnS',
 					xtype: 'combo',
 					submitFormat: 'Y',
 					emptyText: 'Tahun '+rcm.view.Util.U1th(''),
@@ -46,12 +46,14 @@ Ext.define('rcm.view.laporan.FilterHistori', {
 					value: 'ALL',
 					queryMode: 'local',
 					displayField: 'nama',
+					valueField: 'id',
 					fieldLabel: '<b>Lokasi</b>',
 					margin: '0 10 0 10'
 				},{
 					id:  'iWoT',
 					xtype: 'combo',
 					labelWidth: 60,
+					width: 140,
 					fieldLabel: '<b>WO Type</b>',
 					//emptyText: 'ALL',
 					value: 'ALL',
@@ -103,6 +105,15 @@ Ext.define('rcm.view.laporan.FilterHistori', {
 		Ext.getCmp('iWoT').setValue('ALL');
 		Ext.getCmp('iMtAc').setValue('ALL');
 		Ext.getCmp('iLokS').setValue('ALL');
+	},
+	
+	sedotFilter: function()	{
+		var o = {};
+		o.iW = Ext.getCmp('iWoT').getValue();
+		o.iM = Ext.getCmp('iMtAc').getValue();
+		o.iT = Ext.getCmp('iThnS').getValue();
+		o.iL = Ext.getCmp('iLokS').getSubmitValue();
+		return o;
 	}
 	
 });

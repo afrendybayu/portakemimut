@@ -15,10 +15,15 @@ class rHistori extends CI_Controller {
 
 		try {
 			$thn = $this->input->get('tgl')?:date('Y');
+			$lok = $this->input->get('loc')?:"_";
+			$otp = $this->input->get('otp')?:"_";
+			$mwc = $this->input->get('mwc')?:"_";
+			
+			//echo "$lok $otp $mwc<br/>";
 			//$this->load->model('sap');
 
 			$hsl = array();
-			$hsl = $this->sap->get_histori($thn);
+			$hsl = $this->sap->get_histori($thn,$lok,$otp,$mwc);
 			
 			//print_r($hsl); echo "<br/><br/>";
 
@@ -130,7 +135,7 @@ class rHistori extends CI_Controller {
 		try {
 			$hsl = array();
 			$obj = new stdClass();
-			$obj->otype = "ALL";
+			$obj->otype ="ALL";
 			array_push($hsl, $obj);
 			
 			$otype = $this->sap->get_ordertype();
@@ -163,7 +168,7 @@ class rHistori extends CI_Controller {
 			
 			$hsl = array();
 			$obj = new stdClass();
-			$obj->nama = "ALL";
+			$obj->nama = $obj->kode = "ALL";
 			$obj->id = 0;
 			
 			array_push($hsl, $obj);

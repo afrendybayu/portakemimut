@@ -1,7 +1,7 @@
 /* Afrendy Bayu, 25Nov2013 */
 
 Ext.define('rcm.view.laporan.PanelSap', {
-    extend: 'Ext.form.Panel',
+    extend: 'Ext.panel.Panel',
     //alias: 'widget.isiFormGagal',
 	xtype: 'tpSapHistori',
 	require: [
@@ -10,10 +10,10 @@ Ext.define('rcm.view.laporan.PanelSap', {
 
 	dockedItems: [{
 		dock: 'top',
-		xtype: 'tFHistori',
+		xtype: 'tFHistori'
 	}],
 	
-	
+	//layout:'stretch',
 	
 	initComponent: function() {		
 		var me=this;
@@ -21,6 +21,7 @@ Ext.define('rcm.view.laporan.PanelSap', {
 		me.items= [{
 			//iconCls: 'Reliability',
 			xtype: 'tHistori',
+			flex: 1,
 			dstore: me.dstore
 		}];
 		me.callParent(arguments);

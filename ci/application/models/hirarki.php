@@ -31,11 +31,16 @@ class Hirarki extends CI_Model {
     }
 	
 	function get_parent() {
+		/*
 		$this->db->select('id,nama,kode');
 		//$this->db->where('level',1);
 		$this->db->where('parent',0);
 		$this->db->order_by('nama','asc');
 		$query = $this->db->get('hirarki');
+		return $query->result();
+		//*/
+		$sql = "select id,nama,kode from hirarki where parent=0 order by nama asc";
+		$query = $this->db->query($sql);
 		return $query->result();
 	}
 	
