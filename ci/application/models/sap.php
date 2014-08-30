@@ -177,6 +177,22 @@ class Sap extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
+	
+	function get_mwc()	{
+		$sql =	"SELECT manwork as mwc FROM sap WHERE manwork <> '' GROUP BY manwork";
+		//echo "sql: $sql";		
+		
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
+	function get_ordertype()	{
+		$sql =	"SELECT ordertype as otype FROM sap WHERE ordertype <> '' GROUP BY ordertype;";
+		//echo "sql: $sql";		
+		
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 }
 
 /* End of file sap.php */

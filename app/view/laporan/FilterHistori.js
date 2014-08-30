@@ -28,9 +28,12 @@ Ext.define('rcm.view.laporan.FilterHistori', {
 					submitFormat: 'Y',
 					emptyText: 'Tahun '+rcm.view.Util.U1th(''),
 					valueField: 'thn',
-					//value: new Date('Y'),
+					value: rcm.view.Util.U1th(''),
 					//value: Ext.Date.add(new Date()),
 					fieldLabel: '<b>Pilih Waktu</b>',
+					queryMode: 'local',
+					store: 'SapThn',
+					displayField: 'thn',
 					width: 180,
 					labelWidth: 80,
 					format: 'Y',
@@ -50,47 +53,45 @@ Ext.define('rcm.view.laporan.FilterHistori', {
 				//*/
 				},{
 					id:  'iLokS',
-					xtype: 'combobox',
-					submitFormat: 'Y-m-d',
-					//value: new Date(),
+					xtype: 'combo',
+					//submitFormat: 'Y-m-d',
 					labelWidth: 50,
 					fieldLabel: '<b>Lokasi</b>',
-					format: 'd M Y',
 					margin: '0 10 0 10'
 				},{
 					id:  'iWoT',
-					xtype: 'combobox',
-					submitFormat: 'Y-m-d',
-					//value: new Date(),
+					xtype: 'combo',
 					labelWidth: 60,
 					fieldLabel: '<b>WO Type</b>',
-					format: 'd M Y',
+					//emptyText: 'ALL',
+					value: 'ALL',
+					queryMode: 'local',
+					store: 'SapOType',
+					displayField: 'otype',
 					margin: '0 10 0 0'
 				},{
 					id:  'iMtAc',
-					xtype: 'combobox',
-					submitFormat: 'Y-m-d',
-					//value: new Date(),
+					xtype: 'combo',
+					queryMode: 'local',
+					store: 'SapMwc',
+					value: 'ALL',
+					//emptyText: 'ALL',
+					displayField: 'mwc',
 					labelWidth: 60,
 					fieldLabel: '<b>Maint Act</b>',
-					//format: 'd M Y',
 					margin: '0 10 0 0'
 				},{
-					id: 'btnCariSx',
+					id: 'btnCariSH',
 					xtype: 'button',
 					width: 100,
 					text: 'Filter',
 					margin: '2 30 0 0'
 				},{
-					id: 'btnClearSx',
+					id: 'btnClearSH',
 					xtype: 'button',
 					width: 100,
 					text: 'Clear',
 					margin: '2 0 0 0'
-				},{
-					xtype: 'label',
-					text:'',
-					flex: 1
 			}]
 		}];
 
@@ -106,6 +107,12 @@ Ext.define('rcm.view.laporan.FilterHistori', {
 			//*/
 		};
 		me.callParent();
+	},
+	
+	resetFilter: function()	{
+		Ext.getCmp('iWoT').setValue('ALL');
+		Ext.getCmp('iMtAc').setValue('ALL');
+		Ext.getCmp('iLokS').setValue('ALL');
 	}
 	
 });

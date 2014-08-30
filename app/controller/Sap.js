@@ -7,6 +7,7 @@ Ext.define('rcm.controller.Sap', {
         ,'laporan.UploadFile'
         ,'laporan.SpeedoSap'
         ,'laporan.GridCause'
+        ,'laporan.FilterHistori'
     ],
 
     controllers: [
@@ -20,6 +21,8 @@ Ext.define('rcm.controller.Sap', {
         ,'SapCause','SapDamage','SapOPart'/*,'SapSymptom'*/
 		,'SapCauseInfo','SapDamageInfo','SapOPartInfo','SapSymptomInfo'
 		,'SapHistori','ConMon','ConMonIn'
+		
+		,'SapThn','SapMwc','SapOType'
     ],
     
     models: [
@@ -29,6 +32,9 @@ Ext.define('rcm.controller.Sap', {
     refs: [{
 			ref: 'tabChart',
 			selector: 'tabChart'
+		},{
+			ref: 'tFHistori',
+			selector: 'tFHistori'
 		},{
 			ref: 'taskGridCause',
 			selector: 'taskGridCause',
@@ -57,6 +63,9 @@ Ext.define('rcm.controller.Sap', {
 			},
 			'#btnUplCM': {
 				click: me.hdUplCM
+			},
+			'#btnClearSH': {
+				click: me.clrSapHist
 			}
 		});
     },
@@ -95,6 +104,10 @@ Ext.define('rcm.controller.Sap', {
 	onLaunch: function() {
 		//alert("tes");
 		this.ubahLabelWO();
+	},
+	
+	clrSapHist: function()	{
+		this.getTFHistori().resetFilter();
 	},
 	
 	grafikCauseClear: function()	{

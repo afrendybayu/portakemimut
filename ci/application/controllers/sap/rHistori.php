@@ -95,6 +95,63 @@ class rHistori extends CI_Controller {
 		echo json_encode($jsonResult);
 	}
 
+	public function getMwcSap()	{
+		//*
+		try {
+			//*
+			$hsl = array();
+			$obj = new stdClass();
+			$obj->mwc = "ALL";
+			array_push($hsl, $obj);
+			
+			$mwc = $this->sap->get_mwc();
+			$jml = count($mwc);
+			for($i=0; $i<$jml; $i++)	{
+				array_push($hsl, $mwc[$i]);
+			}
+
+			//print_r($hsl);
+			$jsonResult = array(
+				'success' => true,
+				'sapmwc' => $hsl
+			);
+			//*/
+		}	
+		catch (Exception $e)	{
+			//*
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+			//*/
+		}
+		//*/
+		echo json_encode($jsonResult);
+	}
+	
+	public function getOTypeSap()	{
+		//*
+		try {
+			//*
+			$hsl =  $this->sap->get_ordertype();
+			//print_r($hsl);
+			$jsonResult = array(
+				'success' => true,
+				'sapotype' => $this->sap->get_ordertype()
+			);
+			//*/
+		}	
+		catch (Exception $e)	{
+			//*
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+			//*/
+		}
+		//*/
+		echo json_encode($jsonResult);
+	}
 }
 
 /* End of file rHistori.php */
