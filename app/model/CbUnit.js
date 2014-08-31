@@ -5,11 +5,11 @@ Ext.define('rcm.model.CbUnit', {
 		'Ext.data.proxy.Ajax'
 	],
 	
-	fields: [ 'lokasi','unit','unit_kode'],
+	fields: [ 'id_unit','id_lokasi','lokasi','unit'],
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/sap/rConMon/cbLokasi'
+			read: 'ci/index.php/sap/rConMon/cbUnit'
         },
         reader: {
             type: 'json',

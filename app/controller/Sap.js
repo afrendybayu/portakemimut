@@ -1,7 +1,8 @@
 Ext.define('rcm.controller.Sap', {
     extend: 'Ext.app.Controller',
     //*
-    views: [
+    	
+	views: [
         // TODO: add views here
         'laporan.Chart'
         ,'laporan.UploadFile'
@@ -20,7 +21,7 @@ Ext.define('rcm.controller.Sap', {
         ,'WoOpen7','WoOpen30','WoOpen60','WoOpenL60'
         ,'SapCause','SapDamage','SapOPart'/*,'SapSymptom'*/
 		,'SapCauseInfo','SapDamageInfo','SapOPartInfo','SapSymptomInfo'
-		,'SapHistori','ConMon','ConMonIn','CbParent'
+		,'SapHistori','ConMon','ConMonIn','CbParent','CbUnit'
     ],
     
     models: [
@@ -42,7 +43,7 @@ Ext.define('rcm.controller.Sap', {
 			autoCreate: true
 		},{
 			ref : 'taskConMon',
-			selector : 'taskConMon',
+			selector : 'taskConMon'
 	}],
     
     init: function() {
@@ -62,30 +63,175 @@ Ext.define('rcm.controller.Sap', {
 			'#btnUplCM': {
 				click: me.hdUplCM
 			},
-			'#cbparent1':{
-				select : me.pilihComboParent,
-				change : me.dipilihpilih
-			
+			'#cbparent':{
+				select : me.pilihComboParent
+			},
+			'#cb_unit' : {
+				select : me.pilihComboUnit
+			},
+			'taskConMon textfield': {
+                    specialkey: me.handlesimpan
 			}
 		});
     },
     
-	pilihComboParent: function(list, records){
-		var dd = records[0].get('lokasi');
-		// vae ee = records.get();
-		Ext.Msg.alert('Item selected', 'Selected: ' + records[ 0 ].get('lokasi'));
-		console.log(dd );	
+	handlesimpan: function(field,e){  
+		if(e.getKey()=== e.ENTER){
+			this.simpanconmon();
+			
+		}
 	},
-	
-	dipilihpilih : function(rec){
-		var isi = rec.getValue();
-		console.log(isi);	
-		// var unit = this.get
+		
+	simpanconmon : function(){
+		/*var me = this,
+            form = me.getTaskForm(),
+            basicForm = form.getForm(),
+            formEl = form.getEl(),
+            titleField = form.getForm().findField('title'),
+            task = Ext.create('SimpleTasks.model.Task');
+		console.log(titleField.getValue());
+        // require title field to have a value
+        if(!titleField.getValue()) {
+            return;
+        }*/
+        
+		
+		
+		var me = this,
+			form = me.getTaskConMon(),
+            basicForm = form.getForm(),
+            formEl = form.getEl(),
+            tgl 	= basicForm.findField('tgl'),
+			lokasi 	= basicForm.findField('lokasi'),
+			unit 	= basicForm.findField('unit'),
+            cmon 	= Ext.create('rcm.model.ConMonIn');
+			
+			// console.log(tgl.getValue()+'->'+lokasi.getValue()+'->'+unit.getValue());
+			
+		if(!tgl.getValue()&& lokasi.getValue()&&unit.getValue()) {
+            return;
+        }
+		
+		form.items.each(function(item) {
+            var inputEl = item.getEl().down('input')
+            if(inputEl) {
+                inputEl.blur();
+            }
+        });
+		
+		cmon.save({
+            success: function(cmon, operation) {
+                console.log(cmon);
+				me.getConMonInStore().add(cmon);
+				//me.refreshFiltersAndCount();
+                // me.getConMonInStore().sort();
+                basicForm.reset();
+                lokasi.focus();
+               // formEl.unmask();*/
+            },
+            failure: function(cmon, operation) {
+                var error = operation.getError(),
+                    msg = Ext.isObject(error) ? error.status + ' ' + error.statusText : error;
+
+                Ext.MessageBox.show({
+                    title: 'Add Task Failed',
+                    msg: msg,
+                    icon: Ext.Msg.ERROR,
+                    buttons: Ext.Msg.OK
+                });
+                formEl.unmask();
+            }
+        });
 		
 	},
+						
+						
+						/*if(e.getKey()==e.ENTER){  
+							// Ext.Msg.alert('Keys','You pressed the Enter key');  
+							console.log('Login dengan enter');
+							// rcmSettings.kkkkk = f;
+							// rcmSettings.kkkkkw = e;
+							
+							var me = this;
+							var frm 	= f.up('form').getForm(),
+								date	= frm.getValues().tgl,
+								loc		= frm.getValues().lokasi,
+								unit	= frm.getValues().unit,
+								wo		= frm.getValues().wo,
+								sap		= frm.getValues().sap,
+								lap		= frm.getValues().lap,
+								pic		= frm.getValues().pic,
+								ket		= frm.getValues().ket;
+								
+								// rcmSettings.unit = lokasi;
+								// rcmSettings.lockk = unit;
+							console.log (date+', '+loc+', '+unit+', '+wo+', '+sap+', '+lap+', '+pic+', '+ket);
+							var cmon = new rcm.model.ConMonIn({ tgl:date, lokasi:loc, unit:unit, wo:wo, sap:sap, url:lap, pic:pic, ket:ket});
+							
+							if (frm.isValid()) {
+								cmon.save({
+									success: function(respon, operation) {
+										//var res = operation.request.scope.reader.jsonData["rule"];
+										
+										console.log(res.date+'->'+res.loc+'->'+res.unit);
+										/*
+										Ext.MessageBox.show({
+											title : 'Login Info',
+											msg   : 'Selamat Datang '+res.session,
+											buttons: Ext.MessageBox.OK,
+											icon  : Ext.MessageBox.INFO
+										});
+										
+										Ext.getCmp('p_login').setVisible(false);
+										Ext.getCmp('p_logout').setVisible(true);
+										Ext.getCmp('t_welcome').setText('Selamat Datang '+res.session);
+										Ext.getCmp('griddel').setVisible(true);
+										Ext.getCmp('gridedit').setVisible(true);
+										Ext.getCmp('btnUplBpm3').setDisabled(false);
+										Ext.getCmp('bwbpm3').setDisabled(false);
+										
+										me.getExcelgrid().ngedit = 1;
+										// rcmSettings.aaaaa = Ext.getCmp('grid_edit1111');	
+										/*	var me 	= this,
+												uFG = me.getTaskFormGagal();
+												uFG.show();
+										*/
+										
+								/*	},
+									failure : function(respon, operation){
+										console.log('salah input');
+										/*Ext.MessageBox.show({
+											title : 'Login Info',
+											msg   : 'Silahkan Login Kembali, Username atau Password tidak Terdaftar',
+											buttons: Ext.MessageBox.OK,
+											icon  : Ext.MessageBox.WARNING
+										});*/
+								/*	}
+								});
+								// rcmSettings.aaaaa = pesan;	
+								frm.reset();
+							} 
+							
+							
+						}
+	},  */
 	
+	pilihComboParent: function(records){
+		var loc = records.getValue(), combounit = this.getCbUnitStore();
+		console.log(loc );	
+		combounit.clearFilter();
+		combounit.filter('id_lokasi',loc);
+		Ext.getCmp('cb_unit').clearValue();
+		
+	},
+	pilihComboUnit : function(records){
+		var ll = records.getValue();
+		console.log(ll);
+	},
+
 	ubahLabelWO: function()	{
 		var me=this;
+		var combost = me.getCbUnitStore();
 		//console.log("onLauch SAP");
 		/*
 		me.getWoOpen7Store().load({

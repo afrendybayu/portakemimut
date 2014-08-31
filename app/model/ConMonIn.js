@@ -9,7 +9,8 @@ Ext.define('rcm.model.ConMonIn', {
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/sap/rConMon/ReadCMon'
+			read	: 'ci/index.php/sap/rConMon/ReadCMon',
+			create 	: 'ci/index.php/sap/rConMon/createCMon' 
         },
         reader: {
             type: 'json',

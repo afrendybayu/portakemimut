@@ -93,16 +93,17 @@ class rConMon extends CI_Controller {
 	}
 	public function cbUnit()	{
 		try {
-			$id_lok = $this->input->get('id') ? $this->input->get('id') : 0; 
+			// $id_lok = $this->input->get('id') ? $this->input->get('id') : 0; 
 			
-			$hsl = $this->hirarki->get_unitlokasi($id_lok);
+			$hsl = $this->hirarki->get_unitlokasi();
 			
 			foreach ($hsl as $r){
 				// print_r ($r);
 				$data[] = array(
+						'id_unit'	=>$r->id,
+						'id_lokasi'=>$r->id_lokasi,
 						'lokasi'=>$r->lokasi,
-						'unit'=>$r->unit,
-						'unit_kode'	=>$r->lok_unit,
+						'unit'=>$r->unit
 						);
 				$jsonResult = array(
 					'success' => true,
@@ -118,6 +119,42 @@ class rConMon extends CI_Controller {
 		}
 		
 		echo json_encode($jsonResult);
+	
+	}
+	
+	public function createCMon(){
+		try{
+			$log = json_decode(file_get_contents('php://input'));
+			echo $log->lokasi .' dan '.$log->unit;
+			/*
+			if (isset ($log->loc) && isset($log->unit)){
+				
+				$query = $this->login->ValidLogin($log->userid,$log->pass);
+				
+				foreach ($query->result() as $row){
+					$sesi = array('nama' =>$row->nama,'level' => $row->akses );
+					$this->session->set_userdata('log_sesi',$sesi);
+					$session_data = $this->session->userdata('log_sesi'); //sesi
+					$jsonResult = array(
+						'success' 	=> true,
+						'rule' => array ('level' => $session_data['level'],'session' => $session_data['nama'] )
+					);
+				}
+			}
+			
+			else{
+				$jsonResult = array(
+					'success' => false,
+					'rule' => 'Gagal Login'
+				);	
+			}
+			echo json_encode($jsonResult);
+*/			
+			
+		}
+		catch(Exception $e){
+		
+		}
 	
 	}
 	

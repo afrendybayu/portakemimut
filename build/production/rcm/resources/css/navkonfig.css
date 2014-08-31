@@ -1,0 +1,107 @@
+
+
+
+.tasks-delete-folder {
+    background-image: url('../modul/icons/delete_folder.png');
+}
+.tasks-new-folder {
+    background-image: url('../modul/icons/new_folder.png');
+}
+
+.price-fall .x-change-cell {
+    background-color: #FFB0C4;
+    color:red;
+}
+.price-rise .x-change-cell {
+    background-color: #B0FFC5;
+    color:green;
+}
+.Dashboard {
+    background-image: url('./images/Dashboard.png');
+}
+.bullets {
+    background-image: url('./images/bullets.png');
+}
+.Konfigurasi {
+	background-image: url('./images/config.png');
+}
+.sap {
+	background-image: url('./images/report_check.png');
+}
+.Reliability {
+	background-image: url('./images/report.png');
+}
+.RunnningHour {
+	background-image: url('./images/edit1.png');
+}
+.icon-downtime {
+	background-image: url('./images/grid.png');
+}
+.icon-grid  {
+	background-image: url('./images/application_go.png');
+}
+
+.Compressor {
+	background-image: url('./images/comp16.png');
+}
+
+.editEvent {
+	background-image: url('./images/edit1.png');
+}
+
+.hpsEvent {
+	background-image: url('./images/delete.png');
+}
+
+.clrFilter {
+	background-image: url('./images/clrFilter.png');
+}
+
+.more {
+	background-image: url('./images/more.png');
+}
+
+.cross {
+	background-image: url('./images/cross.png');
+}
+
+.savedisk {
+	background-image: url('./images/savedisk.png');
+}
+
+.add {
+	background-image: url('./images/add.png');
+}
+.cog {
+	background-image: url('./images/cog.png');
+}
+
+.connect {
+	background-image: url('./images/connect.png');
+}
+
+.rusak .x-change-cell {
+    /*background-color: #FFB0C4;*/
+    color:red;
+}
+.sip .x-change-cell {
+    /*background-color: #B0FFC5;*/
+    color:green;
+}
+.baik .x-change-cell {
+    /*background-color: #B0FFC5;*/
+    color:blue;
+}
+.cTextAlign {
+	text-align: center;
+	/*color:blue;*/
+}
+.dollar {
+	background-image: url('./images/dollar.png');
+}
+
+.accept {
+	background-image: url('./images/accept.png');
+}
+
+

@@ -15,6 +15,17 @@ class CMon extends CI_Model {
 	
 	}
 	
+	/*function set_conmon(){
+		$data = array{
+			$tgl => '';
+		}
+			
+		
+		
+		
+	
+	}
+	*/
     
     
 }
