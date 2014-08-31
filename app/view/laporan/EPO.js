@@ -7,13 +7,21 @@ Ext.define('rcm.view.laporan.EPO', {
 	requires: [
 		'rcm.view.laporan.EPOCol'
 		,'rcm.view.laporan.EPOPie'
-		,'rcm.view.laporan.FilterHistori'
+		,'rcm.view.laporan.FilterSap'
 	//	'rcm.view.laporan.WOStack'
 	],
 	
 	dockedItems: [{
 		dock: 'top',
-		xtype: 'tFMaint'
+		idThn: 'iThnM',
+		idLok: 'iLokM',
+		idWoT: 'iWoTM',
+		idMtAc: 'iMtAcM',
+		idbSr: 'btnCariSM',
+		idbCl: 'btnClearSM',
+		lThn: '<b>Tahun</b>',
+		xtype: 'tFSap'
+		//xtype: 'tFMaint'
 	/*
 	},{
 		dock: 'top',

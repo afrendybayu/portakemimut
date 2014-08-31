@@ -1,7 +1,7 @@
 // afrendyBayu,25Jan2014 //
-Ext.define('rcm.view.laporan.FilterHistori', {
+Ext.define('rcm.view.laporan.FilterSap', {
     extend: 'Ext.form.Panel',
-	xtype: 'tFHistori',
+	xtype: 'tFSap',
 	require: [
 	//	'Ext.form.TextField'
 	],
@@ -22,24 +22,25 @@ Ext.define('rcm.view.laporan.FilterHistori', {
 			},
 			//*/
 			items: [{
-					id:  'iThnH',
+					//id:  'iThnH',
+					id: me.idThn,
 					xtype: 'combo',
 					submitFormat: 'Y',
 					emptyText: 'Tahun '+rcm.view.Util.U1th(''),
 					valueField: 'thn',
 					value: rcm.view.Util.U1th(''),
-					//value: Ext.Date.add(new Date()),
-					fieldLabel: '<b>Pilih Waktu</b>',
+					//fieldLabel: '<b>Pilih Waktu</b>',
+					fieldLabel: me.lThn,
 					queryMode: 'local',
 					store: 'SapThn',
 					displayField: 'thn',
 					width: 180,
 					labelWidth: 80,
 					format: 'Y',
-					//format: 'F Y',
-					margin: '0 10 0 10'
+					margin: '0 10 0 0'
 				},{
-					id:  'iLokH',
+					//id:  'iLokH',
+					id: me.idLok,
 					xtype: 'combo',	
 					store: 'SapLoc',
 					labelWidth: 50,
@@ -48,9 +49,10 @@ Ext.define('rcm.view.laporan.FilterHistori', {
 					displayField: 'nama',
 					valueField: 'id',
 					fieldLabel: '<b>Lokasi</b>',
-					margin: '0 10 0 10'
+					margin: '0 10 0 0'
 				},{
-					id:  'iWoTH',
+					//id:  'iWoTH',
+					id: me.idWoT,
 					xtype: 'combo',
 					labelWidth: 60,
 					width: 140,
@@ -62,10 +64,12 @@ Ext.define('rcm.view.laporan.FilterHistori', {
 					displayField: 'otype',
 					margin: '0 10 0 0'
 				},{
-					id:  'iMtAcH',
+					//id:  'iMtAcH',
+					id: me.idMtAc,
 					xtype: 'combo',
 					queryMode: 'local',
 					store: 'SapMwc',
+					width: 170,
 					value: 'ALL',
 					//emptyText: 'ALL',
 					displayField: 'mwc',
@@ -73,17 +77,19 @@ Ext.define('rcm.view.laporan.FilterHistori', {
 					fieldLabel: '<b>Maint Act</b>',
 					margin: '0 10 0 0'
 				},{
-					id: 'btnCariSH',
+					//id: 'btnCariSH',
+					id: me.idbSr,
 					xtype: 'button',
 					width: 100,
 					text: 'Filter',
-					margin: '2 30 0 0'
+					margin: '2 0 0 0'
 				},{
 					xtype: 'label',
 					flex: 1,
 					text: ''
 				},{
-					id: 'btnClearSH',
+					//id: 'btnClearSH',
+					id: me.idbCl,
 					xtype: 'button',
 					width: 100,
 					//flex: 1,
@@ -107,17 +113,21 @@ Ext.define('rcm.view.laporan.FilterHistori', {
 	},
 	
 	resetFilter: function()	{
-		Ext.getCmp('iWoTH').setValue('ALL');
-		Ext.getCmp('iMtAcH').setValue('ALL');
-		Ext.getCmp('iLokH').setValue('ALL');
+		var me = this;
+		Ext.getCmp(me.idWoT).setValue('ALL');
+		Ext.getCmp(me.idMtAc).setValue('ALL');
+		Ext.getCmp(me.idLok).setValue('ALL');
+		Ext.getCmp(me.idThn).setValue(rcm.view.Util.U1th(''));
 	},
 	
 	sedotFilter: function()	{
-		var o = {};
-		o.iW = Ext.getCmp('iWoTH').getValue();
-		o.iM = Ext.getCmp('iMtAcH').getValue();
-		o.iT = Ext.getCmp('iThnH').getValue();
-		o.iL = Ext.getCmp('iLokH').getSubmitValue();
+		var o = {},
+			me = this;
+		o.iW = Ext.getCmp(me.idWoT).getValue();
+		o.iM = Ext.getCmp(me.idMtAc).getValue();
+		o.iT = Ext.getCmp(me.idThn).getValue();
+		o.iL = Ext.getCmp(me.idLok).getSubmitValue();
+		//rcmSettings.gggg = o;
 		return o;
 	}
 	

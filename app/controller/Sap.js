@@ -7,8 +7,8 @@ Ext.define('rcm.controller.Sap', {
         ,'laporan.UploadFile'
         ,'laporan.SpeedoSap'
         ,'laporan.GridCause'
-        ,'laporan.FilterHistori'
-        ,'laporan.FilterMaint'
+        ,'laporan.FilterSap'
+		//,'laporan.FilterMaint'
 		,'laporan.ConMonForm'
     ],
 
@@ -35,11 +35,8 @@ Ext.define('rcm.controller.Sap', {
 			ref: 'tabChart',
 			selector: 'tabChart'
 		},{
-			ref: 'tFHistori',
-			selector: 'tFHistori'
-		},{
-			ref: 'tFMaint',
-			selector: 'tFMaint'
+			ref: 'tFSap',
+			selector: 'tFSap'
 		},{
 			ref: 'taskGridCause',
 			selector: 'taskGridCause',
@@ -146,23 +143,24 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	clrSapHist: function()	{
-		this.getTFHistori().resetFilter();
+		this.getTFSap().resetFilter();
 		this.getSapHistoriStore().load();
 	},
 	
 	cariSapHist: function()	{
-		var o = this.getTFMaint().sedotFilter();
+		var o = this.getTFSap().sedotFilter();
+		//rcmSettings.ttt = o;
 		this.getSapHistoriStore().load({params: {loc:o.iL,otp:o.iW,mwc:o.iM,tgl:o.iT }});
 		//alert("o.L: "+o.iL+", oW: "+o.iW+", oM: "+o.iM+", oT: "+o.iT);
 	},
 	
 	clrSapMaint: function()	{
-		this.getTFMaint().resetFilter();
+		this.getTFSap().resetFilter();
 		this.ubahLabelWO();
 	},
 	
 	cariSapMaint: function()	{
-		var o = this.getTFMaint().sedotFilter(),
+		var o = this.getTFSap().sedotFilter(),
 			p = { loc:o.iL,otp:o.iW,mwc:o.iM,taw:o.iTw,tak:o.iTk };
 		this.ubahLabelWO(p);
 		//this.getSapHistoriStore().load({params: {loc:o.iL,otp:o.iW,mwc:o.iM,tgl:o.iT }});

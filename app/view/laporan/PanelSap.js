@@ -5,12 +5,20 @@ Ext.define('rcm.view.laporan.PanelSap', {
     //alias: 'widget.isiFormGagal',
 	xtype: 'tpSapHistori',
 	require: [
-		'rcm.view.laporan.FilterHistori'
+		'rcm.view.laporan.FilterSap'
 	],
 	//*
 	dockedItems: [{
 		dock: 'top',
-		xtype: 'tFHistori'
+		idThn: 'iThnH',
+		idLok: 'iLokH',
+		idWoT: 'iWoTH',
+		idMtAc: 'iMtAcH',
+		idbSr: 'btnCariSH',
+		idbCl: 'btnClearSH',
+		lThn: '<b>Pilih Waktu</b>',
+		xtype: 'tFSap'
+		
 	}],
 	//*/
 	//layout:'stretch',

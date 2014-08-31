@@ -14,7 +14,7 @@ Ext.define('rcm.view.laporan.Chart', {
 		,'rcm.view.laporan.GridCauseInfo'
 		,'rcm.view.laporan.ConMon'
 		,'rcm.view.laporan.PanelSap'
-		,'rcm.view.laporan.FilterHistori'
+		,'rcm.view.laporan.FilterSap'
 		//'laporan.Chart',
         //'rcm.view.laporan.UploadFile',
         //'laporan.SapCause',
