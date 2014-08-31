@@ -23,6 +23,7 @@ Ext.define('rcm.controller.Sap', {
         ,'SapCause','SapDamage','SapOPart'/*,'SapSymptom'*/
 		,'SapCauseInfo','SapDamageInfo','SapOPartInfo','SapSymptomInfo'
 
+		,'SapOrderCwo','SapOrderCot'
 		,'SapThn','SapMwc','SapOType','SapLoc'
 		,'SapHistori','ConMon','ConMonIn','CbParent'
     ],

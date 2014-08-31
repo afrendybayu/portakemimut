@@ -5,22 +5,9 @@ Ext.define('rcm.view.laporan.OrderCostSap', {
     //alias: 'widget.isiFormGagal',
 	xtype: 'tpSapOCost',
 	require: [
-		//'rcm.view.laporan.FilterSap'
+		'rcm.view.laporan.GridOrderC'
 	],
-	/*
-	dockedItems: [{
-		dock: 'top',
-		idThn: 'iThnH',
-		idLok: 'iLokH',
-		idWoT: 'iWoTH',
-		idMtAc: 'iMtAcH',
-		idbSr: 'btnCariSH',
-		idbCl: 'btnClearSH',
-		lThn: '<b>Pilih Waktu</b>',
-		xtype: 'tFSap'
-		
-	}],
-	//*/
+
 	layout: {
 		type: 'vbox',
 		align: 'stretch'
@@ -35,12 +22,16 @@ Ext.define('rcm.view.laporan.OrderCostSap', {
 		var me=this;
 		
 		me.items= [{
-			xtype: 'tGridOrderC',
+			xtype: 'tSapOrderC',
 			flex: 1,
+			dstore: 'SapOrderCwo',
+			jdl: 'WO Type',
 			title: 'Order Costing (WO Type)'
 		},{
-			xtype: 'tGridOrderC',
+			xtype: 'tSapOrderC',
 			flex: 1,
+			jdl: 'Object Type',
+			dstore: 'SapOrderCot',
 			title: 'Order Costing (Object Type)'
 		}];
 		me.callParent(arguments);

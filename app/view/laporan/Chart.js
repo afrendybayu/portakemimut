@@ -17,6 +17,7 @@ Ext.define('rcm.view.laporan.Chart', {
 		,'rcm.view.laporan.FilterSap'
         ,'rcm.view.laporan.WOComp'
         ,'rcm.view.laporan.OrderCostSap'
+        ,'rcm.view.laporan.GridOrderC'
     ],
     
 	initComponent: function() {

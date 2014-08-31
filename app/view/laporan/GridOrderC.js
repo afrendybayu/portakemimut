@@ -2,12 +2,12 @@
 Ext.define('rcm.view.laporan.GridOrderC', {
 	extend: 'Ext.grid.Panel',
 	//alias: 'widget.gridOrderC',
-	xtype: 'tGridOrderC',
-    
-	store: 'HoOrderC',
+	xtype: 'tSapOrderC',
+	//store: 'HoOrderC',
 	
 	initComponent: function() {
 		var me=this;//, sumFt=Ext.create('Ext.grid.feature.Summary');
+		me.store= me.dstore;
 		me.features = [{ftype: 'summary'}];
 		me.columns = {
 			/*
@@ -20,9 +20,9 @@ Ext.define('rcm.view.laporan.GridOrderC', {
             //*/
 			items: [
 				{ xtype:'rownumberer',width:25 },		// 
-				{ header:'Order Costing (Object Type)',//flex:3,
+				{ header:'Order Costing',//flex:3,
 					columns: [{ 
-						header: 'Object Type',dataIndex:'otipe'
+						header: me.jdl,dataIndex:'otipe'
 					},{ header: 'Description',dataIndex:'desc',width: 160
 						,summaryRenderer: function() {
 							return Ext.String.format('  TOTAL  '); 
