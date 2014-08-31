@@ -230,6 +230,49 @@ class Sap extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
+	
+	function get_persen_ocwo($thn)	{
+		$sql =	"SELECT objid AS nama ".
+				",ROUND(sum(totplancost)*100/(select sum(totplancost) from sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!=''),2) as tPlCost ".
+				",ROUND(sum(totmatcost)*100/(select sum(totmatcost) from sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!=''),2) as tAcCost ".
+				"FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!='' GROUP BY objid";
+				
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
+	function get_persen_ocot($thn)	{
+		$sql =	"SELECT ordertype as nama ".
+				",ROUND(sum(totplancost)*100/(SELECT sum(totplancost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn),2) as tPlCost ".
+				",ROUND(SUM(totmatcost)*100/(SELECT sum(totplancost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn),2) as tAcCost ".
+				"FROM sap WHERE totplancost>0 AND YEAR(planstart)=2014 group by ordertype";
+				
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+
+	function get_topten($thn)	{
+		$sql =	"SELECT CONCAT(equip.nama,'@',h.nama,' ',SUBSTRING_INDEX((SELECT hhhh.nama FROM hirarki hhhh WHERE hhhh.id ".
+				"	= (SELECT hhh.parent FROM hirarki hhh WHERE hhh.id ".
+				"	= (SELECT hh.parent FROM hirarki hh WHERE hh.id = equip.unit_id))),' ',-1)) AS equip ".
+				",ROUND(SUM(totmatcost),2) as cost ".
+				"FROM sap,equip,hirarki h ".
+				"WHERE equip.tag= SUBSTRING_INDEX(eqkode,'-',2) AND h.id = equip.unit_id AND YEAR(planstart)=$thn ".
+				"GROUP BY SUBSTRING_INDEX(eqkode,'-',2) ".
+				"ORDER BY totmatcost DESC LIMIT 0,10";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+
+	function get_pm_cost($thn)	{
+		$sql =	"SELECT ordertype, pmtype, ROUND(SUM(totplancost),2) as cost FROM sap ".
+				"WHERE YEAR(planstart)=$thn ".
+				"GROUP BY ordertype,pmtype ".
+				"ORDER BY ordertype asc, cost desc";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
 }
 
 /* End of file sap.php */

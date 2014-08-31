@@ -10,6 +10,7 @@ Ext.define('rcm.controller.Sap', {
         ,'laporan.FilterSap'
 		//,'laporan.FilterMaint'
 		,'laporan.ConMonForm'
+		,'laporan.SapPie'
     ],
 
     controllers: [
@@ -26,6 +27,8 @@ Ext.define('rcm.controller.Sap', {
 		,'SapOrderCwo','SapOrderCot'
 		,'SapThn','SapMwc','SapOType','SapLoc'
 		,'SapHistori','ConMon','ConMonIn','CbParent'
+		
+		,'SapPsOCot','SapPsOCwo'
     ],
     
     models: [

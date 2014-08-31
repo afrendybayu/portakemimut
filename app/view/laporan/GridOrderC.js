@@ -4,6 +4,7 @@ Ext.define('rcm.view.laporan.GridOrderC', {
 	//alias: 'widget.gridOrderC',
 	xtype: 'tSapOrderC',
 	//store: 'HoOrderC',
+	//jdl: 'apa',
 	
 	initComponent: function() {
 		var me=this;//, sumFt=Ext.create('Ext.grid.feature.Summary');
@@ -22,8 +23,8 @@ Ext.define('rcm.view.laporan.GridOrderC', {
 				{ xtype:'rownumberer',width:25 },		// 
 				{ header:'Order Costing',//flex:3,
 					columns: [{ 
-						header: me.jdl,dataIndex:'otipe'
-					},{ header: 'Description',dataIndex:'desc',width: 160
+						header: me.jdl, dataIndex:'otipe'
+					},{ header: 'Description',dataIndex:'desc', flex: 1//width: 160
 						,summaryRenderer: function() {
 							return Ext.String.format('  TOTAL  '); 
 						} 
@@ -31,8 +32,8 @@ Ext.define('rcm.view.laporan.GridOrderC', {
 				},
 				{ header:'Planned Cost',//flex:1,
 					columns: [{ 
-						header: 'WH Stock Cost',dataIndex:'plstcost',align: 'right'
-					},{ header: 'Internal Cost',dataIndex:'plincost',align: 'right',
+						header: 'WH Stock',dataIndex:'plstcost',align: 'right',width: 70
+					},{ header: 'Internal',dataIndex:'plincost',align: 'right',width: 70,
 						summaryType: function(records){
 							var i = 0,length = records.length,total = 0,record;
 
@@ -42,14 +43,14 @@ Ext.define('rcm.view.laporan.GridOrderC', {
 							}
 							return total.toFixed(2);
 						}
-					},{ header: 'Total Planning Cost',dataIndex:'tplcost',flex:2,align: 'right'
+					},{ header: 'Total Planning',dataIndex:'tplcost',flex:2,align: 'right',width: 80
 					}]
 				},
 				{ header:'Actual',//flex:1,
 					columns: [{ 
-						header: 'WH Stock Cost',dataIndex:'acstcost',align: 'right'
-					},{ header: 'Internal Cost',dataIndex:'acincost',align: 'right'
-					},{ header: 'Service Cost',dataIndex:'srvcost',align: 'right'
+						header: 'WH Stock',dataIndex:'acstcost',align: 'right',width: 70
+					},{ header: 'Internal',dataIndex:'acincost',align: 'right',width: 60
+					},{ header: 'Service',dataIndex:'srvcost',align: 'right',width: 70
 						,summaryType: function(records){
 							var i = 0,length = records.length,total = 0,record;
 
@@ -59,7 +60,7 @@ Ext.define('rcm.view.laporan.GridOrderC', {
 							}
 							return total.toFixed(2);
 						}
-					},{ header: 'Total Actual Cost',dataIndex:'taccost',align: 'right'
+					},{ header: 'Total Actual',dataIndex:'taccost',align: 'right',width: 70
 					}]
 				}
 				/*
