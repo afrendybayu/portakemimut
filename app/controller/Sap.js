@@ -28,7 +28,7 @@ Ext.define('rcm.controller.Sap', {
 		,'SapThn','SapMwc','SapOType','SapLoc'
 		,'SapHistori','ConMon','ConMonIn','CbParent'
 		
-		,'SapPsOCot','SapPsOCwo'
+		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10'
     ],
     
     models: [

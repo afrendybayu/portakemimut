@@ -254,21 +254,21 @@ class Sap extends CI_Model {
 	function get_topten($thn)	{
 		$sql =	"SELECT CONCAT(equip.nama,'@',h.nama,' ',SUBSTRING_INDEX((SELECT hhhh.nama FROM hirarki hhhh WHERE hhhh.id ".
 				"	= (SELECT hhh.parent FROM hirarki hhh WHERE hhh.id ".
-				"	= (SELECT hh.parent FROM hirarki hh WHERE hh.id = equip.unit_id))),' ',-1)) AS equip ".
-				",ROUND(SUM(totmatcost),2) as cost ".
+				"	= (SELECT hh.parent FROM hirarki hh WHERE hh.id = equip.unit_id))),' ',-1)) AS nama ".
+				",ROUND(SUM(totmatcost),2) as jml ".
 				"FROM sap,equip,hirarki h ".
 				"WHERE equip.tag= SUBSTRING_INDEX(eqkode,'-',2) AND h.id = equip.unit_id AND YEAR(planstart)=$thn ".
 				"GROUP BY SUBSTRING_INDEX(eqkode,'-',2) ".
-				"ORDER BY totmatcost DESC LIMIT 0,10";
+				"ORDER BY jml desc, totmatcost DESC LIMIT 0,10";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
 
 	function get_pm_cost($thn)	{
-		$sql =	"SELECT ordertype, pmtype, ROUND(SUM(totplancost),2) as cost FROM sap ".
+		$sql =	"SELECT ordertype AS ortype, pmtype AS nama, ROUND(SUM(totplancost),2) as jml FROM sap ".
 				"WHERE YEAR(planstart)=$thn ".
 				"GROUP BY ordertype,pmtype ".
-				"ORDER BY ordertype asc, cost desc";
+				"ORDER BY ordertype asc, jml desc";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}

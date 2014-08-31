@@ -111,6 +111,48 @@ class rOrderCost extends CI_Controller {
 		
 		echo json_encode($jsonResult);
 	}
+	
+	public function sapTop10()		{
+		try {
+			$thn = $this->input->get('tgl')?:date('Y');
+			$this->load->model('sap');
+			$hsl = $this->sap->get_topten($thn);
+			//print_r($hsl);
+			$jsonResult = array(
+				'success' => true,
+				'orderc' => $hsl
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+	}
+	
+	public function sapPmCost()		{
+		try {
+			$thn = $this->input->get('tgl')?:date('Y');
+			$this->load->model('sap');
+			$hsl = $this->sap->get_pm_cost($thn);
+			//print_r($hsl);
+			$jsonResult = array(
+				'success' => true,
+				'orderc' => $hsl
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+	}
 }
 
 /* End of file rOrderCost.php */

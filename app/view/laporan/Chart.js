@@ -43,10 +43,25 @@ Ext.define('rcm.view.laporan.Chart', {
 				//xtype: 'tHistori',
 				dstore: 'SapHistori'
 			},{
-				
 				id: 'ts_oc',
 				title: 'Order Cost',
 				xtype: 'tpSapOCost'
+			},{
+				id: 'ts_tc',
+				title: 'Top 10 Cost',
+				xtype: 'causechart',
+				dstore: 'SapTop10',
+				jdl: 'TOp 10 Orders Cost per Equipment',
+				param: 'Equipment Cost',
+				yNama: 'Cost'
+			},{
+				id: 'ts_pm',
+				title: 'PM Cost',
+				xtype: 'causechart',
+				dstore: 'SapPMCost',
+				jdl: 'PM Activity Planned Cost',
+				param: 'PM Cost',
+				yNama: 'Cost'
 			},{
 				id: 'ts_ca',
 				title: 'Cause',
