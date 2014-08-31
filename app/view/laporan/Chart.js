@@ -65,7 +65,7 @@ Ext.define('rcm.view.laporan.Chart', {
 				yNama: 'Cost'
 			},{
 				id: 'ts_ct',
-				title: 'Maintenance Cost From Contract',
+				title: 'Contract',
 				xtype: 'tGridContract',
 				dstore: 'SapPMCost',
 				//jdl: 'PM Activity Planned Cost',

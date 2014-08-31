@@ -3,11 +3,11 @@ Ext.define('rcm.view.laporan.GridContract', {
 	extend: 'Ext.grid.Panel',
 	//alias: 'widget.gridCause',
 	xtype: 'tGridContract',
-    dstore:'-',
+	//dstore:'Contract',
 	
 	initComponent: function() {
 		var me=this;
-		me.store = me.dstore,
+		me.store = 'Contract';	//me.dstore,
 		me.features = [{ftype: 'summary'}];
 		me.columns = {	
 			items: [
@@ -16,25 +16,22 @@ Ext.define('rcm.view.laporan.GridContract', {
 				summaryRenderer: function() {
 					return Ext.String.format('TOTAL COST From Contract'); 
 				} },
-			{ header:'Jan',dataIndex:'b1',flex:1,summaryType:'sum' },
-			{ header:'Feb',dataIndex:'b2',flex:1,summaryType:'sum' },
-			{ header:'Mar',dataIndex:'b3',flex:1,summaryType:'sum' },
-			{ header:'Apr',dataIndex:'b4',flex:1,summaryType:'sum' },
-			{ header:'May',dataIndex:'b5',flex:1,summaryType:'sum' },
-			{ header:'Jun',dataIndex:'b6',flex:1,summaryType:'sum' },
-			{ header:'Jul',dataIndex:'b7',flex:1,summaryType:'sum' },
-			{ header:'Aug',dataIndex:'b8',flex:1,summaryType:'sum' },
-			{ header:'Sep',dataIndex:'b19',flex:1,summaryType:'sum' },
-			{ header:'Oct',dataIndex:'b10',flex:1,summaryType:'sum' },
-			{ header:'Nov',dataIndex:'b11',flex:1,summaryType:'sum' },
-			{ header:'Dec',dataIndex:'b12',flex:1,summaryType:'sum' },
-			{ header:'Total Contract Value',dataIndex:'jml',flex:1,summaryType:'sum' }
+			{ header:'Jan',dataIndex:'b1', width:70,align:'right',summaryType:'sum' },
+			{ header:'Feb',dataIndex:'b2', width:70,align:'right',summaryType:'sum' },
+			{ header:'Mar',dataIndex:'b3', width:70,align:'right',summaryType:'sum' },
+			{ header:'Apr',dataIndex:'b4', width:70,align:'right',summaryType:'sum' },
+			{ header:'May',dataIndex:'b5', width:70,align:'right',summaryType:'sum' },
+			{ header:'Jun',dataIndex:'b6', width:70,align:'right',summaryType:'sum' },
+			{ header:'Jul',dataIndex:'b7', width:70,align:'right',summaryType:'sum' },
+			{ header:'Aug',dataIndex:'b8', width:70,align:'right',summaryType:'sum' },
+			{ header:'Sep',dataIndex:'b9', width:70,align:'right',summaryType:'sum' },
+			{ header:'Oct',dataIndex:'b10',width:70,align:'right',summaryType:'sum' },
+			{ header:'Nov',dataIndex:'b11',width:70,align:'right',summaryType:'sum' },
+			{ header:'Dec',dataIndex:'b12',width:70,align:'right',summaryType:'sum' },
+			{ header:'Total Contract Value',dataIndex:'tot',flex:1,align:'right',summaryType:'sum' }
 		]};
 		
 		me.callParent(arguments);
-		me.addEvents(
-			'gridCauseFilter',
-			'clrChartCause'
-        );
+		//me.addEvents();
 	}
 });
