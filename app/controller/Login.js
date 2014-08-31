@@ -100,13 +100,14 @@ Ext.define('rcm.controller.Login', {
 			data.save({
 				success: function(respon, operation) {
 					var res = operation.request.scope.reader.jsonData["rule"];
+					/*
 					Ext.MessageBox.show({
 						title : 'Login Info',
 						msg   : 'Selamat Datang '+res.session,
 						buttons: Ext.MessageBox.OK,
 						icon  : Ext.MessageBox.INFO
 					});
-					
+					//*/
 					Ext.getCmp('p_login').setVisible(false);
 					Ext.getCmp('p_logout').setVisible(true);
 					Ext.getCmp('t_welcome').setText('Selamat Datang '+res.session);

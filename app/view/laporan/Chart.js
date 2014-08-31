@@ -6,7 +6,7 @@ Ext.define('rcm.view.laporan.Chart', {
 	//alias: 'widget.tabChart',
     requires: [
 		//'rcm.view.laporan.SapChartDet',
-		'rcm.view.laporan.EPO'
+		 'rcm.view.laporan.EPO'
 		,'rcm.view.laporan.WOComp'
 		,'rcm.view.laporan.SapHistori'
 		,'rcm.view.laporan.SapChartDet'
@@ -15,16 +15,8 @@ Ext.define('rcm.view.laporan.Chart', {
 		,'rcm.view.laporan.ConMon'
 		,'rcm.view.laporan.PanelSap'
 		,'rcm.view.laporan.FilterSap'
-		//'laporan.Chart',
-        //'rcm.view.laporan.UploadFile',
-        //'laporan.SapCause',
-        //'laporan.SapDamage',
-        //'laporan.SapOPart',
-        //'laporan.GridCause',
-        //'laporan.GridCauseInfo',
         ,'rcm.view.laporan.WOComp'
-        //'laporan.EPO',
-		//'laporan.SapHistori',
+        ,'rcm.view.laporan.OrderCostSap'
     ],
     
 	initComponent: function() {
@@ -49,6 +41,11 @@ Ext.define('rcm.view.laporan.Chart', {
 				xtype:'tpSapHistori',
 				//xtype: 'tHistori',
 				dstore: 'SapHistori'
+			},{
+				
+				id: 'ts_oc',
+				title: 'Order Cost',
+				xtype: 'tpSapOCost'
 			},{
 				id: 'ts_ca',
 				title: 'Cause',

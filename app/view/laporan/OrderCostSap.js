@@ -1,18 +1,13 @@
 /* Afrendy Bayu, 25Nov2013 */
 
-Ext.define('rcm.view.laporan.PanelSap', {
+Ext.define('rcm.view.laporan.OrderCostSap', {
     extend: 'Ext.panel.Panel',
     //alias: 'widget.isiFormGagal',
-	xtype: 'tpSapHistori',
+	xtype: 'tpSapOCost',
 	require: [
-		'rcm.view.laporan.FilterSap'
+		//'rcm.view.laporan.FilterSap'
 	],
-	
-	layout: {
-		type: 'fit',
-		align: 'stretch'
-	},
-	
+	/*
 	dockedItems: [{
 		dock: 'top',
 		idThn: 'iThnH',
@@ -25,7 +20,11 @@ Ext.define('rcm.view.laporan.PanelSap', {
 		xtype: 'tFSap'
 		
 	}],
-
+	//*/
+	layout: {
+		type: 'vbox',
+		align: 'stretch'
+	},
 	defaults: {
 		flex: 1,
 		hideLabel: true
@@ -36,14 +35,13 @@ Ext.define('rcm.view.laporan.PanelSap', {
 		var me=this;
 		
 		me.items= [{
-			//iconCls: 'Reliability',
-			xtype: 'tHistori',
-			//flex: 1,
-			dstore: me.dstore
-		/*
+			xtype: 'tGridOrderC',
+			flex: 1,
+			title: 'Order Costing (WO Type)'
 		},{
-			xtype: 'label'
-		//*/
+			xtype: 'tGridOrderC',
+			flex: 1,
+			title: 'Order Costing (Object Type)'
 		}];
 		me.callParent(arguments);
 		

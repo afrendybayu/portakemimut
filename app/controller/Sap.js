@@ -49,7 +49,7 @@ Ext.define('rcm.controller.Sap', {
 			autoCreate: true
 		},{
 			ref : 'taskConMon',
-			selector : 'taskConMon',
+			selector : 'taskConMon'
 	}],
     
     init: function() {
