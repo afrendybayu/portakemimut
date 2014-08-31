@@ -18,6 +18,7 @@ Ext.define('rcm.view.laporan.Chart', {
         ,'rcm.view.laporan.WOComp'
         ,'rcm.view.laporan.OrderCostSap'
         ,'rcm.view.laporan.GridOrderC'
+        ,'rcm.view.laporan.GridContract'
     ],
     
 	initComponent: function() {
@@ -62,6 +63,14 @@ Ext.define('rcm.view.laporan.Chart', {
 				jdl: 'PM Activity Planned Cost',
 				param: 'PM Cost',
 				yNama: 'Cost'
+			},{
+				id: 'ts_ct',
+				title: 'Maintenance Cost From Contract',
+				xtype: 'tGridContract',
+				dstore: 'SapPMCost',
+				//jdl: 'PM Activity Planned Cost',
+				//param: 'PM Cost',
+				//yNama: 'Cost'
 			},{
 				id: 'ts_ca',
 				title: 'Cause',

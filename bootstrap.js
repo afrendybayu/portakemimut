@@ -939,9 +939,11 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.SapMwc": [],
   "rcm.model.SapOPart": [],
   "rcm.model.SapOType": [],
+  "rcm.model.SapOcPs": [],
   "rcm.model.SapSpeedo": [],
   "rcm.model.SapSymptom": [],
   "rcm.model.SapThn": [],
+  "rcm.model.SapTop": [],
   "rcm.model.UnsetSesi": [],
   "rcm.store.Aksi": [],
   "rcm.store.AvGroup": [],
@@ -984,9 +986,15 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.SapOPart": [],
   "rcm.store.SapOPartInfo": [],
   "rcm.store.SapOType": [],
+  "rcm.store.SapOrderCot": [],
+  "rcm.store.SapOrderCwo": [],
+  "rcm.store.SapPMCost": [],
+  "rcm.store.SapPsOCot": [],
+  "rcm.store.SapPsOCwo": [],
   "rcm.store.SapSymptom": [],
   "rcm.store.SapSymptomInfo": [],
   "rcm.store.SapThn": [],
+  "rcm.store.SapTop10": [],
   "rcm.store.SpAvGcUt": [],
   "rcm.store.SpAvGsUt": [],
   "rcm.store.SpAvPmUt": [],
@@ -1036,13 +1044,16 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.laporan.GridCause": [],
   "rcm.view.laporan.GridCauseInfo": [],
   "rcm.view.laporan.GridConMon": [],
+  "rcm.view.laporan.GridOrderC": [],
   "rcm.view.laporan.GridWork": [],
+  "rcm.view.laporan.OrderCostSap": [],
   "rcm.view.laporan.PanelSap": [],
   "rcm.view.laporan.SapCause": [],
   "rcm.view.laporan.SapChartDet": [],
   "rcm.view.laporan.SapDamage": [],
   "rcm.view.laporan.SapHistori": [],
   "rcm.view.laporan.SapOPart": [],
+  "rcm.view.laporan.SapPie": [],
   "rcm.view.laporan.SpeedoSap": [],
   "rcm.view.laporan.UploadFile": [],
   "rcm.view.laporan.WOComp": [],
@@ -2115,9 +2126,11 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.SapMwc": [],
   "rcm.model.SapOPart": [],
   "rcm.model.SapOType": [],
+  "rcm.model.SapOcPs": [],
   "rcm.model.SapSpeedo": [],
   "rcm.model.SapSymptom": [],
   "rcm.model.SapThn": [],
+  "rcm.model.SapTop": [],
   "rcm.model.UnsetSesi": [],
   "rcm.store.Aksi": [],
   "rcm.store.AvGroup": [],
@@ -2160,9 +2173,15 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.SapOPart": [],
   "rcm.store.SapOPartInfo": [],
   "rcm.store.SapOType": [],
+  "rcm.store.SapOrderCot": [],
+  "rcm.store.SapOrderCwo": [],
+  "rcm.store.SapPMCost": [],
+  "rcm.store.SapPsOCot": [],
+  "rcm.store.SapPsOCwo": [],
   "rcm.store.SapSymptom": [],
   "rcm.store.SapSymptomInfo": [],
   "rcm.store.SapThn": [],
+  "rcm.store.SapTop10": [],
   "rcm.store.SpAvGcUt": [],
   "rcm.store.SpAvGsUt": [],
   "rcm.store.SpAvPmUt": [],
@@ -2278,9 +2297,15 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.gridConMon",
     "widget.tGridConMon"
   ],
+  "rcm.view.laporan.GridOrderC": [
+    "widget.tSapOrderC"
+  ],
   "rcm.view.laporan.GridWork": [
     "widget.gridWork",
     "widget.tGridWork"
+  ],
+  "rcm.view.laporan.OrderCostSap": [
+    "widget.tpSapOCost"
   ],
   "rcm.view.laporan.PanelSap": [
     "widget.tpSapHistori"
@@ -2299,6 +2324,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.laporan.SapOPart": [
     "widget.opartchart"
+  ],
+  "rcm.view.laporan.SapPie": [
+    "widget.tSapPie"
   ],
   "rcm.view.laporan.SpeedoSap": [
     "widget.tSapSpeedo"
