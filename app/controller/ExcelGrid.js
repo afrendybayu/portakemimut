@@ -281,15 +281,39 @@ Ext.define('rcm.controller.ExcelGrid', {
 	},
 	
 	buildFormGagal: function(e)	{
-
-		var me = this,
+		var me = this;
+		var DSesi = me.getLoginSesiStore();
+		DSesi.load({
+			scope: this,
+			callback: function(records, operation, success) {
+				var res = operation.request.scope.reader.jsonData["sesi"];
+				if (res.akses == 0){
+					//console.log('masuk sebagai admin');
+					//rcmSettings.eeee = me;
+					me.getExcelgrid().ngedit = 1;
+					//
+				}
+				else{
+					//console.log('tidak jelas');
+					me.getExcelgrid().ngedit = 0;
+					//tFG.hide();
+					return;
+				}
+				// the operation object
+				// contains all of the details of the load operation
+				//console.log(res.nama);
+			}
+		});
+		
+		var	go = 0,
             tFG = me.getTaskFormGagal(),
 			form =  tFG.down('form').getForm(),
 			sDG = Ext.create('rcm.model.DaftarGagal'),
 			dRHs = me.getRunningHourStore().getAt(e.rowIdx).data,
 			dRHsJ = dRHs.eq+" @"+dRHs.Lokasi;
 			//DSesi = Ext.create('rcm.model.LoginSesi');
-			
+		
+		
 		
 		sDG.set('eq',rcmSettings.eqx); sDG.set('nama',dRHsJ); 
 		sDG.set('downt',rcmSettings.tgl); //sDG.set('server','rcmSettings.server');
@@ -317,7 +341,9 @@ Ext.define('rcm.controller.ExcelGrid', {
 
 		//tFG.setWidth(500);
 		// tFG.show();
+		tFG.show();
 		// tFG.hide()
+		/*
 		var DSesi = me.getLoginSesiStore();
 		DSesi.load({
 			scope: this,
@@ -339,7 +365,8 @@ Ext.define('rcm.controller.ExcelGrid', {
 				// contains all of the details of the load operation
 				//console.log(res.nama);
 			}
-		});//*/
+		});
+		//*/
 		
 		
 		me.getEquipStore().load({ params:{unit:dRHs.id} });
