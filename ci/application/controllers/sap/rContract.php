@@ -46,10 +46,17 @@ class rContract extends CI_Controller {
 			//print_r($oo); echo "<br/><br/>";
 			//*
 			for ($i=0; $i<count($oo); $i++)	{
-				//echo $oo[$i]->m."<br/>";
-				$hsl[$i] = $oo[$i];
+				$hsl[$oo[$i]->m-1] = $oo[$i];
+				$hsl[$oo[$i]->m-1]->bln = nmMonth($oo[$i]->m-1,1);
+				/*
+				if ($hsl[$i]->m==($i+1)) {
+					echo $oo[$i]->m.", ".($i+1)."<br/>";
+					$hsl[$i] = $oo[$i];
+				}
 				$hsl[$i]->bln = nmMonth($i,1);
+				//*/
 			}
+			//echo "<br/><br/>";	print_r($oo); echo "<br/><br/>";
 			//*/
 			$jsonResult = array(
 				'success' => true,

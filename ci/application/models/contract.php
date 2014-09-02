@@ -28,13 +28,13 @@ class Contract extends CI_Model {
 	
 	function get_grafikcontrak($thn)	{
 		$sql =	"SELECT bulan AS m, ".
-				"IFNULL((CASE WHEN tipe = 5 THEN nilai END),0) gc, ".
-				"IFNULL((CASE WHEN tipe = 7 THEN nilai END),0) gs, ".
-				"IFNULL((CASE WHEN tipe = 6 THEN nilai END),0) pm ".
-				"FROM ".
-				"	(	SELECT tipe, bulan, nilai, tahun ".
-				"		FROM contract ".
-				"	) b WHERE tahun = $thn GROUP BY bulan ";
+				"IFNULL(GROUP_CONCAT(CASE WHEN tipe=5 THEN nilai end),0) gc, ".
+				"IFNULL(GROUP_CONCAT(CASE WHEN tipe=7 THEN nilai end),0) gs, ".
+				"IFNULL(GROUP_CONCAT(CASE WHEN tipe=6 THEN nilai end),0) pm ".
+				"FROM contract ".
+				"WHERE tahun = $thn ".
+				"GROUP BY bulan ".
+				"ORDER BY bulan  ASC";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
