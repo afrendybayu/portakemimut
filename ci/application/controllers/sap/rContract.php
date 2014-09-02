@@ -25,6 +25,46 @@ class rContract extends CI_Controller {
 		
 		echo json_encode($jsonResult);
 	}
+	
+	public function sapGrContract()	{
+		try {
+			$thn = $this->input->get('tgl')?:date('Y');
+			$this->load->model('contract');
+			
+			$hsl = array();
+			for ($i=0; $i<12; $i++)	{
+				$obj = new stdClass();
+				$obj->m = $i+1;
+				$obj->bln = nmMonth($i,1);
+				$obj->gc = 0;
+				$obj->gs = 0;
+				$obj->pm = 0;
+				array_push($hsl,$obj);
+			}
+			
+			$oo = $this->contract->get_grafikcontrak($thn);
+			//print_r($oo); echo "<br/><br/>";
+			//*
+			for ($i=0; $i<count($oo); $i++)	{
+				//echo $oo[$i]->m."<br/>";
+				$hsl[$i] = $oo[$i];
+				$hsl[$i]->bln = nmMonth($i,1);
+			}
+			//*/
+			$jsonResult = array(
+				'success' => true,
+				'contract' => $hsl
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+	}
 
 }
 

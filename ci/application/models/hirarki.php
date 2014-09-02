@@ -46,6 +46,15 @@ class Hirarki extends CI_Model {
 		//*/
 	}
 	
+	function get_parent_all(){
+		$sql =	"SELECT 0 AS id, 'ALL' AS nama, 'ALL' AS kode UNION ".
+				"(SELECT id, nama, kode FROM hirarki WHERE parent=0 ORDER BY nama ASC)";
+		//echo "sql: $sql<br/>";
+		$query = $this->db->query($sql);
+		return $query->result();
+	
+	}
+	
 	function get_unitlokasi($unit){
 		$sql = "select  h1.nama as lokasi, h3.nama as unit, concat('l',h1.id,'u', h3.id ) as lok_unit from hirarki h1
 				left join hirarki h2 on h1.id = h2.parent

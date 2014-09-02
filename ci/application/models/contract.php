@@ -24,6 +24,20 @@ class Contract extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
+	
+	
+	function get_grafikcontrak($thn)	{
+		$sql =	"SELECT bulan AS m, ".
+				"IFNULL((CASE WHEN tipe = 5 THEN nilai END),0) gc, ".
+				"IFNULL((CASE WHEN tipe = 7 THEN nilai END),0) gs, ".
+				"IFNULL((CASE WHEN tipe = 6 THEN nilai END),0) pm ".
+				"FROM ".
+				"	(	SELECT tipe, bulan, nilai, tahun ".
+				"		FROM contract ".
+				"	) b WHERE tahun = $thn GROUP BY bulan ";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 }
 
 /* End of file contract.php */

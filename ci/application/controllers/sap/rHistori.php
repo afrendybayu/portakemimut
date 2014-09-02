@@ -102,7 +102,7 @@ class rHistori extends CI_Controller {
 	public function getMwcSap()	{
 		//*
 		try {
-			//*
+			/*
 			$hsl = array();
 			$obj = new stdClass();
 			$obj->mwc = "ALL";
@@ -113,11 +113,12 @@ class rHistori extends CI_Controller {
 			for($i=0; $i<$jml; $i++)	{
 				array_push($hsl, $mwc[$i]);
 			}
-
+			//*/
 			//print_r($hsl);
 			$jsonResult = array(
 				'success' => true,
-				'sapmwc' => $hsl
+				//'sapmwc' => $hsl
+				'sapmwc' => $this->sap->get_mwc()
 			);
 		}	
 		catch (Exception $e)	{
@@ -133,6 +134,7 @@ class rHistori extends CI_Controller {
 	public function getOTypeSap()	{
 		//*
 		try {
+			/*
 			$hsl = array();
 			$obj = new stdClass();
 			$obj->otype ="ALL";
@@ -144,9 +146,11 @@ class rHistori extends CI_Controller {
 				array_push($hsl, $otype[$i]);
 			}
 			//print_r($hsl);
+			//*/
 			$jsonResult = array(
 				'success' => true,
-				'sapotype' => $hsl
+				//'sapotype' => $hsl
+				'sapotype' => $this->sap->get_ordertype()
 			);
 			//*/
 		}	
@@ -165,7 +169,7 @@ class rHistori extends CI_Controller {
 	public function getLocSap()	{
 		try {
 			$this->load->model("hirarki");
-			
+			/*
 			$hsl = array();
 			$obj = new stdClass();
 			$obj->nama = $obj->kode = "ALL";
@@ -175,14 +179,16 @@ class rHistori extends CI_Controller {
 			
 			$loc = $this->hirarki->get_parent();
 			$jml = count($loc);
-			//*/
+			
 			for($i=0; $i<$jml; $i++)	{
 				array_push($hsl, $loc[$i]);
 			}
 			//print_r($hsl);
+			//*/
 			$jsonResult = array(
 				'success' => true,
-				'saploc' => $hsl
+				//'saploc' => $hsl
+				'saploc' => $this->hirarki->get_parent_all()
 			);
 			//*/
 		}	
