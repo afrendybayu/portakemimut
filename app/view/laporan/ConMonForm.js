@@ -55,7 +55,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 			},{
 				xtype		:'textfield',
 				emptyText 	: 'url Link Laporan',
-				name		: 'lap',
+				name		: 'url',
 				flex : 1
 			},{
 				xtype		:'textfield',

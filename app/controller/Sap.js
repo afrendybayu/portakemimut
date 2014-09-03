@@ -83,53 +83,41 @@ Ext.define('rcm.controller.Sap', {
 	},
 		
 	simpanconmon : function(){
-		/*var me = this,
-            form = me.getTaskForm(),
-            basicForm = form.getForm(),
-            formEl = form.getEl(),
-            titleField = form.getForm().findField('title'),
-            task = Ext.create('SimpleTasks.model.Task');
-		console.log(titleField.getValue());
-        // require title field to have a value
-        if(!titleField.getValue()) {
-            return;
-        }*/
-        
-		
 		
 		var me = this,
 			form = me.getTaskConMon(),
             basicForm = form.getForm(),
             formEl = form.getEl(),
-            tgl 	= basicForm.findField('tgl'),
+            tgl		= basicForm.findField('tgl'),
 			lokasi 	= basicForm.findField('lokasi'),
 			unit 	= basicForm.findField('unit'),
-            cmon 	= Ext.create('rcm.model.ConMonIn');
+			cmon 	= Ext.create('rcm.model.ConMonIn');
+		   
 			
 			// console.log(tgl.getValue()+'->'+lokasi.getValue()+'->'+unit.getValue());
+			console.log(tgl);
+			console.log(lokasi);
+			console.log(unit);
+			console.log(cmon);
+			basicForm.updateRecord(cmon);
 			
-		if(!tgl.getValue()&& lokasi.getValue()&&unit.getValue()) {
+		if(!tgl.getValue()&&!lokasi.getValue()&&!unit.getValue()) {
             return;
         }
 		
-		form.items.each(function(item) {
-            var inputEl = item.getEl().down('input')
-            if(inputEl) {
-                inputEl.blur();
-            }
-        });
-		
 		cmon.save({
             success: function(cmon, operation) {
-                console.log(cmon);
-				me.getConMonInStore().add(cmon);
-				//me.refreshFiltersAndCount();
-                // me.getConMonInStore().sort();
-                basicForm.reset();
-                lokasi.focus();
-               // formEl.unmask();*/
+                me.getConMonInStore().add(cmon);
+                me.getConMonStore().load();
+				basicForm.reset();
+				me.getConMonInStore().load();
+				// me.refreshFiltersAndCount();
+                /*me.getTasksStore().sort();
+                titleField.reset();
+                titleField.focus();
+                formEl.unmask();//*/
             },
-            failure: function(cmon, operation) {
+            failure: function(task, operation) {
                 var error = operation.getError(),
                     msg = Ext.isObject(error) ? error.status + ' ' + error.statusText : error;
 
@@ -142,79 +130,13 @@ Ext.define('rcm.controller.Sap', {
                 formEl.unmask();
             }
         });
+			
+			
 		
 	},
 						
 						
-						/*if(e.getKey()==e.ENTER){  
-							// Ext.Msg.alert('Keys','You pressed the Enter key');  
-							console.log('Login dengan enter');
-							// rcmSettings.kkkkk = f;
-							// rcmSettings.kkkkkw = e;
-							
-							var me = this;
-							var frm 	= f.up('form').getForm(),
-								date	= frm.getValues().tgl,
-								loc		= frm.getValues().lokasi,
-								unit	= frm.getValues().unit,
-								wo		= frm.getValues().wo,
-								sap		= frm.getValues().sap,
-								lap		= frm.getValues().lap,
-								pic		= frm.getValues().pic,
-								ket		= frm.getValues().ket;
-								
-								// rcmSettings.unit = lokasi;
-								// rcmSettings.lockk = unit;
-							console.log (date+', '+loc+', '+unit+', '+wo+', '+sap+', '+lap+', '+pic+', '+ket);
-							var cmon = new rcm.model.ConMonIn({ tgl:date, lokasi:loc, unit:unit, wo:wo, sap:sap, url:lap, pic:pic, ket:ket});
-							
-							if (frm.isValid()) {
-								cmon.save({
-									success: function(respon, operation) {
-										//var res = operation.request.scope.reader.jsonData["rule"];
-										
-										console.log(res.date+'->'+res.loc+'->'+res.unit);
-										/*
-										Ext.MessageBox.show({
-											title : 'Login Info',
-											msg   : 'Selamat Datang '+res.session,
-											buttons: Ext.MessageBox.OK,
-											icon  : Ext.MessageBox.INFO
-										});
-										
-										Ext.getCmp('p_login').setVisible(false);
-										Ext.getCmp('p_logout').setVisible(true);
-										Ext.getCmp('t_welcome').setText('Selamat Datang '+res.session);
-										Ext.getCmp('griddel').setVisible(true);
-										Ext.getCmp('gridedit').setVisible(true);
-										Ext.getCmp('btnUplBpm3').setDisabled(false);
-										Ext.getCmp('bwbpm3').setDisabled(false);
-										
-										me.getExcelgrid().ngedit = 1;
-										// rcmSettings.aaaaa = Ext.getCmp('grid_edit1111');	
-										/*	var me 	= this,
-												uFG = me.getTaskFormGagal();
-												uFG.show();
-										*/
-										
-								/*	},
-									failure : function(respon, operation){
-										console.log('salah input');
-										/*Ext.MessageBox.show({
-											title : 'Login Info',
-											msg   : 'Silahkan Login Kembali, Username atau Password tidak Terdaftar',
-											buttons: Ext.MessageBox.OK,
-											icon  : Ext.MessageBox.WARNING
-										});*/
-								/*	}
-								});
-								// rcmSettings.aaaaa = pesan;	
-								frm.reset();
-							} 
-							
-							
-						}
-	},  */
+						
 	
 	pilihComboParent: function(records){
 		var loc = records.getValue(), combounit = this.getCbUnitStore();

@@ -123,39 +123,43 @@ class rConMon extends CI_Controller {
 	}
 	
 	public function createCMon(){
-		try{
-			$log = json_decode(file_get_contents('php://input'));
-			echo $log->lokasi .' dan '.$log->unit;
-			/*
-			if (isset ($log->loc) && isset($log->unit)){
-				
-				$query = $this->login->ValidLogin($log->userid,$log->pass);
-				
-				foreach ($query->result() as $row){
-					$sesi = array('nama' =>$row->nama,'level' => $row->akses );
-					$this->session->set_userdata('log_sesi',$sesi);
-					$session_data = $this->session->userdata('log_sesi'); //sesi
-					$jsonResult = array(
-						'success' 	=> true,
-						'rule' => array ('level' => $session_data['level'],'session' => $session_data['nama'] )
-					);
-				}
-			}
-			
-			else{
-				$jsonResult = array(
-					'success' => false,
-					'rule' => 'Gagal Login'
-				);	
-			}
-			echo json_encode($jsonResult);
-*/			
-			
-		}
-		catch(Exception $e){
 		
+		try {
+			$conmon = json_decode(file_get_contents('php://input'));
+			
+			// echo $conmon->lokasi.'-'.$params->unit.'</br>';
+			
+			$data = array(
+			   'tgl' 	=> $conmon->tgl ,
+			   'lokasi' => $conmon->lokasi ,
+			   'unit' 	=> $conmon->unit,
+			   'wo'		=> $conmon->wo,
+			   'sap'	=> $conmon->sap,
+			   'url'	=> $conmon->url,
+			   'pic'	=> $conmon->pic,
+			   'ket'	=> $conmon->ket
+			);
+
+			$this->db->insert('conmon', $data); 
+			
+			
+
+			/*if(!$statement->execute()) {
+				throw new Exception(implode(', ', $statement->errorInfo()));
+			}
+			$params->id = $db->lastInsertId();*/
+			/*$jsonResult = array(
+				'success' => true,
+				'condmon' => $params
+			);*/
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
 		}
-	
+
+		// echo json_encode($jsonResult);
 	}
 	
 }
