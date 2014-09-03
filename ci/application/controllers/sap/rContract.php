@@ -36,9 +36,9 @@ class rContract extends CI_Controller {
 				$obj = new stdClass();
 				$obj->m = $i+1;
 				$obj->bln = nmMonth($i,1);
-				$obj->gc = 0;
-				$obj->gs = 0;
-				$obj->pm = 0;
+				$obj->gc = '0';
+				$obj->gs = '0';
+				$obj->pm = '0';
 				array_push($hsl,$obj);
 			}
 			

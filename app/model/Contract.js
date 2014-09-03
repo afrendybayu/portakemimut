@@ -22,7 +22,8 @@ Ext.define('rcm.model.Contract', {
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/sap/rContract/sapContract'
+			read: 'ci/index.php/sap/rContract/sapContract',
+			update: 'ci/index.php/sap/uContract'
         },
         reader: {
             type: 'json',

@@ -11,6 +11,7 @@ Ext.define('rcm.controller.Sap', {
 		//,'laporan.FilterMaint'
 		,'laporan.ConMonForm'
 		,'laporan.SapPie'
+		,'laporan.GridContract'
     ],
 
     controllers: [
@@ -29,11 +30,11 @@ Ext.define('rcm.controller.Sap', {
 		,'SapHistori','ConMon','ConMonIn','CbParent'
 		
 		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10'
-		,'Contract','ContractLine'
+		,'Contract','ContractLine', 'ContractInput'
     ],
     
     models: [
-		//'Hirarki',
+		'ContractInput'
     ],
     
     refs: [{
@@ -42,6 +43,9 @@ Ext.define('rcm.controller.Sap', {
 		},{
 			ref: 'tFSap',
 			selector: 'tFSap'
+		},{
+			ref: 'tGridContract',
+			selector: 'tGridContract'
 		},{
 			ref: 'taskGridCause',
 			selector: 'taskGridCause',
@@ -86,9 +90,12 @@ Ext.define('rcm.controller.Sap', {
 			'#btnCariSM' : {
 				click: me.cariSapMaint
 			},
-			'#cbparent1':{
+			'#cbparent1': {
 				select : me.pilihComboParent,
 				change : me.dipilihpilih
+			},
+			'tGridContract': {
+				recordedit: me.ubahKontrak
 			}
 		});
     },
@@ -249,6 +256,37 @@ Ext.define('rcm.controller.Sap', {
 	
 	hdUplCM: function(btn)		{
 		
+	},
+	
+	ubahKontrak: function( nilai,bln,tipe,thn )	{
+		var kont = new rcm.model.ContractInput({
+			nilai:nilai,bln:bln,tipe:tipe
+        });
+        
+        /*
+        Ext.MessageBox.show({
+			title: 'Update Task Failed',
+                    
+		});
+        //*/
+        kont.save({
+			success: function(respon, operation) {
+				var resp = operation.request.scope.reader.jsonData["tasks"];
+				
+			},
+			failure: function(task, operation) {
+                var error = operation.getError(),
+                    msg = Ext.isObject(error) ? error.status + ' ' + error.statusText : error;
+
+                Ext.MessageBox.show({
+                    title: 'Update Contract Cost Failed',
+                    msg: msg,
+                    icon: Ext.Msg.ERROR,
+                    buttons: Ext.Msg.OK
+                });
+            }
+			
+		});
 	}
 	
 });
