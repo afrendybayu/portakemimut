@@ -38,6 +38,36 @@ class Contract extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
+
+	function uicontract($val, $bln, $tipe, $thn)	{
+		$sql = "call iucontract('$val','$bln','$tipe','$thn')";
+		//echo "sql: $sql<br/>";
+		$hsl = new stdClass();
+		$l1=0; $l2 = 0;
+		if (mysqli_multi_query($this->db->conn_id,$sql))	{
+			do    {
+				//$l1++;
+				// Store first result set
+				if ($result=mysqli_store_result($this->db->conn_id))	{
+					while ($row=mysqli_fetch_row($result))	{
+						//$l2++;
+						//printf("%s\n",$row['pid']);
+						//$hsl = $row;
+						$hsl->st = $row[0];
+						$hsl->id = $row[1];
+						//array_push($hsl, $row);
+						//print_r($row); echo "<br/>";
+					}
+					mysqli_free_result($result);
+				}
+			}
+			while (mysqli_next_result($this->db->conn_id));
+		}
+		
+		//echo "l1: $l1, l2: $l2<br/>";
+		return array($hsl);
+	}
+
 }
 
 /* End of file contract.php */

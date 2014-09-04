@@ -187,7 +187,7 @@ Ext.define('rcm.controller.Sap', {
 		console.log(ll);
 	},
 
-	ubahLabelWO: function()	{
+	ubahLabelWO: function(p)	{
 		var me=this;
 		var combost = me.getCbUnitStore();
 		//console.log("onLauch SAP");
@@ -333,7 +333,8 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	ubahKontrak: function( nilai,bln,tipe,thn )	{
-		var kont = new rcm.model.ContractInput({
+		var me=this,
+			kont=new rcm.model.ContractInput({
 			nilai:nilai,bln:bln,tipe:tipe,thn:thn
         });
         
@@ -346,7 +347,10 @@ Ext.define('rcm.controller.Sap', {
         kont.save({
 			success: function(respon, operation) {
 				var resp = operation.request.scope.reader.jsonData["tasks"];
-				
+				rcmSettings.yyyyyy = resp;
+				//console.log("sukses: "+resp + ", id: "+resp[0].id);
+				me.getContractStore().load();
+				me.getContractLineStore().load();
 			},
 			failure: function(task, operation) {
                 var error = operation.getError(),

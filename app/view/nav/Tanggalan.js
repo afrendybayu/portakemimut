@@ -5,7 +5,7 @@ Ext.define('rcm.view.nav.Tanggalan', {
 	minHeight: 75,
 	//height: 100,
 	layout: 'fit',
-	todayText : 'Hari ini',
+	//todayText : 'Hari ini',
 
 //*
     initComponent: function() {

@@ -4,10 +4,12 @@ class cContract extends CI_Controller {
 	
 	public function index()	{
 		try	{
-			//$params = json_decode(file_get_contents('php://input'));
+			$params = json_decode(file_get_contents('php://input'));
+			/*
 			$params->bln = 'b4';
-			$params->bln = '2014';
+			$params->thn = '2014';
 			$params->nilai = 134;
+			$params->tipe = 5;
 			//print_r($params); echo "<br/>";
 			//*/
 			if (!isset($params))	{
@@ -24,8 +26,9 @@ class cContract extends CI_Controller {
 			$thn = (isset($params->thn))?$params->thn:date('Y');
 
 			$this->load->model('contract');
-			$this->contract->uicontract($nilai, $bln, $);
+			$hasil = $this->contract->uicontract(floatval($params->nilai), $bln, $params->tipe, $params->thn);
 			
+			//print_r($hasil);
 			$jsonResult = array(
 				'success' => true,
 				'tasks' => $hasil

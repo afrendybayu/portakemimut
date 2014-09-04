@@ -7,6 +7,7 @@ class rConMon extends CI_Controller {
 		$this->load->model('hirarki');
 	}
 	public function ReadCMon()	{
+		$jsonResult = array();
 		try {
 			$hsl = $this->cmon->get_conmon();
 			
