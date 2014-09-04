@@ -11,82 +11,38 @@ Ext.define('rcm.view.laporan.ConMon', {
 		//'rcm.view.laporan.EPOPie'
 
 	],
-	border : 0,
-	layout: {
-		type: 'vbox',
-		align: 'stretch'
-	},
-	defaults: {
-		flex: 1,
-		// hideLabel: true
-	},
-
+	layout: 'border',
     items: [{
-		xtype: 'container',
-		// html : 'isi container',
-		layout: {
-			type: 'vbox',
-			align: 'stretch'
-        },//*/
-		items:[{
-			xtype: 'panel',
-			dockedItems:{
-				xtype : 'toolbar',
-				items : [{
-					xtype:'text',
-					text : 'Schedule Condition Monitoring'
-				},'->',{
-					xtype: 'button',
-					iconCls : 'cog',
-					text : 'Upload Data',
-					
-				},{
-					xtype: 'button',
-					iconCls : 'add',
-					// margin : '0 0 0 800',
-					text : 'Tambah',
-					
-				}]
-				
-			
-			},
-			//height: 120,
-			flex: 1,
-			layout: {
-				type: 'hbox',
-				align: 'stretch'
-			},
-			items: [{
-					xtype: 'tGridConMon',
-					// width : 200,
-					 flex: 1
-				},{
-					xtype: 'iConMon',
-					flex: 4
-				
-			}]//*/
-		},{
-			xtype: 'container',
-			flex: 1,
-			title : 'panel2',
-			layout: {
-				type: 'hbox',
-				align: 'stretch'
-			},
-			items: [{
-					xtype: 'panel',
-					title : '1',
-					flex: 1,
-					// jdl: 'Work Order Number'
-				},{
-					xtype: 'panel',
-					title : '2',
-					flex: 1
-				},{
-					xtype: 'panel',
-					title : '3',
-					flex: 1
-			}]
-		}]//*/
-	}]
+        title: 'Grafik',
+        region: 'south',     
+        xtype: 'panel',
+        height: 100,
+        split: true,        
+        colapsible : true,
+		floatable: true,
+        margins: '0 5 5 5'
+    },{
+   
+        region:'west',
+        xtype: 'panel',
+        margins: '5 0 0 5',
+        width: 200,
+		split : true,
+        layout: 'fit',
+		items : [{
+			xtype : 'tGridConMon'
+		}]
+		
+    },{
+       
+        region: 'center',    
+        xtype: 'panel',
+        layout: 'fit',
+        margins: '5 5 0 0',
+		items : [{
+			xtype : 'iConMon'
+		}]
+    }]
+	
+
 });
