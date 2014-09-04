@@ -1,14 +1,33 @@
 // afrendyBayu,26Jan2014 //
 Ext.define('rcm.view.laporan.EPO', {
     xtype: 'tEPO',
-	extend: 'Ext.container.Container',
+	//extend: 'Ext.container.Container',
+	extend: 'Ext.form.Panel',
 
 	requires: [
 		'rcm.view.laporan.EPOCol'
 		,'rcm.view.laporan.EPOPie'
-	//	,'rcm.view.laporan.SpeedoSap'
+		,'rcm.view.laporan.FilterSap'
 	//	'rcm.view.laporan.WOStack'
 	],
+	
+	dockedItems: [{
+		dock: 'top',
+		idThn: 'iThnM',
+		idLok: 'iLokM',
+		idWoT: 'iWoTM',
+		idMtAc: 'iMtAcM',
+		idbSr: 'btnCariSM',
+		idbCl: 'btnClearSM',
+		lThn: '<b>Tahun</b>',
+		xtype: 'tFSap'
+		//xtype: 'tFMaint'
+	/*
+	},{
+		dock: 'top',
+		xtype: 'tFMaint'
+	//*/
+	}],
 	
 	layout: {
 		type: 'vbox',

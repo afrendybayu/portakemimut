@@ -21,6 +21,8 @@ Ext.define('rcm.view.Content', {
     initComponent: function() {
 		var me=this;
 		me.items = [{
+		//*
+
 			id: 'tu_ho',
 			title: 'Dashboard Home',
 			iconCls: 'Dashboard',
@@ -30,6 +32,7 @@ Ext.define('rcm.view.Content', {
 			title: 'Reliability',
 			iconCls: 'Reliability',
 			xtype: 'tAvReChart'
+
 		},{//*/
 			id: 'tu_sap',
 			title: 'SAP Report',
@@ -93,7 +96,8 @@ Ext.define('rcm.view.Content', {
 				//	data: Ext.create('Extensible.example.calendar.data.Events')
 				//}),
 			//*/
-			/*}]
+			//*
+			}]
 		/*
 		},{
 		

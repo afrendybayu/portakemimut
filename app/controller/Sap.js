@@ -8,7 +8,11 @@ Ext.define('rcm.controller.Sap', {
         ,'laporan.UploadFile'
         ,'laporan.SpeedoSap'
         ,'laporan.GridCause'
+        ,'laporan.FilterSap'
+		//,'laporan.FilterMaint'
 		,'laporan.ConMonForm'
+		,'laporan.SapPie'
+		,'laporan.GridContract'
     ],
 
     controllers: [
@@ -21,16 +25,29 @@ Ext.define('rcm.controller.Sap', {
         ,'WoOpen7','WoOpen30','WoOpen60','WoOpenL60'
         ,'SapCause','SapDamage','SapOPart'/*,'SapSymptom'*/
 		,'SapCauseInfo','SapDamageInfo','SapOPartInfo','SapSymptomInfo'
+
+		,'SapOrderCwo','SapOrderCot'
+		,'SapThn','SapMwc','SapOType','SapLoc'
+		
+		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10'
+		,'Contract','ContractLine', 'ContractInput'
+
 		,'SapHistori','ConMon','ConMonIn','CbParent','CbUnit'
     ],
     
     models: [
-		//'Hirarki',
+		'ContractInput'
     ],
     
     refs: [{
 			ref: 'tabChart',
 			selector: 'tabChart'
+		},{
+			ref: 'tFSap',
+			selector: 'tFSap'
+		},{
+			ref: 'tGridContract',
+			selector: 'tGridContract'
 		},{
 			ref: 'taskGridCause',
 			selector: 'taskGridCause',
@@ -63,7 +80,30 @@ Ext.define('rcm.controller.Sap', {
 			'#btnUplCM': {
 				click: me.hdUplCM
 			},
+
+			'#btnClearSH': {
+				click: me.clrSapHist
+			},
+			'#btnCariSH' : {
+				click: me.cariSapHist
+			},
+			'#btnClearSM': {
+				click: me.clrSapMaint
+			},
+			'#btnCariSM' : {
+				click: me.cariSapMaint
+			},
+			/*
+			'#cbparent1': {
+				select : me.pilihComboParent,
+				change : me.dipilihpilih
+			},
+			//*/
+			'tGridContract': {
+				recordedit: me.ubahKontrak
+			},
 			'#cb_parent':{
+
 				select : me.pilihComboParent
 			},
 			'#cb_unit' : {
@@ -138,9 +178,7 @@ Ext.define('rcm.controller.Sap', {
 		
 	},
 						
-						
-						
-	
+
 	pilihComboParent: function(records){
 		var lokasi = records.getValue(), combounit = this.getCbUnitStore();
 		console.log(lokasi);	
@@ -159,6 +197,7 @@ Ext.define('rcm.controller.Sap', {
 		
 		
 	},
+<<<<<<< HEAD
 	/*pilihTypeUnit : function(records){
 		var type = records.getValue();
 		console.log(type);
@@ -166,29 +205,37 @@ Ext.define('rcm.controller.Sap', {
 	},
 */
 	ubahLabelWO: function()	{
+=======
+
+	ubahLabelWO: function(p)	{
+>>>>>>> afrendy
 		var me=this;
 		var combost = me.getCbUnitStore();
 		//console.log("onLauch SAP");
-		/*
+		//*
 		me.getWoOpen7Store().load({
+			params: p,
 			scope: this,
 			callback: function(rec) {
 				Ext.getCmp('wo3s7').setText(rec[0].get('teks'));
 			}
 		});
 		me.getWoOpen30Store().load({
+			params: p,
 			scope: this,
 			callback: function(rec) {
 				Ext.getCmp('wo7s30').setText(rec[0].get('teks'));
 			}
 		});
 		me.getWoOpen60Store().load({
+			params: p,
 			scope: this,
 			callback: function(rec) {
 				Ext.getCmp('wo30s60').setText(rec[0].get('teks'));
 			}
 		});
 		me.getWoOpenL60Store().load({
+			params: p,
 			scope: this,
 			callback: function(rec) {
 				Ext.getCmp('wo60').setText(rec[0].get('teks'));
@@ -199,7 +246,32 @@ Ext.define('rcm.controller.Sap', {
 	
 	onLaunch: function() {
 		//alert("tes");
+		this.ubahLabelWO({});
+	},
+	
+	clrSapHist: function()	{
+		this.getTFSap().resetFilter();
+		this.getSapHistoriStore().load();
+	},
+	
+	cariSapHist: function()	{
+		var o = this.getTFSap().sedotFilter();
+		//rcmSettings.ttt = o;
+		this.getSapHistoriStore().load({params: {loc:o.iL,otp:o.iW,mwc:o.iM,tgl:o.iT }});
+		//alert("o.L: "+o.iL+", oW: "+o.iW+", oM: "+o.iM+", oT: "+o.iT);
+	},
+	
+	clrSapMaint: function()	{
+		this.getTFSap().resetFilter();
 		this.ubahLabelWO();
+	},
+	
+	cariSapMaint: function()	{
+		var o = this.getTFSap().sedotFilter(),
+			p = { loc:o.iL,otp:o.iW,mwc:o.iM,taw:o.iTw,tak:o.iTk };
+		this.ubahLabelWO(p);
+		//this.getSapHistoriStore().load({params: {loc:o.iL,otp:o.iW,mwc:o.iM,tgl:o.iT }});
+		//alert("o.L: "+o.iL+", oW: "+o.iW+", oM: "+o.iM+", oT: "+o.iT);
 	},
 	
 	grafikCauseClear: function()	{
@@ -279,6 +351,41 @@ Ext.define('rcm.controller.Sap', {
 	
 	hdUplCM: function(btn)		{
 		
+	},
+	
+	ubahKontrak: function( nilai,bln,tipe,thn )	{
+		var me=this,
+			kont=new rcm.model.ContractInput({
+			nilai:nilai,bln:bln,tipe:tipe,thn:thn
+        });
+        
+        /*
+        Ext.MessageBox.show({
+			title: 'Update Task Failed',
+                    
+		});
+        //*/
+        kont.save({
+			success: function(respon, operation) {
+				var resp = operation.request.scope.reader.jsonData["tasks"];
+				rcmSettings.yyyyyy = resp;
+				//console.log("sukses: "+resp + ", id: "+resp[0].id);
+				me.getContractStore().load();
+				me.getContractLineStore().load();
+			},
+			failure: function(task, operation) {
+                var error = operation.getError(),
+                    msg = Ext.isObject(error) ? error.status + ' ' + error.statusText : error;
+
+                Ext.MessageBox.show({
+                    title: 'Update Contract Cost Failed',
+                    msg: msg,
+                    icon: Ext.Msg.ERROR,
+                    buttons: Ext.Msg.OK
+                });
+            }
+			
+		});
 	}
 	
 });

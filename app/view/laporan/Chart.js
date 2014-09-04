@@ -6,7 +6,7 @@ Ext.define('rcm.view.laporan.Chart', {
 	//alias: 'widget.tabChart',
     requires: [
 		//'rcm.view.laporan.SapChartDet',
-		'rcm.view.laporan.EPO'
+		 'rcm.view.laporan.EPO'
 		,'rcm.view.laporan.WOComp'
 		,'rcm.view.laporan.SapHistori'
 		,'rcm.view.laporan.SapChartDet'
@@ -14,17 +14,11 @@ Ext.define('rcm.view.laporan.Chart', {
 		,'rcm.view.laporan.GridCauseInfo'
 		,'rcm.view.laporan.ConMon'
 		,'rcm.view.laporan.PanelSap'
-		,'rcm.view.laporan.FilterHistori'
-		//'laporan.Chart',
-        //'rcm.view.laporan.UploadFile',
-        //'laporan.SapCause',
-        //'laporan.SapDamage',
-        //'laporan.SapOPart',
-        //'laporan.GridCause',
-        //'laporan.GridCauseInfo',
+		,'rcm.view.laporan.FilterSap'
         ,'rcm.view.laporan.WOComp'
-        //'laporan.EPO',
-		//'laporan.SapHistori',
+        ,'rcm.view.laporan.OrderCostSap'
+        ,'rcm.view.laporan.GridOrderC'
+        ,'rcm.view.laporan.SapCostCont'
     ],
     
 	initComponent: function() {
@@ -47,7 +41,32 @@ Ext.define('rcm.view.laporan.Chart', {
 				id: 'ts_pdm',
 				title: 'Histori',
 				xtype:'tpSapHistori',
+				//xtype: 'tHistori',
 				dstore: 'SapHistori'
+			},{
+				id: 'ts_oc',
+				title: 'Order Cost',
+				xtype: 'tpSapOCost'
+			},{
+				id: 'ts_tc',
+				title: 'Top 10 Cost',
+				xtype: 'causechart',
+				dstore: 'SapTop10',
+				jdl: 'TOp 10 Orders Cost per Equipment',
+				param: 'Equipment Cost',
+				yNama: 'Cost'
+			},{
+				id: 'ts_pm',
+				title: 'PM Cost',
+				xtype: 'causechart',
+				dstore: 'SapPMCost',
+				jdl: 'PM Activity Planned Cost',
+				param: 'PM Cost',
+				yNama: 'Cost'
+			},{
+				id: 'ts_ct',
+				title: 'Contract',
+				xtype: 'tCostCont'
 			},{
 				id: 'ts_ca',
 				title: 'Cause',

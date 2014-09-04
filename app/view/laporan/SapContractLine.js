@@ -1,6 +1,6 @@
 // afrendyBayu,15Feb2014 //
-Ext.define('rcm.view.laporan.SapHistori', {
-    xtype: 'tHistori',
+Ext.define('rcm.view.laporan.SapContractLine', {
+    xtype: 'tContractL',
 	extend: 'Chart.ux.Highcharts',
 	//*
 	require: [
@@ -11,36 +11,26 @@ Ext.define('rcm.view.laporan.SapHistori', {
 	loadMask: true,
 	
 	series : [{
-			type: 'column',
-			dataIndex: 'teco',
-			name: 'Within',
-			marker: {
-               	lineWidth: 2,
-               	lineColor: 'green'
-			}
-		},{
-			type: 'column',
-			dataIndex: 'open',
-			name: 'Overdue',
-			marker: {
-               	lineWidth: 2,
-               	lineColor: 'white'
-               	//fillColor: 'white'
-			}
+			type: 'spline',
+			dataIndex: 'gc',
+			name: 'Gas Compressor',
 		},{
 			type: 'spline',
-			dataIndex: 'persen',
-			name: '% Past Due',
-			yAxis: 1
+			dataIndex: 'gs',
+			name: 'Generator Set',
+		},{
+			type: 'spline',
+			dataIndex: 'pm',
+			name: 'Pump',
 	}],
 	
 	//store:'SapHistori',
-	xField: 'bulan',
+	xField: 'bln',
 	
 	initComponent: function() {
 		var me=this;
 		//me.store='SapHistori';
-		me.store=me.dstore;
+		me.store='ContractLine';
 		me.chartConfig = {
 			chart: {
 				type: 'column',
@@ -53,7 +43,7 @@ Ext.define('rcm.view.laporan.SapHistori', {
 			},
 			colors: ['#10ae3d', '#f32727', '#0000FF'],
 			title : {
-				text: 'Trend Work Order '+rcm.view.Util.U1th(''),
+				text: 'Trend Cost Center '+rcm.view.Util.U1th(''),
 				x: -50
 			},
 			xAxis : [{
@@ -63,27 +53,8 @@ Ext.define('rcm.view.laporan.SapHistori', {
 			}],
 			yAxis : [{
 				title : {
-					text : '# Work Orders'
+					text : 'Cost'
 				}
-			},{
-				min: 0,
-				max: 100,				
-				title : {
-					text : 'Persen [%]'
-				},
-				/*
-				plotLines : [{
-					value : 98,
-					color : 'red',
-					dashStyle: 'ShortDash',
-					width : 2,
-					zIndex: 100,
-					label : {
-						text : 'Compliance Target >95%'
-					}
-				}],
-				//*/
-				opposite: true
 			}],
 			plotOptions : {
 				series : {

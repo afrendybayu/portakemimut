@@ -6,6 +6,7 @@ Ext.define('rcm.view.laporan.SapCause', {
 	dstore: 'SapCause',
 	jdl: 'Grafik',
 	param: 'Cause',
+	yNama: 'Jumlah WO',
 	loadMask: true,
 
 	xField: 'nama',
@@ -33,7 +34,7 @@ Ext.define('rcm.view.laporan.SapCause', {
 			},
 			yAxis : {
 				title : {
-					text : 'Jumlah WO'
+					text : me.yNama
 				}
 			},
 			plotOptions : {
