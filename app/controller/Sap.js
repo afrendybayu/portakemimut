@@ -260,7 +260,7 @@ Ext.define('rcm.controller.Sap', {
 	
 	ubahKontrak: function( nilai,bln,tipe,thn )	{
 		var kont = new rcm.model.ContractInput({
-			nilai:nilai,bln:bln,tipe:tipe
+			nilai:nilai,bln:bln,tipe:tipe,thn:thn
         });
         
         /*

@@ -5,9 +5,7 @@ Ext.define('rcm.model.ContractInput', {
 		'Ext.data.proxy.Ajax'
 	],
 
-	fields: [ 'thn', 'bln',
-				{ name:'tipe', type:'int' },
-				{ name:'nilai', type:'float' }],
+	fields: [ 'thn','bln','tipe','nilai' ],
     proxy: {
 		type: 'ajax',
 		api: {

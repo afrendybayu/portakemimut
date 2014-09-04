@@ -913,6 +913,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.CbUnit": [],
   "rcm.model.ConMon": [],
   "rcm.model.ConMonIn": [],
+  "rcm.model.Contract": [],
+  "rcm.model.ContractInput": [],
+  "rcm.model.ContractLine": [],
   "rcm.model.DaftarGagal": [],
   "rcm.model.DetailGagal": [],
   "rcm.model.Equip": [],
@@ -955,6 +958,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.CbUnit": [],
   "rcm.store.ConMon": [],
   "rcm.store.ConMonIn": [],
+  "rcm.store.Contract": [],
+  "rcm.store.ContractInput": [],
+  "rcm.store.ContractLine": [],
   "rcm.store.DaftarGagal": [],
   "rcm.store.DetailGagal": [],
   "rcm.store.Equip": [],
@@ -1032,6 +1038,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.lapobama.ReHome": [],
   "rcm.view.lapobama.SpeedoAv": [],
   "rcm.view.laporan.Chart": [],
+  "rcm.view.laporan.ChartContract": [],
   "rcm.view.laporan.ConMon": [],
   "rcm.view.laporan.ConMonForm": [],
   "rcm.view.laporan.ConMonInput": [],
@@ -1044,12 +1051,15 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.laporan.GridCause": [],
   "rcm.view.laporan.GridCauseInfo": [],
   "rcm.view.laporan.GridConMon": [],
+  "rcm.view.laporan.GridContract": [],
   "rcm.view.laporan.GridOrderC": [],
   "rcm.view.laporan.GridWork": [],
   "rcm.view.laporan.OrderCostSap": [],
   "rcm.view.laporan.PanelSap": [],
   "rcm.view.laporan.SapCause": [],
   "rcm.view.laporan.SapChartDet": [],
+  "rcm.view.laporan.SapContractLine": [],
+  "rcm.view.laporan.SapCostCont": [],
   "rcm.view.laporan.SapDamage": [],
   "rcm.view.laporan.SapHistori": [],
   "rcm.view.laporan.SapOPart": [],
@@ -2100,6 +2110,9 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.CbUnit": [],
   "rcm.model.ConMon": [],
   "rcm.model.ConMonIn": [],
+  "rcm.model.Contract": [],
+  "rcm.model.ContractInput": [],
+  "rcm.model.ContractLine": [],
   "rcm.model.DaftarGagal": [],
   "rcm.model.DetailGagal": [],
   "rcm.model.Equip": [],
@@ -2142,6 +2155,9 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.CbUnit": [],
   "rcm.store.ConMon": [],
   "rcm.store.ConMonIn": [],
+  "rcm.store.Contract": [],
+  "rcm.store.ContractInput": [],
+  "rcm.store.ContractLine": [],
   "rcm.store.DaftarGagal": [],
   "rcm.store.DetailGagal": [],
   "rcm.store.Equip": [],
@@ -2259,6 +2275,9 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.laporan.Chart": [
     "widget.tabChart"
   ],
+  "rcm.view.laporan.ChartContract": [
+    "widget.tLineCont"
+  ],
   "rcm.view.laporan.ConMon": [
     "widget.tConMon"
   ],
@@ -2297,6 +2316,9 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.gridConMon",
     "widget.tGridConMon"
   ],
+  "rcm.view.laporan.GridContract": [
+    "widget.tGridContract"
+  ],
   "rcm.view.laporan.GridOrderC": [
     "widget.tSapOrderC"
   ],
@@ -2315,6 +2337,12 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.laporan.SapChartDet": [
     "widget.tSapDet"
+  ],
+  "rcm.view.laporan.SapContractLine": [
+    "widget.tContractL"
+  ],
+  "rcm.view.laporan.SapCostCont": [
+    "widget.tCostCont"
   ],
   "rcm.view.laporan.SapDamage": [
     "widget.damagechart"
