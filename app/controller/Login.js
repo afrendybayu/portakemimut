@@ -34,6 +34,10 @@ Ext.define('rcm.controller.Login', {
 		},{
 			ref: 'excelgrid',
 			selector: 'excelgrid'
+		},{
+			ref : 'authlogin',
+			selector : 'authlogin'
+		
 		}],
 	
 	init: function(){
@@ -45,15 +49,14 @@ Ext.define('rcm.controller.Login', {
 				recordedit: this.updateTGrid
 				
 			},*/
-			
+			'authlogin textfield' : {
+				specialkey: this.keylogin
+			},
 			'#btn_login' : {
 				click : this.tblLogin
 			},
 			'#btn_logout' : {
 				click : this.tblLogout
-			},
-			'actioncolumn#gridedit' : {
-				click : this.handlegridedit
 			}
 		
 		});
@@ -82,10 +85,15 @@ Ext.define('rcm.controller.Login', {
 						}
 					});
 	},*/
-	handlegridedit :function(){
-		// Ext.bind(me.hdlEditDGClick, me)
-		
-	},
+	
+	keylogin : function(f,e){  
+		if(e.getKey()==e.ENTER){  
+			// Ext.Msg.alert('Keys','You pressed the Enter key');  
+			console.log('Login dengan enter');
+			//this.tblLogin();
+		}
+	},  
+	
 	
 	tblLogin : function(btn){
 		// console.log('klik login tombol');

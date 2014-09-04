@@ -208,6 +208,8 @@ class Sap extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
+	
+	
 
 	function get_ordercostwo($thn)    {
 

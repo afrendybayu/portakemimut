@@ -93,16 +93,17 @@ class rConMon extends CI_Controller {
 	}
 	public function cbUnit()	{
 		try {
-			$id_lok = $this->input->get('id') ? $this->input->get('id') : 0; 
+			// $id_lok = $this->input->get('id') ? $this->input->get('id') : 0; 
 			
-			$hsl = $this->hirarki->get_unitlokasi($id_lok);
+			$hsl = $this->hirarki->get_unitlokasi();
 			
 			foreach ($hsl as $r){
 				// print_r ($r);
 				$data[] = array(
+						'id_unit'	=>$r->id,
+						'id_lokasi'=>$r->id_lokasi,
 						'lokasi'=>$r->lokasi,
-						'unit'=>$r->unit,
-						'unit_kode'	=>$r->lok_unit,
+						'unit'=>$r->unit
 						);
 				$jsonResult = array(
 					'success' => true,
@@ -119,6 +120,46 @@ class rConMon extends CI_Controller {
 		
 		echo json_encode($jsonResult);
 	
+	}
+	
+	public function createCMon(){
+		
+		try {
+			$conmon = json_decode(file_get_contents('php://input'));
+			
+			// echo $conmon->lokasi.'-'.$params->unit.'</br>';
+			
+			$data = array(
+			   'tgl' 	=> $conmon->tgl ,
+			   'lokasi' => $conmon->lokasi ,
+			   'unit' 	=> $conmon->unit,
+			   'wo'		=> $conmon->wo,
+			   'sap'	=> $conmon->sap,
+			   'url'	=> $conmon->url,
+			   'pic'	=> $conmon->pic,
+			   'ket'	=> $conmon->ket
+			);
+
+			$this->db->insert('conmon', $data); 
+			
+			
+
+			/*if(!$statement->execute()) {
+				throw new Exception(implode(', ', $statement->errorInfo()));
+			}
+			$params->id = $db->lastInsertId();*/
+			/*$jsonResult = array(
+				'success' => true,
+				'condmon' => $params
+			);*/
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+		// echo json_encode($jsonResult);
 	}
 	
 }

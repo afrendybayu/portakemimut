@@ -1,7 +1,8 @@
 Ext.define('rcm.controller.Sap', {
     extend: 'Ext.app.Controller',
     //*
-    views: [
+    	
+	views: [
         // TODO: add views here
         'laporan.Chart'
         ,'laporan.UploadFile'
@@ -27,10 +28,11 @@ Ext.define('rcm.controller.Sap', {
 
 		,'SapOrderCwo','SapOrderCot'
 		,'SapThn','SapMwc','SapOType','SapLoc'
-		,'SapHistori','ConMon','ConMonIn','CbParent'
 		
 		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10'
 		,'Contract','ContractLine', 'ContractInput'
+
+		,'SapHistori','ConMon','ConMonIn','CbParent','CbUnit'
     ],
     
     models: [
@@ -90,32 +92,104 @@ Ext.define('rcm.controller.Sap', {
 			'#btnCariSM' : {
 				click: me.cariSapMaint
 			},
+			/*
 			'#cbparent1': {
 				select : me.pilihComboParent,
 				change : me.dipilihpilih
 			},
+			//*/
 			'tGridContract': {
 				recordedit: me.ubahKontrak
+			},
+			'#cbparent':{
+				select : me.pilihComboParent
+			},
+			'#cb_unit' : {
+				select : me.pilihComboUnit
+			},
+			'taskConMon textfield': {
+                    specialkey: me.handlesimpan
 			}
 		});
     },
     
-	pilihComboParent: function(list, records){
-		var dd = records[0].get('lokasi');
-		// vae ee = records.get();
-		Ext.Msg.alert('Item selected', 'Selected: ' + records[ 0 ].get('lokasi'));
-		console.log(dd );	
+	handlesimpan: function(field,e){  
+		if(e.getKey()=== e.ENTER){
+			this.simpanconmon();
+			
+		}
 	},
-	
-	dipilihpilih : function(rec){
-		var isi = rec.getValue();
-		console.log(isi);	
-		// var unit = this.get
+		
+	simpanconmon : function(){
+		
+		var me = this,
+			form = me.getTaskConMon(),
+            basicForm = form.getForm(),
+            formEl = form.getEl(),
+            tgl		= basicForm.findField('tgl'),
+			lokasi 	= basicForm.findField('lokasi'),
+			unit 	= basicForm.findField('unit'),
+			cmon 	= Ext.create('rcm.model.ConMonIn');
+		   
+			
+			// console.log(tgl.getValue()+'->'+lokasi.getValue()+'->'+unit.getValue());
+			console.log(tgl);
+			console.log(lokasi);
+			console.log(unit);
+			console.log(cmon);
+			basicForm.updateRecord(cmon);
+			
+		if(!tgl.getValue()&&!lokasi.getValue()&&!unit.getValue()) {
+            return;
+        }
+		
+		cmon.save({
+            success: function(cmon, operation) {
+                me.getConMonInStore().add(cmon);
+                me.getConMonStore().load();
+				basicForm.reset();
+				me.getConMonInStore().load();
+				// me.refreshFiltersAndCount();
+                /*me.getTasksStore().sort();
+                titleField.reset();
+                titleField.focus();
+                formEl.unmask();//*/
+            },
+            failure: function(task, operation) {
+                var error = operation.getError(),
+                    msg = Ext.isObject(error) ? error.status + ' ' + error.statusText : error;
+
+                Ext.MessageBox.show({
+                    title: 'Add Task Failed',
+                    msg: msg,
+                    icon: Ext.Msg.ERROR,
+                    buttons: Ext.Msg.OK
+                });
+                formEl.unmask();
+            }
+        });
+			
+			
 		
 	},
-	
-	ubahLabelWO: function(p)	{
+						
+
+	pilihComboParent: function(records){
+		var loc = records.getValue(), combounit = this.getCbUnitStore();
+		console.log(loc );	
+		combounit.clearFilter();
+		combounit.filter('id_lokasi',loc);
+		Ext.getCmp('cb_unit').clearValue();
+		
+	},
+	pilihComboUnit : function(records){
+		var ll = records.getValue();
+		console.log(ll);
+	},
+
+	ubahLabelWO: function()	{
 		var me=this;
+		var combost = me.getCbUnitStore();
 		//console.log("onLauch SAP");
 		//*
 		me.getWoOpen7Store().load({

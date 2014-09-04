@@ -3,7 +3,12 @@
 class CMon extends CI_Model {
 	
 	function get_conmon()    {
-        $query = $this->db->get('conmon');
+        $sql = "select c.tgl, h.nama as lokasi, hh.nama as unit, c.wo, c.sap, c.url, c.pic, c.ket
+				from conmon c
+				inner join hirarki h on c.lokasi = h.id
+				inner join hirarki hh on c.unit = hh.id 
+				order by c.tgl desc";
+		$query = $this->db->query($sql);
 		return $query->result();
     }
 	
@@ -13,9 +18,7 @@ class CMon extends CI_Model {
 		
 		return $query->result();
 	
-	}
-	
-    
+	}  
     
 }
 

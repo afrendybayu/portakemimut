@@ -35,7 +35,7 @@ class AuthLogin extends CI_Controller {
 		try{
 			$log = json_decode(file_get_contents('php://input'));
 				
-			if (isset ($log->userid) && isset($log->userid)){
+			if (isset ($log->userid) && isset($log->pass)){
 				$query = $this->login->ValidLogin($log->userid,$log->pass);
 				foreach ($query->result() as $row){
 					$sesi = array('nama' =>$row->nama,'level' => $row->akses );

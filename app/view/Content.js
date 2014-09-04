@@ -21,6 +21,7 @@ Ext.define('rcm.view.Content', {
     initComponent: function() {
 		var me=this;
 		me.items = [{
+		//*
 			id: 'tu_ho',
 			title: 'Dashboard Home',
 			iconCls: 'Dashboard',
@@ -31,6 +32,7 @@ Ext.define('rcm.view.Content', {
 			iconCls: 'Reliability',
 			xtype: 'tAvReChart'
 		},{
+		//*/
 			id: 'tu_sap',
 			title: 'SAP Report',
 			xtype: 'tabChart',
@@ -42,6 +44,7 @@ Ext.define('rcm.view.Content', {
 			iconCls: 'perform',
 			title: 'Prestasi Mesin',
 		//*/
+		//*
 		},{
 			id: 'tu_rh',
 			title: 'Runnning Hour',
@@ -93,6 +96,7 @@ Ext.define('rcm.view.Content', {
 				//	data: Ext.create('Extensible.example.calendar.data.Events')
 				//}),
 			//*/
+			//*
 			}]
 		/*
 		},{

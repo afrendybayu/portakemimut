@@ -1,12 +1,7 @@
 Ext.define('rcm.view.laporan.ConMonForm', {
     extend: 'Ext.form.Panel',
 	xtype: 'taskConMon',
-	
-	
-	
 	layout : 'hbox',
-	
-		
 	
 	initComponent: function() {
 		var me=this; 
@@ -14,68 +9,81 @@ Ext.define('rcm.view.laporan.ConMonForm', {
             {
                 xtype: 'component',
                 // cls: 'tasks-new',
-                width: 25,
-                height: 25
+                 width: 25,
+                // height: 25
             },{
-				xtype: 'datefield',
-				value : new Date(),
-				format: 'Y-m-d',
-				width : 100
+				xtype	: 'datefield',
+				//value : new Date(),
+				name	: 'tgl',
+				format	: 'Y-m-d',
+				width 	: 100,
+				allowBlank: false
 			},{
 				xtype	:'combobox',
-				itemId	: 'cbparent1',
-				//emptyText : 'Lokasi',
+				itemId	: 'cbparent',
+				allowBlank: false,
 				flex : 1,
 				store : 'CbParent',
-				emptyText	: 'Loc',
-				// queryParam 	: 'lokasi',
+				emptyText	: 'Lokasi',
 				name		: 'lokasi',
 				displayField: 'lokasi',
 				valueField 	: 'id',
-				queryMode 	: 'local',
-				// minwidth	: 50,
-				/*listeners       : {
-					select  : function (list, records) {
-					
-					selected = true
-					var dd = records[0].get('lokasi');
-					Ext.Msg.alert('Item selected', 'Selected: ' + records[ 0 ].get('lokasi'))
-					console.log(dd);
-					
-					//this.pilihLokasi(records,list);
-					}
-					
-					
-				}*/
+				queryMode 	: 'local'
+				
 			},{
-				xtype	:'textfield',
-				emptyText : 'Unit',
+				xtype		:'combobox',
+				emptyText 	: 'Unit',
+				allowBlank	: false,
+				id			: 'cb_unit',
+				store 		: 'CbUnit',
+				name		: 'unit',
+				flex 		: 1,
+				displayField: 'unit',
+				valueField 	: 'id_unit',
+				queryMode 	: 'local'
+			},{
+				xtype		:'textfield',
+				emptyText 	: '#WO',
+				name		: 'wo',
 				flex : 1
 			},{
-				xtype	:'textfield',
-				emptyText : '#WO',
+				xtype		:'textfield',
+				allowBlank	: false,
+				emptyText 	: '#SAP',
+				name		: 'sap',
 				flex : 1
 			},{
-				xtype	:'textfield',
-				emptyText : '#SAP',
+				xtype		:'textfield',
+				emptyText 	: 'url Link Laporan',
+				name		: 'url',
 				flex : 1
 			},{
-				xtype	:'textfield',
-				emptyText : 'url Link Laporan',
+				xtype		:'textfield',
+				emptyText 	: 'Eksekutor',
+				name		: 'pic',
 				flex : 1
 			},{
-				xtype	:'textfield',
-				emptyText : 'Eksekutor',
-				flex : 1
-			},{
-				xtype	:'textfield',
-				emptyText : 'keterangan',
+				xtype		:'textfield',
+				emptyText 	: 'keterangan',
+				id			: 'ket_enter',
+				name		: 'ket',
 				flex : 2
+				
 			},{
-                xtype: 'component',
+                
+				xtype:'button',
+				iconCls: 'add',
+				text	: 'Add',
+				width:50,
+				tooltip: 'Simpan',
+				disabled : true,
+				formBind: true
+			
+				/*
+				xtype: 'component',
                 // cls: 'tasks-new',
-                width: 50,
-                height: 25
+                width: 50
+                */
             }
 			
 			
@@ -84,22 +92,28 @@ Ext.define('rcm.view.laporan.ConMonForm', {
         me.callParent(arguments);
 		
 		
-		/*me.addEvents(
-			'edit',
+		me.addEvents(
+			'plhUnit'
+			
+			/*'edit',
 			'plhOPartGagal',
 			'plhEquipGagal',
 			'plhModeGagal',
 			'plhCauseGagal',
 			'plhAksiGagal',
-			'hpsFMEAGagal'
+			'hpsFMEAGagal'*/
         );
-        ed.on('edit', me.handleCellEdit, this);*/
+        //ed.on('edit', me.handleCellEdit, this);
 	},
 	
-	pilihLokasi : function(n){
+	/*pilihLokasi : function(n){
 		this.fireEvent('plhLokasi',n.get('kode'));
 		console.log (n.get('kode'));
-	}
+	}*/
+	pilihUnit: function(n)	{
+		console.log(n.get('lokasi'));
+		this.fireEvent('plhUnit', n.get('lokasi'));
+	},
 	
 	
 });
