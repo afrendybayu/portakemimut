@@ -20,14 +20,14 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				allowBlank: false
 			},{
 				xtype	:'combobox',
-				itemId	: 'cbparent',
+				itemId	: 'cb_parent',
 				allowBlank: false,
 				flex : 1,
-				store : 'CbParent',
+				store 		: 'CbParent',
 				emptyText	: 'Lokasi',
 				name		: 'lokasi',
-				displayField: 'lokasi',
-				valueField 	: 'id',
+				displayField: 'loc',
+				valueField 	: 'id_lokasi',
 				queryMode 	: 'local'
 				
 			},{
@@ -40,6 +40,14 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				flex 		: 1,
 				displayField: 'unit',
 				valueField 	: 'id_unit',
+				queryMode 	: 'local'
+			},{
+				xtype		:'textfield', 
+				name		: 'type',
+				id			: 'cb_type',
+				hidden		: true,
+				store		: 'CbUnit',
+				valueField 	: 'id_type',
 				queryMode 	: 'local'
 			},{
 				xtype		:'textfield',
@@ -93,7 +101,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 		
 		
 		me.addEvents(
-			'plhUnit'
+		//	'plhUnit'
 			
 			/*'edit',
 			'plhOPartGagal',
@@ -110,10 +118,10 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 		this.fireEvent('plhLokasi',n.get('kode'));
 		console.log (n.get('kode'));
 	}*/
-	pilihUnit: function(n)	{
+	/*pilihUnit: function(n)	{
 		console.log(n.get('lokasi'));
 		this.fireEvent('plhUnit', n.get('lokasi'));
-	},
+	},*/
 	
 	
 });

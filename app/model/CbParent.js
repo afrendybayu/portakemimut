@@ -5,7 +5,7 @@ Ext.define('rcm.model.CbParent', {
 		'Ext.data.proxy.Ajax'
 	],
 	
-	fields: [ 'id','lokasi','kode'],
+	fields: [ 'id_lokasi','loc'],
     proxy: {
 		type: 'ajax',
 		api: {
@@ -13,7 +13,7 @@ Ext.define('rcm.model.CbParent', {
         },
         reader: {
             type: 'json',
-            root: 'lokasi',
+            root: 'location',
             messageProperty: 'message'
         }
     }
