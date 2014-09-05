@@ -3,6 +3,7 @@
 class cContract extends CI_Controller {
 	
 	public function index()	{
+		//*
 		try	{
 			$params = json_decode(file_get_contents('php://input'));
 			/*
@@ -15,7 +16,7 @@ class cContract extends CI_Controller {
 			if (!isset($params))	{
 				throw new Exception("Data Tidak ada !!");
 			}
-
+			//*
 			if (isset($params->bln))	{
 				$dbln = explode('b',$params->bln);
 				$bln = $dbln[1];
@@ -26,6 +27,7 @@ class cContract extends CI_Controller {
 			$thn = (isset($params->thn))?$params->thn:date('Y');
 
 			$this->load->model('contract');
+			//echo "nilai: ".floatval($params->nilai).",bln: ".$bln.", tipe: ".$params->tipe.",thn: ".$params->thn;
 			$hasil = $this->contract->uicontract(floatval($params->nilai), $bln, $params->tipe, $params->thn);
 			
 			//print_r($hasil);
@@ -34,6 +36,7 @@ class cContract extends CI_Controller {
 				'tasks' => $hasil
 			);
 			
+			//*/
 		}
 		catch (Exception $e)	{
 			 $jsonResult = array(
@@ -49,8 +52,10 @@ class cContract extends CI_Controller {
 		echo json_encode($jsonResult);
 	}
 	
-	
+	public function ini()	{
+		echo "coba oni";
+	}
 }
 
-/* End of file rContract.php */
-/* Location: ./application/controllers/rContract.php */
+/* End of file cContract.php */
+/* Location: ./application/controllers/cContract.php */

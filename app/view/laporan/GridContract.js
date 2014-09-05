@@ -60,6 +60,6 @@ Ext.define('rcm.view.laporan.GridContract', {
 		//rcmSettings.tttt = rec;
 		console.log("handleCellEdit tipe: "+rec.get('tipe')+", nilai: "+e.value+', bulan: '+e.field);
 		//alert("nilai: "+e.value);
-		this.fireEvent('recordedit',e.value,e.field,rec.get('tipe'),'2014' );
+		this.fireEvent('recordedit',e,e.value,e.field,rec.get('tipe'),'2014' );
     }
 });
