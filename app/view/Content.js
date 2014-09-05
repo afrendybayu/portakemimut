@@ -133,7 +133,7 @@ Ext.define('rcm.view.Content', {
 				}]
 			
 			//*/
-			}]
+			//}]
 		
 		
 		}];

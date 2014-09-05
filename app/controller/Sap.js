@@ -197,18 +197,10 @@ Ext.define('rcm.controller.Sap', {
 		
 		
 	},
-<<<<<<< HEAD
-	/*pilihTypeUnit : function(records){
-		var type = records.getValue();
-		console.log(type);
-		
-	},
-*/
-	ubahLabelWO: function()	{
-=======
+
 
 	ubahLabelWO: function(p)	{
->>>>>>> afrendy
+
 		var me=this;
 		var combost = me.getCbUnitStore();
 		//console.log("onLauch SAP");
