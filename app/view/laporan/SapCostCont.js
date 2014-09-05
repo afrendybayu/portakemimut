@@ -16,6 +16,7 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 	},
 	
 	dockedItems: [{
+		title: 'wewe',
 		xtype: 'tGridContract',
 		dstore: 'SapPMCost'
 	}],
