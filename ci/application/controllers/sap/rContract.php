@@ -40,7 +40,12 @@ class rContract extends CI_Controller {
 				$obj->gs = '0';
 				$obj->pm = '0';
 				array_push($hsl,$obj);
+				
 			}
+			print_r($obj);
+			
+			
+			
 			
 			$oo = $this->contract->get_grafikcontrak($thn);
 			//print_r($oo); echo "<br/><br/>";

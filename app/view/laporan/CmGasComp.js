@@ -14,7 +14,7 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 	initComponent: function() {
 		var me=this;
 		me.series = [{
-			
+			colorByPoint: true,
 			dataIndex: 'jml',
 			name: me.param
 		}];
@@ -49,6 +49,9 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 				},
 
 				series : {
+					dataLabels: {
+						enabled: true
+					},
 					animation : {
 						duration : 1000,
 						easing : 'swing'
