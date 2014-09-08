@@ -130,7 +130,7 @@ class rConMon extends CI_Controller {
 			
 			$flag = $this->hirarki->get_flag($conmon->unit);
 			foreach($flag as $r){
-				echo $r->flag;
+				// echo $r->flag;
 				
 				$sql = array(
 					'tgl' 	=> $conmon->tgl ,
@@ -166,6 +166,35 @@ class rConMon extends CI_Controller {
 		// echo json_encode($jsonResult);
 	}
 	
+	function compConMon(){
+		try {
+			$cat = $this->input->get('cat');
+			$hsl = $this->cmon->gascomp_conmon($cat);
+			
+			foreach ($hsl as $r){
+				// print_r ($r);
+				$data[] = array(
+						'thn'	=>$r->tahun,
+						'jml'	=>$r->jml,
+						);
+				$jsonResult = array(
+					'success' => true,
+					'gascomp' => $data
+				);
+			}
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+		
+		
+	
+	}
 }
 
 /* End of file rConMon.php */

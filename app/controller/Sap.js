@@ -32,7 +32,7 @@ Ext.define('rcm.controller.Sap', {
 		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10'
 		,'Contract','ContractLine', 'ContractInput'
 
-		,'SapHistori','ConMon','ConMonIn','CbParent','CbUnit'
+		,'SapHistori','ConMon','ConMonIn','CbParent','CbUnit','CMGasComp','CMGenset','CMPump'
     ],
     
     models: [
@@ -154,6 +154,9 @@ Ext.define('rcm.controller.Sap', {
                 me.getConMonStore().load();
 				basicForm.reset();
 				me.getConMonInStore().load();
+				me.getCMPumpStore().load();
+				me.getCMGensetStore().load();
+				me.getCMGasCompStore().load();
 				// me.refreshFiltersAndCount();
                 /*me.getTasksStore().sort();
                 titleField.reset();

@@ -8,20 +8,74 @@ Ext.define('rcm.view.laporan.ConMon', {
 		,'Ext.toolbar.Spacer'
 		,'rcm.view.laporan.ConMonUnit'
 		,'rcm.view.laporan.ConMonInput'
+		,'rcm.view.laporan.CmGasComp'
+		
 		//'rcm.view.laporan.EPOPie'
 
 	],
 	layout: 'border',
     items: [{
 
-        title: 'Grafik',
+        // title: 'Grafik',
         region: 'south',     
         xtype: 'panel',
-        height: 100,
+        height: 400,
         split: true,        
         colapsible : true,
-		floatable: true,
-        margins: '0 5 5 5'
+        margins: '0 5 5 5',
+		layout : {type : 'hbox', align: 'stretch' },
+		items : [{
+			xtype : 'panel',
+			// title : 'panel1',
+			flex :1,
+			items : [{
+				xtype : 'gascompcm',
+				param: 'GasComp',
+				yNama: 'Cond. Monitoring',
+				jdl: 'Condition Monitoring Gas Compressor',
+				dstore: 'CMGasComp',
+				/*dstore: 'CMGasComp',
+				jdl: 'TOp 10 Orders Cost per Equipment',
+				param: 'Equipment Cost',
+				yNama: 'Cost'
+				// dstore: me.dstore,
+			//*/
+			}]
+			
+		},{
+			xtype : 'panel',
+			flex :1,
+			items : [{
+				xtype : 'gascompcm',
+				param: 'Genset',
+				yNama: 'Cond. Monitoring',
+				jdl: 'Condition Monitoring Genset',
+				dstore: 'CMGenset'
+				/*dstore: 'CMGasComp',
+				jdl: 'TOp 10 Orders Cost per Equipment',
+				param: 'Equipment Cost',
+				yNama: 'Cost'
+				// dstore: me.dstore,
+			//*/
+			}]
+		},{
+			xtype : 'panel',
+			flex :1,
+			items : [{
+				xtype : 'gascompcm',
+				param: 'Pump',
+				yNama: 'Cond. Monitoring',
+				jdl: 'Condition Monitoring Pump',
+				dstore: 'CMPump'
+				/*dstore: 'CMGasComp',
+				jdl: 'TOp 10 Orders Cost per Equipment',
+				param: 'Equipment Cost',
+				yNama: 'Cost'
+				// dstore: me.dstore,
+			//*/
+			}]
+		
+		}]
     },{
    
         region:'west',

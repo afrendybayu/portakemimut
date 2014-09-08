@@ -21,7 +21,16 @@ class CMon extends CI_Model {
 		
 		return $query->result();
 	
-	}  
+	}
+
+	function gascomp_conmon($cat){
+		$sql = "select distinct(year(tgl)) as tahun, count(unit) as jml from conmon where type = ? group by year(tgl) order by year(tgl) desc limit 3";
+		$query = $this->db->query($sql,array($cat));
+		
+		return $query->result();
+	
+	
+	}
     
 }
 
