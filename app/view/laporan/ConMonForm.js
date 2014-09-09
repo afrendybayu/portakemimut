@@ -20,14 +20,14 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				allowBlank: false
 			},{
 				xtype	:'combobox',
-				itemId	: 'cbparent',
+				itemId	: 'cb_parent',
 				allowBlank: false,
-				flex : 1,
-				store : 'CbParent',
+				width 	: 150,
+				store 		: 'CbParent',
 				emptyText	: 'Lokasi',
 				name		: 'lokasi',
-				displayField: 'lokasi',
-				valueField 	: 'id',
+				displayField: 'loc',
+				valueField 	: 'id_lokasi',
 				queryMode 	: 'local'
 				
 			},{
@@ -36,31 +36,45 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				allowBlank	: false,
 				id			: 'cb_unit',
 				store 		: 'CbUnit',
+				width		: 150, 	
 				name		: 'unit',
-				flex 		: 1,
+				// flex 		: 1,
 				displayField: 'unit',
 				valueField 	: 'id_unit',
+				queryMode 	: 'local'
+			},{
+				xtype		:'textfield', 
+				name		: 'type',
+				id			: 'cb_type',
+				hidden		: true,
+				store		: 'CbUnit',
+				width		: 150, 	
+				valueField 	: 'id_type',
 				queryMode 	: 'local'
 			},{
 				xtype		:'textfield',
 				emptyText 	: '#WO',
 				name		: 'wo',
+				// width		: 200 	
 				flex : 1
 			},{
 				xtype		:'textfield',
 				allowBlank	: false,
 				emptyText 	: '#SAP',
 				name		: 'sap',
+				// width		: 150
 				flex : 1
 			},{
 				xtype		:'textfield',
 				emptyText 	: 'url Link Laporan',
 				name		: 'url',
-				flex : 1
+				// width		: 200,
+				flex : 1				
 			},{
 				xtype		:'textfield',
 				emptyText 	: 'Eksekutor',
 				name		: 'pic',
+				// width		: 200,
 				flex : 1
 			},{
 				xtype		:'textfield',
@@ -93,7 +107,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 		
 		
 		me.addEvents(
-			'plhUnit'
+		//	'plhUnit'
 			
 			/*'edit',
 			'plhOPartGagal',
@@ -110,10 +124,10 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 		this.fireEvent('plhLokasi',n.get('kode'));
 		console.log (n.get('kode'));
 	}*/
-	pilihUnit: function(n)	{
+	/*pilihUnit: function(n)	{
 		console.log(n.get('lokasi'));
 		this.fireEvent('plhUnit', n.get('lokasi'));
-	},
+	},*/
 	
 	
 });

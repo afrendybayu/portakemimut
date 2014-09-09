@@ -8,27 +8,106 @@ Ext.define('rcm.view.laporan.ConMon', {
 		,'Ext.toolbar.Spacer'
 		,'rcm.view.laporan.ConMonUnit'
 		,'rcm.view.laporan.ConMonInput'
+		,'rcm.view.laporan.CmGasComp'
+		
 		//'rcm.view.laporan.EPOPie'
 
 	],
-	border : 0,
-	layout: {
-		type: 'vbox',
-		align: 'stretch'
-	},
-	defaults: {
-		flex: 1,
-		// hideLabel: true
-	},
-
+	layout: 'border',
     items: [{
-		xtype: 'container',
+
+        // title: 'Grafik',
+        region: 'south',     
+        xtype: 'panel',
+        height: 400,
+        split: true,        
+        colapsible : true,
+        margins: '0 5 5 5',
+		layout : {type : 'hbox', align: 'stretch' },
+		items : [{
+			xtype : 'panel',
+			// title : 'panel1',
+			flex :1,
+			items : [{
+				xtype : 'gascompcm',
+				param: 'GasComp',
+				yNama: 'Cond. Monitoring',
+				jdl: 'Condition Monitoring Gas Compressor',
+				dstore: 'CMGasComp',
+				/*dstore: 'CMGasComp',
+				jdl: 'TOp 10 Orders Cost per Equipment',
+				param: 'Equipment Cost',
+				yNama: 'Cost'
+				// dstore: me.dstore,
+			//*/
+			}]
+			
+		},{
+			xtype : 'panel',
+			flex :1,
+			items : [{
+				xtype : 'gascompcm',
+				param: 'Genset',
+				yNama: 'Cond. Monitoring',
+				jdl: 'Condition Monitoring Genset',
+				dstore: 'CMGenset'
+				/*dstore: 'CMGasComp',
+				jdl: 'TOp 10 Orders Cost per Equipment',
+				param: 'Equipment Cost',
+				yNama: 'Cost'
+				// dstore: me.dstore,
+			//*/
+			}]
+		},{
+			xtype : 'panel',
+			flex :1,
+			items : [{
+				xtype : 'gascompcm',
+				param: 'Pump',
+				yNama: 'Cond. Monitoring',
+				jdl: 'Condition Monitoring Pump',
+				dstore: 'CMPump'
+				/*dstore: 'CMGasComp',
+				jdl: 'TOp 10 Orders Cost per Equipment',
+				param: 'Equipment Cost',
+				yNama: 'Cost'
+				// dstore: me.dstore,
+			//*/
+			}]
+		
+		}]
+    },{
+   
+        region:'west',
+        xtype: 'panel',
+        margins: '5 0 0 5',
+        width: 200,
+		split : true,
+        layout: 'fit',
+		items : [{
+			xtype : 'tGridConMon'
+		}]
+		
+    },{
+       
+        region: 'center',    
+        xtype: 'panel',
+        layout: 'fit',
+        margins: '5 5 0 0',
+		items : [{
+			xtype : 'iConMon'
+		}]
+    }]
+	
+
+// =======
+	/*	xtype: 'container',
 		// html : 'isi container',
 		layout: {
 			type: 'vbox',
 			align: 'stretch'
         },//*/
-		items:[{
+	/*	items:[{
 			xtype: 'panel',
 			dockedItems:{
 				xtype : 'toolbar',
@@ -65,7 +144,7 @@ Ext.define('rcm.view.laporan.ConMon', {
 					flex: 4
 				
 			}]//*/
-		},{
+	/*	},{
 			xtype: 'container',
 			flex: 1,
 			title : 'panel2',
@@ -88,5 +167,6 @@ Ext.define('rcm.view.laporan.ConMon', {
 					flex: 1
 			}]
 		}]//*/
-	}]
+	//}]
+// >>>>>>> afrendy
 });

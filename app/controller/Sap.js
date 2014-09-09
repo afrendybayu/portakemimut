@@ -32,7 +32,7 @@ Ext.define('rcm.controller.Sap', {
 		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10'
 		,'Contract','ContractLine', 'ContractInput'
 
-		,'SapHistori','ConMon','ConMonIn','CbParent','CbUnit'
+		,'SapHistori','ConMon','ConMonIn','CbParent','CbUnit','CMGasComp','CMGenset','CMPump'
     ],
     
     models: [
@@ -80,6 +80,7 @@ Ext.define('rcm.controller.Sap', {
 			'#btnUplCM': {
 				click: me.hdUplCM
 			},
+
 			'#btnClearSH': {
 				click: me.clrSapHist
 			},
@@ -101,12 +102,16 @@ Ext.define('rcm.controller.Sap', {
 			'tGridContract': {
 				recordedit: me.ubahKontrak
 			},
-			'#cbparent':{
+			'#cb_parent':{
+
 				select : me.pilihComboParent
 			},
 			'#cb_unit' : {
 				select : me.pilihComboUnit
 			},
+			/*'#cb_type' : {
+				change : me.pilihTypeUnit
+			},*/
 			'taskConMon textfield': {
                     specialkey: me.handlesimpan
 			}
@@ -132,11 +137,11 @@ Ext.define('rcm.controller.Sap', {
 			cmon 	= Ext.create('rcm.model.ConMonIn');
 		   
 			
-			// console.log(tgl.getValue()+'->'+lokasi.getValue()+'->'+unit.getValue());
-			console.log(tgl);
-			console.log(lokasi);
-			console.log(unit);
-			console.log(cmon);
+			console.log(tgl.getValue()+'->'+lokasi.getValue()+'->'+unit.getValue());
+			// console.log(tgl);
+			// console.log(lokasi);
+			// console.log(unit);
+			// console.log(cmon);
 			basicForm.updateRecord(cmon);
 			
 		if(!tgl.getValue()&&!lokasi.getValue()&&!unit.getValue()) {
@@ -149,6 +154,9 @@ Ext.define('rcm.controller.Sap', {
                 me.getConMonStore().load();
 				basicForm.reset();
 				me.getConMonInStore().load();
+				me.getCMPumpStore().load();
+				me.getCMGensetStore().load();
+				me.getCMGasCompStore().load();
 				// me.refreshFiltersAndCount();
                 /*me.getTasksStore().sort();
                 titleField.reset();
@@ -175,19 +183,27 @@ Ext.define('rcm.controller.Sap', {
 						
 
 	pilihComboParent: function(records){
-		var loc = records.getValue(), combounit = this.getCbUnitStore();
-		console.log(loc );	
+		var lokasi = records.getValue(), combounit = this.getCbUnitStore();
+		console.log(lokasi);	
 		combounit.clearFilter();
-		combounit.filter('id_lokasi',loc);
+		combounit.filter('id_lokasi',lokasi);
 		Ext.getCmp('cb_unit').clearValue();
+		
+		// Ext.getCmp('cb_type').clearValue();
 		
 	},
 	pilihComboUnit : function(records){
-		var ll = records.getValue();
-		console.log(ll);
+		var unit = records.getValue();
+		console.log(unit);
+		// combounit.filter('',ll);
+		
+		
+		
 	},
 
+
 	ubahLabelWO: function(p)	{
+
 		var me=this;
 		var combost = me.getCbUnitStore();
 		//console.log("onLauch SAP");

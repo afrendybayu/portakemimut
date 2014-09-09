@@ -51,8 +51,8 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 				format : 'Y-m-d'
 			},{
 				header : 'Lokasi',
-				flex : 1,
-				// width : 75,
+				// flex : 1,
+				width : 150,
 				dataIndex : 'lokasi',
 				editor : 'textfield',
 				
@@ -60,31 +60,31 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 				
 			},{
 				header : 'Unit',
-				flex : 1,
-				// width : 75,
+				// flex : 1,
+				width : 150,
 				
 				dataIndex : 'unit',
 			},{
 				header : '#WO',
 				flex : 1,
-				// width : 75,
+				// width : 200,
 				dataIndex : 'wo',
 				editor : 'textfield'
 			},{
 				header : '#SAP',
 				flex : 1,
-				// width : 50,
+				// width : 150,
 				dataIndex : 'sap',
 				editor : 'textfield'
 			},{
 				header : 'Laporan',
 				flex :1,
-				// width : 100,
+				// width : 200,
 				dataIndex : 'url'
 			},{
 				header : 'Eksekutor',
 				flex : 1,
-				// width : 75,
+				// width : 200,
 				dataIndex : 'pic',
 				editor : 'textfield'
 			},{

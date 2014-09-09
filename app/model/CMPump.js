@@ -1,19 +1,19 @@
-/* Afrendy Bayu, 3Des2013 */
-Ext.define('rcm.model.CbParent', {
+/* Afrendy Bayu, 18Jan2014 */
+Ext.define('rcm.model.CMPump', {
 	extend: 'Ext.data.Model',
 	requires:[
 		'Ext.data.proxy.Ajax'
 	],
-	
-	fields: [ 'id_lokasi','loc'],
+
+	fields: ['thn', { name:'jml',type:'int' }],
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/sap/rConMon/cbLokasi'
+			read: 'ci/index.php/sap/rConMon/compConMon?cat=6'
         },
         reader: {
             type: 'json',
-            root: 'location',
+            root: 'gascomp',
             messageProperty: 'message'
         }
     }

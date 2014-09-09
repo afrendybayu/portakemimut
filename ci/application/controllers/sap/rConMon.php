@@ -72,13 +72,13 @@ class rConMon extends CI_Controller {
 			foreach ($hsl as $r){
 				// print_r ($r);
 				$data[] = array(
-						'id'	=>$r->id,
-						'lokasi'=>$r->nama,
-						'kode'	=>$r->kode
+						'id_lokasi'	=>$r->id,
+						'loc'		=>$r->nama,
+						
 						);
 				$jsonResult = array(
 					'success' => true,
-					'lokasi' => $data
+					'location' => $data
 				);
 			}
 		}
@@ -96,15 +96,15 @@ class rConMon extends CI_Controller {
 		try {
 			// $id_lok = $this->input->get('id') ? $this->input->get('id') : 0; 
 			
-			$hsl = $this->hirarki->get_unitlokasi();
+			$hsl = $this->hirarki->get_unit();
 			
 			foreach ($hsl as $r){
 				// print_r ($r);
 				$data[] = array(
-						'id_unit'	=>$r->id,
-						'id_lokasi'=>$r->id_lokasi,
-						'lokasi'=>$r->lokasi,
-						'unit'=>$r->unit
+						'id_unit'	=>$r->id_unit,
+						//'id_type'	=>$r->id_type,
+						'id_lokasi'	=>$r->id_lokasi,
+						'unit'		=>$r->unit
 						);
 				$jsonResult = array(
 					'success' => true,
@@ -128,20 +128,23 @@ class rConMon extends CI_Controller {
 		try {
 			$conmon = json_decode(file_get_contents('php://input'));
 			
-			// echo $conmon->lokasi.'-'.$params->unit.'</br>';
+			$flag = $this->hirarki->get_flag($conmon->unit);
+			foreach($flag as $r){
+				// echo $r->flag;
+				
+				$sql = array(
+					'tgl' 	=> $conmon->tgl ,
+					'unit' 	=> $conmon->unit,
+					'type'	=> $r->flag,
+					'wo'	=> $conmon->wo,
+					'sap'	=> $conmon->sap,
+					'url'	=> $conmon->url,
+					'pic'	=> $conmon->pic,
+					'ket'	=> $conmon->ket
+				);
+				$this->db->insert('conmon', $sql);
 			
-			$data = array(
-			   'tgl' 	=> $conmon->tgl ,
-			   'lokasi' => $conmon->lokasi ,
-			   'unit' 	=> $conmon->unit,
-			   'wo'		=> $conmon->wo,
-			   'sap'	=> $conmon->sap,
-			   'url'	=> $conmon->url,
-			   'pic'	=> $conmon->pic,
-			   'ket'	=> $conmon->ket
-			);
-
-			$this->db->insert('conmon', $data); 
+			}
 			
 			
 
@@ -163,6 +166,35 @@ class rConMon extends CI_Controller {
 		// echo json_encode($jsonResult);
 	}
 	
+	function compConMon(){
+		try {
+			$cat = $this->input->get('cat');
+			$hsl = $this->cmon->gascomp_conmon($cat);
+			
+			foreach ($hsl as $r){
+				// print_r ($r);
+				$data[] = array(
+						'thn'	=>$r->tahun,
+						'jml'	=>$r->jml,
+						);
+				$jsonResult = array(
+					'success' => true,
+					'gascomp' => $data
+				);
+			}
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+		
+		
+	
+	}
 }
 
 /* End of file rConMon.php */
