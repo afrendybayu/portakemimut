@@ -32,7 +32,7 @@ Ext.define('rcm.controller.Sap', {
 		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10'
 		,'Contract','ContractLine', 'ContractInput'
 
-		,'SapHistori','ConMon','ConMonIn','CbParent','CbUnit','CMGasComp','CMGenset','CMPump'
+		,'SapHistori','ConMon','ConMonIn','CbParent','CbUnit','ConMonGr'
     ],
     
     models: [

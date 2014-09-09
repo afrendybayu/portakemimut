@@ -195,6 +195,34 @@ class rConMon extends CI_Controller {
 		
 	
 	}
+	function gConMon(){
+		try {
+			$hsl = $this->cmon->graf_conmon();
+			
+			foreach ($hsl as $r){
+				// print_r ($r);
+				$data[] = array(
+						'thn'	=>$r->thn,
+						'gc'	=>$r->gc,
+						'gs'	=>$r->gs,
+						'pmp'	=>$r->pmp
+						);
+				$jsonResult = array(
+					'success' => true,
+					'gcmon' => $data
+				);
+			}
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+	
+	}
 }
 
 /* End of file rConMon.php */

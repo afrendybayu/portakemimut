@@ -33,13 +33,9 @@ Ext.define('rcm.view.laporan.ConMon', {
 				param: 'GasComp',
 				yNama: 'Cond. Monitoring',
 				jdl: 'Condition Monitoring Gas Compressor',
-				dstore: 'CMGasComp',
-				/*dstore: 'CMGasComp',
-				jdl: 'TOp 10 Orders Cost per Equipment',
-				param: 'Equipment Cost',
-				yNama: 'Cost'
-				// dstore: me.dstore,
-			//*/
+				dstore: 'ConMonGr',
+				idx: 'gc'
+				
 			}]
 			
 		},{
@@ -50,13 +46,8 @@ Ext.define('rcm.view.laporan.ConMon', {
 				param: 'Genset',
 				yNama: 'Cond. Monitoring',
 				jdl: 'Condition Monitoring Genset',
-				dstore: 'CMGenset'
-				/*dstore: 'CMGasComp',
-				jdl: 'TOp 10 Orders Cost per Equipment',
-				param: 'Equipment Cost',
-				yNama: 'Cost'
-				// dstore: me.dstore,
-			//*/
+				dstore: 'ConMonGr',
+				idx: 'gs'
 			}]
 		},{
 			xtype : 'panel',
@@ -66,13 +57,8 @@ Ext.define('rcm.view.laporan.ConMon', {
 				param: 'Pump',
 				yNama: 'Cond. Monitoring',
 				jdl: 'Condition Monitoring Pump',
-				dstore: 'CMPump'
-				/*dstore: 'CMGasComp',
-				jdl: 'TOp 10 Orders Cost per Equipment',
-				param: 'Equipment Cost',
-				yNama: 'Cost'
-				// dstore: me.dstore,
-			//*/
+				dstore: 'ConMonGr',
+				idx: 'pmp'
 			}]
 		
 		}]
