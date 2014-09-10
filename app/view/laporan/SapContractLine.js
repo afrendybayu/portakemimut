@@ -54,7 +54,8 @@ Ext.define('rcm.view.laporan.SapContractLine', {
 			yAxis : [{
 				title : {
 					text : 'Cost'
-				}
+				},
+				min: 0
 			}],
 			plotOptions : {
 				series : {

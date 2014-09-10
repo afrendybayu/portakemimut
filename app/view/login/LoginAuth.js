@@ -2,8 +2,11 @@ Ext.define('rcm.view.login.LoginAuth', {
 	extend: 'Ext.form.Panel',
 	xtype: 'authlogin',
 	layout: 'hbox',
-	frame : true,
-	id	: 'p_login',	
+	//frame : true,
+	margin: '5 5 5 5',
+	id	: 'p_login',
+	level: 10,
+	
 	items: [{
 				xtype : 'textfield',
 				name: 'username',
@@ -11,7 +14,9 @@ Ext.define('rcm.view.login.LoginAuth', {
 				width: 70,
 				allowBlank: false,
 				emptyText : 'Username'
-			},{xtype : 'tbspacer'},{
+			},{
+				xtype : 'tbspacer'
+			},{
 				xtype : 'textfield',
 				inputType: 'password',
 				name: 'password',
@@ -24,7 +29,6 @@ Ext.define('rcm.view.login.LoginAuth', {
 				text : 'Login',
 				id	: 'btn_login',
 				action : 'login'
-								
 			}]
 			
 	/*initComponent : function(){

@@ -17,6 +17,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		,'dataentry.DaftarGagal'
 		,'Ext.ux.grid.FiltersFeature'
 		,'Ext.draw.Text'
+		
     ],
 
     stores: [

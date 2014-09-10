@@ -8,6 +8,7 @@ Ext.define('rcm.view.Content', {
 		,'rcm.view.lapobama.AvReChart' //--
 		,'rcm.view.laporan.Chart'
 		,'rcm.view.utama.HoChart'
+		//,'rcm.view.login.LoginAuth'
 	],
 
     layout: {
@@ -147,12 +148,14 @@ Ext.define('rcm.view.Content', {
              * @param {SimpleTasks.model.Task} task     The task record that was edited
              */
 			'updateAvRe'
+			,'updateHome'
         );
         this.on('tabchange', me.handleContentTab, this);
 	},
 	handleContentTab: function()	{
 		var tt = this.getActiveTab().getId();
 		rcmSettings.tab = tt;
+		//alert(this.getAuthlogin().level);
 		if (tt.localeCompare("tu_re")==0)	{
 			//alert("masuk Reliability");
 			this.fireEvent('updateAvRe');
