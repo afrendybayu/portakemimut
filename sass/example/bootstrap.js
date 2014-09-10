@@ -907,6 +907,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.CbParent": [],
   "rcm.model.CbUnit": [],
   "rcm.model.ConMon": [],
+  "rcm.model.ConMonGr": [],
   "rcm.model.ConMonIn": [],
   "rcm.model.Contract": [],
   "rcm.model.ContractInput": [],
@@ -952,6 +953,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.CbParent": [],
   "rcm.store.CbUnit": [],
   "rcm.store.ConMon": [],
+  "rcm.store.ConMonGr": [],
   "rcm.store.ConMonIn": [],
   "rcm.store.Contract": [],
   "rcm.store.ContractInput": [],
@@ -1034,6 +1036,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.lapobama.SpeedoAv": [],
   "rcm.view.laporan.Chart": [],
   "rcm.view.laporan.ChartContract": [],
+  "rcm.view.laporan.CmGasComp": [],
   "rcm.view.laporan.ConMon": [],
   "rcm.view.laporan.ConMonForm": [],
   "rcm.view.laporan.ConMonInput": [],
@@ -2103,6 +2106,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.CbParent": [],
   "rcm.model.CbUnit": [],
   "rcm.model.ConMon": [],
+  "rcm.model.ConMonGr": [],
   "rcm.model.ConMonIn": [],
   "rcm.model.Contract": [],
   "rcm.model.ContractInput": [],
@@ -2148,6 +2152,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.CbParent": [],
   "rcm.store.CbUnit": [],
   "rcm.store.ConMon": [],
+  "rcm.store.ConMonGr": [],
   "rcm.store.ConMonIn": [],
   "rcm.store.Contract": [],
   "rcm.store.ContractInput": [],
@@ -2271,6 +2276,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.laporan.ChartContract": [
     "widget.tLineCont"
+  ],
+  "rcm.view.laporan.CmGasComp": [
+    "widget.gascompcm"
   ],
   "rcm.view.laporan.ConMon": [
     "widget.tConMon"

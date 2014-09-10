@@ -24,12 +24,12 @@ Ext.define('rcm.view.laporan.SapContractLine', {
 			name: 'Pump',
 	}],
 	
-	//store:'SapHistori',
+	// store:'SapHistori',
 	xField: 'bln',
 	
 	initComponent: function() {
 		var me=this;
-		//me.store='SapHistori';
+		me.store='SapHistori';
 		me.store='ContractLine';
 		me.chartConfig = {
 			chart: {

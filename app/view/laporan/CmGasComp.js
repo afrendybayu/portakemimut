@@ -7,6 +7,7 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 	jdl: '-',
 	param: '-',
 	yNama: '-',
+	idx: '',
 	loadMask: true,
 
 	xField: 'thn',
@@ -15,7 +16,7 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 		var me=this;
 		me.series = [{
 			colorByPoint: true,
-			dataIndex: 'jml',
+			dataIndex: me.idx,
 			name: me.param
 		}];
 		me.store= me.dstore;

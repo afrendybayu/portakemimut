@@ -42,7 +42,7 @@ class rContract extends CI_Controller {
 				array_push($hsl,$obj);
 				
 			}
-			print_r($obj);
+			// print_r($obj);
 			
 			
 			
