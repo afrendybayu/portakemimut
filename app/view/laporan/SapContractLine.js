@@ -13,15 +13,15 @@ Ext.define('rcm.view.laporan.SapContractLine', {
 	series : [{
 			type: 'spline',
 			dataIndex: 'gc',
-			name: 'Gas Compressor',
+			name: 'Gas Compressor'
 		},{
 			type: 'spline',
 			dataIndex: 'gs',
-			name: 'Generator Set',
+			name: 'Generator Set'
 		},{
 			type: 'spline',
 			dataIndex: 'pm',
-			name: 'Pump',
+			name: 'Pump'
 	}],
 	
 	// store:'SapHistori',

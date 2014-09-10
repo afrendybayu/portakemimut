@@ -364,6 +364,11 @@ Ext.define('rcm.controller.Sap', {
 			icon: Ext.MessageBox.QUESTION
 		});
        //*/
+       if (e.originalValue == nilai)	{
+			//console.log("sama");
+		   return;
+	   }
+       
 		Ext.MessageBox.show({
 			title : 'Simpan ?',
 			msg : 'Simpan nilai awal '+e.originalValue+', menjadi '+nilai+' ?',
