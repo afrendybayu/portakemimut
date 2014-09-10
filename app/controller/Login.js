@@ -120,6 +120,7 @@ Ext.define('rcm.controller.Login', {
 						icon  : Ext.MessageBox.INFO
 					});
 					//*/
+					me.getAuthlogin().level = res.level;
 					Ext.getCmp('p_login').setVisible(false);
 					Ext.getCmp('p_logout').setVisible(true);
 					Ext.getCmp('t_welcome').setText('Selamat Datang '+res.session);
@@ -191,6 +192,7 @@ Ext.define('rcm.controller.Login', {
 					});
 					me.getExcelgrid().ngedit = 0;
 					me.getTGridContract().ngedit = 0;
+					me.getAuthlogin().level = 10;
 					Ext.getCmp('p_login').setVisible(true);
 					Ext.getCmp('p_logout').setVisible(false);
 					Ext.getCmp('griddel').setVisible(false);
@@ -223,6 +225,7 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('btnUplBpm3').setDisabled(false);
 					Ext.getCmp('bwbpm3').setDisabled(false);
 					
+					me.getAuthlogin().level = res.level;
 					me.getExcelgrid().ngedit = 1;
 				}
 				else{
