@@ -123,6 +123,26 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 					]
 			}, { header: 'Mode Kegagalan / Keterangan', dataIndex: 'fm', flex:1, hideable : false
 			}, {
+				header: 'Start',
+				//name: 'stop',
+				width: 40,
+				renderer: function()	{
+					 return '<input type= "radio" name="rstart" style="margin-left:10px;"/>';
+				},
+				editor: {
+					xtype:'radio'
+			   }
+			}, {
+				header: 'End',
+				name: 'stop',
+				width: 40,
+				renderer: function()	{
+					 return '<input type= "radio" name="rend" style="margin-left:10px;"/>';
+				},
+				editor: {
+					xtype:'radio'
+			   }
+			}, {
 				xtype:'actioncolumn',
 				width:25,
 				iconCls: 'editEvent',
