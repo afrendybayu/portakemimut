@@ -154,9 +154,7 @@ Ext.define('rcm.controller.Sap', {
                 me.getConMonStore().load();
 				basicForm.reset();
 				me.getConMonInStore().load();
-				me.getCMPumpStore().load();
-				me.getCMGensetStore().load();
-				me.getCMGasCompStore().load();
+				me.getConMonGrStore().load();
 				// me.refreshFiltersAndCount();
                 /*me.getTasksStore().sort();
                 titleField.reset();
