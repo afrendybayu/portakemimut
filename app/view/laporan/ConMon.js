@@ -19,16 +19,57 @@ Ext.define('rcm.view.laporan.ConMon', {
         title: 'Grafik Condition Monitoring',
         region: 'south',     
         xtype: 'panel',
-        height: 400,
+        height: 500,
         collapsible: true,
 		split: true,
         margins: '0 5 5 5',
-		layout : {type : 'hbox', align: 'stretch' },
-		items : [{
+		layout : {
+			type : 'vbox',
+			align : 'stretch'},
+		items:[{
 			xtype : 'panel',
-			// title : 'panel1',
-			flex :1,
+			
+			layout : {type : 'hbox', align: 'stretch' },
+			flex : 1,
+			items :[{
+				xtype : 'gascompcm',
+				flex :1,
+				param: 'GasComp',
+				yNama: 'Cond. Monitoring',
+				jdl: 'Condition Monitoring Gas Compressor',
+				dstore: 'ConMonGr',
+				warna : '#7cb5ec',
+				idx: 'gc'
+			},{
+				flex :1,
+				xtype : 'gascompcm',
+				param: 'Genset',
+				yNama: 'Cond. Monitoring',
+				jdl: 'Condition Monitoring Genset',
+				dstore: 'ConMonGr',
+				warna : '#434348',
+				idx: 'gs'	
+			},{
+				flex :1,
+				xtype : 'gascompcm',
+				param: 'Pump',
+				yNama: 'Cond. Monitoring',
+				jdl: 'Condition Monitoring Pump',
+				dstore: 'ConMonGr',
+				warna : '#90ed7d',
+				idx: 'pmp'				
+			}]
+		},{
+			xtype : 'panel',
+			title : 'dua',
+			flex : 1
+		}]
+		
+		//layout : {type : 'hbox', align: 'stretch' },
+		/*
+		items : [{
 			xtype : 'gascompcm',
+			flex :1,
 			param: 'GasComp',
 			yNama: 'Cond. Monitoring',
 			jdl: 'Condition Monitoring Gas Compressor',
@@ -61,6 +102,7 @@ Ext.define('rcm.view.laporan.ConMon', {
 			idx: 'pmp'
 			
 		}]
+		//*/
     },{
    
         region:'west',

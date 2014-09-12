@@ -223,6 +223,28 @@ class rConMon extends CI_Controller {
 		echo json_encode($jsonResult);
 	
 	}
+	
+	function gUnitConMon(){
+		$tipe = $this->input->get('tp') != null ? $this->input->get('tp') : '5';
+		$thn = date('Y'); $thn1 = $thn-1; $thn2 = $thn-2;
+		
+		echo 'tahun : '.$thn.' - ' .$thn1.' - ' .$thn2.'  dan tipe : '.$tipe.'</br>' ;
+		
+		$hslthn2 = $this->cmon->gunit_conmon($thn2,$tipe);
+		$hslthn1 = $this->cmon->gunit_conmon($thn1,$tipe);
+		$hslthn = $this->cmon->gunit_conmon($thn,$tipe);
+		
+		print_r ($hslthn2); echo '<br>';
+		print_r ($hslthn1); echo '<br>';
+		print_r ($hslthn); echo '<br>';
+		
+		// foreach ($hslthn2 as $r){
+			// print_r ($r);
+		
+		// }
+		 // print_r($hslthn2);
+		
+	}
 }
 
 /* End of file rConMon.php */

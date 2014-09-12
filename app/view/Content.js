@@ -45,7 +45,7 @@ Ext.define('rcm.view.Content', {
 			iconCls: 'perform',
 			title: 'Prestasi Mesin',
 		//*/
-		/*===============================
+		///*===============================
 		},{
 			id: 'tu_rh',
 			title: 'Runnning Hour',
@@ -97,7 +97,7 @@ Ext.define('rcm.view.Content', {
 				//	data: Ext.create('Extensible.example.calendar.data.Events')
 				//}),
 			//*/
-		/*====	
+		///*====	
 			}]
 		/*
 		},{

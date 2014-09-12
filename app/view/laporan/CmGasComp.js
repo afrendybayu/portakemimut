@@ -19,7 +19,8 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 			// colorByPoint: true,
 			dataIndex: me.idx,
 			name: me.param,
-			color : me.warna
+			color : me.warna,
+			// drilldown : true
 		}];
 		me.store= me.dstore;
 		me.chartConfig= {
@@ -42,9 +43,9 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 				}
 			},
 			plotOptions : {
-				bar: {
+				column: {
 					dataLabels: {
-						enabled: true,
+						enabled: false,
 						formatter : function() {
 							return '<b>'+me.param+': '+this.y+'</b>';
 						}

@@ -8,7 +8,7 @@ class RhSweep extends CI_Controller {
 		$this->load->model('equip');
     }
 	public function index()	{
-		$awal = $this->input->get('awal') ? $this->input->get('awal') : date('Y-m-d',mktime(0,0,0,8,date('d')-1,2014));
+		$awal = $this->input->get('awal') ? $this->input->get('awal') : date('Y-m-d',mktime(0,0,0,date('m'),date('d')-1,date('Y')));
 		// $akhir = $this->input->get('akhir') ? $this->input->get('akhir') : date('Y-m-d',mktime(0,0,0,8,date('d')-1,2014));//(mktime(0, 0, 0, date('m')  , date('d')+1, date('Y')));
 		$level = 3;
 		echo 'tgl awal ==> '.$awal;//.' dan tgl akhir ==> '.$akhir.'</br>'; 

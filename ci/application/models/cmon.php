@@ -42,6 +42,13 @@ class CMon extends CI_Model {
 		return $query->result();
 	}
     
+	function gunit_conmon($tahun, $tipe){
+		$sql = "select year(c.tgl) as thn, month(c.tgl) as bln, count(c.unit) as unit 
+				from conmon c where year(c.tgl) = ? and c.`type`= ? group by bln";
+		$query = $this->db->query($sql, array($tahun, $tipe));
+		return $query->result();
+		
+	}
 }
 
 /* End of file conmon.php */
