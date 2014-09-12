@@ -4,7 +4,7 @@ Ext.define('rcm.store.DaftarRelia', {
     model: 'rcm.model.DaftarGagal',
     requires: 'rcm.model.DaftarGagal',
     
-	autoLoad: true,
+	//autoLoad: true,
 	proxy: {
 		type: 'ajax',
 		url: 'ci/index.php/rh/rDaftarG/relia',

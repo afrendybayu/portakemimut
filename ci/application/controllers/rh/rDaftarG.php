@@ -269,11 +269,11 @@ class rDaftarG extends CI_Controller {
 		$unit = $this->input->get('unit');
 		$aw = $this->input->get('aw');
 		$ak = $this->input->get('ak');
-
+		/*
 		$unit = 22;
 		$aw = 'e254e255';
 		$ak = 'e245e244';
-		
+		//*/
 		$awal = explode('e',substr($aw,1));
 		$akhr = explode('e',substr($ak,1));
 		try {

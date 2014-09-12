@@ -38,39 +38,7 @@ Ext.define('rcm.view.dataentry.HitungRelia', {
 	initComponent: function() {
 		var me=this;	//, ceditp=Ext.create('Ext.grid.plugin.RowEditing');//clicksToEdit: 1
 		//me.plugins = [ceditp];
-		/*
-		me.listeners = {
-			itemclick: function(view, rec, item, index, e) {
-				var pos = view.getPositionByEvent(e),
-					col = pos.column;
-				//alert(col);
-				//console.log('unit: '+rec.get('eqid')+', id: '+rec.get('id'));
-				if (col==13)	{
-					me.end = '-';
-					me.end = {u:rec.get('eqid'), id:rec.get('id'), n:index};
-				}
-				if (col==14)	{
-					me.start = '-';
-					if (me.end.u!=rec.get('eqid'))	{
-						me.hpsRStart();
-						alert("Nama atau TIpe Unit Start dan End TIDAK SAMA !!<br/>Cek Lokasi dan Unitnya.");
-					}
-					else if (me.end.n==index) {
-						me.hpsRStart();
-						alert("Pilih baris event yang beda");
-					}
-					else {
-						me.start = {u:rec.get('eqid'),id:rec.get('id')};
-					}
-				}
-			},
-			itemdblclick: function(dv, record, item, index, e)	{
-				//alert("double click, "+record.get('idevent')+"-- "+record.get('event'));
-				me.row2Click(record.get('id'), record.get('idevent'));	//	record.raw.value
-			}
-			
-		},
-		//*/
+		
 		me.columns = {	items: [
 			{ xtype:'rownumberer',width:25 },
 			//{ header:'Lokasi',dataIndex:'lok',width:100, hideable : false, filter: { 	type: 'string'  } },

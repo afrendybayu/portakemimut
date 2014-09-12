@@ -15,10 +15,11 @@ Ext.define('rcm.controller.ExcelGrid', {
 		,'dataentry.PropGrid'
 		,'dataentry.InfoFMEA'
 		,'dataentry.DaftarGagal'
-		,'dataentry.HitungRelia'
+		//,'dataentry.HitungRelia'
 		,'Ext.ux.grid.FiltersFeature'
 		,'Ext.draw.Text'
-		
+		//,'Content'
+		,'dataentry.Tab'
     ],
 
     stores: [
@@ -47,6 +48,9 @@ Ext.define('rcm.controller.ExcelGrid', {
     refs: [{
 		ref: 'excelgrid',
 		selector: 'excelgrid'
+	},{
+		ref: 'tabRh',
+		selector: 'tabRh'
 	},{
 		ref: 'taskFMEAGrid',
 		selector: 'taskFMEAGrid'
@@ -140,11 +144,20 @@ Ext.define('rcm.controller.ExcelGrid', {
 	},
     
     htgRe: function()	{
-		var dg = this.getTaskDaftarGagal();
-		alert("start: "+dg.start.id+', end: '+dg.end.id);
-		Ext.getCmp('lblRelia').setText('testing'+dg.jdl.lok);
-		//console.log(Ext.getCmp('rstart'));
-		//rcmSettings.ggg = Ext.getCmp('rstart');
+		var co = this.getTabRh(),
+			dg = this.getTaskDaftarGagal();
+
+		Ext.getCmp('lblRelia').setText('Reliability '+dg.jdl.n+' @'+dg.jdl.l);
+		
+		this.getDaftarReliaStore().load({
+			params:{unit:dg.end.u,aw:dg.start.id,ak:dg.end.id },
+			scope: this,
+			callback: function()	{
+				//alert('jos');
+				co.showRelia();
+			}
+		});
+
 	},
 	
 	clrRe: function()	{
