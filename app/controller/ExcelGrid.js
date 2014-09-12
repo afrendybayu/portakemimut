@@ -147,6 +147,15 @@ Ext.define('rcm.controller.ExcelGrid', {
 		var co = this.getTabRh(),
 			dg = this.getTaskDaftarGagal();
 
+		if (dg.end.id==null)	{
+			Ext.Msg.alert('Error', 'Pilih baris event end');
+			return;
+		}
+		if (dg.start.id==null)	{
+			Ext.Msg.alert('Error', 'Pilih baris event start');
+			return;
+		}
+		
 		Ext.getCmp('lblRelia').setText('Reliability '+dg.jdl.n+' @'+dg.jdl.l);
 		
 		this.getDaftarReliaStore().load({
