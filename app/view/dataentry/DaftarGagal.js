@@ -49,14 +49,17 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 				//console.log('unit: '+rec.get('eqid')+', id: '+rec.get('id'));
 				if (col==13)	{
 					me.end = '-';
+					//if ()
 					me.end = {u:rec.get('eqid'), id:rec.get('id'), n:index};
 					me.jdl = {l:rec.get('lok'), n:rec.get('nama')};
 				}
 				if (col==14)	{
 					me.start = '-';
-					if (me.end.u!=rec.get('eqid'))	{
+					if (me.end.u!=rec.get('eqid') && (me.end!='-' ))	{
 						me.hpsRStart();
-						Ext.Msg.alert('Status', 'Nama atau TIpe Unit Start dan End TIDAK SAMA !!<br/>Cek Lokasi dan Unitnya..');
+						rcmSettings.end = me.end;
+						rcmSettings.start = me.start;
+						Ext.Msg.alert('Status', me.end+'Nama atau TIpe Unit Start dan End TIDAK SAMA !!<br/>Cek Lokasi dan Unitnya..');
 					}
 					else if (me.end.n==index) {
 						me.hpsRStart();

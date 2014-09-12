@@ -298,7 +298,17 @@ class rDaftarG extends CI_Controller {
 						array_push($df, $q[$i]);
 					}
 				}
-				$ut=''; $uj='';
+				
+				/*
+				//print_r($df); echo "<br/>";
+				foreach ($df as $a)	{
+					print_r($a); echo "<br/>";
+				}
+				echo "<br/><br/>";
+				//*/
+				
+				$ut=''; $uj=''; $jmlSt = 0; $tot = 0;
+				$dAt = array();
 				for($i=0; $i<count($df); $i++)	{
 					if ($i==0)	{
 						$ut = $df[$i]->upt;
@@ -307,25 +317,49 @@ class rDaftarG extends CI_Controller {
 					else {
 						if ($df[$i]->idevent>1)	{
 							$rh = slh_waktu($ut,$uj,$df[$i]->downt,$df[$i]->downj);
-							$df[$i]->rh = round(slh_waktu($ut,$uj,$df[$i]->downt,$df[$i]->downj),2);
+							
+							if ($jmlSt>0)	$df[$i]->ket = "Ada $jmlSt kejadian Standby, Total: $tot jam";
+							$df[$i]->rh = round(slh_waktu($ut,$uj,$df[$i]->downt,$df[$i]->downj),2)-round($tot,2);
 							//print_r($rh);  echo "<br/>";
 							//echo "rh: $rh<br/>";
 							$ut = $df[$i]->upt;
 							$uj = $df[$i]->upj;
+							$jmlSt = 0; $tot = 0;
+						}
+						else {
+							$rh = slh_waktu($df[$i]->downt,$df[$i]->downj,$df[$i]->upt,$df[$i]->upj);
+							$tot += $rh;
+							array_push($dAt, $i);
+							//echo "<br/>------<br/>"; print_r($df); echo "<br/>------<br/>";
+							$jmlSt++;
+							//array_pop($df[$i]);
 						}
 					}
 				}
 				
-				 $jsonResult = array(
-					'success' => true,
-					'gagal' => $df
-				);
+				//echo "standby: "; print_r($dAt); echo "<br/>";
+				for ($i=0; $i<count($dAt); $i++)		{
+					unset($df[$dAt[$i]]);
+				}
 				
+				$hsl = array();
+				foreach($df as $a)	{
+					array_push($hsl, $a);
+				}
+
 				/*
+				//print_r($df); echo "<br/>";
 				foreach ($df as $a)	{
 					print_r($a); echo "<br/>";
 				}
 				//*/
+				
+				 $jsonResult = array(
+					'success' => true,
+					'gagal' => $hsl
+				);
+				
+				
 			}
 		}
 		catch (Exception $e)	{

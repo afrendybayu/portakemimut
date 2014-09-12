@@ -178,8 +178,8 @@ Ext.define('rcm.controller.ExcelGrid', {
 			rs[i].checked = false;
 			re[i].checked = false;
 		}
-		dg.start='';
-		dg.end='';
+		dg.start='-';
+		dg.end='-';
 	},
     
     plhFilterClick: function(n)		{
