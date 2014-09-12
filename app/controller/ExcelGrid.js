@@ -49,6 +49,9 @@ Ext.define('rcm.controller.ExcelGrid', {
 		ref: 'taskFMEAGrid',
 		selector: 'taskFMEAGrid'
 	},{
+		ref: 'taskDaftarGagal',
+		selector: 'taskDaftarGagal'
+	},{
 		ref: 'taskFormGagal',
 		selector: 'taskFormGagal',
 		xtype: 'taskFormGagal',
@@ -94,6 +97,12 @@ Ext.define('rcm.controller.ExcelGrid', {
 			'#update-rh': {
 				click: me.updateGagalClick
 			},
+			'#btnHtgReliax': {
+				click: me.htgRe
+			},
+			'#btnClrReliax': {
+				click: me.clrRe
+			},
 			//*/
 			'taskIsiFormGagal': {
 				plhEventGagalXY: me.pilihEventGagalXY
@@ -126,6 +135,26 @@ Ext.define('rcm.controller.ExcelGrid', {
         this.getTaskFMEAGrid().getView().refresh();
         //rcmSettings.ggg = this.getTaskFMEAGrid().getView();
 		//alert('tambah FNMEA');
+	},
+    
+    htgRe: function()	{
+		var dg = this.getTaskDaftarGagal();
+		alert("start: "+dg.start.id+', end: '+dg.end.id);
+		//console.log(Ext.getCmp('rstart'));
+		//rcmSettings.ggg = Ext.getCmp('rstart');
+	},
+	
+	clrRe: function()	{
+		var dg = this.getTaskDaftarGagal(),
+			rs = Ext.select('*[name=rstart]').elements,
+			re = Ext.select('*[name=rend]').elements;
+
+		for (var i=0; i<re.length; i++)	{
+			rs[i].checked = false;
+			re[i].checked = false;
+		}
+		dg.start='';
+		dg.end='';
 	},
     
     plhFilterClick: function(n)		{
