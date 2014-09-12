@@ -142,6 +142,7 @@ Ext.define('rcm.controller.ExcelGrid', {
     htgRe: function()	{
 		var dg = this.getTaskDaftarGagal();
 		alert("start: "+dg.start.id+', end: '+dg.end.id);
+		Ext.getCmp('lblRelia').setText('testing'+dg.jdl.lok);
 		//console.log(Ext.getCmp('rstart'));
 		//rcmSettings.ggg = Ext.getCmp('rstart');
 	},

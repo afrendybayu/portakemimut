@@ -12,6 +12,7 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 	],
 	start: '-',
 	end: '-',
+	jdl: '',
 	// enableColumnHide: false,
 	
 	viewConfig: {
@@ -49,6 +50,7 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 				if (col==13)	{
 					me.end = '-';
 					me.end = {u:rec.get('eqid'), id:rec.get('id'), n:index};
+					me.jml = {l:rec.get('lok'), n:rec.get('nama')};
 				}
 				if (col==14)	{
 					me.start = '-';
