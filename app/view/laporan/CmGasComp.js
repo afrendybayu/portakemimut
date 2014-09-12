@@ -8,6 +8,7 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 	param: '-',
 	yNama: '-',
 	idx: '',
+	warna: '',
 	loadMask: true,
 
 	xField: 'thn',
@@ -15,9 +16,11 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 	initComponent: function() {
 		var me=this;
 		me.series = [{
-			colorByPoint: true,
+			// colorByPoint: true,
 			dataIndex: me.idx,
-			name: me.param
+			name: me.param,
+			color : me.warna,
+			// drilldown : true
 		}];
 		me.store= me.dstore;
 		me.chartConfig= {
@@ -40,9 +43,9 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 				}
 			},
 			plotOptions : {
-				bar: {
+				column: {
 					dataLabels: {
-						enabled: true,
+						enabled: false,
 						formatter : function() {
 							return '<b>'+me.param+': '+this.y+'</b>';
 						}
@@ -68,14 +71,17 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 					}
 				}
 			},
+			//*
 			tooltip : {
 				formatter : function() {
 					return '<b>' + this.series.name + '</b><br/>' + this.x + ': ' + this.y;
 				}
 			},
+			//*/
 			credits : {
 				text : 'hc'
 			},
+			/*
 			legend : {
 				layout : 'vertical',
 				align : 'right',
@@ -84,6 +90,7 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 				y : 100
 				//borderWidth : 0
 			}
+			*/
 		};
 		me.callParent(arguments);
 	}

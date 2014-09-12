@@ -49,7 +49,6 @@ Ext.define('rcm.view.Content', {
 			iconCls: 'perform',
 			title: 'Prestasi Mesin',
 		//*/
-		//*===============================
 		},{
 			id: 'tu_rh',
 			title: 'Runnning Hour',
@@ -108,7 +107,8 @@ Ext.define('rcm.view.Content', {
 				itemId: 'relia',
 				//hidden: true,
 				iconCls: 'up'
-			}]
+			//*/
+			//}]
 			//*/
 		/*
 		},{

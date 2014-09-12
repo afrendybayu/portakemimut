@@ -79,7 +79,7 @@ Ext.define('rcm.view.laporan.SapContractLine', {
 					return '<b>' + this.series.name + '</b><br/>' + this.x + ': ' + this.y;
 				}
 			},
-			/*
+			//*
 			legend : {
                     layout : 'vertical',
                     align : 'right',

@@ -59,7 +59,7 @@ Ext.define('rcm.view.dataentry.Tab', {
 	
 	showRelia: function()	{
 		var t = this.child('#relia');
-		console.log('sampe sini showRelia');
+		//console.log('sampe sini showRelia');
 		t.tab.show();
 		this.setActiveTab(t);
 	}

@@ -16,52 +16,93 @@ Ext.define('rcm.view.laporan.ConMon', {
 	layout: 'border',
     items: [{
 
-        // title: 'Grafik',
+        title: 'Grafik Condition Monitoring',
         region: 'south',     
         xtype: 'panel',
-        height: 400,
-        split: true,        
-        colapsible : true,
+        height: 500,
+        collapsible: true,
+		split: true,
         margins: '0 5 5 5',
-		layout : {type : 'hbox', align: 'stretch' },
-		items : [{
+		layout : {
+			type : 'vbox',
+			align : 'stretch'},
+		items:[{
 			xtype : 'panel',
-			// title : 'panel1',
-			flex :1,
-			items : [{
+			
+			layout : {type : 'hbox', align: 'stretch' },
+			flex : 1,
+			items :[{
 				xtype : 'gascompcm',
+				flex :1,
 				param: 'GasComp',
 				yNama: 'Cond. Monitoring',
 				jdl: 'Condition Monitoring Gas Compressor',
 				dstore: 'ConMonGr',
+				warna : '#7cb5ec',
 				idx: 'gc'
-				
-			}]
-			
-		},{
-			xtype : 'panel',
-			flex :1,
-			items : [{
+			},{
+				flex :1,
 				xtype : 'gascompcm',
 				param: 'Genset',
 				yNama: 'Cond. Monitoring',
 				jdl: 'Condition Monitoring Genset',
 				dstore: 'ConMonGr',
-				idx: 'gs'
-			}]
-		},{
-			xtype : 'panel',
-			flex :1,
-			items : [{
+				warna : '#434348',
+				idx: 'gs'	
+			},{
+				flex :1,
 				xtype : 'gascompcm',
 				param: 'Pump',
 				yNama: 'Cond. Monitoring',
 				jdl: 'Condition Monitoring Pump',
 				dstore: 'ConMonGr',
-				idx: 'pmp'
+				warna : '#90ed7d',
+				idx: 'pmp'				
 			}]
-		
+		},{
+			xtype : 'panel',
+			title : 'dua',
+			flex : 1
 		}]
+		
+		//layout : {type : 'hbox', align: 'stretch' },
+		/*
+		items : [{
+			xtype : 'gascompcm',
+			flex :1,
+			param: 'GasComp',
+			yNama: 'Cond. Monitoring',
+			jdl: 'Condition Monitoring Gas Compressor',
+			dstore: 'ConMonGr',
+			warna : '#7cb5ec',
+			idx: 'gc'
+			
+			
+			
+			
+		},{
+			flex :1,
+			xtype : 'gascompcm',
+			param: 'Genset',
+			yNama: 'Cond. Monitoring',
+			jdl: 'Condition Monitoring Genset',
+			dstore: 'ConMonGr',
+			warna : '#434348',
+			idx: 'gs'
+			
+		},{
+			
+			flex :1,
+			xtype : 'gascompcm',
+			param: 'Pump',
+			yNama: 'Cond. Monitoring',
+			jdl: 'Condition Monitoring Pump',
+			dstore: 'ConMonGr',
+			warna : '#90ed7d',
+			idx: 'pmp'
+			
+		}]
+		//*/
     },{
    
         region:'west',
