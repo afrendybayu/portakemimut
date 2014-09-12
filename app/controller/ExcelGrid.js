@@ -15,6 +15,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		,'dataentry.PropGrid'
 		,'dataentry.InfoFMEA'
 		,'dataentry.DaftarGagal'
+		,'dataentry.HitungRelia'
 		,'Ext.ux.grid.FiltersFeature'
 		,'Ext.draw.Text'
 		
@@ -34,6 +35,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		,'PM'
 		,'Aksi'
 		,'Cause'
+		,'DaftarRelia'
     ],
     
     models: [

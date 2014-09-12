@@ -200,6 +200,16 @@ if ( ! function_exists('goleki_wayah'))	{
 	}
 }
 
+if ( ! function_exists('slh_waktu'))	{
+	function slh_waktu($taw, $jaw, $tak, $jak) {
+		$tglaw = bwaktu($taw,$jaw);	
+		$tglak = bwaktu($tak,$jak);
+		//echo "taw: $taw, jaw: $jaw, tak: $tak, jak: $jak<br/>";
+		//echo $tglaw->t; echo "\t"; echo $tglak->t; echo "<br/>";
+		return ($tglak->t-$tglaw->t)/3600;
+	}
+}
+
 if ( ! function_exists('rh'))	{
 	function rh($taw, $jaw, $tak, $jak) {
 		//$w = new stdClass();

@@ -8,6 +8,7 @@ Ext.define('rcm.view.Content', {
 		,'rcm.view.lapobama.AvReChart' //--
 		,'rcm.view.laporan.Chart'
 		,'rcm.view.utama.HoChart'
+		,'rcm.view.dataentry.HitungRelia'
 		//,'rcm.view.login.LoginAuth'
 	],
 
@@ -99,6 +100,11 @@ Ext.define('rcm.view.Content', {
 				//}),
 			//*/
 		//*====	
+			},{
+				title: 'Reliability',
+				xtype: 'tDaftarRelia',
+				id: 'app-relia',
+				iconCls: 'up'
 			}]
 		/*
 		},{
