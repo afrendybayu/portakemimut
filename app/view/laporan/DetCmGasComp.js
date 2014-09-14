@@ -1,6 +1,6 @@
 /* AfrendyBayu, 14Nov2013 */
-Ext.define('rcm.view.laporan.CmGasComp', {
-	xtype: 'gascompcm',
+Ext.define('rcm.view.laporan.DetCmGasComp', {
+	xtype: 'detgascompcm',
 	//extend: 'Ext.chart.Chart',
 	extend: 'Chart.ux.Highcharts',
 	dstore: '-',
@@ -11,22 +11,29 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 	warna: '',
 	loadMask: true,
 
-	xField: 'thn',
+	xField: 'bln',
 
 	initComponent: function() {
 		var me=this;
+		var tgl = new Date();
+		var	tskr = tgl.getFullYear(), tskr1= tskr-1, tskr2=tskr-2;
 		me.series = [{
-			// colorByPoint: true,
-			dataIndex: me.idx,
-			name: me.param,
-			color : me.warna,
+			dataIndex: 'skr2',//me.idx,
+			name: tskr2//me.param,
+			// color : me.warna,
 			// drilldown : true
+		},{
+			dataIndex: 'skr1',//me.idx,
+			name: tskr1//me.param,
+		},{
+			dataIndex: 'skr',//me.idx,
+			name: tskr
 		}];
 		me.store= me.dstore;
 		me.chartConfig= {
 			chart: {
 				type: 'column',
-				zoomType: 'y',
+				zoomType: 'x',
 				animation : {
 				duration: 1500,
 					easing: 'swing'

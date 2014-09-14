@@ -33,6 +33,7 @@ Ext.define('rcm.controller.Sap', {
 		,'Contract','ContractLine', 'ContractInput'
 
 		,'SapHistori','ConMon','ConMonIn','CbParent','CbUnit','ConMonGr'
+		,'DetConMonGr'
     ],
     
     models: [

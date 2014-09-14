@@ -48,7 +48,9 @@ class rContract extends CI_Controller {
 			
 			
 			$oo = $this->contract->get_grafikcontrak($thn);
-			//print_r($oo); echo "<br/><br/>";
+			// echo 'banyaknya '.count($oo) .'<br>';
+			
+			// print_r($oo); echo "<br/><br/>";
 			//*
 			for ($i=0; $i<count($oo); $i++)	{
 				$hsl[$oo[$i]->m-1] = $oo[$i];

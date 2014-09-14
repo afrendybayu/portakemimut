@@ -225,24 +225,42 @@ class rConMon extends CI_Controller {
 	}
 	
 	function gUnitConMon(){
-		$tipe = $this->input->get('tp') != null ? $this->input->get('tp') : '5';
-		$thn = date('Y'); $thn1 = $thn-1; $thn2 = $thn-2;
-		
-		echo 'tahun : '.$thn.' - ' .$thn1.' - ' .$thn2.'  dan tipe : '.$tipe.'</br>' ;
-		
-		$hslthn2 = $this->cmon->gunit_conmon($thn2,$tipe);
-		$hslthn1 = $this->cmon->gunit_conmon($thn1,$tipe);
-		$hslthn = $this->cmon->gunit_conmon($thn,$tipe);
-		
-		print_r ($hslthn2); echo '<br>';
-		print_r ($hslthn1); echo '<br>';
-		print_r ($hslthn); echo '<br>';
-		
-		// foreach ($hslthn2 as $r){
-			// print_r ($r);
-		
-		// }
-		 // print_r($hslthn2);
+		try{
+			$tipe = $this->input->get('tp') != null ? $this->input->get('tp') : '5';
+			// echo 'tipe : '.$tipe.'</br>' ;
+			$hslbln = array();
+			for ($i=0; $i<12; $i++){
+				$obj = new stdClass();
+				$obj->bln = $i+1;
+				$obj->skr2 = '0';
+				$obj->skr1 = '0';
+				$obj->skr = '0';
+				array_push($hslbln,$obj);
+			}
+			$hsl = $this->cmon->gunit_conmon($tipe);
+			 // print_r($hsl); echo '<br><br>';
+			for($k=0; $k<count($hsl); $k++){
+				$hslbln[$hsl[$k]->bln-1] 			= $hsl[$k];
+				// $hslbln[$hsl[$k]->m-1]->skr2 	=  
+			}
+			// echo 'isi dari hsl bulan : <br>';
+			// foreach($hslbln as $ro){
+			// print_r($ro); echo '<br>';
+			// }
+			
+			$jsonResult = array(
+					'success' => true,
+					'gunit' => $hslbln
+				);
+			
+			
+		}catch(Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		echo json_encode($jsonResult);
 		
 	}
 }
