@@ -368,6 +368,21 @@ class Waktudown extends CI_Model {
 		}
 		
 	}
+	
+	function get_reliaww($unit,$aw,$ak)	{
+		$sql =  "SELECT waktudown.id,event as idevent
+				,downt,downj,upt,upj,listEvent.nama as event
+				FROM waktudown LEFT JOIN listEvent ON listEvent.id = waktudown.event 
+				WHERE downt BETWEEN (select downt from waktudown where id=?) 
+				AND (select downt from waktudown where id=?)  AND unit_id = ?
+				group by downt, downj,upt,upj
+				order by downt asc, downj asc";
+		//echo "sql: $sql <br/> aw: $aw, ak: $ak<br/>";
+		$query = $this->db->query($sql, array($aw,$ak,$unit));
+
+		return $query->result();
+	}
+	
 }
 
 /* End of file waktudown.php */

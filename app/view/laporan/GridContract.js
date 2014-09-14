@@ -4,6 +4,7 @@ Ext.define('rcm.view.laporan.GridContract', {
 	//alias: 'widget.gridCause',
 	xtype: 'tGridContract',
 	//dstore:'Contract',
+	ngedit: 0,
 	
 	requires: [
 		'rcm.view.Util',
@@ -26,7 +27,7 @@ Ext.define('rcm.view.laporan.GridContract', {
 			{ xtype:'rownumberer',width:25 },
 			{ header:'Equipment',dataIndex:'nama',flex:1, 
 				summaryRenderer: function() {
-					return Ext.String.format('TOTAL COST From Contract'); 
+					return Ext.String.format('TOTAL Cost From Contract'); 
 				} },
 			{ header:'Jan',dataIndex:'b1', width:70,align:'right',editor:'textfield',summaryType:'sum',
 				maskRe: /[\d\-]/, regex: /^\d?$/},
@@ -49,17 +50,20 @@ Ext.define('rcm.view.laporan.GridContract', {
 			'recordedit'
         );
         ce.on('edit', me.handleCellEdit, this);
+        ce.on('beforeedit', me.hdlCellEna, this);
 		//me.addEvents();
 	},
 	
 	handleCellEdit: function(gridView, e) {
 		//alert("handleCellEdit kontrak");
         var rec = e.grid.getStore().getAt(e.rowIdx), tt=e.field;
-        //rcmSettings.rrrr = e;
-        //rcmSettings.gggg = gridView;
-		//rcmSettings.tttt = rec;
-		console.log("handleCellEdit tipe: "+rec.get('tipe')+", nilai: "+e.value+', bulan: '+e.field);
-		//alert("nilai: "+e.value);
-		this.fireEvent('recordedit',e.value,e.field,rec.get('tipe'),'2014' );
-    }
+		//console.log("handleCellEdit tipe: "+rec.get('tipe')+", nilai: "+e.value+', bulan: '+e.field);
+		this.fireEvent('recordedit',e,e.value,e.field,rec.get('tipe'),'2014' );
+    },
+    
+    hdlCellEna: function(editor,a,eOpts)	{
+		//alert(this.ngedit);
+		if (this.ngedit)	return true;
+		else return false;
+	},
 });

@@ -11,6 +11,7 @@ Ext.define('rcm.model.DaftarGagal', {
 		{ name:'startt',dateFormat:'d-m-Y' },{ name:'startj'},
 		{ name:'endt',dateFormat:'d-m-Y' },{ name:'endj'},
 		{ name:'upt',dateFormat:'d-m-Y' },{ name:'upj'},
+		{ name:'rh',type:'float' },
 		'event','idevent','tipeev','ket','exe','fm','server' ]
 		//type:'date',
 	//*

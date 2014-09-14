@@ -15,8 +15,11 @@ Ext.define('rcm.controller.ExcelGrid', {
 		,'dataentry.PropGrid'
 		,'dataentry.InfoFMEA'
 		,'dataentry.DaftarGagal'
+		//,'dataentry.HitungRelia'
 		,'Ext.ux.grid.FiltersFeature'
 		,'Ext.draw.Text'
+		//,'Content'
+		,'dataentry.Tab'
     ],
 
     stores: [
@@ -33,6 +36,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		,'PM'
 		,'Aksi'
 		,'Cause'
+		,'DaftarRelia'
     ],
     
     models: [
@@ -45,8 +49,14 @@ Ext.define('rcm.controller.ExcelGrid', {
 		ref: 'excelgrid',
 		selector: 'excelgrid'
 	},{
+		ref: 'tabRh',
+		selector: 'tabRh'
+	},{
 		ref: 'taskFMEAGrid',
 		selector: 'taskFMEAGrid'
+	},{
+		ref: 'taskDaftarGagal',
+		selector: 'taskDaftarGagal'
 	},{
 		ref: 'taskFormGagal',
 		selector: 'taskFormGagal',
@@ -93,6 +103,12 @@ Ext.define('rcm.controller.ExcelGrid', {
 			'#update-rh': {
 				click: me.updateGagalClick
 			},
+			'#btnHtgReliax': {
+				click: me.htgRe
+			},
+			'#btnClrReliax': {
+				click: me.clrRe
+			},
 			//*/
 			'taskIsiFormGagal': {
 				plhEventGagalXY: me.pilihEventGagalXY
@@ -125,6 +141,45 @@ Ext.define('rcm.controller.ExcelGrid', {
         this.getTaskFMEAGrid().getView().refresh();
         //rcmSettings.ggg = this.getTaskFMEAGrid().getView();
 		//alert('tambah FNMEA');
+	},
+    
+    htgRe: function()	{
+		var co = this.getTabRh(),
+			dg = this.getTaskDaftarGagal();
+
+		if (dg.end.id==null)	{
+			Ext.Msg.alert('Error', 'Pilih baris event end');
+			return;
+		}
+		if (dg.start.id==null)	{
+			Ext.Msg.alert('Error', 'Pilih baris event start');
+			return;
+		}
+		
+		Ext.getCmp('lblRelia').setText('Reliability '+dg.jdl.n+' @'+dg.jdl.l);
+		
+		this.getDaftarReliaStore().load({
+			params:{unit:dg.end.u,aw:dg.start.id,ak:dg.end.id },
+			scope: this,
+			callback: function()	{
+				//alert('jos');
+				co.showRelia();
+			}
+		});
+
+	},
+	
+	clrRe: function()	{
+		var dg = this.getTaskDaftarGagal(),
+			rs = Ext.select('*[name=rstart]').elements,
+			re = Ext.select('*[name=rend]').elements;
+
+		for (var i=0; i<re.length; i++)	{
+			rs[i].checked = false;
+			re[i].checked = false;
+		}
+		dg.start='-';
+		dg.end='-';
 	},
     
     plhFilterClick: function(n)		{

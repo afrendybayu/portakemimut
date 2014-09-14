@@ -5,7 +5,7 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 	extend: 'Chart.ux.Highcharts',
 	dstore: '-',
 	jdl: '-',
-	param: '-',
+	// param: '-',
 	yNama: '-',
 	idx: '',
 	warna: '',
@@ -54,7 +54,7 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 
 				series : {
 					dataLabels: {
-						enabled: true
+						enabled: false
 					},
 					animation : {
 						duration : 1000,

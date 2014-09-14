@@ -264,4 +264,110 @@ class rDaftarG extends CI_Controller {
 		$this->output->set_output(json_encode($jsonResult));
 		//echo json_encode($jsonResult);
 	}
+	
+	public function relia()	{
+		$unit = $this->input->get('unit');
+		$aw = $this->input->get('aw');
+		$ak = $this->input->get('ak');
+		/*
+		$unit = 22;
+		$aw = 'e254e255';
+		$ak = 'e245e244';
+		//*/
+		$awal = explode('e',substr($aw,1));
+		$akhr = explode('e',substr($ak,1));
+		try {
+			$this->load->model('waktudown');
+			$q = $this->waktudown->get_reliaww($unit,$awal[0],$akhr[0]);
+			
+			$df = array();
+			if (count($q)>0)	{
+				$k = 0;
+				for($i=0; $i<count($q); $i++)	{
+					if ($k==0)	{
+						for ($j=0; $j<count($awal); $j++)	{
+							if ($awal[$j]==$q[$i]->id)	{
+								$k++;
+								$q[$i]->rh = 0;
+								array_push($df, $q[$i]);
+							}
+						}
+					}
+					else {
+						$q[$i]->rh = 0;
+						array_push($df, $q[$i]);
+					}
+				}
+				
+				/*
+				//print_r($df); echo "<br/>";
+				foreach ($df as $a)	{
+					print_r($a); echo "<br/>";
+				}
+				echo "<br/><br/>";
+				//*/
+				
+				$ut=''; $uj=''; $jmlSt = 0; $tot = 0;
+				$dAt = array();
+				for($i=0; $i<count($df); $i++)	{
+					if ($i==0)	{
+						$ut = $df[$i]->upt;
+						$uj = $df[$i]->upj;
+					}
+					else {
+						if ($df[$i]->idevent>1)	{
+							$rh = slh_waktu($ut,$uj,$df[$i]->downt,$df[$i]->downj);
+							
+							if ($jmlSt>0)	$df[$i]->ket = "Ada $jmlSt kejadian Standby, Total: $tot jam";
+							$df[$i]->rh = round(slh_waktu($ut,$uj,$df[$i]->downt,$df[$i]->downj),2)-round($tot,2);
+							//print_r($rh);  echo "<br/>";
+							//echo "rh: $rh<br/>";
+							$ut = $df[$i]->upt;
+							$uj = $df[$i]->upj;
+							$jmlSt = 0; $tot = 0;
+						}
+						else {
+							$rh = slh_waktu($df[$i]->downt,$df[$i]->downj,$df[$i]->upt,$df[$i]->upj);
+							$tot += $rh;
+							array_push($dAt, $i);
+							//echo "<br/>------<br/>"; print_r($df); echo "<br/>------<br/>";
+							$jmlSt++;
+							//array_pop($df[$i]);
+						}
+					}
+				}
+				
+				//echo "standby: "; print_r($dAt); echo "<br/>";
+				for ($i=0; $i<count($dAt); $i++)		{
+					unset($df[$dAt[$i]]);
+				}
+				
+				$hsl = array();
+				foreach($df as $a)	{
+					array_push($hsl, $a);
+				}
+
+				/*
+				//print_r($df); echo "<br/>";
+				foreach ($df as $a)	{
+					print_r($a); echo "<br/>";
+				}
+				//*/
+				
+				 $jsonResult = array(
+					'success' => true,
+					'gagal' => $hsl
+				);
+				
+				
+			}
+		}
+		catch (Exception $e)	{
+			 $jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
 }

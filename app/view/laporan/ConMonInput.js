@@ -106,7 +106,7 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 				iconCls: 'hpsEvent',
 				// hidden : true,
 				tooltip: 'Hapus',
-				// handler: Ext.bind(me.hdlHapusDGClick, me)
+				handler: Ext.bind(me.handleDeleteClick, me)
 				
 			
 			}]
@@ -122,7 +122,11 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 			'hpsFMEAGagal'
         );
         ed.on('edit', me.handleCellEdit, this);*/
-	}
+	},
+	handleDeleteClick: function(gridView, rowIndex, colIndex, column, e) {
+        // Fire a "deleteclick" event with all the same args as this handler
+        this.fireEvent('deleteclick', gridView, rowIndex, colIndex, column, e);
+    }
 	
 	
 	

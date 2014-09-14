@@ -10,6 +10,9 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 	requires: [
 		'rcm.view.dataentry.BlnGagal'
 	],
+	start: '-',
+	end: '-',
+	jdl: '',
 	// enableColumnHide: false,
 	
 	viewConfig: {
@@ -39,21 +42,42 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 		//me.plugins = [ceditp];
 
 		me.listeners = {
-			itemclick: function(dv, record, item, index, e) {
-				//me.rowClick(record.get('id'), record.get('idevent'));	//	record.raw.value
-				//console.log("ide: "+record.get('idevent')+", ev: "+record.idevent);
-				//rcmSettings.asa = record.;
-				//alert("unit_id: "+record.get('eqid')+", event: "+record.get('idevent'));
-				//me.row1Click(record.get('eqid'));
+			itemclick: function(view, rec, item, index, e) {
+				var pos = view.getPositionByEvent(e),
+					col = pos.column;
+				//alert(col);
+				//console.log('unit: '+rec.get('eqid')+', id: '+rec.get('id'));
+				if (col==13)	{
+					me.end = '-';
+					//if ()
+					me.end = {u:rec.get('eqid'), id:rec.get('id'), n:index};
+					me.jdl = {l:rec.get('lok'), n:rec.get('nama')};
+				}
+				if (col==14)	{
+					me.start = '-';
+					if (me.end.u!=rec.get('eqid') && (me.end!='-' ))	{
+						me.hpsRStart();
+						rcmSettings.end = me.end;
+						rcmSettings.start = me.start;
+						Ext.Msg.alert('Status', me.end+'Nama atau TIpe Unit Start dan End TIDAK SAMA !!<br/>Cek Lokasi dan Unitnya..');
+					}
+					else if (me.end.n==index) {
+						me.hpsRStart();
+						Ext.Msg.alert('Status', 'Pilih baris event yang beda');
+					}
+					else {
+						me.start = {u:rec.get('eqid'),id:rec.get('id')};
+					}
+				}
 			},
 			itemdblclick: function(dv, record, item, index, e)	{
 				//alert("double click, "+record.get('idevent')+"-- "+record.get('event'));
 				me.row2Click(record.get('id'), record.get('idevent'));	//	record.raw.value
 			}
+			
 		},
 		
-		me.columns = {	
-			items: [
+		me.columns = {	items: [
 			{ xtype:'rownumberer',width:25 },
 			{ header:'Lokasi',dataIndex:'lok',width:100, hideable : false, filter: { 	type: 'string'  } },
 			{ header:'Nama Unit',dataIndex:'nama',width:135, hideable : false, filter: { type: 'string' } },
@@ -122,6 +146,18 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 						{ header:'Jam',dataIndex:'upj',width:60,editor: {xtype:'timefield',format:'H:i'} }
 					]
 			}, { header: 'Mode Kegagalan / Keterangan', dataIndex: 'fm', flex:1, hideable : false
+			
+			}, {
+				header:'End', width:40, editor: { xtype:'radio' },	//id: 'idrstop',
+				renderer: function()	{
+					 return '<input type= "radio" name="rend" style="margin-left:10px;"/>';
+				}
+			}, {
+				header:'Start', width:40, editor: { xtype:'radio' },	//id: 'idrstart',
+				renderer: function()	{
+					 return '<input type= "radio" name="rstart" style="margin-left:10px;"/>';
+				}
+			
 			}, {
 				xtype:'actioncolumn',
 				width:25,
@@ -151,7 +187,20 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
         );
         
 	},
-
+	/*
+	afterRender: function() {
+        this.superclass.afterRender.apply(this, arguments);
+        this.el.on('click', this.checkRadioClick, this);
+    },
+    
+    checkRadioClick: function(event) {
+        if (event.getTarget('input[type="radio"]')) {
+            //radio clicked... do something
+            //alert('fefwef');
+            rcmSettings.ewewe = event;
+        }
+    },
+	//*/
 	row1Click: function(id)	{
 		//alert(id);
 		//this.fireEvent('infoDetailGagal', id,ev);
@@ -179,5 +228,19 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 		//alert("hapus kejadian "+ rec.get('event')+" "+rec.get('nama'));
 		//grid.getStore().removeAt(rowIndex);
 		this.fireEvent('hapusDGClick', rec, row, col);
+	},
+	
+	hpsREnd: function()	{
+		var re = Ext.select('*[name=rend]').elements;
+		for (var i=0; i<re.length; i++)	{
+			re[i].checked = false;
+		}
+	},
+	
+	hpsRStart: function()	{
+		var re = Ext.select('*[name=rstart]').elements;
+		for (var i=0; i<re.length; i++)	{
+			re[i].checked = false;
+		}
 	}
 });

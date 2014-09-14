@@ -22,7 +22,7 @@ Ext.define('rcm.controller.AvRe', {
 		,'lapobama.AvReChart'
 		
 		,'utama.HoChart'
-
+		,'login.LoginAuth'
     ],
 
     stores: [
@@ -46,6 +46,9 @@ Ext.define('rcm.controller.AvRe', {
 	},{
 		ref: 'taskBlnAv',
 		selector: 'taskBlnAv'
+	},{
+		ref: 'authlogin',
+		selector: 'authlogin'
 	},{
 		ref : 'tAvSpeedo',
 		selector : 'tAvSpeedo'
@@ -82,10 +85,30 @@ Ext.define('rcm.controller.AvRe', {
 	onLaunch: function() {
 		//console.log("AvRe");
 		this.getTAvGroup().cat = 5;
-		this.updateAvRe();
+		//this.updateAvRe();
+		this.updAvRe();
 	},
 	
 	updateAvRe: function(t,n,id) {
+		var me = this;
+		if (me.getAuthlogin().level>0)	return;
+		me.updAvRe(t,n,id);
+		/*
+		me.getAvGroupStore().load({
+			params: {wkt: t, gr:id},
+			scope: me,
+			callback: function(rec, operation, success) {
+				if (success) {
+					me.AvGroupClick(0,0,t,n);
+				}
+			}
+		});
+		//*/
+		//me.getAvHomeStore().load();
+		//me.getReHomeStore().load();
+	},
+	
+	updAvRe: function(t,n,id) {
 		var me = this;
 		me.getAvGroupStore().load({
 			params: {wkt: t, gr:id},
@@ -96,12 +119,11 @@ Ext.define('rcm.controller.AvRe', {
 				}
 			}
 		});
-		//me.getAvHomeStore().load();
-		//me.getReHomeStore().load();
 	},
 	
 	updateHome: function()		{
 		var me=this;
+		if (me.getAuthlogin().level>0)	return;
 		me.getSpAvGcUtStore().load();
 		me.getSpAvGsUtStore().load();
 		me.getSpAvPmUtStore().load();

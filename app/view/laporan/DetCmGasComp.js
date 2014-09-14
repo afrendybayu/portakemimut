@@ -6,7 +6,7 @@ Ext.define('rcm.view.laporan.DetCmGasComp', {
 	dstore: '-',
 	jdl: '-',
 	param: '-',
-	yNama: '-',
+	yNama: '',
 	idx: '',
 	warna: '',
 	loadMask: true,

@@ -10,7 +10,7 @@ Ext.define('rcm.view.dataentry.BlnGagal', {
 		var me=this;
 		me.items=[{
 			xtype: 'form',
-			padding: '5 20 5 10',
+			padding: '5 10 5 10',
 			border: 0,
 			combineErrors: true,
 			flex: 1,
@@ -45,6 +45,17 @@ Ext.define('rcm.view.dataentry.BlnGagal', {
 					xtype: 'label',
 					text:'',
 					flex: 1
+				},{
+					id: 'btnClrReliax',
+					xtype: 'button',
+					//width: 100,
+					text: 'Clear',
+					margin: '0 5 0 0'
+				},{
+					id: 'btnHtgReliax',
+					xtype: 'button',
+					//width: 100,
+					text: 'Hitung Reliability'
 			}]
 		}];
 

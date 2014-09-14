@@ -4,10 +4,14 @@ Ext.define('rcm.view.Content', {
 	
 	require: [
 		'Ext.panel.Panel'
-		,'rcm.view.dataentry.ExcelGrid'
+		
 		,'rcm.view.lapobama.AvReChart' //--
 		,'rcm.view.laporan.Chart'
 		,'rcm.view.utama.HoChart'
+		//,'rcm.view.laporan.Tab'
+		,'rcm.view.dataentry.Tab'
+		
+		//,'rcm.view.login.LoginAuth'
 	],
 
     layout: {
@@ -45,12 +49,13 @@ Ext.define('rcm.view.Content', {
 			iconCls: 'perform',
 			title: 'Prestasi Mesin',
 		//*/
-		///*===============================
 		},{
 			id: 'tu_rh',
 			title: 'Runnning Hour',
 			iconCls: 'RunnningHour',
 			//layout: 'accordion',
+			xtype: 'tabRh',
+			/*
 			xtype: 'tabpanel',
 			items: [{
 				title: 'Data Running Hour',
@@ -82,8 +87,6 @@ Ext.define('rcm.view.Content', {
 						region: 'south',
 						title: 'Info Detail DownTime',
 						iconCls: 'more',
-						//icon: 'modul/icons/more.png',
-						//html: 'detailInfo'
 						xtype: 'detailInfo'
 				}]
 			/*
@@ -96,9 +99,17 @@ Ext.define('rcm.view.Content', {
 				//eventStore: Ext.create('Extensible.calendar.data.MemoryEventStore', {
 				//	data: Ext.create('Extensible.example.calendar.data.Events')
 				//}),
+			
+			},{
+				title: 'Reliability',
+				xtype: 'tDaftarRelia',
+				//id: 'app-relia',
+				itemId: 'relia',
+				//hidden: true,
+				iconCls: 'up'
 			//*/
-		///*====	
-			}]
+			//}]
+			//*/
 		/*
 		},{
 		
@@ -147,12 +158,15 @@ Ext.define('rcm.view.Content', {
              * @param {SimpleTasks.model.Task} task     The task record that was edited
              */
 			'updateAvRe'
+			,'updateHome'
         );
         this.on('tabchange', me.handleContentTab, this);
 	},
+	
 	handleContentTab: function()	{
 		var tt = this.getActiveTab().getId();
 		rcmSettings.tab = tt;
+		//alert(this.getAuthlogin().level);
 		if (tt.localeCompare("tu_re")==0)	{
 			//alert("masuk Reliability");
 			this.fireEvent('updateAvRe');
@@ -161,17 +175,6 @@ Ext.define('rcm.view.Content', {
 			//alert("masuk update Home");
 			this.fireEvent('updateHome');
 		}
-		/*
-		var tab = this.getActiveTab();
-		if (tab.getId()=="tTC")	{
-			this.insert((this.items.length-1),{
-				 title: 'Tab ' + (this.items.length), xtype: 'isiFormGagal'
-			});
-			this.setActiveTab(this.items.length-2);
-		}
-		//*/
-		//console.log("tab: "+tab.title+", id: "+this.getActiveTab().getId()+" view/Content.js");
-		//console.log("tab: "+rcmSettings.tab);
 	},
 	
 	TambahClick: function()	{

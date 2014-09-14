@@ -71,6 +71,8 @@ Ext.define('rcm.view.laporan.ChartContract', {
 			},
 			credits : {
 				text : 'hc'
+			},
+			legend : {
 			}
 		};
 		me.callParent(arguments);

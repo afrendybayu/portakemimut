@@ -5,6 +5,7 @@ Ext.define('rcm.controller.Login', {
 		'rcm.view.login.LoginAuth'
 		,'rcm.view.dataentry.DaftarGagal'
 		,'rcm.view.dataentry.ExcelGrid'
+		,'rcm.view.laporan.GridContract'
 	],
 	
 	views: [
@@ -34,6 +35,9 @@ Ext.define('rcm.controller.Login', {
 		},{
 			ref: 'excelgrid',
 			selector: 'excelgrid'
+		},{
+			ref: 'tGridContract',
+			selector: 'tGridContract'
 		},{
 			ref : 'authlogin',
 			selector : 'authlogin'
@@ -116,6 +120,7 @@ Ext.define('rcm.controller.Login', {
 						icon  : Ext.MessageBox.INFO
 					});
 					//*/
+					me.getAuthlogin().level = res.level;
 					Ext.getCmp('p_login').setVisible(false);
 					Ext.getCmp('p_logout').setVisible(true);
 					Ext.getCmp('t_welcome').setText('Selamat Datang '+res.session);
@@ -125,6 +130,7 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('bwbpm3').setDisabled(false);
 					
 					me.getExcelgrid().ngedit = 1;
+					me.getTGridContract().ngedit = 1;
 					// rcmSettings.aaaaa = Ext.getCmp('grid_edit1111');	
 					/*	var me 	= this,
 							uFG = me.getTaskFormGagal();
@@ -185,6 +191,8 @@ Ext.define('rcm.controller.Login', {
 						}
 					});
 					me.getExcelgrid().ngedit = 0;
+					me.getTGridContract().ngedit = 0;
+					me.getAuthlogin().level = 10;
 					Ext.getCmp('p_login').setVisible(true);
 					Ext.getCmp('p_logout').setVisible(false);
 					Ext.getCmp('griddel').setVisible(false);
@@ -217,6 +225,7 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('btnUplBpm3').setDisabled(false);
 					Ext.getCmp('bwbpm3').setDisabled(false);
 					
+					me.getAuthlogin().level = res.level;
 					me.getExcelgrid().ngedit = 1;
 				}
 				else{
