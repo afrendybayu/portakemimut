@@ -35,7 +35,7 @@ Ext.define('rcm.view.laporan.ConMon', {
 			items :[{
 				xtype : 'gascompcm',
 				flex :1,
-				param: 'GasComp',
+				// param: 'GasComp',
 				yNama: 'Cond. Monitoring',
 				jdl: 'Condition Monitoring Gas Compressor',
 				dstore: 'ConMonGr',
@@ -44,7 +44,7 @@ Ext.define('rcm.view.laporan.ConMon', {
 			},{
 				flex :1,
 				xtype : 'gascompcm',
-				param: 'Genset',
+				// param: 'Genset',
 				yNama: 'Cond. Monitoring',
 				jdl: 'Condition Monitoring Genset',
 				dstore: 'ConMonGr',
@@ -53,7 +53,7 @@ Ext.define('rcm.view.laporan.ConMon', {
 			},{
 				flex :1,
 				xtype : 'gascompcm',
-				param: 'Pump',
+				// param: 'Pump',
 				yNama: 'Cond. Monitoring',
 				jdl: 'Condition Monitoring Pump',
 				dstore: 'ConMonGr',
@@ -62,7 +62,7 @@ Ext.define('rcm.view.laporan.ConMon', {
 			}]
 		},{
 			xtype : 'panel',
-			title : 'dua',
+			// title : 'dua',
 			flex : 1,
 			layout : {type : 'hbox', align: 'stretch' },
 			items : [{
@@ -71,24 +71,18 @@ Ext.define('rcm.view.laporan.ConMon', {
 				// yNama: 'Cond. Monitoring',
 				jdl: 'Condition Monitoring Gas Compressor',
 				dstore: 'DetConMonGr',
-				// warna : '#7cb5ec',
-				// idx: 'gc'
 			},{
 				xtype : 'detgascompcm',
 				flex :1,
 				// yNama: 'Cond. Monitoring',
-				jdl: 'Condition Monitoring Gas Compressor',
+				jdl: 'Condition Monitoring Genset',
 				dstore: 'DetConMonGs',
-				// warna : '#7cb5ec',
-				// idx: 'gc'
 			},{
 				xtype : 'detgascompcm',
 				flex :1,
 				// yNama: 'Cond. Monitoring',
-				jdl: 'Condition Monitoring Gas Compressor',
+				jdl: 'Condition Monitoring Pump',
 				dstore: 'DetConMonPmp',
-				// warna : '#7cb5ec',
-				// idx: 'gc'
 			}]
 		}]
 		

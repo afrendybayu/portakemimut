@@ -18,7 +18,7 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 		me.series = [{
 			// colorByPoint: true,
 			dataIndex: me.idx,
-			name: me.param,
+			// name: me.param,
 			color : me.warna,
 			// drilldown : true
 		}];

@@ -18,15 +18,15 @@ Ext.define('rcm.view.laporan.DetCmGasComp', {
 		var tgl = new Date();
 		var	tskr = tgl.getFullYear(), tskr1= tskr-1, tskr2=tskr-2;
 		me.series = [{
-			dataIndex: 'skr2',//me.idx,
-			name: tskr2//me.param,
+			dataIndex: 'skr2',
+			name: tskr2
 			// color : me.warna,
 			// drilldown : true
 		},{
-			dataIndex: 'skr1',//me.idx,
-			name: tskr1//me.param,
+			dataIndex: 'skr1',
+			name: tskr1
 		},{
-			dataIndex: 'skr',//me.idx,
+			dataIndex: 'skr',
 			name: tskr
 		}];
 		me.store= me.dstore;
@@ -52,7 +52,7 @@ Ext.define('rcm.view.laporan.DetCmGasComp', {
 			plotOptions : {
 				column: {
 					dataLabels: {
-						enabled: true,
+						enabled: false,
 						/*formatter : function() {
 							return '<b>'+me.param+': '+this.y+'</b>';
 						}*/
@@ -61,7 +61,7 @@ Ext.define('rcm.view.laporan.DetCmGasComp', {
 
 				series : {
 					dataLabels: {
-						enabled: true
+						enabled: false
 					},
 					animation : {
 						duration : 1000,
