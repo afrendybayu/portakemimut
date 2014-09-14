@@ -1,5 +1,5 @@
 /* Afrendy Bayu, 18Jan2014 */
-Ext.define('rcm.model.DetConMonGr', {
+Ext.define('rcm.model.DetConMonPmp', {
 	extend: 'Ext.data.Model',
 	requires:[
 		'Ext.data.proxy.Ajax'
@@ -11,7 +11,7 @@ Ext.define('rcm.model.DetConMonGr', {
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/sap/rConMon/gUnitConMon?tp=5'
+			read: 'ci/index.php/sap/rConMon/gUnitConMon?tp=6'
         },
         reader: {
             type: 'json',

@@ -11,7 +11,7 @@ Ext.define('rcm.view.laporan.DetCmGasComp', {
 	warna: '',
 	loadMask: true,
 
-	xField: 'bln',
+	xField: 'mbln',
 
 	initComponent: function() {
 		var me=this;

@@ -68,13 +68,27 @@ Ext.define('rcm.view.laporan.ConMon', {
 			items : [{
 				xtype : 'detgascompcm',
 				flex :1,
-				// param: 'GasComp',
 				// yNama: 'Cond. Monitoring',
 				jdl: 'Condition Monitoring Gas Compressor',
 				dstore: 'DetConMonGr',
-				warna : '#7cb5ec',
+				// warna : '#7cb5ec',
 				// idx: 'gc'
-			
+			},{
+				xtype : 'detgascompcm',
+				flex :1,
+				// yNama: 'Cond. Monitoring',
+				jdl: 'Condition Monitoring Gas Compressor',
+				dstore: 'DetConMonGs',
+				// warna : '#7cb5ec',
+				// idx: 'gc'
+			},{
+				xtype : 'detgascompcm',
+				flex :1,
+				// yNama: 'Cond. Monitoring',
+				jdl: 'Condition Monitoring Gas Compressor',
+				dstore: 'DetConMonPmp',
+				// warna : '#7cb5ec',
+				// idx: 'gc'
 			}]
 		}]
 		

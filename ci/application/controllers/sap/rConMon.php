@@ -235,13 +235,20 @@ class rConMon extends CI_Controller {
 				$obj->skr2 = '0';
 				$obj->skr1 = '0';
 				$obj->skr = '0';
+				$obj->mbln = nmMonth($i,1);
 				array_push($hslbln,$obj);
 			}
+			// print_r($hslbln);
+			
 			$hsl = $this->cmon->gunit_conmon($tipe);
 			 // print_r($hsl); echo '<br><br>';
 			for($k=0; $k<count($hsl); $k++){
 				$hslbln[$hsl[$k]->bln-1] 			= $hsl[$k];
-				// $hslbln[$hsl[$k]->m-1]->skr2 	=  
+				$hslbln[$hsl[$k]->bln-1]->mbln 		= nmMonth($hsl[$k]->bln-1,1);
+				
+				
+				
+				
 			}
 			// echo 'isi dari hsl bulan : <br>';
 			// foreach($hslbln as $ro){
