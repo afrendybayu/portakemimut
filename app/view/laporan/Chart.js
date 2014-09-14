@@ -19,11 +19,16 @@ Ext.define('rcm.view.laporan.Chart', {
         ,'rcm.view.laporan.OrderCostSap'
         ,'rcm.view.laporan.GridOrderC'
         ,'rcm.view.laporan.SapCostCont'
+        ,'rcm.view.laporan.GridOverHaul'
     ],
     
 	initComponent: function() {
 		var me=this;
 		me.items = [{
+				id: 'ts_oh',
+				title: 'OverHaul',
+				xtype:'tOverHaul'
+			},{
 				id: 'ts_mo',
 				title: 'Maintenance Order',
 				xtype:'tEPO'

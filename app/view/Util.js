@@ -94,6 +94,48 @@ Ext.define('rcm.view.Util', {
 			
 		},
 		
+		UxcolOH: function()	{
+			var items=new Array(),
+				col=new Array();
+			
+			items = [
+				{ xtype:'rownumberer',width:25 
+				},{ header:'Lokasi',dataIndex:'lok',width:100, hideable : false, 
+					locked: true, filter: { type: 'string' }
+				},{ header:'Nama Unit',dataIndex:'nama',width:135, hideable : false, 
+					locked: true, filter: { type: 'string' } 
+				}
+			];
+			
+			for(var i=1; i<13; i++)	{
+				col = [];
+				for (var j=1; j<5; j++)		{
+					col.push({ header: 'W'+j, dataIndex: 'b'+i+'m'+j, width:40,tdCls: 'x-change-cell',
+						
+						renderer: function(value,meta)	{
+							if (value=="IFOH") {	// (value.localeCompare("IFOH")==0) {
+								meta.style = "background-color:#a8ff94;";
+							} else if (value=="TOH")	{	// (value.localeCompare("TOH")==0) {
+								meta.style = "background-color:#feffac;";
+							} else if (value=="GOH")	{	//(value.localeCompare("GOH")==0) {
+								meta.style = "background-color:#ffbdbd;";
+							//} else {
+							//*/
+							}
+						
+							return value;
+						}
+						
+					});
+				}
+				items.push({ header:this.UnmBln(i-1),hideable:false,columns:col });
+			}
+			items.push({ header:'Keterangan',dataIndex:'ket',minWidth: 180,flex:1,hideable:false });
+			
+			//console.log(items);
+			return items;
+		},
+		
 		UxcolGrid: function()	{
 			var strbln = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
 			var items=new Array(), blnthn=new Array();
