@@ -47,14 +47,14 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 				width : 100,
 				dataIndex : 'tgl',
 				xtype : 'datecolumn',
-				editor : 'datefield',
+				// editor : 'datefield',
 				format : 'Y-m-d'
 			},{
 				header : 'Lokasi',
 				// flex : 1,
 				width : 150,
 				dataIndex : 'lokasi',
-				editor : 'textfield',
+				// editor : 'textfield',
 				
 				
 				
@@ -69,13 +69,16 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 				flex : 1,
 				// width : 200,
 				dataIndex : 'wo',
-				editor : 'textfield'
+				editor: {
+                        xtype: 'textfield',
+                        selectOnFocus: true
+                    }
 			},{
 				header : '#SAP',
 				flex : 1,
 				// width : 150,
 				dataIndex : 'sap',
-				editor : 'textfield'
+				// editor : 'textfield'
 			},{
 				header : 'Laporan',
 				flex :1,
@@ -86,47 +89,55 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 				flex : 1,
 				// width : 200,
 				dataIndex : 'pic',
-				editor : 'textfield'
+				// editor : 'textfield'
 			},{
 				header : 'Keterangan',
 				flex : 2,
 				// width : 150,
 				dataIndex : 'ket',
-				editor : 'textfield'
+				// editor : 'textfield'
 			},{
 				xtype:'actioncolumn',
 				width:25,
 				iconCls: 'editEvent',
+				menuDisabled: true,
+				sortable: false,
 				// hidden : true,
 				tooltip: 'Edit',
-				// handler: Ext.bind(me.hdlHapusDGClick, me)
+				handler: Ext.bind(me.hEditConMonClick, me)
 			},{
 				xtype:'actioncolumn',
 				width:25,
 				iconCls: 'hpsEvent',
+				menuDisabled: true,
+				sortable: false,
 				// hidden : true,
 				tooltip: 'Hapus',
-				handler: Ext.bind(me.handleDeleteClick, me)
+				handler: Ext.bind(me.hDeleteConMonClick, me)
 				
 			
 			}]
 		};
 		me.callParent(arguments);
-		/*me.addEvents(
-			'edit',
-			'plhOPartGagal',
-			'plhEquipGagal',
-			'plhModeGagal',
-			'plhCauseGagal',
-			'plhAksiGagal',
-			'hpsFMEAGagal'
-        );
-        ed.on('edit', me.handleCellEdit, this);*/
+		me.addEvents(
+			'editconmon',
+			'recordedit'
+		);
+		
+        ed.on('edit', me.handleCellEdit, this);
 	},
-	handleDeleteClick: function(gridView, rowIndex, colIndex, column, e) {
+	hDeleteConMonClick: function(gridView, rowIndex, colIndex, column, e) {
         // Fire a "deleteclick" event with all the same args as this handler
-        this.fireEvent('deleteclick', gridView, rowIndex, colIndex, column, e);
-    }
+        this.fireEvent('deleteconmon', gridView, rowIndex, colIndex, column, e);
+    },
+	hEditConMonClick: function(gridView, rowIndex, colIndex, column, e) {
+        // Fire a "deleteclick" event with all the same args as this handler
+        this.fireEvent('editconmon', gridView, rowIndex, colIndex, column, e);
+    },
+
+	handleCellEdit: function(editor, e) {
+        this.fireEvent('recordedit', e.record);
+    },
 	
 	
 	

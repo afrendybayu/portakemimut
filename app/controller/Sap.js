@@ -123,19 +123,86 @@ Ext.define('rcm.controller.Sap', {
 			},
 			
 			'iConMon' :{
-				deleteclick: me.handleDeleteClick,
+				
+				
+				// recordedit: me.updateTask,
+				deleteconmon: me.ConMonDeleteClick,
+				editconmon : me.ConMonEditClick
 			}
 			
 			
 		});
     },
 	
-
-	handleDeleteClick: function(view, rowIndex, colIndex, column, e) {
+	
+	
+	
+	ConMonDeleteClick: function(view, rowIndex, colIndex, column, e) {
         //this.deleteTask(this.getTasksStore().getAt(rowIndex));
 		console.log('hapus ro ini');
     },
+	ConMonEditClick: function(view, rowIndex, colIndex, column, e) {
+        // this.showEditWindow(view.getRecord(view.findTargetByEvent(e)));
+		// console.log('edit ro ini '+this.getConMonInStore().getAt(rowIndex).data.id);
+		
+		rcmSettings.aaaad = this.getConMonInStore().getAt(rowIndex);
+		this.editInputConMon(view.getRecord(view.findTargetByEvent(e)));
     
+	
+	},
+	
+    editInputConMon: function(task){
+		var me = this,
+		taskEditConMonForm = me.getTaskConMon();
+		// form =  taskEditConMonForm.down('form').getForm(),
+		console.log(task);
+		Ext.getCmp('cb_parent').setValue(task.data.lokasi);
+		taskEditConMonForm.down('form').loadRecord(task);
+		// taskEditConMonForm.getForm().loadRecord(task);
+		// this.getDetail().getForm().loadRecord(records[0]);
+	},
+	/*
+	showEditWindow: function(task) {
+        var me = this,
+            taskEditWindow = me.getTaskEditWindow(),
+            form =  taskEditWindow.down('form').getForm(),
+            reminderCheckbox = form.findField('has_reminder'),
+            dateField = form.findField('reminder_date'),
+            timeField = form.findField('reminder_time'),
+            reminder = task.get('reminder');
+		console.log(task);
+        // Set the tasks title as the title of the edit window
+        taskEditWindow.setTitle('Edit Task - ' + task.get('title'));
+        // load the task data into the form
+        taskEditWindow.down('form').loadRecord(task);
+        // set the text of the toggle-complete button depending on the tasks "done" value
+        Ext.getCmp('toggle-complete-btn').setText(task.get('done') ? 'Mark Active' : 'Mark Complete');
+        taskEditWindow.show();
+
+        if(task.get('reminder')) {
+            // if the task already has a reminder set check the reminder checkbox and populate the reminder date and reminder time fields
+            reminderCheckbox.setValue(true);
+            dateField.setValue(Ext.Date.clearTime(reminder, true));
+            timeField.setValue(Ext.Date.format(reminder, timeField.format)); 
+        } else {
+            // if the task does not have a reminder set uncheck the reminder checkbox and set the reminder date and time fields to null
+            reminderCheckbox.setValue(false);
+            dateField.setValue(null);
+            timeField.setValue(null); 
+        }
+
+        if(task.get('done')) {
+            // if the task is done disable the reminder checkbox (reminders cannot be set on completed tasks)
+            reminderCheckbox.disable();
+        } else {
+            reminderCheckbox.enable();
+        }
+
+    },
+	
+	//*/
+	
+	
 	handlesimpan: function(field,e){  
 		if(e.getKey()=== e.ENTER){
 			this.simpanconmon();
