@@ -99,12 +99,7 @@ Ext.define('rcm.controller.Sap', {
 			'#btnCariSM' : {
 				click: me.cariSapMaint
 			},
-			/*
-			'#cbparent1': {
-				select : me.pilihComboParent,
-				change : me.dipilihpilih
-			},
-			//*/
+			
 			'tGridContract': {
 				recordedit: me.ubahKontrak
 			},
@@ -112,19 +107,22 @@ Ext.define('rcm.controller.Sap', {
 
 				select : me.pilihComboParent
 			},
+			'#cb_parent1':{
+				plhLokasi : me.cbplhlokasi,
+			},
 			'#cb_unit' : {
 				select : me.pilihComboUnit
 			},
-			/*'#cb_type' : {
-				change : me.pilihTypeUnit
-			},*/
+			'#cb_unit1' : {
+				plhUnit : me.cbplhunit
+			},
 			'taskConMon textfield': {
                     specialkey: me.handlesimpan
 			},
 			
 			'iConMon' :{
-				
-				
+				// plhLokasi : me.cbplhlokasi,
+				// isiedit : me.pilihComboParent1,
 				// recordedit: me.updateTask,
 				deleteconmon: me.ConMonDeleteClick,
 				editconmon : me.ConMonEditClick
@@ -135,19 +133,46 @@ Ext.define('rcm.controller.Sap', {
     },
 	
 	
-	
+	cbplhlokasi : function(combo){
+		// console.log('isi nama lokasi: '+ combo);
+		var cbunitst = this.getCbUnitStore();
+		cbunitst.clearFilter();
+		cbunitst.filter('lokasi',combo);
+		// Ext.getCmp('cb_unit').clearValue();
+		Ext.getCmp('cb_unit1').clearValue();
+		// console.log('ini id unitnya: '+Ext.getCmp('cb_unit1').get('id_unit'));
+		
+	},
+	cbplhunit : function(record){
+		console.log('id unitnya : '+record);
+	},
 	
 	ConMonDeleteClick: function(view, rowIndex, colIndex, column, e) {
         //this.deleteTask(this.getTasksStore().getAt(rowIndex));
 		console.log('hapus ro ini');
     },
-	ConMonEditClick: function(view, rowIndex, colIndex, column, e) {
+	
+	// ConMonEditClick: function(view, rowIndex, colIndex, column, e) {
+	ConMonEditClick: function(rec, e) {
         // this.showEditWindow(view.getRecord(view.findTargetByEvent(e)));
 		// console.log('edit ro ini '+this.getConMonInStore().getAt(rowIndex).data.id);
 		
-		rcmSettings.aaaad = this.getConMonInStore().getAt(rowIndex);
-		this.editInputConMon(view.getRecord(view.findTargetByEvent(e)));
-    
+		rcmSettings.aaaaa = rec;
+		rcmSettings.bbbbb = e;
+		var idlok = rec.get('id');
+		var me = this, fcmon = Ext.getCmp('cmform').getForm();
+		console.log(' -> '+idlok );
+		fcmon.findField('tgl').setValue(rec.get('tgl'));
+		fcmon.findField('lokasi').setValue(rec.get('lokasi'));
+		fcmon.findField('unit').setValue(rec.get('unit'));
+		fcmon.findField('wo').setValue(rec.get('wo'));
+		fcmon.findField('sap').setValue(rec.get('sap'));
+		fcmon.findField('url').setValue(rec.get('url'));
+		fcmon.findField('pic').setValue(rec.get('pic'));
+		fcmon.findField('ket').setValue(rec.get('ket'));
+		
+		
+		
 	
 	},
 	
@@ -161,52 +186,15 @@ Ext.define('rcm.controller.Sap', {
 		// taskEditConMonForm.getForm().loadRecord(task);
 		// this.getDetail().getForm().loadRecord(records[0]);
 	},
-	/*
-	showEditWindow: function(task) {
-        var me = this,
-            taskEditWindow = me.getTaskEditWindow(),
-            form =  taskEditWindow.down('form').getForm(),
-            reminderCheckbox = form.findField('has_reminder'),
-            dateField = form.findField('reminder_date'),
-            timeField = form.findField('reminder_time'),
-            reminder = task.get('reminder');
-		console.log(task);
-        // Set the tasks title as the title of the edit window
-        taskEditWindow.setTitle('Edit Task - ' + task.get('title'));
-        // load the task data into the form
-        taskEditWindow.down('form').loadRecord(task);
-        // set the text of the toggle-complete button depending on the tasks "done" value
-        Ext.getCmp('toggle-complete-btn').setText(task.get('done') ? 'Mark Active' : 'Mark Complete');
-        taskEditWindow.show();
-
-        if(task.get('reminder')) {
-            // if the task already has a reminder set check the reminder checkbox and populate the reminder date and reminder time fields
-            reminderCheckbox.setValue(true);
-            dateField.setValue(Ext.Date.clearTime(reminder, true));
-            timeField.setValue(Ext.Date.format(reminder, timeField.format)); 
-        } else {
-            // if the task does not have a reminder set uncheck the reminder checkbox and set the reminder date and time fields to null
-            reminderCheckbox.setValue(false);
-            dateField.setValue(null);
-            timeField.setValue(null); 
-        }
-
-        if(task.get('done')) {
-            // if the task is done disable the reminder checkbox (reminders cannot be set on completed tasks)
-            reminderCheckbox.disable();
-        } else {
-            reminderCheckbox.enable();
-        }
-
-    },
 	
-	//*/
 	
 	
 	handlesimpan: function(field,e){  
+		
 		if(e.getKey()=== e.ENTER){
-			this.simpanconmon();
-			
+			if (Ext.getCmp('cmform').getForm().isValid()){
+				this.simpanconmon();
+			}
 		}
 	},
 		
@@ -216,22 +204,9 @@ Ext.define('rcm.controller.Sap', {
 			form = me.getTaskConMon(),
             basicForm = form.getForm(),
             formEl = form.getEl(),
-            tgl		= basicForm.findField('tgl'),
-			lokasi 	= basicForm.findField('lokasi'),
-			unit 	= basicForm.findField('unit'),
 			cmon 	= Ext.create('rcm.model.ConMonIn');
-		   
-			
-			console.log(tgl.getValue()+'->'+lokasi.getValue()+'->'+unit.getValue());
-			// console.log(tgl);
-			// console.log(lokasi);
-			// console.log(unit);
-			// console.log(cmon);
+			// console.log(tgl.getValue()+'->'+lokasi.getValue()+'->'+unit.getValue());
 			basicForm.updateRecord(cmon);
-			
-		if(!tgl.getValue()&&!lokasi.getValue()&&!unit.getValue()) {
-            return;
-        }
 		
 		cmon.save({
             success: function(cmon, operation) {
@@ -263,24 +238,24 @@ Ext.define('rcm.controller.Sap', {
             }
         });
 			
-			
 		
 	},
-						
-
+	
 	pilihComboParent: function(records){
 		var lokasi = records.getValue(), combounit = this.getCbUnitStore();
+		
 		console.log(lokasi);	
 		combounit.clearFilter();
 		combounit.filter('id_lokasi',lokasi);
 		Ext.getCmp('cb_unit').clearValue();
+		// Ext.getCmp('cb_unit1').clearValue();
 		
 		// Ext.getCmp('cb_type').clearValue();
 		
 	},
 	pilihComboUnit : function(records){
 		var unit = records.getValue();
-		console.log(unit);
+		// console.log(unit);
 		// combounit.filter('',ll);
 		
 		

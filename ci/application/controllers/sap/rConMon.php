@@ -7,27 +7,13 @@ class rConMon extends CI_Controller {
 		$this->load->model('hirarki');
 	}
 	public function ReadCMon()	{
-		$jsonResult = array();
+		
 		try {
 			$hsl = $this->cmon->get_conmon();
-			
-			foreach ($hsl as $r){
-				 // print_r ($r);
-				$data[] = array(
-						'tgl'	=>$r->tgl,
-						'lokasi'=>$r->lokasi,
-						'unit'	=>$r->unit,
-						'wo'	=>$r->wo,
-						'sap'	=>$r->sap,
-						'url'	=>$r->url,
-						'pic'	=>$r->pic,
-						'ket'	=>$r->ket
-					);
-				$jsonResult = array(
+			$jsonResult = array(
 					'success' => true,
-					'condmon' => $data
+					'condmon' => $hsl
 				);
-			}
 		}
 		catch (Exception $e){
 			$jsonResult = array(
@@ -39,21 +25,39 @@ class rConMon extends CI_Controller {
 		echo json_encode($jsonResult);
 	
 	}
+	
+	public function RCMonId()	{
+		
+		try {
+			$idunit = $this->input->get('id') ? $this->input->get('id') : 0; 
+			if($idunit == 0) throw new Exception("paramater not valid");
+			
+			$hsl = $this->cmon->get_conmon_byid($idunit);
+			
+			$jsonResult = array(
+					'success' => true,
+					'condmonid' => $hsl
+				);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+	
+	}
+	
 	public function JConMon()	{
 		try {
 			$hsl = $this->cmon->count_conmon();
 			
-			foreach ($hsl as $r){
-				// print_r ($r);
-				$data[] = array(
-						'thn'	=>$r->tahun,
-						'jml'	=>$r->jml,
-						);
-				$jsonResult = array(
+			$jsonResult = array(
 					'success' => true,
-					'conmonth' => $data
-				);
-			}
+					'conmonth' => $hsl
+			);
 		}
 		catch (Exception $e){
 			$jsonResult = array(
@@ -68,19 +72,11 @@ class rConMon extends CI_Controller {
 	public function cbLokasi()	{
 		try {
 			$hsl = $this->hirarki->get_parent();
-			
-			foreach ($hsl as $r){
-				// print_r ($r);
-				$data[] = array(
-						'id_lokasi'	=>$r->id,
-						'loc'		=>$r->nama,
 						
-						);
-				$jsonResult = array(
+			$jsonResult = array(
 					'success' => true,
-					'location' => $data
+					'location' => $hsl
 				);
-			}
 		}
 		catch (Exception $e){
 			$jsonResult = array(
@@ -98,7 +94,7 @@ class rConMon extends CI_Controller {
 			
 			$hsl = $this->hirarki->get_unit();
 			
-			foreach ($hsl as $r){
+			/*foreach ($hsl as $r){
 				// print_r ($r);
 				$data[] = array(
 						'id_unit'	=>$r->id_unit,
@@ -106,11 +102,12 @@ class rConMon extends CI_Controller {
 						'id_lokasi'	=>$r->id_lokasi,
 						'unit'		=>$r->unit
 						);
-				$jsonResult = array(
+				
+			}*/
+			$jsonResult = array(
 					'success' => true,
-					'equnit' => $data
+					'equnit' => $hsl
 				);
-			}
 		}
 		catch (Exception $e){
 			$jsonResult = array(
@@ -146,16 +143,6 @@ class rConMon extends CI_Controller {
 			
 			}
 			
-			
-
-			/*if(!$statement->execute()) {
-				throw new Exception(implode(', ', $statement->errorInfo()));
-			}
-			$params->id = $db->lastInsertId();*/
-			/*$jsonResult = array(
-				'success' => true,
-				'condmon' => $params
-			);*/
 		} catch(Exception $e) {
 			$jsonResult = array(
 				'success' => false,
@@ -163,38 +150,9 @@ class rConMon extends CI_Controller {
 			);
 		}
 
-		// echo json_encode($jsonResult);
+		
 	}
 	
-	function compConMon(){
-		try {
-			$cat = $this->input->get('cat');
-			$hsl = $this->cmon->gascomp_conmon($cat);
-			
-			foreach ($hsl as $r){
-				// print_r ($r);
-				$data[] = array(
-						'thn'	=>$r->tahun,
-						'jml'	=>$r->jml,
-						);
-				$jsonResult = array(
-					'success' => true,
-					'gascomp' => $data
-				);
-			}
-		}
-		catch (Exception $e){
-			$jsonResult = array(
-				'success' => false,
-				'message' => $e->getMessage()
-			);	
-		}
-		
-		echo json_encode($jsonResult);
-		
-		
-	
-	}
 	function gConMon(){
 		try {
 			$hsl = $this->cmon->graf_conmon();
@@ -226,7 +184,8 @@ class rConMon extends CI_Controller {
 	
 	function gUnitConMon(){
 		try{
-			$tipe = $this->input->get('tp') != null ? $this->input->get('tp') : '5';
+			$tipe = $this->input->get('tp') ? $this->input->get('tp') : '5';
+			if($tipe === null) throw new Exception("paramater not valid");
 			// echo 'tipe : '.$tipe.'</br>' ;
 			$hslbln = array();
 			for ($i=0; $i<12; $i++){
@@ -244,7 +203,7 @@ class rConMon extends CI_Controller {
 			 // print_r($hsl); echo '<br><br>';
 			for($k=0; $k<count($hsl); $k++){
 				$hslbln[$hsl[$k]->bln-1] 			= $hsl[$k];
-				$hslbln[$hsl[$k]->bln-1]->mbln 		= nmMonth($hsl[$k]->bln-1,1);
+				$hslbln[$hsl[$k]->bln-1]->mbln 		= nmMonth($hsl[$k]->bln-1,2);
 				
 				
 				

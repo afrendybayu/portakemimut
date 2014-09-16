@@ -56,7 +56,7 @@ class Hirarki extends CI_Model {
 	}
 	
 	function get_unit(){
-		$sql = "select h3.id as id_unit, h2.id as id_type, h1.id as id_lokasi, h3.nama as unit 
+		$sql = "select h3.id as id_unit, h1.nama as lokasi, h1.id as id_lokasi, h3.nama as unit 
 				from hirarki h1
 					inner join hirarki h2 on h1.id = h2.parent
 					inner join hirarki h3 on h2.id = h3.parent;";

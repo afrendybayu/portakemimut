@@ -2,7 +2,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
     extend: 'Ext.form.Panel',
 	xtype: 'taskConMon',
 	layout : 'hbox',
-	
+	id : 'cmform',
 	initComponent: function() {
 		var me=this; 
 		me.items = [
@@ -13,9 +13,9 @@ Ext.define('rcm.view.laporan.ConMonForm', {
                 // height: 25
             },{
 				xtype	: 'datefield',
-				//value : new Date(),
+				emptyText	: 'Tanggal',
 				name	: 'tgl',
-				format	: 'Y-m-d',
+				format	: 'd-m-Y',
 				width 	: 100,
 				allowBlank: false
 			},{
@@ -26,15 +26,15 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				store 		: 'CbParent',
 				emptyText	: 'Lokasi',
 				name		: 'lokasi',
-				displayField: 'loc',
-				valueField 	: 'id_lokasi',
+				displayField: 'nama',
+				valueField 	: 'id',
 				queryMode 	: 'local'
 				
 			},{
 				xtype		:'combobox',
 				emptyText 	: 'Unit',
 				allowBlank	: false,
-				id			: 'cb_unit',
+				id		: 'cb_unit',
 				store 		: 'CbUnit',
 				width		: 150, 	
 				name		: 'unit',
@@ -43,16 +43,8 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				valueField 	: 'id_unit',
 				queryMode 	: 'local'
 			},{
-				xtype		:'textfield', 
-				name		: 'type',
-				id			: 'cb_type',
-				hidden		: true,
-				store		: 'CbUnit',
-				width		: 150, 	
-				valueField 	: 'id_type',
-				queryMode 	: 'local'
-			},{
 				xtype		:'textfield',
+				allowBlank: false,
 				emptyText 	: '#WO',
 				name		: 'wo',
 				// width		: 200 	
@@ -72,6 +64,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				flex : 1				
 			},{
 				xtype		:'textfield',
+				allowBlank: false,
 				emptyText 	: 'Eksekutor',
 				name		: 'pic',
 				// width		: 200,
@@ -106,18 +99,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
         me.callParent(arguments);
 		
 		
-		me.addEvents(
-		//	'plhUnit'
-			
-			/*'edit',
-			'plhOPartGagal',
-			'plhEquipGagal',
-			'plhModeGagal',
-			'plhCauseGagal',
-			'plhAksiGagal',
-			'hpsFMEAGagal'*/
-        );
-        //ed.on('edit', me.handleCellEdit, this);
+		
 	},
 	
 	/*pilihLokasi : function(n){

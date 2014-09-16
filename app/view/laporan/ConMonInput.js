@@ -30,7 +30,7 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 	
 	initComponent: function() {
 		var me=this; 
-		ed=Ext.create('Ext.grid.plugin.CellEditing',{ clicksToEdit: 1	});
+		ed=Ext.create('Ext.grid.plugin.RowEditing');
 		
 		me.plugins = [ed];
 				
@@ -40,69 +40,41 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 				resizable: false,
 				hideable: false,
 			},
-			items : [{ 
-				xtype:'rownumberer',width:25 
-			},{
-				header : 'Tanggal',
-				width : 100,
-				dataIndex : 'tgl',
-				xtype : 'datecolumn',
-				// editor : 'datefield',
-				format : 'Y-m-d'
-			},{
-				header : 'Lokasi',
-				// flex : 1,
-				width : 150,
-				dataIndex : 'lokasi',
-				// editor : 'textfield',
-				
-				
-				
-			},{
-				header : 'Unit',
-				// flex : 1,
-				width : 150,
-				
-				dataIndex : 'unit',
-			},{
-				header : '#WO',
-				flex : 1,
-				// width : 200,
-				dataIndex : 'wo',
-				editor: {
-                        xtype: 'textfield',
-                        selectOnFocus: true
-                    }
-			},{
-				header : '#SAP',
-				flex : 1,
-				// width : 150,
-				dataIndex : 'sap',
-				// editor : 'textfield'
-			},{
-				header : 'Laporan',
-				flex :1,
-				// width : 200,
-				dataIndex : 'url'
-			},{
-				header : 'Eksekutor',
-				flex : 1,
-				// width : 200,
-				dataIndex : 'pic',
-				// editor : 'textfield'
-			},{
-				header : 'Keterangan',
-				flex : 2,
-				// width : 150,
-				dataIndex : 'ket',
-				// editor : 'textfield'
-			},{
+			items : [{ xtype:'rownumberer',width:25 },
+						{header : 'Tanggal', width : 100,dataIndex : 'tgl',xtype : 'datecolumn', editor : 'datefield', format : 'd-m-Y'},
+						{header : 'Lokasi', width : 150,dataIndex : 'lokasi', editor :{
+							xtype		:'combobox',
+							id			: 'cb_parent1',
+							store 		: 'CbParent',
+							name		: 'lokasi',
+							displayField: 'nama',
+							queryMode 	: 'local',
+							listeners: {
+								'select' : me.pilihLokasi
+							}
+							
+						}},
+						{header : 'Unit',width : 150,dataIndex : 'unit',editor :{
+							xtype		:'combobox',
+							emptyText 	: 'Unit',
+							id			: 'cb_unit1',
+							store 		: 'CbUnit',
+							displayField: 'unit',
+							queryMode 	: 'local',
+							listeners: {
+								'select' : me.pilihUnit
+							}
+						}},
+						{header : '#WO',flex : 1,dataIndex : 'wo',editor : 'textfield'},
+						{header : '#SAP',flex : 1,dataIndex : 'sap',editor : 'textfield'},
+						{header : 'Laporan',flex :1,dataIndex : 'url',editor : 'textfield'},
+						{header : 'Eksekutor',flex : 1,dataIndex : 'pic',editor : 'textfield'},
+						{header : 'Keterangan',flex : 2,dataIndex : 'ket',editor : 'textfield'},
+			{
 				xtype:'actioncolumn',
-				width:25,
-				iconCls: 'editEvent',
+				width:25,iconCls: 'editEvent',
 				menuDisabled: true,
-				sortable: false,
-				// hidden : true,
+				sortable: false,// hidden : true,
 				tooltip: 'Edit',
 				handler: Ext.bind(me.hEditConMonClick, me)
 			},{
@@ -121,23 +93,51 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 		me.callParent(arguments);
 		me.addEvents(
 			'editconmon',
-			'recordedit'
+			'recordedit',
+			'isiedit'
 		);
 		
-        ed.on('edit', me.handleCellEdit, this);
+        ed.on('edit', me.hdlGridRowEdit, this);
 	},
 	hDeleteConMonClick: function(gridView, rowIndex, colIndex, column, e) {
         // Fire a "deleteclick" event with all the same args as this handler
         this.fireEvent('deleteconmon', gridView, rowIndex, colIndex, column, e);
     },
 	hEditConMonClick: function(gridView, rowIndex, colIndex, column, e) {
+		var rec = gridView.getStore().getAt(rowIndex);
         // Fire a "deleteclick" event with all the same args as this handler
-        this.fireEvent('editconmon', gridView, rowIndex, colIndex, column, e);
+        // this.fireEvent('editconmon', gridView, rowIndex, colIndex, column, e);
+        this.fireEvent('editconmon', rec,e);
     },
-
+	/*
 	handleCellEdit: function(editor, e) {
-        this.fireEvent('recordedit', e.record);
+        this.fireEvent('isiedit', e.record);
     },
+	*/
+	hdlGridRowEdit: function(gridView, e) {
+        var rec = e.grid.getStore().getAt(e.rowIdx); //tt=e.field;
+		console.log('id lokasi : '+rec.get('id_lokasi')+', id row grid : '+rec.get('id')+' di field: -> '+e.field+', dengan value : '+e.value+ ' ,di unit id : '+rec.get('id_unit')+' unitnya: '+rec.get('unit'));
+		//console.log("handleCellEdit tipe: "+rec.get('tipe')+", nilai: "+e.value+', bulan: '+e.field);
+		// this.fireEvent('isiedit',e,e.value,e.field,rec.get('id'),'2014' );
+		this.fireEvent('isiedit',e, rec.get('id_lokasi'));
+		
+		},
+	
+	pilihLokasi : function(combo, value){
+		// rcmSettings.cccccc = records;
+		// rcmSettings.dddddd = value;
+		// console.log(records.value())
+		var rec = combo.getValue();
+		// console.log(combo.getValue());
+		this.fireEvent('plhLokasi', rec);
+	},
+	
+	pilihUnit : function(gridView, record){
+		// rcmSettings.dddddd = record;
+		// console.log(record[0].get('id_unit'));
+		var unit = record[0].get('id_unit')
+		this.fireEvent('plhUnit', unit);
+	}
 	
 	
 	
