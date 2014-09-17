@@ -26,8 +26,8 @@ class rHirarki extends CI_Controller {
 				foreach ($query->result() as $row)	{
 					//print_r($row); echo "<br/>";
 					$arr[$k]['id'] = $row->id;
-					//$arr[$k]['text'] = $row->text;
-					$arr[$k]['text'] = $row->text.' '.$row->id;
+					$arr[$k]['text'] = $row->text;
+					//$arr[$k]['text'] = $row->text.' '.$row->id;
 					$arr[$k]['tipe'] = 'h';
 					$k++;
 				}

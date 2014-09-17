@@ -13,6 +13,7 @@ Ext.define('rcm.controller.Sap', {
 		,'laporan.ConMonForm'
 		,'laporan.SapPie'
 		,'laporan.GridContract'
+		,'laporan.EPO'
     ],
 
     controllers: [
@@ -46,6 +47,12 @@ Ext.define('rcm.controller.Sap', {
 		},{
 			ref: 'tFSap',
 			selector: 'tFSap'
+		},{
+			ref: 'tEPO',
+			selector: 'tEPO'
+		},{
+			ref: 'tpSapHistori',
+			selector: 'tpSapHistori'
 		},{
 			ref: 'tGridContract',
 			selector: 'tGridContract'
@@ -249,7 +256,8 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	cariSapHist: function()	{
-		var o = this.getTFSap().sedotFilter();
+		//var o = this.getTFSap().sedotFilter();
+		var o = this.getTpSapHistori().sedotFilter();
 		//rcmSettings.ttt = o;
 		this.getSapHistoriStore().load({params: {loc:o.iL,otp:o.iW,mwc:o.iM,tgl:o.iT }});
 		//alert("o.L: "+o.iL+", oW: "+o.iW+", oM: "+o.iM+", oT: "+o.iT);
@@ -261,11 +269,11 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	cariSapMaint: function()	{
-		var o = this.getTFSap().sedotFilter(),
+		//var o = this.getTFSap().sedotFilter(),
+		var o = this.getTEPO().sedotFilter(),
 			p = { loc:o.iL,otp:o.iW,mwc:o.iM,taw:o.iTw,tak:o.iTk };
-		this.ubahLabelWO(p);
-		//this.getSapHistoriStore().load({params: {loc:o.iL,otp:o.iW,mwc:o.iM,tgl:o.iT }});
 		//alert("o.L: "+o.iL+", oW: "+o.iW+", oM: "+o.iM+", oT: "+o.iT);
+		this.ubahLabelWO(p);
 	},
 	
 	grafikCauseClear: function()	{

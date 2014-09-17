@@ -21,12 +21,6 @@ Ext.define('rcm.view.laporan.EPO', {
 		idbCl: 'btnClearSM',
 		lThn: '<b>Tahun</b>',
 		xtype: 'tFSap'
-		//xtype: 'tFMaint'
-	/*
-	},{
-		dock: 'top',
-		xtype: 'tFMaint'
-	//*/
 	}],
 	
 	layout: {
@@ -125,5 +119,17 @@ Ext.define('rcm.view.laporan.EPO', {
 					flex: 1
 			}]
 		}]
-	}]
+	}],
+
+	sedotFilter: function()	{
+		var o = {},
+			me = this;
+		o.iW = Ext.getCmp('iWoTM').getValue();
+		o.iM = Ext.getCmp('iMtAcM').getValue();
+		o.iT = Ext.getCmp('iThnM').getValue();
+		o.iL = Ext.getCmp('iLokM').getSubmitValue();
+		//rcmSettings.gggg = o;
+		return o;
+	}
+
 });
