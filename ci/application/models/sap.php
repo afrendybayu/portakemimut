@@ -40,7 +40,7 @@ class Sap extends CI_Model {
     }
     
     function get_cause()	{
-		$sql = "select sapfmea.cause AS kode,cause.nama, count(*) as jml,".
+		$sql = "select sapfmea.cause AS kode,CONCAT('[',cause,'] ',cause.nama) AS desk,cause.nama, count(*) as jml,".
 				"ROUND((100*count(*)/(select count(*) from sapfmea )),2) as persen ".
 				"from sapfmea ".
 				"left join cause on sapfmea.cause= cause.kode ".
@@ -51,7 +51,7 @@ class Sap extends CI_Model {
 	}
 	
 	function get_cause_info($cause)	{
-		$sql = "SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,opart,eqkode AS equip,".
+		$sql = "SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,down,opart,eqkode AS equip,".
 				"notiftype AS tipe,ordertype,downstart ".
 				"FROM sapfmea ".
 				"LEFT JOIN sap ON sap.pid = sapfmea.pid";

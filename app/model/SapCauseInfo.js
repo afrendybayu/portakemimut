@@ -5,7 +5,7 @@ Ext.define('rcm.model.SapCauseInfo', {
 		'Ext.data.proxy.Ajax'
 	],
 
-	fields: ['id','noorder','equip','damage','cause','opart','mainwork','tipe','downstart','biaya'],
+	fields: ['id','noorder','equip','damage','cause','opart','down','mainwork','tipe','downstart','biaya'],
     proxy: {
 		type: 'ajax',
 		api: {

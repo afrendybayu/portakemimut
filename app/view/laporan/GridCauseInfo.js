@@ -16,7 +16,7 @@ Ext.define('rcm.view.laporan.GridCauseInfo', {
 			{ header:'No Order',dataIndex:'noorder',width:75 },
 			{ header:'Tipe',dataIndex:'tipe',width:40 },
 			{ header:'Equipment',dataIndex:'equip',flex:1 },
-			{ header:'Down Time',dataIndex:'downstart',width:80 },
+			{ header:'Down Time',dataIndex:'down',width:80 },
 			{ header:'Object Part',dataIndex:'opart',width:75 },
 			{ header:'Damage',dataIndex:'damage',width:75 },
 			{ header:'Main Work',dataIndex:'mainwork',width:75 },
