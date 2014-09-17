@@ -69,12 +69,12 @@ Ext.define('rcm.view.laporan.FilterSap', {
 					xtype: 'combo',
 					queryMode: 'local',
 					store: 'SapMwc',
-					width: 170,
+					width: 240,
 					value: 'ALL',
 					//emptyText: 'ALL',
 					displayField: 'mwc',
-					labelWidth: 60,
-					fieldLabel: '<b>Maint Act</b>',
+					labelWidth: 140,
+					fieldLabel: '<b>Maintenance Activity</b>',
 					margin: '0 10 0 0'
 				},{
 					//id: 'btnCariSH',
