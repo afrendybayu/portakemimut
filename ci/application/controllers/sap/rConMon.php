@@ -187,6 +187,25 @@ class rConMon extends CI_Controller {
 
 		
 	}
+	public function removeCMon(){
+		
+		try {
+			$conmon = json_decode(file_get_contents('php://input'));
+			
+			
+			$this->db->where('id', $conmon->id);
+			$this->db->delete('conmon'); 
+			
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+		
+	}
 	//==================
 	function gConMon(){
 		try {

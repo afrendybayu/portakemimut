@@ -31,7 +31,7 @@ class CMon extends CI_Model {
 	
 	
 	function count_conmon(){
-		$sql = "select distinct(year(tgl)) as tahun, count(unit) as jml from conmon group by year(tgl) order by year(tgl) desc limit 3";
+		$sql = "select distinct(year(tgl)) as tahun, count(unit) as jml from conmon group by year(tgl) order by year(tgl) desc";
 		$query = $this->db->query($sql);
 		
 		return $query->result();

@@ -11,7 +11,8 @@ Ext.define('rcm.model.ConMonIn', {
 		api: {
 			read	: 'ci/index.php/sap/rConMon/ReadCMon',
 			create 	: 'ci/index.php/sap/rConMon/createCMon',
-			update	: 'ci/index.php/sap/rConMon/updateCMon'
+			update	: 'ci/index.php/sap/rConMon/updateCMon',
+			destroy : 'ci/index.php/sap/rConMon/removeCMon'
         },
         reader: {
             type: 'json',

@@ -34,6 +34,7 @@ Ext.define('rcm.view.laporan.GridConMon', {
 				xtype : 'button',
 				id	: 'clr_filter',
 				text : 'Clear Filter',
+				iconCls: 'clrFilter',
 				
 			}]
 		

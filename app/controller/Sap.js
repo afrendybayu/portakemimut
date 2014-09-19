@@ -167,7 +167,7 @@ Ext.define('rcm.controller.Sap', {
 		// console.log(idx);
 		// console.log('tgl : '+rec.tgl+', unit : '+rec.unit+', wo : '+rec.wo);
 		var me = this;
-		var ucmon 	= Ext.create(rcm.model.ConMonIn, rec ); /*{ 
+		var ucmon 	= Ext.create('rcm.model.ConMonIn', rec ); /*{ 
 			id : idx, tgl : rec.tgl, unit : rec.unit, wo : rec.wo, sap : rec.sap, url : rec.url, pic : rec.pic, ket : rec.ket
 		} *///);
 		
@@ -195,19 +195,36 @@ Ext.define('rcm.controller.Sap', {
 		
 	},
 	cbplhunit : function(record){
-		console.log (record);
+		// console.log (record);
 		this.getIConMon().idunit = record;
 		
 		// var runit = record.getValue();
 	},
 	
-	ConMonDeleteClick: function(view, rowIndex, colIndex, column, e) {
+	ConMonDeleteClick: function(del) {
         //this.deleteTask(this.getTasksStore().getAt(rowIndex));
-		console.log('hapus ro ini');
+		// console.log(del.data );
+		// cmons.remove(rec);
+		// cmons.sync;
+		// cmons.reload();
+		
+		var me = this, record = del.data,
+		dcmon 	= Ext.create('rcm.model.ConMonIn', record );
+		dcmon.destroy ({
+			success : function(dcmon, operation){
+				// dcmon.destroy();
+				me.getConMonInStore().reload();
+				me.getConMonStore().reload();
+			},
+			callback : function(){
+				
+			}
+		
+		})
     },
 	
 	// ConMonEditClick: function(view, rowIndex, colIndex, column, e) {
-	ConMonEditClick: function(rec, e) {
+	/*ConMonEditClick: function(rec, e) {
         // this.showEditWindow(view.getRecord(view.findTargetByEvent(e)));
 		// console.log('edit ro ini '+this.getConMonInStore().getAt(rowIndex).data.id);
 		
@@ -229,7 +246,7 @@ Ext.define('rcm.controller.Sap', {
 		
 	
 	},
-	
+	*/
     editInputConMon: function(task){
 		var me = this,
 		taskEditConMonForm = me.getTaskConMon();
@@ -298,7 +315,7 @@ Ext.define('rcm.controller.Sap', {
 	pilihComboParent: function(records){
 		var lokasi = records.getValue(), combounit = this.getCbUnitStore();
 		
-		console.log(lokasi);	
+		// console.log(lokasi);	
 		combounit.clearFilter();
 		combounit.filter('id_lokasi',lokasi);
 		Ext.getCmp('cb_unit').clearValue();

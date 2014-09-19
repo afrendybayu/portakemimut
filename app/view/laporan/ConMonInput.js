@@ -105,7 +105,10 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 	},
 	hDeleteConMonClick: function(gridView, rowIndex, colIndex, column, e) {
         // Fire a "deleteclick" event with all the same args as this handler
-        this.fireEvent('deleteconmon', gridView, rowIndex, colIndex, column, e);
+        // 
+		var rec = gridView.getStore().getAt(rowIndex);
+		// console.log (rec);
+		this.fireEvent('deleteconmon', rec);
     },
 	/*
 	hEditConMonClick: function(gridView, rowIndex, colIndex, column, e) {
@@ -117,15 +120,18 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 	*/
 	hdlGridRowEdit : function(record, e){
 		// rcmSettings.aaddddaa = record;
-		rcmSettings.aaddddcc = e;
+		// rcmSettings.aaddddcc = e;
 		
 		var rec = e.newValues; //idx = e.record.get('id'),
-		
-		// rec.id_unit = this.idunit; 
-		rec.id_unit = rec.id_unit == ''? e.record.get('id_unit') : this.idunit;
+		/*
+		if (this.idunit == ''){
+			rec.id_unit = e.record.get('id_unit')
+		} else {
+			rec.id_unit = this.idunit
+		} */
+		rec.id_unit = this.idunit == ''? e.record.get('id_unit') : this.idunit;
 		rec.id = e.record.get('id');
-		
-		// console.log(rec);
+		// console.log('isi id_unit : '+rec.id_unit);
 		// console.log('id '+idx);
 		this.fireEvent('updatecm',rec);
 		
