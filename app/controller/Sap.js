@@ -20,6 +20,7 @@ Ext.define('rcm.controller.Sap', {
     ],
 
     stores: [
+		
 		'HoTeco','HoMan','HoOrderC'
 		,'SapEPO'
         ,'WoOpen7','WoOpen30','WoOpen60','WoOpenL60'
@@ -32,14 +33,18 @@ Ext.define('rcm.controller.Sap', {
 		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10'
 		,'Contract','ContractLine', 'ContractInput'
 
-		,'SapHistori','ConMon','ConMonIn','CbParent','CbUnit','ConMonGr'
+		,'SapHistori'
+		
+		
+		,'ConMon','ConMonIn','CbParent','CbUnit','ConMonGr'
 		,'DetConMonGr','DetConMonPmp','DetConMonGs'
 		,'OhTahun'
 
     ],
     
     models: [
-		'ContractInput'
+		'ContractInput',
+		'ConMonIn'
     ],
     
     refs: [{
@@ -67,6 +72,9 @@ Ext.define('rcm.controller.Sap', {
 		},{
 			ref : 'iConMon',
 			selector : 'iConMon'
+		},{
+			ref : 'tGridConMon',
+			selector : 'tGridConMon'
 	}],
     
     init: function() {
@@ -107,44 +115,90 @@ Ext.define('rcm.controller.Sap', {
 
 				select : me.pilihComboParent
 			},
-			'#cb_parent1':{
-				plhLokasi : me.cbplhlokasi,
-			},
 			'#cb_unit' : {
 				select : me.pilihComboUnit
 			},
-			'#cb_unit1' : {
+			/*'#cb_unit1' : {
 				plhUnit : me.cbplhunit
-			},
+			},*/
 			'taskConMon textfield': {
-                    specialkey: me.handlesimpan
+				specialkey: me.handlesimpan
+			},
+			'#clr_filter' : {
+				click : me.hpsFilter
 			},
 			
-			'iConMon' :{
-				// plhLokasi : me.cbplhlokasi,
-				// isiedit : me.pilihComboParent1,
-				// recordedit: me.updateTask,
+			'iConMon':{
+				// specialkey	: me.hdlupdate,
+				updatecm	: me.updateFormCM,
 				deleteconmon: me.ConMonDeleteClick,
-				editconmon : me.ConMonEditClick
+				plhLokasi	: me.cbplhlokasi,
+				plhUnit 	: me.cbplhunit
+			},
+			
+			'tGridConMon'	: {
+				'filterThConMon' : me.gridfilterTahun
 			}
-			
-			
 		});
     },
 	
+	hpsFilter : function(){
+		// console.log ('hapus filter ');
+		var filtercm = this.getConMonInStore();
+		filtercm.clearFilter();
+		// me.getConMonInStore().reload();
+		
+	},
+	gridfilterTahun : function(thn){
+		// console.log(thn);
+		var sfcm = this.getConMonInStore();
+		sfcm.clearFilter();
+		// rcmSettings.getstore = sfcm;
+		// console.log(sfcm.getFullYear(tgl));
+		sfcm.filter('thn',thn);
+		// me.getConMonInStore().reload();
+		
+	},
+	
+	updateFormCM : function(rec){
+		
+		// rcmSettings.aaaaa = rec;
+		// console.log(rec);
+		// console.log(idx);
+		// console.log('tgl : '+rec.tgl+', unit : '+rec.unit+', wo : '+rec.wo);
+		var me = this;
+		var ucmon 	= Ext.create(rcm.model.ConMonIn, rec ); /*{ 
+			id : idx, tgl : rec.tgl, unit : rec.unit, wo : rec.wo, sap : rec.sap, url : rec.url, pic : rec.pic, ket : rec.ket
+		} *///);
+		
+		// var ucmon = Ext.create(this.getConMonInModel());
+		
+		ucmon.save ({
+			success: function(ucmon, operation){
+				// alert ('Data ConMon terSimpan');
+				me.getConMonInStore().reload();
+				
+			}
+		
+		}); 
+		
+		
+	},
 	
 	cbplhlokasi : function(combo){
 		// console.log('isi nama lokasi: '+ combo);
 		var cbunitst = this.getCbUnitStore();
 		cbunitst.clearFilter();
-		cbunitst.filter('lokasi',combo);
-		// Ext.getCmp('cb_unit').clearValue();
+		cbunitst.filter('id_lokasi',combo);
 		Ext.getCmp('cb_unit1').clearValue();
 		// console.log('ini id unitnya: '+Ext.getCmp('cb_unit1').get('id_unit'));
 		
 	},
 	cbplhunit : function(record){
-		console.log('id unitnya : '+record);
+		console.log (record);
+		this.getIConMon().idunit = record;
+		
+		// var runit = record.getValue();
 	},
 	
 	ConMonDeleteClick: function(view, rowIndex, colIndex, column, e) {
@@ -157,11 +211,11 @@ Ext.define('rcm.controller.Sap', {
         // this.showEditWindow(view.getRecord(view.findTargetByEvent(e)));
 		// console.log('edit ro ini '+this.getConMonInStore().getAt(rowIndex).data.id);
 		
-		rcmSettings.aaaaa = rec;
-		rcmSettings.bbbbb = e;
+		// rcmSettings.aaaaa = rec;
+		// rcmSettings.bbbbb = e;
 		var idlok = rec.get('id');
 		var me = this, fcmon = Ext.getCmp('cmform').getForm();
-		console.log(' -> '+idlok );
+		// console.log(' -> '+idlok );
 		fcmon.findField('tgl').setValue(rec.get('tgl'));
 		fcmon.findField('lokasi').setValue(rec.get('lokasi'));
 		fcmon.findField('unit').setValue(rec.get('unit'));

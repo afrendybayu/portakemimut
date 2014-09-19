@@ -3,7 +3,7 @@
 class CMon extends CI_Model {
 	
 	function get_conmon()    {
-        $sql = "select c.id,c.tgl,h3.nama as lokasi, h3.id as id_lokasi, h1.nama as unit,h1.id as id_unit , c.wo, c.sap, c.url, c.pic, c.ket
+        $sql = "select c.id,c.tgl,h3.nama as lokasi, h3.id as id_lokasi, h1.nama as unit,h1.id as id_unit , c.wo, c.sap, c.url, c.pic, c.ket, year(c.tgl) as thn
 				from conmon c
 					inner join hirarki h1 on h1.id = c.unit
 					inner join hirarki h2 on h2.id = h1.parent

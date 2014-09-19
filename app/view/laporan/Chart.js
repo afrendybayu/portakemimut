@@ -25,6 +25,11 @@ Ext.define('rcm.view.laporan.Chart', {
 	initComponent: function() {
 		var me=this;
 		me.items = [{
+				id: 'ts_hi',
+				title: 'Condition Monitoring',
+				xtype:'tConMon'
+			//*/
+			},{
 				id: 'ts_oh',
 				title: 'OverHaul',
 				xtype:'tOverHaul'
@@ -36,7 +41,7 @@ Ext.define('rcm.view.laporan.Chart', {
 				id: 'ts_wo',
 				title: 'WO Compliance',
 				xtype:'tWOComp'
-			
+			/*
 			},{
 				id: 'ts_hi',
 				title: 'Condition Monitoring',

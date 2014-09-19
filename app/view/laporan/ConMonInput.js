@@ -1,14 +1,11 @@
 Ext.define('rcm.view.laporan.ConMonInput', {
     extend: 'Ext.grid.Panel',
 	xtype: 'iConMon',
-	requires : 'rcm.view.laporan.ConMonForm',
-	
-	
-	//features: [{ftype:'grouping',startCollapsed:true,hideGroupedHeader:true}],
-
+	requires : ['rcm.view.laporan.ConMonForm', 'Ext.grid.RowEditor'],
 	store: 'ConMonIn',
+	id 	: 'frmicmon' ,
     //columnLines: true,
-	
+	idunit: '',
 	enableColumnHide: false,
 	
 	
@@ -18,8 +15,6 @@ Ext.define('rcm.view.laporan.ConMonInput', {
         {
             xtype: 'taskConMon',
             dock: 'top',
-            // the grid's column headers are a docked item with a weight of 100.
-            // giving this a weight of 101 causes it to be docked under the column headers
             weight: 101,
             bodyStyle: {
                 'background-color': '#E4E5E7'
@@ -29,9 +24,13 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 	
 	
 	initComponent: function() {
-		var me=this; 
-		ed=Ext.create('Ext.grid.plugin.RowEditing');
-		
+		var me=this, rmode = 'rowmodel'; 
+		ed = Ext.create('Ext.grid.plugin.RowEditing',{
+			clicksToEdit: 2, 
+			// autoCancel : false, 
+			// hideTooltip: true
+		});
+		me.selType = rmode;
 		me.plugins = [ed];
 				
 		me.columns = {
@@ -41,16 +40,19 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 				hideable: false,
 			},
 			items : [{ xtype:'rownumberer',width:25 },
-						{header : 'Tanggal', width : 100,dataIndex : 'tgl',xtype : 'datecolumn', editor : 'datefield', format : 'd-m-Y'},
+						{header : 'Tanggal', width : 100,dataIndex : 'tgl',xtype : 'datecolumn', format : 'd-m-Y',editable : false, editor : { xtype : 'datefield', format: 'd-m-Y', allowBlank: false}},
 						{header : 'Lokasi', width : 150,dataIndex : 'lokasi', editor :{
 							xtype		:'combobox',
 							id			: 'cb_parent1',
 							store 		: 'CbParent',
 							name		: 'lokasi',
+							editable	: false,
 							displayField: 'nama',
+							valueField 	: 'nama',
+							allowBlank	: false,
 							queryMode 	: 'local',
-							listeners: {
-								'select' : me.pilihLokasi
+							listConfig : {
+								listeners	:{itemclick : function(list, record){ me.pilihLokasi(record);}}
 							}
 							
 						}},
@@ -59,25 +61,29 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 							emptyText 	: 'Unit',
 							id			: 'cb_unit1',
 							store 		: 'CbUnit',
+							editable 	: false,
+							allowBlank	: false,
 							displayField: 'unit',
+							// valueField : 'id_unit',
 							queryMode 	: 'local',
-							listeners: {
-								'select' : me.pilihUnit
+							listConfig: { 
+								listeners: { itemclick : function(list, record){ me.pilihUnit(record);}} 
 							}
+							
 						}},
-						{header : '#WO',flex : 1,dataIndex : 'wo',editor : 'textfield'},
-						{header : '#SAP',flex : 1,dataIndex : 'sap',editor : 'textfield'},
+						{header : '#WO',flex : 1,dataIndex : 'wo',editor : {allowBlank: false}},
+						{header : '#SAP',flex : 1,dataIndex : 'sap',editor : {allowBlank: false}},
 						{header : 'Laporan',flex :1,dataIndex : 'url',editor : 'textfield'},
-						{header : 'Eksekutor',flex : 1,dataIndex : 'pic',editor : 'textfield'},
+						{header : 'Eksekutor',flex : 1,dataIndex : 'pic',editor : {allowBlank: false}},
 						{header : 'Keterangan',flex : 2,dataIndex : 'ket',editor : 'textfield'},
-			{
+			/*{
 				xtype:'actioncolumn',
 				width:25,iconCls: 'editEvent',
 				menuDisabled: true,
 				sortable: false,// hidden : true,
 				tooltip: 'Edit',
 				handler: Ext.bind(me.hEditConMonClick, me)
-			},{
+			},*/{
 				xtype:'actioncolumn',
 				width:25,
 				iconCls: 'hpsEvent',
@@ -92,9 +98,7 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 		};
 		me.callParent(arguments);
 		me.addEvents(
-			'editconmon',
-			'recordedit',
-			'isiedit'
+			
 		);
 		
         ed.on('edit', me.hdlGridRowEdit, this);
@@ -103,39 +107,41 @@ Ext.define('rcm.view.laporan.ConMonInput', {
         // Fire a "deleteclick" event with all the same args as this handler
         this.fireEvent('deleteconmon', gridView, rowIndex, colIndex, column, e);
     },
+	/*
 	hEditConMonClick: function(gridView, rowIndex, colIndex, column, e) {
 		var rec = gridView.getStore().getAt(rowIndex);
         // Fire a "deleteclick" event with all the same args as this handler
         // this.fireEvent('editconmon', gridView, rowIndex, colIndex, column, e);
         this.fireEvent('editconmon', rec,e);
     },
-	/*
-	handleCellEdit: function(editor, e) {
-        this.fireEvent('isiedit', e.record);
-    },
 	*/
-	hdlGridRowEdit: function(gridView, e) {
-        var rec = e.grid.getStore().getAt(e.rowIdx); //tt=e.field;
-		console.log('id lokasi : '+rec.get('id_lokasi')+', id row grid : '+rec.get('id')+' di field: -> '+e.field+', dengan value : '+e.value+ ' ,di unit id : '+rec.get('id_unit')+' unitnya: '+rec.get('unit'));
-		//console.log("handleCellEdit tipe: "+rec.get('tipe')+", nilai: "+e.value+', bulan: '+e.field);
-		// this.fireEvent('isiedit',e,e.value,e.field,rec.get('id'),'2014' );
-		this.fireEvent('isiedit',e, rec.get('id_lokasi'));
+	hdlGridRowEdit : function(record, e){
+		// rcmSettings.aaddddaa = record;
+		rcmSettings.aaddddcc = e;
 		
-		},
-	
-	pilihLokasi : function(combo, value){
-		// rcmSettings.cccccc = records;
-		// rcmSettings.dddddd = value;
-		// console.log(records.value())
-		var rec = combo.getValue();
-		// console.log(combo.getValue());
+		var rec = e.newValues; //idx = e.record.get('id'),
+		
+		// rec.id_unit = this.idunit; 
+		rec.id_unit = rec.id_unit == ''? e.record.get('id_unit') : this.idunit;
+		rec.id = e.record.get('id');
+		
+		// console.log(rec);
+		// console.log('id '+idx);
+		this.fireEvent('updatecm',rec);
+		
+	},
+
+	// pilihLokasi : function(combo, value){
+	pilihLokasi : function(record){
+		// console.log(record)
+		var rec = record.data.id;
+		// console.log(rec);
 		this.fireEvent('plhLokasi', rec);
 	},
 	
-	pilihUnit : function(gridView, record){
-		// rcmSettings.dddddd = record;
-		// console.log(record[0].get('id_unit'));
-		var unit = record[0].get('id_unit')
+	pilihUnit : function(record){
+		// console.log(record);
+		var unit = record.data.id_unit;
 		this.fireEvent('plhUnit', unit);
 	}
 	

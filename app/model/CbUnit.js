@@ -5,7 +5,7 @@ Ext.define('rcm.model.CbUnit', {
 		'Ext.data.proxy.Ajax'
 	],
 	
-	fields: [ 'id_unit','id_lokasi','unit'],
+	fields: [ 'id_unit','lokasi','id_lokasi','unit'],
     proxy: {
 		type: 'ajax',
 		api: {

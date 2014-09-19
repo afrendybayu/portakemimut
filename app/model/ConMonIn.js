@@ -5,12 +5,13 @@ Ext.define('rcm.model.ConMonIn', {
 		'Ext.data.proxy.Ajax'
 	],
 	
-	fields: [ 'tgl','lokasi','unit','wo','sap','url','pic','ket'],
+	fields: [ 'id','tgl','lokasi','id_lokasi','unit','id_unit','wo','sap','url','pic','ket','thn'],
     proxy: {
 		type: 'ajax',
 		api: {
 			read	: 'ci/index.php/sap/rConMon/ReadCMon',
-			create 	: 'ci/index.php/sap/rConMon/createCMon' 
+			create 	: 'ci/index.php/sap/rConMon/createCMon',
+			update	: 'ci/index.php/sap/rConMon/updateCMon'
         },
         reader: {
             type: 'json',

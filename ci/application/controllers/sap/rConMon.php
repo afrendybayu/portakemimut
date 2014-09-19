@@ -152,7 +152,42 @@ class rConMon extends CI_Controller {
 
 		
 	}
-	
+	//==================
+	public function updateCMon(){
+		
+		try {
+			$conmon = json_decode(file_get_contents('php://input'));
+			
+			
+			$flag = $this->hirarki->get_flag($conmon->id_unit);
+			foreach($flag as $r){
+				// echo $r->flag;
+				
+				$sql = array(
+					'tgl' 	=> $conmon->tgl ,
+					'unit' 	=> $conmon->id_unit,
+					'type'	=> $r->flag,
+					'wo'	=> $conmon->wo,
+					'sap'	=> $conmon->sap,
+					'url'	=> $conmon->url,
+					'pic'	=> $conmon->pic,
+					'ket'	=> $conmon->ket
+				);
+				$this->db->where('id',$conmon->id);
+				$this->db->update('conmon', $sql);
+			
+			}
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+		
+	}
+	//==================
 	function gConMon(){
 		try {
 			$hsl = $this->cmon->graf_conmon();

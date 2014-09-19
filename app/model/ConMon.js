@@ -5,7 +5,7 @@ Ext.define('rcm.model.ConMon', {
 		'Ext.data.proxy.Ajax'
 	],
 	
-	fields: [ 'thn',
+	fields: [ 'tahun',
 		{ name:'jml',type:'int' }],
     proxy: {
 		type: 'ajax',

@@ -12,17 +12,19 @@ Ext.define('rcm.view.laporan.ConMonForm', {
                  width: 25,
                 // height: 25
             },{
-				xtype	: 'datefield',
+				xtype		: 'datefield',
 				emptyText	: 'Tanggal',
-				name	: 'tgl',
-				format	: 'd-m-Y',
-				width 	: 100,
-				allowBlank: false
+				name		: 'tgl',
+				format		: 'd-m-Y',
+				width 		: 100,
+				editable	: false,
+				allowBlank	: false
 			},{
-				xtype	:'combobox',
-				itemId	: 'cb_parent',
-				allowBlank: false,
-				width 	: 150,
+				xtype		:'combobox',
+				itemId		: 'cb_parent',
+				editable	: false,
+				allowBlank	: false,
+				width 		: 150,
 				store 		: 'CbParent',
 				emptyText	: 'Lokasi',
 				name		: 'lokasi',
@@ -33,8 +35,9 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 			},{
 				xtype		:'combobox',
 				emptyText 	: 'Unit',
+				editable	: false,
 				allowBlank	: false,
-				id		: 'cb_unit',
+				id			: 'cb_unit',
 				store 		: 'CbUnit',
 				width		: 150, 	
 				name		: 'unit',
@@ -80,7 +83,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
                 
 				xtype:'button',
 				iconCls: 'add',
-				text	: 'Add',
+				text	: 'Cari',
 				width:50,
 				tooltip: 'Simpan',
 				disabled : true,
