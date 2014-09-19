@@ -23,15 +23,13 @@ Ext.define('rcm.view.laporan.PanelSap', {
 		idbCl: 'btnClearSH',
 		lThn: '<b>Pilih Waktu</b>',
 		xtype: 'tFSap'
-		
 	}],
 
 	defaults: {
 		flex: 1,
 		hideLabel: true
 	},
-	
-	//*
+
 	initComponent: function() {		
 		var me=this;
 		
@@ -47,6 +45,16 @@ Ext.define('rcm.view.laporan.PanelSap', {
 		}];
 		me.callParent(arguments);
 		
+	},
+	
+	sedotFilter: function()	{
+		var o = {},
+			me = this;
+		o.iW = Ext.getCmp('iWoTH').getValue();
+		o.iM = Ext.getCmp('iMtAcH').getValue();
+		o.iT = Ext.getCmp('iThnH').getValue();
+		o.iL = Ext.getCmp('iLokH').getSubmitValue();
+		//rcmSettings.gggg = o;
+		return o;
 	}
-	//*/
 });

@@ -9,7 +9,7 @@ Ext.define('rcm.view.laporan.SapCause', {
 	yNama: 'Jumlah WO',
 	loadMask: true,
 
-	xField: 'nama',
+	xField: 'desk',
 
 	initComponent: function() {
 		var me=this;
@@ -56,8 +56,11 @@ Ext.define('rcm.view.laporan.SapCause', {
 					point: {
 						events: {
 							click: function(evt) {
-								//alert("x: "+this.x+" "+this.y);
+								//alert("x: "+this.x+" "+this.y+" "+this.category);
+								alert((this.category).substr(1, (this.category).lastIndexOf("]")-1));
+								//rcmS = this;
 								//me.fireEvent('AvGroupCl', evt, this.category);
+								me.fireEvent('sapFilter',me.btnFilter,records[0].data);	// .kode
 							}
 						}
 					}

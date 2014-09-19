@@ -156,7 +156,7 @@ Ext.define('rcm.controller.AvRe', {
 		//me.getTAvGroup().waktu = bln;
 		
 		//var c = (me.getTAvGroup().cat)?me.getTAvGroup().cat:5;
-		alert(me.getTAvGroup().cat);
+		//alert(me.getTAvGroup().cat);
 		me.updateAvRe(bln,me.getTAvGroup().nama,me.getTAvGroup().cat);
 		//*
 		me.getAvHomeStore().load({ params:{wkt:d} });

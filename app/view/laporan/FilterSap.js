@@ -23,7 +23,7 @@ Ext.define('rcm.view.laporan.FilterSap', {
 			//*/
 			items: [{
 					//id:  'iThnH',
-					id: me.idThn,
+					id: this.idThn,
 					xtype: 'combo',
 					submitFormat: 'Y',
 					emptyText: 'Tahun '+rcm.view.Util.U1th(''),
@@ -40,7 +40,7 @@ Ext.define('rcm.view.laporan.FilterSap', {
 					margin: '0 10 0 0'
 				},{
 					//id:  'iLokH',
-					id: me.idLok,
+					id: this.idLok,
 					xtype: 'combo',	
 					store: 'SapLoc',
 					labelWidth: 50,
@@ -52,7 +52,7 @@ Ext.define('rcm.view.laporan.FilterSap', {
 					margin: '0 10 0 0'
 				},{
 					//id:  'iWoTH',
-					id: me.idWoT,
+					id: this.idWoT,
 					xtype: 'combo',
 					labelWidth: 60,
 					width: 140,
@@ -65,16 +65,16 @@ Ext.define('rcm.view.laporan.FilterSap', {
 					margin: '0 10 0 0'
 				},{
 					//id:  'iMtAcH',
-					id: me.idMtAc,
+					id: this.idMtAc,
 					xtype: 'combo',
 					queryMode: 'local',
 					store: 'SapMwc',
-					width: 170,
+					width: 240,
 					value: 'ALL',
 					//emptyText: 'ALL',
 					displayField: 'mwc',
-					labelWidth: 60,
-					fieldLabel: '<b>Maint Act</b>',
+					labelWidth: 140,
+					fieldLabel: '<b>Maintenance Activity</b>',
 					margin: '0 10 0 0'
 				},{
 					//id: 'btnCariSH',
@@ -123,10 +123,10 @@ Ext.define('rcm.view.laporan.FilterSap', {
 	sedotFilter: function()	{
 		var o = {},
 			me = this;
-		o.iW = Ext.getCmp(me.idWoT).getValue();
-		o.iM = Ext.getCmp(me.idMtAc).getValue();
-		o.iT = Ext.getCmp(me.idThn).getValue();
-		o.iL = Ext.getCmp(me.idLok).getSubmitValue();
+		o.iW = Ext.getCmp(this.idWoT).getValue();
+		o.iM = Ext.getCmp(this.idMtAc).getValue();
+		o.iT = Ext.getCmp(this.idThn).getValue();
+		o.iL = Ext.getCmp(this.idLok).getSubmitValue();
 		//rcmSettings.gggg = o;
 		return o;
 	}
