@@ -37,8 +37,9 @@ Ext.define('rcm.view.laporan.Chart', {
 			},{
 				id: 'ts_wo',
 				title: 'WO Compliance',
-				xtype:'tWOComp'
-			
+				xtype:'tWOComp',
+				idThn: 'thnWoC',
+				idbSr: 'srWoC',
 			},{
 				id: 'ts_hi',
 				title: 'Condition Monitoring',
@@ -60,6 +61,8 @@ Ext.define('rcm.view.laporan.Chart', {
 				//xtype: 'causechart',
 				xtype: 'tSapCh',
 				dstore: 'SapTop10',
+				idThn: 'thnTop10',
+				idbSr: 'srTop10',
 				jdl: 'TOP 10 Orders Cost per Equipment',
 				param: 'Equipment Cost',
 				yNama: 'Cost ($)'

@@ -17,12 +17,7 @@ Ext.define('rcm.view.laporan.FilterThn', {
 			combineErrors: true,
 			flex: 1,
 			layout: 'hbox',
-			/*
-			layout: {
-				type: 'border',
-				padding: 5
-			},
-			//*/
+
 			items: [{
 					//id:  'iThnH',
 					id: me.idThn,
@@ -84,9 +79,10 @@ Ext.define('rcm.view.laporan.FilterThn', {
 	},
 	
 	sedotFilter: function()	{
-		var o = {},
-			me = this;
-		o.iT = Ext.getCmp(this.idThn).getValue();
+		var t = Ext.getCmp(this.idThn).getValue();
+		//	me = this;
+		//o.iT = Ext.getCmp(this.idThn).getValue();
+		alert(this.idThn);
 		return o;
 	}
 	
