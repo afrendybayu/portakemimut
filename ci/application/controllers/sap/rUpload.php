@@ -50,6 +50,7 @@ class rUpload extends CI_Controller {
 				}
 
 				for ($kk=2; $kk<=count($dt); $kk++)	{
+				//for ($kk=2; $kk<=30; $kk++)	{
 					$c = array();
 					for ($i=0; $i<$colData; $i++)	{
 						$no = numtoa(array('', $i+1)); 

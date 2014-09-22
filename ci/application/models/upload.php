@@ -11,6 +11,7 @@ class Upload extends CI_Model {
 			"'{$c[38]}','{$c[39]}','{$c[40]}','{$c[41]}','{$c[42]}','".cekInt($c[43])."','".cekInt($c[44])."','{$c[52]}','{$c[53]}','".fDT($c[54])."',".
 			"'{$c[55]}','{$c[56]}','{$c[57]}','{$c[58]}');";
 		
+		//echo "sql: $sql<br/>";
 		$hsl = array();		
 		if (mysqli_multi_query($this->db->conn_id,$sql))	{
 			do    {

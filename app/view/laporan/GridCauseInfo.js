@@ -14,6 +14,7 @@ Ext.define('rcm.view.laporan.GridCauseInfo', {
 			items: [
 			{ xtype:'rownumberer',width:35 },
 			{ header:'No Order',dataIndex:'noorder',width:75 },
+			{ header:'No SAP',dataIndex:'nosap',width:75 },
 			{ header:'Tipe',dataIndex:'tipe',width:40 },
 			{ header:'Equipment',dataIndex:'equip',flex:1 },
 			{ header:'Object Part',dataIndex:'opartnm',flex:1 },

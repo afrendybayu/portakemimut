@@ -51,7 +51,7 @@ class Sap extends CI_Model {
 	}
 	
 	function get_cause_info($cause)	{
-		$sql = "SELECT sap.pid AS noorder,damage,damage.nama AS damagenm,cause,cause.nama AS causenm,".
+		$sql = "SELECT sap.pid AS noorder,if(notifno=0,'',notifno) AS nosap,damage,damage.nama AS damagenm,cause,cause.nama AS causenm,".
 				"manwork AS mainwork,down,opart,opart.nama as opartnm,".
 				"eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart ".
 				"FROM sapfmea ".

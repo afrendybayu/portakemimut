@@ -42,7 +42,8 @@ Ext.define('rcm.view.laporan.SapCause', {
 					dataLabels: {
 						enabled: true,
 						formatter : function() {
-							return '<b>'+me.param+': '+this.y+'</b>';
+							//return '<b>'+me.param+': '+this.y+'</b>';
+							return '<b>'+this.y+'</b>';
 						}
 					}
 				},
