@@ -44,7 +44,7 @@ class Sap extends CI_Model {
 				"ROUND((100*count(*)/(select count(*) from sapfmea )),2) as persen ".
 				"from sapfmea ".
 				"left join cause on sapfmea.cause= cause.kode ".
-				"group by cause order by jml desc;";	 
+				"group by cause order by jml desc, kode asc";	 
 		$query = $this->db->query($sql);
 		
 		return $query->result();
@@ -74,7 +74,7 @@ class Sap extends CI_Model {
 			 "ROUND((100*count(*)/(select count(*) from sapfmea where damage <> 'NDMG')),2) as persen ".
 			 "from sapfmea ".
 			 "left join damage on sapfmea.damage = damage.kode ".
-			 "where damage <> 'NDMG' group by damage order by jml desc;";
+			 "where damage <> 'NDMG' group by damage order by jml desc, kode asc";
 		$query = $this->db->query($s);
 		
 		return $query->result();
@@ -95,11 +95,19 @@ class Sap extends CI_Model {
 	}
 	
 	function get_opart()	{
-		$s = "select count(*) as jml, opart as kode, ".
+		/*
+		$s = "select count(*) as jml, opart as kode,CONCAT('[',sapfmea.opart,'] ',damage.nama) AS desk, ".
 			 "(select nama from opart where opart.kode = sapfmea.opart limit 0,1) as nama, ".
 			 "ROUND((100*count(*)/(select count(*) from sapfmea)),2) as persen ".
 			 "from sapfmea ".
 			 "group by opart order by jml desc";
+		//*/
+		$s = "select count(*) as jml, opart as kode, ".
+			 "(select nama from opart where opart.kode = sapfmea.opart limit 0,1) as nama,".
+			 "concat('[',opart,'] ',(select nama from opart where opart.kode = sapfmea.opart limit 0,1)) AS desk,".
+			 "ROUND((100*count(*)/(select count(*) from sapfmea)),2) as persen ".
+			 "from sapfmea ".
+			 "group by opart,kode order by jml desc, kode asc";
 		$query = $this->db->query($s);
 		
 		return $query->result();
