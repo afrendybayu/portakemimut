@@ -87,7 +87,6 @@ Ext.define('rcm.view.laporan.OrderCostSap', {
 			}]
 		}];
 		me.callParent(arguments);
-		
 	}
 	//*/
 });

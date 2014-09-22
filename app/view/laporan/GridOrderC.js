@@ -4,7 +4,7 @@ Ext.define('rcm.view.laporan.GridOrderC', {
 	//alias: 'widget.gridOrderC',
 	xtype: 'tSapOrderC',
 	//store: 'HoOrderC',
-	//jdl: 'apa',
+	columnLines: true,
 	
 	initComponent: function() {
 		var me=this;//, sumFt=Ext.create('Ext.grid.feature.Summary');
@@ -63,13 +63,59 @@ Ext.define('rcm.view.laporan.GridOrderC', {
 					},{ header: 'Total Actual',dataIndex:'taccost',align: 'right',width: 70,renderer:'usMoney'
 					}]
 				}
-				/*
-				,{ header:'Budget 2014',dataIndex:'budget',flex:1 },
-				{ header:'% Budget 2014',dataIndex:'persen',flex:1 }
+				//*
+				,{ header:'Budget',dataIndex:'budget',flex:2,minWidth:80,
+					summaryType:'average',summaryRenderer: function(value) {
+						return Ext.String.format('${0}',value.toFixed(2));	} }
+				,{ header:'% Budget',dataIndex:'persen',flex:2,minWidth:80,
+					summaryType:'average',summaryRenderer: function(value) {
+						return Ext.String.format('{0} %',value.toFixed(2));	} }
 				//*/
 		]};
 		me.callParent(arguments);
+		me.getView().on('refresh', this.updateRowSpan, this);
 		me.addEvents(
         );
-	}
+	},
+	
+	updateRowSpan: function() {
+        var columns = this.columns,
+            view = this.getView(),
+            store = this.getStore(),
+            rowCount = store.getCount(),
+			
+			col = [10,11],
+            spanCell, spanCount, spanValue;
+
+		for (var c=0; c<col.length; c++)	{
+			spanCell = null;
+            spanCount = null;
+            spanValue = null;
+			dtIndex = columns[col[c]].dataIndex;
+			
+			for (var row = 0; row < rowCount; ++row) {
+				var cell = view.getCellByPosition({ row: row, column: col[c] }).dom,
+					record = store.getAt(row),
+					value = record.get(dtIndex);
+				
+				if (spanValue != value) {
+					if (spanCell !== null) {
+						spanCell.rowSpan = spanCount;
+					}
+					
+					Ext.fly(cell).setStyle('display', '');
+					spanCell = cell;
+					spanCount = 1;
+					spanValue = value;
+				} else {
+					spanCount++;
+					Ext.fly(cell).setStyle('display', 'none');
+				}
+			}
+			
+			if (spanCell !== null) {
+				spanCell.rowSpan = spanCount;
+			}
+		}
+    }
 });

@@ -8,6 +8,7 @@ class Cost extends CI_Model {
 				",ROUND(sum(totescost),2) AS plstcost,ROUND(sum(intcost),2) AS plincost,ROUND(sum(totplancost),2) AS tplcost ".
 				",ROUND(sum(totmatcost),2) AS taccost,ROUND(sum(intcost),2) AS acincost ".
 				",ROUND(sum(totservcost),2) AS srvcost,ROUND(sum(actcost),2) AS acstcost ".
+				",1234.34 AS budget,3.21 AS persen ".
 				"FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!='' GROUP BY otipe;";
 		//echo "sql: $sql";
 		
