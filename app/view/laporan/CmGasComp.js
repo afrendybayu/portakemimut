@@ -5,7 +5,6 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 	extend: 'Chart.ux.Highcharts',
 	dstore: '-',
 	jdl: '-',
-	// param: '-',
 	yNama: '-',
 	idx: '',
 	warna: '',
@@ -18,7 +17,7 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 		me.series = [{
 			// colorByPoint: true,
 			dataIndex: me.idx,
-			// name: me.param,
+			name: me.param,
 			color : me.warna,
 			// drilldown : true
 		}];
@@ -45,7 +44,7 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 			plotOptions : {
 				column: {
 					dataLabels: {
-						enabled: true,
+						enabled: false,
 						/*formatter : function() {
 							return '<b>'+me.param+': '+this.y+'</b>';
 						}*/
@@ -54,7 +53,7 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 
 				series : {
 					dataLabels: {
-						enabled: false
+						enabled: true
 					},
 					animation : {
 						duration : 1000,
@@ -62,12 +61,12 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 					},
 					cursor: 'pointer',
 					point: {
-						events: {
+						/*events: {
 							click: function(evt) {
 								//alert("x: "+this.x+" "+this.y);
 								//me.fireEvent('AvGroupCl', evt, this.category);
 							}
-						}
+						}*/
 					}
 				}
 			},

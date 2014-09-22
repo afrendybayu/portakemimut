@@ -3,6 +3,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 	xtype: 'taskConMon',
 	layout : 'hbox',
 	id : 'cmform',
+	disabled : true,
 	initComponent: function() {
 		var me=this; 
 		me.items = [
@@ -79,13 +80,13 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				name		: 'ket',
 				flex : 2
 				
-			},{
+			}/*,{
                 
 				xtype:'button',
 				iconCls: 'add',
 				text	: 'Cari',
 				width:50,
-				tooltip: 'Simpan',
+				tooltip: 'Cari',
 				disabled : true,
 				formBind: true
 			
@@ -94,7 +95,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
                 // cls: 'tasks-new',
                 width: 50
                 */
-            }
+            //}
 			
 			
         ];

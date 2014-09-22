@@ -211,19 +211,10 @@ class rConMon extends CI_Controller {
 		try {
 			$hsl = $this->cmon->graf_conmon();
 			
-			foreach ($hsl as $r){
-				// print_r ($r);
-				$data[] = array(
-						'thn'	=>$r->thn,
-						'gc'	=>$r->gc,
-						'gs'	=>$r->gs,
-						'pmp'	=>$r->pmp
-						);
-				$jsonResult = array(
+			$jsonResult = array(
 					'success' => true,
-					'gcmon' => $data
+					'gcmon' => $hsl
 				);
-			}
 		}
 		catch (Exception $e){
 			$jsonResult = array(

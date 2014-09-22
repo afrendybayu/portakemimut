@@ -35,7 +35,7 @@ Ext.define('rcm.view.laporan.ConMon', {
 			items :[{
 				xtype : 'gascompcm',
 				flex :1,
-				// param: 'GasComp',
+				param: 'GasComp',
 				yNama: 'Cond. Monitoring',
 				jdl: 'Condition Monitoring Gas Compressor',
 				dstore: 'ConMonGr',
@@ -44,7 +44,7 @@ Ext.define('rcm.view.laporan.ConMon', {
 			},{
 				flex :1,
 				xtype : 'gascompcm',
-				// param: 'Genset',
+				param: 'Genset',
 				yNama: 'Cond. Monitoring',
 				jdl: 'Condition Monitoring Genset',
 				dstore: 'ConMonGr',
@@ -53,7 +53,7 @@ Ext.define('rcm.view.laporan.ConMon', {
 			},{
 				flex :1,
 				xtype : 'gascompcm',
-				// param: 'Pump',
+				param: 'Pump',
 				yNama: 'Cond. Monitoring',
 				jdl: 'Condition Monitoring Pump',
 				dstore: 'ConMonGr',

@@ -6,6 +6,7 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 	id 	: 'frmicmon' ,
     //columnLines: true,
 	idunit: '',
+	ngedit: 0,
 	enableColumnHide: false,
 	
 	
@@ -84,14 +85,15 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 				tooltip: 'Edit',
 				handler: Ext.bind(me.hEditConMonClick, me)
 			},*/{
-				xtype:'actioncolumn',
-				width:25,
-				iconCls: 'hpsEvent',
-				menuDisabled: true,
-				sortable: false,
-				// hidden : true,
-				tooltip: 'Hapus',
-				handler: Ext.bind(me.hDeleteConMonClick, me)
+				xtype		:'actioncolumn',
+				width		:25,
+				id 			: 'conmondel', 
+				iconCls		: 'hpsEvent',
+				// menuDisabled: true,
+				sortable	: false,
+				visible		: false,
+				tooltip		: 'Hapus',
+				handler		: Ext.bind(me.hDeleteConMonClick, me)
 				
 			
 			}]
@@ -102,6 +104,7 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 		);
 		
         ed.on('edit', me.hdlGridRowEdit, this);
+		ed.on('beforeedit', me.GridEditEna, this);
 	},
 	hDeleteConMonClick: function(gridView, rowIndex, colIndex, column, e) {
         // Fire a "deleteclick" event with all the same args as this handler
@@ -110,14 +113,14 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 		// console.log (rec);
 		this.fireEvent('deleteconmon', rec);
     },
-	/*
-	hEditConMonClick: function(gridView, rowIndex, colIndex, column, e) {
-		var rec = gridView.getStore().getAt(rowIndex);
-        // Fire a "deleteclick" event with all the same args as this handler
-        // this.fireEvent('editconmon', gridView, rowIndex, colIndex, column, e);
-        this.fireEvent('editconmon', rec,e);
-    },
-	*/
+	
+	GridEditEna : function (editor,a,eOpts){
+		// alert(this.ngedit);
+		if (this.ngedit ) return false;
+		else return false;
+	},
+	
+	
 	hdlGridRowEdit : function(record, e){
 		// rcmSettings.aaddddaa = record;
 		// rcmSettings.aaddddcc = e;
