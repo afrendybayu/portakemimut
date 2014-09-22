@@ -54,7 +54,8 @@ class Sap extends CI_Model {
 		$sql = "SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,down,opart,eqkode AS equip,".
 				"notiftype AS tipe,ordertype,downstart ".
 				"FROM sapfmea ".
-				"LEFT JOIN sap ON sap.pid = sapfmea.pid";
+				"LEFT JOIN sap ON sap.pid = sapfmea.pid ".
+				"group by noorder,damage,cause,opart";
 		
 		if (strlen($cause)>0)	{
 			$sql .= "WHERE cause LIKE '%$cause%'";

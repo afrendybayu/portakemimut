@@ -45,6 +45,9 @@ Ext.define('rcm.controller.Sap', {
 			ref: 'tabChart',
 			selector: 'tabChart'
 		},{
+			ref: 'causechart',
+			selector: 'causechart'
+		},{
 			ref: 'tFSap',
 			selector: 'tFSap'
 		},{
@@ -78,6 +81,9 @@ Ext.define('rcm.controller.Sap', {
 			'taskGridCause': {
 				sapFilter: me.grafikFilter,
 				clrChartCause: me.grafikCauseClear
+			},
+			'causechart':	{
+				sapFilter: me.grafikFilter
 			},
 			'#btnUplBpm3': {
 				click: me.hdUplBpm3
@@ -198,15 +204,12 @@ Ext.define('rcm.controller.Sap', {
 		// Ext.getCmp('cb_type').clearValue();
 		
 	},
+	
 	pilihComboUnit : function(records){
 		var unit = records.getValue();
 		console.log(unit);
 		// combounit.filter('',ll);
-		
-		
-		
 	},
-
 
 	ubahLabelWO: function(p)	{
 
@@ -289,6 +292,10 @@ Ext.define('rcm.controller.Sap', {
 			me.getSapSymptomInfoStore().clearFilter();
 		}
 		
+	},
+	
+	grafikFilterx: function(a,b)	{
+		alert("grafikFilterx a: "+a+", b: "+b);
 	},
 	
 	grafikFilter: function(n, d)	{

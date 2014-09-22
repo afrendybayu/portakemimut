@@ -21,6 +21,7 @@ Ext.define('rcm.view.laporan.SapChartDet', {
 			region: 'center',
 			dstore: me.dstore,
 			jdl: me.jdlGr,
+			btnFilter: me.btnFilter,
 			param: me.param
 		},{
 			title: me.jdlTb,
