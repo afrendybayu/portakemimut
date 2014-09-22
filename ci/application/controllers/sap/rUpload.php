@@ -25,15 +25,16 @@ class rUpload extends CI_Controller {
 				return;
 				//echo '{success:false, message:"Faked error from server", errors:{"photo-path":"The server returned this"}}';
 			}
-			return;
+			//return;
 			try {
 				$this->load->library('excel');
 				$this->load->model('upload');
 						
 				$objPHPExcel = PHPExcel_IOFactory::load($hsl["lokasi"]);
 				//$objPHPExcel = PHPExcel_IOFactory::load('WO100.xlsx');
+				//print_r($objPHPExcel);
 				$dt = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
-				
+				//print_r($dt);
 				$bacaFileEnd = microtime(true);
 				$bacaFile = $bacaFileEnd - $bacaFileStart;
 				//echo 'Waktu untuk baca File ' , sprintf('%.4f',$bacaFile) , " seconds<br/>";

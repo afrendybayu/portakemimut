@@ -51,10 +51,14 @@ class Sap extends CI_Model {
 	}
 	
 	function get_cause_info($cause)	{
-		$sql = "SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,down,opart,eqkode AS equip,".
-				"notiftype AS tipe,ordertype,downstart ".
+		$sql = "SELECT sap.pid AS noorder,damage,damage.nama AS damagenm,cause,cause.nama AS causenm,".
+				"manwork AS mainwork,down,opart,opart.nama as opartnm,".
+				"eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart ".
 				"FROM sapfmea ".
 				"LEFT JOIN sap ON sap.pid = sapfmea.pid ".
+				"LEFT JOIN opart ON sapfmea.opart = opart.kode ".
+				"LEFT JOIN damage ON sapfmea.damage = damage.kode ".
+				"LEFT JOIN cause ON sapfmea.cause = cause.kode ".
 				"group by noorder,damage,cause,opart";
 		
 		if (strlen($cause)>0)	{
@@ -66,7 +70,7 @@ class Sap extends CI_Model {
 	}
 	
 	function get_damage()	{
-		$s = "select sapfmea.damage as kode,damage.nama, count(*) as jml, ".
+		$s = "select sapfmea.damage as kode,CONCAT('[',sapfmea.damage,'] ',damage.nama) AS desk,damage.nama, count(*) as jml, ".
 			 "ROUND((100*count(*)/(select count(*) from sapfmea where damage <> 'NDMG')),2) as persen ".
 			 "from sapfmea ".
 			 "left join damage on sapfmea.damage = damage.kode ".
