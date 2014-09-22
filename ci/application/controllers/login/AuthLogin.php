@@ -33,11 +33,14 @@ class AuthLogin extends CI_Controller {
 	
 	public function isLoggin(){
 		try{
-			$log = json_decode(file_get_contents('php://input'));
+			$login = json_decode(file_get_contents('php://input'));
+			
+			
+			if (isset ($login->userid) && isset($login->pass)){
+				$login  = $this->login->ValidLogin($login->userid,$login->pass);
 				
-			if (isset ($log->userid) && isset($log->pass)){
-				$query = $this->login->ValidLogin($log->userid,$log->pass);
-				foreach ($query->result() as $row){
+				
+				foreach ($login as $row){
 					$sesi = array('nama' =>$row->nama,'level' => $row->akses );
 					$this->session->set_userdata('log_sesi',$sesi);
 					$session_data = $this->session->userdata('log_sesi'); //sesi
@@ -53,8 +56,10 @@ class AuthLogin extends CI_Controller {
 					'success' => false,
 					'rule' => 'Gagal Login'
 				);	
+			
+			
 			}
-			echo json_encode($jsonResult);
+			
 		}
 		catch(Exception $e){
 			$jsonResult = array(
@@ -62,6 +67,7 @@ class AuthLogin extends CI_Controller {
 				'message' => $e->getMessage()
 			);	
 		}
+		echo json_encode($jsonResult);
 	}
 	public function isSession(){
 		$sesi = $this->session->userdata('log_sesi');

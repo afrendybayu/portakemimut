@@ -54,7 +54,7 @@ Ext.define('rcm.controller.Login', {
 				
 			},*/
 			'authlogin textfield' : {
-				specialkey: this.keylogin
+				specialkey: this.enterLogin
 			},
 			'#btn_login' : {
 				click : this.tblLogin
@@ -90,27 +90,30 @@ Ext.define('rcm.controller.Login', {
 					});
 	},*/
 	
-	keylogin : function(f,e){  
+	enterLogin : function(f,e){  
 		if(e.getKey()==e.ENTER){  
 			// Ext.Msg.alert('Keys','You pressed the Enter key');  
-			console.log('Login dengan enter');
-			//this.tblLogin();
+			// console.log('Login dengan enter');
+			this.tblLogin();
 		}
 	},  
 	
+	// enterLogin :
 	
-	tblLogin : function(btn){
-		// console.log('klik login tombol');
+	// kilkLogin : 
+	
+	
+	tblLogin : function(){
+		console.log('klik login tombol');
 		// 
-		var me = this;
-		var frm 	= btn.up('form').getForm(),
-			userget = frm.getValues().username,
-			passget	= frm.getValues().password;
-		var data = new rcm.model.LoginAuth({userid:userget,pass:passget});
-		// tFG = this.getTaskFormGagal();
+		
+		var me = this, frm = me.getAuthlogin().getForm(),
+			login 	= Ext.create('rcm.model.LoginAuth',frm.getValues());
+			// rcmSettings.Loginlllll = frm.getValues();
 		if (frm.isValid()) {
-			data.save({
-				success: function(respon, operation) {
+			login.save({
+				success: function(login, operation) {
+					alert ('sedang login');
 					var res = operation.request.scope.reader.jsonData["rule"];
 					/*
 					Ext.MessageBox.show({

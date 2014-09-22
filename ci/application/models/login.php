@@ -21,7 +21,7 @@ class Login extends CI_Model {
         $this->db->where('pass', $pass);
         $query = $this->db->get('user');
 		
-		return $query;
+		return $query->result();
 	}
 	/*
 	function jmlDataTime($waktu,$kapal){
