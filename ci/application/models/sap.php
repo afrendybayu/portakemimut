@@ -271,7 +271,7 @@ class Sap extends CI_Model {
 	function get_topten($thn)	{
 		$sql =	"SELECT CONCAT(equip.nama,'@',h.nama,' ',SUBSTRING_INDEX((SELECT hhhh.nama FROM hirarki hhhh WHERE hhhh.id ".
 				"	= (SELECT hhh.parent FROM hirarki hhh WHERE hhh.id ".
-				"	= (SELECT hh.parent FROM hirarki hh WHERE hh.id = equip.unit_id))),' ',-1)) AS nama ".
+				"	= (SELECT hh.parent FROM hirarki hh WHERE hh.id = equip.unit_id))),' ',-1)) AS desk ".
 				",ROUND(SUM(totmatcost),2) as jml ".
 				"FROM sap,equip,hirarki h ".
 				"WHERE equip.tag= SUBSTRING_INDEX(eqkode,'-',2) AND h.id = equip.unit_id AND YEAR(planstart)=$thn ".
@@ -282,7 +282,7 @@ class Sap extends CI_Model {
 	}
 
 	function get_pm_cost($thn)	{
-		$sql =	"SELECT ordertype AS ortype, pmtype AS nama, ROUND(SUM(totplancost),2) as jml FROM sap ".
+		$sql =	"SELECT ordertype AS ortype, pmtype AS desk, ROUND(SUM(totplancost),2) as jml FROM sap ".
 				"WHERE YEAR(planstart)=$thn ".
 				"GROUP BY ordertype,pmtype ".
 				"ORDER BY ordertype asc, jml desc";
