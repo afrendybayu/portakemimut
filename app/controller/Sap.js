@@ -293,14 +293,16 @@ Ext.define('rcm.controller.Sap', {
 		}
 		
 	},
-	
+	/*
 	grafikFilterx: function(a,b)	{
 		alert("grafikFilterx a: "+a+", b: "+b);
 	},
-	
+	//*/
 	grafikFilter: function(n, d)	{
-		//alert(n);
+		if (n==null)	return;
 		var me=this;
+
+		//alert(n);
 		if (n.localeCompare("dam")==0)	{
 			me.getSapDamageInfoStore().clearFilter(true);
 			me.getSapDamageInfoStore().filter('damage',d.kode);

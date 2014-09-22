@@ -21,6 +21,7 @@ Ext.define('rcm.view.laporan.Chart', {
         ,'rcm.view.laporan.SapCostCont'
         ,'rcm.view.laporan.GridOverHaul'
         ,'rcm.view.laporan.FilterThn'
+        ,'rcm.view.laporan.SapChartSaja'
     ],
     
 	initComponent: function() {
@@ -56,19 +57,23 @@ Ext.define('rcm.view.laporan.Chart', {
 			},{
 				id: 'ts_tc',
 				title: 'Top 10 Cost',
-				xtype: 'causechart',
+				//xtype: 'causechart',
+				xtype: 'tSapCh',
 				dstore: 'SapTop10',
-				jdl: 'TOp 10 Orders Cost per Equipment',
+				jdl: 'TOP 10 Orders Cost per Equipment',
 				param: 'Equipment Cost',
-				yNama: 'Cost'
+				yNama: 'Cost ($)'
 			},{
 				id: 'ts_pm',
 				title: 'PM Cost',
-				xtype: 'causechart',
+				//xtype: 'causechart',
+				xtype: 'tSapCh',
 				dstore: 'SapPMCost',
+				idThn: 'thnPM',
+				idbSr: 'srPM',
 				jdl: 'PM Activity Planned Cost',
 				param: 'PM Cost',
-				yNama: 'Cost'
+				yNama: 'Cost ($)'
 			},{
 				id: 'ts_ct',
 				title: 'Contract',
