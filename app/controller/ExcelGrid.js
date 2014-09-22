@@ -690,6 +690,8 @@ Ext.define('rcm.controller.ExcelGrid', {
 			id:'u'+o.id,downt:o.dd,downj:o.td,startt:o.dm,startj:o.tm,endt:o.ds,endj:o.ts,upt:o.du,upj:o.tu,
 			event:o.event,tipeev:o.tipeev,ket:o.ket,exe:o.exe,server:rcmSettings.server,cat:rcmSettings.cat
         });
+		
+		rcmSettings.sadsad = rec;
         
         rec.save({				// update
             success: function(respon, operation) {

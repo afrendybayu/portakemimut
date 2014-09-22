@@ -1,31 +1,39 @@
 /* AfrendyBayu, 14Nov2013 */
-Ext.define('rcm.view.laporan.CmGasComp', {
-	xtype: 'gascompcm',
+Ext.define('rcm.view.laporan.DetCmGasComp', {
+	xtype: 'detgascompcm',
 	//extend: 'Ext.chart.Chart',
 	extend: 'Chart.ux.Highcharts',
 	dstore: '-',
 	jdl: '-',
-	yNama: '-',
+	param: '-',
+	yNama: '',
 	idx: '',
 	warna: '',
 	loadMask: true,
 
-	xField: 'thn',
+	xField: 'mbln',
 
 	initComponent: function() {
 		var me=this;
+		var tgl = new Date();
+		var	tskr = tgl.getFullYear(), tskr1= tskr-1, tskr2=tskr-2;
 		me.series = [{
-			// colorByPoint: true,
-			dataIndex: me.idx,
-			name: me.param,
-			color : me.warna,
+			dataIndex: 'skr2',
+			name: tskr2
+			// color : me.warna,
 			// drilldown : true
+		},{
+			dataIndex: 'skr1',
+			name: tskr1
+		},{
+			dataIndex: 'skr',
+			name: tskr
 		}];
 		me.store= me.dstore;
 		me.chartConfig= {
 			chart: {
 				type: 'column',
-				zoomType: 'y',
+				zoomType: 'x',
 				animation : {
 				duration: 1500,
 					easing: 'swing'
@@ -53,7 +61,7 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 
 				series : {
 					dataLabels: {
-						enabled: true
+						enabled: false
 					},
 					animation : {
 						duration : 1000,
@@ -61,12 +69,12 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 					},
 					cursor: 'pointer',
 					point: {
-						/*events: {
+						events: {
 							click: function(evt) {
 								//alert("x: "+this.x+" "+this.y);
 								//me.fireEvent('AvGroupCl', evt, this.category);
 							}
-						}*/
+						}
 					}
 				}
 			},

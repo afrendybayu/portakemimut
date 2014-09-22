@@ -23,6 +23,7 @@ Ext.define('rcm.controller.Sap', {
     ],
 
     stores: [
+		
 		'HoTeco','HoMan','HoOrderC'
 		,'SapEPO'
         ,'WoOpen7','WoOpen30','WoOpen60','WoOpenL60'
@@ -35,12 +36,18 @@ Ext.define('rcm.controller.Sap', {
 		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10'
 		,'Contract','ContractLine', 'ContractInput'
 
-		,'SapHistori','ConMon','ConMonIn','CbParent','CbUnit','ConMonGr'
+		,'SapHistori'
+		
+		
+		,'ConMon','ConMonIn','CbParent','CbUnit','ConMonGr'
+		,'DetConMonGr','DetConMonPmp','DetConMonGs'
 		,'OhTahun'
+
     ],
     
     models: [
-		'ContractInput'
+		'ContractInput',
+		'ConMonIn'
     ],
     
     refs: [{
@@ -82,6 +89,12 @@ Ext.define('rcm.controller.Sap', {
 		},{
 			ref : 'taskConMon',
 			selector : 'taskConMon'
+		},{
+			ref : 'iConMon',
+			selector : 'iConMon'
+		},{
+			ref : 'tGridConMon',
+			selector : 'tGridConMon'
 	}],
     
     init: function() {
@@ -140,12 +153,7 @@ Ext.define('rcm.controller.Sap', {
 			'#btnCariSM' : {
 				click: me.cariSapMaint
 			},
-			/*
-			'#cbparent1': {
-				select : me.pilihComboParent,
-				change : me.dipilihpilih
-			},
-			//*/
+			
 			'tGridContract': {
 				recordedit: me.ubahKontrak
 			},
@@ -156,19 +164,156 @@ Ext.define('rcm.controller.Sap', {
 			'#cb_unit' : {
 				select : me.pilihComboUnit
 			},
-			/*'#cb_type' : {
-				change : me.pilihTypeUnit
-			},*/
+			//*
+			'#cb_unit1' : {
+				plhUnit : me.cbplhunit
+			},
+			//*/
 			'taskConMon textfield': {
-                    specialkey: me.handlesimpan
+				specialkey: me.handlesimpan
+			},
+			'#clr_filter' : {
+				click : me.hpsFilter
+			},
+			
+			'iConMon':{
+				// specialkey	: me.hdlupdate,
+				updatecm	: me.updateFormCM,
+				deleteconmon: me.ConMonDeleteClick,
+				plhLokasi	: me.cbplhlokasi,
+				plhUnit 	: me.cbplhunit
+			},
+			
+			'tGridConMon'	: {
+				'filterThConMon' : me.gridfilterTahun
 			}
 		});
     },
-    
+	
+	hpsFilter : function(){
+		// console.log ('hapus filter ');
+		var filtercm = this.getConMonInStore();
+		filtercm.clearFilter();
+		// me.getConMonInStore().reload();
+		
+	},
+	gridfilterTahun : function(thn){
+		// console.log(thn);
+		var sfcm = this.getConMonInStore();
+		sfcm.clearFilter();
+		// rcmSettings.getstore = sfcm;
+		// console.log(sfcm.getFullYear(tgl));
+		sfcm.filter('thn',thn);
+		// me.getConMonInStore().reload();
+		
+	},
+	
+	updateFormCM : function(rec){
+		
+		// rcmSettings.aaaaa = rec;
+		// console.log(rec);
+		// console.log(idx);
+		// console.log('tgl : '+rec.tgl+', unit : '+rec.unit+', wo : '+rec.wo);
+		var me = this;
+		var ucmon 	= Ext.create('rcm.model.ConMonIn', rec ); /*{ 
+			id : idx, tgl : rec.tgl, unit : rec.unit, wo : rec.wo, sap : rec.sap, url : rec.url, pic : rec.pic, ket : rec.ket
+		} *///);
+		
+		// var ucmon = Ext.create(this.getConMonInModel());
+		
+		ucmon.save ({
+			success: function(ucmon, operation){
+				// alert ('Data ConMon terSimpan');
+				me.getConMonInStore().reload();
+				
+			}
+		
+		}); 
+		
+		
+	},
+	
+	cbplhlokasi : function(combo){
+		// console.log('isi nama lokasi: '+ combo);
+		var cbunitst = this.getCbUnitStore();
+		cbunitst.clearFilter();
+		cbunitst.filter('id_lokasi',combo);
+		Ext.getCmp('cb_unit1').clearValue();
+		// console.log('ini id unitnya: '+Ext.getCmp('cb_unit1').get('id_unit'));
+		
+	},
+	cbplhunit : function(record){
+		// console.log (record);
+		this.getIConMon().idunit = record;
+		
+		// var runit = record.getValue();
+	},
+	
+	ConMonDeleteClick: function(del) {
+        //this.deleteTask(this.getTasksStore().getAt(rowIndex));
+		// console.log(del.data );
+		// cmons.remove(rec);
+		// cmons.sync;
+		// cmons.reload();
+		
+		var me = this, record = del.data,
+		dcmon 	= Ext.create('rcm.model.ConMonIn', record );
+		dcmon.destroy ({
+			success : function(dcmon, operation){
+				// dcmon.destroy();
+				me.getConMonInStore().reload();
+				me.getConMonStore().reload();
+			},
+			callback : function(){
+				
+			}
+		
+		})
+    },
+	
+	// ConMonEditClick: function(view, rowIndex, colIndex, column, e) {
+	/*ConMonEditClick: function(rec, e) {
+        // this.showEditWindow(view.getRecord(view.findTargetByEvent(e)));
+		// console.log('edit ro ini '+this.getConMonInStore().getAt(rowIndex).data.id);
+		
+		// rcmSettings.aaaaa = rec;
+		// rcmSettings.bbbbb = e;
+		var idlok = rec.get('id');
+		var me = this, fcmon = Ext.getCmp('cmform').getForm();
+		// console.log(' -> '+idlok );
+		fcmon.findField('tgl').setValue(rec.get('tgl'));
+		fcmon.findField('lokasi').setValue(rec.get('lokasi'));
+		fcmon.findField('unit').setValue(rec.get('unit'));
+		fcmon.findField('wo').setValue(rec.get('wo'));
+		fcmon.findField('sap').setValue(rec.get('sap'));
+		fcmon.findField('url').setValue(rec.get('url'));
+		fcmon.findField('pic').setValue(rec.get('pic'));
+		fcmon.findField('ket').setValue(rec.get('ket'));
+		
+		
+		
+	
+	},
+	*/
+    editInputConMon: function(task){
+		var me = this,
+		taskEditConMonForm = me.getTaskConMon();
+		// form =  taskEditConMonForm.down('form').getForm(),
+		console.log(task);
+		Ext.getCmp('cb_parent').setValue(task.data.lokasi);
+		taskEditConMonForm.down('form').loadRecord(task);
+		// taskEditConMonForm.getForm().loadRecord(task);
+		// this.getDetail().getForm().loadRecord(records[0]);
+	},
+	
+	
+	
 	handlesimpan: function(field,e){  
+		
 		if(e.getKey()=== e.ENTER){
-			this.simpanconmon();
-			
+			if (Ext.getCmp('cmform').getForm().isValid()){
+				this.simpanconmon();
+			}
 		}
 	},
 	
@@ -222,22 +367,9 @@ Ext.define('rcm.controller.Sap', {
 			form = me.getTaskConMon(),
             basicForm = form.getForm(),
             formEl = form.getEl(),
-            tgl		= basicForm.findField('tgl'),
-			lokasi 	= basicForm.findField('lokasi'),
-			unit 	= basicForm.findField('unit'),
 			cmon 	= Ext.create('rcm.model.ConMonIn');
-		   
-			
-			console.log(tgl.getValue()+'->'+lokasi.getValue()+'->'+unit.getValue());
-			// console.log(tgl);
-			// console.log(lokasi);
-			// console.log(unit);
-			// console.log(cmon);
+			// console.log(tgl.getValue()+'->'+lokasi.getValue()+'->'+unit.getValue());
 			basicForm.updateRecord(cmon);
-			
-		if(!tgl.getValue()&&!lokasi.getValue()&&!unit.getValue()) {
-            return;
-        }
 		
 		cmon.save({
             success: function(cmon, operation) {
@@ -246,6 +378,9 @@ Ext.define('rcm.controller.Sap', {
 				basicForm.reset();
 				me.getConMonInStore().load();
 				me.getConMonGrStore().load();
+				me.getDetConMonGrStore().load();
+				me.getDetConMonGsStore().load();
+				me.getDetConMonPmpStore().load();
 				// me.refreshFiltersAndCount();
                 /*me.getTasksStore().sort();
                 titleField.reset();
@@ -266,17 +401,17 @@ Ext.define('rcm.controller.Sap', {
             }
         });
 			
-			
 		
 	},
-						
-
+	
 	pilihComboParent: function(records){
 		var lokasi = records.getValue(), combounit = this.getCbUnitStore();
-		console.log(lokasi);	
+		
+		// console.log(lokasi);	
 		combounit.clearFilter();
 		combounit.filter('id_lokasi',lokasi);
 		Ext.getCmp('cb_unit').clearValue();
+		// Ext.getCmp('cb_unit1').clearValue();
 		
 		// Ext.getCmp('cb_type').clearValue();
 		
@@ -284,7 +419,7 @@ Ext.define('rcm.controller.Sap', {
 	
 	pilihComboUnit : function(records){
 		var unit = records.getValue();
-		console.log(unit);
+		// console.log(unit);
 		// combounit.filter('',ll);
 	},
 

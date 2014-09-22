@@ -76,7 +76,7 @@ class rAvHome extends CI_Controller {
 					}
 					$obj->avg = isset($obj->avg)?$obj->avg:0;
 					for ($j=0; $j<count($arUnitT1); $j++)	{
-						if ($arUnit1[$i]->id == $arUnitT1[$j]->cat)	{
+						if ($arUnit[$i]->id == $arUnitT1[$j]->cat)	{
 							$obj->th1 = $arUnitT1[$j]->av; break;
 						}
 					}
@@ -98,7 +98,7 @@ class rAvHome extends CI_Controller {
 					}
 					$obj->avg = isset($obj->avg)?$obj->avg:0;
 					for ($j=0; $j<count($arUnitT1); $j++)	{
-						if ($arUnit1[$i]->id == $arUnitT1[$j]->cat)	{
+						if ($arUnit[$i]->id == $arUnitT1[$j]->cat)	{
 							$obj->th1 = $arUnitT1[$j]->re; break;
 						}
 					}

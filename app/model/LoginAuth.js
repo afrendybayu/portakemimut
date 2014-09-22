@@ -1,6 +1,6 @@
 Ext.define('rcm.model.LoginAuth', {
     extend: 'Ext.data.Model',
-    fields: ['userid','pass'],//,'level' , 'session'],
+    fields: ['userid','pass'],
 	
 	proxy: {
 		type: 'ajax',

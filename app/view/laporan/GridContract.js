@@ -59,6 +59,7 @@ Ext.define('rcm.view.laporan.GridContract', {
         var rec = e.grid.getStore().getAt(e.rowIdx), tt=e.field;
 		//console.log("handleCellEdit tipe: "+rec.get('tipe')+", nilai: "+e.value+', bulan: '+e.field);
 		this.fireEvent('recordedit',e,e.value,e.field,rec.get('tipe'),'2014' );
+		
     },
     
     hdlCellEna: function(editor,a,eOpts)	{

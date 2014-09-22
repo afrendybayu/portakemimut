@@ -1,20 +1,20 @@
 /* Afrendy Bayu, 3Des2013 */
-Ext.define('rcm.model.ConMon', {
+Ext.define('rcm.model.ConMonId', {
 	extend: 'Ext.data.Model',
 	requires:[
 		'Ext.data.proxy.Ajax'
 	],
 	
-	fields: [ 'tahun',
-		{ name:'jml',type:'int' }],
+	fields: [ 'id','tgl','lokasi','unit','wo','sap','url','pic','ket'],
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/sap/rConMon/JConMon'
+			read	: 'ci/index.php/sap/rConMon/RCMonId'
+			// create 	: 'ci/index.php/sap/rConMon/createCMon' 
         },
         reader: {
             type: 'json',
-            root: 'conmonth',
+            root: 'condmonid',
             messageProperty: 'message'
         }
     }

@@ -9,7 +9,7 @@ Ext.define('rcm.view.laporan.ConMon', {
 		,'rcm.view.laporan.ConMonUnit'
 		,'rcm.view.laporan.ConMonInput'
 		,'rcm.view.laporan.CmGasComp'
-		
+		,'rcm.view.laporan.DetCmGasComp'
 		//'rcm.view.laporan.EPOPie'
 
 	],
@@ -21,6 +21,7 @@ Ext.define('rcm.view.laporan.ConMon', {
         xtype: 'panel',
         height: 500,
         collapsible: true,
+		collapsed	: true,
 		split: true,
         margins: '0 5 5 5',
 		layout : {
@@ -61,8 +62,28 @@ Ext.define('rcm.view.laporan.ConMon', {
 			}]
 		},{
 			xtype : 'panel',
-			title : 'dua',
-			flex : 1
+			// title : 'dua',
+			flex : 1,
+			layout : {type : 'hbox', align: 'stretch' },
+			items : [{
+				xtype : 'detgascompcm',
+				flex :1,
+				// yNama: 'Cond. Monitoring',
+				jdl: 'Condition Monitoring Gas Compressor',
+				dstore: 'DetConMonGr',
+			},{
+				xtype : 'detgascompcm',
+				flex :1,
+				// yNama: 'Cond. Monitoring',
+				jdl: 'Condition Monitoring Genset',
+				dstore: 'DetConMonGs',
+			},{
+				xtype : 'detgascompcm',
+				flex :1,
+				// yNama: 'Cond. Monitoring',
+				jdl: 'Condition Monitoring Pump',
+				dstore: 'DetConMonPmp',
+			}]
 		}]
 		
 		//layout : {type : 'hbox', align: 'stretch' },

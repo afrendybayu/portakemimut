@@ -2,7 +2,8 @@ Ext.define('rcm.view.laporan.ConMonForm', {
     extend: 'Ext.form.Panel',
 	xtype: 'taskConMon',
 	layout : 'hbox',
-	
+	id : 'cmform',
+	disabled : true,
 	initComponent: function() {
 		var me=this; 
 		me.items = [
@@ -12,27 +13,30 @@ Ext.define('rcm.view.laporan.ConMonForm', {
                  width: 25,
                 // height: 25
             },{
-				xtype	: 'datefield',
-				//value : new Date(),
-				name	: 'tgl',
-				format	: 'Y-m-d',
-				width 	: 100,
-				allowBlank: false
+				xtype		: 'datefield',
+				emptyText	: 'Tanggal',
+				name		: 'tgl',
+				format		: 'd-m-Y',
+				width 		: 100,
+				editable	: false,
+				allowBlank	: false
 			},{
-				xtype	:'combobox',
-				itemId	: 'cb_parent',
-				allowBlank: false,
-				width 	: 150,
+				xtype		:'combobox',
+				itemId		: 'cb_parent',
+				editable	: false,
+				allowBlank	: false,
+				width 		: 150,
 				store 		: 'CbParent',
 				emptyText	: 'Lokasi',
 				name		: 'lokasi',
-				displayField: 'loc',
-				valueField 	: 'id_lokasi',
+				displayField: 'nama',
+				valueField 	: 'id',
 				queryMode 	: 'local'
 				
 			},{
 				xtype		:'combobox',
 				emptyText 	: 'Unit',
+				editable	: false,
 				allowBlank	: false,
 				id			: 'cb_unit',
 				store 		: 'CbUnit',
@@ -43,16 +47,8 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				valueField 	: 'id_unit',
 				queryMode 	: 'local'
 			},{
-				xtype		:'textfield', 
-				name		: 'type',
-				id			: 'cb_type',
-				hidden		: true,
-				store		: 'CbUnit',
-				width		: 150, 	
-				valueField 	: 'id_type',
-				queryMode 	: 'local'
-			},{
 				xtype		:'textfield',
+				allowBlank: false,
 				emptyText 	: '#WO',
 				name		: 'wo',
 				// width		: 200 	
@@ -72,6 +68,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				flex : 1				
 			},{
 				xtype		:'textfield',
+				allowBlank: false,
 				emptyText 	: 'Eksekutor',
 				name		: 'pic',
 				// width		: 200,
@@ -83,13 +80,13 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				name		: 'ket',
 				flex : 2
 				
-			},{
+			}/*,{
                 
 				xtype:'button',
 				iconCls: 'add',
-				text	: 'Add',
+				text	: 'Cari',
 				width:50,
-				tooltip: 'Simpan',
+				tooltip: 'Cari',
 				disabled : true,
 				formBind: true
 			
@@ -98,7 +95,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
                 // cls: 'tasks-new',
                 width: 50
                 */
-            }
+            //}
 			
 			
         ];
@@ -106,18 +103,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
         me.callParent(arguments);
 		
 		
-		me.addEvents(
-		//	'plhUnit'
-			
-			/*'edit',
-			'plhOPartGagal',
-			'plhEquipGagal',
-			'plhModeGagal',
-			'plhCauseGagal',
-			'plhAksiGagal',
-			'hpsFMEAGagal'*/
-        );
-        //ed.on('edit', me.handleCellEdit, this);
+		
 	},
 	
 	/*pilihLokasi : function(n){

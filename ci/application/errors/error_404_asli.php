@@ -55,8 +55,8 @@ p {
 </head>
 <body>
 	<div id="container">
-		<h1><?php echo 'Sorryy.... Kami Tidak Menemukan Halaman Yang Anda Cari ^-^' ?></h1>
-		<p><?php echo 'Coba kembali' ?></p>
+		<h1><?php echo $heading; ?></h1>
+		<?php echo $message; ?>
 	</div>
 </body>
 </html>
