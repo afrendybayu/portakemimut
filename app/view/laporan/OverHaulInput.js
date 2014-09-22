@@ -1,12 +1,12 @@
-Ext.define('rcm.view.laporan.ConMonInput', {
+Ext.define('rcm.view.laporan.OverHaulInput', {
     extend: 'Ext.grid.Panel',
-	xtype: 'iConMon',
+	xtype: 'iOverHaul',
 	requires : ['rcm.view.laporan.ConMonForm', 'Ext.grid.RowEditor'],
-	store: 'ConMonIn',
-	id 	: 'frmicmon' ,
+	// store: 'OverHaulIn',
+	// id 	: 'frmicmon' ,
     //columnLines: true,
-	idunit: '',
-	ngedit: 0,
+	// idunit: '',
+	// ngedit: 0,
 	enableColumnHide: false,
 	
 	
@@ -14,7 +14,7 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 	
 	dockedItems: [
         {
-            xtype: 'taskConMon',
+            // xtype: 'taskConMon',
             dock: 'top',
             weight: 101,
             bodyStyle: {
@@ -28,7 +28,7 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 		var me=this, rmode = 'rowmodel'; 
 		ed = Ext.create('Ext.grid.plugin.RowEditing',{
 			clicksToEdit: 2, 
-			autoCancel : true
+			// autoCancel : false, 
 			// hideTooltip: true
 		});
 		me.selType = rmode;
@@ -45,7 +45,7 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 						{header : 'Lokasi', width : 150,dataIndex : 'lokasi', editor :{
 							xtype		:'combobox',
 							id			: 'cb_parent1',
-							store 		: 'CbParent',
+							// store 		: 'CbParent',
 							name		: 'lokasi',
 							editable	: false,
 							displayField: 'nama',
@@ -61,7 +61,7 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 							xtype		:'combobox',
 							emptyText 	: 'Unit',
 							id			: 'cb_unit1',
-							store 		: 'CbUnit',
+							// store 		: 'CbUnit',
 							editable 	: false,
 							allowBlank	: false,
 							displayField: 'unit',
@@ -87,7 +87,7 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 			},*/{
 				xtype		:'actioncolumn',
 				width		:25,
-				id 			: 'conmondel', 
+				// id 			: 'conmondel', 
 				iconCls		: 'hpsEvent',
 				// menuDisabled: true,
 				sortable	: false,
@@ -103,56 +103,10 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 			
 		);
 		
-        ed.on('edit', me.hdlGridRowEdit, this);
-		ed.on('beforeedit', me.GridEditEna, this);
-	},
-	hDeleteConMonClick: function(gridView, rowIndex, colIndex, column, e) {
-        // Fire a "deleteclick" event with all the same args as this handler
-        // 
-		var rec = gridView.getStore().getAt(rowIndex);
-		// console.log (rec);
-		this.fireEvent('deleteconmon', rec);
-    },
-	
-	GridEditEna : function(editor,a,eOpts)	{
-		//alert(this.ngedit);
-		if (this.ngedit)	return true;
-		else return false;
+        // ed.on('edit', me.hdlGridRowEdit, this);
+		// ed.on('beforeedit', me.GridEditEna, this);
 	},
 	
-	
-	hdlGridRowEdit : function(record, e){
-		// rcmSettings.aaddddaa = record;
-		// rcmSettings.aaddddcc = e;
-		
-		var rec = e.newValues; //idx = e.record.get('id'),
-		/*
-		if (this.idunit == ''){
-			rec.id_unit = e.record.get('id_unit')
-		} else {
-			rec.id_unit = this.idunit
-		} */
-		rec.id_unit = this.idunit == ''? e.record.get('id_unit') : this.idunit;
-		rec.id = e.record.get('id');
-		// console.log('isi id_unit : '+rec.id_unit);
-		// console.log('id '+idx);
-		this.fireEvent('updatecm',rec);
-		
-	},
-
-	// pilihLokasi : function(combo, value){
-	pilihLokasi : function(record){
-		// console.log(record)
-		var rec = record.data.id;
-		// console.log(rec);
-		this.fireEvent('plhLokasi', rec);
-	},
-	
-	pilihUnit : function(record){
-		// console.log(record);
-		var unit = record.data.id_unit;
-		this.fireEvent('plhUnit', unit);
-	}
 	
 	
 	
