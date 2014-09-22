@@ -1,6 +1,7 @@
 /* AfrendyBayu, 14Nov2013 */
 Ext.define('rcm.view.laporan.SapChartDet', {
-	extend: 'Ext.container.Container',
+	//extend: 'Ext.container.Container',
+	extend: 'Ext.form.Panel',
 
     xtype: 'tSapDet',
     jdlGr: '-',
@@ -10,12 +11,24 @@ Ext.define('rcm.view.laporan.SapChartDet', {
 	dstoreD: '-',
     jdlDet: '--',
  
+	
+ 
 	layout: {
 		type: 'border'
 	},
     
 	initComponent: function() {
 		var me=this;
+		
+		me.dockedItems = [{
+			dock: 'top',
+			idThn: me.idThn,
+			idbSr: me.idbSr,
+			//xtype: 'label',
+			xtype: 'tFThn',
+			text: me.idThn			
+		}],
+		
 		me.items = [{
 			xtype: 'causechart',
 			region: 'center',

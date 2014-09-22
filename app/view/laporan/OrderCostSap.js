@@ -18,6 +18,13 @@ Ext.define('rcm.view.laporan.OrderCostSap', {
 		hideLabel: true
 	},
 	
+	dockedItems: [{
+		dock: 'top',
+		idThn: 'iThnOcost',
+		idbSr: 'srOcost',
+		xtype: 'tFThn'
+	}],
+	
 	//*
 	initComponent: function() {		
 		var me=this;

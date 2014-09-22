@@ -20,6 +20,7 @@ Ext.define('rcm.view.laporan.Chart', {
         ,'rcm.view.laporan.GridOrderC'
         ,'rcm.view.laporan.SapCostCont'
         ,'rcm.view.laporan.GridOverHaul'
+        ,'rcm.view.laporan.FilterThn'
     ],
     
 	initComponent: function() {
@@ -82,6 +83,8 @@ Ext.define('rcm.view.laporan.Chart', {
 				param: 'Cause',
 				dstore: 'SapCause',
 				dstoreD:'SapCauseInfo',
+				idThn: 'thnCau',
+				idbSr: 'srCau',
 				btnFilter: 'cau'
 			},{
 				id: 'ts_da',
@@ -92,6 +95,8 @@ Ext.define('rcm.view.laporan.Chart', {
 				jdlDet: 'Info Detail Chart Damage Frequent',
 				param: 'Damage',
 				dstore: 'SapDamage',
+				idThn: 'thnDam',
+				idbSr: 'srDam',
 				dstoreD:'SapDamageInfo',
 				btnFilter: 'dam'
 			},{
@@ -102,6 +107,8 @@ Ext.define('rcm.view.laporan.Chart', {
 				jdlTb: 'Tabel Object Part Frequent',
 				jdlDet: 'Info Detail Chart Object Part Frequent',
 				param: 'Object part',
+				idThn: 'thnOpr',
+				idbSr: 'srOpr',
 				dstore: 'SapOPart',
 				dstoreD:'SapOPartInfo',
 				btnFilter: 'opt'
@@ -114,6 +121,8 @@ Ext.define('rcm.view.laporan.Chart', {
 				jdlTb: 'Tabel Symptom Frequent',
 				jdlDet: 'Info Detail Chart Symptom Frequent',
 				param: 'Symptom',
+				idThn: 'thnSym',
+				idbSr: 'srSym',
 				dstore: 'SapSymptom',
 				dstoreD:'SapSymptomInfo',
 				btnFilter: 'sym'

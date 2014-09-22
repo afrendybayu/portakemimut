@@ -8,7 +8,6 @@ Ext.define('rcm.view.laporan.EPO', {
 		'rcm.view.laporan.EPOCol'
 		,'rcm.view.laporan.EPOPie'
 		,'rcm.view.laporan.FilterSap'
-	//	'rcm.view.laporan.WOStack'
 	],
 	
 	dockedItems: [{

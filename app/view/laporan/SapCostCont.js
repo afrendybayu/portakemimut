@@ -9,27 +9,24 @@ Ext.define('rcm.view.laporan.SapCostCont', {
         ,'rcm.view.laporan.SapContractLine'
 	],
 	
-	layout: {
-		//type: 'vbox',
-		type: 'fit',
-		align: 'stretch'
-	},
+	layout: 'border',
 	
 	dockedItems: [{
-		title: 'wewe',
-		xtype: 'tGridContract',
-		dstore: 'SapPMCost'
+		dock: 'top',
+		idThn: 'iThnCont',
+		idbSr: 'srCont',
+		xtype: 'tFThn'
 	}],
     
 	initComponent: function() {
 		var me=this;
 		me.items = [{
-		/*
-			title: 'Contract',
 			xtype: 'tGridContract',
-			dstore: 'SapPMCost'
+			dstore: 'SapPMCost',
+			region: 'north'
 		},{
 		//*/
+			region: 'center',
 			title: 'ContractL',
 			xtype: 'tContractL'
 		}];
