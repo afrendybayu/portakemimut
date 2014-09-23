@@ -14,6 +14,8 @@ Ext.define('rcm.controller.Sap', {
 		,'laporan.SapPie'
 		,'laporan.GridContract'
 		,'laporan.EPO'
+		,'laporan.WOComp'
+		//,'laporan.FilterThn'
     ],
 
     controllers: [
@@ -52,8 +54,19 @@ Ext.define('rcm.controller.Sap', {
 			ref: 'tabChart',
 			selector: 'tabChart'
 		},{
+			ref: 'tWOComp',
+			selector: 'tWOComp'
+		},{
+			ref: 'causechart',
+			selector: 'causechart'
+		},{
 			ref: 'tFSap',
 			selector: 'tFSap'
+		/*
+		},{
+			ref: 'tFThn',
+			selector: 'tFThn'
+		//*/
 		},{
 			ref: 'tEPO',
 			selector: 'tEPO'
@@ -92,6 +105,33 @@ Ext.define('rcm.controller.Sap', {
 				sapFilter: me.grafikFilter,
 				clrChartCause: me.grafikCauseClear
 			},
+			'causechart':	{
+				sapFilter: me.grafikFilter
+			},
+			'#srWoC': {
+				click: me.bFiltWoC
+			},
+			'#srCont': {
+				click: me.bFiltCont
+			},
+			'#srCau': {
+				click: me.bFiltCau
+			},
+			'#srDam': {
+				click: me.bFiltDam
+			},
+			'#srOpr': {
+				click: me.bFiltOPart
+			},
+			'#srPM': {
+				click: me.bFiltPM
+			},
+			'#srTop10': {
+				click: me.bFiltTop10
+			},
+			'#srOcost': {
+				click: me.bFiltOCost
+			},
 			'#btnUplBpm3': {
 				click: me.hdUplBpm3
 			},
@@ -101,7 +141,6 @@ Ext.define('rcm.controller.Sap', {
 			'#btnUplCM': {
 				click: me.hdUplCM
 			},
-
 			'#btnClearSH': {
 				click: me.clrSapHist
 			},
@@ -113,6 +152,9 @@ Ext.define('rcm.controller.Sap', {
 			},
 			'#btnCariSM' : {
 				click: me.cariSapMaint
+			},
+			'#ConMonSave' : {
+				click : me.tblsimpanConMon
 			},
 			
 			'tGridContract': {
@@ -265,7 +307,10 @@ Ext.define('rcm.controller.Sap', {
 		// this.getDetail().getForm().loadRecord(records[0]);
 	},
 	
-	
+	tblsimpanConMon : function(){
+		// console.log ('pencet tombol simpan');
+		this.simpanconmon();
+	},
 	
 	handlesimpan: function(field,e){  
 		
@@ -275,6 +320,53 @@ Ext.define('rcm.controller.Sap', {
 			}
 		}
 	},
+	
+	bFiltCont: function()	{
+		//alert("Thn: "+Ext.getCmp('iThnCont').getValue());
+		var t=Ext.getCmp('iThnCont').getValue();
+		this.getContractStore().load({params:{tgl:t}});
+		this.getContractLineStore().load({params:{tgl:t}});
+	},
+	
+	bFiltCau: function()	{
+		alert("Cause Thn: "+Ext.getCmp('thnCau').getValue());
+		var t=Ext.getCmp('thnCau').getValue();
+		this.getSapCauseStore().load({params:{tgl:t}});
+		this.getSapCauseInfoStore().load({params:{tgl:t}});
+	},
+	
+	bFiltDam: function()	{
+		alert("Damage Thn: "+Ext.getCmp('thnDam').getValue());
+		var t=Ext.getCmp('thnDam').getValue();
+		this.getSapDamageStore().load({params:{tgl:t}});
+		this.getSapDamageInfoStore().load({params:{tgl:t}});
+	},
+	
+	bFiltOPart: function()	{
+		alert("OPart Thn: "+Ext.getCmp('thnOpr').getValue());
+		var t=Ext.getCmp('thnOpr').getValue();
+		this.getSapOPartStore().load({params:{tgl:t}});
+		this.getSapOPartInfoStore().load({params:{tgl:t}});
+	},
+	
+	bFiltPM: function()	{
+		alert("PM Thn: "+Ext.getCmp('thnPM').getValue());
+	},
+	
+	bFiltTop10: function()	{
+		alert("Top10 Thn: "+Ext.getCmp('thnTop10').getValue());
+	},
+	
+	bFiltOCost: function()	{
+		alert("OrderCost Thn: "+Ext.getCmp('iThnOcost').getValue());
+	},
+	
+	bFiltWoC: function()	{
+		alert("WoC Thn: "+Ext.getCmp('thnWoC').getValue());
+	},
+	
+	
+	
 		
 	simpanconmon : function(){
 		
@@ -331,15 +423,12 @@ Ext.define('rcm.controller.Sap', {
 		// Ext.getCmp('cb_type').clearValue();
 		
 	},
+	
 	pilihComboUnit : function(records){
 		var unit = records.getValue();
 		// console.log(unit);
 		// combounit.filter('',ll);
-		
-		
-		
 	},
-
 
 	ubahLabelWO: function(p)	{
 
@@ -423,10 +512,16 @@ Ext.define('rcm.controller.Sap', {
 		}
 		
 	},
-	
+	/*
+	grafikFilterx: function(a,b)	{
+		alert("grafikFilterx a: "+a+", b: "+b);
+	},
+	//*/
 	grafikFilter: function(n, d)	{
-		//alert(n);
+		if (n==null)	return;
 		var me=this;
+
+		//alert(n);
 		if (n.localeCompare("dam")==0)	{
 			me.getSapDamageInfoStore().clearFilter(true);
 			me.getSapDamageInfoStore().filter('damage',d.kode);

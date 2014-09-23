@@ -26,7 +26,7 @@ Ext.define('rcm.view.laporan.FilterSap', {
 					id: this.idThn,
 					xtype: 'combo',
 					submitFormat: 'Y',
-					emptyText: 'Tahun '+rcm.view.Util.U1th(''),
+					//emptyText: 'Tahun '+rcm.view.Util.U1th(''),
 					valueField: 'thn',
 					value: rcm.view.Util.U1th(''),
 					//fieldLabel: '<b>Pilih Waktu</b>',

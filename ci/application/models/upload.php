@@ -11,6 +11,7 @@ class Upload extends CI_Model {
 			"'{$c[38]}','{$c[39]}','{$c[40]}','{$c[41]}','{$c[42]}','".cekInt($c[43])."','".cekInt($c[44])."','{$c[52]}','{$c[53]}','".fDT($c[54])."',".
 			"'{$c[55]}','{$c[56]}','{$c[57]}','{$c[58]}');";
 		
+		//echo "sql: $sql<br/>";
 		$hsl = array();		
 		if (mysqli_multi_query($this->db->conn_id,$sql))	{
 			do    {
@@ -42,6 +43,7 @@ class Upload extends CI_Model {
 				$cause  = explode(",",$c[49]);
 				
 				for ($i=0; $i<count($opart); $i++)	{
+					/*
 					$data = array(
 						'pid'	=> trim($c[1]),
 						'opart' => trim($opart[$i]),
@@ -51,9 +53,20 @@ class Upload extends CI_Model {
 					);
 					$this->db->set($data);
 					$this->db->insert('sapfmea');
+					//*/
+					$sql =	"INSERT IGNORE INTO sapfmea ".
+							"VALUES ('',".
+								$this->db->escape(trim($c[1])).", ".
+								$this->db->escape(trim($opart[$i])).", ".
+								$this->db->escape(trim($damage[$i])).", ".
+								$this->db->escape(trim($cause[$i])).", '".
+								date('Y-m-d')."')";
+					//echo "sql: $sql<br/>";
+					$this->db->query($sql);
 				}
 			}
 			else if (count($opart)==1) {
+				/*
 				$data = array(
 					'pid'	=> trim($c[1]),
 					'opart' => trim($c[45]),
@@ -63,6 +76,16 @@ class Upload extends CI_Model {
 				);
 				$this->db->set($data);
 				$this->db->insert('sapfmea');
+				//*/
+				$sql =	"INSERT IGNORE INTO sapfmea ".
+						"VALUES ('',".
+							$this->db->escape(trim($c[1])).", ".
+							$this->db->escape(trim($c[45])).", ".
+							$this->db->escape(trim($c[47])).", ".
+							$this->db->escape(trim($c[49])).", '".
+							date('Y-m-d')."')";
+				//echo "sql: $sql<br/>";
+				$this->db->query($sql);
 			}
 		}
     }

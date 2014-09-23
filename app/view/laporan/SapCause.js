@@ -42,7 +42,8 @@ Ext.define('rcm.view.laporan.SapCause', {
 					dataLabels: {
 						enabled: true,
 						formatter : function() {
-							return '<b>'+me.param+': '+this.y+'</b>';
+							//return '<b>'+me.param+': '+this.y+'</b>';
+							return '<b>'+this.y+'</b>';
 						}
 					}
 				},
@@ -56,11 +57,13 @@ Ext.define('rcm.view.laporan.SapCause', {
 					point: {
 						events: {
 							click: function(evt) {
-								//alert("x: "+this.x+" "+this.y+" "+this.category);
-								alert((this.category).substr(1, (this.category).lastIndexOf("]")-1));
+								var f = {kode:(this.category).substr(1, (this.category).lastIndexOf("]")-1)};
+								//alert("kode: "+f.kode+", filter:"+me.btnFilter);
+								
+								//alert((this.category).substr(1, (this.category).lastIndexOf("]")-1));
 								//rcmS = this;
 								//me.fireEvent('AvGroupCl', evt, this.category);
-								me.fireEvent('sapFilter',me.btnFilter,records[0].data);	// .kode
+								me.fireEvent('sapFilter',me.btnFilter,f);	// .kode
 							}
 						}
 					}

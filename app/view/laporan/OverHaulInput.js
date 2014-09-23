@@ -40,11 +40,11 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 				resizable: false,
 				hideable: false,
 			},
-			items : [{ xtype:'rownumberer',width:25 },
-						{header : 'Tanggal', width : 100,dataIndex : 'tgl',xtype : 'datecolumn', format : 'd-m-Y',editable : false, editor : { xtype : 'datefield', format: 'd-m-Y', allowBlank: false}},
+			items : [{ header : 'No', xtype:'rownumberer',width:25 },
+						
 						{header : 'Lokasi', width : 150,dataIndex : 'lokasi', editor :{
 							xtype		:'combobox',
-							id			: 'cb_parent1',
+							// id			: 'cb_parent1',
 							// store 		: 'CbParent',
 							name		: 'lokasi',
 							editable	: false,
@@ -52,15 +52,15 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 							valueField 	: 'nama',
 							allowBlank	: false,
 							queryMode 	: 'local',
-							listConfig : {
-								listeners	:{itemclick : function(list, record){ me.pilihLokasi(record);}}
-							}
+							// listConfig : {
+								// listeners	:{itemclick : function(list, record){ me.pilihLokasi(record);}}
+							// }
 							
 						}},
-						{header : 'Unit',width : 150,dataIndex : 'unit',editor :{
+						{header : 'Equip',width : 150,dataIndex : 'unit',editor :{
 							xtype		:'combobox',
-							emptyText 	: 'Unit',
-							id			: 'cb_unit1',
+							emptyText 	: 'Equip',
+							// id			: 'cb_unit1',
 							// store 		: 'CbUnit',
 							editable 	: false,
 							allowBlank	: false,
@@ -72,7 +72,8 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 							}
 							
 						}},
-						{header : '#WO',flex : 1,dataIndex : 'wo',editor : {allowBlank: false}},
+						{header : 'Tanggal', width : 100,dataIndex : 'tgl',xtype : 'datecolumn', format : 'd-m-Y',editable : false, editor : { xtype : 'datefield', format: 'd-m-Y', allowBlank: false}},
+						{header : 'Lokasi',flex : 1,dataIndex : 'wo',editor : {allowBlank: false}},
 						{header : '#SAP',flex : 1,dataIndex : 'sap',editor : {allowBlank: false}},
 						{header : 'Laporan',flex :1,dataIndex : 'url',editor : 'textfield'},
 						{header : 'Eksekutor',flex : 1,dataIndex : 'pic',editor : {allowBlank: false}},

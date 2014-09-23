@@ -931,6 +931,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.LoginSesi": [],
   "rcm.model.Note": [],
   "rcm.model.OPart": [],
+  "rcm.model.OhTahun": [],
   "rcm.model.PM": [],
   "rcm.model.ReHome": [],
   "rcm.model.RunningHour": [],
@@ -964,6 +965,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.ContractInput": [],
   "rcm.store.ContractLine": [],
   "rcm.store.DaftarGagal": [],
+  "rcm.store.DaftarRelia": [],
   "rcm.store.DetailGagal": [],
   "rcm.store.Equip": [],
   "rcm.store.Event": [],
@@ -978,6 +980,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.LoginSesi": [],
   "rcm.store.Note": [],
   "rcm.store.OPart": [],
+  "rcm.store.OhTahun": [],
   "rcm.store.PM": [],
   "rcm.store.ReHome": [],
   "rcm.store.ReSpeedo": [],
@@ -1029,9 +1032,11 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.dataentry.ExcelGrid": [],
   "rcm.view.dataentry.FMEAGrid": [],
   "rcm.view.dataentry.FormGagal": [],
+  "rcm.view.dataentry.HitungRelia": [],
   "rcm.view.dataentry.InfoFMEA": [],
   "rcm.view.dataentry.IsiTabForm": [],
   "rcm.view.dataentry.PropGrid": [],
+  "rcm.view.dataentry.Tab": [],
   "rcm.view.lapobama.Av2Thn": [],
   "rcm.view.lapobama.AvGroup": [],
   "rcm.view.lapobama.AvHome": [],
@@ -1051,16 +1056,19 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.laporan.EPOPie": [],
   "rcm.view.laporan.FilterMaint": [],
   "rcm.view.laporan.FilterSap": [],
+  "rcm.view.laporan.FilterThn": [],
   "rcm.view.laporan.GridCause": [],
   "rcm.view.laporan.GridCauseInfo": [],
   "rcm.view.laporan.GridConMon": [],
   "rcm.view.laporan.GridContract": [],
   "rcm.view.laporan.GridOrderC": [],
+  "rcm.view.laporan.GridOverHaul": [],
   "rcm.view.laporan.GridWork": [],
   "rcm.view.laporan.OrderCostSap": [],
   "rcm.view.laporan.PanelSap": [],
   "rcm.view.laporan.SapCause": [],
   "rcm.view.laporan.SapChartDet": [],
+  "rcm.view.laporan.SapChartSaja": [],
   "rcm.view.laporan.SapContractLine": [],
   "rcm.view.laporan.SapCostCont": [],
   "rcm.view.laporan.SapDamage": [],
@@ -2131,6 +2139,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.LoginSesi": [],
   "rcm.model.Note": [],
   "rcm.model.OPart": [],
+  "rcm.model.OhTahun": [],
   "rcm.model.PM": [],
   "rcm.model.ReHome": [],
   "rcm.model.RunningHour": [],
@@ -2164,6 +2173,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.ContractInput": [],
   "rcm.store.ContractLine": [],
   "rcm.store.DaftarGagal": [],
+  "rcm.store.DaftarRelia": [],
   "rcm.store.DetailGagal": [],
   "rcm.store.Equip": [],
   "rcm.store.Event": [],
@@ -2178,6 +2188,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.LoginSesi": [],
   "rcm.store.Note": [],
   "rcm.store.OPart": [],
+  "rcm.store.OhTahun": [],
   "rcm.store.PM": [],
   "rcm.store.ReHome": [],
   "rcm.store.ReSpeedo": [],
@@ -2246,6 +2257,9 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.dataentry.FormGagal": [
     "widget.taskFormGagal"
   ],
+  "rcm.view.dataentry.HitungRelia": [
+    "widget.tDaftarRelia"
+  ],
   "rcm.view.dataentry.InfoFMEA": [
     "widget.infofmea"
   ],
@@ -2255,6 +2269,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.dataentry.PropGrid": [
     "widget.propgrid"
+  ],
+  "rcm.view.dataentry.Tab": [
+    "widget.tabRh"
   ],
   "rcm.view.lapobama.Av2Thn": [
     "widget.tAv2Thn"
@@ -2313,6 +2330,9 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.laporan.FilterSap": [
     "widget.tFSap"
   ],
+  "rcm.view.laporan.FilterThn": [
+    "widget.tFThn"
+  ],
   "rcm.view.laporan.GridCause": [
     "widget.gridCause",
     "widget.taskGridCause"
@@ -2330,6 +2350,9 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.laporan.GridOrderC": [
     "widget.tSapOrderC"
   ],
+  "rcm.view.laporan.GridOverHaul": [
+    "widget.tOverHaul"
+  ],
   "rcm.view.laporan.GridWork": [
     "widget.gridWork",
     "widget.tGridWork"
@@ -2345,6 +2368,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.laporan.SapChartDet": [
     "widget.tSapDet"
+  ],
+  "rcm.view.laporan.SapChartSaja": [
+    "widget.tSapCh"
   ],
   "rcm.view.laporan.SapContractLine": [
     "widget.tContractL"

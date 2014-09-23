@@ -1,14 +1,24 @@
 // afrendyBayu,26Jan2014 //
 Ext.define('rcm.view.laporan.WOComp', {
     xtype: 'tWOComp',
-	extend: 'Ext.container.Container',
+	//extend: 'Ext.container.Container',
+	extend: 'Ext.form.Panel',
 
 	requires: [
 		'rcm.view.laporan.WOManCP'
 		,'rcm.view.laporan.GridWork'
 		,'rcm.view.laporan.WOStack'
 		,'rcm.view.laporan.WoPie'
+		,'rcm.view.laporan.FilterThn'
 	],
+	//*
+	dockedItems: [{
+		dock: 'top',
+		idThn: 'iThnCom',
+		idbSr: 'srCom',
+		xtype: 'tFThn'
+	}],
+	//*/
 	
 	layout: {
 		type: 'vbox',

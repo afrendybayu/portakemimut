@@ -8,7 +8,7 @@ Ext.define('rcm.model.HoOrderC', {
 	fields: ['otipe','desc',
 			  'plstcost','plincost','tplcost',
 			  'acstcost','acincost','srvcost','taccost',
-			  'budget',{ name:'persen',type:'float' }],
+			  { name:'budget',type:'float' },{ name:'persen',type:'float' }],
     proxy: {
 		type: 'ajax',
 		api: {

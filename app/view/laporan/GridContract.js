@@ -29,19 +29,19 @@ Ext.define('rcm.view.laporan.GridContract', {
 				summaryRenderer: function() {
 					return Ext.String.format('TOTAL Cost From Contract'); 
 				} },
-			{ header:'Jan',dataIndex:'b1', width:70,align:'right',editor:'textfield',summaryType:'sum',
+			{ header:'Jan',dataIndex:'b1', width:70,align:'right',editor:'textfield',summaryType:'sum',renderer:'usMoney',
 				maskRe: /[\d\-]/, regex: /^\d?$/},
-			{ header:'Feb',dataIndex:'b2', width:70,align:'right',editor:'textfield',summaryType:'sum' },
-			{ header:'Mar',dataIndex:'b3', width:70,align:'right',editor:'textfield',summaryType:'sum' },
-			{ header:'Apr',dataIndex:'b4', width:70,align:'right',editor:'textfield',summaryType:'sum' },
-			{ header:'May',dataIndex:'b5', width:70,align:'right',editor:'textfield',summaryType:'sum' },
-			{ header:'Jun',dataIndex:'b6', width:70,align:'right',editor:'textfield',summaryType:'sum' },
-			{ header:'Jul',dataIndex:'b7', width:70,align:'right',editor:'textfield',summaryType:'sum' },
-			{ header:'Aug',dataIndex:'b8', width:70,align:'right',editor:'textfield',summaryType:'sum' },
-			{ header:'Sep',dataIndex:'b9', width:70,align:'right',editor:'textfield',summaryType:'sum' },
-			{ header:'Oct',dataIndex:'b10',width:70,align:'right',editor:'textfield',summaryType:'sum' },
-			{ header:'Nov',dataIndex:'b11',width:70,align:'right',editor:'textfield',summaryType:'sum' },
-			{ header:'Dec',dataIndex:'b12',width:70,align:'right',editor:'textfield',summaryType:'sum' },
+			{ header:'Feb',dataIndex:'b2', width:70,align:'right',editor:'textfield',summaryType:'sum',renderer:'usMoney' },
+			{ header:'Mar',dataIndex:'b3', width:70,align:'right',editor:'textfield',summaryType:'sum',renderer:'usMoney' },
+			{ header:'Apr',dataIndex:'b4', width:70,align:'right',editor:'textfield',summaryType:'sum',renderer:'usMoney' },
+			{ header:'May',dataIndex:'b5', width:70,align:'right',editor:'textfield',summaryType:'sum',renderer:'usMoney' },
+			{ header:'Jun',dataIndex:'b6', width:70,align:'right',editor:'textfield',summaryType:'sum',renderer:'usMoney' },
+			{ header:'Jul',dataIndex:'b7', width:70,align:'right',editor:'textfield',summaryType:'sum',renderer:'usMoney' },
+			{ header:'Aug',dataIndex:'b8', width:70,align:'right',editor:'textfield',summaryType:'sum',renderer:'usMoney' },
+			{ header:'Sep',dataIndex:'b9', width:70,align:'right',editor:'textfield',summaryType:'sum',renderer:'usMoney' },
+			{ header:'Oct',dataIndex:'b10',width:70,align:'right',editor:'textfield',summaryType:'sum',renderer:'usMoney' },
+			{ header:'Nov',dataIndex:'b11',width:70,align:'right',editor:'textfield',summaryType:'sum',renderer:'usMoney' },
+			{ header:'Dec',dataIndex:'b12',width:70,align:'right',editor:'textfield',summaryType:'sum',renderer:'usMoney' },
 			{ header:'Total Contract Value',dataIndex:'tot',flex:1,align:'right',summaryType:'sum' }
 		]};
 		

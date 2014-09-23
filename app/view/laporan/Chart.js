@@ -20,7 +20,12 @@ Ext.define('rcm.view.laporan.Chart', {
         ,'rcm.view.laporan.GridOrderC'
         ,'rcm.view.laporan.SapCostCont'
         ,'rcm.view.laporan.GridOverHaul'
+//<<<<<<< HEAD
 		,'rcm.view.laporan.OverHaul'
+//=======
+        ,'rcm.view.laporan.FilterThn'
+        ,'rcm.view.laporan.SapChartSaja'
+//>>>>>>> afrendy
     ],
     
 	initComponent: function() {
@@ -44,8 +49,9 @@ Ext.define('rcm.view.laporan.Chart', {
 			},{
 				id: 'ts_wo',
 				title: 'WO Compliance',
-				xtype:'tWOComp'
-			//*
+				xtype:'tWOComp',
+				idThn: 'thnWoC',
+				idbSr: 'srWoC',
 			},{
 				id: 'ts_hi',
 				title: 'Condition Monitoring',
@@ -64,19 +70,25 @@ Ext.define('rcm.view.laporan.Chart', {
 			},{
 				id: 'ts_tc',
 				title: 'Top 10 Cost',
-				xtype: 'causechart',
+				//xtype: 'causechart',
+				xtype: 'tSapCh',
 				dstore: 'SapTop10',
-				jdl: 'TOp 10 Orders Cost per Equipment',
+				idThn: 'thnTop10',
+				idbSr: 'srTop10',
+				jdl: 'TOP 10 Orders Cost per Equipment',
 				param: 'Equipment Cost',
-				yNama: 'Cost'
+				yNama: 'Cost ($)'
 			},{
 				id: 'ts_pm',
 				title: 'PM Cost',
-				xtype: 'causechart',
+				//xtype: 'causechart',
+				xtype: 'tSapCh',
 				dstore: 'SapPMCost',
+				idThn: 'thnPM',
+				idbSr: 'srPM',
 				jdl: 'PM Activity Planned Cost',
 				param: 'PM Cost',
-				yNama: 'Cost'
+				yNama: 'Cost ($)'
 			},{
 				id: 'ts_ct',
 				title: 'Contract',
@@ -91,6 +103,8 @@ Ext.define('rcm.view.laporan.Chart', {
 				param: 'Cause',
 				dstore: 'SapCause',
 				dstoreD:'SapCauseInfo',
+				idThn: 'thnCau',
+				idbSr: 'srCau',
 				btnFilter: 'cau'
 			},{
 				id: 'ts_da',
@@ -101,6 +115,8 @@ Ext.define('rcm.view.laporan.Chart', {
 				jdlDet: 'Info Detail Chart Damage Frequent',
 				param: 'Damage',
 				dstore: 'SapDamage',
+				idThn: 'thnDam',
+				idbSr: 'srDam',
 				dstoreD:'SapDamageInfo',
 				btnFilter: 'dam'
 			},{
@@ -111,6 +127,8 @@ Ext.define('rcm.view.laporan.Chart', {
 				jdlTb: 'Tabel Object Part Frequent',
 				jdlDet: 'Info Detail Chart Object Part Frequent',
 				param: 'Object part',
+				idThn: 'thnOpr',
+				idbSr: 'srOpr',
 				dstore: 'SapOPart',
 				dstoreD:'SapOPartInfo',
 				btnFilter: 'opt'
@@ -123,6 +141,8 @@ Ext.define('rcm.view.laporan.Chart', {
 				jdlTb: 'Tabel Symptom Frequent',
 				jdlDet: 'Info Detail Chart Symptom Frequent',
 				param: 'Symptom',
+				idThn: 'thnSym',
+				idbSr: 'srSym',
 				dstore: 'SapSymptom',
 				dstoreD:'SapSymptomInfo',
 				btnFilter: 'sym'
