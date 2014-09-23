@@ -1,6 +1,30 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class rWOjml extends CI_Controller {
+	public function tesTgl()	{
+		echo "tesTgl 29/04/2014 00:00<br/>";
+		$a = fDT("29/04/2014 00:00"); echo "<br/>";
+		echo "isi A: "; print_r($a);
+	}
+	
+	public function index()	{
+		try {
+			$this->load->model('sap');
+			
+			$hsl = $this->sap->jml_sap();
+			for($i=0; $i<count($hsl); $i++)	{
+				//print_r($hsl);
+				if ($i==0)	echo "Jml record Sap: ".$hsl[$i]->sap."<br/>";
+				if ($i==1)	echo "Jml record SapFmea: ".$hsl[$i]->sap;
+			}
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+	}
 	
 	public function nWO()	{
 

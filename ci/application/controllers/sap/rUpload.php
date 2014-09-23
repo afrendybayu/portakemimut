@@ -67,7 +67,13 @@ class rUpload extends CI_Controller {
 				//echo date('H:i:s') , ' Current memory usage: ' , (memory_get_usage(true) / 1024 / 1024) , " MB<br/>";
 
 			} catch(Exception $e) {
-				die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+				//die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+				//header('HTTP/1.0 .$returnResponse. Server status', true, $returnResponse);
+				echo json_encode(array(
+					'success' => false,
+					'message' => "Gagal Upload File".$hsl["nama"].", ".$e->getMessage()
+				));
+				return;
 			}
 			
 			$bacaFileEnd = microtime(true);

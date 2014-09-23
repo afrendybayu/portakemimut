@@ -2,6 +2,14 @@
 
 class Sap extends CI_Model {
 
+	function jml_sap()		{
+		$sql =	"select count(*) AS sap from sap UNION ALL
+				SELECT count(*) from sapfmea";
+		$query = $this->db->query($sql);
+		
+		return $query->result();
+	}
+
 	function get_jmlWO()    {
 
 		$sql =	"SELECT ordertype AS kode,pmtype,count(*) AS wo ".
