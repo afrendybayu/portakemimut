@@ -1,7 +1,7 @@
 Ext.define('rcm.view.laporan.OverHaulInput', {
     extend: 'Ext.grid.Panel',
 	xtype: 'iOverHaul',
-	requires : ['rcm.view.laporan.ConMonForm', 'Ext.grid.RowEditor'],
+	requires : ['rcm.view.laporan.OverHaulForm'],
 	// store: 'OverHaulIn',
 	// id 	: 'frmicmon' ,
     //columnLines: true,
@@ -14,7 +14,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 	
 	dockedItems: [
         {
-            // xtype: 'taskConMon',
+            xtype: 'taskOverHaul',
             dock: 'top',
             weight: 101,
             bodyStyle: {
@@ -72,9 +72,10 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 							}
 							
 						}},
+						{header : 'Order No',flex : 1,dataIndex : 'sap',editor : {allowBlank: false}},
 						{header : 'Tanggal', width : 100,dataIndex : 'tgl',xtype : 'datecolumn', format : 'd-m-Y',editable : false, editor : { xtype : 'datefield', format: 'd-m-Y', allowBlank: false}},
-						{header : 'Lokasi',flex : 1,dataIndex : 'wo',editor : {allowBlank: false}},
-						{header : '#SAP',flex : 1,dataIndex : 'sap',editor : {allowBlank: false}},
+						{header : 'Durasi',flex : 1,dataIndex : 'wo',editor : {allowBlank: false}},
+						/*
 						{header : 'Laporan',flex :1,dataIndex : 'url',editor : 'textfield'},
 						{header : 'Eksekutor',flex : 1,dataIndex : 'pic',editor : {allowBlank: false}},
 						{header : 'Keterangan',flex : 2,dataIndex : 'ket',editor : 'textfield'},
@@ -85,7 +86,8 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 				sortable: false,// hidden : true,
 				tooltip: 'Edit',
 				handler: Ext.bind(me.hEditConMonClick, me)
-			},*/{
+			},*/
+			{
 				xtype		:'actioncolumn',
 				width		:25,
 				// id 			: 'conmondel', 

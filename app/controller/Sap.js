@@ -16,6 +16,7 @@ Ext.define('rcm.controller.Sap', {
 		,'laporan.EPO'
 		,'laporan.WOComp'
 		//,'laporan.FilterThn'
+		,'laporan.OverHaulForm'
     ],
 
     controllers: [
@@ -39,7 +40,7 @@ Ext.define('rcm.controller.Sap', {
 		,'SapHistori'
 		
 		
-		,'ConMon','ConMonIn','CbParent','CbUnit','ConMonGr'
+		,'ConMon','ConMonIn','CbParent','CbUnit','CbEquip','ConMonGr'
 		,'DetConMonGr','DetConMonPmp','DetConMonGs'
 		,'OhTahun'
 
@@ -95,6 +96,9 @@ Ext.define('rcm.controller.Sap', {
 		},{
 			ref : 'tGridConMon',
 			selector : 'tGridConMon'
+		},{
+			ref : 'taskOverHaul',
+			selector : 'taskOverHaul'
 	}],
     
     init: function() {
@@ -167,9 +171,6 @@ Ext.define('rcm.controller.Sap', {
 			'#cb_unit' : {
 				select : me.pilihComboUnit
 			},
-			/*'#cb_unit1' : {
-				plhUnit : me.cbplhunit
-			},*/
 			'taskConMon textfield': {
 				specialkey: me.handlesimpan
 			},
@@ -187,9 +188,31 @@ Ext.define('rcm.controller.Sap', {
 			
 			'tGridConMon'	: {
 				'filterThConMon' : me.gridfilterTahun
+			},
+			'taskOverHaul' :{
+				'ohplhlokasi' 	: me.cbohplhlokasi,
+				'ohplhunit'		: me.cbohplhunit
+				
 			}
+			
 		});
     },
+	
+	cbohplhunit : function(rec){
+		// console.log('pencet cobobox pilih lokasi : '+rec);
+		var cboheq = this.getCbEquipStore();
+		cboheq.clearFilter();
+		cboheq.filter('id_unit',rec);
+	
+	},
+	
+	cbohplhlokasi: function(rec){
+		// console.log('pencet cobobox pilih lokasi : '+rec);
+		var cbohunit = this.getCbUnitStore();
+		cbohunit.clearFilter();
+		cbohunit.filter('id_lokasi',rec);
+	
+	},
 	
 	hpsFilter : function(){
 		// console.log ('hapus filter ');
