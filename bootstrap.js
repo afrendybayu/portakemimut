@@ -913,11 +913,15 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.CbUnit": [],
   "rcm.model.ConMon": [],
   "rcm.model.ConMonGr": [],
+  "rcm.model.ConMonId": [],
   "rcm.model.ConMonIn": [],
   "rcm.model.Contract": [],
   "rcm.model.ContractInput": [],
   "rcm.model.ContractLine": [],
   "rcm.model.DaftarGagal": [],
+  "rcm.model.DetConMonGr": [],
+  "rcm.model.DetConMonGs": [],
+  "rcm.model.DetConMonPmp": [],
   "rcm.model.DetailGagal": [],
   "rcm.model.Equip": [],
   "rcm.model.Event": [],
@@ -960,12 +964,16 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.CbUnit": [],
   "rcm.store.ConMon": [],
   "rcm.store.ConMonGr": [],
+  "rcm.store.ConMonId": [],
   "rcm.store.ConMonIn": [],
   "rcm.store.Contract": [],
   "rcm.store.ContractInput": [],
   "rcm.store.ContractLine": [],
   "rcm.store.DaftarGagal": [],
   "rcm.store.DaftarRelia": [],
+  "rcm.store.DetConMonGr": [],
+  "rcm.store.DetConMonGs": [],
+  "rcm.store.DetConMonPmp": [],
   "rcm.store.DetailGagal": [],
   "rcm.store.Equip": [],
   "rcm.store.Event": [],
@@ -1051,6 +1059,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.laporan.ConMonForm": [],
   "rcm.view.laporan.ConMonInput": [],
   "rcm.view.laporan.ConMonUnit": [],
+  "rcm.view.laporan.DetCmGasComp": [],
   "rcm.view.laporan.EPO": [],
   "rcm.view.laporan.EPOCol": [],
   "rcm.view.laporan.EPOPie": [],
@@ -1065,6 +1074,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.laporan.GridOverHaul": [],
   "rcm.view.laporan.GridWork": [],
   "rcm.view.laporan.OrderCostSap": [],
+  "rcm.view.laporan.OverHaul": [],
+  "rcm.view.laporan.OverHaulInput": [],
   "rcm.view.laporan.PanelSap": [],
   "rcm.view.laporan.SapCause": [],
   "rcm.view.laporan.SapChartDet": [],
@@ -2121,11 +2132,15 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.CbUnit": [],
   "rcm.model.ConMon": [],
   "rcm.model.ConMonGr": [],
+  "rcm.model.ConMonId": [],
   "rcm.model.ConMonIn": [],
   "rcm.model.Contract": [],
   "rcm.model.ContractInput": [],
   "rcm.model.ContractLine": [],
   "rcm.model.DaftarGagal": [],
+  "rcm.model.DetConMonGr": [],
+  "rcm.model.DetConMonGs": [],
+  "rcm.model.DetConMonPmp": [],
   "rcm.model.DetailGagal": [],
   "rcm.model.Equip": [],
   "rcm.model.Event": [],
@@ -2168,12 +2183,16 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.CbUnit": [],
   "rcm.store.ConMon": [],
   "rcm.store.ConMonGr": [],
+  "rcm.store.ConMonId": [],
   "rcm.store.ConMonIn": [],
   "rcm.store.Contract": [],
   "rcm.store.ContractInput": [],
   "rcm.store.ContractLine": [],
   "rcm.store.DaftarGagal": [],
   "rcm.store.DaftarRelia": [],
+  "rcm.store.DetConMonGr": [],
+  "rcm.store.DetConMonGs": [],
+  "rcm.store.DetConMonPmp": [],
   "rcm.store.DetailGagal": [],
   "rcm.store.Equip": [],
   "rcm.store.Event": [],
@@ -2315,6 +2334,9 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.laporan.ConMonUnit": [
     "widget.tConMonUnit"
   ],
+  "rcm.view.laporan.DetCmGasComp": [
+    "widget.detgascompcm"
+  ],
   "rcm.view.laporan.EPO": [
     "widget.tEPO"
   ],
@@ -2359,6 +2381,12 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.laporan.OrderCostSap": [
     "widget.tpSapOCost"
+  ],
+  "rcm.view.laporan.OverHaul": [
+    "widget.pOverHaul"
+  ],
+  "rcm.view.laporan.OverHaulInput": [
+    "widget.iOverHaul"
   ],
   "rcm.view.laporan.PanelSap": [
     "widget.tpSapHistori"

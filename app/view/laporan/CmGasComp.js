@@ -61,12 +61,14 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 					},
 					cursor: 'pointer',
 					point: {
-						/*events: {
+						/*
+						events: {
 							click: function(evt) {
-								//alert("x: "+this.x+" "+this.y);
+								alert("x: "+this.x+" "+this.y);
 								//me.fireEvent('AvGroupCl', evt, this.category);
 							}
-						}*/
+						}
+						//*/
 					}
 				}
 			},

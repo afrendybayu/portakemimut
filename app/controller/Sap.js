@@ -164,7 +164,7 @@ Ext.define('rcm.controller.Sap', {
 			'#cb_unit' : {
 				select : me.pilihComboUnit
 			},
-			//*
+			/*
 			'#cb_unit1' : {
 				plhUnit : me.cbplhunit
 			},
