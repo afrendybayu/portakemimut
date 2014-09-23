@@ -46,6 +46,29 @@ class rOverHaul extends CI_Controller {
 		
 		echo json_encode($jsonResult);
 	}
+	
+	public function createOH(){
+		try {
+			$ohin = json_decode(file_get_contents('php://input'));
+			
+			// $this->load->model('overhaul');
+			// $hsl = $this->overhaul->ohEquip();
+			// //print_r($hsl);
+			// $jsonResult = array(
+				// 'success' => true,
+				// 'cbequip' => $hsl
+			// );
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		// echo json_encode($jsonResult);
+	
+	}
 
 }
 

@@ -55,14 +55,20 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 				name		: 'equip',
 				displayField: 'eq',
 				valueField 	: 'eq',
-				queryMode 	: 'local'
+				queryMode 	: 'local',
+				listeners: {
+					select: function(combo, records, eOpts ) {
+						me.plhequip(records);
+					},
+				}
 			},{
 				xtype		:'textfield',
-				allowBlank: false,
+				allowBlank	: false,
 				emptyText 	: 'Order No',
 				name		: 'wo',
+				width		: 150
 				// width		: 200 	
-				flex : 1
+				// flex : 1
 			},{
 				xtype		: 'datefield',
 				emptyText	: 'Tanggal',
@@ -72,41 +78,23 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 				editable	: false,
 				allowBlank	: false
 			},{
-				xtype		:'textfield',
+				xtype		:'numberfield',
 				allowBlank	: false,
 				emptyText 	: 'Durasi',
-				// name		: 'sap',
-				// width		: 150
-				flex : 1
-			}/*,{
-				xtype		:'textfield',
-				emptyText 	: 'url Link Laporan',
-				name		: 'url',
-				// width		: 200,
-				flex : 1				
+				name		: 'durasi',
+				maxValue	: 360,
+				minValue	: 1,
+				width		: 50
+				// flex : 1
 			},{
-				xtype		:'textfield',
-				allowBlank: false,
-				emptyText 	: 'Eksekutor',
-				name		: 'pic',
-				// width		: 200,
-				flex : 1
-			},{
-				xtype		:'textfield',
-				emptyText 	: 'keterangan',
-				// id			: 'ket_enter',
-				name		: 'ket',
-				flex : 2
-				
-			}*/,{
                 
-				xtype:'button',
-				itemId : 'ConMonSave',
-				iconCls: 'add',
-				// text	: 'Save',
-				width:25,
-				tooltip: 'Save',
-				disabled : true,
+				xtype	:'button',
+				itemId 	: 'OverHaulSave',
+				iconCls	: 'add',
+				text	: 'Save',
+				width	:50,
+				tooltip	: 'Save',
+				disabled: true,
 				formBind: true,
 				
 			
@@ -132,7 +120,11 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 	plhunit: function(record){
 		var unt = record[0].data.id_unit;
 		this.fireEvent('ohplhunit',unt);
-	}
+	},
+	plhequip: function(record){
+		var eqp = record[0].data.id_eq;
+		this.fireEvent('ohplheq',eqp);
+	},
 	
 	
 	

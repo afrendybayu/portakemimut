@@ -42,13 +42,14 @@ Ext.define('rcm.controller.Sap', {
 		
 		,'ConMon','ConMonIn','CbParent','CbUnit','CbEquip','ConMonGr'
 		,'DetConMonGr','DetConMonPmp','DetConMonGs'
-		,'OhTahun'
+		,'OhTahun','OverHaulIn'
 
     ],
     
     models: [
 		'ContractInput',
-		'ConMonIn'
+		'ConMonIn',
+		'OverHaulIn'
     ],
     
     refs: [{
@@ -177,26 +178,72 @@ Ext.define('rcm.controller.Sap', {
 			'#clr_filter' : {
 				click : me.hpsFilter
 			},
+			'#OverHaulSave' : {
+				click : me.hdlSimpanOh
+			},
 			
 			'iConMon':{
 				// specialkey	: me.hdlupdate,
 				updatecm	: me.updateFormCM,
 				deleteconmon: me.ConMonDeleteClick,
 				plhLokasi	: me.cbplhlokasi,
-				plhUnit 	: me.cbplhunit
+				plhUnit 	: me.cbplhunit,
+				specialkey	: me.entersaveOH
 			},
 			
 			'tGridConMon'	: {
 				'filterThConMon' : me.gridfilterTahun
 			},
 			'taskOverHaul' :{
-				'ohplhlokasi' 	: me.cbohplhlokasi,
-				'ohplhunit'		: me.cbohplhunit
+				ohplhlokasi 	: me.cbohplhlokasi,
+				ohplhunit		: me.cbohplhunit,
+				ohplheq			: me.cbohplhequip
 				
 			}
 			
 		});
     },
+	
+	entersaveOH : function(field,e){  
+		
+		if(e.getKey()=== e.ENTER){
+			alert('enter dari form OH');
+			
+			/*if (get.isValid()){
+				this.simpanconmon();
+			}*/
+		}
+	
+	},
+	
+	hdlSimpanOh : function(){
+		// alert('klik tombol simpan OH');
+		this.simpanOHform();
+	},
+	
+	simpanOHform : function(){
+		// alert('klik tombol simpan OH masukin isi form');
+		var me = this,
+			foh = me.getTaskOverHaul().getForm(),
+			ohsimp = Ext.create('rcm.model.OverHaulIn', foh.getValues());
+			// console.log(tgl.getValue()+'->'+lokasi.getValue()+'->'+unit.getValue());
+			// basicForm.updateRecord(cmon);
+		console.log(foh.getValues());
+		
+		ohsimp.save({
+			success: function(record, operation){
+				alert ('Data OH terSimpan');
+				// me.getConMonInStore().reload();
+				
+			}
+			
+		});
+	
+	},
+	
+	cbohplhequip : function(rec){
+		// alert ('Equipmen dipilih dengan id : '+rec);
+	},
 	
 	cbohplhunit : function(rec){
 		// console.log('pencet cobobox pilih lokasi : '+rec);
@@ -295,30 +342,6 @@ Ext.define('rcm.controller.Sap', {
 		})
     },
 	
-	// ConMonEditClick: function(view, rowIndex, colIndex, column, e) {
-	/*ConMonEditClick: function(rec, e) {
-        // this.showEditWindow(view.getRecord(view.findTargetByEvent(e)));
-		// console.log('edit ro ini '+this.getConMonInStore().getAt(rowIndex).data.id);
-		
-		// rcmSettings.aaaaa = rec;
-		// rcmSettings.bbbbb = e;
-		var idlok = rec.get('id');
-		var me = this, fcmon = Ext.getCmp('cmform').getForm();
-		// console.log(' -> '+idlok );
-		fcmon.findField('tgl').setValue(rec.get('tgl'));
-		fcmon.findField('lokasi').setValue(rec.get('lokasi'));
-		fcmon.findField('unit').setValue(rec.get('unit'));
-		fcmon.findField('wo').setValue(rec.get('wo'));
-		fcmon.findField('sap').setValue(rec.get('sap'));
-		fcmon.findField('url').setValue(rec.get('url'));
-		fcmon.findField('pic').setValue(rec.get('pic'));
-		fcmon.findField('ket').setValue(rec.get('ket'));
-		
-		
-		
-	
-	},
-	*/
     editInputConMon: function(task){
 		var me = this,
 		taskEditConMonForm = me.getTaskConMon();
