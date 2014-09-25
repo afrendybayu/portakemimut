@@ -2,6 +2,10 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
     extend: 'Ext.form.Panel',
 	xtype: 'taskOverHaul',
 	layout : 'hbox',
+
+	idunit 	: '',
+	ideq	: '',
+	idoh	: '',
 	// id : 'cmform',
 	// disabled : true,
 	initComponent: function() {
@@ -72,8 +76,9 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 			},{
 				xtype		: 'datefield',
 				emptyText	: 'Tanggal',
-				name		: 'tgl',
+				name		: 'tglplan',
 				format		: 'd-m-Y',
+				submitFormat : 'Y-m-d',
 				width 		: 100,
 				editable	: false,
 				allowBlank	: false
@@ -81,7 +86,7 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 				xtype		:'numberfield',
 				allowBlank	: false,
 				emptyText 	: 'Durasi',
-				name		: 'durasi',
+				name		: 'durasiplan',
 				maxValue	: 360,
 				minValue	: 1,
 				width		: 50
@@ -114,16 +119,19 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 		// console.log ('kode lokasi '+ lks);
 		this.fireEvent('ohplhlokasi',lks);
 		// console.log (n.get('kode'));
-			// rcmSettings.aaaaaaa =record;
 	},
 	
 	plhunit: function(record){
 		var unt = record[0].data.id_unit;
 		this.fireEvent('ohplhunit',unt);
+		// console.log ('kode id_unit : '+unt);
+		
 	},
+	
 	plhequip: function(record){
 		var eqp = record[0].data.id_eq;
-		this.fireEvent('ohplheq',eqp);
+		var ohid = record[0].data.id_oh
+		this.fireEvent('ohplheq',eqp,ohid);
 	},
 	
 	

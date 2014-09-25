@@ -5,7 +5,7 @@ Ext.define('rcm.model.CbEquip', {
 		'Ext.data.proxy.Ajax'
 	],
 	
-	fields: [ 'id_eq','eq','id_unit'],
+	fields: [ 'id_eq','eq','id_unit','id_oh'],
     proxy: {
 		type: 'ajax',
 		api: {

@@ -209,9 +209,9 @@ Ext.define('rcm.controller.Sap', {
 		if(e.getKey()=== e.ENTER){
 			alert('enter dari form OH');
 			
-			/*if (get.isValid()){
-				this.simpanconmon();
-			}*/
+			if (get.isValid()){
+				this.simpanOHform();
+			}
 		}
 	
 	},
@@ -223,17 +223,21 @@ Ext.define('rcm.controller.Sap', {
 	
 	simpanOHform : function(){
 		// alert('klik tombol simpan OH masukin isi form');
-		var me = this,
-			foh = me.getTaskOverHaul().getForm(),
-			ohsimp = Ext.create('rcm.model.OverHaulIn', foh.getValues());
-			// console.log(tgl.getValue()+'->'+lokasi.getValue()+'->'+unit.getValue());
-			// basicForm.updateRecord(cmon);
-		console.log(foh.getValues());
 		
+		var me = this,
+			froh = me.getTaskOverHaul().getForm(),
+			foh = me.getTaskOverHaul().getForm().getValues(); 
+		foh.id_unit = this.getTaskOverHaul().idunit;
+		foh.id_equip = this.getTaskOverHaul().ideq;
+		foh.oh = this.getTaskOverHaul().idoh;
+		var ohsimp = Ext.create('rcm.model.OverHaulIn', foh);
+		console.log(foh);
+		// rcmSettings.foh11111 = foh1;
 		ohsimp.save({
 			success: function(record, operation){
 				alert ('Data OH terSimpan');
-				// me.getConMonInStore().reload();
+				me.getOverHaulInStore().reload();
+				froh.reset();
 				
 			}
 			
@@ -241,8 +245,10 @@ Ext.define('rcm.controller.Sap', {
 	
 	},
 	
-	cbohplhequip : function(rec){
+	cbohplhequip : function(unit,oh){
 		// alert ('Equipmen dipilih dengan id : '+rec);
+		var eqp = this.getTaskOverHaul();
+		eqp.ideq = unit; eqp.idoh = oh; 
 	},
 	
 	cbohplhunit : function(rec){
@@ -250,6 +256,12 @@ Ext.define('rcm.controller.Sap', {
 		var cboheq = this.getCbEquipStore();
 		cboheq.clearFilter();
 		cboheq.filter('id_unit',rec);
+		
+		
+		// this.getTaskOverHaul.idunit = record;
+		var idunt = this.getTaskOverHaul();
+		idunt.idunit = rec;
+		
 	
 	},
 	

@@ -93,17 +93,6 @@ class rConMon extends CI_Controller {
 			// $id_lok = $this->input->get('id') ? $this->input->get('id') : 0; 
 			
 			$hsl = $this->hirarki->get_unit();
-			
-			/*foreach ($hsl as $r){
-				// print_r ($r);
-				$data[] = array(
-						'id_unit'	=>$r->id_unit,
-						//'id_type'	=>$r->id_type,
-						'id_lokasi'	=>$r->id_lokasi,
-						'unit'		=>$r->unit
-						);
-				
-			}*/
 			$jsonResult = array(
 					'success' => true,
 					'equnit' => $hsl

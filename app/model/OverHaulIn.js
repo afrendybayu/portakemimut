@@ -5,12 +5,14 @@ Ext.define('rcm.model.OverHaulIn', {
 		'Ext.data.proxy.Ajax'
 	],
 	
-	fields: [ 'id','tglplan','durasiplan','unit','equip','oh','pekan','bln','thn','ket'],
+	// lokasi, unit, equip, wo, tgl, durasi
+	
+	fields: [ 'id','tglplan','durasiplan','lokasi','id_unit','unit','id_equip','equip','wo','oh','pekan','bln','thn','ket'],
 	
     proxy: {
 		type: 'ajax',
 		api: {
-			// read	: 'ci/index.php/sap/rConMon/ReadCMon',
+			read	: 'ci/index.php/sap/rOverHaul/readOH',
 			create 	: 'ci/index.php/sap/rOverHaul/createOH'
 			// update	: 'ci/index.php/sap/rConMon/updateCMon',
 			// destroy : 'ci/index.php/sap/rConMon/removeCMon'
