@@ -71,7 +71,7 @@ Ext.define('rcm.view.laporan.DetCmGasComp', {
 					point: {
 						events: {
 							click: function(evt) {
-								//alert("x: "+this.x+" "+this.y);
+								alert("x: "+this.x+" "+this.y);
 								//me.fireEvent('AvGroupCl', evt, this.category);
 							}
 						}

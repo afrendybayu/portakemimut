@@ -44,7 +44,6 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 						{header : 'Tanggal', width : 100,dataIndex : 'tgl',xtype : 'datecolumn', format : 'd-m-Y',editable : false, editor : { xtype : 'datefield', format: 'd-m-Y', allowBlank: false}},
 						{header : 'Lokasi', width : 150,dataIndex : 'lokasi', editor :{
 							xtype		:'combobox',
-							// id			: 'cb_parent1',
 							store 		: 'CbParent',
 							name		: 'lokasi',
 							editable	: false,
@@ -60,7 +59,6 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 						{header : 'Unit',width : 150,dataIndex : 'unit',editor :{
 							xtype		:'combobox',
 							emptyText 	: 'Unit',
-							// id			: 'cb_unit1',
 							store 		: 'CbUnit',
 							editable 	: false,
 							allowBlank	: false,
