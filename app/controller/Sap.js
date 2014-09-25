@@ -172,6 +172,8 @@ Ext.define('rcm.controller.Sap', {
 			'#cb_unit' : {
 				select : me.pilihComboUnit
 			},
+
+			'taskConMon textfield': {
 				specialkey: me.handlesimpan
 			},
 			'#clr_filter' : {
