@@ -12,9 +12,9 @@ class Sap extends CI_Model {
 
 	function get_jmlWO()    {
 
-		$sql =	"SELECT ordertype AS kode,pmtype,count(*) AS wo ".
-				",ROUND((100*count(*)/(select count(*) from sap )),2) as persen ".
-				"FROM sap GROUP BY ordertype ORDER BY ordertype ASC,pmtype ASC";
+		$sql =	"SELECT ordertype AS kode,pmtype,count(*) AS wo
+				,ROUND((100*count(*)/(select count(*) from sap )),2) as persen
+				FROM sap GROUP BY ordertype ORDER BY ordertype ASC,pmtype ASC";
 		$query = $this->db->query($sql);
 		
 		return $query->result();
