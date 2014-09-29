@@ -47,27 +47,30 @@ class Sap extends CI_Model {
 		return $query->result();
     }
     
-    function get_cause()	{
-		$sql = "select sapfmea.cause AS kode,CONCAT('[',cause,'] ',cause.nama) AS desk,cause.nama, count(*) as jml,".
-				"ROUND((100*count(*)/(select count(*) from sapfmea )),2) as persen ".
-				"from sapfmea ".
-				"left join cause on sapfmea.cause= cause.kode ".
-				"group by cause order by jml desc, kode asc";	 
+    function get_cause($thn)	{
+		$sql = "select sapfmea.cause AS kode,CONCAT('[',cause,'] ',cause.nama) AS desk,cause.nama, count(*) as jml,
+				ROUND((100*count(*)/(select count(*) from sapfmea left join sap on sapfmea.pid= sap.pid
+					where YEAR(planstart)=$thn)),2) as persen
+				from sapfmea
+				left join cause on sapfmea.cause= cause.kode
+				left join sap on sapfmea.pid= sap.pid
+				where YEAR(planstart)=$thn
+				group by cause order by jml desc, kode asc";	 
 		$query = $this->db->query($sql);
 		
 		return $query->result();
 	}
 	
 	function get_cause_info($cause)	{
-		$sql = "SELECT sap.pid AS noorder,if(notifno=0,'',notifno) AS nosap,damage,damage.nama AS damagenm,cause,cause.nama AS causenm,".
-				"manwork AS mainwork,down,opart,opart.nama as opartnm,".
-				"eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart ".
-				"FROM sapfmea ".
-				"LEFT JOIN sap ON sap.pid = sapfmea.pid ".
-				"LEFT JOIN opart ON sapfmea.opart = opart.kode ".
-				"LEFT JOIN damage ON sapfmea.damage = damage.kode ".
-				"LEFT JOIN cause ON sapfmea.cause = cause.kode ".
-				"group by noorder,damage,cause,opart";
+		$sql = "SELECT sap.pid AS noorder,if(notifno=0,'',notifno) AS nosap,damage,damage.nama AS damagenm,cause,cause.nama AS causenm,
+				manwork AS mainwork,down,opart,opart.nama as opartnm,
+				eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart
+				FROM sapfmea
+				LEFT JOIN sap ON sap.pid = sapfmea.pid
+				LEFT JOIN opart ON sapfmea.opart = opart.kode
+				LEFT JOIN damage ON sapfmea.damage = damage.kode
+				LEFT JOIN cause ON sapfmea.cause = cause.kode
+				group by noorder,damage,cause,opart";
 		
 		if (strlen($cause)>0)	{
 			$sql .= "WHERE cause LIKE '%$cause%'";
@@ -77,13 +80,16 @@ class Sap extends CI_Model {
 		return $query->result();
 	}
 	
-	function get_damage()	{
-		$s = "select sapfmea.damage as kode,CONCAT('[',sapfmea.damage,'] ',damage.nama) AS desk,damage.nama, count(*) as jml, ".
-			 "ROUND((100*count(*)/(select count(*) from sapfmea where damage <> 'NDMG')),2) as persen ".
-			 "from sapfmea ".
-			 "left join damage on sapfmea.damage = damage.kode ".
-			 "where damage <> 'NDMG' group by damage order by jml desc, kode asc";
-		$query = $this->db->query($s);
+	function get_damage($thn)	{
+		$sql = "select sapfmea.damage as kode,CONCAT('[',sapfmea.damage,'] ',damage.nama) AS desk,damage.nama, count(*) as jml,
+				ROUND((100*count(*)/(select count(*) from sapfmea left join sap on sapfmea.pid= sap.pid where damage <> 'NDMG' AND 
+					YEAR(planstart)=$thn)),2) as persen
+				from sapfmea
+				left join damage on sapfmea.damage = damage.kode
+				left join sap on sapfmea.pid= sap.pid
+				where YEAR(planstart)=$thn
+				AND damage <> 'NDMG' group by damage order by jml desc, kode asc;";
+		$query = $this->db->query($sql);
 		
 		return $query->result();
 	}
@@ -102,7 +108,7 @@ class Sap extends CI_Model {
 		return $query->result();
 	}
 	
-	function get_opart()	{
+	function get_opart($thn)	{
 		/*
 		$s = "select count(*) as jml, opart as kode,CONCAT('[',sapfmea.opart,'] ',damage.nama) AS desk, ".
 			 "(select nama from opart where opart.kode = sapfmea.opart limit 0,1) as nama, ".
@@ -110,13 +116,16 @@ class Sap extends CI_Model {
 			 "from sapfmea ".
 			 "group by opart order by jml desc";
 		//*/
-		$s = "select count(*) as jml, opart as kode, ".
-			 "(select nama from opart where opart.kode = sapfmea.opart limit 0,1) as nama,".
-			 "concat('[',opart,'] ',(select nama from opart where opart.kode = sapfmea.opart limit 0,1)) AS desk,".
-			 "ROUND((100*count(*)/(select count(*) from sapfmea)),2) as persen ".
-			 "from sapfmea ".
-			 "group by opart,kode order by jml desc, kode asc";
-		$query = $this->db->query($s);
+		$sql = "select count(*) as jml, opart as kode,
+				(select nama from opart where opart.kode = sapfmea.opart limit 0,1) as nama,
+				concat('[',opart,'] ',(select nama from opart where opart.kode = sapfmea.opart limit 0,1)) AS desk,
+				ROUND((100*count(*)/(select count(*) from sapfmea left join sap on sapfmea.pid= sap.pid
+				where YEAR(planstart)=$thn)),2) as persen
+				from sapfmea
+				left join sap on sapfmea.pid= sap.pid
+				where YEAR(planstart)=$thn
+				group by opart,kode order by jml desc, kode asc";
+		$query = $this->db->query($sql);
 		
 		return $query->result();
 	}
