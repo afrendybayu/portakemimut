@@ -95,6 +95,9 @@ Ext.define('rcm.controller.Sap', {
 			ref : 'iConMon',
 			selector : 'iConMon'
 		},{
+			ref : 'iOverHaul',
+			selector : 'iOverHaul'
+		},{
 			ref : 'tGridConMon',
 			selector : 'tGridConMon'
 		},{
@@ -191,7 +194,9 @@ Ext.define('rcm.controller.Sap', {
 				plhUnit 	: me.cbplhunit,
 				specialkey	: me.entersaveOH
 			},
-			
+			'iOverHaul' :{
+				deleteOverHaul : me.ohDelete
+			},
 			'tGridConMon'	: {
 				'filterThConMon' : me.gridfilterTahun
 			},
@@ -205,6 +210,34 @@ Ext.define('rcm.controller.Sap', {
 		});
     },
 	
+	ohDelete	: function(isi){
+		// console.log(isi);
+		// alert('Tak delete yoh');
+		var me = this, record = isi.data,
+		doh 	= Ext.create('rcm.model.OverHaulIn', record );
+		Ext.MessageBox.show({
+				title : 'Hapus OverHaul',
+				msg   : 'Yakin Data Akan di Hapus??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						doh.destroy ({
+							success : function(dcmon, operation){
+								// dcmon.destroy();
+								me.getOverHaulInStore().reload();
+								me.getOhTahunStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+					
+				}
+		});
+	},
 	entersaveOH : function(field,e){  
 		
 		if(e.getKey()=== e.ENTER){
@@ -232,7 +265,7 @@ Ext.define('rcm.controller.Sap', {
 		foh.id_equip = this.getTaskOverHaul().ideq;
 		foh.oh = this.getTaskOverHaul().idoh;
 		var ohsimp = Ext.create('rcm.model.OverHaulIn', foh);
-		console.log(foh);
+		// console.log(foh);
 		// rcmSettings.foh11111 = foh1;
 		ohsimp.save({
 			success: function(record, operation){
@@ -337,23 +370,31 @@ Ext.define('rcm.controller.Sap', {
 	ConMonDeleteClick: function(del) {
         //this.deleteTask(this.getTasksStore().getAt(rowIndex));
 		// console.log(del.data );
-		// cmons.remove(rec);
-		// cmons.sync;
-		// cmons.reload();
-		
+		//alert ('delete isi conmon');
 		var me = this, record = del.data,
 		dcmon 	= Ext.create('rcm.model.ConMonIn', record );
-		dcmon.destroy ({
-			success : function(dcmon, operation){
-				// dcmon.destroy();
-				me.getConMonInStore().reload();
-				me.getConMonStore().reload();
-			},
-			callback : function(){
-				
-			}
-		
-		})
+		Ext.MessageBox.show({
+				title : 'Hapus Condition Monitoring',
+				msg   : 'Yakin Data Akan di Hapus??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						dcmon.destroy ({
+							success : function(dcmon, operation){
+								// dcmon.destroy();
+								me.getConMonInStore().reload();
+								me.getConMonStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+					
+				}
+			});
     },
 	
     editInputConMon: function(task){

@@ -85,6 +85,22 @@ class rOverHaul extends CI_Controller {
 		echo json_encode($jsonResult);
 	
 	}
+	
+	public function removeOH(){
+		try {
+			$ohtb = json_decode(file_get_contents('php://input'));
+			
+			$this->db->where('id', $ohtb->id);
+			$this->db->delete('ohlist');
+						
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+	
+	}
 
 }
 

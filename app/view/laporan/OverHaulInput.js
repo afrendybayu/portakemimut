@@ -52,7 +52,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 							sortable	: false,
 							visible		: false,
 							tooltip		: 'Hapus',
-							handler		: Ext.bind(me.hDeleteConMonClick, me)
+							handler		: Ext.bind(me.OhGridDelete, me)
 							
 			
 					}]
@@ -63,5 +63,12 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
         // ed.on('edit', me.hdlGridRowEdit, this);
 		// ed.on('beforeedit', me.GridEditEna, this);
 	},
+	
+	
+	OhGridDelete: function(gridView, rowIndex, colIndex, column, e) {
+		var isi = gridView.getStore().getAt(rowIndex);
+		// console.log (isi);
+		this.fireEvent('deleteOverHaul', isi);
+    },
 	
 });

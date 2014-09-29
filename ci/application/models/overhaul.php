@@ -46,7 +46,7 @@ class Overhaul extends CI_Model {
 	}
 	
 	function get_ohlist(){
-		$sql = "select ol.wo, concat(od.nama,' ',eq.kode,' ',eq.tag,' ',h1.init,' ',h3.nama) equip, ol.tglplan, ol.durasiplan
+		$sql = "select ol.id,ol.wo, concat(od.nama,' ',eq.kode,' ',eq.tag,' ',h1.init,' ',h3.nama) equip, ol.tglplan, ol.durasiplan
 					from ohlist ol
 						inner join equip eq on ol.equip = eq.id
 						inner join ohdef od on ol.ohcat = od.id 
