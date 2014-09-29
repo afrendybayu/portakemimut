@@ -339,22 +339,30 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	bFiltOPart: function()	{
-		alert("OPart Thn: "+Ext.getCmp('thnOpr').getValue());
+		//alert("OPart Thn: "+Ext.getCmp('thnOpr').getValue());
 		var t=Ext.getCmp('thnOpr').getValue();
 		this.getSapOPartStore().load({params:{tgl:t}});
 		this.getSapOPartInfoStore().load({params:{tgl:t}});
 	},
 	
 	bFiltPM: function()	{
-		alert("PM Thn: "+Ext.getCmp('thnPM').getValue());
+		//alert("PM Thn: "+Ext.getCmp('thnPM').getValue());
+		this.getSapPMCostStore().load({ params:{thn:Ext.getCmp('thnPM').getValue()} });
 	},
 	
 	bFiltTop10: function()	{
-		alert("Top10 Thn: "+Ext.getCmp('thnTop10').getValue());
+		//alert("Top10 Thn: "+Ext.getCmp('thnTop10').getValue());
+		this.getSapTop10Store().load({ params:{thn:Ext.getCmp('thnTop10').getValue()} });
 	},
 	
 	bFiltOCost: function()	{
-		alert("OrderCost Thn: "+Ext.getCmp('iThnOcost').getValue());
+		//alert("OrderCost Thn: "+Ext.getCmp('iThnOcost').getValue());
+		var m=this,
+			t=Ext.getCmp('iThnOcost').getValue();
+		m.getSapOrderCwoStore().load({ params:{thn:t} });
+		m.getSapOrderCotStore().load({ params:{thn:t} });
+		m.getSapPsOCotStore().load({ params:{thn:t} });
+		m.getSapPsOCwoStore().load({ params:{thn:t} });
 	},
 	
 	bFiltWoC: function()	{

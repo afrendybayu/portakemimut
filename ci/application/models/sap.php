@@ -174,11 +174,11 @@ class Sap extends CI_Model {
 	}
 	
 	function get_teco_persen($thn)	{
-		$sql =	"select (if(teco!=0,1,0)) as teko ".
-				",(if(teco!=0,'Teco','Open')) as nama ".
-				",ROUND((100*count(*)/(select count(*) from sap)),2) as `teco` ".
-				"from sap where YEAR(planstart)=2014 ".
-				"group by teko";
+		$sql =	"select (if(teco!=0,1,0)) as teko
+				,(if(teco!=0,'Teco','Open')) as nama
+				,ROUND((100*count(*)/(select count(*) from sap where YEAR(planstart)=$thn)),2) as `teco`
+				from sap where YEAR(planstart)=$thn
+				group by teko";
 
 		$query = $this->db->query($sql);
 		return $query->result();
@@ -205,7 +205,7 @@ class Sap extends CI_Model {
 	}
 
 	function get_tahun()	{
-		$sql =	"select DATE_FORMAT(planstart,'%Y') AS thn FROM sap GROUP BY thn";
+		$sql =	"select DATE_FORMAT(planstart,'%Y') AS thn FROM sap GROUP BY thn ORDER BY thn DESC";
 		//echo "sql: $sql";		
 		
 		$query = $this->db->query($sql);
@@ -277,14 +277,14 @@ class Sap extends CI_Model {
 	}
 
 	function get_topten($thn)	{
-		$sql =	"SELECT CONCAT(equip.nama,'@',h.nama,' ',SUBSTRING_INDEX((SELECT hhhh.nama FROM hirarki hhhh WHERE hhhh.id ".
-				"	= (SELECT hhh.parent FROM hirarki hhh WHERE hhh.id ".
-				"	= (SELECT hh.parent FROM hirarki hh WHERE hh.id = equip.unit_id))),' ',-1)) AS desk ".
-				",ROUND(SUM(totmatcost),2) as jml ".
-				"FROM sap,equip,hirarki h ".
-				"WHERE equip.tag= SUBSTRING_INDEX(eqkode,'-',2) AND h.id = equip.unit_id AND YEAR(planstart)=$thn ".
-				"GROUP BY SUBSTRING_INDEX(eqkode,'-',2) ".
-				"ORDER BY jml desc, totmatcost DESC LIMIT 0,10";
+		$sql =	"SELECT CONCAT(equip.nama,'@',h.nama,' ',SUBSTRING_INDEX((SELECT hhhh.nama FROM hirarki hhhh WHERE hhhh.id
+					= (SELECT hhh.parent FROM hirarki hhh WHERE hhh.id
+					= (SELECT hh.parent FROM hirarki hh WHERE hh.id = equip.unit_id))),' ',-1)) AS desk
+				,ROUND(SUM(totmatcost),2) as jml
+				FROM sap,equip,hirarki h
+				WHERE equip.tag= SUBSTRING_INDEX(eqkode,'-',2) AND h.id = equip.unit_id AND YEAR(planstart)=$thn
+				GROUP BY SUBSTRING_INDEX(eqkode,'-',2)
+				ORDER BY jml desc, totmatcost DESC LIMIT 0,10";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
