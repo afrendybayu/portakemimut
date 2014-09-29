@@ -5,8 +5,6 @@ Ext.define('rcm.model.OverHaulIn', {
 		'Ext.data.proxy.Ajax'
 	],
 	
-	// lokasi, unit, equip, wo, tgl, durasi
-	
 	fields: [ 'id','tglplan','durasiplan','lokasi','id_unit','unit','id_equip','equip','wo','oh','pekan','bln','thn','ket'],
 	
     proxy: {

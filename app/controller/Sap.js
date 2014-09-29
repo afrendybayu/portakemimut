@@ -239,6 +239,7 @@ Ext.define('rcm.controller.Sap', {
 				alert ('Data OH terSimpan');
 				me.getOverHaulInStore().reload();
 				froh.reset();
+				me.getOhTahunStore().reload();
 				
 			}
 			

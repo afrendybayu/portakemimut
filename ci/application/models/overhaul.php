@@ -53,7 +53,8 @@ class Overhaul extends CI_Model {
 						inner join hirarki h1 on eq.unit_id = h1.id
 						inner join hirarki h2 on h1.parent = h2.id
 						inner join hirarki h3 on h2.parent = h3.id
-					where year(ol.tglplan) = year(now())";
+					where year(ol.tglplan) = year(now())
+					order by ol.tglplan desc";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
