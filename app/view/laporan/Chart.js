@@ -46,9 +46,8 @@ Ext.define('rcm.view.laporan.Chart', {
 			},{
 				id: 'ts_wo',
 				title: 'WO Compliance',
-				xtype:'tWOComp',
-				idThn: 'thnWoC',
-				idbSr: 'srWoC',
+				//idThn: 'thnWoC',
+				//idbSr: 'srWoC',
 				xtype:'tWOComp'
 			//*
 			},{

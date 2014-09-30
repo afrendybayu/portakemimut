@@ -62,11 +62,6 @@ Ext.define('rcm.controller.Sap', {
 		},{
 			ref: 'tFSap',
 			selector: 'tFSap'
-		/*
-		},{
-			ref: 'tFThn',
-			selector: 'tFThn'
-		//*/
 		},{
 			ref: 'tEPO',
 			selector: 'tEPO'
@@ -108,7 +103,7 @@ Ext.define('rcm.controller.Sap', {
 			'causechart':	{
 				sapFilter: me.grafikFilter
 			},
-			'#srWoC': {
+			'#srCom': {
 				click: me.bFiltWoC
 			},
 			'#srCont': {
@@ -369,7 +364,11 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	bFiltWoC: function()	{
-		alert("WoC Thn: "+Ext.getCmp('thnWoC').getValue());
+		//alert("WoC Thn: "+Ext.getCmp('iThnCom').getValue());
+		var t=Ext.getCmp('iThnCom').getValue();
+		this.getHoTecoStore().load({ params:{thn:t} });
+		this.getHoManStore().load({ params:{thn:t} });
+		
 	},
 		
 	simpanconmon : function(){

@@ -197,13 +197,13 @@ class Sap extends CI_Model {
 	}
 	
 	function get_teco_manwork($thn)	{
-		$sql =	"select refer.nama, (count(teco)) as tot, ".
-				"sum(if(teco!=0,1,0)) as `teco`, ".
-				"sum(if(teco!=0,0,1)) as `open`,".
-				"ROUND((100*(sum(if(teco!=0,1,0)))/count(teco)),2) as woc, ".
-				"ROUND((100*(sum(if(teco!=0,0,1)))/count(teco)),2) as woo ".
-				"from sap left join refer on refer.kode = sap.manwork ".
-				"where manwork != '' AND YEAR(planstart)=$thn group by manwork";
+		$sql =	"select refer.nama, (count(teco)) as tot,
+				sum(if(teco!=0,1,0)) as `teco`,
+				sum(if(teco!=0,0,1)) as `open`,
+				ROUND((100*(sum(if(teco!=0,1,0)))/count(teco)),2) as woc,
+				ROUND((100*(sum(if(teco!=0,0,1)))/count(teco)),2) as woo
+				from sap left join refer on refer.kode = sap.manwork
+				where manwork != '' AND YEAR(planstart)=$thn group by manwork";
 
 		$query = $this->db->query($sql);
 		return $query->result();
