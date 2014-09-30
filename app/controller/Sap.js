@@ -475,9 +475,6 @@ Ext.define('rcm.controller.Sap', {
 		this.getHoManStore().load({ params:{thn:t} });
 		
 	},
-	
-	
-	
 		
 	simpanconmon : function(){
 		
@@ -603,10 +600,13 @@ Ext.define('rcm.controller.Sap', {
 	
 	cariSapMaint: function()	{
 		//var o = this.getTFSap().sedotFilter(),
-		var o = this.getTEPO().sedotFilter(),
-			p = { loc:o.iL,otp:o.iW,mwc:o.iM,taw:o.iTw,tak:o.iTk };
+		var m = this,
+			o = m.getTEPO().sedotFilter(),
+			//p = { loc:o.iL,otp:o.iW,mwc:o.iM,taw:o.iTw,tak:o.iTk };
+			p = { loc:o.iL,otp:o.iW,mwc:o.iM,thn:o.iT };
 		//alert("o.L: "+o.iL+", oW: "+o.iW+", oM: "+o.iM+", oT: "+o.iT);
-		this.ubahLabelWO(p);
+		m.ubahLabelWO(p);
+		m.getSapEPOStore().load({ params: {thn:o.iT} });
 	},
 	
 	grafikCauseClear: function()	{

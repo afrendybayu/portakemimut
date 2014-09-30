@@ -29,9 +29,10 @@ class rWOjml extends CI_Controller {
 	public function nWO()	{
 
 		try {
+			$thn = $this->input->get('thn')?:date('Y');
 			$this->load->model('sap');
 			
-			$hsl = $this->sap->get_jmlWO();
+			$hsl = $this->sap->get_jmlWO($thn);
 			//print_r($hsl);
 			
 			$sap = array();
@@ -86,7 +87,7 @@ class rWOjml extends CI_Controller {
 	public function WoOpen()	{
 		try {
 			$group = $this->input->get('gr')?:'0';
-			$thn = $this->input->get('tgl')?:date('Y');
+			$thn = $this->input->get('thn')?:date('Y');
 			$taw = $this->input->get('baw')?:1;
 			$tak = $this->input->get('bak')?:12;
 			$lok = $this->input->get('loc')?:"_";

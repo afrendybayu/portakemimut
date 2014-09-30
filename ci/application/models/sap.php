@@ -10,11 +10,21 @@ class Sap extends CI_Model {
 		return $query->result();
 	}
 
-	function get_jmlWO()    {
-
+	function get_jmlWO($thn)    {
+		/*
 		$sql =	"SELECT ordertype AS kode,pmtype,count(*) AS wo
 				,ROUND((100*count(*)/(select count(*) from sap )),2) as persen
 				FROM sap GROUP BY ordertype ORDER BY ordertype ASC,pmtype ASC";
+		//*/
+		
+		$sql =	"select ordertype AS kode,pmtype,count(*) AS wo
+				,ROUND((100*count(*)/(
+					select count(*) from sap WHERE year(planstart) = '$thn' AND 
+					ordertype in ('EP01','EP02','EP03','EP04','EP05'))),2) as persen
+				FROM sap
+				WHERE year(planstart) = '$thn'
+				GROUP BY ordertype ";
+		//echo "sql: $sql";
 		$query = $this->db->query($sql);
 		
 		return $query->result();
@@ -22,23 +32,26 @@ class Sap extends CI_Model {
     
     function get_selisih_WO($thn,$lok,$otp,$mwc)	{
 		/*
-		$sql =	"select (datediff(curdate(), planend)) as beda, count(*) as jml ".
-				",ROUND((100*count(*)/(select count(*) from sap where teco=0 and planend<curdate())),2) as persen ".
-				",(select CASE WHEN beda<7 THEN 1 WHEN beda<30 THEN 2 WHEN beda<60 THEN 3 ELSE 4 END) AS flak ".
-				"from sap ".
-				"WHERE teco=0 and planend<curdate() AND YEAR(planstart)=$thn GROUP BY flak";
+		$sql =	"select (datediff(curdate(), planend)) as beda, count(*) as jml
+				,ROUND((100*count(*)/(select count(*) from sap where teco=0 and planend<curdate() AND (datediff(curdate(), planend))>2)),2) as persen
+				,(select CASE WHEN beda<3 THEN 0 WHEN beda<7 THEN 1 WHEN beda<30 THEN 2 WHEN beda<60 THEN 3 ELSE 4 END) AS flak
+				from sap
+				WHERE teco=0 and planend<curdate() AND YEAR(planstart)=$thn AND (datediff(curdate(), planend))>2 ";
 		//*/
-		$sql =	"select (datediff(curdate(), planend)) as beda, count(*) as jml ".
-				",ROUND((100*count(*)/(select count(*) from sap where teco=0 and planend<curdate() AND (datediff(curdate(), planend))>2)),2) as persen ".
-				",(select CASE WHEN beda<3 THEN 0 WHEN beda<7 THEN 1 WHEN beda<30 THEN 2 WHEN beda<60 THEN 3 ELSE 4 END) AS flak ".
-				"from sap ".
-				"WHERE teco=0 and planend<curdate() AND YEAR(planstart)=$thn AND (datediff(curdate(), planend))>2 ";
-		//*	
-		if ($lok!="ALL" and $lok!="_")		$sql .=	"AND lokasi=$lok ";
-		if ($otp!="ALL" and $otp!="_")		$sql .=	"AND ordertype like '%$otp%' ";
-		if ($mwc!="ALL" and $mwc!="_")		$sql .=	"AND manwork like '%$mwc%' ";
+		$flt = '';
+		if ($lok!="ALL" and $lok!="_")		$flt .= " AND lokasi=$lok ";
+		if ($otp!="ALL" and $otp!="_")		$flt .=	" AND ordertype like '%$otp%' ";
+		if ($mwc!="ALL" and $mwc!="_")		$flt .=	" AND manwork like '%$mwc%' ";
+		
+		$sql =	"SELECT (datediff(CURDATE(), planend)) AS beda, count(*) AS jml
+				,ROUND((100*count(*))/(
+					select count(*) from sap where teco=0 and planend<curdate() AND datediff(curdate(), planend)>2 and year(planstart)=$thn $flt),2) as persen
+				,(select CASE WHEN beda<3 THEN 0 WHEN beda<7 THEN 1 WHEN beda<30 THEN 2 WHEN beda<60 THEN 3 ELSE 4 END) AS flak
+				from sap
+				WHERE teco=0 AND YEAR(planstart)=$thn AND datediff(curdate(), planend)>2 AND planend<curdate() $flt ";	
+		
 		//*/
-		$sql .=	"GROUP BY flak";
+		$sql .=	" GROUP BY flak";
 		//		"where downend='0000-00-00' and planend<curdate() group by flak";
 		//echo "sql: $sql<br/><br/><br/>";
 		// WHEN beda<3 THEN 0 		

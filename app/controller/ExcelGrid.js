@@ -235,7 +235,7 @@ Ext.define('rcm.controller.ExcelGrid', {
             buttons: Ext.Msg.YESNO,
             fn: function(response) {
                 if(response === 'yes') {
-					dd.destroy();
+					//dd.destroy();
 					//this.getEventStore.destroy();
 					dd.destroy({
 						callback: function(dd, operation) {

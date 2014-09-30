@@ -909,6 +909,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.AvReUnit": [],
   "rcm.model.AvSpeedo": [],
   "rcm.model.Cause": [],
+  "rcm.model.CbEquip": [],
   "rcm.model.CbParent": [],
   "rcm.model.CbUnit": [],
   "rcm.model.ConMon": [],
@@ -936,6 +937,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.Note": [],
   "rcm.model.OPart": [],
   "rcm.model.OhTahun": [],
+  "rcm.model.OverHaulIn": [],
   "rcm.model.PM": [],
   "rcm.model.ReHome": [],
   "rcm.model.RunningHour": [],
@@ -960,6 +962,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.AvReUnit": [],
   "rcm.store.AvSpeedo": [],
   "rcm.store.Cause": [],
+  "rcm.store.CbEquip": [],
   "rcm.store.CbParent": [],
   "rcm.store.CbUnit": [],
   "rcm.store.ConMon": [],
@@ -989,6 +992,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.Note": [],
   "rcm.store.OPart": [],
   "rcm.store.OhTahun": [],
+  "rcm.store.OverHaulIn": [],
   "rcm.store.PM": [],
   "rcm.store.ReHome": [],
   "rcm.store.ReSpeedo": [],
@@ -1075,6 +1079,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.laporan.GridWork": [],
   "rcm.view.laporan.OrderCostSap": [],
   "rcm.view.laporan.OverHaul": [],
+  "rcm.view.laporan.OverHaulForm": [],
   "rcm.view.laporan.OverHaulInput": [],
   "rcm.view.laporan.PanelSap": [],
   "rcm.view.laporan.SapCause": [],
@@ -2128,6 +2133,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.AvReUnit": [],
   "rcm.model.AvSpeedo": [],
   "rcm.model.Cause": [],
+  "rcm.model.CbEquip": [],
   "rcm.model.CbParent": [],
   "rcm.model.CbUnit": [],
   "rcm.model.ConMon": [],
@@ -2155,6 +2161,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.Note": [],
   "rcm.model.OPart": [],
   "rcm.model.OhTahun": [],
+  "rcm.model.OverHaulIn": [],
   "rcm.model.PM": [],
   "rcm.model.ReHome": [],
   "rcm.model.RunningHour": [],
@@ -2179,6 +2186,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.AvReUnit": [],
   "rcm.store.AvSpeedo": [],
   "rcm.store.Cause": [],
+  "rcm.store.CbEquip": [],
   "rcm.store.CbParent": [],
   "rcm.store.CbUnit": [],
   "rcm.store.ConMon": [],
@@ -2208,6 +2216,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.Note": [],
   "rcm.store.OPart": [],
   "rcm.store.OhTahun": [],
+  "rcm.store.OverHaulIn": [],
   "rcm.store.PM": [],
   "rcm.store.ReHome": [],
   "rcm.store.ReSpeedo": [],
@@ -2384,6 +2393,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.laporan.OverHaul": [
     "widget.pOverHaul"
+  ],
+  "rcm.view.laporan.OverHaulForm": [
+    "widget.taskOverHaul"
   ],
   "rcm.view.laporan.OverHaulInput": [
     "widget.iOverHaul"
