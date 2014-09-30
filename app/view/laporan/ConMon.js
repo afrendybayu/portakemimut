@@ -70,19 +70,19 @@ Ext.define('rcm.view.laporan.ConMon', {
 				flex :1,
 				// yNama: 'Cond. Monitoring',
 				jdl: 'Condition Monitoring Gas Compressor',
-				dstore: 'DetConMonGr',
+				dstore: 'DetConMonGr'
 			},{
 				xtype : 'detgascompcm',
 				flex :1,
 				// yNama: 'Cond. Monitoring',
 				jdl: 'Condition Monitoring Genset',
-				dstore: 'DetConMonGs',
+				dstore: 'DetConMonGs'
 			},{
 				xtype : 'detgascompcm',
 				flex :1,
 				// yNama: 'Cond. Monitoring',
 				jdl: 'Condition Monitoring Pump',
-				dstore: 'DetConMonPmp',
+				dstore: 'DetConMonPmp'
 			}]
 		}]
 		

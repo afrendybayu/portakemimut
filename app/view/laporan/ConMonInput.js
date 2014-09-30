@@ -38,7 +38,7 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 			defaults : {
 				draggable: false,
 				resizable: false,
-				hideable: false,
+				hideable: false
 			},
 			items : [{ xtype:'rownumberer',width:25 },
 						{header : 'Tanggal', width : 100,dataIndex : 'tgl',xtype : 'datecolumn', format : 'd-m-Y',editable : false, editor : { xtype : 'datefield', format: 'd-m-Y', allowBlank: false}},

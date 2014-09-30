@@ -18,7 +18,7 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 			// colorByPoint: true,
 			dataIndex: me.idx,
 			name: me.param,
-			color : me.warna,
+			color : me.warna
 			// drilldown : true
 		}];
 		me.store= me.dstore;
@@ -44,7 +44,7 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 			plotOptions : {
 				column: {
 					dataLabels: {
-						enabled: false,
+						enabled: false
 						/*formatter : function() {
 							return '<b>'+me.param+': '+this.y+'</b>';
 						}*/
@@ -81,7 +81,7 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 			//*/
 			credits : {
 				text : 'hc'
-			},
+			}
 			/*
 			legend : {
 				layout : 'vertical',

@@ -10,7 +10,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
             {
                 xtype: 'component',
                 // cls: 'tasks-new',
-                 width: 25,
+                 width: 25
                 // height: 25
             },{
 				xtype		: 'datefield',
@@ -89,7 +89,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				width:25,
 				tooltip: 'Save',
 				disabled : true,
-				formBind: true,
+				formBind: true
 				
 			
             }
@@ -101,7 +101,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 		
 		
 		
-	},
+	}
 	
 	/*pilihLokasi : function(n){
 		this.fireEvent('plhLokasi',n.get('kode'));

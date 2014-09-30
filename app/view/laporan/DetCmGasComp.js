@@ -52,7 +52,7 @@ Ext.define('rcm.view.laporan.DetCmGasComp', {
 			plotOptions : {
 				column: {
 					dataLabels: {
-						enabled: false,
+						enabled: false
 						/*formatter : function() {
 							return '<b>'+me.param+': '+this.y+'</b>';
 						}*/
@@ -87,7 +87,7 @@ Ext.define('rcm.view.laporan.DetCmGasComp', {
 			//*/
 			credits : {
 				text : 'hc'
-			},
+			}
 			/*
 			legend : {
 				layout : 'vertical',

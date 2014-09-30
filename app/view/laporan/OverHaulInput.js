@@ -36,7 +36,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 			defaults : {
 				draggable: false,
 				resizable: false,
-				hideable: false,
+				hideable: false
 			},
 			items : [	{header : 'No', xtype:'rownumberer',width:25 },
 						{header : 'Order No',width : 150,dataIndex : 'wo'},
@@ -45,13 +45,15 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 						{header : 'Durasi',width : 100,dataIndex : 'durasiplan'},
 						{
 							xtype		:'actioncolumn',
-							width		:25,
+							width		:50,
 							// id 			: 'conmondel', 
 							iconCls		: 'hpsEvent',
 							// menuDisabled: true,
 							sortable	: false,
 							visible		: false,
 							tooltip		: 'Hapus',
+							disabled: true,
+							//hidden : true,
 							handler		: Ext.bind(me.OhGridDelete, me)
 							
 			
@@ -69,6 +71,6 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 		var isi = gridView.getStore().getAt(rowIndex);
 		// console.log (isi);
 		this.fireEvent('deleteOverHaul', isi);
-    },
+    }
 	
 });

@@ -8,7 +8,7 @@ Ext.define('rcm.view.utama.GridOrderC', {
 	columnLines: true,
 	
 	viewConfig: {
-        stripeRows: false,
+        stripeRows: false
     //    enableTextSelection: true
     },
 	
