@@ -76,7 +76,7 @@ Ext.define('rcm.view.dataentry.FormGagal', {
 		me.listeners = {
 			close:function(flag){
 				//if(flag == true){
-					alert("close window");
+					//alert("close window");
 					//add to db
 				//}
 			}

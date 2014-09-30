@@ -67,7 +67,7 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 					}
 				}
 			}
-			alert(alertText);
+			//alert(alertText);
 			//*/
         }
     },

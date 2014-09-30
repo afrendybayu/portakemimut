@@ -51,7 +51,7 @@ Ext.define('rcm.view.laporan.WaktuSAP', {
 			//*
 			'select': {
 				fn: function(dp, dt){
-					alert("BlnGagal.js select");
+					//alert("BlnGagal.js select");
 					//this.fireEvent('klikKalender', dt);
 				}
 				//scope: this
