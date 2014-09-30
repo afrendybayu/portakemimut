@@ -12,7 +12,7 @@ Ext.define('rcm.model.OverHaulIn', {
 		api: {
 			read	: 'ci/index.php/sap/rOverHaul/readOH',
 			create 	: 'ci/index.php/sap/rOverHaul/createOH',
-			// update	: 'ci/index.php/sap/rConMon/updateCMon',
+			update	: 'ci/index.php/sap/rOverHaul/updateOH',
 			destroy : 'ci/index.php/sap/rOverHaul/removeOH'
         },
         reader: {

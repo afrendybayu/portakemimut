@@ -46,7 +46,9 @@ class Overhaul extends CI_Model {
 	}
 	
 	function get_ohlist(){
-		$sql = "select ol.id,ol.wo, concat(od.nama,' ',eq.kode,' ',eq.tag,' ',h1.init,' ',h3.nama) equip, ol.tglplan, ol.durasiplan
+		$sql = "select ol.id,ol.wo, h3.nama lokasi, h1.nama unit, eq.id id_equip,
+				concat(od.nama,' ',eq.kode,' ',eq.tag,' ',h1.init,' ',h3.nama) equip,
+				od.id oh, ol.tglplan, ol.durasiplan, ol.ket
 					from ohlist ol
 						inner join equip eq on ol.equip = eq.id
 						inner join ohdef od on ol.ohcat = od.id 
@@ -57,6 +59,21 @@ class Overhaul extends CI_Model {
 					order by ol.tglplan desc";
 		$query = $this->db->query($sql);
 		return $query->result();
+	}
+	
+	function update_ohlist(){
+		$ohin = json_decode(file_get_contents('php://input'));
+		$sql = array(
+					'tglplan' 		=> $ohin->tglplan,
+					'durasiplan' 	=> $ohin->durasiplan,
+					'equip'			=> $ohin->id_equip,
+					'ohcat'			=> $ohin->oh,
+					'wo'			=> $ohin->wo,
+					'ket'			=> $ohin->ket
+					
+				);
+		$this->db->where('id',$ohin->id);
+		$this->db->update('ohlist', $sql);
 	}
 	/*
 	function jmlDataTime($waktu,$kapal){
