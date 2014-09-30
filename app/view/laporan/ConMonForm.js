@@ -73,7 +73,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				allowBlank: false,
 				emptyText 	: 'Eksekutor',
 				name		: 'pic',
-				width		: 150,
+				width		: 150
 				//flex : 1
 			},{
 				xtype		:'textfield',

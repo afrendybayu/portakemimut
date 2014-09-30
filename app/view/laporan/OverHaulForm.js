@@ -93,7 +93,7 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 				emptyText 	: 'Durasi',
 				name		: 'durasiplan',
 				maxValue	: 360,
-				minValue	: 1,
+				minValue	: 1
 				// flex : 1
 			},{
                 
