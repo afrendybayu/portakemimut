@@ -61,7 +61,8 @@ class Sap extends CI_Model {
 		return $query->result();
 	}
 	
-	function get_cause_info($cause)	{
+	function get_cause_info($cause,$thn)	{
+		/*
 		$sql = "SELECT sap.pid AS noorder,if(notifno=0,'',notifno) AS nosap,damage,damage.nama AS damagenm,cause,cause.nama AS causenm,
 				manwork AS mainwork,down,opart,opart.nama as opartnm,
 				eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart
@@ -71,6 +72,18 @@ class Sap extends CI_Model {
 				LEFT JOIN damage ON sapfmea.damage = damage.kode
 				LEFT JOIN cause ON sapfmea.cause = cause.kode
 				group by noorder,damage,cause,opart";
+		//*/
+		$sql =	"select sf.pid AS noorder,if(notifno=0,'',notifno) AS nosap
+				,sf.damage,if(sf.damage<>'',damage.nama,'') AS damagenm
+				,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm
+				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm
+				,manwork AS mainwork,down,eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart
+				from sapfmea sf
+				LEFT JOIN sap ON sap.pid = sf.pid
+				LEFT JOIN cause ON sf.cause = cause.kode
+				LEFT JOIN opartdef ON sf.opart = opartdef.kode
+				LEFT JOIN damage ON sf.damage = damage.kode
+				where YEAR(planstart)=$thn;";
 		
 		if (strlen($cause)>0)	{
 			$sql .= "WHERE cause LIKE '%$cause%'";
@@ -94,11 +107,24 @@ class Sap extends CI_Model {
 		return $query->result();
 	}
 	
-	function get_damage_info($damage)	{
+	function get_damage_info($damage, $thn)	{
+		/*
 		$sql = "SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,opart,eqkode AS equip,".
 				"notiftype AS tipe,ordertype,downstart ".
 				"FROM sapfmea ".
 				"LEFT JOIN sap ON sap.pid = sapfmea.pid";
+		//*/
+		$sql =	"select sf.pid AS noorder,if(notifno=0,'',notifno) AS nosap
+				,sf.damage,if(sf.damage<>'',damage.nama,'') AS damagenm
+				,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm
+				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm
+				,manwork AS mainwork,down,eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart
+				from sapfmea sf
+				LEFT JOIN sap ON sap.pid = sf.pid
+				LEFT JOIN cause ON sf.cause = cause.kode
+				LEFT JOIN opartdef ON sf.opart = opartdef.kode
+				LEFT JOIN damage ON sf.damage = damage.kode
+				where YEAR(planstart)=$thn;";
 		
 		if (strlen($damage)>0)	{
 			$sql .= "WHERE damage LIKE '%$damage%'";

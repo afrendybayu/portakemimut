@@ -4,6 +4,7 @@ Ext.define('rcm.view.laporan.GridCause', {
 	alias: 'widget.gridCause',
 	xtype: 'taskGridCause',
     dstore:'-',
+    loadMask: true,
 	//
 	
 	initComponent: function() {
