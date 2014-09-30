@@ -29,7 +29,7 @@ Ext.define('rcm.view.laporan.SapContractLine', {
 	
 	initComponent: function() {
 		var me=this;
-		me.store='SapHistori';
+		//me.store='SapHistori';
 		me.store='ContractLine';
 		me.chartConfig = {
 			chart: {

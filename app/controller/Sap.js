@@ -418,7 +418,7 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	bFiltCont: function()	{
-		//alert("Thn: "+Ext.getCmp('iThnCont').getValue());
+		alert("Thn: "+Ext.getCmp('iThnCont').getValue());
 		var t=Ext.getCmp('iThnCont').getValue();
 		this.getContractStore().load({params:{tgl:t}});
 		this.getContractLineStore().load({params:{tgl:t}});

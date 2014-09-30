@@ -10,10 +10,30 @@ class rContract extends CI_Controller {
 		try {
 			$thn = $this->input->get('tgl')?:date('Y');
 			$this->load->model('contract');
+			//*
+			$hsl = array();
+			for ($i=0; $i<12; $i++)	{
+				$obj = new stdClass();
+				$obj->m = $i+1;
+				$obj->bln = nmMonth($i,1);
+				$obj->gc = '10';
+				$obj->gs = '120';
+				$obj->pm = '0';
+				array_push($hsl,$obj);
+			}
+			//*/
+			$hsl = $this->contract->get_contract($thn);
+			/*
+			for ($i=0; $i<count($oo); $i++)	{
+				$hsl[$oo[$i]->m-1] = $oo[$i];
+				$hsl[$oo[$i]->m-1]->bln = nmMonth($oo[$i]->m-1,1);
+			}
+			//*/
+			//echo "<br/><br/>";	print_r($oo); echo "<br/><br/>";
 
 			$jsonResult = array(
 				'success' => true,
-				'contract' => $this->contract->get_contract($thn)
+				'contract' => $hsl
 			);
 		}
 		catch (Exception $e){
@@ -43,10 +63,7 @@ class rContract extends CI_Controller {
 				
 			}
 			// print_r($obj);
-			
-			
-			
-			
+
 			$oo = $this->contract->get_grafikcontrak($thn);
 			// echo 'banyaknya '.count($oo) .'<br>';
 			

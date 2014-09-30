@@ -7,6 +7,7 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 	requires: [
 		 'rcm.view.laporan.GridContract'
         ,'rcm.view.laporan.SapContractLine'
+        ,'rcm.view.laporan.FilterThnNo'
 	],
 	
 	layout: 'border',
@@ -15,7 +16,7 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 		dock: 'top',
 		idThn: 'iThnCont',
 		idbSr: 'srCont',
-		xtype: 'tFThn'
+		xtype: 'tFThnNo'
 	}],
     
 	initComponent: function() {
