@@ -56,7 +56,7 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 							}
 							
 						}},
-						{header : 'Unit',width : 150,dataIndex : 'unit',editor :{
+						{header : 'Unit',width : 180,dataIndex : 'unit',editor :{
 							xtype		:'combobox',
 							emptyText 	: 'Unit',
 							store 		: 'CbUnit',
@@ -88,9 +88,9 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 				id 			: 'conmondel', 
 				iconCls		: 'hpsEvent',
 				// menuDisabled: true,
-				sortable	: false,
+				//sortable	: false,
 				//visible		: false,
-				disabled: true,
+				//disabled: true,
 				tooltip		: 'Hapus',
 				handler		: Ext.bind(me.hDeleteConMonClick, me)
 				

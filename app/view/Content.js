@@ -25,7 +25,7 @@ Ext.define('rcm.view.Content', {
     initComponent: function() {
 		var me=this;
 		me.items = [{
-		//*==========================
+		/*==========================
 
 			id: 'tu_ho',
 			title: 'Dashboard Home',

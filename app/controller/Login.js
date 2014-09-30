@@ -44,7 +44,9 @@ Ext.define('rcm.controller.Login', {
 		},{
 			ref : 'iConMon',
 			selector : 'iConMon'
-		
+		},{
+			ref : 'iOverHaul',
+			selector : 'iOverHaul'
 		}],
 	
 	init: function(){
@@ -127,8 +129,13 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('gridedit').setVisible(true);
 					Ext.getCmp('btnUplBpm3').setDisabled(false);
 					Ext.getCmp('bwbpm3').setDisabled(false);
-					Ext.getCmp('conmondel').setVisible(true);
+					Ext.getCmp('conmondel').setDisabled(false);
 					Ext.getCmp('cmform').setDisabled(false);
+					
+					Ext.getCmp('ohdel').setDisabled(false);
+					Ext.getCmp('ohform').setDisabled(false);
+					
+					//Ext.getCmp('conmondel').setEnabled(false);
 					
 					me.getIConMon().ngedit = 1;
 					me.getExcelgrid().ngedit = 1;
@@ -204,8 +211,14 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('gridedit').setVisible(false);
 					Ext.getCmp('btnUplBpm3').setDisabled(true);
 					Ext.getCmp('bwbpm3').setDisabled(true);
-					Ext.getCmp('conmondel').setVisible(false);
+					Ext.getCmp('conmondel').setDisabled(true);
 					Ext.getCmp('cmform').setDisabled(true);
+					
+					Ext.getCmp('ohform').setDisabled(true);
+					Ext.getCmp('ohdel').setDisabled(true);
+					
+					
+					//Ext.getCmp('ConMonSave').setDisabled(true);
 				}
 				else {
 					Ext.getCmp('p_login').setVisible(false);
@@ -231,8 +244,11 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('gridedit').setVisible(true);
 					Ext.getCmp('btnUplBpm3').setDisabled(false);
 					Ext.getCmp('bwbpm3').setDisabled(false);
-					Ext.getCmp('conmondel').setVisible(true);
+					Ext.getCmp('conmondel').setDisabled(false);
 					Ext.getCmp('cmform').setDisabled(false);
+					
+					Ext.getCmp('ohdel').setDisabled(false);
+					Ext.getCmp('ohform').setDisabled(false);
 					
 					me.getAuthlogin().level = res.level;
 					me.getExcelgrid().ngedit = 1;
@@ -246,8 +262,11 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('gridedit').setVisible(false);
 					Ext.getCmp('btnUplBpm3').setDisabled(true);
 					Ext.getCmp('bwbpm3').setDisabled(true);
-					Ext.getCmp('conmondel').setVisible(false);
+					Ext.getCmp('conmondel').setDisabled(true);
 					Ext.getCmp('cmform').setDisabled(true);
+					
+					Ext.getCmp('ohform').setDisabled(true);
+					Ext.getCmp('ohdel').setDisabled(true);
 					
 				}
 				// console.log(res.nama);

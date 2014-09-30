@@ -6,7 +6,7 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 	idunit 	: '',
 	ideq	: '',
 	idoh	: '',
-	// id : 'cmform',
+	id : 'ohform',
 	// disabled : true,
 	initComponent: function() {
 		var me=this; 

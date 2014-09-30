@@ -236,7 +236,7 @@ Ext.define('rcm.controller.Sap', {
 	entersaveOH : function(field,e){  
 		
 		if(e.getKey()=== e.ENTER){
-			alert('enter dari form OH');
+			//alert('enter dari form OH');
 			
 			if (get.isValid()){
 				this.simpanOHform();
@@ -264,7 +264,7 @@ Ext.define('rcm.controller.Sap', {
 		// rcmSettings.foh11111 = foh1;
 		ohsimp.save({
 			success: function(record, operation){
-				alert ('Data OH terSimpan');
+				//alert ('Data OH terSimpan');
 				me.getOverHaulInStore().reload();
 				froh.reset();
 				me.getOhTahunStore().reload();

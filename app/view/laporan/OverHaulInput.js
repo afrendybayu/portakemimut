@@ -46,7 +46,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 						{
 							xtype		:'actioncolumn',
 							width		:50,
-							// id 			: 'conmondel', 
+							id 			: 'ohdel', 
 							iconCls		: 'hpsEvent',
 							// menuDisabled: true,
 							sortable	: false,

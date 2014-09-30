@@ -40,7 +40,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				allowBlank	: false,
 				id			: 'cb_unit',
 				store 		: 'CbUnit',
-				width		: 150, 	
+				width		: 180, 	
 				name		: 'unit',
 				// flex 		: 1,
 				displayField: 'unit',
@@ -73,8 +73,8 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				allowBlank: false,
 				emptyText 	: 'Eksekutor',
 				name		: 'pic',
-				// width		: 200,
-				flex : 1
+				width		: 150,
+				//flex : 1
 			},{
 				xtype		:'textfield',
 				emptyText 	: 'keterangan',
