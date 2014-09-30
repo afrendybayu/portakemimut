@@ -70,11 +70,11 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 							}
 							
 						}},
-						{header : '#WO',flex : 1,dataIndex : 'wo',editor : {allowBlank: false}},
-						{header : '#SAP',flex : 1,dataIndex : 'sap',editor : {allowBlank: false}},
-						{header : 'Laporan',flex :1,dataIndex : 'url',editor : 'textfield'},
-						{header : 'Eksekutor',flex : 1,dataIndex : 'pic',editor : {allowBlank: false}},
-						{header : 'Keterangan',flex : 2,dataIndex : 'ket',editor : 'textfield'},
+						{header : '#WO',width : 70,dataIndex : 'wo',editor : {allowBlank: false}},
+						{header : '#SAP',width : 70,dataIndex : 'sap',editor : {allowBlank: false}},
+						//{header : 'Laporan',width : 150,dataIndex : 'url',editor : 'textfield'},
+						{header : 'Eksekutor',width : 150,dataIndex : 'pic',editor : {allowBlank: false}},
+						{header : 'Keterangan',flex : 1,dataIndex : 'ket',editor : 'textfield'},
 			/*{
 				xtype:'actioncolumn',
 				width:25,iconCls: 'editEvent',
@@ -89,7 +89,8 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 				iconCls		: 'hpsEvent',
 				// menuDisabled: true,
 				sortable	: false,
-				visible		: false,
+				//visible		: false,
+				disabled: true,
 				tooltip		: 'Hapus',
 				handler		: Ext.bind(me.hDeleteConMonClick, me)
 				
