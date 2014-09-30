@@ -327,22 +327,25 @@ Ext.define('rcm.controller.Sap', {
 	bFiltCau: function()	{
 		//alert("Cause Thn: "+Ext.getCmp('thnCau').getValue());
 		var t=Ext.getCmp('thnCau').getValue();
+		this.getSapCauseInfoStore().clearFilter(true);
 		this.getSapCauseStore().load({params:{thn:t}});
-		//this.getSapCauseInfoStore().load({params:{thn:t}});
+		this.getSapCauseInfoStore().load({params:{thn:t}});
 	},
 	
 	bFiltDam: function()	{
 		//alert("Damage Thn: "+Ext.getCmp('thnDam').getValue());
 		var t=Ext.getCmp('thnDam').getValue();
+		this.getSapDamageInfoStore().clearFilter(true);
 		this.getSapDamageStore().load({params:{thn:t}});
-		//this.getSapDamageInfoStore().load({params:{thn:t}});
+		this.getSapDamageInfoStore().load({params:{thn:t}});
 	},
 	
 	bFiltOPart: function()	{
 		//alert("OPart Thn: "+Ext.getCmp('thnOpr').getValue());
 		var t=Ext.getCmp('thnOpr').getValue();
+		this.getSapOPartInfoStore().clearFilter(true);
 		this.getSapOPartStore().load({params:{thn:t}});
-		//this.getSapOPartInfoStore().load({params:{thn:t}});
+		this.getSapOPartInfoStore().load({params:{thn:t}});
 	},
 	
 	bFiltPM: function()	{

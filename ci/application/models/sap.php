@@ -48,7 +48,7 @@ class Sap extends CI_Model {
     }
     
     function get_cause($thn)	{
-		$sql = "select sapfmea.cause AS kode,CONCAT('[',cause,'] ',cause.nama) AS desk,cause.nama, count(*) as jml,
+		$sql = "select sapfmea.cause AS kode,CONCAT('[',cause,'] ',ifnull(cause.nama,'')) AS desk,cause.nama, count(*) as jml,
 				ROUND((100*count(*)/(select count(*) from sapfmea left join sap on sapfmea.pid= sap.pid
 					where YEAR(planstart)=$thn)),2) as persen
 				from sapfmea
@@ -101,7 +101,7 @@ class Sap extends CI_Model {
 				left join damage on sapfmea.damage = damage.kode
 				left join sap on sapfmea.pid= sap.pid
 				where YEAR(planstart)=$thn
-				AND damage <> 'NDMG' group by damage order by jml desc, kode asc;";
+				AND damage <> 'NDMG' group by damage order by jml desc, kode asc";
 		$query = $this->db->query($sql);
 		
 		return $query->result();
@@ -124,7 +124,8 @@ class Sap extends CI_Model {
 				LEFT JOIN cause ON sf.cause = cause.kode
 				LEFT JOIN opartdef ON sf.opart = opartdef.kode
 				LEFT JOIN damage ON sf.damage = damage.kode
-				where YEAR(planstart)=$thn;";
+				where YEAR(planstart)=$thn
+				ORDER BY ";
 		
 		if (strlen($damage)>0)	{
 			$sql .= "WHERE damage LIKE '%$damage%'";
