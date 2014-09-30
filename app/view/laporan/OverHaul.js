@@ -6,14 +6,6 @@ Ext.define('rcm.view.laporan.OverHaul', {
 	requires: [
 		
 		'rcm.view.laporan.OverHaulInput'
-		/*
-		,'Ext.toolbar.Spacer'
-		,'rcm.view.laporan.ConMonUnit'
-		,'rcm.view.laporan.ConMonInput'
-		,'rcm.view.laporan.CmGasComp'
-		,'rcm.view.laporan.DetCmGasComp'
-		'rcm.view.laporan.EPOPie' 
-		//*/
 	],
 	layout: 'border',
     items: [{
@@ -36,7 +28,7 @@ Ext.define('rcm.view.laporan.OverHaul', {
    
                
         region: 'center',  
-		title : 'pabnel center',
+		// title : 'pabnel center',
         xtype: 'iOverHaul',
 		
         // layout: 'fit',

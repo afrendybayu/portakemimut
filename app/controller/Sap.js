@@ -16,6 +16,7 @@ Ext.define('rcm.controller.Sap', {
 		,'laporan.EPO'
 		,'laporan.WOComp'
 		//,'laporan.FilterThn'
+		,'laporan.OverHaulForm'
     ],
 
     controllers: [
@@ -39,15 +40,16 @@ Ext.define('rcm.controller.Sap', {
 		,'SapHistori'
 		
 		
-		,'ConMon','ConMonIn','CbParent','CbUnit','ConMonGr'
+		,'ConMon','ConMonIn','CbParent','CbUnit','CbEquip','ConMonGr'
 		,'DetConMonGr','DetConMonPmp','DetConMonGs'
-		,'OhTahun'
+		,'OhTahun','OverHaulIn'
 
     ],
     
     models: [
 		'ContractInput',
-		'ConMonIn'
+		'ConMonIn',
+		'OverHaulIn'
     ],
     
     refs: [{
@@ -88,8 +90,14 @@ Ext.define('rcm.controller.Sap', {
 			ref : 'iConMon',
 			selector : 'iConMon'
 		},{
+			ref : 'iOverHaul',
+			selector : 'iOverHaul'
+		},{
 			ref : 'tGridConMon',
 			selector : 'tGridConMon'
+		},{
+			ref : 'taskOverHaul',
+			selector : 'taskOverHaul'
 	}],
     
     init: function() {
@@ -148,6 +156,9 @@ Ext.define('rcm.controller.Sap', {
 			'#btnCariSM' : {
 				click: me.cariSapMaint
 			},
+			'#ConMonSave' : {
+				click : me.tblsimpanConMon
+			},
 			
 			'tGridContract': {
 				recordedit: me.ubahKontrak
@@ -159,16 +170,15 @@ Ext.define('rcm.controller.Sap', {
 			'#cb_unit' : {
 				select : me.pilihComboUnit
 			},
-			/*
-			'#cb_unit1' : {
-				plhUnit : me.cbplhunit
-			},
-			//*/
+
 			'taskConMon textfield': {
 				specialkey: me.handlesimpan
 			},
 			'#clr_filter' : {
 				click : me.hpsFilter
+			},
+			'#OverHaulSave' : {
+				click : me.hdlSimpanOh
 			},
 			
 			'iConMon':{
@@ -176,14 +186,122 @@ Ext.define('rcm.controller.Sap', {
 				updatecm	: me.updateFormCM,
 				deleteconmon: me.ConMonDeleteClick,
 				plhLokasi	: me.cbplhlokasi,
-				plhUnit 	: me.cbplhunit
+				plhUnit 	: me.cbplhunit,
+				specialkey	: me.entersaveOH
 			},
-			
+			'iOverHaul' :{
+				deleteOverHaul : me.ohDelete
+			},
 			'tGridConMon'	: {
 				'filterThConMon' : me.gridfilterTahun
+			},
+			'taskOverHaul' :{
+				ohplhlokasi 	: me.cbohplhlokasi,
+				ohplhunit		: me.cbohplhunit,
+				ohplheq			: me.cbohplhequip
+				
 			}
+			
 		});
     },
+	
+	ohDelete	: function(isi){
+		// console.log(isi);
+		// alert('Tak delete yoh');
+		var me = this, record = isi.data,
+		doh 	= Ext.create('rcm.model.OverHaulIn', record );
+		Ext.MessageBox.show({
+				title : 'Hapus OverHaul',
+				msg   : 'Yakin Data Akan di Hapus??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						doh.destroy ({
+							success : function(dcmon, operation){
+								// dcmon.destroy();
+								me.getOverHaulInStore().reload();
+								me.getOhTahunStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+					
+				}
+		});
+	},
+	entersaveOH : function(field,e){  
+		
+		if(e.getKey()=== e.ENTER){
+			alert('enter dari form OH');
+			
+			if (get.isValid()){
+				this.simpanOHform();
+			}
+		}
+	
+	},
+	
+	hdlSimpanOh : function(){
+		// alert('klik tombol simpan OH');
+		this.simpanOHform();
+	},
+	
+	simpanOHform : function(){
+		// alert('klik tombol simpan OH masukin isi form');
+		
+		var me = this,
+			froh = me.getTaskOverHaul().getForm(),
+			foh = me.getTaskOverHaul().getForm().getValues(); 
+		foh.id_unit = this.getTaskOverHaul().idunit;
+		foh.id_equip = this.getTaskOverHaul().ideq;
+		foh.oh = this.getTaskOverHaul().idoh;
+		var ohsimp = Ext.create('rcm.model.OverHaulIn', foh);
+		// console.log(foh);
+		// rcmSettings.foh11111 = foh1;
+		ohsimp.save({
+			success: function(record, operation){
+				alert ('Data OH terSimpan');
+				me.getOverHaulInStore().reload();
+				froh.reset();
+				me.getOhTahunStore().reload();
+				
+			}
+			
+		});
+	
+	},
+	
+	cbohplhequip : function(unit,oh){
+		// alert ('Equipmen dipilih dengan id : '+rec);
+		var eqp = this.getTaskOverHaul();
+		eqp.ideq = unit; eqp.idoh = oh; 
+	},
+	
+	cbohplhunit : function(rec){
+		// console.log('pencet cobobox pilih lokasi : '+rec);
+		var cboheq = this.getCbEquipStore();
+		cboheq.clearFilter();
+		cboheq.filter('id_unit',rec);
+		
+		
+		// this.getTaskOverHaul.idunit = record;
+		var idunt = this.getTaskOverHaul();
+		idunt.idunit = rec;
+		
+	
+	},
+	
+	cbohplhlokasi: function(rec){
+		// console.log('pencet cobobox pilih lokasi : '+rec);
+		var cbohunit = this.getCbUnitStore();
+		cbohunit.clearFilter();
+		cbohunit.filter('id_lokasi',rec);
+	
+	},
 	
 	hpsFilter : function(){
 		// console.log ('hapus filter ');
@@ -247,49 +365,33 @@ Ext.define('rcm.controller.Sap', {
 	ConMonDeleteClick: function(del) {
         //this.deleteTask(this.getTasksStore().getAt(rowIndex));
 		// console.log(del.data );
-		// cmons.remove(rec);
-		// cmons.sync;
-		// cmons.reload();
-		
+		//alert ('delete isi conmon');
 		var me = this, record = del.data,
 		dcmon 	= Ext.create('rcm.model.ConMonIn', record );
-		dcmon.destroy ({
-			success : function(dcmon, operation){
-				// dcmon.destroy();
-				me.getConMonInStore().reload();
-				me.getConMonStore().reload();
-			},
-			callback : function(){
-				
-			}
-		
-		})
+		Ext.MessageBox.show({
+				title : 'Hapus Condition Monitoring',
+				msg   : 'Yakin Data Akan di Hapus??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						dcmon.destroy ({
+							success : function(dcmon, operation){
+								// dcmon.destroy();
+								me.getConMonInStore().reload();
+								me.getConMonStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+					
+				}
+			});
     },
 	
-	// ConMonEditClick: function(view, rowIndex, colIndex, column, e) {
-	/*ConMonEditClick: function(rec, e) {
-        // this.showEditWindow(view.getRecord(view.findTargetByEvent(e)));
-		// console.log('edit ro ini '+this.getConMonInStore().getAt(rowIndex).data.id);
-		
-		// rcmSettings.aaaaa = rec;
-		// rcmSettings.bbbbb = e;
-		var idlok = rec.get('id');
-		var me = this, fcmon = Ext.getCmp('cmform').getForm();
-		// console.log(' -> '+idlok );
-		fcmon.findField('tgl').setValue(rec.get('tgl'));
-		fcmon.findField('lokasi').setValue(rec.get('lokasi'));
-		fcmon.findField('unit').setValue(rec.get('unit'));
-		fcmon.findField('wo').setValue(rec.get('wo'));
-		fcmon.findField('sap').setValue(rec.get('sap'));
-		fcmon.findField('url').setValue(rec.get('url'));
-		fcmon.findField('pic').setValue(rec.get('pic'));
-		fcmon.findField('ket').setValue(rec.get('ket'));
-		
-		
-		
-	
-	},
-	*/
     editInputConMon: function(task){
 		var me = this,
 		taskEditConMonForm = me.getTaskConMon();
@@ -301,7 +403,10 @@ Ext.define('rcm.controller.Sap', {
 		// this.getDetail().getForm().loadRecord(records[0]);
 	},
 	
-	
+	tblsimpanConMon : function(){
+		// console.log ('pencet tombol simpan');
+		this.simpanconmon();
+	},
 	
 	handlesimpan: function(field,e){  
 		
@@ -370,6 +475,9 @@ Ext.define('rcm.controller.Sap', {
 		this.getHoManStore().load({ params:{thn:t} });
 		
 	},
+	
+	
+	
 		
 	simpanconmon : function(){
 		

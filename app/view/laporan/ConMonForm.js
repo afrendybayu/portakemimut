@@ -80,22 +80,19 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				name		: 'ket',
 				flex : 2
 				
-			}/*,{
+			},{
                 
 				xtype:'button',
+				itemId : 'ConMonSave',
 				iconCls: 'add',
-				text	: 'Cari',
-				width:50,
-				tooltip: 'Cari',
+				// text	: 'Save',
+				width:25,
+				tooltip: 'Save',
 				disabled : true,
-				formBind: true
+				formBind: true,
+				
 			
-				/*
-				xtype: 'component',
-                // cls: 'tasks-new',
-                width: 50
-                */
-            //}
+            }
 			
 			
         ];

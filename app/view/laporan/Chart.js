@@ -20,6 +20,9 @@ Ext.define('rcm.view.laporan.Chart', {
         ,'rcm.view.laporan.GridOrderC'
         ,'rcm.view.laporan.SapCostCont'
         ,'rcm.view.laporan.GridOverHaul'
+		,'rcm.view.laporan.OverHaul'
+        ,'rcm.view.laporan.FilterThn'
+        ,'rcm.view.laporan.SapChartSaja'
         ,'rcm.view.laporan.FilterThn'
         ,'rcm.view.laporan.SapChartSaja'
 		,'rcm.view.laporan.OverHaul'
@@ -28,13 +31,6 @@ Ext.define('rcm.view.laporan.Chart', {
 	initComponent: function() {
 		var me=this;
 		me.items = [{
-				/*
-				id: 'ts_hi',
-				title: 'Condition Monitoring',
-				xtype:'tConMon'
-			
-			},{
-				//*/
 				id: 'ts_oh',
 				title: 'OverHaul',
 				// xtype:'tOverHaul'
@@ -49,7 +45,6 @@ Ext.define('rcm.view.laporan.Chart', {
 				//idThn: 'thnWoC',
 				//idbSr: 'srWoC',
 				xtype:'tWOComp'
-			//*
 			},{
 				id: 'ts_hi',
 				title: 'Condition Monitoring',
