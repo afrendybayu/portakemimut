@@ -38,7 +38,7 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 			defaults : {
 				draggable: false,
 				resizable: false,
-				hideable: false,
+				hideable: false
 			},
 			items : [{ xtype:'rownumberer',width:25 },
 						{header : 'Tanggal', width : 100,dataIndex : 'tgl',xtype : 'datecolumn', format : 'd-m-Y',editable : false, editor : { xtype : 'datefield', format: 'd-m-Y', allowBlank: false}},
@@ -56,7 +56,7 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 							}
 							
 						}},
-						{header : 'Unit',width : 150,dataIndex : 'unit',editor :{
+						{header : 'Unit',width : 180,dataIndex : 'unit',editor :{
 							xtype		:'combobox',
 							emptyText 	: 'Unit',
 							store 		: 'CbUnit',
@@ -70,11 +70,11 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 							}
 							
 						}},
-						{header : '#WO',flex : 1,dataIndex : 'wo',editor : {allowBlank: false}},
-						{header : '#SAP',flex : 1,dataIndex : 'sap',editor : {allowBlank: false}},
-						{header : 'Laporan',flex :1,dataIndex : 'url',editor : 'textfield'},
-						{header : 'Eksekutor',flex : 1,dataIndex : 'pic',editor : {allowBlank: false}},
-						{header : 'Keterangan',flex : 2,dataIndex : 'ket',editor : 'textfield'},
+						{header : '#WO',width : 70,dataIndex : 'wo',editor : {allowBlank: false}},
+						{header : '#SAP',width : 70,dataIndex : 'sap',editor : {allowBlank: false}},
+						//{header : 'Laporan',width : 150,dataIndex : 'url',editor : 'textfield'},
+						{header : 'Eksekutor',width : 150,dataIndex : 'pic',editor : {allowBlank: false}},
+						{header : 'Keterangan',flex : 1,dataIndex : 'ket',editor : 'textfield'},
 			/*{
 				xtype:'actioncolumn',
 				width:25,iconCls: 'editEvent',
@@ -88,8 +88,9 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 				id 			: 'conmondel', 
 				iconCls		: 'hpsEvent',
 				// menuDisabled: true,
-				sortable	: false,
-				visible		: false,
+				//sortable	: false,
+				//visible		: false,
+				//disabled: true,
 				tooltip		: 'Hapus',
 				handler		: Ext.bind(me.hDeleteConMonClick, me)
 				

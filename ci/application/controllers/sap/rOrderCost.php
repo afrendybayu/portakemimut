@@ -8,7 +8,7 @@ class rOrderCost extends CI_Controller {
 	
 	public function sapOCostWo()	{
 		try {
-			$thn = $this->input->get('tgl')?:date('Y');
+			$thn = $this->input->get('thn')?:date('Y');
 
 			$this->load->model('sap');
 			
@@ -31,7 +31,7 @@ class rOrderCost extends CI_Controller {
 	
 	public function sapOCostOt()	{
 		try {
-			$thn = $this->input->get('sap')?:date('Y');
+			$thn = $this->input->get('thn')?:date('Y');
 
 			$this->load->model('sap');
 			$hsl = $this->sap->get_ordercostot($thn);
@@ -61,7 +61,7 @@ class rOrderCost extends CI_Controller {
 	
 	public function sapPsOCwo()		{
 		try {
-			$thn = $this->input->get('tgl')?:date('Y');
+			$thn = $this->input->get('thn')?:date('Y');
 			$this->load->model('sap');
 			$hsl = $this->sap->get_persen_ocwo($thn);
 			//print_r($hsl);
@@ -82,7 +82,7 @@ class rOrderCost extends CI_Controller {
 	
 	public function sapPsOCot()		{
 		try {
-			$thn = $this->input->get('tgl')?:date('Y');
+			$thn = $this->input->get('thn')?:date('Y');
 			$this->load->model('sap');
 			$hsl = $this->sap->get_persen_ocot($thn);
 			
@@ -114,7 +114,7 @@ class rOrderCost extends CI_Controller {
 	
 	public function sapTop10()		{
 		try {
-			$thn = $this->input->get('tgl')?:date('Y');
+			$thn = $this->input->get('thn')?:date('Y');
 			$this->load->model('sap');
 			$hsl = $this->sap->get_topten($thn);
 			//print_r($hsl);
@@ -135,7 +135,8 @@ class rOrderCost extends CI_Controller {
 	
 	public function sapPmCost()		{
 		try {
-			$thn = $this->input->get('tgl')?:date('Y');
+			$thn = $this->input->get('thn')?:date('Y');
+			//echo "thn: $thn<br/>";
 			$this->load->model('sap');
 			$hsl = $this->sap->get_pm_cost($thn);
 			//print_r($hsl);

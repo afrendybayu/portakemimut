@@ -64,11 +64,6 @@ Ext.define('rcm.controller.Sap', {
 		},{
 			ref: 'tFSap',
 			selector: 'tFSap'
-		/*
-		},{
-			ref: 'tFThn',
-			selector: 'tFThn'
-		//*/
 		},{
 			ref: 'tEPO',
 			selector: 'tEPO'
@@ -116,7 +111,7 @@ Ext.define('rcm.controller.Sap', {
 			'causechart':	{
 				sapFilter: me.grafikFilter
 			},
-			'#srWoC': {
+			'#srCom': {
 				click: me.bFiltWoC
 			},
 			'#srCont': {
@@ -283,7 +278,7 @@ Ext.define('rcm.controller.Sap', {
 	entersaveOH : function(field,e){  
 		
 		if(e.getKey()=== e.ENTER){
-			alert('enter dari form OH');
+			//alert('enter dari form OH');
 			
 			if (get.isValid()){
 				this.simpanOHform();
@@ -311,7 +306,7 @@ Ext.define('rcm.controller.Sap', {
 		// rcmSettings.foh11111 = foh1;
 		ohsimp.save({
 			success: function(record, operation){
-				alert ('Data OH terSimpan');
+				//alert ('Data OH terSimpan');
 				me.getOverHaulInStore().reload();
 				froh.reset();
 				me.getOhTahunStore().reload();
@@ -472,44 +467,56 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	bFiltCau: function()	{
-		alert("Cause Thn: "+Ext.getCmp('thnCau').getValue());
+		//alert("Cause Thn: "+Ext.getCmp('thnCau').getValue());
 		var t=Ext.getCmp('thnCau').getValue();
-		this.getSapCauseStore().load({params:{tgl:t}});
-		this.getSapCauseInfoStore().load({params:{tgl:t}});
+		this.getSapCauseInfoStore().clearFilter(true);
+		this.getSapCauseStore().load({params:{thn:t}});
+		this.getSapCauseInfoStore().load({params:{thn:t}});
 	},
 	
 	bFiltDam: function()	{
-		alert("Damage Thn: "+Ext.getCmp('thnDam').getValue());
+		//alert("Damage Thn: "+Ext.getCmp('thnDam').getValue());
 		var t=Ext.getCmp('thnDam').getValue();
-		this.getSapDamageStore().load({params:{tgl:t}});
-		this.getSapDamageInfoStore().load({params:{tgl:t}});
+		this.getSapDamageInfoStore().clearFilter(true);
+		this.getSapDamageStore().load({params:{thn:t}});
+		this.getSapDamageInfoStore().load({params:{thn:t}});
 	},
 	
 	bFiltOPart: function()	{
-		alert("OPart Thn: "+Ext.getCmp('thnOpr').getValue());
+		//alert("OPart Thn: "+Ext.getCmp('thnOpr').getValue());
 		var t=Ext.getCmp('thnOpr').getValue();
-		this.getSapOPartStore().load({params:{tgl:t}});
-		this.getSapOPartInfoStore().load({params:{tgl:t}});
+		this.getSapOPartInfoStore().clearFilter(true);
+		this.getSapOPartStore().load({params:{thn:t}});
+		this.getSapOPartInfoStore().load({params:{thn:t}});
 	},
 	
 	bFiltPM: function()	{
-		alert("PM Thn: "+Ext.getCmp('thnPM').getValue());
+		//alert("PM Thn: "+Ext.getCmp('thnPM').getValue());
+		this.getSapPMCostStore().load({ params:{thn:Ext.getCmp('thnPM').getValue()} });
 	},
 	
 	bFiltTop10: function()	{
-		alert("Top10 Thn: "+Ext.getCmp('thnTop10').getValue());
+		//alert("Top10 Thn: "+Ext.getCmp('thnTop10').getValue());
+		this.getSapTop10Store().load({ params:{thn:Ext.getCmp('thnTop10').getValue()} });
 	},
 	
 	bFiltOCost: function()	{
-		alert("OrderCost Thn: "+Ext.getCmp('iThnOcost').getValue());
+		//alert("OrderCost Thn: "+Ext.getCmp('iThnOcost').getValue());
+		var m=this,
+			t=Ext.getCmp('iThnOcost').getValue();
+		m.getSapOrderCwoStore().load({ params:{thn:t} });
+		m.getSapOrderCotStore().load({ params:{thn:t} });
+		m.getSapPsOCotStore().load({ params:{thn:t} });
+		m.getSapPsOCwoStore().load({ params:{thn:t} });
 	},
 	
 	bFiltWoC: function()	{
-		alert("WoC Thn: "+Ext.getCmp('thnWoC').getValue());
+		//alert("WoC Thn: "+Ext.getCmp('iThnCom').getValue());
+		var t=Ext.getCmp('iThnCom').getValue();
+		this.getHoTecoStore().load({ params:{thn:t} });
+		this.getHoManStore().load({ params:{thn:t} });
+		
 	},
-	
-	
-	
 		
 	simpanconmon : function(){
 		
@@ -635,10 +642,13 @@ Ext.define('rcm.controller.Sap', {
 	
 	cariSapMaint: function()	{
 		//var o = this.getTFSap().sedotFilter(),
-		var o = this.getTEPO().sedotFilter(),
-			p = { loc:o.iL,otp:o.iW,mwc:o.iM,taw:o.iTw,tak:o.iTk };
+		var m = this,
+			o = m.getTEPO().sedotFilter(),
+			//p = { loc:o.iL,otp:o.iW,mwc:o.iM,taw:o.iTw,tak:o.iTk };
+			p = { loc:o.iL,otp:o.iW,mwc:o.iM,thn:o.iT };
 		//alert("o.L: "+o.iL+", oW: "+o.iW+", oM: "+o.iM+", oT: "+o.iT);
-		this.ubahLabelWO(p);
+		m.ubahLabelWO(p);
+		m.getSapEPOStore().load({ params: {thn:o.iT} });
 	},
 	
 	grafikCauseClear: function()	{

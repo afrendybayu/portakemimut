@@ -54,7 +54,7 @@ Ext.define('rcm.view.Content', {
 			title: 'Runnning Hour',
 			iconCls: 'RunnningHour',
 			//layout: 'accordion',
-			xtype: 'tabRh',
+			xtype: 'tabRh'
 			/*
 			xtype: 'tabpanel',
 			items: [{

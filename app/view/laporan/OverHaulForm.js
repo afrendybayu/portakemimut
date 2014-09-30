@@ -6,7 +6,7 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 	idunit 	: '',
 	ideq	: '',
 	idoh	: '',
-	// id : 'cmform',
+	id : 'ohform',
 	// disabled : true,
 	initComponent: function() {
 		var me=this; 
@@ -14,13 +14,22 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
             {
                 xtype: 'component',
                 // cls: 'tasks-new',
-                 width: 25,
+                 width: 25
                 // height: 25
             },{
+				xtype		:'textfield',
+				allowBlank	: false,
+				emptyText 	: 'Order No',
+				name		: 'wo',
+				width		: 150
+				// width		: 200 	
+				// flex : 1
+			},{
 				xtype		:'combobox',
 				editable	: false,
 				allowBlank	: false,
-				width 		: 150,
+				//width 		: 150,
+				flex: 1,
 				store 		: 'CbParent',
 				emptyText	: 'Lokasi',
 				name		: 'lokasi',
@@ -30,7 +39,7 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 				listeners: {
 					select: function(combo, records, eOpts ) {
 						me.plhlok(records);
-					},
+					}
 				}
 				
 			},{
@@ -39,7 +48,8 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 				editable	: false,
 				allowBlank	: false,
 				store 		: 'CbUnit',
-				width		: 150, 	
+				//width		: 150, 
+				flex: 1,	
 				name		: 'unit',
 				displayField: 'unit',
 				valueField 	: 'unit',
@@ -47,7 +57,7 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 				listeners: {
 					select: function(combo, records, eOpts ) {
 						me.plhunit(records);
-					},
+					}
 				}
 			},{
 				xtype		:'combobox',
@@ -55,7 +65,8 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 				editable	: false,
 				allowBlank	: false,
 				store 		: 'CbEquip',
-				width		: 150, 	
+				//width		: 150, 	
+				flex: 1,
 				name		: 'equip',
 				displayField: 'eq',
 				valueField 	: 'eq',
@@ -63,17 +74,10 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 				listeners: {
 					select: function(combo, records, eOpts ) {
 						me.plhequip(records);
-					},
+					}
 				}
 			},{
-				xtype		:'textfield',
-				allowBlank	: false,
-				emptyText 	: 'Order No',
-				name		: 'wo',
-				width		: 150
-				// width		: 200 	
-				// flex : 1
-			},{
+			
 				xtype		: 'datefield',
 				emptyText	: 'Tanggal',
 				name		: 'tglplan',
@@ -85,11 +89,11 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 			},{
 				xtype		:'numberfield',
 				allowBlank	: false,
+				width : 100,
 				emptyText 	: 'Durasi',
 				name		: 'durasiplan',
 				maxValue	: 360,
-				minValue	: 1,
-				width		: 50
+				minValue	: 1
 				// flex : 1
 			},{
                 
@@ -100,7 +104,7 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 				width	:50,
 				tooltip	: 'Save',
 				disabled: true,
-				formBind: true,
+				formBind: true
 				
 			
             }
@@ -132,7 +136,7 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 		var eqp = record[0].data.id_eq;
 		var ohid = record[0].data.id_oh
 		this.fireEvent('ohplheq',eqp,ohid);
-	},
+	}
 	
 	
 	

@@ -40,7 +40,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 			defaults : {
 				draggable: false,
 				resizable: false,
-				hideable: false,
+				hideable: false
 			},
 			items : [	{header : 'No', xtype:'rownumberer',width:25 },
 						{header : 'Order No',width : 150,dataIndex : 'wo', editor: {allowBlank: false}},
@@ -108,11 +108,14 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 						}},
 						{
 							xtype		:'actioncolumn',
-							width		:25,
+							width		:50,
+							id 			: 'ohdel', 
 							iconCls		: 'hpsEvent',
 							sortable	: false,
 							visible		: false,
 							tooltip		: 'Hapus',
+							disabled: true,
+							//hidden : true,
 							handler		: Ext.bind(me.OhGridDelete, me)
 							
 			
@@ -132,11 +135,12 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 		this.fireEvent('deleteOverHaul', isi);
     },
 	
+
 	hdlGridOHEdit: function(record, e){
 		// console.log (e);
 		rcmSettings.eeeee = e;
 		// rcmSettings.rrrrr = record;
-		console.log('id equip : '+e.record.get('id_equip')+' , id oh : '+e.record.get('oh'));
+		// console.log('id equip : '+e.record.get('id_equip')+' , id oh : '+e.record.get('oh'));
 		
 		var rec = e.newValues;
 		// rec.id_unit = this.idunit == ''? e.record.get('id_unit') : this.idunit;
@@ -168,7 +172,6 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 		var ohid = record[0].data.id_oh
 		// console.log ('edit kode equip '+ eqp +' edit kode ohid : '+ohid);
 		this.fireEvent('edohplheq',eqp,ohid);
-	},
-	
+	}
 	
 });

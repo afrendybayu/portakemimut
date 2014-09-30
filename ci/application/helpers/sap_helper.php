@@ -89,10 +89,27 @@ if ( ! function_exists('fTgl'))	{
 
 if ( ! function_exists('fDT'))	{	
 	function fDT($x)	{		// 4/29/2014 8:00
+		//echo "fDT: ".$x."<br/>";
+		/*
 		if ($x)	{
+			echo "sblm tes ";
 			$test = new DateTime($x);
+			echo "tes: ".$test;
 			return date_format($test, "Y-m-d H:i:s");
-		} 
+		}
+		//*/
+		if ($x) {
+			list($stgl, $sjam) = sscanf($x, "%s %s");
+			//echo "$stgl, $sjam<br/>";
+			$xtgl = explode("/",$stgl);
+			$xjam = explode(":",$sjam);
+			
+			//print_r($xtgl);
+			//print_r($xjam);
+			
+			$wkt = mktime(intval($xjam[0]),intval($xjam[1]),0,intval($xtgl[1]),intval($xtgl[0]),intval($xtgl[2]));
+			return date('Y-m-d H:i:s', $wkt);
+		}
 		else return '';
 	}
 }

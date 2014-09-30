@@ -8,7 +8,7 @@ class rTeco extends CI_Controller {
 	
 	public function sapPersenTeco()	{
 		try {
-			$thn = $this->input->get('tgl')?:date('Y');
+			$thn = $this->input->get('thn')?:date('Y');
 
 			$this->load->model('sap');
 			
@@ -31,7 +31,7 @@ class rTeco extends CI_Controller {
 	
 	public function sapTecoMW()	{
 		try {
-			$thn = $this->input->get('tgl')?:date('Y');
+			$thn = $this->input->get('thn')?:date('Y');
 
 			$this->load->model('sap');
 			

@@ -4,6 +4,7 @@ Ext.define('rcm.view.laporan.GridCause', {
 	alias: 'widget.gridCause',
 	xtype: 'taskGridCause',
     dstore:'-',
+    loadMask: true,
 	//
 	
 	initComponent: function() {
@@ -28,7 +29,12 @@ Ext.define('rcm.view.laporan.GridCause', {
 			selectionchange: function(model, records) {
 				//alert("pilih: "+records[0].data.kode+" param: "+me.btnFilter);
 				//me.fireEvent('sapFilter',records[0].data,);	// .kode
-				me.fireEvent('sapFilter',me.btnFilter,records[0].data);	// .kode
+				//rcmSettings.yyyy = records;
+				//alert("records");
+				if (records[0] != null)	
+				//alert("mumet");
+				//else
+					me.fireEvent('sapFilter',me.btnFilter,records[0].data);	// .kode
 			}
 		};
 		me.bbar = [{

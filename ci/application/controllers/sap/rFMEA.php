@@ -61,11 +61,12 @@ class rFMEA extends CI_Controller {
 	
 	public function getCause()	{
 		try {
+			$thn = $this->input->get('thn')?:date('Y');
 			$this->load->model('sap');
 
 			$jsonResult = array(
 				'success' => true,
-				'sapcause' => $this->sap->get_cause()
+				'sapcause' => $this->sap->get_cause($thn)
 			);
 		}
 		catch (Exception $e){
@@ -79,12 +80,13 @@ class rFMEA extends CI_Controller {
 	
 	public function getCauseInfo()	{
 		try {
+			$thn = $this->input->get('thn')?:date('Y');
 			$cause = $this->input->get('cause')?:'';
 			$this->load->model('sap');
 
 			$jsonResult = array(
 				'success' => true,
-				'sapcause' => $this->sap->get_cause_info($cause)
+				'sapcause' => $this->sap->get_cause_info($cause, $thn)
 			);
 		}
 		catch (Exception $e){
@@ -98,11 +100,12 @@ class rFMEA extends CI_Controller {
 	
 	public function getDamage()	{
 		try {
+			$thn = $this->input->get('thn')?:date('Y');
 			$this->load->model('sap');
 
 			$jsonResult = array(
 				'success' => true,
-				'sapdamage' => $this->sap->get_damage()
+				'sapdamage' => $this->sap->get_damage($thn)
 			);
 		}
 		catch (Exception $e){
@@ -116,12 +119,13 @@ class rFMEA extends CI_Controller {
 
 	public function getDamageInfo()	{
 		try {
+			$thn = $this->input->get('thn')?:date('Y');
 			$damage = $this->input->get('cause')?:'';
 			$this->load->model('sap');
 
 			$jsonResult = array(
 				'success' => true,
-				'sapcause' => $this->sap->get_damage_info($damage)
+				'sapcause' => $this->sap->get_damage_info($damage, $thn)
 			);
 		}
 		catch (Exception $e){
@@ -135,11 +139,12 @@ class rFMEA extends CI_Controller {
 
 	public function getOPart()	{
 		try {
+			$thn = $this->input->get('thn')?:date('Y');
 			$this->load->model('sap');
 
 			$jsonResult = array(
 				'success' => true,
-				'sapopart' => $this->sap->get_opart()
+				'sapopart' => $this->sap->get_opart($thn)
 			);
 		}
 		catch (Exception $e){

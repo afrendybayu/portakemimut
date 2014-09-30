@@ -9,7 +9,7 @@ Ext.define('rcm.view.laporan.GridContract', {
 	requires: [
 		'rcm.view.Util',
 		'Ext.grid.plugin.CellEditing',
-		'Ext.grid.column.RowNumberer',
+		'Ext.grid.column.RowNumberer'
 	],
 	
 	columnLines: true,
@@ -66,5 +66,5 @@ Ext.define('rcm.view.laporan.GridContract', {
 		//alert(this.ngedit);
 		if (this.ngedit)	return true;
 		else return false;
-	},
+	}
 });

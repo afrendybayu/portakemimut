@@ -10,7 +10,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
             {
                 xtype: 'component',
                 // cls: 'tasks-new',
-                 width: 25,
+                 width: 25
                 // height: 25
             },{
 				xtype		: 'datefield',
@@ -40,7 +40,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				allowBlank	: false,
 				id			: 'cb_unit',
 				store 		: 'CbUnit',
-				width		: 150, 	
+				width		: 180, 	
 				name		: 'unit',
 				// flex 		: 1,
 				displayField: 'unit',
@@ -51,28 +51,30 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				allowBlank: false,
 				emptyText 	: '#WO',
 				name		: 'wo',
-				// width		: 200 	
-				flex : 1
+				width : 70
+				//flex : 1
 			},{
 				xtype		:'textfield',
 				allowBlank	: false,
 				emptyText 	: '#SAP',
 				name		: 'sap',
-				// width		: 150
-				flex : 1
+				width : 70
+				//flex : 1
+			/*
 			},{
 				xtype		:'textfield',
 				emptyText 	: 'url Link Laporan',
 				name		: 'url',
-				// width		: 200,
-				flex : 1				
+				width : 100
+				//flex : 1		
+			//*/
 			},{
 				xtype		:'textfield',
 				allowBlank: false,
 				emptyText 	: 'Eksekutor',
 				name		: 'pic',
-				// width		: 200,
-				flex : 1
+				width		: 150
+				//flex : 1
 			},{
 				xtype		:'textfield',
 				emptyText 	: 'keterangan',
@@ -86,10 +88,10 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 				itemId : 'ConMonSave',
 				iconCls: 'add',
 				// text	: 'Save',
-				width:25,
+				width:40,
 				tooltip: 'Save',
 				disabled : true,
-				formBind: true,
+				formBind: true
 				
 			
             }
@@ -101,7 +103,7 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 		
 		
 		
-	},
+	}
 	
 	/*pilihLokasi : function(n){
 		this.fireEvent('plhLokasi',n.get('kode'));

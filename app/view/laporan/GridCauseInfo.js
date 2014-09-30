@@ -3,6 +3,7 @@ Ext.define('rcm.view.laporan.GridCauseInfo', {
 	extend: 'Ext.grid.Panel',
 	//alias: 'widget.gridCause',
 	xtype: 'taskGridCauseInfo',
+	loadMask: true,
     
     dstore: '-',
 	//store: 'SapCauseInfo',
@@ -12,7 +13,7 @@ Ext.define('rcm.view.laporan.GridCauseInfo', {
 		me.store= me.dstore;
 		me.columns = {	
 			items: [
-			{ xtype:'rownumberer',width:35 },
+			{ xtype:'rownumberer',width:50 },
 			{ header:'No Order',dataIndex:'noorder',width:75 },
 			{ header:'No SAP',dataIndex:'nosap',width:75 },
 			{ header:'Tipe',dataIndex:'tipe',width:40 },

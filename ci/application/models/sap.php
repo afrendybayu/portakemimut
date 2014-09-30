@@ -2,11 +2,29 @@
 
 class Sap extends CI_Model {
 
-	function get_jmlWO()    {
+	function jml_sap()		{
+		$sql =	"select count(*) AS sap from sap UNION ALL
+				SELECT count(*) from sapfmea";
+		$query = $this->db->query($sql);
+		
+		return $query->result();
+	}
 
-		$sql =	"SELECT ordertype AS kode,pmtype,count(*) AS wo ".
-				",ROUND((100*count(*)/(select count(*) from sap )),2) as persen ".
-				"FROM sap GROUP BY ordertype ORDER BY ordertype ASC,pmtype ASC";
+	function get_jmlWO($thn)    {
+		/*
+		$sql =	"SELECT ordertype AS kode,pmtype,count(*) AS wo
+				,ROUND((100*count(*)/(select count(*) from sap )),2) as persen
+				FROM sap GROUP BY ordertype ORDER BY ordertype ASC,pmtype ASC";
+		//*/
+		
+		$sql =	"select ordertype AS kode,pmtype,count(*) AS wo
+				,ROUND((100*count(*)/(
+					select count(*) from sap WHERE year(planstart) = '$thn' AND 
+					ordertype in ('EP01','EP02','EP03','EP04','EP05'))),2) as persen
+				FROM sap
+				WHERE year(planstart) = '$thn'
+				GROUP BY ordertype ";
+		//echo "sql: $sql";
 		$query = $this->db->query($sql);
 		
 		return $query->result();
@@ -14,23 +32,26 @@ class Sap extends CI_Model {
     
     function get_selisih_WO($thn,$lok,$otp,$mwc)	{
 		/*
-		$sql =	"select (datediff(curdate(), planend)) as beda, count(*) as jml ".
-				",ROUND((100*count(*)/(select count(*) from sap where teco=0 and planend<curdate())),2) as persen ".
-				",(select CASE WHEN beda<7 THEN 1 WHEN beda<30 THEN 2 WHEN beda<60 THEN 3 ELSE 4 END) AS flak ".
-				"from sap ".
-				"WHERE teco=0 and planend<curdate() AND YEAR(planstart)=$thn GROUP BY flak";
+		$sql =	"select (datediff(curdate(), planend)) as beda, count(*) as jml
+				,ROUND((100*count(*)/(select count(*) from sap where teco=0 and planend<curdate() AND (datediff(curdate(), planend))>2)),2) as persen
+				,(select CASE WHEN beda<3 THEN 0 WHEN beda<7 THEN 1 WHEN beda<30 THEN 2 WHEN beda<60 THEN 3 ELSE 4 END) AS flak
+				from sap
+				WHERE teco=0 and planend<curdate() AND YEAR(planstart)=$thn AND (datediff(curdate(), planend))>2 ";
 		//*/
-		$sql =	"select (datediff(curdate(), planend)) as beda, count(*) as jml ".
-				",ROUND((100*count(*)/(select count(*) from sap where teco=0 and planend<curdate() AND (datediff(curdate(), planend))>2)),2) as persen ".
-				",(select CASE WHEN beda<3 THEN 0 WHEN beda<7 THEN 1 WHEN beda<30 THEN 2 WHEN beda<60 THEN 3 ELSE 4 END) AS flak ".
-				"from sap ".
-				"WHERE teco=0 and planend<curdate() AND YEAR(planstart)=$thn AND (datediff(curdate(), planend))>2 ";
-		//*	
-		if ($lok!="ALL" and $lok!="_")		$sql .=	"AND lokasi=$lok ";
-		if ($otp!="ALL" and $otp!="_")		$sql .=	"AND ordertype like '%$otp%' ";
-		if ($mwc!="ALL" and $mwc!="_")		$sql .=	"AND manwork like '%$mwc%' ";
+		$flt = '';
+		if ($lok!="ALL" and $lok!="_")		$flt .= " AND lokasi=$lok ";
+		if ($otp!="ALL" and $otp!="_")		$flt .=	" AND ordertype like '%$otp%' ";
+		if ($mwc!="ALL" and $mwc!="_")		$flt .=	" AND manwork like '%$mwc%' ";
+		
+		$sql =	"SELECT (datediff(CURDATE(), planend)) AS beda, count(*) AS jml
+				,ROUND((100*count(*))/(
+					select count(*) from sap where teco=0 and planend<curdate() AND datediff(curdate(), planend)>2 and year(planstart)=$thn $flt),2) as persen
+				,(select CASE WHEN beda<3 THEN 0 WHEN beda<7 THEN 1 WHEN beda<30 THEN 2 WHEN beda<60 THEN 3 ELSE 4 END) AS flak
+				from sap
+				WHERE teco=0 AND YEAR(planstart)=$thn AND datediff(curdate(), planend)>2 AND planend<curdate() $flt ";	
+		
 		//*/
-		$sql .=	"GROUP BY flak";
+		$sql .=	" GROUP BY flak";
 		//		"where downend='0000-00-00' and planend<curdate() group by flak";
 		//echo "sql: $sql<br/><br/><br/>";
 		// WHEN beda<3 THEN 0 		
@@ -39,27 +60,43 @@ class Sap extends CI_Model {
 		return $query->result();
     }
     
-    function get_cause()	{
-		$sql = "select sapfmea.cause AS kode,CONCAT('[',cause,'] ',cause.nama) AS desk,cause.nama, count(*) as jml,".
-				"ROUND((100*count(*)/(select count(*) from sapfmea )),2) as persen ".
-				"from sapfmea ".
-				"left join cause on sapfmea.cause= cause.kode ".
-				"group by cause order by jml desc, kode asc";	 
+    function get_cause($thn)	{
+		$sql = "select sapfmea.cause AS kode,CONCAT('[',cause,'] ',ifnull(cause.nama,'')) AS desk,cause.nama, count(*) as jml,
+				ROUND((100*count(*)/(select count(*) from sapfmea left join sap on sapfmea.pid= sap.pid
+					where YEAR(planstart)=$thn)),2) as persen
+				from sapfmea
+				left join cause on sapfmea.cause= cause.kode
+				left join sap on sapfmea.pid= sap.pid
+				where YEAR(planstart)=$thn
+				group by cause order by jml desc, kode asc";	 
 		$query = $this->db->query($sql);
 		
 		return $query->result();
 	}
 	
-	function get_cause_info($cause)	{
-		$sql = "SELECT sap.pid AS noorder,if(notifno=0,'',notifno) AS nosap,damage,damage.nama AS damagenm,cause,cause.nama AS causenm,".
-				"manwork AS mainwork,down,opart,opart.nama as opartnm,".
-				"eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart ".
-				"FROM sapfmea ".
-				"LEFT JOIN sap ON sap.pid = sapfmea.pid ".
-				"LEFT JOIN opart ON sapfmea.opart = opart.kode ".
-				"LEFT JOIN damage ON sapfmea.damage = damage.kode ".
-				"LEFT JOIN cause ON sapfmea.cause = cause.kode ".
-				"group by noorder,damage,cause,opart";
+	function get_cause_info($cause,$thn)	{
+		/*
+		$sql = "SELECT sap.pid AS noorder,if(notifno=0,'',notifno) AS nosap,damage,damage.nama AS damagenm,cause,cause.nama AS causenm,
+				manwork AS mainwork,down,opart,opart.nama as opartnm,
+				eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart
+				FROM sapfmea
+				LEFT JOIN sap ON sap.pid = sapfmea.pid
+				LEFT JOIN opart ON sapfmea.opart = opart.kode
+				LEFT JOIN damage ON sapfmea.damage = damage.kode
+				LEFT JOIN cause ON sapfmea.cause = cause.kode
+				group by noorder,damage,cause,opart";
+		//*/
+		$sql =	"select sf.pid AS noorder,if(notifno=0,'',notifno) AS nosap
+				,sf.damage,if(sf.damage<>'',damage.nama,'') AS damagenm
+				,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm
+				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm
+				,manwork AS mainwork,down,eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart
+				from sapfmea sf
+				LEFT JOIN sap ON sap.pid = sf.pid
+				LEFT JOIN cause ON sf.cause = cause.kode
+				LEFT JOIN opartdef ON sf.opart = opartdef.kode
+				LEFT JOIN damage ON sf.damage = damage.kode
+				where YEAR(planstart)=$thn;";
 		
 		if (strlen($cause)>0)	{
 			$sql .= "WHERE cause LIKE '%$cause%'";
@@ -69,22 +106,39 @@ class Sap extends CI_Model {
 		return $query->result();
 	}
 	
-	function get_damage()	{
-		$s = "select sapfmea.damage as kode,CONCAT('[',sapfmea.damage,'] ',damage.nama) AS desk,damage.nama, count(*) as jml, ".
-			 "ROUND((100*count(*)/(select count(*) from sapfmea where damage <> 'NDMG')),2) as persen ".
-			 "from sapfmea ".
-			 "left join damage on sapfmea.damage = damage.kode ".
-			 "where damage <> 'NDMG' group by damage order by jml desc, kode asc";
-		$query = $this->db->query($s);
+	function get_damage($thn)	{
+		$sql = "select sapfmea.damage as kode,CONCAT('[',sapfmea.damage,'] ',damage.nama) AS desk,damage.nama, count(*) as jml,
+				ROUND((100*count(*)/(select count(*) from sapfmea left join sap on sapfmea.pid= sap.pid where damage <> 'NDMG' AND 
+					YEAR(planstart)=$thn)),2) as persen
+				from sapfmea
+				left join damage on sapfmea.damage = damage.kode
+				left join sap on sapfmea.pid= sap.pid
+				where YEAR(planstart)=$thn
+				AND damage <> 'NDMG' group by damage order by jml desc, kode asc";
+		$query = $this->db->query($sql);
 		
 		return $query->result();
 	}
 	
-	function get_damage_info($damage)	{
+	function get_damage_info($damage, $thn)	{
+		/*
 		$sql = "SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,opart,eqkode AS equip,".
 				"notiftype AS tipe,ordertype,downstart ".
 				"FROM sapfmea ".
 				"LEFT JOIN sap ON sap.pid = sapfmea.pid";
+		//*/
+		$sql =	"select sf.pid AS noorder,if(notifno=0,'',notifno) AS nosap
+				,sf.damage,if(sf.damage<>'',damage.nama,'') AS damagenm
+				,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm
+				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm
+				,manwork AS mainwork,down,eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart
+				from sapfmea sf
+				LEFT JOIN sap ON sap.pid = sf.pid
+				LEFT JOIN cause ON sf.cause = cause.kode
+				LEFT JOIN opartdef ON sf.opart = opartdef.kode
+				LEFT JOIN damage ON sf.damage = damage.kode
+				where YEAR(planstart)=$thn
+				ORDER BY ";
 		
 		if (strlen($damage)>0)	{
 			$sql .= "WHERE damage LIKE '%$damage%'";
@@ -94,7 +148,7 @@ class Sap extends CI_Model {
 		return $query->result();
 	}
 	
-	function get_opart()	{
+	function get_opart($thn)	{
 		/*
 		$s = "select count(*) as jml, opart as kode,CONCAT('[',sapfmea.opart,'] ',damage.nama) AS desk, ".
 			 "(select nama from opart where opart.kode = sapfmea.opart limit 0,1) as nama, ".
@@ -102,13 +156,16 @@ class Sap extends CI_Model {
 			 "from sapfmea ".
 			 "group by opart order by jml desc";
 		//*/
-		$s = "select count(*) as jml, opart as kode, ".
-			 "(select nama from opart where opart.kode = sapfmea.opart limit 0,1) as nama,".
-			 "concat('[',opart,'] ',(select nama from opart where opart.kode = sapfmea.opart limit 0,1)) AS desk,".
-			 "ROUND((100*count(*)/(select count(*) from sapfmea)),2) as persen ".
-			 "from sapfmea ".
-			 "group by opart,kode order by jml desc, kode asc";
-		$query = $this->db->query($s);
+		$sql = "select count(*) as jml, opart as kode,
+				(select nama from opart where opart.kode = sapfmea.opart limit 0,1) as nama,
+				concat('[',opart,'] ',(select nama from opart where opart.kode = sapfmea.opart limit 0,1)) AS desk,
+				ROUND((100*count(*)/(select count(*) from sapfmea left join sap on sapfmea.pid= sap.pid
+				where YEAR(planstart)=$thn)),2) as persen
+				from sapfmea
+				left join sap on sapfmea.pid= sap.pid
+				where YEAR(planstart)=$thn
+				group by opart,kode order by jml desc, kode asc";
+		$query = $this->db->query($sql);
 		
 		return $query->result();
 	}
@@ -153,24 +210,24 @@ class Sap extends CI_Model {
 	}
 	
 	function get_teco_manwork($thn)	{
-		$sql =	"select refer.nama, (count(teco)) as tot, ".
-				"sum(if(teco!=0,1,0)) as `teco`, ".
-				"sum(if(teco!=0,0,1)) as `open`,".
-				"ROUND((100*(sum(if(teco!=0,1,0)))/count(teco)),2) as woc, ".
-				"ROUND((100*(sum(if(teco!=0,0,1)))/count(teco)),2) as woo ".
-				"from sap left join refer on refer.kode = sap.manwork ".
-				"where manwork != '' AND YEAR(planstart)=$thn group by manwork";
+		$sql =	"select refer.nama, (count(teco)) as tot,
+				sum(if(teco!=0,1,0)) as `teco`,
+				sum(if(teco!=0,0,1)) as `open`,
+				ROUND((100*(sum(if(teco!=0,1,0)))/count(teco)),2) as woc,
+				ROUND((100*(sum(if(teco!=0,0,1)))/count(teco)),2) as woo
+				from sap left join refer on refer.kode = sap.manwork
+				where manwork != '' AND YEAR(planstart)=$thn group by manwork";
 
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
 	
 	function get_teco_persen($thn)	{
-		$sql =	"select (if(teco!=0,1,0)) as teko ".
-				",(if(teco!=0,'Teco','Open')) as nama ".
-				",ROUND((100*count(*)/(select count(*) from sap)),2) as `teco` ".
-				"from sap where YEAR(planstart)=2014 ".
-				"group by teko";
+		$sql =	"select (if(teco!=0,1,0)) as teko
+				,(if(teco!=0,'Teco','Open')) as nama
+				,ROUND((100*count(*)/(select count(*) from sap where YEAR(planstart)=$thn)),2) as `teco`
+				from sap where YEAR(planstart)=$thn
+				group by teko";
 
 		$query = $this->db->query($sql);
 		return $query->result();
@@ -197,7 +254,7 @@ class Sap extends CI_Model {
 	}
 
 	function get_tahun()	{
-		$sql =	"select DATE_FORMAT(planstart,'%Y') AS thn FROM sap GROUP BY thn";
+		$sql =	"select DATE_FORMAT(planstart,'%Y') AS thn FROM sap GROUP BY thn ORDER BY thn DESC";
 		//echo "sql: $sql";		
 		
 		$query = $this->db->query($sql);
@@ -269,14 +326,14 @@ class Sap extends CI_Model {
 	}
 
 	function get_topten($thn)	{
-		$sql =	"SELECT CONCAT(equip.nama,'@',h.nama,' ',SUBSTRING_INDEX((SELECT hhhh.nama FROM hirarki hhhh WHERE hhhh.id ".
-				"	= (SELECT hhh.parent FROM hirarki hhh WHERE hhh.id ".
-				"	= (SELECT hh.parent FROM hirarki hh WHERE hh.id = equip.unit_id))),' ',-1)) AS desk ".
-				",ROUND(SUM(totmatcost),2) as jml ".
-				"FROM sap,equip,hirarki h ".
-				"WHERE equip.tag= SUBSTRING_INDEX(eqkode,'-',2) AND h.id = equip.unit_id AND YEAR(planstart)=$thn ".
-				"GROUP BY SUBSTRING_INDEX(eqkode,'-',2) ".
-				"ORDER BY jml desc, totmatcost DESC LIMIT 0,10";
+		$sql =	"SELECT CONCAT(equip.nama,'@',h.nama,' ',SUBSTRING_INDEX((SELECT hhhh.nama FROM hirarki hhhh WHERE hhhh.id
+					= (SELECT hhh.parent FROM hirarki hhh WHERE hhh.id
+					= (SELECT hh.parent FROM hirarki hh WHERE hh.id = equip.unit_id))),' ',-1)) AS desk
+				,ROUND(SUM(totmatcost),2) as jml
+				FROM sap,equip,hirarki h
+				WHERE equip.tag= SUBSTRING_INDEX(eqkode,'-',2) AND h.id = equip.unit_id AND YEAR(planstart)=$thn
+				GROUP BY SUBSTRING_INDEX(eqkode,'-',2)
+				ORDER BY jml desc, totmatcost DESC LIMIT 0,10";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}

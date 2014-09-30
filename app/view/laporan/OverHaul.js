@@ -20,16 +20,12 @@ Ext.define('rcm.view.laporan.OverHaul', {
         margins: '0 5 5 5',
 		layout : {
 			type : 'vbox',
-			align : 'stretch'}
-		
-		
-		
-    },{
-   
-               
+			align : 'stretch'
+		}
+    },{  
         region: 'center',  
 		// title : 'pabnel center',
-        xtype: 'iOverHaul',
+        xtype: 'iOverHaul'
 		
         // layout: 'fit',
         

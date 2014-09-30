@@ -8,6 +8,7 @@ class Overhaul extends CI_Model {
 
 	
 	function ohTahun($thn)	{
+
 		/*
 		$sql = "select o.unit, h.nama, 'wwe' as lok from overhaul o
 				LEFT JOIN hirarki h on o.unit = h.id where thn=$thn";

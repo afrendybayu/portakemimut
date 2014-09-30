@@ -12,12 +12,12 @@ Ext.define('rcm.view.laporan.GridConMon', {
 		me.columns = {	
 			items: [
 			{ xtype:'rownumberer',width:25, header : 'No' },
-			{ header:'Year',dataIndex:'tahun',flex:1, 
+			{ header:'Year',dataIndex:'tahun',width:60, 
 				summaryRenderer: function() {
 					return Ext.String.format('TOTAL'); 
 				} 
 			},
-			{ header:'Condition Monitoring',dataIndex:'jml',flex:1,summaryType:'sum' }
+			{ header:'Jml ConMon',dataIndex:'jml',flex:1,summaryType:'sum' }
 		]};
 		me.listeners = { 
 			'celldblclick' : function(list, record, row, e ){
@@ -34,7 +34,7 @@ Ext.define('rcm.view.laporan.GridConMon', {
 				xtype : 'button',
 				id	: 'clr_filter',
 				text : 'Clear Filter',
-				iconCls: 'clrFilter',
+				iconCls: 'clrFilter'
 				
 			}]
 		
