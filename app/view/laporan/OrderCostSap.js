@@ -41,7 +41,7 @@ Ext.define('rcm.view.laporan.OrderCostSap', {
 				flex: 2,
 				dstore: 'SapOrderCwo',
 				jdl: 'WO Type',
-				title: 'Order Costing (WO Type)'
+				title: 'Order Costing (Object Type)'
 			},{
 				xtype: 'tSapPie',
 				flex: 1,
@@ -69,7 +69,7 @@ Ext.define('rcm.view.laporan.OrderCostSap', {
 				flex: 2,
 				jdl: 'Object Type',
 				dstore: 'SapOrderCot',
-				title: 'Order Costing (Object Type)'
+				title: 'Order Costing (WO Type)'
 			},{
 				xtype: 'tSapPie',
 				flex: 1,

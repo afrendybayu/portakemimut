@@ -1070,6 +1070,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.laporan.FilterMaint": [],
   "rcm.view.laporan.FilterSap": [],
   "rcm.view.laporan.FilterThn": [],
+  "rcm.view.laporan.FilterThnNo": [],
   "rcm.view.laporan.GridCause": [],
   "rcm.view.laporan.GridCauseInfo": [],
   "rcm.view.laporan.GridConMon": [],
@@ -2363,6 +2364,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.laporan.FilterThn": [
     "widget.tFThn"
+  ],
+  "rcm.view.laporan.FilterThnNo": [
+    "widget.tFThnNo"
   ],
   "rcm.view.laporan.GridCause": [
     "widget.gridCause",
