@@ -102,7 +102,7 @@ Ext.define('rcm.view.Util', {
 				{ xtype:'rownumberer',width:25 
 				},{ header:'Lokasi',dataIndex:'lok',width:100, hideable : false, 
 					locked: true, filter: { type: 'string' }
-				},{ header:'Nama Unit',dataIndex:'nama',width:135, hideable : false, 
+				},{ header:'Nama Unit',dataIndex:'nama',width:180, hideable : false, 
 					locked: true, filter: { type: 'string' } 
 				}
 			];
@@ -130,7 +130,7 @@ Ext.define('rcm.view.Util', {
 				}
 				items.push({ header:this.UnmBln(i-1),hideable:false,columns:col });
 			}
-			items.push({ header:'Keterangan',dataIndex:'ket',minWidth: 180,flex:1,hideable:false });
+			//items.push({ header:'Keterangan',dataIndex:'ket',minWidth: 180,flex:1,hideable:false });
 			
 			//console.log(items);
 			return items;

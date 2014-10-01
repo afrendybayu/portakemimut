@@ -35,6 +35,7 @@ Ext.define('rcm.view.laporan.UploadFile', {
 						width: 100,
 						text: 'Upload BPM3'
 				}]
+			/*
 			},{
 				xtype: 'fieldcontainer',
 				layout: 'hbox',
@@ -80,6 +81,7 @@ Ext.define('rcm.view.laporan.UploadFile', {
 						width: 100,
 						text: 'Upload ConMon'
 				}]
+			//*/
 		}];
 		me.callParent(arguments);
 	}

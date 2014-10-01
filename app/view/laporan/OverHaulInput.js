@@ -56,7 +56,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 							listeners: {
 								select: function(combo, records, eOpts ) {
 									me.plhcblok(records);
-								},
+								}
 							}
 						
 						}},
@@ -72,7 +72,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 							listeners: {
 								select: function(combo, records, eOpts ) {
 									me.plhcbunit(records);
-								},
+								}
 							}
 						
 						}},
@@ -88,7 +88,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 							listeners: {
 								select: function(combo, records, eOpts ) {
 									me.plhcbequip(records);
-								},
+								}
 							}
 						}},
 						{header : 'Tanggal', width : 100,dataIndex : 'tglplan',xtype : 'datecolumn', format : 'd-m-Y',editable : false, editor:{

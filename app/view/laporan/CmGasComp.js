@@ -81,17 +81,20 @@ Ext.define('rcm.view.laporan.CmGasComp', {
 			//*/
 			credits : {
 				text : 'hc'
-			}
-			/*
+			},
+			//*
 			legend : {
+				enabled: false
+				/*
 				layout : 'vertical',
 				align : 'right',
 				verticalAlign : 'top',
 				x : -10,
 				y : 100
 				//borderWidth : 0
+				//*/
 			}
-			*/
+			//*/
 		};
 		me.callParent(arguments);
 	}

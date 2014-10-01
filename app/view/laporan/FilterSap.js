@@ -74,7 +74,7 @@ Ext.define('rcm.view.laporan.FilterSap', {
 					//emptyText: 'ALL',
 					displayField: 'mwc',
 					labelWidth: 140,
-					fieldLabel: '<b>Maintenance Activity</b>',
+					fieldLabel: '<b>Work Center</b>',
 					margin: '0 10 0 0'
 				},{
 					//id: 'btnCariSH',

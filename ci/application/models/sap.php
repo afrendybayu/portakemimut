@@ -61,14 +61,17 @@ class Sap extends CI_Model {
     }
     
     function get_cause($thn)	{
-		$sql = "select sapfmea.cause AS kode,CONCAT('[',cause,'] ',ifnull(cause.nama,'')) AS desk,cause.nama, count(*) as jml,
-				ROUND((100*count(*)/(select count(*) from sapfmea left join sap on sapfmea.pid= sap.pid
-					where YEAR(planstart)=$thn)),2) as persen
-				from sapfmea
-				left join cause on sapfmea.cause= cause.kode
-				left join sap on sapfmea.pid= sap.pid
-				where YEAR(planstart)=$thn
-				group by cause order by jml desc, kode asc";	 
+		$sql = "select cause as kode,CONCAT('[',cause,'] ',ifnull(cause.nama,'')) AS desk,cause.nama
+				,count(*) AS jml
+				,ROUND(100*count(*)/(SELECT count(*) FROM sapfmea sfx 
+					LEFT JOIN sap ON sfx.pid = sap.pid 
+					where YEAR(planstart)=$thn AND (sfx.cause <> 'COTH' OR sap.ordertype <> 'EP03')),2) as persen
+				from sapfmea sf
+				LEFT JOIN sap ON sf.pid = sap.pid
+				LEFT JOIN cause on sf.cause= cause.kode
+				where YEAR(planstart)=$thn AND (sf.cause <> 'COTH' OR sap.ordertype <> 'EP03')
+				group by cause
+				ORDER BY jml desc, cause asc";	 
 		$query = $this->db->query($sql);
 		
 		return $query->result();
@@ -96,7 +99,7 @@ class Sap extends CI_Model {
 				LEFT JOIN cause ON sf.cause = cause.kode
 				LEFT JOIN opartdef ON sf.opart = opartdef.kode
 				LEFT JOIN damage ON sf.damage = damage.kode
-				where YEAR(planstart)=$thn;";
+				where YEAR(planstart)=$thn AND (sf.cause <> 'COTH' OR sap.ordertype <> 'EP03')";
 		
 		if (strlen($cause)>0)	{
 			$sql .= "WHERE cause LIKE '%$cause%'";
@@ -234,12 +237,12 @@ class Sap extends CI_Model {
 	}
 	
 	function get_histori($thn,$lok,$otp,$mwc)	{
-		$sql =	"SELECT DATE_FORMAT(planend, '%b') AS bulan, MONTH(planend)-1 AS nbln ".
-				",SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,0,1)) AS `teco` ".
-				",SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)) AS `open` ".
-				",SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1)) AS jml ".
-				",ROUND((SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)))*100/(SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1))),2) as persen ".
-				"FROM sap WHERE YEAR(planstart)=$thn ";
+		$sql =	"SELECT DATE_FORMAT(planend, '%b') AS bulan, MONTH(planend)-1 AS nbln
+				,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,0,1)) AS `teco`
+				,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)) AS `open`
+				,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1)) AS jml
+				,ROUND((SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)))*100/(SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1))),2) as persen
+				FROM sap WHERE YEAR(planend)=$thn ";
 		
 		//echo "lok: $lok<br/>";
 
