@@ -53,7 +53,7 @@ Ext.define('rcm.view.laporan.EPOCol', {
 						events: {
 							click: function(evt) {
 								//rcmSettings.bongkar = evt;
-								alert(evt.currentTarget.x);
+								//alert(evt.currentTarget.x);
 								//me.fireEvent('ReHomeCl', evt.currentTarget.x, this.category);
 							}
 						}

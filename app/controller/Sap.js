@@ -438,7 +438,7 @@ Ext.define('rcm.controller.Sap', {
 		var me = this,
 		taskEditConMonForm = me.getTaskConMon();
 		// form =  taskEditConMonForm.down('form').getForm(),
-		console.log(task);
+		//console.log(task);
 		Ext.getCmp('cb_parent').setValue(task.data.lokasi);
 		taskEditConMonForm.down('form').loadRecord(task);
 		// taskEditConMonForm.getForm().loadRecord(task);
@@ -460,7 +460,7 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	bFiltCont: function()	{
-		//alert("Thn: "+Ext.getCmp('iThnCont').getValue());
+		alert("Thn: "+Ext.getCmp('iThnCont').getValue());
 		var t=Ext.getCmp('iThnCont').getValue();
 		this.getContractStore().load({params:{tgl:t}});
 		this.getContractLineStore().load({params:{tgl:t}});
@@ -667,7 +667,7 @@ Ext.define('rcm.controller.Sap', {
 	},
 	/*
 	grafikFilterx: function(a,b)	{
-		alert("grafikFilterx a: "+a+", b: "+b);
+		//alert("grafikFilterx a: "+a+", b: "+b);
 	},
 	//*/
 	grafikFilter: function(n, d)	{
@@ -796,7 +796,7 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	showResult: function(a)	{
-		console.log("tes: "+a);
+		//console.log("tes: "+a);
 	}
 	
 });

@@ -45,7 +45,7 @@ Ext.define('rcm.view.lapobama.BlnAv', {
 			//*
 			'select': {
 				fn: function(dp, dt){
-					alert("BlnAv.js select");
+					//alert("BlnAv.js select");
 					//this.fireEvent('klikKalender', dt);
 				}
 				//scope: this
@@ -59,7 +59,7 @@ Ext.define('rcm.view.lapobama.BlnAv', {
 			'select': {
 				fn: function(dp, dt){
 					//console.log("Tanggalan.js select: "+dt);
-					alert("Tanggalan.js select: ");
+					//alert("Tanggalan.js select: ");
 					//this.fireEvent('klikKalender', dt);
 				},
 				scope: this

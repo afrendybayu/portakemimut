@@ -107,10 +107,10 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 	
 	/*pilihLokasi : function(n){
 		this.fireEvent('plhLokasi',n.get('kode'));
-		console.log (n.get('kode'));
+		//console.log (n.get('kode'));
 	}*/
 	/*pilihUnit: function(n)	{
-		console.log(n.get('lokasi'));
+		//console.log(n.get('lokasi'));
 		this.fireEvent('plhUnit', n.get('lokasi'));
 	},*/
 	

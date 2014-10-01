@@ -44,7 +44,7 @@ Ext.define('rcm.view.nav.Navigation', {
 
 		me.listeners = [{
 			itemclick: function(s,r) {
-				alert("diclick item");
+				//alert("diclick item");
                 //alert(r.data.text);
 			}
 		}];

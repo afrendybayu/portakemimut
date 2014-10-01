@@ -67,7 +67,7 @@ Ext.define('rcm.view.dataentry.FMEAGrid', {
 				/*
 				handler: function(grid, rowIndex, colIndex) {
 					var rec = grid.getStore().getAt(rowIndex);
-					alert("Hapus " + rec.get('eql'));
+					//alert("Hapus " + rec.get('eql'));
 					grid.getStore().removeAt(rowIndex);
 				}
 				//*/

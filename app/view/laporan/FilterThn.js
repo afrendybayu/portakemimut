@@ -63,7 +63,7 @@ Ext.define('rcm.view.laporan.FilterThn', {
 			//*
 			'select': {
 				fn: function(dp, dt){
-					alert("BlnGagal.js select");
+					//alert("BlnGagal.js select");
 					//this.fireEvent('klikKalender', dt);
 				}
 				//scope: this
@@ -82,7 +82,7 @@ Ext.define('rcm.view.laporan.FilterThn', {
 		var t = Ext.getCmp(this.idThn).getValue();
 		//	me = this;
 		//o.iT = Ext.getCmp(this.idThn).getValue();
-		alert(this.idThn);
+		//alert(this.idThn);
 		return o;
 	}
 	

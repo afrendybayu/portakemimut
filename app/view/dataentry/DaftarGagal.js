@@ -45,8 +45,8 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 			itemclick: function(view, rec, item, index, e) {
 				var pos = view.getPositionByEvent(e),
 					col = pos.column;
-				alert(col);
-				console.log('unit: '+rec.get('eqid')+', id: '+rec.get('id'));
+				//alert(col);
+				//console.log('unit: '+rec.get('eqid')+', id: '+rec.get('id'));
 				if (col==13)	{
 					me.end = '-';
 					//if ()
