@@ -1,11 +1,11 @@
-Ext.define('rcm.view.nav.Navigation', {
+Ext.define('rcm.view.konfig.TreeHirarki', {
     extend: 'Ext.tree.Panel',
-    xtype: 'taskNav',
+    xtype: 'treeHirarki',
 	
     rootVisible: false,
     store: 'Hirarki',
-    /*
-    tbar: [{
+    //*
+    bbar: [{
 			text: 'Buka',
 			scope: this,
 			handler: this.onExpandAllClick
@@ -30,10 +30,14 @@ Ext.define('rcm.view.nav.Navigation', {
 	initComponent: function() {
 		var me = this;
 		//*
+		
+		
+		
+		
 		me.items = [{
 			xtype: 'treecolumn',
-			dataIndex: 'id',
-			flex: 1,
+			dataIndex: 'text'
+			// flex: 1,
 		//	editor: {
 		//		xtype: 'textfield',
 		//		selectOnFocus: true,
@@ -41,7 +45,7 @@ Ext.define('rcm.view.nav.Navigation', {
 		//	},
 		//	renderer: Ext.bind(me.renderName, me)
 		}];
-
+		/*
 		me.listeners = [{
 			itemclick: function(s,r) {
 				alert("diclick item");
@@ -49,35 +53,8 @@ Ext.define('rcm.view.nav.Navigation', {
 			}
 		}];
 		me.callParent();
-	},
-	//*/
-	/*
-	onExpandAllClick: function(){
-		//console.log("expand Navigasi");
+		//*/
 		
-        var me = this,
-            toolbar = me.down('toolbar');
-            
-        me.getEl().mask('Expanding tree...');
-        toolbar.disable();
-                    
-        this.expandAll(function() {
-            me.getEl().unmask();
-            toolbar.enable();
-        });
-        //*
-    },
-    
-    onCollapseAllClick: function(){
-		//console.log("collapse Navigasi");
-		//*
-        var toolbar = this.down('toolbar');
-        
-        toolbar.disable();
-        this.collapseAll(function() {
-            toolbar.enable();
-        });
-        //*
-    }
-    //*/
+		
+	//}
 });

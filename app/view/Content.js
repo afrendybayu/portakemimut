@@ -2,14 +2,16 @@ Ext.define('rcm.view.Content', {
     extend: 'Ext.tab.Panel',
     xtype: 'content',
 	
-	require: [
+	requires: [
 		'Ext.panel.Panel'
 		
 		,'rcm.view.lapobama.AvReChart' //--
 		,'rcm.view.laporan.Chart'
 		,'rcm.view.utama.HoChart'
 		//,'rcm.view.laporan.Tab'
+		,'rcm.view.konfig.TabKonfig'
 		,'rcm.view.dataentry.Tab'
+		
 		
 		//,'rcm.view.login.LoginAuth'
 	],
@@ -110,12 +112,14 @@ Ext.define('rcm.view.Content', {
 			//*/
 			//}]
 			//*/
-		/*
+		
 		},{
 		
-			id: 'tu_kf',
-			title: 'Konfigurasi',
-			iconCls: 'Konfigurasi',
+			id		: 'tu_kf',
+			title	: 'Konfigurasi',
+			iconCls	: 'Konfigurasi',
+			xtype 	: 't_Konfig'
+			/*
 			layout: {
 				type: 'border'
 			},
