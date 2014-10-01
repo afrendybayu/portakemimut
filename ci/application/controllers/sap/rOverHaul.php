@@ -101,6 +101,18 @@ class rOverHaul extends CI_Controller {
 		}
 	
 	}
+	public function updateOH(){
+		try {
+			//$ohtb = json_decode(file_get_contents('php://input'));
+			$hsl = $this->overhaul->update_ohlist();
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+	}
 
 }
 

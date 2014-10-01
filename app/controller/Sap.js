@@ -190,7 +190,12 @@ Ext.define('rcm.controller.Sap', {
 				specialkey	: me.entersaveOH
 			},
 			'iOverHaul' :{
-				deleteOverHaul : me.ohDelete
+				deleteOverHaul 	: me.ohDelete,
+				edohplhlokasi	: me.cbedohplhlokasi,
+				edohplhunit		: me.cbedohplhunit,
+				edohplheq		: me.cbedohplhequip,
+				updateoh		: me.updateGridOH
+				
 			},
 			'tGridConMon'	: {
 				'filterThConMon' : me.gridfilterTahun
@@ -204,6 +209,44 @@ Ext.define('rcm.controller.Sap', {
 			
 		});
     },
+	updateGridOH : function(record){
+		// console.log(record);
+		var me = this;
+		var updOH 	= Ext.create('rcm.model.OverHaulIn', record ); 
+		
+		updOH.save ({
+			success: function(updOH, operation){
+				// alert ('Update OverHaul terSimpan');
+				me.getOverHaulInStore().reload();
+				me.getOhTahunStore().reload();
+				
+			}
+		
+		}); 
+		
+	},
+	cbedohplhlokasi: function(rec){
+		console.log('pencet cobobox pilih lokasi : '+rec);
+		var cbohunit = this.getCbUnitStore();
+		cbohunit.clearFilter();
+		cbohunit.filter('id_lokasi',rec);
+	
+	},
+	cbedohplhunit : function(rec){
+		console.log('pencet cobobox pilih lokasi : '+rec);
+		var cboheq = this.getCbEquipStore();
+		cboheq.clearFilter();
+		cboheq.filter('id_unit',rec);
+
+		// this.getIOverHaul.idunit = record;
+		var idunt = this.getIOverHaul();
+		idunt.idunit = rec;
+	},
+	cbedohplhequip : function(unit,oh){
+		alert ('Equipmen dipilih dengan id : '+unit+' dengan idOh : '+oh);
+		var eqpOH = this.getIOverHaul();
+		eqpOH.ideq = unit; eqpOH.idoh = oh; 
+	},
 	
 	ohDelete	: function(isi){
 		// console.log(isi);
@@ -220,7 +263,6 @@ Ext.define('rcm.controller.Sap', {
 						
 						doh.destroy ({
 							success : function(dcmon, operation){
-								// dcmon.destroy();
 								me.getOverHaulInStore().reload();
 								me.getOhTahunStore().reload();
 							},
