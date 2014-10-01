@@ -17,6 +17,7 @@ class Contract extends CI_Model {
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=10 AND tahun=$thn THEN nilai END),0) as b10
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=11 AND tahun=$thn THEN nilai END),0) as b11
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=12 AND tahun=$thn THEN nilai END),0) as b12
+				,IFNULL(SUM(CASE WHEN tahun=$thn THEN nilai END),0) as tot
 				FROM contract c
 				LEFT JOIN cat_equip ON c.tipe = cat_equip.id
 				group by tipe
