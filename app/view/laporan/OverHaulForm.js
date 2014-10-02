@@ -18,7 +18,7 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
                 // height: 25
             },{
 				xtype		:'textfield',
-				allowBlank	: false,
+				//allowBlank	: false,
 				emptyText 	: 'Order No',
 				name		: 'wo',
 				width		: 150

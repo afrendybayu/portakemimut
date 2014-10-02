@@ -92,6 +92,11 @@ Ext.define('rcm.controller.Sap', {
 		},{
 			ref : 'iOverHaul',
 			selector : 'iOverHaul'
+		/*
+		},{
+			ref : 'pOverHaul',
+			selector : 'pOverHaul'
+		//*/
 		},{
 			ref : 'tGridConMon',
 			selector : 'tGridConMon'
@@ -180,7 +185,12 @@ Ext.define('rcm.controller.Sap', {
 			'#OverHaulSave' : {
 				click : me.hdlSimpanOh
 			},
-			
+			'#idDwOh' : {
+				click : me.hdlDlOh
+			},
+			'#idSrOh': {
+				click : me.hdlFiltThnOh
+			},
 			'iConMon':{
 				// specialkey	: me.hdlupdate,
 				updatecm	: me.updateFormCM,
@@ -209,6 +219,23 @@ Ext.define('rcm.controller.Sap', {
 			
 		});
     },
+    
+    hdlDlOh: function(btn)	{
+		var form = btn.up('form').getForm();
+		if(form.isValid()){
+			form.submit({
+				url: 'format_oh.xlsx'
+			});
+		}
+	},
+	
+	hdlFiltThnOh: function()	{
+		//alert('hdlFiltThnOh: '+Ext.getCmp('idThnOh').getValue());
+		var t=Ext.getCmp('idThnOh').getValue();
+		this.getOverHaulInStore().load({ params:{thn:t} });
+		this.getOhTahunStore().load({ params:{thn:t} });
+	},
+    
 	updateGridOH : function(record){
 		// console.log(record);
 		var me = this;

@@ -46,7 +46,7 @@ class Overhaul extends CI_Model {
 	
 	}
 	
-	function get_ohlist(){
+	function get_ohlist($thn){
 		$sql = "select ol.id,ol.wo, h3.nama lokasi, h1.nama unit, eq.id id_equip,
 				concat(od.nama,' ',eq.kode,' ',eq.tag,' ',h1.init,' ',h3.nama) equip,
 				od.id oh, ol.tglplan, ol.durasiplan, ol.ket
@@ -56,7 +56,7 @@ class Overhaul extends CI_Model {
 						inner join hirarki h1 on eq.unit_id = h1.id
 						inner join hirarki h2 on h1.parent = h2.id
 						inner join hirarki h3 on h2.parent = h3.id
-					where year(ol.tglplan) = year(now())
+					where year(ol.tglplan) = $thn
 					order by ol.tglplan desc";
 		$query = $this->db->query($sql);
 		return $query->result();

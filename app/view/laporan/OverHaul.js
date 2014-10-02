@@ -1,12 +1,24 @@
 // afrendyBayu,26Jan2014 //
 Ext.define('rcm.view.laporan.OverHaul', {
     xtype: 'pOverHaul',
-	extend: 'Ext.container.Container',
+	//extend: 'Ext.container.Container',
+	extend: 'Ext.panel.Panel',
 
 	requires: [
-		
-		'rcm.view.laporan.OverHaulInput'
+		'rcm.view.laporan.OverHaulInput',
+		'rcm.view.laporan.FilterUpload'
 	],
+	
+	dockedItems: [{
+		xtype: 'tFUpl',
+		dock: 'top',
+		idbDownL: 'idDwOh',
+		idbUpl: 'idUpOh',
+		idtLok: 'idLFileOh',
+		idThn: 'idThnOh',
+		idbSr: 'idSrOh'
+	}],
+	
 	layout: 'border',
     items: [{
 
@@ -23,12 +35,8 @@ Ext.define('rcm.view.laporan.OverHaul', {
 			align : 'stretch'
 		}
     },{  
-        region: 'center',  
-		// title : 'pabnel center',
+        region: 'center',
         xtype: 'iOverHaul'
-		
-        // layout: 'fit',
-        
     }]
 	
 
