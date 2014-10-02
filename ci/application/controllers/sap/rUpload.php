@@ -115,11 +115,11 @@ class rUpload extends CI_Controller {
 		//*
 		try {
 			sleep(1);
-			echo date('H:i:s')." Load from Excel file<br/>";
+			//echo date('H:i:s')." Load from Excel file<br/>";
 			$bacaFileStart = microtime(true);
 
 			$hsl = ambilFile('fileOh');
-			print_r($hsl);
+			//print_r($hsl);
 			//*
 			if (!$hsl["sukses"])	{
 				//header('HTTP/1.0 .$returnResponse. Server status', true, $returnResponse);
@@ -145,7 +145,7 @@ class rUpload extends CI_Controller {
 
 				$prosesFileStart = microtime(true);						
 				$colData = count(array_filter($dt[1]));
-				echo "Jml data: ".count($dt)." baris, jml Kolom: ".$colData."<br/><br/>";
+				//echo "Jml data: ".count($dt)." baris, jml Kolom: ".$colData."<br/><br/>";
 
 				$ff = array();
 				for ($i=0; $i<$colData; $i++)	{
@@ -159,7 +159,7 @@ class rUpload extends CI_Controller {
 					for ($i=0; $i<$colData; $i++)	{
 						$no = numtoa(array('', $i+1)); 
 						array_push($c,$dt[$kk][$no[0]]);
-						echo "no[$i]: {$no[0]} : {$dt[1][$no[0]]} : <font color='red'>{$dt[2][$no[0]]}</font> <br/>";
+						//echo "no[$i]: {$no[0]} : {$dt[1][$no[0]]} : <font color='red'>{$dt[2][$no[0]]}</font> <br/>";
 					}
 					//$this->upload->insert_bpm3($c);
 					$this->upload->insert_oh($c);
@@ -167,7 +167,15 @@ class rUpload extends CI_Controller {
 				
 				$prosesFileEnd = microtime(true);
 				$prosesFile = $prosesFileEnd - $prosesFileStart;
-				
+
+				$jsonResult = array(
+					'success' => true,
+					'fNama'	=> $hsl["nama"],
+					'fSize'	=> $hsl["size"],
+					'tBacaF'=> sprintf('%.4f',$bacaFile),
+					'tSaveF'=> sprintf('%.4f',$prosesFile),
+					'mem'	=> (memory_get_usage(true) / 1024 / 1024)." MB"
+				);
 			}
 			catch(Exception $e) {
 				//header('HTTP/1.0 .$returnResponse. Server status', true, $returnResponse);

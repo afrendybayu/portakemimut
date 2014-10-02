@@ -240,7 +240,7 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	hdlUplOh: function(btn)	{
-		alert("hdlUplOh");
+		//alert("hdlUplOh");
 		//
 		var tpl = new Ext.XTemplate(
 			'File processed on the server.<br/>',
@@ -262,7 +262,7 @@ Ext.define('rcm.controller.Sap', {
 		};
 
 		var form = btn.up('form').getForm();
-		console.log('form');
+		//console.log('form');
 		if(form.isValid()){
 			form.submit({
 				url: 'ci/index.php/sap/rUpload/getUplOh',
