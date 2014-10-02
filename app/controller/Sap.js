@@ -194,6 +194,9 @@ Ext.define('rcm.controller.Sap', {
 			'#idUpOh': {
 				click: me.hdlUplOh
 			},
+			'#idDwCm' : {
+				click : me.hdlDlOh
+			},
 			'iConMon':{
 				// specialkey	: me.hdlupdate,
 				updatecm	: me.updateFormCM,
@@ -228,6 +231,15 @@ Ext.define('rcm.controller.Sap', {
 		if(form.isValid()){
 			form.submit({
 				url: 'format_oh.xlsx'
+			});
+		}
+	},
+	
+	hdlDlOh: function(btn)	{
+		var form = btn.up('form').getForm();
+		if(form.isValid()){
+			form.submit({
+				url: 'format_conmon.xlsx'
 			});
 		}
 	},

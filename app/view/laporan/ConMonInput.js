@@ -70,8 +70,8 @@ Ext.define('rcm.view.laporan.ConMonInput', {
 							}
 							
 						}},
-						{header : '#WO',width : 70,dataIndex : 'wo',editor : {allowBlank: false}},
-						{header : '#SAP',width : 70,dataIndex : 'sap',editor : {allowBlank: false}},
+						{header : '#No WO ConMon',width : 120,dataIndex : 'wo',editor:{allowBlank: false} },
+						{header : '#No PM WO SAP',width : 120,dataIndex : 'sap',editor:'textfield' },
 						//{header : 'Laporan',width : 150,dataIndex : 'url',editor : 'textfield'},
 						{header : 'Eksekutor',width : 150,dataIndex : 'pic',editor : {allowBlank: false}},
 						{header : 'Keterangan',flex : 1,dataIndex : 'ket',editor : 'textfield'},

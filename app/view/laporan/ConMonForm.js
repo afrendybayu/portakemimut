@@ -49,16 +49,16 @@ Ext.define('rcm.view.laporan.ConMonForm', {
 			},{
 				xtype		:'textfield',
 				allowBlank: false,
-				emptyText 	: '#WO',
+				emptyText 	: '#No WO ConMon',
 				name		: 'wo',
-				width : 70
+				width : 120
 				//flex : 1
 			},{
 				xtype		:'textfield',
-				allowBlank	: false,
-				emptyText 	: '#SAP',
+				//allowBlank	: false,
+				emptyText 	: '#No PM WO SAP',
 				name		: 'sap',
-				width : 70
+				width : 120
 				//flex : 1
 			/*
 			},{
