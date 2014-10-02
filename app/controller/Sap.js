@@ -269,12 +269,14 @@ Ext.define('rcm.controller.Sap', {
 				waitMsg: 'Uploading your file...',
 				success: function(fp, o) {
 					msg('Success', tpl.apply(o.result));
+					
 				},
 				falure: function(fp, o)	{
 					Ext.Msg.alert("Error", Ext.JSON.decode(this.response.responseText).message);
 				}
 			});
 		}
+		this.hdlFiltThnOh();
 	},
     
 	updateGridOH : function(record){
