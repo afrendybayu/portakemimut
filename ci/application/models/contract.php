@@ -18,6 +18,8 @@ class Contract extends CI_Model {
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=11 AND tahun=$thn THEN nilai END),0) as b11
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=12 AND tahun=$thn THEN nilai END),0) as b12
 				,IFNULL(SUM(CASE WHEN tahun=$thn THEN nilai END),0) as tot
+				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=15 AND tahun=$thn THEN nilai END),0) as budget
+				,CONCAT(IFNULL(ROUND(SUM(CASE WHEN tahun=$thn THEN nilai END)*100/GROUP_CONCAT(CASE WHEN bulan=15 AND tahun=$thn THEN nilai END),2),0),'%') as persen
 				FROM contract c
 				LEFT JOIN cat_equip ON c.tipe = cat_equip.id
 				group by tipe
@@ -28,14 +30,14 @@ class Contract extends CI_Model {
 	
 	
 	function get_grafikcontrak($thn)	{
-		$sql =	"SELECT bulan AS m, ".
-				"IFNULL(GROUP_CONCAT(CASE WHEN tipe=5 THEN nilai end),0) gc, ".
-				"IFNULL(GROUP_CONCAT(CASE WHEN tipe=7 THEN nilai end),0) gs, ".
-				"IFNULL(GROUP_CONCAT(CASE WHEN tipe=6 THEN nilai end),0) pm ".
-				"FROM contract ".
-				"WHERE tahun = $thn ".
-				"GROUP BY bulan ".
-				"ORDER BY bulan  ASC";
+		$sql =	"SELECT bulan AS m,
+				IFNULL(GROUP_CONCAT(CASE WHEN tipe=5 THEN nilai end),0) gc,
+				IFNULL(GROUP_CONCAT(CASE WHEN tipe=7 THEN nilai end),0) gs,
+				IFNULL(GROUP_CONCAT(CASE WHEN tipe=6 THEN nilai end),0) pm 
+				FROM contract
+				WHERE tahun = $thn AND bulan<13
+				GROUP BY bulan
+				ORDER BY bulan ASC";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}

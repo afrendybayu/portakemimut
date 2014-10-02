@@ -460,8 +460,10 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	bFiltCont: function()	{
-		alert("Thn: "+Ext.getCmp('iThnCont').getValue());
+		//alert("Thn: "+Ext.getCmp('iThnCont').getValue());
 		var t=Ext.getCmp('iThnCont').getValue();
+		this.getTGridContract().thn = t;
+		Ext.getCmp('grContL').setTitle("Trend Cost Center "+t);
 		this.getContractStore().load({params:{tgl:t}});
 		this.getContractLineStore().load({params:{tgl:t}});
 	},
@@ -770,10 +772,11 @@ Ext.define('rcm.controller.Sap', {
 					kont.save({
 						success: function(respon, operation) {
 							var resp = operation.request.scope.reader.jsonData["tasks"];
-							rcmSettings.yyyyyy = resp;
+							var t=Ext.getCmp('iThnCont').getValue();
+							//rcmSettings.yyyyyy = resp;
 							//console.log("sukses: "+resp + ", id: "+resp[0].id);
-							me.getContractStore().load();
-							me.getContractLineStore().load();
+							me.getContractStore().load({params:{tgl:t}});
+							me.getContractLineStore().load({params:{tgl:t}});
 						},
 						failure: function(task, operation) {
 							var error = operation.getError(),

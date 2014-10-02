@@ -62,23 +62,17 @@ class rContract extends CI_Controller {
 				array_push($hsl,$obj);
 				
 			}
-			// print_r($obj);
+			//print_r($obj);
 
 			$oo = $this->contract->get_grafikcontrak($thn);
-			// echo 'banyaknya '.count($oo) .'<br>';
+			//echo 'banyaknya '.count($oo) .'<br>';
 			
-			// print_r($oo); echo "<br/><br/>";
+			//print_r($oo); echo "<br/><br/>";
 			//*
 			for ($i=0; $i<count($oo); $i++)	{
+			//for ($i=0; $i<12; $i++)	{
 				$hsl[$oo[$i]->m-1] = $oo[$i];
 				$hsl[$oo[$i]->m-1]->bln = nmMonth($oo[$i]->m-1,1);
-				/*
-				if ($hsl[$i]->m==($i+1)) {
-					echo $oo[$i]->m.", ".($i+1)."<br/>";
-					$hsl[$i] = $oo[$i];
-				}
-				$hsl[$i]->bln = nmMonth($i,1);
-				//*/
 			}
 			//echo "<br/><br/>";	print_r($oo); echo "<br/><br/>";
 			//*/

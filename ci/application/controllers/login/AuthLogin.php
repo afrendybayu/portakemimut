@@ -38,16 +38,20 @@ class AuthLogin extends CI_Controller {
 			
 			if (isset ($login->userid) && isset($login->pass)){
 				$login  = $this->login->ValidLogin($login->userid,$login->pass);
-				
-				
-				foreach ($login as $row){
-					$sesi = array('nama' =>$row->nama,'level' => $row->akses );
-					$this->session->set_userdata('log_sesi',$sesi);
-					$session_data = $this->session->userdata('log_sesi'); //sesi
-					$jsonResult = array(
-						'success' 	=> true,
-						'rule' => array ('level' => $session_data['level'],'session' => $session_data['nama'] )
-					);
+				//print_r($login);
+				if (count($login)>0)	{
+					foreach ($login as $row){
+						$sesi = array('nama' =>$row->nama,'level' => $row->akses );
+						$this->session->set_userdata('log_sesi',$sesi);
+						$session_data = $this->session->userdata('log_sesi'); //sesi
+						$jsonResult = array(
+							'success' 	=> true,
+							'rule' => array ('level' => $session_data['level'],'session' => $session_data['nama'] )
+						);
+					}
+				}
+				else {
+					throw new Exception("Login tidak dikenali !!");
 				}
 			}
 			
