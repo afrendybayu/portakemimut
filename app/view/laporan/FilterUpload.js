@@ -14,6 +14,7 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 	idbSr: '-',
 	etext: '-',
 	nameFile: '-',
+	hdPdf: true,
 
 	initComponent: function() {
 		var me=this;
@@ -83,7 +84,7 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 					id: me.idbPdf,
 					xtype: 'button',
 					//disabled : true,
-					//hidden : true,
+					hidden : me.hdPdf,
 					width: 100,
 					text: 'Export to PDF',
 					margin: '2 0'
@@ -103,19 +104,6 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 			//*/
 		};
 		me.callParent();
-	},
-	
-	resetFilter: function()	{
-		var me = this;
-		Ext.getCmp(me.idThn).setValue(rcm.view.Util.U1th(''));
-	},
-	
-	sedotFilter: function()	{
-		var t = Ext.getCmp(this.idThn).getValue();
-		//	me = this;
-		//o.iT = Ext.getCmp(this.idThn).getValue();
-		//alert(this.idThn);
-		return o;
 	}
 	
 });
