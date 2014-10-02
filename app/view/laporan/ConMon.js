@@ -103,7 +103,6 @@ Ext.define('rcm.view.laporan.ConMon', {
 		items: [{
 				xtype: 'tFUpl',
 				region:'north',
-				
 				idbDownL: 'idDwCm',
 				idbUpl: 'idUpCm',
 				idtLok: 'idLFileCm',

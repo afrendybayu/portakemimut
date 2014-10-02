@@ -10,8 +10,8 @@ Ext.define('rcm.view.laporan.OverHaul', {
 	],
 	
 	dockedItems: [{
-		xtype: 'tFUpl',
 		dock: 'top',
+		xtype: 'tFUpl',
 		idbDownL: 'idDwOh',
 		idbUpl: 'idUpOh',
 		idtLok: 'idLFileOh',
