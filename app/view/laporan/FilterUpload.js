@@ -40,15 +40,6 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 					text: 'Filter',
 					margin: '2 0 0 0'			
 				},{
-				/*
-					//id: 'btnCariSH',
-					id: me.idbSr,
-					xtype: 'button',
-					width: 100,
-					text: 'Filter',
-					margin: '2 0 0 0'
-				},{
-				//*/
 					xtype: 'label',
 					flex: 1,
 					text: ''
@@ -71,6 +62,7 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 					msgTarget: 'side',
 					//layout: 'fit',
 					//anchor: '100%',
+					allowBlank: false,
 					buttonText: ' Browse ',
 					margin: '2 0'
 				},{

@@ -195,7 +195,10 @@ Ext.define('rcm.controller.Sap', {
 				click: me.hdlUplOh
 			},
 			'#idDwCm' : {
-				click : me.hdlDlOh
+				click : me.hdlDlCm
+			},
+			'#idUpCm': {
+				click: me.hdlUplCm
 			},
 			'iConMon':{
 				// specialkey	: me.hdlupdate,
@@ -235,7 +238,7 @@ Ext.define('rcm.controller.Sap', {
 		}
 	},
 	
-	hdlDlOh: function(btn)	{
+	hdlDlCm: function(btn)	{
 		var form = btn.up('form').getForm();
 		if(form.isValid()){
 			form.submit({
@@ -249,6 +252,44 @@ Ext.define('rcm.controller.Sap', {
 		var t=Ext.getCmp('idThnOh').getValue();
 		this.getOverHaulInStore().load({ params:{thn:t} });
 		this.getOhTahunStore().load({ params:{thn:t} });
+	},
+	
+	hdlUplCm: function(btn)		{
+		var tpl = new Ext.XTemplate(
+			'File processed on the server.<br/>',
+			'Name: {fNama}<br/>',
+			'Size: {fSize}.<br/>',
+			'Read time : {tBacaF}.<br/>',
+			'Save time: {tSaveF}.<br/>',
+			'Used Memory: {mem}.<br/>'
+		);
+		var msg = function(title, msg) {
+			Ext.Msg.show({
+				title: title,
+				msg: msg,
+				minWidth: 200,
+				modal: true,
+				icon: Ext.Msg.INFO,
+				buttons: Ext.Msg.OK
+			});
+		};
+
+		var form = btn.up('form').getForm();
+		if(form.isValid()){
+			alert('tes');
+			/*
+			form.submit({
+				url: 'ci/index.php/sap/rUpload/getUplCm',
+				waitMsg: 'Uploading your file...',
+				success: function(fp, o) {
+					msg('Success', tpl.apply(o.result));
+				},
+				falure: function(fp, o)	{
+					Ext.Msg.alert("Error", Ext.JSON.decode(this.response.responseText).message);
+				}
+			});
+			//*/
+		}
 	},
 	
 	hdlUplOh: function(btn)	{
