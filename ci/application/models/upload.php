@@ -90,6 +90,21 @@ class Upload extends CI_Model {
 		}
     }
 
+	function insert_oh($c)	{
+		
+		
+		$sql =	"INSERT IGNORE INTO ohlist
+				VALUES ('',
+					'{$this->db->escape(trim($c[3]))}', 
+					'{$this->db->escape(trim($c[4]))}',
+					
+					
+					'{$this->db->escape(trim($c[0]))}'
+				)";
+		//echo "sql: $sql<br/>";
+		$this->db->query($sql);
+	}
+
 }
 
 /* End of file upload.php */

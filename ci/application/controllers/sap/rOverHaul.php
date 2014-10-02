@@ -53,7 +53,11 @@ class rOverHaul extends CI_Controller {
 	public function createOH(){
 		try {
 			$hsl = $this->overhaul->set_ohlist();
-		
+
+			$jsonResult = array(
+				'success' => true,
+				'cOH' => $hsl
+			);	
 		}
 		catch (Exception $e){
 			$jsonResult = array(
@@ -62,7 +66,7 @@ class rOverHaul extends CI_Controller {
 			);	
 		}
 		
-		// echo json_encode($jsonResult);
+		echo json_encode($jsonResult);
 	
 	}
 	public function readOH(){

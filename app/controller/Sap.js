@@ -191,6 +191,9 @@ Ext.define('rcm.controller.Sap', {
 			'#idSrOh': {
 				click : me.hdlFiltThnOh
 			},
+			'#idUpOh': {
+				click: me.hdlUplOh
+			},
 			'iConMon':{
 				// specialkey	: me.hdlupdate,
 				updatecm	: me.updateFormCM,
@@ -234,6 +237,44 @@ Ext.define('rcm.controller.Sap', {
 		var t=Ext.getCmp('idThnOh').getValue();
 		this.getOverHaulInStore().load({ params:{thn:t} });
 		this.getOhTahunStore().load({ params:{thn:t} });
+	},
+	
+	hdlUplOh: function(btn)	{
+		alert("hdlUplOh");
+		//
+		var tpl = new Ext.XTemplate(
+			'File processed on the server.<br/>',
+			'Name: {fNama}<br/>',
+			'Size: {fSize}.<br/>',
+			'Read time : {tBacaF}.<br/>',
+			'Save time: {tSaveF}.<br/>',
+			'Used Memory: {mem}.<br/>'
+		);
+		var msg = function(title, msg) {
+			Ext.Msg.show({
+				title: title,
+				msg: msg,
+				minWidth: 200,
+				modal: true,
+				icon: Ext.Msg.INFO,
+				buttons: Ext.Msg.OK
+			});
+		};
+
+		var form = btn.up('form').getForm();
+		console.log('form');
+		if(form.isValid()){
+			form.submit({
+				url: 'ci/index.php/sap/rUpload/getUplOh',
+				waitMsg: 'Uploading your file...',
+				success: function(fp, o) {
+					msg('Success', tpl.apply(o.result));
+				},
+				falure: function(fp, o)	{
+					Ext.Msg.alert("Error", Ext.JSON.decode(this.response.responseText).message);
+				}
+			});
+		}
 	},
     
 	updateGridOH : function(record){
@@ -324,7 +365,8 @@ Ext.define('rcm.controller.Sap', {
 		
 		var me = this,
 			froh = me.getTaskOverHaul().getForm(),
-			foh = me.getTaskOverHaul().getForm().getValues(); 
+			foh = me.getTaskOverHaul().getForm().getValues();
+			t=Ext.getCmp('idThnOh').getValue(),
 		foh.id_unit = this.getTaskOverHaul().idunit;
 		foh.id_equip = this.getTaskOverHaul().ideq;
 		foh.oh = this.getTaskOverHaul().idoh;
@@ -334,14 +376,13 @@ Ext.define('rcm.controller.Sap', {
 		ohsimp.save({
 			success: function(record, operation){
 				//alert ('Data OH terSimpan');
-				me.getOverHaulInStore().reload();
+				me.getOverHaulInStore().load({ params:{thn:t} });
 				froh.reset();
-				me.getOhTahunStore().reload();
+				me.getOhTahunStore().load({ params:{thn:t} });
 				
 			}
 			
 		});
-	
 	},
 	
 	cbohplhequip : function(unit,oh){
@@ -740,8 +781,6 @@ Ext.define('rcm.controller.Sap', {
 		};
 
 		var form = btn.up('form').getForm();
-		//rcmSettings.uuuu = form;
-		//*
 		if(form.isValid()){
 			form.submit({
 				url: 'ci/index.php/sap/rUpload/getUplBpm3',
@@ -754,7 +793,6 @@ Ext.define('rcm.controller.Sap', {
 				}
 			});
 		}
-		//*/
 	},
 	
 	hdUplBiaya: function(btn)	{

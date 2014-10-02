@@ -35,14 +35,47 @@ class Overhaul extends CI_Model {
 	
 	function set_ohlist(){
 		$ohin = json_decode(file_get_contents('php://input'));
-		$sql = array(
-					'tglplan' 		=> $ohin->tglplan,
-					'durasiplan' 	=> $ohin->durasiplan,
-					'equip'			=> $ohin->id_equip,
-					'ohcat'			=> $ohin->oh,
-					'wo'			=> $ohin->wo
-				);
-		return $this->db->insert('ohlist', $sql);
+		
+		try {
+			/*
+			$sql = array(
+				'tglplan' 		=> $ohin->tglplan,
+				'durasiplan' 	=> $ohin->durasiplan,
+				'equip'			=> $ohin->id_equip,
+				'ohcat'			=> $ohin->oh,
+				'wo'			=> $ohin->wo
+			);
+			$hsl = $this->db->insert('ohlist', $sql);
+			//*/
+			//$this->db->trans_start(TRUE);
+			
+			$sql = "INSERT IGNORE INTO ohlist (tglplan,durasiplan,equip,ohcat,wo) 
+					VALUES ('{$ohin->tglplan}','{$ohin->durasiplan}',
+					'{$ohin->id_equip}','{$ohin->oh}','{$ohin->wo}')";
+			//echo "sql: $sql<br/>";
+			$query = $this->db->query($sql);
+			
+			if (!$query) {
+			  // if query returns null
+				$msg = $this->db->_error_message();
+				$num = $this->db->_error_number();
+
+				echo "Error(".$num.") ".$msg;
+				
+				//$this->load->view('customers_edit_view',$data);
+			} 
+			
+			if ($this->db->_error_message())	{
+				echo "ERRRRRORRRR ".$this->db->_error_number();
+			}
+			
+			$hsl = 0;
+		}
+		catch(Exception $e) {
+			$hsl = -1;
+		}
+		
+		return $hsl;
 	
 	}
 	
