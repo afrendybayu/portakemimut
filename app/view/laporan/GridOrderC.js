@@ -24,7 +24,7 @@ Ext.define('rcm.view.laporan.GridOrderC', {
 				{ header:'Order Costing',//flex:3,
 					columns: [{ 
 						header: me.jdl, dataIndex:'otipe'
-					},{ header: 'Description',dataIndex:'desc', flex: 1//width: 160
+					},{ header: 'Description',dataIndex:'desc'
 						,summaryRenderer: function() {
 							return Ext.String.format('  TOTAL  '); 
 						} 

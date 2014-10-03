@@ -29,7 +29,8 @@ Ext.define('rcm.view.laporan.SapChartSaja', {
 			jdl: me.jdl,
 			btnFilter: me.btnFilter,
 			param: me.param,
-			yNama: me.yNama
+			yNama: me.yNama,
+			duit: me.duit
 		}];
 		me.callParent(arguments);
 	}

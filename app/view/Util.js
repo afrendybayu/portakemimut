@@ -249,7 +249,19 @@ Ext.define('rcm.view.Util', {
 				if (c.indexOf(name)==0) return c.substring(name.length,c.length);
 			}
 			return "";
+		},
+		
+		format2: function(sido, n, currency) {
+			if (sido>0) {
+				return currency + " " + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+			}
+			else {
+				return n;
+			}
 		}
+		
+		//*/
+		
     }
     
     

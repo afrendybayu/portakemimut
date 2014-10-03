@@ -70,7 +70,8 @@ Ext.define('rcm.view.laporan.Chart', {
 				idbSr: 'srTop10',
 				jdl: 'TOP 10 Orders Cost per Equipment',
 				param: 'Equipment Cost',
-				yNama: 'Cost ($)'
+				yNama: 'Cost ($)',
+				duit: 1
 			},{
 				id: 'ts_pm',
 				title: 'PM Cost',
