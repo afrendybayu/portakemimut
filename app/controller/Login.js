@@ -134,6 +134,7 @@ Ext.define('rcm.controller.Login', {
 					
 					Ext.getCmp('ohdel').setDisabled(false);
 					Ext.getCmp('ohform').setDisabled(false);
+					Ext.getCmp('tu_kf').setDisabled(false);
 					
 					//Ext.getCmp('conmondel').setEnabled(false);
 					
@@ -212,6 +213,7 @@ Ext.define('rcm.controller.Login', {
 					
 					Ext.getCmp('ohform').setDisabled(true);
 					Ext.getCmp('ohdel').setDisabled(true);
+					Ext.getCmp('tu_kf').setDisabled(true);
 					
 					
 					//Ext.getCmp('ConMonSave').setDisabled(true);
@@ -245,6 +247,7 @@ Ext.define('rcm.controller.Login', {
 					
 					Ext.getCmp('ohdel').setDisabled(false);
 					Ext.getCmp('ohform').setDisabled(false);
+					Ext.getCmp('tu_kf').setDisabled(false);
 					
 					me.getAuthlogin().level = res.level;
 					me.getExcelgrid().ngedit = 1;
@@ -263,6 +266,7 @@ Ext.define('rcm.controller.Login', {
 					
 					Ext.getCmp('ohform').setDisabled(true);
 					Ext.getCmp('ohdel').setDisabled(true);
+					Ext.getCmp('tu_kf').setDisabled(true);
 					
 				}
 				// console.log(res.nama);

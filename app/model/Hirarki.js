@@ -7,9 +7,9 @@ Ext.define('rcm.model.Hirarki', {
     fields: [
 		{ name: 'id', type: 'int' },
         { name: 'text' },
-        { name: 'tipe' },
-        { name: 'unit' },
-        { name: 'lok' }
+        { name: 'tipe' }
+        //{ name: 'unit' },
+        //{ name: 'lok' }
 		//{ name: 'qtip', mapping: 'text' }
         //{ name: 'expanded' },
         //{ name: 'leaf'},
