@@ -58,7 +58,7 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 					emptyText: me.etext,
 					width: 250,
 					msgTarget: 'side',
-					allowBlank: false,
+					//allowBlank: false,
 					buttonText: ' Browse ',
 					margin: '2 0'
 				},{

@@ -896,6 +896,7 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "rcm.Application": [],
   "rcm.controller.AvRe": [],
+  "rcm.controller.Config": [],
   "rcm.controller.DetailInfo": [],
   "rcm.controller.ExcelGrid": [],
   "rcm.controller.Laporan": [],
@@ -1018,6 +1019,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.SapSymptomInfo": [],
   "rcm.store.SapThn": [],
   "rcm.store.SapTop10": [],
+  "rcm.store.SapTop10FL": [],
   "rcm.store.SpAvGcUt": [],
   "rcm.store.SpAvGsUt": [],
   "rcm.store.SpAvPmUt": [],
@@ -1049,6 +1051,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.dataentry.IsiTabForm": [],
   "rcm.view.dataentry.PropGrid": [],
   "rcm.view.dataentry.Tab": [],
+  "rcm.view.konfig.ConfHirarki": [],
+  "rcm.view.konfig.TabKonfig": [],
+  "rcm.view.konfig.TreeHirarki": [],
   "rcm.view.lapobama.Av2Thn": [],
   "rcm.view.lapobama.AvGroup": [],
   "rcm.view.lapobama.AvHome": [],
@@ -1071,6 +1076,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.laporan.FilterSap": [],
   "rcm.view.laporan.FilterThn": [],
   "rcm.view.laporan.FilterThnNo": [],
+  "rcm.view.laporan.FilterUpload": [],
   "rcm.view.laporan.GridCause": [],
   "rcm.view.laporan.GridCauseInfo": [],
   "rcm.view.laporan.GridConMon": [],
@@ -1086,6 +1092,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.laporan.SapCause": [],
   "rcm.view.laporan.SapChartDet": [],
   "rcm.view.laporan.SapChartSaja": [],
+  "rcm.view.laporan.SapChartTop10": [],
   "rcm.view.laporan.SapContractLine": [],
   "rcm.view.laporan.SapCostCont": [],
   "rcm.view.laporan.SapDamage": [],
@@ -2121,6 +2128,7 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.Application": [],
   "rcm.controller.AvRe": [],
+  "rcm.controller.Config": [],
   "rcm.controller.DetailInfo": [],
   "rcm.controller.ExcelGrid": [],
   "rcm.controller.Laporan": [],
@@ -2243,6 +2251,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.SapSymptomInfo": [],
   "rcm.store.SapThn": [],
   "rcm.store.SapTop10": [],
+  "rcm.store.SapTop10FL": [],
   "rcm.store.SpAvGcUt": [],
   "rcm.store.SpAvGsUt": [],
   "rcm.store.SpAvPmUt": [],
@@ -2301,6 +2310,15 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.dataentry.Tab": [
     "widget.tabRh"
+  ],
+  "rcm.view.konfig.ConfHirarki": [
+    "widget.cHirarki"
+  ],
+  "rcm.view.konfig.TabKonfig": [
+    "widget.t_Konfig"
+  ],
+  "rcm.view.konfig.TreeHirarki": [
+    "widget.treeHirarki"
   ],
   "rcm.view.lapobama.Av2Thn": [
     "widget.tAv2Thn"
@@ -2368,6 +2386,9 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.laporan.FilterThnNo": [
     "widget.tFThnNo"
   ],
+  "rcm.view.laporan.FilterUpload": [
+    "widget.tFUpl"
+  ],
   "rcm.view.laporan.GridCause": [
     "widget.gridCause",
     "widget.taskGridCause"
@@ -2415,6 +2436,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.laporan.SapChartSaja": [
     "widget.tSapCh"
+  ],
+  "rcm.view.laporan.SapChartTop10": [
+    "widget.tSapTop10"
   ],
   "rcm.view.laporan.SapContractLine": [
     "widget.tContractL"

@@ -175,6 +175,38 @@ class rOrderCost extends CI_Controller {
 		
 		echo json_encode($jsonResult);
 	}
+	
+	public function sapManOCost()		{
+		try {
+			$p = json_decode(file_get_contents('php://input'));
+			/*
+			$params->bln = 'b4';
+			$params->thn = '2014';
+			$params->nilai = 134;
+			$params->tipe = 5;
+			//print_r($params); echo "<br/>";
+			//*/
+			if (!isset($params))	{
+				throw new Exception("Data Tidak ada !!");
+			}
+			//echo "thn: $thn<br/>";
+			$this->load->model('sap');
+			$hsl = $this->sap->set_ocost($p->thn, $p->wo, $p->otype);
+			//print_r($hsl);
+			$jsonResult = array(
+				'success' => true,
+				'orderc' => $hsl
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+	}
 }
 
 /* End of file rOrderCost.php */
