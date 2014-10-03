@@ -1,4 +1,4 @@
-// Jono 01Oct2014 //
+//* Jono, 01Oct2014 *//
 Ext.define('rcm.view.konfig.ConfHirarki', {
     xtype: 'cHirarki',
 	extend: 'Ext.container.Container',

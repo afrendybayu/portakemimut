@@ -118,7 +118,8 @@ Ext.define('rcm.view.Content', {
 			id		: 'tu_kf',
 			title	: 'Konfigurasi',
 			iconCls	: 'Konfigurasi',
-			xtype 	: 't_Konfig'
+			xtype 	: 't_Konfig',
+			disabled : true
 			/*
 			layout: {
 				type: 'border'

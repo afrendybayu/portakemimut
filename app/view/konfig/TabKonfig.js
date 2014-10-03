@@ -1,4 +1,4 @@
-/* AfrendyBayu, 14Nov2013 */
+/* Jono, 03Oct2014 */
 Ext.define('rcm.view.konfig.TabKonfig', {
 	extend: 'Ext.tab.Panel',
 
