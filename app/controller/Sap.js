@@ -34,7 +34,7 @@ Ext.define('rcm.controller.Sap', {
 		,'SapOrderCwo','SapOrderCot'
 		,'SapThn','SapMwc','SapOType','SapLoc'
 		
-		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10'
+		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10','SapTop10FL'
 		,'Contract','ContractLine', 'ContractInput'
 
 		,'SapHistori'
@@ -630,7 +630,9 @@ Ext.define('rcm.controller.Sap', {
 	
 	bFiltTop10: function()	{
 		//alert("Top10 Thn: "+Ext.getCmp('thnTop10').getValue());
-		this.getSapTop10Store().load({ params:{thn:Ext.getCmp('thnTop10').getValue()} });
+		var t=Ext.getCmp('thnTop10').getValue();
+		this.getSapTop10Store().load({ params:{thn:t} });
+		this.getSapTop10FLStore().load({ params:{thn:t} });
 	},
 	
 	bFiltOCost: function()	{

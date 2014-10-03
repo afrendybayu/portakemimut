@@ -329,6 +329,7 @@ class Sap extends CI_Model {
 	}
 
 	function get_topten($thn)	{
+		/*
 		$sql =	"SELECT CONCAT(equip.nama,'@',h.nama,' ',SUBSTRING_INDEX((SELECT hhhh.nama FROM hirarki hhhh WHERE hhhh.id
 					= (SELECT hhh.parent FROM hirarki hhh WHERE hhh.id
 					= (SELECT hh.parent FROM hirarki hh WHERE hh.id = equip.unit_id))),' ',-1)) AS desk
@@ -337,7 +338,30 @@ class Sap extends CI_Model {
 				WHERE equip.tag= SUBSTRING_INDEX(eqkode,'-',2) AND h.id = equip.unit_id AND YEAR(planstart)=$thn
 				GROUP BY SUBSTRING_INDEX(eqkode,'-',2)
 				ORDER BY jml desc, totmatcost DESC LIMIT 0,10";
+		//*/
+		$sql =	"SELECT ROUND(SUM(totmatcost),2) as jml
+				,CONCAT(e.nama,' ',SUBSTRING_INDEX(sap.funcloc,'-',-1),' @',SUBSTRING_INDEX(h.nama,' ',-1)) as desk
+				FROM sap,equip e,hirarki h
+				WHERE e.tag= sap.eqkode AND sap.lokasi=h.urut 
+				AND YEAR(planstart)=2009
+				GROUP BY eqkode
+				ORDER BY jml desc, totmatcost DESC LIMIT 0,10";
 		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
+	function get_toptenFL($thn)	{
+		$sql =	"SELECT CONCAT(h.nama,' @',SUBSTRING_INDEX(hhh.nama,' ',-1)) AS desk,sap.funcloc
+				,ROUND(SUM(totmatcost),2) as jml
+				FROM sap,hirarki h
+				INNER JOIN hirarki hh ON h.parent = hh.id
+				INNER JOIN hirarki hhh ON hh.parent = hhh.id
+				WHERE sap.funcloc=h.funcloc AND YEAR(planstart)=2009
+				GROUP BY sap.funcloc
+				ORDER BY jml DESC, totmatcost DESC LIMIT 0,10";
+		//echo "sql: $sql<br/>";
+		$query = $this->db->query($sql);
+		//print_r($query->result());
 		return $query->result();
 	}
 
