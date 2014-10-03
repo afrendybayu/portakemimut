@@ -343,7 +343,7 @@ class Sap extends CI_Model {
 				,CONCAT(e.nama,' ',SUBSTRING_INDEX(sap.funcloc,'-',-1),' @',SUBSTRING_INDEX(h.nama,' ',-1)) as desk
 				FROM sap,equip e,hirarki h
 				WHERE e.tag= sap.eqkode AND sap.lokasi=h.urut 
-				AND YEAR(planstart)=2009
+				AND YEAR(planstart)=$thn
 				GROUP BY eqkode
 				ORDER BY jml desc, totmatcost DESC LIMIT 0,10";
 		$query = $this->db->query($sql);
@@ -351,12 +351,12 @@ class Sap extends CI_Model {
 	}
 	
 	function get_toptenFL($thn)	{
-		$sql =	"SELECT CONCAT(h.nama,' @',SUBSTRING_INDEX(hhh.nama,' ',-1)) AS desk,sap.funcloc
+		$sql =	"SELECT CONCAT(h.nama,' @',SUBSTRING_INDEX(hhh.nama,' ',-1)) AS desk
 				,ROUND(SUM(totmatcost),2) as jml
 				FROM sap,hirarki h
 				INNER JOIN hirarki hh ON h.parent = hh.id
 				INNER JOIN hirarki hhh ON hh.parent = hhh.id
-				WHERE sap.funcloc=h.funcloc AND YEAR(planstart)=2009
+				WHERE sap.funcloc=h.funcloc AND YEAR(planstart)=$thn
 				GROUP BY sap.funcloc
 				ORDER BY jml DESC, totmatcost DESC LIMIT 0,10";
 		//echo "sql: $sql<br/>";
