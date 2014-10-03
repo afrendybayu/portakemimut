@@ -32,8 +32,9 @@ Ext.define('rcm.view.laporan.GridOrderC', {
 				},
 				{ header:'Planned Cost',//flex:1,
 					columns: [{ 
-						header: 'WH Stock',dataIndex:'plstcost',align: 'right',width: 70,renderer:'usMoney'
-					},{ header: 'Internal',dataIndex:'plincost',align: 'right',width: 70,renderer:'usMoney',
+						header: 'WH Stock',dataIndex:'plstcost',align: 'right',width: 80,renderer:'usMoney'
+					},{ header: 'Internal',dataIndex:'plincost',align: 'right',width: 70,renderer:'usMoney'
+					},{ header: 'Total Planning',dataIndex:'tplcost',flex:2,align: 'right',width: 90,renderer:'usMoney',
 						summaryType: function(records){
 							var i = 0,length = records.length,total = 0,record;
 
@@ -43,14 +44,14 @@ Ext.define('rcm.view.laporan.GridOrderC', {
 							}
 							return total.toFixed(2);
 						}
-					},{ header: 'Total Planning',dataIndex:'tplcost',flex:2,align: 'right',width: 80,renderer:'usMoney'
 					}]
 				},
 				{ header:'Actual',//flex:1,
 					columns: [{ 
-						header: 'WH Stock',dataIndex:'acstcost',align: 'right',width: 70,renderer:'usMoney'
-					},{ header: 'Internal',dataIndex:'acincost',align: 'right',width: 60,renderer:'usMoney'
+						header: 'WH Stock',dataIndex:'acstcost',align: 'right',width: 80,renderer:'usMoney'
+					},{ header: 'Internal',dataIndex:'acincost',align: 'right',width: 70,renderer:'usMoney'
 					},{ header: 'Service',dataIndex:'srvcost',align: 'right',width: 70,renderer:'usMoney'
+					},{ header: 'Total Actual',dataIndex:'taccost',align: 'right',width: 90,renderer:'usMoney'
 						,summaryType: function(records){
 							var i = 0,length = records.length,total = 0,record;
 
@@ -60,7 +61,6 @@ Ext.define('rcm.view.laporan.GridOrderC', {
 							}
 							return total.toFixed(2);
 						}
-					},{ header: 'Total Actual',dataIndex:'taccost',align: 'right',width: 70,renderer:'usMoney'
 					}]
 				}
 				//*
