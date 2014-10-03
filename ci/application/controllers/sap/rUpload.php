@@ -110,8 +110,98 @@ class rUpload extends CI_Controller {
 		//$this->output->set_output(json_encode($jsonResult));
 	}
 
+	public function getUplOh()	{
+		//echo "tes";
+		//*
+		try {
+			sleep(1);
+			//echo date('H:i:s')." Load from Excel file<br/>";
+			$bacaFileStart = microtime(true);
 
+			$hsl = ambilFile('fileOh');
+			//print_r($hsl);
+			//*
+			if (!$hsl["sukses"])	{
+				//header('HTTP/1.0 .$returnResponse. Server status', true, $returnResponse);
+				echo json_encode(array(
+					'success' => false,
+					'message' => "Gagal Upload File"
+				));
+				return;
+			}
+
+			try {
+				$this->load->library('excel');
+				$this->load->model('upload');
+						
+				$objPHPExcel = PHPExcel_IOFactory::load($hsl["lokasi"]);
+				
+				
+				$dt = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+				//print_r($dt);
+				$bacaFileEnd = microtime(true);
+				$bacaFile = $bacaFileEnd - $bacaFileStart;
+				//echo 'Waktu untuk baca File ' , sprintf('%.4f',$bacaFile) , " seconds<br/>";
+
+				$prosesFileStart = microtime(true);						
+				$colData = count(array_filter($dt[1]));
+				//echo "Jml data: ".count($dt)." baris, jml Kolom: ".$colData."<br/><br/>";
+
+				$ff = array();
+				for ($i=0; $i<$colData; $i++)	{
+					$no = numtoa(array('', $i+1));
+					array_push($ff,$dt[2][$no[0]]);
+				}
+
+				for ($kk=2; $kk<=count($dt); $kk++)	{
+				//for ($kk=2; $kk<=30; $kk++)	{
+					$c = array();
+					for ($i=0; $i<$colData; $i++)	{
+						$no = numtoa(array('', $i+1)); 
+						array_push($c,$dt[$kk][$no[0]]);
+						//echo "no[$i]: {$no[0]} : {$dt[1][$no[0]]} : <font color='red'>{$dt[2][$no[0]]}</font> <br/>";
+					}
+					//$this->upload->insert_bpm3($c);
+					$this->upload->insert_oh($c);
+				}
+				
+				$prosesFileEnd = microtime(true);
+				$prosesFile = $prosesFileEnd - $prosesFileStart;
+
+				$jsonResult = array(
+					'success' => true,
+					'fNama'	=> $hsl["nama"],
+					'fSize'	=> $hsl["size"],
+					'tBacaF'=> sprintf('%.4f',$bacaFile),
+					'tSaveF'=> sprintf('%.4f',$prosesFile),
+					'mem'	=> (memory_get_usage(true) / 1024 / 1024)." MB"
+				);
+			}
+			catch(Exception $e) {
+				//header('HTTP/1.0 .$returnResponse. Server status', true, $returnResponse);
+				echo json_encode(array(
+					'success' => false,
+					'message' => "Gagal Upload File".$hsl["nama"].", ".$e->getMessage()
+				));
+				return;
+			}
+			//*/
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+
+		//return json_encode($jsonResult);
+		echo json_encode($jsonResult);
+		//$this->output->set_content_type('application/json');
+		//$this->output->set_output(json_encode($jsonResult));
+		
+	}
+	
 }
-
 /* End of file rUpload.php */
 /* Location: ./application/controllers/rUpload.php */

@@ -92,6 +92,11 @@ Ext.define('rcm.controller.Sap', {
 		},{
 			ref : 'iOverHaul',
 			selector : 'iOverHaul'
+		/*
+		},{
+			ref : 'pOverHaul',
+			selector : 'pOverHaul'
+		//*/
 		},{
 			ref : 'tGridConMon',
 			selector : 'tGridConMon'
@@ -180,7 +185,24 @@ Ext.define('rcm.controller.Sap', {
 			'#OverHaulSave' : {
 				click : me.hdlSimpanOh
 			},
-			
+			'#idDwOh' : {
+				click : me.hdlDlOh
+			},
+			'#idSrOh': {
+				click : me.hdlFiltThnOh
+			},
+			'#idUpOh': {
+				click: me.hdlUplOh
+			},
+			'#idDwCm' : {
+				click : me.hdlDlCm
+			},
+			'#idUpCm': {
+				click: me.hdlUplCm
+			},
+			'#idSrCm': {
+				click : me.hdlFiltThnCm
+			},
 			'iConMon':{
 				// specialkey	: me.hdlupdate,
 				updatecm	: me.updateFormCM,
@@ -209,6 +231,115 @@ Ext.define('rcm.controller.Sap', {
 			
 		});
     },
+    
+    hdlDlOh: function(btn)	{
+		var form = btn.up('form').getForm();
+		if(form.isValid()){
+			form.submit({
+				url: 'format_oh.xlsx'
+			});
+		}
+	},
+	
+	hdlDlCm: function(btn)	{
+		var form = btn.up('form').getForm();
+		if(form.isValid()){
+			form.submit({
+				url: 'format_conmon.xlsx'
+			});
+		}
+	},
+	
+	hdlFiltThnCm: function()	{
+		var t=Ext.getCmp('idThnCm').getValue();
+		this.gridfilterTahun(t);
+	},
+	
+	hdlFiltThnOh: function()	{
+		//alert('hdlFiltThnOh: '+Ext.getCmp('idThnOh').getValue());
+		var t=Ext.getCmp('idThnOh').getValue();
+		this.getOverHaulInStore().load({ params:{thn:t} });
+		this.getOhTahunStore().load({ params:{thn:t} });
+	},
+	
+	hdlUplCm: function(btn)		{
+		var tpl = new Ext.XTemplate(
+			'File processed on the server.<br/>',
+			'Name: {fNama}<br/>',
+			'Size: {fSize}.<br/>',
+			'Read time : {tBacaF}.<br/>',
+			'Save time: {tSaveF}.<br/>',
+			'Used Memory: {mem}.<br/>'
+		);
+		var msg = function(title, msg) {
+			Ext.Msg.show({
+				title: title,
+				msg: msg,
+				minWidth: 200,
+				modal: true,
+				icon: Ext.Msg.INFO,
+				buttons: Ext.Msg.OK
+			});
+		};
+
+		var form = btn.up('form').getForm();
+		if(form.isValid()){
+			alert('tes');
+			/*
+			form.submit({
+				url: 'ci/index.php/sap/rUpload/getUplCm',
+				waitMsg: 'Uploading your file...',
+				success: function(fp, o) {
+					msg('Success', tpl.apply(o.result));
+				},
+				falure: function(fp, o)	{
+					Ext.Msg.alert("Error", Ext.JSON.decode(this.response.responseText).message);
+				}
+			});
+			//*/
+		}
+	},
+	
+	hdlUplOh: function(btn)	{
+		//alert("hdlUplOh");
+		//
+		var tpl = new Ext.XTemplate(
+			'File processed on the server.<br/>',
+			'Name: {fNama}<br/>',
+			'Size: {fSize}.<br/>',
+			'Read time : {tBacaF}.<br/>',
+			'Save time: {tSaveF}.<br/>',
+			'Used Memory: {mem}.<br/>'
+		);
+		var msg = function(title, msg) {
+			Ext.Msg.show({
+				title: title,
+				msg: msg,
+				minWidth: 200,
+				modal: true,
+				icon: Ext.Msg.INFO,
+				buttons: Ext.Msg.OK
+			});
+		};
+
+		var form = btn.up('form').getForm();
+		//console.log('form');
+		if(form.isValid()){
+			form.submit({
+				url: 'ci/index.php/sap/rUpload/getUplOh',
+				waitMsg: 'Uploading your file...',
+				success: function(fp, o) {
+					msg('Success', tpl.apply(o.result));
+					
+				},
+				falure: function(fp, o)	{
+					Ext.Msg.alert("Error", Ext.JSON.decode(this.response.responseText).message);
+				}
+			});
+		}
+		this.hdlFiltThnOh();
+	},
+    
 	updateGridOH : function(record){
 		// console.log(record);
 		var me = this;
@@ -297,7 +428,8 @@ Ext.define('rcm.controller.Sap', {
 		
 		var me = this,
 			froh = me.getTaskOverHaul().getForm(),
-			foh = me.getTaskOverHaul().getForm().getValues(); 
+			foh = me.getTaskOverHaul().getForm().getValues();
+			t=Ext.getCmp('idThnOh').getValue(),
 		foh.id_unit = this.getTaskOverHaul().idunit;
 		foh.id_equip = this.getTaskOverHaul().ideq;
 		foh.oh = this.getTaskOverHaul().idoh;
@@ -307,14 +439,13 @@ Ext.define('rcm.controller.Sap', {
 		ohsimp.save({
 			success: function(record, operation){
 				//alert ('Data OH terSimpan');
-				me.getOverHaulInStore().reload();
+				me.getOverHaulInStore().load({ params:{thn:t} });
 				froh.reset();
-				me.getOhTahunStore().reload();
+				me.getOhTahunStore().load({ params:{thn:t} });
 				
 			}
 			
 		});
-	
 	},
 	
 	cbohplhequip : function(unit,oh){
@@ -460,8 +591,10 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	bFiltCont: function()	{
-		alert("Thn: "+Ext.getCmp('iThnCont').getValue());
+		//alert("Thn: "+Ext.getCmp('iThnCont').getValue());
 		var t=Ext.getCmp('iThnCont').getValue();
+		this.getTGridContract().thn = t;
+		Ext.getCmp('grContL').setTitle("Trend Cost Center "+t);
 		this.getContractStore().load({params:{tgl:t}});
 		this.getContractLineStore().load({params:{tgl:t}});
 	},
@@ -711,8 +844,6 @@ Ext.define('rcm.controller.Sap', {
 		};
 
 		var form = btn.up('form').getForm();
-		//rcmSettings.uuuu = form;
-		//*
 		if(form.isValid()){
 			form.submit({
 				url: 'ci/index.php/sap/rUpload/getUplBpm3',
@@ -725,7 +856,6 @@ Ext.define('rcm.controller.Sap', {
 				}
 			});
 		}
-		//*/
 	},
 	
 	hdUplBiaya: function(btn)	{
@@ -770,10 +900,11 @@ Ext.define('rcm.controller.Sap', {
 					kont.save({
 						success: function(respon, operation) {
 							var resp = operation.request.scope.reader.jsonData["tasks"];
-							rcmSettings.yyyyyy = resp;
+							var t=Ext.getCmp('iThnCont').getValue();
+							//rcmSettings.yyyyyy = resp;
 							//console.log("sukses: "+resp + ", id: "+resp[0].id);
-							me.getContractStore().load();
-							me.getContractLineStore().load();
+							me.getContractStore().load({params:{tgl:t}});
+							me.getContractLineStore().load({params:{tgl:t}});
 						},
 						failure: function(task, operation) {
 							var error = operation.getError(),

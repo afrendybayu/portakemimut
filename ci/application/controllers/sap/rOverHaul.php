@@ -13,7 +13,7 @@ class rOverHaul extends CI_Controller {
 	
 	public function ohTahun()	{
 		try {
-			$thn = $this->input->get('wkt')?:date('Y');
+			$thn = $this->input->get('thn')?:date('Y');
 			$hsl = $this->overhaul->ohTahun($thn);
 			//print_r($hsl);
 			$jsonResult = array(
@@ -53,7 +53,11 @@ class rOverHaul extends CI_Controller {
 	public function createOH(){
 		try {
 			$hsl = $this->overhaul->set_ohlist();
-		
+
+			$jsonResult = array(
+				'success' => true,
+				'cOH' => $hsl
+			);	
 		}
 		catch (Exception $e){
 			$jsonResult = array(
@@ -62,12 +66,13 @@ class rOverHaul extends CI_Controller {
 			);	
 		}
 		
-		// echo json_encode($jsonResult);
+		echo json_encode($jsonResult);
 	
 	}
 	public function readOH(){
 		try {
-			$hsl = $this->overhaul->get_ohlist();
+			$thn = $this->input->get('thn')?:date('Y');
+			$hsl = $this->overhaul->get_ohlist($thn);
 			//print_r($hsl);
 			
 			$jsonResult = array(

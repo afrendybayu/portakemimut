@@ -21,6 +21,7 @@ Ext.define('rcm.view.laporan.UploadFile', {
 						id : 'bwbpm3',
 						disabled : true,
 						fieldLabel: 'Upload BPM3',
+						allowBlank: false,
 						//labelWidth: 200,
 						width: 500,
 						msgTarget: 'side',

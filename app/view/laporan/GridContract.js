@@ -3,14 +3,16 @@ Ext.define('rcm.view.laporan.GridContract', {
 	extend: 'Ext.grid.Panel',
 	//alias: 'widget.gridCause',
 	xtype: 'tGridContract',
-	//dstore:'Contract',
-	ngedit: 0,
+	//dstore:'Contract',	
+	ngedit: 0,	
 	
 	requires: [
 		'rcm.view.Util',
 		'Ext.grid.plugin.CellEditing',
 		'Ext.grid.column.RowNumberer'
 	],
+	
+	thn: rcm.view.Util.U1th(''),
 	
 	columnLines: true,
 	selType: 'cellmodel',
@@ -42,12 +44,15 @@ Ext.define('rcm.view.laporan.GridContract', {
 			{ header:'Oct',dataIndex:'b10',width:70,align:'right',editor:'textfield',summaryType:'sum',renderer:'usMoney' },
 			{ header:'Nov',dataIndex:'b11',width:70,align:'right',editor:'textfield',summaryType:'sum',renderer:'usMoney' },
 			{ header:'Dec',dataIndex:'b12',width:70,align:'right',editor:'textfield',summaryType:'sum',renderer:'usMoney' },
-			{ header:'Total Contract Value',dataIndex:'tot',flex:1,align:'right',summaryType:'sum' }
+			{ header:'Total Contract Value',dataIndex:'tot',width:120,align:'right',summaryType:'sum',renderer:'usMoney' },
+			{ header:'Budget',dataIndex:'budget',flex:1,align:'right',summaryType:'sum',renderer:'usMoney',editor:'textfield' },
+			{ header:'% Budget',dataIndex:'persen',flex:1,align:'right' }
 		]};
 		
 		me.callParent(arguments);
 		me.addEvents(
 			'recordedit'
+			//'budgetedit'
         );
         ce.on('edit', me.handleCellEdit, this);
         ce.on('beforeedit', me.hdlCellEna, this);
@@ -55,10 +60,13 @@ Ext.define('rcm.view.laporan.GridContract', {
 	},
 	
 	handleCellEdit: function(gridView, e) {
-		//alert("handleCellEdit kontrak");
+		
         var rec = e.grid.getStore().getAt(e.rowIdx), tt=e.field;
-		//console.log("handleCellEdit tipe: "+rec.get('tipe')+", nilai: "+e.value+', bulan: '+e.field);
-		this.fireEvent('recordedit',e,e.value,e.field,rec.get('tipe'),'2014' );
+		if (e.colIdx==15)
+			//alert("handleCellEdit kontrak thn: "+e.field);
+			this.fireEvent('recordedit',e,e.value,'b15',rec.get('tipe'),this.thn );
+		else
+			this.fireEvent('recordedit',e,e.value,e.field,rec.get('tipe'),this.thn );
 		
     },
     

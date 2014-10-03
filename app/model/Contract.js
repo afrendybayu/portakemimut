@@ -18,6 +18,8 @@ Ext.define('rcm.model.Contract', {
 				{ name:'b10',type:'float' },
 				{ name:'b11',type:'float' },
 				{ name:'b12',type:'float' },
+				{ name:'budget',type:'float' },'persen',
+				//{ name:'persen',type:'float' },
 				{ name:'tot',type:'float' }],
     proxy: {
 		type: 'ajax',

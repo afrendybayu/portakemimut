@@ -1,12 +1,28 @@
 // afrendyBayu,26Jan2014 //
 Ext.define('rcm.view.laporan.OverHaul', {
     xtype: 'pOverHaul',
-	extend: 'Ext.container.Container',
+	//extend: 'Ext.container.Container',
+	extend: 'Ext.panel.Panel',
 
 	requires: [
-		
-		'rcm.view.laporan.OverHaulInput'
+		'rcm.view.laporan.OverHaulInput',
+		'rcm.view.laporan.FilterUpload'
 	],
+	
+	dockedItems: [{
+		dock: 'top',
+		xtype: 'tFUpl',
+		idbDownL: 'idDwOh',
+		idbUpl: 'idUpOh',
+		idtLok: 'idLFileOh',
+		idThn: 'idThnOh',
+		etext: 'Upload File OverHaul',
+		nameFile: 'fileOh',
+		idbSr: 'idSrOh',
+		idbPdf: 'idbPdfOh',
+		hdPdf: false
+	}],
+	
 	layout: 'border',
     items: [{
 
@@ -23,12 +39,8 @@ Ext.define('rcm.view.laporan.OverHaul', {
 			align : 'stretch'
 		}
     },{  
-        region: 'center',  
-		// title : 'pabnel center',
+        region: 'center',
         xtype: 'iOverHaul'
-		
-        // layout: 'fit',
-        
     }]
 	
 

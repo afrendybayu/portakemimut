@@ -43,8 +43,8 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 				hideable: false
 			},
 			items : [	{header : 'No', xtype:'rownumberer',width:25 },
-						{header : 'Order No',width : 150,dataIndex : 'wo', editor: {allowBlank: false}},
-						{header : 'Lokasi',flex : 1,dataIndex : 'lokasi', editor:{
+						{header : 'Order No',width : 100,dataIndex : 'wo', editor: {allowBlank: false}},
+						{header : 'Lokasi',width : 250,dataIndex : 'lokasi', editor:{
 							xtype		:'combobox',
 							editable	: false,
 							allowBlank	: false,
@@ -60,7 +60,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 							}
 						
 						}},
-						{header : 'Unit',flex : 1,dataIndex : 'unit',editor:{
+						{header : 'Unit',width:250,dataIndex : 'unit',editor:{
 							xtype		:'combobox',
 							editable	: false,
 							allowBlank	: false,

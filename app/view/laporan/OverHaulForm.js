@@ -18,10 +18,10 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
                 // height: 25
             },{
 				xtype		:'textfield',
-				allowBlank	: false,
+				//allowBlank	: false,
 				emptyText 	: 'Order No',
 				name		: 'wo',
-				width		: 150
+				width		: 100
 				// width		: 200 	
 				// flex : 1
 			},{
@@ -29,7 +29,7 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 				editable	: false,
 				allowBlank	: false,
 				//width 		: 150,
-				flex: 1,
+				width : 250,
 				store 		: 'CbParent',
 				emptyText	: 'Lokasi',
 				name		: 'lokasi',
@@ -49,7 +49,7 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 				allowBlank	: false,
 				store 		: 'CbUnit',
 				//width		: 150, 
-				flex: 1,	
+				width:250,
 				name		: 'unit',
 				displayField: 'unit',
 				valueField 	: 'unit',

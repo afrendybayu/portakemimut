@@ -140,11 +140,7 @@ Ext.define('rcm.controller.Login', {
 					me.getIConMon().ngedit = 1;
 					me.getExcelgrid().ngedit = 1;
 					me.getTGridContract().ngedit = 1;
-					// rcmSettings.aaaaa = Ext.getCmp('grid_edit1111');	
-					/*	var me 	= this,
-							uFG = me.getTaskFormGagal();
-							uFG.show();
-					*/
+
 					
 				},
 				failure : function(respon, operation){

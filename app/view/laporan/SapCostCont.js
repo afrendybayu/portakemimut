@@ -27,6 +27,7 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 			region: 'north'
 		},{
 		//*/
+			id: 'grContL',
 			region: 'center',
 			title: 'ContractL',
 			xtype: 'tContractL'
