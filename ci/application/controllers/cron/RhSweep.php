@@ -8,9 +8,10 @@ class RhSweep extends CI_Controller {
     }
 	public function index()	{
 		$awal = $this->input->get('awal') ? $this->input->get('awal') : date('Y-m-d',mktime(0,0,0,date('m'),date('d')-1,date('Y')));
-		$akhir = $this->input->get('akhir') ? $this->input->get('akhir') : date('Y-m-d',mktime(0,0,0,8,date('d')-1,date('Y')));//(mktime(0, 0, 0, date('m')  , date('d')+1, date('Y')));
+		$akhir = $this->input->get('akhir') ? $this->input->get('akhir') : date('Y-m-d',mktime(0,0,0,date('m'),date('d')-1,date('Y')));//(mktime(0, 0, 0, date('m')  , date('d')+1, date('Y')));
 
 		$interval =(strtotime($akhir) - strtotime($awal))/(3600*24);
+		
 		for ($i=0; $i<=$interval; $i++){
 			$tgl_mulai = date('Y-m-d',strtotime($awal.'+ '.$i.' days'));
 			echo 'isi data RH di tanggal :'.$tgl_mulai.'<br>';
@@ -19,7 +20,6 @@ class RhSweep extends CI_Controller {
 			foreach($hsl as $row){
 				$d_query = $this->runninghour->get_rhunit($row->unit_id,$tgl_mulai);
 				// echo count($d_query);
-				// echo '--- <br>';
 				if (count($d_query)== 0){
 					// echo ' ini di '.$tgl_mulai.'</br>';
 					//*
@@ -34,14 +34,16 @@ class RhSweep extends CI_Controller {
 						'thn'=> date('Y',strtotime($tgl_mulai)),
 						'bln'=> date('m',strtotime($tgl_mulai))
 					);
-					$this->runninghour->insert_rh($d_input);
+					
 					//*/
-					// print_r($d_input);
-					// echo '</br>';
+					$jsonResult = array(
+						'success' => true,
+						'rh' => $d_input
+					);
+					echo json_encode($jsonResult).'<br>';
+					//*/
+					$this->runninghour->insert_rh($d_input);
 				}
-				// else {
-					// echo 'Data RH telah Terisi</br>';
-				// }
 			}	
 		}
 	}
