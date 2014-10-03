@@ -200,6 +200,9 @@ Ext.define('rcm.controller.Sap', {
 			'#idUpCm': {
 				click: me.hdlUplCm
 			},
+			'#idSrCm': {
+				click : me.hdlFiltThnCm
+			},
 			'iConMon':{
 				// specialkey	: me.hdlupdate,
 				updatecm	: me.updateFormCM,
@@ -245,6 +248,11 @@ Ext.define('rcm.controller.Sap', {
 				url: 'format_conmon.xlsx'
 			});
 		}
+	},
+	
+	hdlFiltThnCm: function()	{
+		var t=Ext.getCmp('idThnCm').getValue();
+		this.gridfilterTahun(t);
 	},
 	
 	hdlFiltThnOh: function()	{

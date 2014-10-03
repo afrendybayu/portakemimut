@@ -53,15 +53,11 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 					margin: '2 10 2 10'
 				},{
 					xtype: 'filefield',
-					//name: 'bpm3',
 					id : me.idtLok,
 					name: me.nameFile,
-					//disabled : true,
 					emptyText: me.etext,
 					width: 250,
 					msgTarget: 'side',
-					//layout: 'fit',
-					//anchor: '100%',
 					allowBlank: false,
 					buttonText: ' Browse ',
 					margin: '2 0'
