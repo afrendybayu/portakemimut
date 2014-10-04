@@ -257,7 +257,7 @@ class Sap extends CI_Model {
 	}
 
 	function get_tahun()	{
-		$sql =	"select DATE_FORMAT(planstart,'%Y') AS thn FROM sap GROUP BY thn ORDER BY thn DESC";
+		$sql =	"select YEAR(planstart) AS thn FROM sap GROUP BY thn ORDER BY thn DESC";
 		//echo "sql: $sql";		
 		
 		$query = $this->db->query($sql);

@@ -142,6 +142,7 @@ Ext.define('rcm.view.Util', {
 			var bln,thn,tgl,date;
 			var column = new Array();
 			var xtgl,xwkt;
+			var w=30;
 			
 			//console.log("UxcolGrid rcmSettings.tgl: "+rcmSettings.tgl+5000);
 			if (rcmSettings.tgl=='0')	{
@@ -155,12 +156,12 @@ Ext.define('rcm.view.Util', {
 				{ header:'Unit', dataIndex: 'eq', width:200 }
 			];
 			
-			tgl.setDate(tgl.getDate() - 13);
+			tgl.setDate(tgl.getDate() - w + 1);
 			var xbln=tgl.getMonth(); 
 			//console.log("xbln "+xbln+" "+strbln[xbln]);
 			var grid={}; var j=0;
-			for(var i=14; i>=0; i--)	{
-				if (((tgl.getDate()==1)&&(i!=14)) || (i==0))	{
+			for(var i=w; i>=0; i--)	{
+				if (((tgl.getDate()==1)&&(i!=w)) || (i==0))	{
 					blnthn.push({ header:(strbln[xbln]+" "+(tgl.getFullYear())), columns: column });
 					xbln=tgl.getMonth();
 					column=[];
@@ -209,13 +210,13 @@ Ext.define('rcm.view.Util', {
 		},
 		
 		Ublntgl: function(x)	{
-			
+			var ww = 30;
 			var tglbln=new Array();
 			tglbln[0] = 'eq'; tglbln[1] = 'Lokasi'; tglbln[2] = 'cat'; tglbln[3] = 'note';
 			//*
 			//alert("x: "+x+", Ublntgl: "+rcmSettings.tgl);
 				
-			for (var i=0;i<14;i++)	{
+			for (var i=0;i<ww;i++)	{
 				var date;
 				if (rcmSettings.tgl==='0')	{
 					date=new Date();

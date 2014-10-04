@@ -66,7 +66,7 @@ Ext.define('rcm.view.laporan.SapHistori', {
 					text : '# Work Orders'
 				}
 			},{
-				min: 0,
+				//min: 0,
 				max: 100,				
 				title : {
 					text : 'Persen [%]'

@@ -30,7 +30,7 @@ Ext.define('rcm.view.laporan.ManOCost', {
 					width: 85,
 					id: 'idbMoc',
 					iconCls: 'savedisk',
-					margin: '2 15',
+					margin: '2 15'
 				}]
 			},{
 			//*/
