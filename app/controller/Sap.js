@@ -50,7 +50,8 @@ Ext.define('rcm.controller.Sap', {
     models: [
 		'ContractInput',
 		'ConMonIn',
-		'OverHaulIn'
+		'OverHaulIn',
+		'ManOCost'
     ],
     
     refs: [{
@@ -240,7 +241,15 @@ Ext.define('rcm.controller.Sap', {
     },
     
     hdlChThnMoc: function(tf,newV,oldV)	{
-		alert('berubah '+newV);
+		//alert('berubah '+newV);
+		var me=this;
+		this.getManOCostStore().load({ 
+			params:{thn:newV},
+			callback: function(rec, op, suc) {
+				console.log(rec);
+				me.loadOCost(rec[0]);
+			}
+		});
 	},
     
     hdlManOCost: function(btn)	{
@@ -248,11 +257,19 @@ Ext.define('rcm.controller.Sap', {
 			b=Ext.getCmp('mbudg').getValue(),
 			w=Ext.getCmp('mwo').getValue(),
 			o=Ext.getCmp('motype').getValue();
-		alert('jos'+t+' '+b+" "+w+" "+o);
+		
+		var rec = { thn:t, budget: b, wo:w, otype:o };
+		var updMoC 	= Ext.create('rcm.model.ManOCost', rec ); 
+		
+		updMoC.save ({
+			
+		});
+		
+		//alert('jos'+t+' '+b+" "+w+" "+o);
 	},
     
     loadOCost: function(rec)	{
-		//rcmSettings.hhh = rec;
+		rcmSettings.hhh = rec;
 		Ext.getCmp('mbudg').setValue(rec.get('budget')),
 		Ext.getCmp('mwo').setValue(rec.get('wo')),
 		Ext.getCmp('motype').setValue(rec.get('otype'));

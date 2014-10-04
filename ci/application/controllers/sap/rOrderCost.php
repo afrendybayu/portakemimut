@@ -179,23 +179,21 @@ class rOrderCost extends CI_Controller {
 	public function sapManOCost()		{
 		try {
 			$p = json_decode(file_get_contents('php://input'));
-			/*
-			$params->bln = 'b4';
-			$params->thn = '2014';
-			$params->nilai = 134;
-			$params->tipe = 5;
-			//print_r($params); echo "<br/>";
-			//*/
-			if (!isset($params))	{
+
+			if (!isset($p))	{
 				throw new Exception("Data Tidak ada !!");
 			}
 			//echo "thn: $thn<br/>";
 			$this->load->model('sap');
-			$hsl = $this->sap->set_ocost($p->thn, $p->wo, $p->otype);
+			$this->sap->set_ocost($p->thn, $p->wo, $p->otype, $p->budget);
+			
+			$hsl = new stdClass();
+			$hsl->thn = $p->thn;
+			
 			//print_r($hsl);
 			$jsonResult = array(
 				'success' => true,
-				'orderc' => $hsl
+				'input' => $hsl
 			);
 		}
 		catch (Exception $e){
@@ -214,6 +212,15 @@ class rOrderCost extends CI_Controller {
 			//echo "thn: $thn<br/>";
 			$this->load->model('sap');
 			$hsl = $this->sap->get_ocost($thn);
+			if (count($hsl)==0)	{
+				//$ar = array();	
+				$ob = new stdClass();
+				$ob->thn = $thn;
+				$ob->wo = 0;
+				$ob->budget = 0;
+				$ob->otype = 0;
+				array_push($hsl, $ob);
+			}
 			//print_r($hsl);
 			$jsonResult = array(
 				'success' => true,

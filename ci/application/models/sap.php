@@ -384,10 +384,12 @@ class Sap extends CI_Model {
 		return $query->result();
 	}
 	
-	function set_ocost($thn,$wo,$otype)	{
-		$sql =	"REPLACE INTO ocost (thn,wo,otype) VALUES ($thn, $wo, $otype) where thn=$thn";
-		$query = $this->db->query($sql);
-		return $query->result();
+	function set_ocost($thn,$wo,$otype,$budget)	{
+		$sql =	"REPLACE INTO ocost (thn,wo,otype,budget) VALUES ($thn, $wo, $otype, $budget)";
+		//echo "sql: $sql<br/>";
+		$this->db->query($sql);
+		
+		return 1;
 	}
 	
 }
