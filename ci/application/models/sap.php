@@ -286,11 +286,13 @@ class Sap extends CI_Model {
 
 	function get_ordercostwo($thn)    {
 
-		$sql =	"SELECT objid AS otipe, objtype AS `desc`, count(*) AS jml ".
-				",ROUND(sum(totescost),2) AS plstcost,ROUND(sum(intcost),2) AS plincost,ROUND(sum(totplancost),2) AS tplcost ".
-				",ROUND(sum(totmatcost),2) AS taccost,ROUND(sum(intcost),2) AS acincost ".
-				",ROUND(sum(totservcost),2) AS srvcost,ROUND(sum(actcost),2) AS acstcost ".
-				"FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!='' GROUP BY otipe;";
+		$sql =	"SELECT objid AS otipe, objtype AS `desc`, count(*) AS jml
+				,ROUND(sum(totescost),2) AS plstcost,ROUND(sum(intcost),2) AS plincost,ROUND(sum(totplancost),2) AS tplcost
+				,ROUND(sum(totmatcost),2) AS taccost,ROUND(sum(intcost),2) AS acincost
+				,ROUND(sum(totservcost),2) AS srvcost,ROUND(sum(actcost),2) AS acstcost
+				,(SELECT budget FROM ocost WHERE thn=$thn) AS budget
+				,ROUND((SELECT wo FROM ocost WHERE thn=$thn),2) AS persen
+				FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!='' GROUP BY otipe";
 		//echo "sql: $sql";
 		
 		$query = $this->db->query($sql);
@@ -298,11 +300,13 @@ class Sap extends CI_Model {
     }
     
     function get_ordercostot($thn)	{
-		$sql =	"SELECT ordertype as otipe, pmtype as `desc` ".
-				",ROUND(sum(totescost),2) AS plstcost,ROUND(sum(intcost),2) AS plincost,ROUND(sum(totplancost),2) AS tplcost ".
-				",ROUND(sum(totmatcost),2) AS taccost,ROUND(sum(intcost),2) AS acincost ".
-				",ROUND(sum(totservcost),2) AS srvcost,ROUND(sum(actcost),2) AS acstcost ".
-				"FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn group by ordertype;";
+		$sql =	"SELECT ordertype as otipe, pmtype as `desc`
+				,ROUND(sum(totescost),2) AS plstcost,ROUND(sum(intcost),2) AS plincost,ROUND(sum(totplancost),2) AS tplcost
+				,ROUND(sum(totmatcost),2) AS taccost,ROUND(sum(intcost),2) AS acincost
+				,ROUND(sum(totservcost),2) AS srvcost,ROUND(sum(actcost),2) AS acstcost
+				,(SELECT budget FROM ocost WHERE thn=$thn) AS budget
+				,ROUND((SELECT otype FROM ocost WHERE thn=$thn),2) AS persen
+				FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn group by ordertype";
 		
 		$query = $this->db->query($sql);
 		return $query->result();
@@ -370,6 +374,12 @@ class Sap extends CI_Model {
 				"WHERE YEAR(planstart)=$thn ".
 				"GROUP BY ordertype,pmtype ".
 				"ORDER BY ordertype asc, jml desc";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
+	function get_ocost($thn)	{
+		$sql =	"SELECT * FROM ocost where thn=$thn";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}

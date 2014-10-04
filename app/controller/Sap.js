@@ -9,14 +9,15 @@ Ext.define('rcm.controller.Sap', {
         ,'laporan.SpeedoSap'
         ,'laporan.GridCause'
         ,'laporan.FilterSap'
-		//,'laporan.FilterMaint'
+
 		,'laporan.ConMonForm'
 		,'laporan.SapPie'
 		,'laporan.GridContract'
 		,'laporan.EPO'
 		,'laporan.WOComp'
-		//,'laporan.FilterThn'
+
 		,'laporan.OverHaulForm'
+		,'laporan.ManOCost'
     ],
 
     controllers: [
@@ -38,7 +39,7 @@ Ext.define('rcm.controller.Sap', {
 		,'Contract','ContractLine', 'ContractInput'
 
 		,'SapHistori'
-		
+		,'ManOCost'
 		
 		,'ConMon','ConMonIn','CbParent','CbUnit','CbEquip','ConMonGr'
 		,'DetConMonGr','DetConMonPmp','DetConMonGs'
@@ -203,6 +204,12 @@ Ext.define('rcm.controller.Sap', {
 			'#idSrCm': {
 				click : me.hdlFiltThnCm
 			},
+			'#idbMoc': {
+				click: me.hdlManOCost
+			},
+			'tManOCost numberfield': {
+				change: me.hdlChThnMoc
+			},
 			'iConMon':{
 				// specialkey	: me.hdlupdate,
 				updatecm	: me.updateFormCM,
@@ -231,6 +238,18 @@ Ext.define('rcm.controller.Sap', {
 			
 		});
     },
+    
+    hdlChThnMoc: function(tf,newV,oldV)	{
+		alert('berubah '+newV);
+	},
+    
+    hdlManOCost: function(btn)	{
+		var t=Ext.getCmp('idThMoc').getValue(),
+			b=Ext.getCmp('mbudg').getValue(),
+			w=Ext.getCmp('mwo').getValue(),
+			o=Ext.getCmp('motype').getValue();
+		alert('jos'+t+' '+b+" "+w+" "+o);
+	},
     
     hdlDlOh: function(btn)	{
 		var form = btn.up('form').getForm();

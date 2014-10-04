@@ -1084,6 +1084,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.laporan.GridOrderC": [],
   "rcm.view.laporan.GridOverHaul": [],
   "rcm.view.laporan.GridWork": [],
+  "rcm.view.laporan.ManOCost": [],
   "rcm.view.laporan.OrderCostSap": [],
   "rcm.view.laporan.OverHaul": [],
   "rcm.view.laporan.OverHaulForm": [],
@@ -2412,6 +2413,9 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.laporan.GridWork": [
     "widget.gridWork",
     "widget.tGridWork"
+  ],
+  "rcm.view.laporan.ManOCost": [
+    "widget.tManOCost"
   ],
   "rcm.view.laporan.OrderCostSap": [
     "widget.tpSapOCost"

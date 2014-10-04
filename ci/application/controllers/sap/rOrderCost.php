@@ -207,6 +207,28 @@ class rOrderCost extends CI_Controller {
 		
 		echo json_encode($jsonResult);
 	}
+	
+	public function budgOCost()	{
+		try {
+			$thn = $this->input->get('thn')?:date('Y');
+			//echo "thn: $thn<br/>";
+			$this->load->model('sap');
+			$hsl = $this->sap->get_ocost($thn);
+			//print_r($hsl);
+			$jsonResult = array(
+				'success' => true,
+				'input' => $hsl
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+	}
 }
 
 /* End of file rOrderCost.php */

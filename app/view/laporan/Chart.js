@@ -27,8 +27,11 @@ Ext.define('rcm.view.laporan.Chart', {
         ,'rcm.view.laporan.SapChartSaja'
 		,'rcm.view.laporan.OverHaul'
 		,'rcm.view.laporan.SapChartTop10'	
-		,'rcm.view.laporan.ManOCost'	
+		
+		,'rcm.view.laporan.Input'	
     ],
+    
+    autoScroll: true,
     
 	initComponent: function() {
 		var me=this;
@@ -151,13 +154,7 @@ Ext.define('rcm.view.laporan.Chart', {
 			},{
 				id: 'ts_in',
 				title: 'Input Laporan',
-				xtype: 'tUploadfile',
-				margin: '10 10'
-			},{
-				id: 'ts_in1',
-				title: 'Input Laporan',
-				xtype: 'tManOCost',
-				margin: '10 10'
+				xtype: 'sapinput'
 		}];
 
 		me.callParent(arguments);

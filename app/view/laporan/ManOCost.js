@@ -1,4 +1,4 @@
-/* Afrendy Bayu, 25Nov2013 */
+/* Afrendy Bayu, 3Okt2014 */
 
 Ext.define('rcm.view.laporan.ManOCost', {
     extend: 'Ext.form.Panel',
@@ -7,14 +7,11 @@ Ext.define('rcm.view.laporan.ManOCost', {
 
 	],
 	
-	dockedItems: [{
-
-	}],
-	
 	initComponent: function() {
 		var me=this;
 		
 		me.items = [{
+			//*
 				xtype: 'fieldcontainer',
 				//combineErrors: true,
 				//msgTarget : 'side',
@@ -23,26 +20,40 @@ Ext.define('rcm.view.laporan.ManOCost', {
 				items: [{	
 					xtype: 'numberfield',
 					value: rcm.view.Util.U1th(''),
-					fieldLabel: '<b>Pilih Tahun</b>',
-					width: 180,
+					id: 'idThMoc',
+					fieldLabel: '<b>Year</b>',
+					width: 180
 					//margin: '0 10 0 0',
 				},{
 					xtype: 'button',
-					text: ' Ganti ',
+					text: ' Change ',
+					width: 85,
+					id: 'idbMoc',
+					iconCls: 'savedisk',
 					margin: '2 15',
 				}]
-			},{			// 1 Tipe PM
+			},{
+			//*/
+				xtype: 'textfield',
+				fieldLabel: '$ Budget',
+				id: 'mbudg',
+				width:280,
+				emptyText: '$ Annual Budget',
+				msgTarget: 'side'
+			},{
+			//*/
 				xtype: 'textfield',
 				fieldLabel: '% WO Type',
 				id: 'mwo',
+				width:280,
 				emptyText: '% WO Cost',
 				msgTarget: 'side'
-			},{			// 2 Unit Stop
+			},{
 				fieldLabel: '% Object Type',
 				id: 'motype',
 				xtype: 'textfield',
 				msgTarget: 'side',
-				//width:509,
+				width:280,
 				emptyText: '% Object Type'
 		}],
 		

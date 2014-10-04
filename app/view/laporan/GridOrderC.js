@@ -6,6 +6,10 @@ Ext.define('rcm.view.laporan.GridOrderC', {
 	//store: 'HoOrderC',
 	columnLines: true,
 	
+	require: [
+		'rcm.view.Util'
+	],
+	
 	initComponent: function() {
 		var me=this;//, sumFt=Ext.create('Ext.grid.feature.Summary');
 		me.store= me.dstore;
@@ -64,9 +68,11 @@ Ext.define('rcm.view.laporan.GridOrderC', {
 					}]
 				}
 				//*
-				,{ header:'Budget',dataIndex:'budget',flex:2,minWidth:80,
+				,{ header:'Budget',dataIndex:'budget',flex:2,minWidth:80,renderer:'usMoney',
 					summaryType:'average',summaryRenderer: function(value) {
-						return Ext.String.format('${0}',value.toFixed(2));	} }
+						//return Ext.String.format('${0}',value.toFixed(2));	} }
+						return rcm.view.Util.format2(1,value,'$');	} }
+						//return value;	} }
 				,{ header:'% Budget',dataIndex:'persen',flex:2,minWidth:80,
 					summaryType:'average',summaryRenderer: function(value) {
 						return Ext.String.format('{0} %',value.toFixed(2));	} }
