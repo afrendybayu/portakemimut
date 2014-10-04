@@ -251,6 +251,13 @@ Ext.define('rcm.controller.Sap', {
 		alert('jos'+t+' '+b+" "+w+" "+o);
 	},
     
+    loadOCost: function(rec)	{
+		//rcmSettings.hhh = rec;
+		Ext.getCmp('mbudg').setValue(rec.get('budget')),
+		Ext.getCmp('mwo').setValue(rec.get('wo')),
+		Ext.getCmp('motype').setValue(rec.get('otype'));
+	},
+    
     hdlDlOh: function(btn)	{
 		var form = btn.up('form').getForm();
 		if(form.isValid()){
@@ -774,6 +781,13 @@ Ext.define('rcm.controller.Sap', {
 	onLaunch: function() {
 		//alert("tes");
 		this.ubahLabelWO({});
+		this.getManOCostStore().load({
+			scope: this,
+			callback: function(rec, op, suc) {
+				//console.log(rec);
+				this.loadOCost(rec[0]);
+			}
+		});
 	},
 	
 	clrSapHist: function()	{
