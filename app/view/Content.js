@@ -38,8 +38,8 @@ Ext.define('rcm.view.Content', {
 			title: 'Reliability',
 			iconCls: 'Reliability',
 			xtype: 'tAvReChart'
-
-		},{//=============================*/
+		//*
+		},{
 			id: 'tu_sap',
 			title: 'SAP Report',
 			xtype: 'tabChart',
@@ -121,38 +121,7 @@ Ext.define('rcm.view.Content', {
 			xtype 	: 't_Konfig',
 			//disabled : true
 			hidden: true
-			/*
-			layout: {
-				type: 'border'
-			},
-			items: [{
-				region: 'west',
-				//xtype: 'taskNavK',
-				align: 'stretch',
-				width: 350,
-				minWidth:310,
-				split: true
-			}, {
-				align: 'stretch',
-				region: 'center',
-				xtype: 'tabpanel',
-				items: [{
-					title: 'Keterangan Hirarki',
-					html: 'Keterangan Hirarki',
-					icon: 'modul/icons/application_go.png'
-				},{
-					title: 'Object Part',
-					html: 'Object Part',
-					icon: 'modul/icons/application_go.png'
-				},{
-					title: 'Failure Mode',
-					html: 'Failure Mode',
-					icon: 'modul/icons/application_go.png'
-				}]
-			
-			==================================*/
-			//}]
-		
+
 		
 		}];
 		

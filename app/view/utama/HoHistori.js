@@ -67,6 +67,7 @@ Ext.define('rcm.view.utama.HoHistori', {
 					color : '#808080'
 				}]
 			},{
+				min:0,
 				max: 100,
 				title : {
 					text : 'Persen [%]'

@@ -11,23 +11,25 @@ class Upload extends CI_Model {
 			"'{$c[38]}','{$c[39]}','{$c[40]}','{$c[41]}','{$c[42]}','".cekInt($c[43])."','".cekInt($c[44])."','{$c[52]}','{$c[53]}','".fDT($c[54])."',".
 			"'{$c[55]}','{$c[56]}','{$c[57]}','{$c[58]}','{$c[28]}');";
 		
-		//echo "sql: $sql<br/>";
+		echo "sql: $sql<br/>";
 		$hsl = array();		
-		if (mysqli_multi_query($this->db->conn_id,$sql))	{
+		if (@mysqli_multi_query($this->db->conn_id,$sql))	{
 			do    {
 				// Store first result set
-				if ($result=mysqli_store_result($this->db->conn_id))	{
-					while ($row=mysqli_fetch_row($result))	{
+				if ($result=@mysqli_store_result($this->db->conn_id))	{
+					while ($row=@mysqli_fetch_row($result))	{
 						//printf("%s\n",$row['pid']);
 						//echo "pid";
 						$hsl = $row;
 						//print_r($row); echo "<br/>";
 					}
-					mysqli_free_result($result);
+					@mysqli_free_result($result);
 				}
 			}
-			while (mysqli_next_result($this->db->conn_id));
+			while (@mysqli_next_result($this->db->conn_id));
 		}
+		
+		if (!isset($hsl))	return;
 		
 		if ($hsl[0]==1)	{		// query sap update, maka hapus dulu di sapfmea
 			//$sql = "DELETE FROM sapfmea where pid={$hsl[1]};";
