@@ -78,7 +78,7 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 		},
 		
 		me.columns = {	items: [
-			{ xtype:'rownumberer',width:125 },
+			{ xtype:'rownumberer',width:40 },
 			{ header:'Lokasi',dataIndex:'lok',width:100, hideable : false, filter: { 	type: 'string'  } },
 			{ header:'Nama Unit',dataIndex:'nama',width:135, hideable : false, filter: { type: 'string' } },
 			{ header:'Kejadian',dataIndex:'event',width:75, tdCls: 'x-change-cell', hideable : false,

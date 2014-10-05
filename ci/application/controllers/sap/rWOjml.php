@@ -30,9 +30,15 @@ class rWOjml extends CI_Controller {
 
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
+			$mwc = $this->input->get('mwc')?:'-';
+			
+			if ($mwc === 'ALL')	$mwc = '-';
+			$lok = $this->input->get('loc')?:-1;
+			if ($lok === 'ALL')	$lok = -1;
+			//echo "lok: $lok --> lok: $lok<br/>";
 			$this->load->model('sap');
 			
-			$hsl = $this->sap->get_jmlWO($thn);
+			$hsl = $this->sap->get_jmlWO($thn,$mwc,$lok);
 			//print_r($hsl);
 			
 			$sap = array();

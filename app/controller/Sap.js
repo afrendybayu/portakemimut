@@ -829,11 +829,10 @@ Ext.define('rcm.controller.Sap', {
 		//var o = this.getTFSap().sedotFilter(),
 		var m = this,
 			o = m.getTEPO().sedotFilter(),
-			//p = { loc:o.iL,otp:o.iW,mwc:o.iM,taw:o.iTw,tak:o.iTk };
 			p = { loc:o.iL,otp:o.iW,mwc:o.iM,thn:o.iT };
 		//alert("o.L: "+o.iL+", oW: "+o.iW+", oM: "+o.iM+", oT: "+o.iT);
 		m.ubahLabelWO(p);
-		m.getSapEPOStore().load({ params: {thn:o.iT} });
+		m.getSapEPOStore().load({ params:p });
 	},
 	
 	grafikCauseClear: function()	{

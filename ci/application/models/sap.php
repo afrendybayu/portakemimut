@@ -10,21 +10,26 @@ class Sap extends CI_Model {
 		return $query->result();
 	}
 
-	function get_jmlWO($thn)    {
+	function get_jmlWO($thn,$mwc,$lok)    {
 		/*
 		$sql =	"SELECT ordertype AS kode,pmtype,count(*) AS wo
 				,ROUND((100*count(*)/(select count(*) from sap )),2) as persen
 				FROM sap GROUP BY ordertype ORDER BY ordertype ASC,pmtype ASC";
 		//*/
+		$fmc = ''; $flok = '';
+		if ($mwc !== '-')	$fmc  = " AND manwork LIKE '%$mwc%' ";
+		if ($lok >= 0)		$flok = " AND sap.lokasi=$lok ";
+		
 		
 		$sql =	"select ordertype AS kode,pmtype,count(*) AS wo
 				,ROUND((100*count(*)/(
 					select count(*) from sap WHERE year(planstart) = '$thn' AND 
 					ordertype in ('EP01','EP02','EP03','EP04','EP05'))),2) as persen
 				FROM sap
-				WHERE year(planstart) = '$thn'
+				LEFT JOIN hirarki h ON h.urut = sap.lokasi
+				WHERE year(planstart) = '$thn' $fmc $flok
 				GROUP BY ordertype ";
-		//echo "sql: $sql";
+		//echo "sql: $sql<br/><br/>";
 		$query = $this->db->query($sql);
 		
 		return $query->result();
