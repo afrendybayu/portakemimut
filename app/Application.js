@@ -20,6 +20,7 @@ Ext.define('rcm.Application', {
 		,'Sap'
 		,'Login'
 		,'AvRe'
+		,'Config'
 		
 		//=================
     ],

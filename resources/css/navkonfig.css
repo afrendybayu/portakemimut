@@ -1,13 +1,4 @@
 
-
-
-.tasks-delete-folder {
-    background-image: url('../modul/icons/delete_folder.png');
-}
-.tasks-new-folder {
-    background-image: url('../modul/icons/new_folder.png');
-}
-
 .price-fall .x-change-cell {
     background-color: #FFB0C4;
     color:red;
@@ -111,4 +102,21 @@
 .up {
 	background-image: url('./images/up.png');
 }
+
+.new_folder_tree {
+    background-image: url('./images/folder-add.png');
+}
+.delete_folder_tree {
+    background-image: url('./images/folder-delete.png');
+}
+.tasks-new-list {
+    background-image: url('./images/new_list.png');
+}
+.tasks-delete-task {
+    background-image: url('./images/delete_task.png');
+}
+.tasks-delete-list {
+    background-image: url('./images/delete_list.png');
+}
+
 

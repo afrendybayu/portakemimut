@@ -723,28 +723,28 @@ Ext.define('rcm.controller.Sap', {
 			params: p,
 			scope: this,
 			callback: function(rec) {
-				Ext.getCmp('wo3s7').setText(rec[0].get('teks'));
+				// Ext.getCmp('wo3s7').setText(rec[0].get('teks'));
 			}
 		});
 		me.getWoOpen30Store().load({
 			params: p,
 			scope: this,
 			callback: function(rec) {
-				Ext.getCmp('wo7s30').setText(rec[0].get('teks'));
+				// Ext.getCmp('wo7s30').setText(rec[0].get('teks'));
 			}
 		});
 		me.getWoOpen60Store().load({
 			params: p,
 			scope: this,
 			callback: function(rec) {
-				Ext.getCmp('wo30s60').setText(rec[0].get('teks'));
+				// Ext.getCmp('wo30s60').setText(rec[0].get('teks'));
 			}
 		});
 		me.getWoOpenL60Store().load({
 			params: p,
 			scope: this,
 			callback: function(rec) {
-				Ext.getCmp('wo60').setText(rec[0].get('teks'));
+				// Ext.getCmp('wo60').setText(rec[0].get('teks'));
 			}
 		});
 		//*/

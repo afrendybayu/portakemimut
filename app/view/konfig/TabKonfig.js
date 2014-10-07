@@ -3,13 +3,13 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 	extend: 'Ext.tab.Panel',
 
     xtype: 't_Konfig',
-	// alias: 'widget.t_Konfig',
     requires: [
 		'rcm.view.konfig.ConfHirarki'
     ],
     
 	initComponent: function() {
 		var me=this;
+		
 		me.items = [{
 				id: 'ts_hr',
 				title: 'Lokasi',
