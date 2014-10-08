@@ -10,21 +10,26 @@ class Sap extends CI_Model {
 		return $query->result();
 	}
 
-	function get_jmlWO($thn)    {
+	function get_jmlWO($thn,$mwc,$lok)    {
 		/*
 		$sql =	"SELECT ordertype AS kode,pmtype,count(*) AS wo
 				,ROUND((100*count(*)/(select count(*) from sap )),2) as persen
 				FROM sap GROUP BY ordertype ORDER BY ordertype ASC,pmtype ASC";
 		//*/
+		$fmc = ''; $flok = '';
+		if ($mwc !== '-')	$fmc  = " AND manwork LIKE '%$mwc%' ";
+		if ($lok >= 0)		$flok = " AND sap.lokasi=$lok ";
+		
 		
 		$sql =	"select ordertype AS kode,pmtype,count(*) AS wo
 				,ROUND((100*count(*)/(
 					select count(*) from sap WHERE year(planstart) = '$thn' AND 
 					ordertype in ('EP01','EP02','EP03','EP04','EP05'))),2) as persen
 				FROM sap
-				WHERE year(planstart) = '$thn'
+				LEFT JOIN hirarki h ON h.urut = sap.lokasi
+				WHERE year(planstart) = '$thn' $fmc $flok
 				GROUP BY ordertype ";
-		//echo "sql: $sql";
+		//echo "sql: $sql<br/><br/>";
 		$query = $this->db->query($sql);
 		
 		return $query->result();
@@ -257,7 +262,7 @@ class Sap extends CI_Model {
 	}
 
 	function get_tahun()	{
-		$sql =	"select DATE_FORMAT(planstart,'%Y') AS thn FROM sap GROUP BY thn ORDER BY thn DESC";
+		$sql =	"select YEAR(planstart) AS thn FROM sap GROUP BY thn ORDER BY thn DESC";
 		//echo "sql: $sql";		
 		
 		$query = $this->db->query($sql);
@@ -286,11 +291,13 @@ class Sap extends CI_Model {
 
 	function get_ordercostwo($thn)    {
 
-		$sql =	"SELECT objid AS otipe, objtype AS `desc`, count(*) AS jml ".
-				",ROUND(sum(totescost),2) AS plstcost,ROUND(sum(intcost),2) AS plincost,ROUND(sum(totplancost),2) AS tplcost ".
-				",ROUND(sum(totmatcost),2) AS taccost,ROUND(sum(intcost),2) AS acincost ".
-				",ROUND(sum(totservcost),2) AS srvcost,ROUND(sum(actcost),2) AS acstcost ".
-				"FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!='' GROUP BY otipe;";
+		$sql =	"SELECT objid AS otipe, objtype AS `desc`, count(*) AS jml
+				,ROUND(sum(totescost),2) AS plstcost,ROUND(sum(intcost),2) AS plincost,ROUND(sum(totplancost),2) AS tplcost
+				,ROUND(sum(totmatcost),2) AS taccost,ROUND(sum(intcost),2) AS acincost
+				,ROUND(sum(totservcost),2) AS srvcost,ROUND(sum(actcost),2) AS acstcost
+				,(SELECT budget FROM ocost WHERE thn=$thn) AS budget
+				,ROUND((SELECT wo FROM ocost WHERE thn=$thn),2) AS persen
+				FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!='' GROUP BY otipe";
 		//echo "sql: $sql";
 		
 		$query = $this->db->query($sql);
@@ -298,11 +305,13 @@ class Sap extends CI_Model {
     }
     
     function get_ordercostot($thn)	{
-		$sql =	"SELECT ordertype as otipe, pmtype as `desc` ".
-				",ROUND(sum(totescost),2) AS plstcost,ROUND(sum(intcost),2) AS plincost,ROUND(sum(totplancost),2) AS tplcost ".
-				",ROUND(sum(totmatcost),2) AS taccost,ROUND(sum(intcost),2) AS acincost ".
-				",ROUND(sum(totservcost),2) AS srvcost,ROUND(sum(actcost),2) AS acstcost ".
-				"FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn group by ordertype;";
+		$sql =	"SELECT ordertype as otipe, pmtype as `desc`
+				,ROUND(sum(totescost),2) AS plstcost,ROUND(sum(intcost),2) AS plincost,ROUND(sum(totplancost),2) AS tplcost
+				,ROUND(sum(totmatcost),2) AS taccost,ROUND(sum(intcost),2) AS acincost
+				,ROUND(sum(totservcost),2) AS srvcost,ROUND(sum(actcost),2) AS acstcost
+				,(SELECT budget FROM ocost WHERE thn=$thn) AS budget
+				,ROUND((SELECT otype FROM ocost WHERE thn=$thn),2) AS persen
+				FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn group by ordertype";
 		
 		$query = $this->db->query($sql);
 		return $query->result();
@@ -329,6 +338,7 @@ class Sap extends CI_Model {
 	}
 
 	function get_topten($thn)	{
+		/*
 		$sql =	"SELECT CONCAT(equip.nama,'@',h.nama,' ',SUBSTRING_INDEX((SELECT hhhh.nama FROM hirarki hhhh WHERE hhhh.id
 					= (SELECT hhh.parent FROM hirarki hhh WHERE hhh.id
 					= (SELECT hh.parent FROM hirarki hh WHERE hh.id = equip.unit_id))),' ',-1)) AS desk
@@ -337,7 +347,30 @@ class Sap extends CI_Model {
 				WHERE equip.tag= SUBSTRING_INDEX(eqkode,'-',2) AND h.id = equip.unit_id AND YEAR(planstart)=$thn
 				GROUP BY SUBSTRING_INDEX(eqkode,'-',2)
 				ORDER BY jml desc, totmatcost DESC LIMIT 0,10";
+		//*/
+		$sql =	"SELECT ROUND(SUM(totmatcost),2) as jml
+				,CONCAT(e.nama,' ',SUBSTRING_INDEX(sap.funcloc,'-',-1),' @',SUBSTRING_INDEX(h.nama,' ',-1)) as desk
+				FROM sap,equip e,hirarki h
+				WHERE e.tag= sap.eqkode AND sap.lokasi=h.urut 
+				AND YEAR(planstart)=$thn
+				GROUP BY eqkode
+				ORDER BY jml desc, totmatcost DESC LIMIT 0,10";
 		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
+	function get_toptenFL($thn)	{
+		$sql =	"SELECT CONCAT(h.nama,' @',SUBSTRING_INDEX(hhh.nama,' ',-1)) AS desk
+				,ROUND(SUM(totmatcost),2) as jml
+				FROM sap,hirarki h
+				INNER JOIN hirarki hh ON h.parent = hh.id
+				INNER JOIN hirarki hhh ON hh.parent = hhh.id
+				WHERE sap.funcloc=h.funcloc AND YEAR(planstart)=$thn
+				GROUP BY sap.funcloc
+				ORDER BY jml DESC, totmatcost DESC LIMIT 0,10";
+		//echo "sql: $sql<br/>";
+		$query = $this->db->query($sql);
+		//print_r($query->result());
 		return $query->result();
 	}
 
@@ -348,6 +381,20 @@ class Sap extends CI_Model {
 				"ORDER BY ordertype asc, jml desc";
 		$query = $this->db->query($sql);
 		return $query->result();
+	}
+	
+	function get_ocost($thn)	{
+		$sql =	"SELECT * FROM ocost where thn=$thn";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
+	function set_ocost($thn,$wo,$otype,$budget)	{
+		$sql =	"REPLACE INTO ocost (thn,wo,otype,budget) VALUES ($thn, $wo, $otype, $budget)";
+		//echo "sql: $sql<br/>";
+		$this->db->query($sql);
+		
+		return 1;
 	}
 	
 }

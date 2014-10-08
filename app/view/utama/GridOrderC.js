@@ -38,7 +38,8 @@ Ext.define('rcm.view.utama.GridOrderC', {
 				{ header:'Planned Cost',//flex:1,
 					columns: [{ 
 						header: 'WH Stock Cost',dataIndex:'plstcost',renderer:'usMoney',align: 'right'
-					},{ header: 'Internal Cost',dataIndex:'plincost',renderer:'usMoney',align: 'right',
+					},{ header: 'Internal Cost',dataIndex:'plincost',renderer:'usMoney',align: 'right'
+					},{ header: 'Total Planning Cost',dataIndex:'tplcost',flex:2,align: 'right',renderer:'usMoney',
 						summaryType: function(records){
 							var i = 0,length = records.length,total = 0,record;
 
@@ -48,7 +49,6 @@ Ext.define('rcm.view.utama.GridOrderC', {
 							}
 							return total.toFixed(2);
 						}
-					},{ header: 'Total Planning Cost',dataIndex:'tplcost',flex:2,align: 'right',renderer:'usMoney'
 					}]
 				},
 				{ header:'Actual',//flex:1,
@@ -56,6 +56,8 @@ Ext.define('rcm.view.utama.GridOrderC', {
 						header: 'WH Stock Cost',dataIndex:'acstcost',align: 'right',renderer:'usMoney'
 					},{ header: 'Internal Cost',dataIndex:'acincost',align: 'right',renderer:'usMoney'
 					},{ header: 'Service Cost',dataIndex:'srvcost',align: 'right',renderer:'usMoney'
+						
+					},{ header: 'Total Actual Cost',dataIndex:'taccost',align: 'right',renderer:'usMoney'
 						,summaryType: function(records){
 							var i = 0,length = records.length,total = 0,record;
 
@@ -65,7 +67,6 @@ Ext.define('rcm.view.utama.GridOrderC', {
 							}
 							return total.toFixed(2);
 						}
-					},{ header: 'Total Actual Cost',dataIndex:'taccost',align: 'right',renderer:'usMoney'
 					}]
 				}
 				//*

@@ -110,7 +110,7 @@ Ext.define('rcm.view.laporan.ConMon', {
 				etext: 'Upload File ConMon',
 				nameFile: 'fileCm',
 				idbSr: 'idSrCm',
-				idbPdf: 'idPdfCm',
+				idbPdf: 'idPdfCm'
 			},{
 				region:'west',
 				xtype : 'tGridConMon',

@@ -104,7 +104,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 							allowBlank	: false,
 							name		: 'durasiplan',
 							maxValue	: 360,
-							minValue	: 1,
+							minValue	: 1
 						}},
 						{
 							xtype		:'actioncolumn',

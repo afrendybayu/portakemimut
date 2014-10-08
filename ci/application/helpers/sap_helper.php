@@ -75,11 +75,18 @@ if ( ! function_exists('cekInt'))	{
 }
 
 if ( ! function_exists('fTgl'))	{
-	function fTgl($x)	{
-		if ($x)	{
-			$x = str_replace('/', '-', $x);
-			//echo "tgl asli: $x, convert: ".date('Y-m-d', strtotime($x))."<br/>";
-			return date('Y-m-d', strtotime($x));
+	function fTgl($t)	{
+		if ($t)	{
+			if (strpos($t,'/') !== false)	{	// ketemu
+				$x = str_replace('/', '-', $t);
+				//echo "tgl asli: $t --> $x ---> convert: ".date('Y-m-d', strtotime($x))."<br/>";
+				return date('Y-m-d', strtotime($x));
+			} else {
+				$tx = explode('-',$t);
+				//print_r($tx);
+				//echo "tgl asli: $t --> $x ---> convert: ".date('Y-m-d', strtotime($tx[2]."-".$tx[1]."-".$tx[0]))."<br/>";
+				return date('Y-m-d', strtotime($tx[2]."-".$tx[1]."-".$tx[0]));
+			}
 		}
 		else {
 			return '';

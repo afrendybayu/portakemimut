@@ -133,6 +133,27 @@ class rOrderCost extends CI_Controller {
 		echo json_encode($jsonResult);
 	}
 	
+	public function sapTop10FL()		{
+		try {
+			$thn = $this->input->get('thn')?:date('Y');
+			$this->load->model('sap');
+			$hsl = $this->sap->get_toptenFL($thn);
+			//print_r($hsl);
+			$jsonResult = array(
+				'success' => true,
+				'orderc' => $hsl
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+	}
+	
 	public function sapPmCost()		{
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
@@ -143,6 +164,67 @@ class rOrderCost extends CI_Controller {
 			$jsonResult = array(
 				'success' => true,
 				'orderc' => $hsl
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+	}
+	
+	public function sapManOCost()		{
+		try {
+			$p = json_decode(file_get_contents('php://input'));
+
+			if (!isset($p))	{
+				throw new Exception("Data Tidak ada !!");
+			}
+			//echo "thn: $thn<br/>";
+			$this->load->model('sap');
+			$this->sap->set_ocost($p->thn, $p->wo, $p->otype, $p->budget);
+			
+			$hsl = new stdClass();
+			$hsl->thn = $p->thn;
+			
+			//print_r($hsl);
+			$jsonResult = array(
+				'success' => true,
+				'input' => $hsl
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+	}
+	
+	public function budgOCost()	{
+		try {
+			$thn = $this->input->get('thn')?:date('Y');
+			//echo "thn: $thn<br/>";
+			$this->load->model('sap');
+			$hsl = $this->sap->get_ocost($thn);
+			if (count($hsl)==0)	{
+				//$ar = array();	
+				$ob = new stdClass();
+				$ob->thn = $thn;
+				$ob->wo = 0;
+				$ob->budget = 0;
+				$ob->otype = 0;
+				array_push($hsl, $ob);
+			}
+			//print_r($hsl);
+			$jsonResult = array(
+				'success' => true,
+				'input' => $hsl
 			);
 		}
 		catch (Exception $e){

@@ -26,7 +26,12 @@ Ext.define('rcm.view.laporan.Chart', {
         ,'rcm.view.laporan.FilterThn'
         ,'rcm.view.laporan.SapChartSaja'
 		,'rcm.view.laporan.OverHaul'
+		,'rcm.view.laporan.SapChartTop10'	
+		
+		,'rcm.view.laporan.Input'	
     ],
+    
+    autoScroll: true,
     
 	initComponent: function() {
 		var me=this;
@@ -63,14 +68,20 @@ Ext.define('rcm.view.laporan.Chart', {
 			},{
 				id: 'ts_tc',
 				title: 'Top 10 Cost',
-				//xtype: 'causechart',
-				xtype: 'tSapCh',
-				dstore: 'SapTop10',
+				xtype: 'tSapTop10',
+				
+				
+				//xtype: 'tSapCh',
+				dstore1: 'SapTop10',
+				dstore2: 'SapTop10FL',
 				idThn: 'thnTop10',
 				idbSr: 'srTop10',
-				jdl: 'TOP 10 Orders Cost per Equipment',
-				param: 'Equipment Cost',
-				yNama: 'Cost ($)'
+				jdl1: 'TOP 10 Orders Cost per Equipment',
+				jdl2: 'TOP 10 Orders Cost per Function Location',
+				param1: 'Equipment Cost',
+				param2: 'Function Location Cost',
+				yNama: 'Cost ($)',
+				duit: 1
 			},{
 				id: 'ts_pm',
 				title: 'PM Cost',
@@ -143,8 +154,7 @@ Ext.define('rcm.view.laporan.Chart', {
 			},{
 				id: 'ts_in',
 				title: 'Input Laporan',
-				xtype: 'tUploadfile',
-				margin: '10 10'
+				xtype: 'sapinput'
 		}];
 
 		me.callParent(arguments);

@@ -9,14 +9,15 @@ Ext.define('rcm.controller.Sap', {
         ,'laporan.SpeedoSap'
         ,'laporan.GridCause'
         ,'laporan.FilterSap'
-		//,'laporan.FilterMaint'
+
 		,'laporan.ConMonForm'
 		,'laporan.SapPie'
 		,'laporan.GridContract'
 		,'laporan.EPO'
 		,'laporan.WOComp'
-		//,'laporan.FilterThn'
+
 		,'laporan.OverHaulForm'
+		,'laporan.ManOCost'
     ],
 
     controllers: [
@@ -34,11 +35,11 @@ Ext.define('rcm.controller.Sap', {
 		,'SapOrderCwo','SapOrderCot'
 		,'SapThn','SapMwc','SapOType','SapLoc'
 		
-		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10'
+		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10','SapTop10FL'
 		,'Contract','ContractLine', 'ContractInput'
 
 		,'SapHistori'
-		
+		,'ManOCost'
 		
 		,'ConMon','ConMonIn','CbParent','CbUnit','CbEquip','ConMonGr'
 		,'DetConMonGr','DetConMonPmp','DetConMonGs'
@@ -49,7 +50,8 @@ Ext.define('rcm.controller.Sap', {
     models: [
 		'ContractInput',
 		'ConMonIn',
-		'OverHaulIn'
+		'OverHaulIn',
+		'ManOCost'
     ],
     
     refs: [{
@@ -203,6 +205,12 @@ Ext.define('rcm.controller.Sap', {
 			'#idSrCm': {
 				click : me.hdlFiltThnCm
 			},
+			'#idbMoc': {
+				click: me.hdlManOCost
+			},
+			'tManOCost numberfield': {
+				change: me.hdlChThnMoc
+			},
 			'iConMon':{
 				// specialkey	: me.hdlupdate,
 				updatecm	: me.updateFormCM,
@@ -231,6 +239,41 @@ Ext.define('rcm.controller.Sap', {
 			
 		});
     },
+    
+    hdlChThnMoc: function(tf,newV,oldV)	{
+		//alert('berubah '+newV);
+		var me=this;
+		this.getManOCostStore().load({ 
+			params:{thn:newV},
+			callback: function(rec, op, suc) {
+				console.log(rec);
+				me.loadOCost(rec[0]);
+			}
+		});
+	},
+    
+    hdlManOCost: function(btn)	{
+		var t=Ext.getCmp('idThMoc').getValue(),
+			b=Ext.getCmp('mbudg').getValue(),
+			w=Ext.getCmp('mwo').getValue(),
+			o=Ext.getCmp('motype').getValue();
+		
+		var rec = { thn:t, budget: b, wo:w, otype:o };
+		var updMoC 	= Ext.create('rcm.model.ManOCost', rec ); 
+		
+		updMoC.save ({
+			
+		});
+		
+		//alert('jos'+t+' '+b+" "+w+" "+o);
+	},
+    
+    loadOCost: function(rec)	{
+		rcmSettings.hhh = rec;
+		Ext.getCmp('mbudg').setValue(rec.get('budget')),
+		Ext.getCmp('mwo').setValue(rec.get('wo')),
+		Ext.getCmp('motype').setValue(rec.get('otype'));
+	},
     
     hdlDlOh: function(btn)	{
 		var form = btn.up('form').getForm();
@@ -630,7 +673,9 @@ Ext.define('rcm.controller.Sap', {
 	
 	bFiltTop10: function()	{
 		//alert("Top10 Thn: "+Ext.getCmp('thnTop10').getValue());
-		this.getSapTop10Store().load({ params:{thn:Ext.getCmp('thnTop10').getValue()} });
+		var t=Ext.getCmp('thnTop10').getValue();
+		this.getSapTop10Store().load({ params:{thn:t} });
+		this.getSapTop10FLStore().load({ params:{thn:t} });
 	},
 	
 	bFiltOCost: function()	{
@@ -753,6 +798,13 @@ Ext.define('rcm.controller.Sap', {
 	onLaunch: function() {
 		//alert("tes");
 		this.ubahLabelWO({});
+		this.getManOCostStore().load({
+			scope: this,
+			callback: function(rec, op, suc) {
+				//console.log(rec);
+				this.loadOCost(rec[0]);
+			}
+		});
 	},
 	
 	clrSapHist: function()	{
@@ -777,11 +829,10 @@ Ext.define('rcm.controller.Sap', {
 		//var o = this.getTFSap().sedotFilter(),
 		var m = this,
 			o = m.getTEPO().sedotFilter(),
-			//p = { loc:o.iL,otp:o.iW,mwc:o.iM,taw:o.iTw,tak:o.iTk };
 			p = { loc:o.iL,otp:o.iW,mwc:o.iM,thn:o.iT };
 		//alert("o.L: "+o.iL+", oW: "+o.iW+", oM: "+o.iM+", oT: "+o.iT);
 		m.ubahLabelWO(p);
-		m.getSapEPOStore().load({ params: {thn:o.iT} });
+		m.getSapEPOStore().load({ params:p });
 	},
 	
 	grafikCauseClear: function()	{

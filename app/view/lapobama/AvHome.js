@@ -72,7 +72,7 @@ Ext.define('rcm.view.lapobama.AvHome', {
 					point: {
 						events: {
 							click: function(evt) {
-								//alert(this.category+": "+rcm.view.Util.cid(this.category)+", "+ rcm.view.Util.Ublnini(''));
+								alert(this.category+": "+rcm.view.Util.cid(this.category)+", "+ rcm.view.Util.Ublnini(''));
 								me.cat = this.category;
 								me.fireEvent('AvHomeCl', evt.currentTarget, this.category, rcm.view.Util.cid(this.category));
 							}

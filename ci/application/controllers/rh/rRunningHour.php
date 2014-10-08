@@ -11,6 +11,7 @@ class rRunningHour extends CI_Controller {
 			$sql = array();
 			$eq = 0; $jml = 0;
 			$tisi = array(); 
+			$ww=30;	$w=$ww-1; 
 			//$tgl = $this->input->get('tgl')?:'0';
 			$tgl = $this->input->get('tgl')?:date('Y-m-d'); 
 			$cat = $this->input->get('cat')?:5;  	
@@ -20,7 +21,7 @@ class rRunningHour extends CI_Controller {
 			$t = date('d', strtotime($tgl)); //day 00-31
 			
 			$bts_0 = date("Y-m-d", mktime(0, 0, 0, $m, $t, $y));
-			$bts_1 = date("Y-m-d", mktime(0, 0, 0, $m, $t-13, $y));
+			$bts_1 = date("Y-m-d", mktime(0, 0, 0, $m, $t-$w, $y));
 			
 			$s = "SELECT h3.id, h3.nama, h3.flag as cat, h1.nama as hlok, h1.urut as urut FROM hirarki AS h1
 					LEFT JOIN hirarki AS h2 ON h2.parent = h1.id
@@ -37,7 +38,7 @@ class rRunningHour extends CI_Controller {
 					$fas[$row->id]['cat'] = $row->cat;
 					$fas[$row->id]['Lokasi'] = $row->hlok;
 					
-					for ($u=0;$u<14; $u++)	{		 // inisialisasi nilai [-]
+					for ($u=0;$u<$ww; $u++)	{		 // inisialisasi nilai [-]
 						$fas[$row->id]["k".date('ymd', mktime(0, 0, 0, $m, $t-$u, $y))] = '-';
 					}
 				}
@@ -67,10 +68,11 @@ class rRunningHour extends CI_Controller {
 				
 			} 
 			
+			
 			if (!isset($tisi[$eq]["k".date('ymd',$time)]))	{
 				foreach ($fas as $a)	{
 					//echo " -->".$a['id']."<br/>";
-					for($i=13;$i>=0; $i--)	{
+					for($i=$w;$i>=0; $i--)	{
 						//echo "eq: ".$a['id']." ".date("ymd", mktime(0, 0, 0, $m, $t-$i, $y))."<br/>";
 						$fas[$a['id']]["k".date("ymd", mktime(0, 0, 0, $m, $t-$i, $y))] = '-';
 					}

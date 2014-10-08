@@ -38,8 +38,8 @@ Ext.define('rcm.view.Content', {
 			title: 'Reliability',
 			iconCls: 'Reliability',
 			xtype: 'tAvReChart'
-
-		},{//=============================*/
+		//*
+		},{
 			id: 'tu_sap',
 			title: 'SAP Report',
 			xtype: 'tabChart',
@@ -119,6 +119,7 @@ Ext.define('rcm.view.Content', {
 			title	: 'Konfigurasi',
 			iconCls	: 'Konfigurasi',
 			xtype 	: 't_Konfig',
+// <<<<<<< HEAD
 			// disabled : true
 			/*
 			layout: {
@@ -152,6 +153,11 @@ Ext.define('rcm.view.Content', {
 			==================================*/
 			//}]
 		
+// =======
+			//disabled : true
+			// hidden: true
+
+// >>>>>>> afrendy
 		
 		}];
 		

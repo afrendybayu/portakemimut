@@ -8,6 +8,11 @@ Ext.define('rcm.view.laporan.SapCause', {
 	param: 'Cause',
 	yNama: 'Jumlah WO',
 	loadMask: true,
+	duit: 0,
+	
+	require: [
+		'rcm.view.Util'
+	],
 
 	xField: 'desk',
 
@@ -43,7 +48,8 @@ Ext.define('rcm.view.laporan.SapCause', {
 						enabled: true,
 						formatter : function() {
 							//return '<b>'+me.param+': '+this.y+'</b>';
-							return '<b>'+this.y+'</b>';
+							return '<b>'+rcm.view.Util.format2(me.duit,this.y,'$')+'</b>';
+							//return '<b>'+this.y+'</b>';
 						}
 					}
 				},

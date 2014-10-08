@@ -26,9 +26,12 @@ class rHistori extends CI_Controller {
 			$hsl = $this->sap->get_histori($thn,$lok,$otp,$mwc);
 			
 			//print_r($hsl); echo "<br/><br/>";
-
+			
+			if ($thn==date('Y'))	$bb = date('n');
+			else $bb = 12;
+			
 			$ada = 0;	$hasil = array();
-			for($i=0; $i<12; $i++)	{
+			for($i=0; $i<$bb; $i++)	{
 				for ($j=0; $j<count($hsl); $j++)	{
 					if (isset($hsl[$j]->nbln))	{
 						//echo "i: $i, hsl: {$hsl[$j]->nbln}<br/>";
