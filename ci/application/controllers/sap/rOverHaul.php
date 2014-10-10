@@ -112,10 +112,7 @@ class rOverHaul extends CI_Controller {
 			$hsl = $this->overhaul->update_ohlist();
 			
 		} catch(Exception $e) {
-			$jsonResult = array(
-				'success' => false,
-				'message' => $e->getMessage()
-			);
+			$hsl = 'gagal';
 		}
 	}
 

@@ -15,11 +15,11 @@ Ext.define('rcm.controller.Config', {
     ],
 
     stores: [
-		'Hirarki'
+		'LokUnit'
     ],
     
     models: [
-		'Hirarki'
+		'LokUnit'
 	],
     
     refs: [{
@@ -41,7 +41,7 @@ Ext.define('rcm.controller.Config', {
 			
 			'treeHirarki': {
                 // afterrender: me.handleAfterListTreeRender,
-                edit: me.updateList,
+                edit: me.updateTreeHirarki,
                 // completeedit: me.handleCompleteEdit,
                 // canceledit: me.handleCancelEdit,
                 deleteclick: me.handleDeleteIconClick,
@@ -58,55 +58,98 @@ Ext.define('rcm.controller.Config', {
     },
 	
 	tblNewLokasi : function(){
-		alert('buat lokasi baru');
+		// alert('buat lokasi baru');
+		this.addTreeHirarki();
 	
 	},
 	tblDelLokasi : function(){
-		alert('delete Lokasi');
+		// alert('delete Lokasi');
+		this.addTreeHirarki(true);
 	},
 	
-	addList: function(leaf) {
+	addTreeHirarki: function(leaf) {
         var me = this,
-            hTree = me.getHirarkiTree(),
+            hTree = me.getTreeHirarki(),
             cellEditingPlugin = hTree.cellEditingPlugin,
             selectionModel = hTree.getSelectionModel(),
-            selectedList = selectionModel.getSelection()[0],
-            parentList = selectedList.isLeaf() ? selectedList.parentNode : selectedList,
-            // newList = Ext.create('SimpleTasks.model.List', {
-                // name: 'New ' + (leaf ? 'List' : 'Folder'),
-                // leaf: leaf,
-                // loaded: true // set loaded to true, so the tree won't try to dynamically load children for this node when expanded
-            //}),
+            selectedList = selectionModel.getSelection()[0], //ambil id selected
+            parentList = selectedList.isLeaf() ? selectedList.parentNode : selectedList, //if leaf, then selecetd parent id, else select id
+            newList = Ext.create('rcm.model.LokUnit', {
+                nama: 'New ' + (leaf ? 'Equipt' : 'FuncLoc'),
+                leaf: leaf,
+				level : selectedList.data.depth,
+                loaded: true // set loaded to true, so the tree won't try to dynamically load children for this node when expanded
+            }),
+			//*
             expandAndEdit = function() {
                 if(parentList.isExpanded()) {
                     selectionModel.select(newList);
                     me.addedNode = newList;
                     cellEditingPlugin.startEdit(newList, 0);
                 } else {
-                    listTree.on('afteritemexpand', function startEdit(list) {
+                    hTree.on('afteritemexpand', function startEdit(list) {
                         if(list === parentList) {
                             selectionModel.select(newList);
                             me.addedNode = newList;
                             cellEditingPlugin.startEdit(newList, 0);
                             // remove the afterexpand event listener
-                            listTree.un('afteritemexpand', startEdit);
+                            hTree.un('afteritemexpand', startEdit);
                         }
                     });
                     parentList.expand();
                 }
             };
-            
+            //*/
+		// console.log(selectionModel);
+		// console.log('newlist : ');
+		console.log(newList);
+		// console.log(selectedList);
+		// console.log(parentList);
+		// alert ('dipilih parent dengan id '+ selectedList.raw.id + selectedList.raw.leaf );
+		// alert ('dipilih parent dengan id '+ selectedList.raw.id + selectedList.raw.leaf );
+		
         parentList.appendChild(newList);
-        listTree.getStore().sync();
-        if(listTree.getView().isVisible(true)) {
+        
+		
+		hTree.getStore().sync();
+        if(hTree.getView().isVisible(true)) {
             expandAndEdit();
         } else {
-            listTree.on('expand', function onExpand() {
+            hTree.on('expand', function onExpand() {
                 expandAndEdit();
-                listTree.un('expand', onExpand);
+                hTree.un('expand', onExpand);
             });
-            listTree.expand();
+            hTree.expand();
         }
+		//*/
+    },
+	
+	updateTreeHirarki: function(editor, e) {
+		console.log('list di edit');
+        //*
+		var me = this,
+            list = e.record;
+
+        list.save({
+            success: function(list, operation) {
+                // filter the task list by the currently selected list.  This is necessary for newly added lists
+                // since this is the first point at which we have a primary key "id" from the server.
+                // If we don't filter here then any new tasks that are added will not appear until the filter is triggered by a selection change.
+                me.filterTaskGrid(me.getTreeHirarki().getSelectionModel(), [list]);
+            },
+            failure: function(list, operation) {
+                var error = operation.getError(),
+                    msg = Ext.isObject(error) ? error.status + ' ' + error.statusText : error;
+
+                Ext.MessageBox.show({
+                    title: 'Update List Failed',
+                    msg: msg,
+                    icon: Ext.Msg.ERROR,
+                    buttons: Ext.Msg.OK
+                });
+            }
+        });
+		//*/
     },
 	
 	

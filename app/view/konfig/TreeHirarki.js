@@ -8,8 +8,8 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
         'Ext.grid.column.Action'
     ],
 	
-    rootVisible: false,
-    store: 'Hirarki',
+    // rootVisible: false,
+    store: 'LokUnit',
 	hideHeaders: true,
     
 	dockedItems: [
@@ -35,7 +35,7 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 
         me.columns = [{
                 xtype: 'treecolumn',
-                dataIndex: 'text',
+                dataIndex: 'nama',
                 flex: 1,
                 editor: {
                     xtype: 'textfield',

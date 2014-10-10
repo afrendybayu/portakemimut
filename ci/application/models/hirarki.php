@@ -74,13 +74,36 @@ class Hirarki extends CI_Model {
 	}
 	
 	function get_hirarki($parent){
-		// $sql =	"SELECT id, nama FROM hirarki WHERE parent=? ORDER BY nama ASC";
-		$this->db->select('id, nama');
+		$this->db->select('id, nama, level');
 		$this->db->where ('parent',$parent);
 		$this->db->order_by('nama', 'asc'); 
 		$query = $this->db->get('hirarki');
 		
-		return $query->result();
+		return $query;
+	}
+	
+	function get_hirarki_equip($parent){
+		$this->db->select('id, nama, tag');
+		$this->db->where('unit_id',$parent);
+		$this->db->order_by('nama','asc');
+		$query = $this->db->get('equip');
+		
+		return $query;
+	
+	}
+	
+	function create_hirarki_new(){
+		$hir = json_decode(file_get_contents('php://input'));
+		$sql = array(
+					'nama' 		=> $hir->nama,
+					'parent' 	=> $hir->parentId,
+					'level'		=> $hir->level +1,
+					
+				);
+		// $this->db->where('id',$ohin->id);
+		$this->db->insert('hirarki', $sql);
+	
+	
 	}
 }
 
