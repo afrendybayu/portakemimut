@@ -9,7 +9,7 @@ Ext.define('rcm.store.LokUnit', {
 	root: {
         expanded: true,
         id: '0',
-        nama: 'South Sumatera Extension'
+        nama: 'South Sumatera Block'
     }
 
 });
