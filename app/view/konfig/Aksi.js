@@ -12,6 +12,7 @@ Ext.define('rcm.view.konfig.Aksi', {
 		type : 'border'
 		
 	},
+	defaults: {autoScroll: true},
 	
 	items : [{
 		title	: 'Form Aksi',
@@ -19,12 +20,16 @@ Ext.define('rcm.view.konfig.Aksi', {
         xtype	: 'panel',
 		height	: '30%',
 		layout	: 'fit',
+		autoScroll: true,
 		frame	: true,
 		items	: [{
 			xtype : 'fAksi',
 			label1 : 'Nama Aksi',
 			label2 : 'Kode Aksi',
-			label3 : 'Keterangan'
+			label3 : 'Keterangan',
+			hide1	: false,
+			hide2	: true,
+			hide3	: false
 			
 		
 		
@@ -42,7 +47,12 @@ Ext.define('rcm.view.konfig.Aksi', {
         height	: '70%',
         collapsible	: true,
 		// collapsed	: true,
-		split	: true
+		split	: true,
+		kol1 	: 'No',
+		kol2 	: 'Nama Aksi',
+		kol3 	: 'Keterangan',
+		hiden1	: false,
+		hiden2	: false
 	
 	}]
 	
