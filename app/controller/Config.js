@@ -7,7 +7,8 @@ Ext.define('rcm.controller.Config', {
 	views: [
         // TODO: add views here
         'konfig.TabKonfig',
-		'konfig.TreeHirarki'
+		'konfig.TreeHirarki',
+		'konfig.AksiGrid'
     ],
 
     controllers: [
@@ -15,11 +16,13 @@ Ext.define('rcm.controller.Config', {
     ],
 
     stores: [
-		'LokUnit'
+		'LokUnit',
+		'GridAksi'
     ],
     
     models: [
-		'LokUnit'
+		'LokUnit',
+		'GridAksi'
 	],
     
     refs: [{
@@ -39,6 +42,10 @@ Ext.define('rcm.controller.Config', {
                 click: me.tblDelLokasi
             },
 			
+			'#tambah_lokasi' : {
+				click : me.tambahLokasi
+			},
+			
 			'treeHirarki': {
                 // afterrender: me.handleAfterListTreeRender,
                 edit: me.updateTreeHirarki,
@@ -56,6 +63,10 @@ Ext.define('rcm.controller.Config', {
 		});
 		
     },
+	
+	tambahLokasi : function(){
+		console.log('tambah lokasi');
+	},
 	
 	tblNewLokasi : function(){
 		// alert('buat lokasi baru');
@@ -75,9 +86,9 @@ Ext.define('rcm.controller.Config', {
             selectedList = selectionModel.getSelection()[0], //ambil id selected
             parentList = selectedList.isLeaf() ? selectedList.parentNode : selectedList, //if leaf, then selecetd parent id, else select id
             newList = Ext.create('rcm.model.LokUnit', {
-                nama: 'New ' + (leaf ? 'Equipt' : 'FuncLoc'),
+				nama: 'New ' + (leaf ? 'Equipt' : 'FuncLoc'),
                 leaf: leaf,
-				level : selectedList.data.depth,
+				// level : selectedList.data.depth,
                 loaded: true // set loaded to true, so the tree won't try to dynamically load children for this node when expanded
             }),
 			//*
@@ -91,6 +102,7 @@ Ext.define('rcm.controller.Config', {
                         if(list === parentList) {
                             selectionModel.select(newList);
                             me.addedNode = newList;
+							// console.log(newList);
                             cellEditingPlugin.startEdit(newList, 0);
                             // remove the afterexpand event listener
                             hTree.un('afteritemexpand', startEdit);
@@ -102,16 +114,21 @@ Ext.define('rcm.controller.Config', {
             //*/
 		// console.log(selectionModel);
 		// console.log('newlist : ');
-		console.log(newList);
-		// console.log(selectedList);
-		// console.log(parentList);
+		// console.log(newList);
+		// console.log('list selected : ');
+		console.log(selectedList);
+		console.log(parentList);
 		// alert ('dipilih parent dengan id '+ selectedList.raw.id + selectedList.raw.leaf );
 		// alert ('dipilih parent dengan id '+ selectedList.raw.id + selectedList.raw.leaf );
 		
         parentList.appendChild(newList);
         
+		hirarkiStore = me.getLokUnitStore();
+		hirarkiStore.sync();
+		hirarkiStore.reload();
 		
-		hTree.getStore().sync();
+		
+		// hTree.getStore().sync();
         if(hTree.getView().isVisible(true)) {
             expandAndEdit();
         } else {
@@ -125,17 +142,19 @@ Ext.define('rcm.controller.Config', {
     },
 	
 	updateTreeHirarki: function(editor, e) {
-		console.log('list di edit');
+		console.log('diedit');
         //*
 		var me = this,
             list = e.record;
-
-        list.save({
+		// console.log(e.row);
+		console.log(e);
+       //*
+		list.save({
             success: function(list, operation) {
                 // filter the task list by the currently selected list.  This is necessary for newly added lists
                 // since this is the first point at which we have a primary key "id" from the server.
                 // If we don't filter here then any new tasks that are added will not appear until the filter is triggered by a selection change.
-                me.filterTaskGrid(me.getTreeHirarki().getSelectionModel(), [list]);
+                // me.filterTaskGrid(me.getTreeHirarki().getSelectionModel(), [list]);
             },
             failure: function(list, operation) {
                 var error = operation.getError(),

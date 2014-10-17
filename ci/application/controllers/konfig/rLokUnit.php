@@ -21,6 +21,7 @@ class rLokUnit extends CI_Controller {
 					$arr[$k]['nama'] 	= $row->nama.' '.$row->id;
 					// $arr[$k]['level'] 	= $row->level;
 					$arr[$k]['leaf'] 	= 'false';
+					
 					$k++;
 				}
 			}
@@ -67,7 +68,7 @@ class rLokUnit extends CI_Controller {
 	
 	public function updateHirarki(){
 		$params = json_decode(file_get_contents('php://input'));
-		
+		/*
 		$sql = array(
 					'nama' 		=> $params->nama,
 					'parent' 	=> $params->parentId,
@@ -76,7 +77,7 @@ class rLokUnit extends CI_Controller {
 				);
 		$this->db->where('id',$params->id);
 		$this->db->update('hirarki', $sql);
-			
+			*/
 	}
 	
 }

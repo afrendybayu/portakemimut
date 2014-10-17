@@ -23,7 +23,8 @@ Ext.define('rcm.view.laporan.ConMon', {
 	}],
 	//*/
 	layout: 'border',
-    items: [{
+    
+	items: [{
 
         //title: 'Grafik Condition Monitoring',
         region: 'center',     

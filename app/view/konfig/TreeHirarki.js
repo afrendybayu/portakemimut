@@ -8,7 +8,7 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
         'Ext.grid.column.Action'
     ],
 	
-    // rootVisible: false,
+    rootVisible: true,
     store: 'LokUnit',
 	hideHeaders: true,
     
@@ -16,7 +16,10 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
         {
             xtype: 'toolbar',
             dock: 'bottom',
-            items: ['->',{
+            items: [{
+					text : 'Tambah Lokasi',
+					id	: 'tambah_lokasi'
+				},'->',{
                     iconCls: 'new_folder_tree',
                     tooltip: 'New Folder'
                 },{
