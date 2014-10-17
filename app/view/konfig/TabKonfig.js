@@ -6,6 +6,7 @@ Ext.define('rcm.view.konfig.TabKonfig', {
     requires: [
 		'rcm.view.konfig.ConfHirarki'
 		,'rcm.view.konfig.Aksi'
+		,'rcm.view.konfig.PmDef'
     ],
     
 	initComponent: function() {
@@ -16,13 +17,17 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			title: 'Aksi',
 			xtype:'tAksi'
 		},{
-			id: 'ts_hr',
-			title: 'Lokasi',
-			xtype:'cHirarki'
+			id: 'ts_pmdef',
+			title: 'Predictive Maint',
+			xtype:'tPmDef'
 		},{
 			id: 'ts_aksi_',
 			title: 'pmdef',
 			xtype:'panel'
+		},{
+			id: 'ts_hr',
+			title: 'Lokasi',
+			xtype:'cHirarki'
 		}];
 
 		me.callParent(arguments);

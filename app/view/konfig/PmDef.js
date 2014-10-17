@@ -1,6 +1,6 @@
-Ext.define('rcm.view.konfig.Aksi', {
+Ext.define('rcm.view.konfig.PmDef', {
     extend: 'Ext.panel.Panel',
-    xtype: 'tAksi',
+    xtype: 'tPmDef',
 	
 	requires: [
         'rcm.view.konfig.AksiForm',
@@ -15,7 +15,7 @@ Ext.define('rcm.view.konfig.Aksi', {
 	defaults: {autoScroll: true},
 	
 	items : [{
-		title	: 'Form Aksi',
+		title	: 'Form Perdictive Maintenance',
         region	: 'center',     
         xtype	: 'panel',
 		height	: '30%',
@@ -23,14 +23,16 @@ Ext.define('rcm.view.konfig.Aksi', {
 		autoScroll: true,
 		frame	: true,
 		items	: [{
-			xtype : 'fAksi',
-			label1 : 'Nama Aksi',
-			label2 : 'Keterangan Aksi',
+			xtype 	: 'fAksi',
+			label1 	: 'Nama PM',
 			idx1	: 'nama',
-			idx2	: 'ket',
+			label2 	: 'Kode PM',
+			idx2	: 'kode',
+			label3 	: 'Durasi',
+			idx3	: 'durasi',
 			hide1	: false,
 			hide2	: false,
-			hide3	: true
+			hide3	: false
 			
 		
 		
@@ -41,7 +43,7 @@ Ext.define('rcm.view.konfig.Aksi', {
 		// collapsed	: true,
 		// split	: true
 	},{
-		title	: 'Data Predictive Maintenance',
+		title	: 'Data Aksi',
         region	: 'south',     
         xtype	: 'gridAksi',
 		html	: 'bawah',
@@ -50,16 +52,18 @@ Ext.define('rcm.view.konfig.Aksi', {
 		// collapsed	: true,
 		split	: true,
 		
-		xstore		: 'GridAksi',
-		kolgrid1	: 'Nama Aksi',
-		kolgrid2	: 'Keterangan',
-		// kolgrid3	: '',
+		xstore		: 'PMDefs',
+		kolgrid1	: 'Nama PM',
+		kolgrid2	: 'Kode PM',
+		kolgrid3	: 'Durasi',
 		idgrid1		: 'nama',
-		idgrid2		: 'ket',
-		// idgrid3		: '',
+		idgrid2		: 'kode',
+		idgrid3		: 'durasi',
 		hidegrid1	: false,
 		hidegrid2	: false,
-		hidegrid3	: true
+		hidegrid3	: false
+		
+		
 	
 	}]
 	
