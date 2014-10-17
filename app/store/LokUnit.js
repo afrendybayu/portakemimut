@@ -5,12 +5,12 @@ Ext.define('rcm.store.LokUnit', {
     requires: 'rcm.model.LokUnit',
    
 	// autoLoad: true,
-	
+	//*
 	root: {
         expanded: true,
-        id: '0',
+        id: 0,
         nama: 'South Sumatera Extension'
     }
-
+	//*/
 });
 

@@ -4,7 +4,8 @@ Ext.define('rcm.view.konfig.ConfHirarki', {
 	extend: 'Ext.container.Container',
 
 	requires: [
-		'rcm.view.konfig.TreeHirarki'
+		'rcm.view.konfig.TreeHirarki',
+		'rcm.view.konfig.DetailLokasi'
 
 	],
 	layout: 'border',
@@ -17,6 +18,10 @@ Ext.define('rcm.view.konfig.ConfHirarki', {
         collapsible: true,
 		// collapsed	: true,
 		split: true
+	},{
+		title : 'satu',
+		region : 'center',
+		xtype : 'panLokasi'
 	
 	}]
-});
+})
