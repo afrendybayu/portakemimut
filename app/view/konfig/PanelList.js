@@ -5,6 +5,7 @@ Ext.define('rcm.view.konfig.PanelList', {
     
     requires: [
 		'rcm.view.konfig.GridL'
+		,'rcm.view.konfig.GridEquip'
     ],
     
     
@@ -50,8 +51,8 @@ Ext.define('rcm.view.konfig.PanelList', {
 			height: 200,
 			region: 'south',
 			title: me.jdlDet,
-			text: 'me.dstoreD selatan',
-			xtype: 'label',
+			xstore: me.dstoreD,
+			xtype: 'tGridKEq',
 			iconCls: 'more'
 		}];
 		me.callParent(arguments);

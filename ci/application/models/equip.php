@@ -15,12 +15,12 @@ class Equip extends CI_Model {
 	//*/
 	function get_equip_cat($cat){
 
-		$sql = "SELECT SUBSTRING_INDEX(hhh.nama,' ',-1) AS lokasi,CONCAT(eq.nama,' @',h.nama) AS nama,eq.tag
+		$sql = "SELECT SUBSTRING_INDEX(hhh.nama,' ',-1) AS ket,CONCAT(eq.nama,' @',h.nama) AS nama
+				,eq.tag AS kode,eq.cat AS durasi
 				FROM equip eq
 				INNER JOIN hirarki h ON eq.unit_id = h.id
 				INNER JOIN hirarki hh ON hh.id = h.parent
 				INNER JOIN hirarki hhh ON hhh.id = hh.parent
-				WHERE cat = $cat
 				ORDER BY hhh.nama ASC, h.nama ASC";
 		
 		$query = $this->db->query($sql);

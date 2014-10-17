@@ -19,8 +19,8 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			title: 'List',
 			xtype:'tpKonfigList',
 			jdlDet: 'List Equipment',
-			jdlTb: 'List Kiri'
-			//xstore: 'GridPMIn'
+			jdlTb: 'List Kiri',
+			dstoreD: 'GridKfEquip'
 		},{
 		//*/
 			id: 'ts_aksi',

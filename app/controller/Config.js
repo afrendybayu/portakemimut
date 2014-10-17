@@ -20,8 +20,10 @@ Ext.define('rcm.controller.Config', {
 		'LokUnit',
 		'GridAksi',
 		'PMDefs',
+		
 		'GridPMIn',
-		'GridPMnIn'
+		'GridPMnIn',
+		'GridKfEquip'
     ],
     
     models: [
