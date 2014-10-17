@@ -16,6 +16,14 @@ class Pm extends CI_Model {
 		
 		return $query->result();
     }
+	
+	function get_pmdef()  {
+
+		$query = $this->db->get('pmdef');
+		
+		return $query->result();
+    }
+	
 }
 
 /* End of file pm.php */

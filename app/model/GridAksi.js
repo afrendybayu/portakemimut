@@ -5,17 +5,6 @@ Ext.define('rcm.model.GridAksi', {
 		// 'Ext.data.proxy.Ajax'
 	// ],
 
-	fields: [ 'nama', 'ket']
-    // proxy: {
-		// type: 'ajax',
-		// api: {
-			// read: 'ci/index.php/rh/rAksi'
-        // },
-        // reader: {
-            // type: 'json',
-            // root: 'aksi',
-            // messageProperty: 'message'
-        // }
-    // }
+	fields: [ 'id','nama', 'ket','kode']
 	
 });

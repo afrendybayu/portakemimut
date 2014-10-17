@@ -17,12 +17,14 @@ Ext.define('rcm.controller.Config', {
 
     stores: [
 		'LokUnit',
-		'GridAksi'
+		'GridAksi',
+		'PMDefs'
     ],
     
     models: [
 		'LokUnit',
-		'GridAksi'
+		'GridAksi',
+		
 	],
     
     refs: [{
