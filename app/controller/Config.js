@@ -8,7 +8,8 @@ Ext.define('rcm.controller.Config', {
         // TODO: add views here
         'konfig.TabKonfig',
 		'konfig.TreeHirarki',
-		'konfig.AksiGrid'
+		'konfig.AksiGrid',
+		'konfig.PanelList'
     ],
 
     controllers: [
@@ -18,7 +19,9 @@ Ext.define('rcm.controller.Config', {
     stores: [
 		'LokUnit',
 		'GridAksi',
-		'PMDefs'
+		'PMDefs',
+		'GridPMIn',
+		'GridPMnIn'
     ],
     
     models: [

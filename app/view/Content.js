@@ -27,8 +27,7 @@ Ext.define('rcm.view.Content', {
     initComponent: function() {
 		var me=this;
 		me.items = [{
-		//*==========================
-
+		/*==========================
 			id: 'tu_ho',
 			title: 'Dashboard Home',
 			iconCls: 'Dashboard',
@@ -38,7 +37,6 @@ Ext.define('rcm.view.Content', {
 			title: 'Reliability',
 			iconCls: 'Reliability',
 			xtype: 'tAvReChart'
-		//*
 		},{
 			id: 'tu_sap',
 			title: 'SAP Report',
@@ -50,7 +48,7 @@ Ext.define('rcm.view.Content', {
 			id: 'tu_pr',
 			iconCls: 'perform',
 			title: 'Prestasi Mesin',
-		//*/
+		
 		},{
 			id: 'tu_rh',
 			title: 'Runnning Hour',
@@ -64,33 +62,7 @@ Ext.define('rcm.view.Content', {
 				xtype: 'excelgrid',
 				id: 'app-runninghour',
 				iconCls: 'icon-grid'
-			},{
-				//layout: 'accordion',
-				align: 'stretch',
-				title: 'Daftar DownTime Unit',
-				iconCls : 'icon-downtime',
-				//icon: 'modul/icons/grid.png',
-				layout: {
-					type: 'border'
-				},
-				items: [{
-						xtype: 'daftarGagal',
-						region: 'center',
-						id: 'app-gagal',
-						flex: 1
-					},{
-						id: 'bgDetail',
-						collapsible: true,
-						collapsed: true,
-						split: true,
-						minHeight: 220,
-						maxHeight: 400,
-						height: 220,
-						region: 'south',
-						title: 'Info Detail DownTime',
-						iconCls: 'more',
-						xtype: 'detailInfo'
-				}]
+
 			/*
 			},{
 				id: 'tu_ag',
@@ -109,55 +81,17 @@ Ext.define('rcm.view.Content', {
 				itemId: 'relia',
 				//hidden: true,
 				iconCls: 'up'
-			//*/
 			//}]
-			//*/
 		
 		},{
-		
+		//*/
 			id		: 'tu_kf',
 			title	: 'Konfigurasi',
 			iconCls	: 'Konfigurasi',
 			xtype 	: 't_Konfig',
-// <<<<<<< HEAD
-			// disabled : true
-			/*
-			layout: {
-				type: 'border'
-			},
-			items: [{
-				region: 'west',
-				//xtype: 'taskNavK',
-				align: 'stretch',
-				width: 350,
-				minWidth:310,
-				split: true
-			}, {
-				align: 'stretch',
-				region: 'center',
-				xtype: 'tabpanel',
-				items: [{
-					title: 'Keterangan Hirarki',
-					html: 'Keterangan Hirarki',
-					icon: 'modul/icons/application_go.png'
-				},{
-					title: 'Object Part',
-					html: 'Object Part',
-					icon: 'modul/icons/application_go.png'
-				},{
-					title: 'Failure Mode',
-					html: 'Failure Mode',
-					icon: 'modul/icons/application_go.png'
-				}]
-			
-			==================================*/
-			//}]
-		
-// =======
 			//disabled : true
 			// hidden: true
 
-// >>>>>>> afrendy
 		
 		}];
 		

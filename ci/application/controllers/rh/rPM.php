@@ -75,4 +75,48 @@ class rPM extends CI_Controller {
 		
 	
 	}
+	
+	public function rPMnotdef() {
+		try{			
+			$cat = $this->input->get('cat')?:'0';
+			
+			$hsl = $this->pm->get_pmdefnotin($cat);
+			
+			$jsonResult = array(
+				'success' => true,
+				'pmndef' => $hsl
+			);
+		}
+		catch(Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+		
+	
+	}
+	
+	public function rPMdefcat() {
+		try{			
+			$cat = $this->input->get('cat')?:'0';
+			
+			$hsl = $this->pm->get_pmdefcat($cat);
+			
+			$jsonResult = array(
+				'success' => true,
+				'pmlist' => $hsl
+			);
+		}
+		catch(Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+		
+	
+	}
 }

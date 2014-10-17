@@ -7,12 +7,22 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		'rcm.view.konfig.ConfHirarki'
 		,'rcm.view.konfig.Aksi'
 		,'rcm.view.konfig.PmDef'
+		
     ],
     
 	initComponent: function() {
 		var me=this;
 		
 		me.items = [{
+		//*
+			id: 'ts_list',
+			title: 'List',
+			xtype:'tpKonfigList',
+			jdlDet: 'List Equipment',
+			jdlTb: 'List Kiri'
+			//xstore: 'GridPMIn'
+		},{
+		//*/
 			id: 'ts_aksi',
 			title: 'Aksi',
 			xtype:'tAksi'
@@ -34,6 +44,6 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		this.on('tabchange', me.handleSapTab, this);
 	},
 	handleSapTab: function()	{
-		rcmSettings.tsp = this.getActiveTab().getId();
+		rcmSettings.tkf = this.getActiveTab().getId();
 	}
 });
