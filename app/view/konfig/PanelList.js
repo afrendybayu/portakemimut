@@ -27,19 +27,13 @@ Ext.define('rcm.view.konfig.PanelList', {
 		var me=this;
 
 		me.items = [{
-			//xtype: 'label',
-			//text: 'label',
 			region: 'center',
 			flex:1,
-			//*
 			xtype: 'container',
 			layout: {
 				type: 'hbox',
 				align: 'stretch'
 			},
-			
-			
-			
 			//text: 'me.jdlGr',
 			//btnFilter: me.btnFilter,
 			//param: me.param,

@@ -6,22 +6,14 @@ Ext.define('rcm.view.konfig.TabKonfig', {
     requires: [
 		'rcm.view.konfig.ConfHirarki'
 		,'rcm.view.konfig.Aksi'
-		,'rcm.view.konfig.PmDef'
-		//,'rcm.view.konfig.TreeCat'
-		
+		,'rcm.view.konfig.PmDef'		
     ],
     
 	initComponent: function() {
 		var me=this;
 		
 		me.items = [{
-		/*
-			title: 'HirarkiCat',
-			//html: 'sdfgh'
-			xtype: 'tCatHir'
-		},{	
-		//*/
-			id: 'ts_list',
+			id: 'ts_pml',
 			title: 'PM List',
 			xtype:'tpKonfigList',
 			jdlKi: 'Pilih jadwal PM',
@@ -32,6 +24,19 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			jdlTb: 'List Kiri',
 			jdlBtnD: 'Go to PM Definition',
 			idBtnD: 'iGPmdef',
+			dstoreD: 'GridKfEquip'
+		},{
+			id: 'ts_opl',
+			title: 'Object Part List',
+			xtype:'tpKonfigList',
+			jdlKi: 'Pilih Object Part',
+			jdlKa: 'Object Part Tersedia',
+			dstoreKi: 'GridPMIn',
+			dstoreKa: 'GridPMnIn',
+			jdlDet: 'List Equipment',
+			jdlTb: 'List Kiri',
+			jdlBtnD: 'Go to Object Part Definition',
+			idBtnD: 'iGOpdef',
 			dstoreD: 'GridKfEquip'
 		},{
 			id: 'ts_aksi',

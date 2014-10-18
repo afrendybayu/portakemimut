@@ -29,8 +29,7 @@ Ext.define('rcm.controller.Config', {
     
     models: [
 		'LokUnit',
-		'GridAksi',
-		
+		'GridAksi'
 	],
     
     refs: [{
