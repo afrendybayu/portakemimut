@@ -11,13 +11,13 @@ Ext.define('rcm.view.konfig.TreeCat', {
     rootVisible: true,
     store: 'CatHir',
 	hideHeaders: true,
-    /*
+    //*
 	dockedItems: [
         {
             xtype: 'toolbar',
             dock: 'bottom',
             items: [{
-					text : 'Tambah Lokasi',
+					text : 'Tambah Unit',
 					//id	: 'tambah_lokasi'
 				},'->',{
                     iconCls: 'new_folder_tree',
@@ -31,14 +31,21 @@ Ext.define('rcm.view.konfig.TreeCat', {
         }
     ],
 	//*/
-    
+	listeners: {
+        itemclick: function(s,r) {
+                alert(r.data.text+" "+r.data.id);
+        }
+    },
+
 	initComponent: function() {
 		var me = this;
         me.plugins = [me.cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing')];
 
         me.columns = [{
                 xtype: 'treecolumn',
+                text: 'Hirarki',
                 dataIndex: 'text',
+                //width:200,
                 flex: 1,
                 editor: {
                     xtype: 'textfield',
@@ -46,9 +53,18 @@ Ext.define('rcm.view.konfig.TreeCat', {
                     allowOnlyWhitespace: false
 				}
             },{
+				text: 'Kode',
+				dataIndex: 'tipe',
+				width:50,
+			},{
+				text: 'ID',
+                dataIndex: 'id',
+                width:50,
+            },{
                 xtype	: 'actioncolumn',
+                text: 'Hapus',
                 width	: 24,
-				icon	: 'resources/css/images/delete.png',
+				//icon	: 'resources/css/images/delete.png',
                 iconCls	: 'x-hidden',
                 tooltip	: 'Delete',
                 handler	: Ext.bind(me.handleDeleteClick, me)

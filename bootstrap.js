@@ -929,12 +929,14 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.Event": [],
   "rcm.model.EventList": [],
   "rcm.model.FMode": [],
+  "rcm.model.GridAksi": [],
   "rcm.model.Hirarki": [],
   "rcm.model.HoMan": [],
   "rcm.model.HoOrderC": [],
   "rcm.model.HoTeco": [],
   "rcm.model.LoginAuth": [],
   "rcm.model.LoginSesi": [],
+  "rcm.model.LokUnit": [],
   "rcm.model.ManOCost": [],
   "rcm.model.Note": [],
   "rcm.model.OPart": [],
@@ -963,6 +965,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.AvHome": [],
   "rcm.store.AvReUnit": [],
   "rcm.store.AvSpeedo": [],
+  "rcm.store.CatHir": [],
   "rcm.store.Cause": [],
   "rcm.store.CbEquip": [],
   "rcm.store.CbParent": [],
@@ -985,18 +988,24 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.EventInfo": [],
   "rcm.store.EventList": [],
   "rcm.store.FMode": [],
+  "rcm.store.GridAksi": [],
+  "rcm.store.GridKfEquip": [],
+  "rcm.store.GridPMIn": [],
+  "rcm.store.GridPMnIn": [],
   "rcm.store.Hirarki": [],
   "rcm.store.HoMan": [],
   "rcm.store.HoOrderC": [],
   "rcm.store.HoTeco": [],
   "rcm.store.LoginAuth": [],
   "rcm.store.LoginSesi": [],
+  "rcm.store.LokUnit": [],
   "rcm.store.ManOCost": [],
   "rcm.store.Note": [],
   "rcm.store.OPart": [],
   "rcm.store.OhTahun": [],
   "rcm.store.OverHaulIn": [],
   "rcm.store.PM": [],
+  "rcm.store.PMDefs": [],
   "rcm.store.ReHome": [],
   "rcm.store.ReSpeedo": [],
   "rcm.store.RunningHour": [],
@@ -1053,8 +1062,17 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.dataentry.IsiTabForm": [],
   "rcm.view.dataentry.PropGrid": [],
   "rcm.view.dataentry.Tab": [],
+  "rcm.view.konfig.Aksi": [],
+  "rcm.view.konfig.AksiForm": [],
+  "rcm.view.konfig.AksiGrid": [],
   "rcm.view.konfig.ConfHirarki": [],
+  "rcm.view.konfig.DetailLokasi": [],
+  "rcm.view.konfig.GridEquip": [],
+  "rcm.view.konfig.GridL": [],
+  "rcm.view.konfig.PanelList": [],
+  "rcm.view.konfig.PmDef": [],
   "rcm.view.konfig.TabKonfig": [],
+  "rcm.view.konfig.TreeCat": [],
   "rcm.view.konfig.TreeHirarki": [],
   "rcm.view.lapobama.Av2Thn": [],
   "rcm.view.lapobama.AvGroup": [],
@@ -2165,12 +2183,14 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.Event": [],
   "rcm.model.EventList": [],
   "rcm.model.FMode": [],
+  "rcm.model.GridAksi": [],
   "rcm.model.Hirarki": [],
   "rcm.model.HoMan": [],
   "rcm.model.HoOrderC": [],
   "rcm.model.HoTeco": [],
   "rcm.model.LoginAuth": [],
   "rcm.model.LoginSesi": [],
+  "rcm.model.LokUnit": [],
   "rcm.model.ManOCost": [],
   "rcm.model.Note": [],
   "rcm.model.OPart": [],
@@ -2199,6 +2219,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.AvHome": [],
   "rcm.store.AvReUnit": [],
   "rcm.store.AvSpeedo": [],
+  "rcm.store.CatHir": [],
   "rcm.store.Cause": [],
   "rcm.store.CbEquip": [],
   "rcm.store.CbParent": [],
@@ -2221,18 +2242,24 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.EventInfo": [],
   "rcm.store.EventList": [],
   "rcm.store.FMode": [],
+  "rcm.store.GridAksi": [],
+  "rcm.store.GridKfEquip": [],
+  "rcm.store.GridPMIn": [],
+  "rcm.store.GridPMnIn": [],
   "rcm.store.Hirarki": [],
   "rcm.store.HoMan": [],
   "rcm.store.HoOrderC": [],
   "rcm.store.HoTeco": [],
   "rcm.store.LoginAuth": [],
   "rcm.store.LoginSesi": [],
+  "rcm.store.LokUnit": [],
   "rcm.store.ManOCost": [],
   "rcm.store.Note": [],
   "rcm.store.OPart": [],
   "rcm.store.OhTahun": [],
   "rcm.store.OverHaulIn": [],
   "rcm.store.PM": [],
+  "rcm.store.PMDefs": [],
   "rcm.store.ReHome": [],
   "rcm.store.ReSpeedo": [],
   "rcm.store.RunningHour": [],
@@ -2317,11 +2344,38 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.dataentry.Tab": [
     "widget.tabRh"
   ],
+  "rcm.view.konfig.Aksi": [
+    "widget.tAksi"
+  ],
+  "rcm.view.konfig.AksiForm": [
+    "widget.fAksi"
+  ],
+  "rcm.view.konfig.AksiGrid": [
+    "widget.gridAksi"
+  ],
   "rcm.view.konfig.ConfHirarki": [
     "widget.cHirarki"
   ],
+  "rcm.view.konfig.DetailLokasi": [
+    "widget.panLokasi"
+  ],
+  "rcm.view.konfig.GridEquip": [
+    "widget.tGridKEq"
+  ],
+  "rcm.view.konfig.GridL": [
+    "widget.tKGridL"
+  ],
+  "rcm.view.konfig.PanelList": [
+    "widget.tpKonfigList"
+  ],
+  "rcm.view.konfig.PmDef": [
+    "widget.tPmDef"
+  ],
   "rcm.view.konfig.TabKonfig": [
     "widget.t_Konfig"
+  ],
+  "rcm.view.konfig.TreeCat": [
+    "widget.tCatHir"
   ],
   "rcm.view.konfig.TreeHirarki": [
     "widget.treeHirarki"

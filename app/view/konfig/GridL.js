@@ -3,9 +3,20 @@ Ext.define('rcm.view.konfig.GridL', {
 	xtype: 'tKGridL',	
 	xstore:'',
 
+
 	initComponent: function() {
 		var me=this;
-
+		
+		me.dockedItems = me.dock ? [{
+			dock: 'bottom',
+			xtype: 'toolbar',
+			items: [{
+				text: me.jdlBtn,
+				id: me.idBtn,
+				iconCls: 'more'
+			}]
+		}]: [],
+		
 		me.viewConfig = {
             plugins: {
                 ptype: 'gridviewdragdrop',
@@ -15,7 +26,7 @@ Ext.define('rcm.view.konfig.GridL', {
             listeners: {
                 drop: function(node, data, dropRec, dropPosition) {
                     var dropOn = dropRec ? ' ' + dropPosition + ' ' + dropRec.get('name') : ' on empty view';
-                    //Ext.example.msg("Drag from right to left", 'Dropped ' + data.records[0].get('name') + dropOn);
+					alert("Drag from right to left", 'Dropped ' + data.records[0].get('name') + dropOn);
                 }
             }
         };

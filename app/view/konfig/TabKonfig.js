@@ -30,6 +30,8 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			dstoreKa: 'GridPMnIn',
 			jdlDet: 'List Equipment',
 			jdlTb: 'List Kiri',
+			jdlBtnD: 'Go to PM Definition',
+			idBtnD: 'iGPmdef',
 			dstoreD: 'GridKfEquip'
 		},{
 			id: 'ts_aksi',

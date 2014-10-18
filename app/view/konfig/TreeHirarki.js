@@ -45,7 +45,7 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
                     selectOnFocus: true,
                     allowOnlyWhitespace: false
 				}
-            },{
+			},{
                 xtype	: 'actioncolumn',
                 width	: 24,
 				icon	: 'resources/css/images/delete.png',

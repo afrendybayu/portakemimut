@@ -27,15 +27,20 @@ Ext.define('rcm.view.konfig.PanelList', {
 		var me=this;
 
 		me.items = [{
+			//xtype: 'label',
+			//text: 'label',
+			region: 'center',
+			flex:1,
+			//*
 			xtype: 'container',
 			layout: {
 				type: 'hbox',
 				align: 'stretch'
 			},
-			region: 'center',
 			
 			
-			text: 'me.jdlGr',
+			
+			//text: 'me.jdlGr',
 			//btnFilter: me.btnFilter,
 			//param: me.param,
 			items:[{
@@ -51,16 +56,24 @@ Ext.define('rcm.view.konfig.PanelList', {
 				dragGroup: 'GrupB',
 				dropGroup: 'GrupA',
 				xstore: me.dstoreKa,
-				flex: 1
+				flex: 1,
+				jdlBtn: me.jdlBtnD,
+				idBtn: me.idBtnD,
+				dock: true
 			}]
+			//*/
 		},{
-			title: me.jdlTb,
-			//xtype: 'tCatHir',
+			//title: me.jdlTb,
+			xtype: 'tCatHir',
+			//xtype: 'label',
+			text: 'kiri',
 			region: 'west',
+			//flex:1,
 			minWidth:320,
+			width:320
 			//collapsible: true,
 			//split: true,
-			iconCls: 'editEvent',
+			//iconCls: 'editEvent',
 			//weight: 50
 			//btnFilter: me.btnFilter
 		},{
@@ -71,8 +84,10 @@ Ext.define('rcm.view.konfig.PanelList', {
 			height: 200,
 			region: 'south',
 			title: me.jdlDet,
+			//text: me.jdlDet,
 			xstore: me.dstoreD,
 			xtype: 'tGridKEq',
+			//xtype: 'label',
 			iconCls: 'more'
 		}];
 		me.callParent(arguments);
