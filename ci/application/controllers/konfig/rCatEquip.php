@@ -20,8 +20,8 @@ class rCatEquip extends CI_Controller {
 				foreach ($hsl as $row)	{
 					//print_r($row); echo "<br/>";
 					$arr[$k]['id'] 		= $row->id;
-					$arr[$k]['nama'] 	= $row->nama.' '.$row->id;
-					// $arr[$k]['level'] 	= $row->level;
+					$arr[$k]['text'] 	= $row->nama;	//.' '.$row->id;
+					$arr[$k]['tipe'] 	= $row->kode;
 					if ($row->jml>0)
 						$arr[$k]['leaf'] 	= 'false';
 					else

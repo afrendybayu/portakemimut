@@ -23,7 +23,8 @@ Ext.define('rcm.controller.Config', {
 		
 		'GridPMIn',
 		'GridPMnIn',
-		'GridKfEquip'
+		'GridKfEquip',
+		'CatHir'
     ],
     
     models: [

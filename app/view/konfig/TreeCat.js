@@ -1,6 +1,6 @@
 Ext.define('rcm.view.konfig.TreeCat', {
     extend: 'Ext.tree.Panel',
-    xtype: 'treeHirarki',
+    xtype: 'tCatHir',
 	
 	requires: [
         'Ext.grid.plugin.CellEditing',
@@ -9,28 +9,28 @@ Ext.define('rcm.view.konfig.TreeCat', {
     ],
 	
     rootVisible: true,
-    store: 'CatEquip',
+    store: 'CatHir',
 	hideHeaders: true,
-    
+    /*
 	dockedItems: [
         {
             xtype: 'toolbar',
             dock: 'bottom',
             items: [{
 					text : 'Tambah Lokasi',
-					id	: 'tambah_lokasi'
+					//id	: 'tambah_lokasi'
 				},'->',{
                     iconCls: 'new_folder_tree',
                     tooltip: 'New Folder'
                 },{
                     iconCls: 'delete_folder_tree',
-                    id: 'delete-folder-btn',
+                    //id: 'delete-folder-btn',
                     tooltip: 'Delete Folder'
                 }
             ]
         }
     ],
-	
+	//*/
     
 	initComponent: function() {
 		var me = this;
@@ -38,7 +38,7 @@ Ext.define('rcm.view.konfig.TreeCat', {
 
         me.columns = [{
                 xtype: 'treecolumn',
-                dataIndex: 'nama',
+                dataIndex: 'text',
                 flex: 1,
                 editor: {
                     xtype: 'textfield',

@@ -7,6 +7,7 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		'rcm.view.konfig.ConfHirarki'
 		,'rcm.view.konfig.Aksi'
 		,'rcm.view.konfig.PmDef'
+		//,'rcm.view.konfig.TreeCat'
 		
     ],
     
@@ -14,6 +15,12 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		var me=this;
 		
 		me.items = [{
+		/*
+			title: 'HirarkiCat',
+			//html: 'sdfgh'
+			xtype: 'tCatHir'
+		},{	
+		//*/
 			id: 'ts_list',
 			title: 'PM List',
 			xtype:'tpKonfigList',

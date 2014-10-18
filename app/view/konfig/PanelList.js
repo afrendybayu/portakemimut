@@ -6,6 +6,7 @@ Ext.define('rcm.view.konfig.PanelList', {
     requires: [
 		'rcm.view.konfig.GridL'
 		,'rcm.view.konfig.GridEquip'
+		,'rcm.view.konfig.TreeCat'
     ],
     
     
@@ -54,13 +55,13 @@ Ext.define('rcm.view.konfig.PanelList', {
 			}]
 		},{
 			title: me.jdlTb,
-			xtype: 'label',
+			//xtype: 'tCatHir',
 			region: 'west',
-			//xstore: me.dstoreKa,
 			minWidth:320,
 			//collapsible: true,
 			//split: true,
 			iconCls: 'editEvent',
+			//weight: 50
 			//btnFilter: me.btnFilter
 		},{
 			collapsible: true,

@@ -5,6 +5,11 @@ Ext.define('rcm.store.GridPMIn', {
 	
 	autoLoad: true,
 	
+	sorters: [{
+		property: 'durasi',
+		direction: 'ASC' // or 'ASC'
+	}],
+	
 	proxy: {
 		type: 'ajax',
 		api: {
