@@ -1,28 +1,37 @@
 Ext.define('rcm.view.konfig.GridL', {
 	extend: 'Ext.grid.Panel',
-
-	xtype: 'tKGridL',
-	
-	xstore 		: '',
+	xtype: 'tKGridL',	
+	xstore:'',
 
 	initComponent: function() {
-		var me =this;
-		
+		var me=this;
+
+		me.viewConfig = {
+            plugins: {
+                ptype: 'gridviewdragdrop',
+                dragGroup: me.dragGroup,
+                dropGroup: me.dropGroup
+            },
+            listeners: {
+                drop: function(node, data, dropRec, dropPosition) {
+                    var dropOn = dropRec ? ' ' + dropPosition + ' ' + dropRec.get('name') : ' on empty view';
+                    //Ext.example.msg("Drag from right to left", 'Dropped ' + data.records[0].get('name') + dropOn);
+                }
+            }
+        };
 		me.store = me.xstore;
-		
 		me.columns = {	
 			items: [{ 
 				xtype:'rownumberer',
 				width:25, 
 				header : 'No'
-				// hidden: me.hiden1
 			},{ 
 				header		: 'Nama',
 				dataIndex	: 'nama',
-				width:100
+				width:120
 			},{ 
 				header		: 'Kode',
-				dataIndex	: 'kode',
+				dataIndex	: 'ket',
 				flex:1
 			}]
 		};

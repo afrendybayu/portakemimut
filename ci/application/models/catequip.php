@@ -38,6 +38,16 @@ class Catequip extends CI_Model {
 		
 		return $hsl[0]->kode;
 	}
+	
+	function get_hirarki($parent){
+		
+		$sql = "SELECT ci.id,ci.nama,ci.kode,(select count(*) from cat_equip ce where ce.parent = ci.id) as jml
+				FROM cat_equip ci
+				where parent = $parent";
+		//echo "sql: $sql<br/>";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 }
 
 /* End of file catequip.php */

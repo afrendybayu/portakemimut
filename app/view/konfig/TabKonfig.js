@@ -14,15 +14,17 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		var me=this;
 		
 		me.items = [{
-		//*
 			id: 'ts_list',
-			title: 'List',
+			title: 'PM List',
 			xtype:'tpKonfigList',
+			jdlKi: 'Pilih jadwal PM',
+			jdlKa: 'PM Tersedia',
+			dstoreKi: 'GridPMIn',
+			dstoreKa: 'GridPMnIn',
 			jdlDet: 'List Equipment',
 			jdlTb: 'List Kiri',
 			dstoreD: 'GridKfEquip'
 		},{
-		//*/
 			id: 'ts_aksi',
 			title: 'Aksi',
 			xtype:'tAksi'

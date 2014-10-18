@@ -26,18 +26,37 @@ Ext.define('rcm.view.konfig.PanelList', {
 		var me=this;
 
 		me.items = [{
-			xtype: 'label',
+			xtype: 'container',
+			layout: {
+				type: 'hbox',
+				align: 'stretch'
+			},
 			region: 'center',
 			
-			//dstore: me.dstore,
+			
 			text: 'me.jdlGr',
 			//btnFilter: me.btnFilter,
-			//param: me.param
+			//param: me.param,
+			items:[{
+				title: me.jdlKi,
+				xtype: 'tKGridL',
+				xstore: me.dstoreKi,
+				dragGroup: 'GrupA',
+				dropGroup: 'GrupB',
+				flex: 1
+			},{
+				title: me.jdlKa,
+				xtype: 'tKGridL',
+				dragGroup: 'GrupB',
+				dropGroup: 'GrupA',
+				xstore: me.dstoreKa,
+				flex: 1
+			}]
 		},{
 			title: me.jdlTb,
 			xtype: 'label',
-			region: 'east',
-			text: 'me.dstore',
+			region: 'west',
+			//xstore: me.dstoreKa,
 			minWidth:320,
 			//collapsible: true,
 			//split: true,
