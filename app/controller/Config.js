@@ -24,7 +24,8 @@ Ext.define('rcm.controller.Config', {
 		'GridPMIn',
 		'GridPMnIn',
 		'GridKfEquip',
-		'CatHir'
+		'CatHir',
+		'GridOPnIn'
     ],
     
     models: [
@@ -33,22 +34,23 @@ Ext.define('rcm.controller.Config', {
 	],
     
     refs: [{
-            ref: 'treeHirarki',
-            selector: 'treeHirarki'
+			ref: 'treeHirarki',
+			selector: 'treeHirarki'
+		},{
+			ref: 'tCatHir',
+			selecttor: 'tCatHir'
 	}],
     
     init: function() {
 		var me = this;
         me.control({
 			//*
-			
 			'[iconCls=new_folder_tree]': {
                 click: me.tblNewLokasi
             },
 			'[iconCls=delete_folder_tree]': {
                 click: me.tblDelLokasi
             },
-			
 			'#tambah_lokasi' : {
 				click : me.tambahLokasi
 			},
@@ -65,11 +67,31 @@ Ext.define('rcm.controller.Config', {
                 itemmouseenter: me.showActions,
                 itemmouseleave: me.hideActions,
                 // itemcontextmenu: me.showContextMenu
-            }
+            },
+            
+            'tCatHir': {
+				catclick: me.hdlCatHir
+			}
 			
 		});
 		
     },
+    
+    hdlCatHir: function(id,tab)	{
+		var me=this;
+		//alert("hdlCatHir: "+id+" "+tab);
+		//me.getGridKfEquipStore().load({ params: {cat:id} });
+		me.getGridKfEquipStore().clearFilter(true);
+		me.getGridKfEquipStore().filter('durasi',id);
+		if (tab=="tk_pl")	{
+			me.getGridPMInStore().load({ params: {cat:id} });
+			me.getGridPMnInStore().load({ params: {cat:id} });
+		}
+		else if (tab=="tk_ol")	{
+			//me.get
+		}
+		
+	},
 	
 	tambahLokasi : function(){
 		console.log('tambah lokasi');

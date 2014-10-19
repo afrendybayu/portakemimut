@@ -13,10 +13,14 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		var me=this;
 		
 		me.items = [{
-			id: 'ts_pml',
+			id: 'tk_ak',
+			title: 'Aksi',
+			xtype:'tAksi'
+		},{
+			id: 'tk_pl',
 			title: 'PM List',
 			xtype:'tpKonfigList',
-			jdlKi: 'Pilih jadwal PM',
+			jdlKi: 'Pilih Jadwal PM',
 			jdlKa: 'PM Tersedia',
 			dstoreKi: 'GridPMIn',
 			dstoreKa: 'GridPMnIn',
@@ -26,25 +30,21 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			idBtnD: 'iGPmdef',
 			dstoreD: 'GridKfEquip'
 		},{
-			id: 'ts_opl',
+			id: 'tk_ol',
 			title: 'Object Part List',
 			xtype:'tpKonfigList',
 			jdlKi: 'Pilih Object Part',
 			jdlKa: 'Object Part Tersedia',
 			dstoreKi: 'GridPMIn',
-			dstoreKa: 'GridPMnIn',
+			dstoreKa: 'GridOPnIn',
 			jdlDet: 'List Equipment',
 			jdlTb: 'List Kiri',
 			jdlBtnD: 'Go to Object Part Definition',
 			idBtnD: 'iGOpdef',
 			dstoreD: 'GridKfEquip'
 		},{
-			id: 'ts_aksi',
-			title: 'Aksi',
-			xtype:'tAksi'
-		},{
-			id: 'ts_pmdef',
-			title: 'Predictive Maint',
+			id: 'tk_pd',
+			title: 'Preventive Maintenance',
 			xtype:'tPmDef'
 		},{
 			id: 'ts_aksi_',

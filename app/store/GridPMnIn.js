@@ -8,7 +8,7 @@ Ext.define('rcm.store.GridPMnIn', {
 	proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/rh/rPM/rPMnotdef?cat=10'
+			read: 'ci/index.php/rh/rPM/rPMnotdef?'
         },
         reader: {
             type: 'json',

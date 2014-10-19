@@ -34,15 +34,15 @@ Ext.define('rcm.view.konfig.GridL', {
 		me.columns = {	
 			items: [{ 
 				xtype:'rownumberer',
-				width:25, 
+				width:35, 
 				header : 'No'
-			},{ 
-				header		: 'Nama',
-				dataIndex	: 'nama',
-				width:120
 			},{ 
 				header		: 'Kode',
 				dataIndex	: 'ket',
+				width:80
+			},{ 
+				header		: 'Nama',
+				dataIndex	: 'nama',
 				flex:1
 			}]
 		};

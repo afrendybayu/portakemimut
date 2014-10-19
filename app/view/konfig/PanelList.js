@@ -64,11 +64,11 @@ Ext.define('rcm.view.konfig.PanelList', {
 			region: 'west',
 			//flex:1,
 			minWidth:320,
-			width:320
+			width:320,
 			//collapsible: true,
 			//split: true,
 			//iconCls: 'editEvent',
-			//weight: 50
+			weight: 50
 			//btnFilter: me.btnFilter
 		},{
 			collapsible: true,
@@ -82,7 +82,7 @@ Ext.define('rcm.view.konfig.PanelList', {
 			xstore: me.dstoreD,
 			xtype: 'tGridKEq',
 			//xtype: 'label',
-			iconCls: 'more'
+			iconCls: 'bullets'
 		}];
 		me.callParent(arguments);
 	}

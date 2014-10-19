@@ -1,6 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class rOPart extends CI_Controller {
+	function __construct() {
+        parent::__construct();
+		$this->load->model('opart');
+	}
 	
 	public function index()	{
 		
@@ -50,4 +54,42 @@ class rOPart extends CI_Controller {
 		//$this->load->view('welcome_message');
 		echo json_encode($jsonResult);
 	}
+
+	public function rOPdef()	{
+		try{
+			$hsl = $this->opart->get_opartdef_cat($cat);
+			
+			$jsonResult = array(
+				'success' => true,
+				'opdef' => $hsl
+			);
+		}
+		catch(Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
+	
+	public function rOPnotdef()	{
+		try{
+			$cat = $this->input->get('cat')?:'0';
+			$hsl = $this->opart->get_opartdefnotin($cat);
+			
+			$jsonResult = array(
+				'success' => true,
+				'opdef' => $hsl
+			);
+		}
+		catch(Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
+
 }
