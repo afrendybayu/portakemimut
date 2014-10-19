@@ -44,6 +44,12 @@ Ext.define('rcm.view.konfig.AksiGrid', {
 				// width:60
 				flex:1
 			},{
+				header		: me.kolgrid4,
+				dataIndex	: me.idgrid4,
+				hidden		: me.hidegrid4,
+				// width:60
+				flex:1
+			},{
 				xtype		:'actioncolumn',
 				width		:25,
 				// id 			: 'conmondel', 

@@ -18,7 +18,8 @@ Ext.define('rcm.controller.Config', {
     stores: [
 		'LokUnit',
 		'GridAksi',
-		'PMDefs'
+		'PMDefs',
+		'Causes'
     ],
     
     models: [
