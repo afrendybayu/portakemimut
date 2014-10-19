@@ -1,19 +1,21 @@
 /* AfrendyBayu 18Okt2014 */
 Ext.define('rcm.store.GridPMIn', {
     extend: 'Ext.data.Store',
-    model: 'rcm.model.GridAksi' ,
+	model: 'rcm.model.GridPMIn',
 	
-	autoLoad: true,
+	autoLoad: true
 	/*
 	sorters: [{
 		property: 'durasi',
 		direction: 'ASC' // or 'ASC'
 	}],
-	//*/
+	
 	proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/rh/rPM/rPMdefcat?'
+			read: 'ci/index.php/rh/rPM/rPMdefcat?',
+			create: 'ci/index.php/rh/rPM/cPMList',
+			update:  'ci/index.php/rh/rPM/uPMList',
         },
         reader: {
             type: 'json',
@@ -21,6 +23,6 @@ Ext.define('rcm.store.GridPMIn', {
             messageProperty: 'message'
         }
     }
-	
+	//*/
 	
 });

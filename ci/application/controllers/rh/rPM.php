@@ -119,4 +119,42 @@ class rPM extends CI_Controller {
 		
 	
 	}
+
+	public function cPMList()	{
+		$param = json_decode(file_get_contents('php://input'));
+			
+		if (!isset($param))	{
+			throw new Exception("Input Data Tidak Ada");
+		}
+			//print_r ($params);
+			//$this->load->model('pmlist');
+		$data = array('eqcat' => $param->eqcat, 'pm' => $param->pm);
+		//print_r($data);
+		$hasil = $this->pm->ins_pmlist($data);
+		
+		//echo "hsl: $hsl";
+		$jsonResult = array(
+			'success' => true,
+			'pmlist' => array('id' => $hasil)
+		);
+		echo json_encode($jsonResult);
+	}
+	
+	public function dPMList()	{
+		$param = json_decode(file_get_contents('php://input'));
+			
+		if (!isset($param))	{
+			throw new Exception("Input Data Tidak Ada");
+		}
+		//$data = array('id' => $param->id);
+		$hasil = $this->pm->del_pmlist($param->id);
+		
+		//echo "hsl: $hsl";
+		$jsonResult = array(
+			'success' => true,
+			'pmlist' => array('id' => $hasil)
+		);
+		echo json_encode($jsonResult);
+	}
+
 }

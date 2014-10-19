@@ -72,6 +72,7 @@ Ext.define('rcm.view.konfig.PanelList', {
 			//btnFilter: me.btnFilter
 		},{
 			collapsible: true,
+			collapsed: true,
 			split: true,
 			minHeight: 100,
 			maxHeight: 300,

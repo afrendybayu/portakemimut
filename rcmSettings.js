@@ -10,6 +10,7 @@ rcmSettings = {
 	tab: 'tu_kf',
 	// tsp: 'tu_ho',
 	//tsp: 'ts_pdm',
+	idc: 0,
 	asa: '',
 	sas: '',
 	server: 1

@@ -9,7 +9,8 @@ Ext.define('rcm.controller.Config', {
         'konfig.TabKonfig',
 		'konfig.TreeHirarki',
 		'konfig.AksiGrid',
-		'konfig.PanelList'
+		'konfig.PanelList',
+		'konfig.TreeCat'
     ],
 
     controllers: [
@@ -30,7 +31,8 @@ Ext.define('rcm.controller.Config', {
     
     models: [
 		'LokUnit',
-		'GridAksi'
+		'GridAksi',
+		'GridPMIn'
 	],
     
     refs: [{
@@ -38,7 +40,12 @@ Ext.define('rcm.controller.Config', {
 			selector: 'treeHirarki'
 		},{
 			ref: 'tCatHir',
-			selecttor: 'tCatHir'
+			selector: 'tCatHir'
+		},{
+			ref: 'tKGridL',
+			selector: 'tKGridL'
+			//xtype: 'tKGridL',
+			//autoCreate: true
 	}],
     
     init: function() {
@@ -71,11 +78,41 @@ Ext.define('rcm.controller.Config', {
             
             'tCatHir': {
 				catclick: me.hdlCatHir
+			},
+			
+			'tKGridL': {
+				cdragdrop: me.hdlDropListC,
+				ddragdrop: me.hdlDropListD
 			}
 			
 		});
 		
     },
+    
+    hdlDropListD: function(data, cat, tab)	{
+		//alert("hdlDropListD: "+data.get("id"));
+		var me=this,
+			dl;
+		if (tab=="tk_pl")	{
+			dl=new rcm.model.GridPMIn({ id:data.get("id") });
+		}
+		dl.destroy();
+	},
+    
+    hdlDropListC: function(data, cat, tab)	{
+		var me=this,
+			dl;
+		//alert("tab: "+tab+",cat: "+cat+", data: "+data.get("id"));
+		
+			
+		//var dl 	= Ext.create('rcm.model.GridAksi', record );
+		if (tab=="tk_pl")	{
+			dl=new rcm.model.GridPMIn({ eqcat:cat,pm:data.get("id") });
+			//console.log("listeners GridL 2");
+		}
+		dl.save();
+		//console.log("listeners GridL 3");
+	},
     
     hdlCatHir: function(id,tab)	{
 		var me=this;
@@ -89,8 +126,7 @@ Ext.define('rcm.controller.Config', {
 		}
 		else if (tab=="tk_ol")	{
 			//me.get
-		}
-		
+		}		
 	},
 	
 	tambahLokasi : function(){

@@ -41,7 +41,7 @@ class Pm extends CI_Model {
 	
 	function get_pmdefcat($cat)    {
 
-		$sql =	"SELECT pl.id,pd.durasi,pd.nama,pd.ket
+		$sql =	"SELECT pl.id,pd.durasi,pd.nama,pd.kode
 				FROM pmlist pl
 				LEFT JOIN pmdef pd ON pl.pm = pd.id
 				WHERE pl.eqcat = $cat
@@ -50,6 +50,24 @@ class Pm extends CI_Model {
 		
 		return $query->result();
     }
+    
+    function ins_pmlist($data)	{
+		$this->db->trans_start();
+		$this->db->insert('pmlist', $data); 
+		$insert_id = $this->db->insert_id();
+		$this->db->trans_complete();
+		return  $insert_id;
+	}
+	
+	function del_pmlist($ids)	{
+		$this->db->where_in('id', $ids);
+		if ($this->db->delete('pmlist'))	{
+			return $ids;
+		}
+		else {
+			return array('id'=>'0');
+		}
+	}
 }
 
 /* End of file pm.php */

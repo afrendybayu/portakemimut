@@ -24,9 +24,19 @@ Ext.define('rcm.view.konfig.GridL', {
                 dropGroup: me.dropGroup
             },
             listeners: {
-                drop: function(node, data, dropRec, dropPosition) {
-                    var dropOn = dropRec ? ' ' + dropPosition + ' ' + dropRec.get('name') : ' on empty view';
-					alert("Drag from right to left", 'Dropped ' + data.records[0].get('name') + dropOn);
+                drop: function(node, data) {	// , dropRec, dropPosition
+					//alert("listeners GridL "+me.dropGroup+" "+data.records[0].get("kode"));
+					if (me.dropGroup=="GrupB")	{
+						me.fireEvent('cdragdrop', data.records[0],rcmSettings.idc,rcmSettings.tkf);
+						//console.log("listeners GridL "+me.dropGroup);
+					}
+					//*
+					//console.log(me.dropGroup+" GrupA");
+					if (me.dropGroup=="GrupA")	{
+						me.fireEvent('ddragdrop', data.records[0],rcmSettings.idc,rcmSettings.tkf);
+						//alert("listeners GridL "+me.dropGroup+" "+data.records[0].get("kode"));
+					}
+					//*/
                 }
             }
         };
@@ -38,7 +48,7 @@ Ext.define('rcm.view.konfig.GridL', {
 				header : 'No'
 			},{ 
 				header		: 'Kode',
-				dataIndex	: 'ket',
+				dataIndex	: 'kode',
 				width:80
 			},{ 
 				header		: 'Nama',

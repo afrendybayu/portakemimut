@@ -33,7 +33,7 @@ Ext.define('rcm.view.konfig.TreeCat', {
 	//*/
 	listeners: {
         itemclick: function(s,r) {
-			//alert(r.data.text+" "+r.data.id+" "+rcmSettings.tkf);
+			rcmSettings.idc = r.data.id;
 			this.fireEvent('catclick', r.data.id,rcmSettings.tkf);
         }
     },

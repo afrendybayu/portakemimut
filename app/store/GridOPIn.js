@@ -13,7 +13,7 @@ Ext.define('rcm.store.GridOPIn', {
 	proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/rh/rOPart/rOPartdefcat?cat=10'
+			read: 'ci/index.php/rh/rOPart/rOPartdefcat?'
         },
         reader: {
             type: 'json',

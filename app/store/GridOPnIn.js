@@ -8,7 +8,7 @@ Ext.define('rcm.store.GridOPnIn', {
 	proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/rh/rOPart/rOPnotdef?cat=10'
+			read: 'ci/index.php/rh/rOPart/rOPnotdef?'
         },
         reader: {
             type: 'json',
