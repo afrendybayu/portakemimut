@@ -238,14 +238,7 @@ Ext.define('rcm.controller.Config', {
         });
 		//*/
     },
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	handleDeleteIconClick: function(view, rowIndex, colIndex, column, e) {
         alert ('delete nya ketahuan di controller');

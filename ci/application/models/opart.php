@@ -17,7 +17,19 @@ class Opart extends CI_Model {
 		return $query->result();
 	}
 	
-	function ins_oplist()	{
+	function get_opartlistcat($cat)    {
+
+		$sql =	"SELECT ol.id,ol.opart,od.kode,od.nama
+				FROM opartlist ol
+				INNER JOIN opartdef od ON od.id = ol.opart
+				WHERE ol.eqcat=$cat
+				ORDER BY od.nama ASC";
+				
+		$query = $this->db->query($sql);
+		return $query->result();
+    }
+	
+	function set_oplist()	{
 		
 	}
 	

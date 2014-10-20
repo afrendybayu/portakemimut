@@ -92,6 +92,10 @@ class rOPart extends CI_Controller {
 		echo json_encode($jsonResult);
 	}
 	
+	public function rOPartList() {
+		
+	}
+	
 	public function cOPList()	{
 		$param = json_decode(file_get_contents('php://input'));
 			
