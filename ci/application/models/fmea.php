@@ -22,6 +22,13 @@ class fmea extends CI_Model {
         $query = $this->db->get('cause');
         return $query->result();
 	}
+	
+	function get_modedef(){
+		$this->db->order_by('kode', 'asc');
+		$query = $this->db->get('modedef');
+		return $query->result();
+	
+	}
 }
 
 /* End of file fmea.php */

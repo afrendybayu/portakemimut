@@ -8,6 +8,8 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		,'rcm.view.konfig.Aksi'
 		,'rcm.view.konfig.PmDef'
 		,'rcm.view.konfig.Cause'
+		,'rcm.view.konfig.Damage'
+		,'rcm.view.konfig.Failure'
     ],
     
 	initComponent: function() {
@@ -25,6 +27,14 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			id: 'ts_cause',
 			title: 'Cause',
 			xtype:'tCause'
+		},{
+			id: 'ts_damage',
+			title: 'Damage',
+			xtype:'tDamage'
+		},{
+			id: 'ts_failure',
+			title: 'Failure',
+			xtype:'tFailure'
 		},{
 			id: 'ts_hr',
 			title: 'Lokasi',

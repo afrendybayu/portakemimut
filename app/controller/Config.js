@@ -19,7 +19,9 @@ Ext.define('rcm.controller.Config', {
 		'LokUnit',
 		'GridAksi',
 		'PMDefs',
-		'Causes'
+		'Causes',
+		'Damages',
+		'ModeDefs'
     ],
     
     models: [
