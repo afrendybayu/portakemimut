@@ -6,34 +6,61 @@ Ext.define('rcm.view.konfig.TabKonfig', {
     requires: [
 		'rcm.view.konfig.ConfHirarki'
 		,'rcm.view.konfig.Aksi'
-		,'rcm.view.konfig.PmDef'
+		,'rcm.view.konfig.PmDef'		
 		,'rcm.view.konfig.Cause'
 		,'rcm.view.konfig.Damage'
 		,'rcm.view.konfig.Failure'
+
     ],
     
 	initComponent: function() {
 		var me=this;
 		
 		me.items = [{
-			id: 'ts_aksi',
-			title: 'Aksi',
+			id: 'tk_ak',
+			title: 'Aksi Def.',
 			xtype:'tAksi'
 		},{
-			id: 'ts_pmdef',
-			title: 'Predictive Maint',
+			id: 'tk_pl',
+			title: 'PM List',
+			xtype:'tpKonfigList',
+			jdlKi: 'Pilih Jadwal PM',
+			jdlKa: 'PM Tersedia',
+			dstoreKi: 'GridPMIn',
+			dstoreKa: 'GridPMnIn',
+			jdlDet: 'List Equipment',
+			jdlTb: 'List Kiri',
+			jdlBtnD: 'Go to PM Definition',
+			idBtnD: 'iGPmdef',
+			dstoreD: 'GridKfEquip'
+		},{
+			id: 'tk_ol',
+			title: 'Object Part List',
+			xtype:'tpKonfigList',
+			jdlKi: 'Pilih Object Part',
+			jdlKa: 'Object Part Tersedia',
+			dstoreKi: 'GridPMIn',
+			dstoreKa: 'GridOPnIn',
+			jdlDet: 'List Equipment',
+			jdlTb: 'List Kiri',
+			jdlBtnD: 'Go to Object Part Definition',
+			idBtnD: 'iGOpdef',
+			dstoreD: 'GridKfEquip'
+		},{
+			id: 'tk_pd',
+			title: 'Pd. Maintenance Def.',
 			xtype:'tPmDef'
 		},{
 			id: 'ts_cause',
-			title: 'Cause',
+			title: 'Cause Def.',
 			xtype:'tCause'
 		},{
 			id: 'ts_damage',
-			title: 'Damage',
+			title: 'Damage Def.',
 			xtype:'tDamage'
 		},{
 			id: 'ts_failure',
-			title: 'Failure',
+			title: 'Failure Mode Def.',
 			xtype:'tFailure'
 		},{
 			id: 'ts_hr',
@@ -45,6 +72,6 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		this.on('tabchange', me.handleSapTab, this);
 	},
 	handleSapTab: function()	{
-		rcmSettings.tsp = this.getActiveTab().getId();
+		rcmSettings.tkf = this.getActiveTab().getId();
 	}
 });

@@ -8,7 +8,9 @@ Ext.define('rcm.controller.Config', {
         // TODO: add views here
         'konfig.TabKonfig',
 		'konfig.TreeHirarki',
-		'konfig.AksiGrid'
+		'konfig.AksiGrid',
+		'konfig.PanelList',
+		'konfig.TreeCat'
     ],
 
     controllers: [
@@ -21,32 +23,45 @@ Ext.define('rcm.controller.Config', {
 		'PMDefs',
 		'Causes',
 		'Damages',
-		'ModeDefs'
+		'ModeDefs',
+		
+		'GridPMIn',
+		'GridPMnIn',
+		'GridKfEquip',
+		'CatHir',
+		'GridOPnIn',
+
     ],
     
     models: [
 		'LokUnit',
 		'GridAksi',
-		
+		'GridPMIn'
 	],
     
     refs: [{
-            ref: 'treeHirarki',
-            selector: 'treeHirarki'
+			ref: 'treeHirarki',
+			selector: 'treeHirarki'
+		},{
+			ref: 'tCatHir',
+			selector: 'tCatHir'
+		},{
+			ref: 'tKGridL',
+			selector: 'tKGridL'
+			//xtype: 'tKGridL',
+			//autoCreate: true
 	}],
     
     init: function() {
 		var me = this;
         me.control({
 			//*
-			
 			'[iconCls=new_folder_tree]': {
                 click: me.tblNewLokasi
             },
 			'[iconCls=delete_folder_tree]': {
                 click: me.tblDelLokasi
             },
-			
 			'#tambah_lokasi' : {
 				click : me.tambahLokasi
 			},
@@ -63,11 +78,61 @@ Ext.define('rcm.controller.Config', {
                 itemmouseenter: me.showActions,
                 itemmouseleave: me.hideActions,
                 // itemcontextmenu: me.showContextMenu
-            }
+            },
+            
+            'tCatHir': {
+				catclick: me.hdlCatHir
+			},
+			
+			'tKGridL': {
+				cdragdrop: me.hdlDropListC,
+				ddragdrop: me.hdlDropListD
+			}
 			
 		});
 		
     },
+    
+    hdlDropListD: function(data, cat, tab)	{
+		//alert("hdlDropListD: "+data.get("id"));
+		var me=this,
+			dl;
+		if (tab=="tk_pl")	{
+			dl=new rcm.model.GridPMIn({ id:data.get("id") });
+		}
+		dl.destroy();
+	},
+    
+    hdlDropListC: function(data, cat, tab)	{
+		var me=this,
+			dl,
+			p={ eqcat:cat,pm:data.get("id") };
+		//alert("tab: "+tab+",cat: "+cat+", data: "+data.get("id"));
+
+		if (tab=="tk_pl")	{
+			dl=new rcm.model.GridPMIn(p);
+		}
+		else if (tab=="tk_ol")	{
+			dl=new rcm.model.GridOPIn(p);
+		}
+		dl.save();
+		//console.log("listeners GridL 3");
+	},
+    
+    hdlCatHir: function(id,tab)	{
+		var me=this;
+		//alert("hdlCatHir: "+id+" "+tab);
+		//me.getGridKfEquipStore().load({ params: {cat:id} });
+		me.getGridKfEquipStore().clearFilter(true);
+		me.getGridKfEquipStore().filter('durasi',id);
+		if (tab=="tk_pl")	{
+			me.getGridPMInStore().load({ params: {cat:id} });
+			me.getGridPMnInStore().load({ params: {cat:id} });
+		}
+		else if (tab=="tk_ol")	{
+			//me.get
+		}		
+	},
 	
 	tambahLokasi : function(){
 		console.log('tambah lokasi');

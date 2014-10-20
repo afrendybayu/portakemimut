@@ -1,44 +1,38 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class rLokUnit extends CI_Controller {
+class rCatEquip extends CI_Controller {
 	function __construct() {
         parent::__construct();
-		$this->load->model('hirarki');
+		$this->load->model('catequip');
 	}
 	public function rHirarki()	{
 		
 		try {
-			$parent_id = (isset($_GET['node']))?($_GET['node']):0;
-			// echo $parent_id.'<br>';
+			$parent_id = $this->input->get('node')?:'0';
+			//echo $parent_id.'<br>';
 			// echo $_GET['node'].'<br>';
 			
 			$arr = array(); $k=0;
-			$hsl = $this->hirarki->get_hirarki($parent_id);
-			if ($hsl->num_rows() > 0)	{
-				foreach ($hsl->result() as $row)	{
+			$hsl = $this->catequip->get_hirarki($parent_id);
+			//echo "jml: ".$hsl->num_rows();
+			//print_r($hsl);
+			//if ($hsl->num_rows() > 0)	{
+				foreach ($hsl as $row)	{
 					//print_r($row); echo "<br/>";
 					$arr[$k]['id'] 		= $row->id;
-					$arr[$k]['nama'] 	= $row->nama.' '.$row->id;
-					// $arr[$k]['level'] 	= $row->level;
-					$arr[$k]['leaf'] 	= 'false';
-					
+					$arr[$k]['text'] 	= $row->nama;	//.' '.$row->id;
+					$arr[$k]['tipe'] 	= $row->kode;
+					if ($row->jml>0)
+						$arr[$k]['leaf'] 	= 'false';
+					else
+						$arr[$k]['leaf'] 	= 'true';
 					$k++;
 				}
-			}
-			
-			else {
-				$hsl1 = $this->hirarki->get_hirarki_equip($parent_id);
-				foreach ($hsl1->result() as $row)	{
-					$arr[$k]['id'] 		= $row->id;
-					$arr[$k]['nama'] 	= '['.$row->tag.'] '.$row->nama .' '.$row->id;
-					// $arr[$k]['level'] 	= '';
-					$arr[$k]['leaf'] 	= 'true';
-					$k++;
-				}
-			}
+			//}
+
 			$jsonResult = array(
 				'success' => true,
-				'lokunit' => $arr
+				'cateq' => $arr
 			);
 		}
 		catch (Exception $e){

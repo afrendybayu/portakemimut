@@ -6,5 +6,6 @@ Ext.define('rcm.model.GridAksi', {
 	// ],
 
 	fields: [ 'id','nama', 'ket','kode','durasi','obama','sap']
+
 	
 });

@@ -22,7 +22,7 @@ Ext.define('rcm.view.konfig.AksiGrid', {
 		me.columns = {	
 			items: [{ 
 				xtype:'rownumberer',
-				width:25, 
+				width:45, 
 				header : 'No'
 				// hidden: me.hiden1
 			},{ 
