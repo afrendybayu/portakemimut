@@ -10,6 +10,7 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		,'rcm.view.konfig.Cause'
 		,'rcm.view.konfig.Damage'
 		,'rcm.view.konfig.Failure'
+		,'rcm.view.konfig.Refer'
 
     ],
     
@@ -62,6 +63,14 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			id: 'ts_failure',
 			title: 'Failure Mode Def.',
 			xtype:'tFailure'
+		},{
+			id: 'ts_refer',
+			title: 'Referensi Def.',
+			xtype:'tRefer'
+		},{
+			id: 'ts_symptom',
+			title: 'Symptom Def.',
+			xtype:'tSymptom'
 		},{
 			id: 'ts_hr',
 			title: 'Lokasi',
