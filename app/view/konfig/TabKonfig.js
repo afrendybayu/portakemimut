@@ -11,6 +11,7 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		,'rcm.view.konfig.Damage'
 		,'rcm.view.konfig.Failure'
 		,'rcm.view.konfig.Refer'
+		,'rcm.view.konfig.Symptom'
 
     ],
     
