@@ -1,7 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class rCause extends CI_Controller {
-	
+	function __construct() {
+        parent::__construct();
+		$this->load->model('cause');
+	}
 	public function index()	{
 		
 		try	{
@@ -30,5 +33,24 @@ class rCause extends CI_Controller {
 		}
 		//$this->load->view('welcome_message');
 		echo json_encode($jsonResult);
+	}
+	public function rCauseDef(){
+		try	{
+			
+			$hsl = $this->cause->get_cause();
+			
+			$jsonResult = array(
+				'success' => true,
+				'cause' => $hsl
+			);
+		}
+		catch (Exception $e)	{
+			 $jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	
 	}
 }

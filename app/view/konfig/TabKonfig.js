@@ -6,7 +6,11 @@ Ext.define('rcm.view.konfig.TabKonfig', {
     requires: [
 		'rcm.view.konfig.ConfHirarki'
 		,'rcm.view.konfig.Aksi'
+
 		,'rcm.view.konfig.PmDef'		
+
+		,'rcm.view.konfig.Cause'
+
     ],
     
 	initComponent: function() {
@@ -47,9 +51,9 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			title: 'Preventive Maintenance',
 			xtype:'tPmDef'
 		},{
-			id: 'ts_aksi_',
-			title: 'pmdef',
-			xtype:'panel'
+			id: 'ts_cause',
+			title: 'Cause',
+			xtype:'tCause'
 		},{
 			id: 'ts_hr',
 			title: 'Lokasi',

@@ -18,7 +18,7 @@ class Pm extends CI_Model {
     }
 	
 	function get_pmdef()  {
-
+		$this->db->order_by('durasi', 'asc'); 
 		$query = $this->db->get('pmdef');
 		
 		return $query->result();

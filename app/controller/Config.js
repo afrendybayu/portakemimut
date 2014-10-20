@@ -26,7 +26,9 @@ Ext.define('rcm.controller.Config', {
 		'GridPMnIn',
 		'GridKfEquip',
 		'CatHir',
-		'GridOPnIn'
+		'GridOPnIn',
+
+		'Causes'
     ],
     
     models: [
