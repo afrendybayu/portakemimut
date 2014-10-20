@@ -1,15 +1,15 @@
 /* AfrendyBayu 18Okt2014 */
 Ext.define('rcm.store.GridOPIn', {
     extend: 'Ext.data.Store',
-    model: 'rcm.model.GridAksi' ,
+    model: 'rcm.model.GridOPIn' ,
 	
-	autoLoad: true,
+	autoLoad: true
 	/*
 	sorters: [{
 		property: 'durasi',
 		direction: 'ASC' // or 'ASC'
 	}],
-	//*/
+	
 	proxy: {
 		type: 'ajax',
 		api: {
@@ -21,6 +21,6 @@ Ext.define('rcm.store.GridOPIn', {
             messageProperty: 'message'
         }
     }
-	
+	//*/
 	
 });

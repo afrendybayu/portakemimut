@@ -91,5 +91,56 @@ class rOPart extends CI_Controller {
 		}
 		echo json_encode($jsonResult);
 	}
+	
+	public function cOPList()	{
+		$param = json_decode(file_get_contents('php://input'));
+			
+		if (!isset($param))	{
+			throw new Exception("Input Data Tidak Ada");
+		}
 
+		try {
+			$data = array('eqcat' => $param->eqcat, 'pm' => $param->pm);
+			$hasil = $this->opart->ins_oplist($data);
+			
+			//echo "hsl: $hsl";
+			$jsonResult = array(
+				'success' => true,
+				'oplist' => array('id' => $hasil)
+			);
+		}
+		catch(Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
+	
+	public function dOPList()	{
+		$param = json_decode(file_get_contents('php://input'));
+			
+		if (!isset($param))	{
+			throw new Exception("Input Data Tidak Ada");
+		}
+		//$data = array('id' => $param->id);
+		
+		try {
+			$hasil = $this->opart->del_oplist($param->id);
+			
+			//echo "hsl: $hsl";
+			$jsonResult = array(
+				'success' => true,
+				'oplist' => array('id' => $hasil)
+			);
+		}
+		catch(Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
 }

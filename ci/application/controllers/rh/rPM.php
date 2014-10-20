@@ -128,15 +128,23 @@ class rPM extends CI_Controller {
 		}
 			//print_r ($params);
 			//$this->load->model('pmlist');
-		$data = array('eqcat' => $param->eqcat, 'pm' => $param->pm);
-		//print_r($data);
-		$hasil = $this->pm->ins_pmlist($data);
-		
-		//echo "hsl: $hsl";
-		$jsonResult = array(
-			'success' => true,
-			'pmlist' => array('id' => $hasil)
-		);
+		try {
+			$data = array('eqcat' => $param->eqcat, 'pm' => $param->pm);
+			//print_r($data);
+			$hasil = $this->pm->ins_pmlist($data);
+			
+			//echo "hsl: $hsl";
+			$jsonResult = array(
+				'success' => true,
+				'pmlist' => array('id' => $hasil)
+			);
+		}
+		catch(Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
 		echo json_encode($jsonResult);
 	}
 	
@@ -147,13 +155,21 @@ class rPM extends CI_Controller {
 			throw new Exception("Input Data Tidak Ada");
 		}
 		//$data = array('id' => $param->id);
-		$hasil = $this->pm->del_pmlist($param->id);
-		
-		//echo "hsl: $hsl";
-		$jsonResult = array(
-			'success' => true,
-			'pmlist' => array('id' => $hasil)
-		);
+		try {
+			$hasil = $this->pm->del_pmlist($param->id);
+			
+			//echo "hsl: $hsl";
+			$jsonResult = array(
+				'success' => true,
+				'pmlist' => array('id' => $hasil)
+			);
+		}
+		catch(Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
 		echo json_encode($jsonResult);
 	}
 

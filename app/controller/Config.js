@@ -101,14 +101,15 @@ Ext.define('rcm.controller.Config', {
     
     hdlDropListC: function(data, cat, tab)	{
 		var me=this,
-			dl;
+			dl,
+			p={ eqcat:cat,pm:data.get("id") };
 		//alert("tab: "+tab+",cat: "+cat+", data: "+data.get("id"));
-		
-			
-		//var dl 	= Ext.create('rcm.model.GridAksi', record );
+
 		if (tab=="tk_pl")	{
-			dl=new rcm.model.GridPMIn({ eqcat:cat,pm:data.get("id") });
-			//console.log("listeners GridL 2");
+			dl=new rcm.model.GridPMIn(p);
+		}
+		else if (tab=="tk_ol")	{
+			dl=new rcm.model.GridOPIn(p);
 		}
 		dl.save();
 		//console.log("listeners GridL 3");

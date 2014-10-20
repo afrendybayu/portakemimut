@@ -4,7 +4,7 @@ class Opart extends CI_Model {
 
 	function get_opartdefnotin($cat){
 
-		$sql = "SELECT id,nama,kode AS ket
+		$sql = "SELECT id,nama,kode
 				FROM opartdef
 				WHERE kode NOT IN (
 					SELECT od.kode
@@ -15,6 +15,10 @@ class Opart extends CI_Model {
 		
 		$query = $this->db->query($sql);
 		return $query->result();
+	}
+	
+	function ins_oplist()	{
+		
 	}
 	
 	function get_equip_gconcat(){
