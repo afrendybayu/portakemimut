@@ -24,23 +24,9 @@ Ext.define('rcm.view.konfig.Cause', {
 		frame	: true,
 		items	: [{
 			xtype 	: 'fAksi',
-			label1 : 'Nama Cause',
-			label2 : 'Kode Cause',
-			label3 : 'Keterangan',
-			label5 : 'Kategori',
-			chklbl1 : 'Obama',
-			chklbl2	: 'SAP',
-			fnama1	: 'nama',
-			fnama2	: 'kode',
-			fnama3	: 'ket',
-			chkname1 : 'chkobama',
-			chkname2 : 'chksap',
-			fhide1	: false,
-			fhide2	: false,
-			fhide3	: false,
-			fhide4	: true,
-			fhide5	: false
-			
+			lnama:'Nama Cause',lkode:'Kode Cause',lket:'keterangan',lckbox:'Kategori',lckbox1:'Obama',lckbox2:'SAP',
+			nmnama:'nama',nmkode:'kode',nmket:'ket',nmckbox1:'obama',nmckbox2:'sap',
+			hidnama:false,hidkode:false,hidket:false,hidjab:true,hidckbox:false,hiduserid:true,hidpwd:true,hiddur:true
 			
 		}]
 		

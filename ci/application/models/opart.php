@@ -57,6 +57,13 @@ class Opart extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
+	function get_opart(){
+		$this->db->order_by('kode','asc');
+		$query = $this->db->get('opartdef');
+		
+		return $query->result();
+	
+	}
 }
 
 /* End of file opart.php */

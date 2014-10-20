@@ -24,17 +24,9 @@ Ext.define('rcm.view.konfig.Aksi', {
 		frame	: true,
 		items	: [{
 			xtype : 'fAksi',
-			label1 : 'Nama Aksi',
-			label2 : 'Keterangan Aksi',
-			fnama1	: 'nama',
-			fnama2	: 'ket',
-			fhide1	: false,
-			fhide2	: false,
-			fhide3	: true,
-			fhide4	: true,
-			fhide5	: true
-		
-		
+			lnama:'Nama Aksi',lket:'Keterangan',
+			nmnama:'nama',nmket:'ket',
+			hidnama:false,hidkode:true,hidket:false,hidjab:true,hidckbox:true,hiduserid:true,hidpwd:true,hiddur:true
 		}]
 		
         

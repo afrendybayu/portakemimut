@@ -24,21 +24,9 @@ Ext.define('rcm.view.konfig.PmDef', {
 		frame	: true,
 		items	: [{
 			xtype 	: 'fAksi',
-			label1 : 'Nama PM',
-			label2 : 'Kode PM',
-			label3 : 'Durasi',
-			label4 : 'Keterangan',
-			
-			fnama1	: 'nama',
-			fnama2	: 'kode',
-			fnama3	: 'durasi',
-			fnama4	: 'ket',
-			fhide1	: false,
-			fhide2	: false,
-			fhide3	: false,
-			fhide4	: false,
-			fhide5	: true
-			
+			lnama:'Nama PM',lkode:'Kode PM',lket:'Keterangan',ldur:'Durasi',
+			nmnama:'nama',nmkode:'kode',nmket:'ket',nmdur:'Durasi',
+			hidnama:false,hidkode:false,hidket:false,hidjab:true,hidckbox:true,hiduserid:true,hidpwd:true,hiddur:false
 			
 		}]
 		

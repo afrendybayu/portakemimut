@@ -1,6 +1,6 @@
-Ext.define('rcm.view.konfig.Symptom', {
+Ext.define('rcm.view.konfig.User', {
     extend: 'Ext.panel.Panel',
-    xtype: 'tSymptom',
+    xtype: 'tUser',
 	
 	requires: [
         'rcm.view.konfig.AksiForm',
@@ -15,7 +15,7 @@ Ext.define('rcm.view.konfig.Symptom', {
 	defaults: {autoScroll: true},
 	
 	items : [{
-		title	: 'Form Symptom',
+		title	: 'Form User List',
         region	: 'center',     
         xtype	: 'panel',
 		height	: '30%',
@@ -24,10 +24,9 @@ Ext.define('rcm.view.konfig.Symptom', {
 		frame	: true,
 		items	: [{
 			xtype 	: 'fAksi',
-			lnama:'Nama Symptom',lkode:'Kode Symptom',
-			nmnama:'nama',nmkode:'kode',
-			hidnama:false,hidkode:false,hidket:true,hidjab:true,hidckbox:true,hiduserid:true,hidpwd:true,hiddur:true
-			
+			lnama:'Nama',ljab:'Level',lket:'Keterangan',luserid:'User ID',lpwd:'Password',
+			nmnama:'nama',nmket:'ket',nmjab:'akses',nmuserid:'userid',nmpwd:'pass',
+			hidnama:false,hidkode:true,hidket:false,hidjab:false,hidckbox:true,hiduserid:false,hidpwd:false,hiddur:true
 		}]
 		
         
@@ -35,7 +34,7 @@ Ext.define('rcm.view.konfig.Symptom', {
 		// collapsed	: true,
 		// split	: true
 	},{
-		title	: 'Data Symptom',
+		title	: 'Data User List',
         region	: 'south',     
         xtype	: 'gridAksi',
 		html	: 'bawah',
@@ -44,23 +43,23 @@ Ext.define('rcm.view.konfig.Symptom', {
 		// collapsed	: true,
 		split	: true,
 		
-		xstore		: 'Symptoms',
-		kolgrid1	: 'Nama Symptom',
-		kolgrid2	: 'Kode Symptom',
-		// kolgrid3	: 'Keterangan',
+		xstore		: 'Users',
+		kolgrid1	: 'Nama ',
+		kolgrid2	: 'UserID',
+		kolgrid3	: 'Level',
 		// kolgrid4	: 'SAP',
-		// kolgrid5	: 'Keterangan',
+		//kolgrid5	: 'Keterangan',
 		idgrid1		: 'nama',
-		idgrid2		: 'kode',
-		// idgrid3		: 'ket',
+		idgrid2		: 'userid',
+		idgrid3		: 'akses',
 		// idgrid4		: 'sap',
 		// idgrid5		: 'ket',
 		hidegrid1	: false,
 		hidegrid2	: false,
-		hidegrid3	: true,
+		hidegrid3	: false,
 		hidegrid4	: true,
-		hidegrid5	: true
-		
+		hidegrid5	: true,
+	
 		
 	
 	}]

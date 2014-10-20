@@ -23,6 +23,14 @@ class Login extends CI_Model {
 		
 		return $query->result();
 	}
+	
+	function get_user(){
+			
+		$this->db->order_by('nama','asc');
+        $query = $this->db->get('user');
+		
+		return $query->result();
+	}
 	/*
 	function jmlDataTime($waktu,$kapal){
 		$sql = "select data_time from data where data_time = ? and id_ship= ? ";

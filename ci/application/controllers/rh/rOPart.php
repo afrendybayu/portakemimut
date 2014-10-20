@@ -143,4 +143,21 @@ class rOPart extends CI_Controller {
 		}
 		echo json_encode($jsonResult);
 	}
+	public function rOpartDef(){
+		try	{
+			$hsl = $this->opart->get_opart();
+			
+			$jsonResult = array(
+				'success' => true,
+				'opartdef' => $hsl
+			);
+		}
+		catch (Exception $e)	{
+			 $jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
 }

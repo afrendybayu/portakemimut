@@ -12,6 +12,8 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		,'rcm.view.konfig.Failure'
 		,'rcm.view.konfig.Refer'
 		,'rcm.view.konfig.Symptom'
+		,'rcm.view.konfig.Opart'
+		,'rcm.view.konfig.User'
 
     ],
     
@@ -72,6 +74,14 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			id: 'ts_symptom',
 			title: 'Symptom Def.',
 			xtype:'tSymptom'
+		},{
+			id: 'ts_opart',
+			title: 'Object Part Def.',
+			xtype:'tOpartDef'
+		},{
+			id: 'ts_user',
+			title: 'User List Def.',
+			xtype:'tUser'
 		},{
 			id: 'ts_hr',
 			title: 'Lokasi',

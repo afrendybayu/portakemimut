@@ -1,6 +1,6 @@
-Ext.define('rcm.view.konfig.Symptom', {
+Ext.define('rcm.view.konfig.Opart', {
     extend: 'Ext.panel.Panel',
-    xtype: 'tSymptom',
+    xtype: 'tOpartDef',
 	
 	requires: [
         'rcm.view.konfig.AksiForm',
@@ -15,7 +15,7 @@ Ext.define('rcm.view.konfig.Symptom', {
 	defaults: {autoScroll: true},
 	
 	items : [{
-		title	: 'Form Symptom',
+		title	: 'Form Object Part',
         region	: 'center',     
         xtype	: 'panel',
 		height	: '30%',
@@ -24,9 +24,9 @@ Ext.define('rcm.view.konfig.Symptom', {
 		frame	: true,
 		items	: [{
 			xtype 	: 'fAksi',
-			lnama:'Nama Symptom',lkode:'Kode Symptom',
-			nmnama:'nama',nmkode:'kode',
-			hidnama:false,hidkode:false,hidket:true,hidjab:true,hidckbox:true,hiduserid:true,hidpwd:true,hiddur:true
+			lnama:'Nama Object Part',lkode:'Kode Object Part',lckbox:'Kategori',lckbox1:'Obama',lckbox2:'SAP',
+			nmnama:'nama',nmkode:'kode',nmckbox1:'obama',nmckbox2:'sap',
+			hidnama:false,hidkode:false,hidket:true,hidjab:true,hidckbox:false,hiduserid:true,hidpwd:true,hiddur:true
 			
 		}]
 		
@@ -35,7 +35,7 @@ Ext.define('rcm.view.konfig.Symptom', {
 		// collapsed	: true,
 		// split	: true
 	},{
-		title	: 'Data Symptom',
+		title	: 'Data Object Part',
         region	: 'south',     
         xtype	: 'gridAksi',
 		html	: 'bawah',
@@ -44,21 +44,21 @@ Ext.define('rcm.view.konfig.Symptom', {
 		// collapsed	: true,
 		split	: true,
 		
-		xstore		: 'Symptoms',
-		kolgrid1	: 'Nama Symptom',
-		kolgrid2	: 'Kode Symptom',
-		// kolgrid3	: 'Keterangan',
-		// kolgrid4	: 'SAP',
-		// kolgrid5	: 'Keterangan',
+		xstore		: 'OpartDefs',
+		kolgrid1	: 'Nama OPart',
+		kolgrid2	: 'Kode OPart',
+		kolgrid3	: 'Obama',
+		kolgrid4	: 'SAP',
+		//kolgrid5	: 'Keterangan',
 		idgrid1		: 'nama',
 		idgrid2		: 'kode',
-		// idgrid3		: 'ket',
-		// idgrid4		: 'sap',
+		idgrid3		: 'obama',
+		idgrid4		: 'sap',
 		// idgrid5		: 'ket',
 		hidegrid1	: false,
 		hidegrid2	: false,
-		hidegrid3	: true,
-		hidegrid4	: true,
+		hidegrid3	: false,
+		hidegrid4	: false,
 		hidegrid5	: true
 		
 		

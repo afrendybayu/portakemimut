@@ -24,23 +24,9 @@ Ext.define('rcm.view.konfig.Refer', {
 		frame	: true,
 		items	: [{
 			xtype 	: 'fAksi',
-			label1 : 'Nama Referensi',
-			label2 : 'Kode Failure',
-			// label3 : 'Keterangan',
-			// label5 : 'Kategori',
-			// chklbl1 : 'Obama',
-			// chklbl2	: 'SAP',
-			fnama1	: 'nama',
-			fnama2	: 'kode',
-			// fnama3	: 'ket',
-			// chkname1 : 'chkobama',
-			// chkname2 : 'chksap',
-			fhide1	: false,
-			fhide2	: false,
-			fhide3	: true,
-			fhide4	: true,
-			fhide5	: true
-			
+			lnama:'Nama Referensi',lkode:'Kode Referensi',
+			nmnama:'nama',nmkode:'kode',
+			hidnama:false,hidkode:false,hidket:true,hidjab:true,hidckbox:true,hiduserid:true,hidpwd:true,hiddur:true
 			
 		}]
 		

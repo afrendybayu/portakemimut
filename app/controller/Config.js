@@ -26,6 +26,8 @@ Ext.define('rcm.controller.Config', {
 		'ModeDefs',
 		'Refers',
 		'Symptoms',
+		'OpartDefs',
+		'Users',
 		
 		'GridPMIn',
 		'GridPMnIn',

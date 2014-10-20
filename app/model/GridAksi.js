@@ -5,7 +5,7 @@ Ext.define('rcm.model.GridAksi', {
 		// 'Ext.data.proxy.Ajax'
 	// ],
 
-	fields: [ 'id','nama', 'ket','kode','durasi','obama','sap']
+	fields: [ 'id','nama', 'ket','kode','durasi','obama','sap', 'userid', 'pass', 'akses']
 
 	
 });
