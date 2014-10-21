@@ -16,6 +16,7 @@ Ext.define('rcm.view.konfig.AksiForm', {
 	lnama:'',lkode:'',lket:'',ljab:'',lckbox:'',lckbox1:'',lckbox2:'',luserid:'',lpwd:'',ldur:'',
 	nmnama:'',nmkode:'',nmket:'',nmjab:'',nmckbox1:'',nmckbox2:'',nmuserid:'',nmpwd:'',nmdur:'',
 	hidnama:'',hidkode:'',hidket:'',hidjab:'',hidckbox:'',hiduserid:'',hidpwd:'',hiddur:'',
+	blanknama:'',blankkode:'',blankjab:'',blankldur:'',blankket:'',blankuid:'',blankpwd:'',
 	
 	initComponent: function() {
 		var me = this;
@@ -23,23 +24,23 @@ Ext.define('rcm.view.konfig.AksiForm', {
 			fieldLabel	: me.lnama,
             name		: me.nmnama,
 			hidden		: me.hidnama,
-            allowBlank	: false
+            allowBlank	: me.blanknama
 		},{
 			fieldLabel	: me.lkode,
             name		: me.nmkode,
 			hidden		: me.hidkode,
-            allowBlank	: false
+            allowBlank	: me.blankkode
 		},{
 			xtype		: 'combobox',
 			fieldLabel	: me.ljab,
             name		: me.nmjab,
 			hidden		: me.hidjab,
-            allowBlank	: false
+            allowBlank	: me.blankjab
 		},{
 			fieldLabel	: me.ldur,
             name		: me.nmdur,
 			hidden		: me.hiddur,
-            allowBlank	: false,
+            allowBlank	: me.blankldur,
 		},{
 			xtype		: 'checkboxgroup',
             fieldLabel	: me.lckbox,
@@ -57,28 +58,29 @@ Ext.define('rcm.view.konfig.AksiForm', {
 			fieldLabel	: me.lket,
             name		: me.nmket,
 			hidden		: me.hidket,
-            allowBlank	: false,
+            allowBlank	: me.blankket
 		},{
 			fieldLabel	: me.luserid,
             name		: me.nmuserid,
 			hidden		: me.hiduserid,
-            allowBlank	: false
+            allowBlank	: me.blankuid
 		},{
 			fieldLabel	: me.lpwd,
             name		: me.nmpwd,
 			inputType	: 'password',
 			hidden		: me.hidpwd,
-            allowBlank	: false,
+            allowBlank	: me.blankpwd
 		}];
 		
 		me.buttons = [{
 			text: 'Save',
 			formBind: true, //only enabled once the form is valid
 			disabled: true,
-            handler: function() {
-                alert ('simpan dulu');
+            // handler: function() {
+                // fireEvent('SimpanAksi', args ) ;
+				// alert ('simpan dulu');
 				// this.up('form').getForm().isValid();
-            }
+            // }
         },{
             text: 'Edit',
             // handler: function() {
