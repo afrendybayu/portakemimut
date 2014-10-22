@@ -1,9 +1,9 @@
 /* AfrendyBayu 18Okt2014 */
 Ext.define('rcm.store.GridPMIn', {
     extend: 'Ext.data.Store',
-	model: 'rcm.model.GridPMIn',
+	model: 'rcm.model.GridPMIn'
 	
-	autoLoad: true
+	//autoLoad: true
 	/*
 	sorters: [{
 		property: 'durasi',

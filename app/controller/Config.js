@@ -27,6 +27,7 @@ Ext.define('rcm.controller.Config', {
 		'GridKfEquip',
 		'CatHir',
 		'GridOPnIn',
+		'GridOPIn',
 
 		'Causes'
     ],
@@ -128,7 +129,8 @@ Ext.define('rcm.controller.Config', {
 			me.getGridPMnInStore().load({ params: {cat:id} });
 		}
 		else if (tab=="tk_ol")	{
-			//me.get
+			me.getGridOPInStore().load({ params: {cat:id} });
+			me.getGridOPnInStore().load({ params: {cat:id} });
 		}		
 	},
 	

@@ -56,6 +56,7 @@ class rOPart extends CI_Controller {
 	}
 
 	public function rOPdef()	{
+		
 		try{
 			$hsl = $this->opart->get_opartdef_cat($cat);
 			
@@ -93,7 +94,22 @@ class rOPart extends CI_Controller {
 	}
 	
 	public function rOPartList() {
-		
+		$cat = $this->input->get('cat')?:'0';
+		try{
+			$hsl = $this->opart->get_opartlistcat($cat);
+			
+			$jsonResult = array(
+				'success' => true,
+				'oplist' => $hsl
+			);
+		}
+		catch(Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
 	}
 	
 	public function cOPList()	{
@@ -104,8 +120,8 @@ class rOPart extends CI_Controller {
 		}
 
 		try {
-			$data = array('eqcat' => $param->eqcat, 'pm' => $param->pm);
-			$hasil = $this->opart->ins_oplist($data);
+			$data = array('eqcat' => $param->eqcat, 'opart' => $param->pm);
+			$hasil = $this->opart->set_oplist($data);
 			
 			//echo "hsl: $hsl";
 			$jsonResult = array(
