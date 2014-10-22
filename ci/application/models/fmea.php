@@ -22,6 +22,26 @@ class fmea extends CI_Model {
         $query = $this->db->get('cause');
         return $query->result();
 	}
+	
+	function get_modedef(){
+		$this->db->order_by('kode', 'asc');
+		$query = $this->db->get('modedef');
+		return $query->result();
+	
+	}
+	
+	function get_refer(){
+		$this->db->order_by('kode', 'asc');
+		$query = $this->db->get('refer');
+		return $query->result();
+	
+	}
+	function get_symptom(){
+		$this->db->order_by('kode', 'asc');
+		$query = $this->db->get('symptoms');
+		return $query->result();
+	
+	}
 }
 
 /* End of file fmea.php */

@@ -1,6 +1,6 @@
-Ext.define('rcm.view.konfig.PmDef', {
+Ext.define('rcm.view.konfig.User', {
     extend: 'Ext.panel.Panel',
-    xtype: 'tPmDef',
+    xtype: 'tUser',
 	
 	requires: [
         'rcm.view.konfig.AksiForm',
@@ -15,7 +15,7 @@ Ext.define('rcm.view.konfig.PmDef', {
 	defaults: {autoScroll: true},
 	
 	items : [{
-		title	: 'Form Predictive Maintenance',
+		title	: 'Form User List1',
         region	: 'center',     
         xtype	: 'panel',
 		height	: '30%',
@@ -24,10 +24,9 @@ Ext.define('rcm.view.konfig.PmDef', {
 		frame	: true,
 		items	: [{
 			xtype 	: 'fAksi',
-			lnama:'Nama PM',lkode:'Kode PM',lket:'Keterangan',ldur:'Durasi',
-			nmnama:'nama',nmkode:'kode',nmket:'ket',nmdur:'Durasi',
-			hidnama:false,hidkode:false,hidket:false,hidjab:true,hidckbox:true,hiduserid:true,hidpwd:true,hiddur:false
-			
+			lnama:'Nama',ljab:'Level',lket:'Keterangan',luserid:'User ID',lpwd:'Password',
+			nmnama:'nama',nmket:'ket',nmjab:'akses',nmuserid:'userid',nmpwd:'pass',
+			hidnama:false,hidkode:true,hidket:false,hidjab:false,hidckbox:true,hiduserid:false,hidpwd:false,hiddur:true
 		}]
 		
         
@@ -35,28 +34,32 @@ Ext.define('rcm.view.konfig.PmDef', {
 		// collapsed	: true,
 		// split	: true
 	},{
-		title	: 'Data Predictive Maintenance',
+		title	: 'Data User List',
         region	: 'south',     
         xtype	: 'gridAksi',
+		html	: 'bawah',
         height	: '70%',
         collapsible	: true,
 		// collapsed	: true,
 		split	: true,
 		
-		xstore		: 'PMDefs',
-		kolgrid1	: 'Nama PM',
-		kolgrid2	: 'Kode PM',
-		kolgrid3	: 'Durasi',
-		kolgrid4	: 'Keterangan',
+		xstore		: 'Users',
+		kolgrid1	: 'Nama ',
+		kolgrid2	: 'UserID',
+		kolgrid3	: 'Level',
+		// kolgrid4	: 'SAP',
+		//kolgrid5	: 'Keterangan',
 		idgrid1		: 'nama',
-		idgrid2		: 'kode',
-		idgrid3		: 'durasi',
-		idgrid4		: 'ket',
+		idgrid2		: 'userid',
+		idgrid3		: 'akses',
+		// idgrid4		: 'sap',
+		// idgrid5		: 'ket',
 		hidegrid1	: false,
 		hidegrid2	: false,
 		hidegrid3	: false,
-		hidegrid3	: false
-		
+		hidegrid4	: true,
+		hidegrid5	: true,
+	
 		
 	
 	}]

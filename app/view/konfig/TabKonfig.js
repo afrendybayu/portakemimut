@@ -6,10 +6,14 @@ Ext.define('rcm.view.konfig.TabKonfig', {
     requires: [
 		'rcm.view.konfig.ConfHirarki'
 		,'rcm.view.konfig.Aksi'
-
 		,'rcm.view.konfig.PmDef'		
-
 		,'rcm.view.konfig.Cause'
+		,'rcm.view.konfig.Damage'
+		,'rcm.view.konfig.Failure'
+		,'rcm.view.konfig.Refer'
+		,'rcm.view.konfig.Symptom'
+		,'rcm.view.konfig.Opart'
+		,'rcm.view.konfig.User'
 
     ],
     
@@ -18,7 +22,7 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		
 		me.items = [{
 			id: 'tk_ak',
-			title: 'Aksi',
+			title: 'Aksi Def.',
 			xtype:'tAksi'
 		},{
 			id: 'tk_pl',
@@ -48,12 +52,36 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			dstoreD: 'GridKfEquip'
 		},{
 			id: 'tk_pd',
-			title: 'Preventive Maintenance',
+			title: 'Pd. Maintenance Def.',
 			xtype:'tPmDef'
 		},{
 			id: 'ts_cause',
-			title: 'Cause',
+			title: 'Cause Def.',
 			xtype:'tCause'
+		},{
+			id: 'ts_damage',
+			title: 'Damage Def.',
+			xtype:'tDamage'
+		},{
+			id: 'ts_failure',
+			title: 'Failure Mode Def.',
+			xtype:'tFailure'
+		},{
+			id: 'ts_refer',
+			title: 'Referensi Def.',
+			xtype:'tRefer'
+		},{
+			id: 'ts_symptom',
+			title: 'Symptom Def.',
+			xtype:'tSymptom'
+		},{
+			id: 'ts_opart',
+			title: 'Object Part Def.',
+			xtype:'tOpartDef'
+		},{
+			id: 'ts_user',
+			title: 'User List Def.',
+			xtype:'tUser'
 		},{
 			id: 'ts_hr',
 			title: 'Lokasi',

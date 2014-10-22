@@ -1,6 +1,6 @@
-Ext.define('rcm.view.konfig.Aksi', {
+Ext.define('rcm.view.konfig.Damage', {
     extend: 'Ext.panel.Panel',
-    xtype: 'tAksi',
+    xtype: 'tDamage',
 	
 	requires: [
         'rcm.view.konfig.AksiForm',
@@ -15,7 +15,7 @@ Ext.define('rcm.view.konfig.Aksi', {
 	defaults: {autoScroll: true},
 	
 	items : [{
-		title	: 'Form Aksi',
+		title	: 'Form Damages',
         region	: 'center',     
         xtype	: 'panel',
 		height	: '30%',
@@ -23,11 +23,11 @@ Ext.define('rcm.view.konfig.Aksi', {
 		autoScroll: true,
 		frame	: true,
 		items	: [{
-			xtype : 'fAksi',
-			lnama:'Nama Aksi',lket:'Keterangan',
-			nmnama:'nama',nmket:'ket',
-			hidnama:false,hidkode:true,hidket:false,hidjab:true,hidckbox:true,hiduserid:true,hidpwd:true,hiddur:true,
-			blanknama:false,blankkode:true,blankjab:true,blankldur:true,blankket:false,blankuid:true,blankpwd:true,
+			xtype 	: 'fAksi',
+			lnama:'Nama Damage',lkode:'Kode Damage',
+			nmnama:'nama',nmkode:'kode',
+			hidnama:false,hidkode:false,hidket:true,hidjab:true,hidckbox:true,hiduserid:true,hidpwd:true,hiddur:true
+			
 		}]
 		
         
@@ -35,7 +35,7 @@ Ext.define('rcm.view.konfig.Aksi', {
 		// collapsed	: true,
 		// split	: true
 	},{
-		title	: 'Data Aksi',
+		title	: 'Data Damages',
         region	: 'south',     
         xtype	: 'gridAksi',
 		html	: 'bawah',
@@ -44,17 +44,24 @@ Ext.define('rcm.view.konfig.Aksi', {
 		// collapsed	: true,
 		split	: true,
 		
-		xstore		: 'GridAksi',
-		kolgrid1	: 'Nama Aksi',
-		kolgrid2	: 'Keterangan',
-		// kolgrid3	: '',
+		xstore		: 'Damages',
+		kolgrid1	: 'Nama Damage',
+		kolgrid2	: 'Kode Damage',
+		// kolgrid3	: 'Obama',
+		// kolgrid4	: 'SAP',
+		// kolgrid5	: 'Keterangan',
 		idgrid1		: 'nama',
-		idgrid2		: 'ket',
-		// idgrid3		: '',
+		idgrid2		: 'kode',
+		// idgrid3		: 'obama',
+		// idgrid4		: 'sap',
+		// idgrid5		: 'ket',
 		hidegrid1	: false,
 		hidegrid2	: false,
 		hidegrid3	: true,
-		hidegrid4	: true
+		hidegrid4	: true,
+		hidegrid5	: true
+		
+		
 	
 	}]
 	

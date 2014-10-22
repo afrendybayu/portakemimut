@@ -10,7 +10,9 @@ Ext.define('rcm.controller.Config', {
 		'konfig.TreeHirarki',
 		'konfig.AksiGrid',
 		'konfig.PanelList',
-		'konfig.TreeCat'
+		'konfig.TreeCat',
+		'konfig.AksiForm'
+		
     ],
 
     controllers: [
@@ -21,6 +23,13 @@ Ext.define('rcm.controller.Config', {
 		'LokUnit',
 		'GridAksi',
 		'PMDefs',
+		'Causes',
+		'Damages',
+		'ModeDefs',
+		'Refers',
+		'Symptoms',
+		'OpartDefs',
+		'Users',
 		
 		'GridPMIn',
 		'GridPMnIn',
@@ -29,7 +38,6 @@ Ext.define('rcm.controller.Config', {
 		'GridOPnIn',
 		'GridOPIn',
 
-		'Causes'
     ],
     
     models: [
@@ -49,6 +57,9 @@ Ext.define('rcm.controller.Config', {
 			selector: 'tKGridL'
 			//xtype: 'tKGridL',
 			//autoCreate: true
+		},{
+			ref: 'fAksi',
+			selector : 'fAksi'
 	}],
     
     init: function() {
@@ -86,12 +97,33 @@ Ext.define('rcm.controller.Config', {
 			'tKGridL': {
 				cdragdrop: me.hdlDropListC,
 				ddragdrop: me.hdlDropListD
+			},
+			 
+			'fAksi button[text=Save]' : {
+				click : me.hdlSimpanForm
+			
 			}
 			
 		});
 		
     },
     
+	hdlSimpanForm : function(){
+		alert('tekan tombol simpan');
+		var me = this,
+		// f_aksi = me.getTAksi().getForm(),
+		// var	f_aksi = me.getFAksi();
+		getDataAksi = me.getFAksi().getForm().getValues(),
+			// t=Ext.getCmp('idThnOh').getValue(),
+		// foh.id_unit = this.getTaskOverHaul().idunit;
+		// foh.id_equip = this.getTaskOverHaul().ideq;
+		// foh.oh = this.getTaskOverHaul().idoh;
+		AksiSave = Ext.create('rcm.model.GridAksi', getDataAksi);
+		console.log(AksiSave);
+		
+		
+	},
+	
     hdlDropListD: function(data, cat, tab)	{
 		//alert("hdlDropListD: "+data.get("id"));
 		var me=this,

@@ -13,75 +13,74 @@ Ext.define('rcm.view.konfig.AksiForm', {
             // ptype: 'datatip'
         // },
 	defaultType: 'textfield',
-	label1 	: '',
-	label2 	: '',
-	label3 	: '',
-	label4 	: '',
-	label5	: '',
+	lnama:'',lkode:'',lket:'',ljab:'',lckbox:'',lckbox1:'',lckbox2:'',luserid:'',lpwd:'',ldur:'',
+	nmnama:'',nmkode:'',nmket:'',nmjab:'',nmckbox1:'',nmckbox2:'',nmuserid:'',nmpwd:'',nmdur:'',
+	hidnama:'',hidkode:'',hidket:'',hidjab:'',hidckbox:'',hiduserid:'',hidpwd:'',hiddur:'',
+	blanknama:'',blankkode:'',blankjab:'',blankldur:'',blankket:'',blankuid:'',blankpwd:'',
 	
-	chklbl1 : '',
-	chklbl2	: '',
-	
-	fname1	: '',
-	fname2	: '',
-	fname3	: '',
-	fname4	: '',
-	chkname1: '',
-	chkname2: '',
-	
-	fhide1	: '',
-	fhide2	: '',
-	fhide3	: '',
-	fhide4	: '',
-	fhide5	: '',
-	
-
 	initComponent: function() {
 		var me = this;
 		me.items = [{
-			fieldLabel	: me.label1,
-            name		: me.fnama1,
-			hidden		: me.fhide1,
-            allowBlank	: false
+			fieldLabel	: me.lnama,
+            name		: me.nmnama,
+			hidden		: me.hidnama,
+            allowBlank	: me.blanknama
 		},{
-			fieldLabel	: me.label2,
-            name		: me.fnama2,
-			hidden		: me.fhide2,
-            allowBlank	: false,
+			fieldLabel	: me.lkode,
+            name		: me.nmkode,
+			hidden		: me.hidkode,
+            allowBlank	: me.blankkode
 		},{
-			fieldLabel	: me.label3,
-            name		: me.fnama3,
-			hidden		: me.fhide3,
-            allowBlank	: false,
+			xtype		: 'combobox',
+			fieldLabel	: me.ljab,
+            name		: me.nmjab,
+			hidden		: me.hidjab,
+            allowBlank	: me.blankjab
+		},{
+			fieldLabel	: me.ldur,
+            name		: me.nmdur,
+			hidden		: me.hiddur,
+            allowBlank	: me.blankldur,
 		},{
 			xtype		: 'checkboxgroup',
-            fieldLabel	: me.label5,
+            fieldLabel	: me.lckbox,
 			columns		: [70, 70],
-			hidden		: me.fhide5,
+			hidden		: me.hidckbox,
 			items: [{
-				boxLabel: me.chklbl1, 
-				name: me.chkname1
+				boxLabel: me.lckbox1, 
+				name: me.nmckbox1
 			},{
-				boxLabel: me.chklbl2, 
-				name: me.chkname2, 
+				boxLabel: me.lckbox2, 
+				name: me.nmckbox2, 
 				// checked: true
-			}]
-			
+			}]	
 		},{
-			fieldLabel	: me.label4,
-            name		: me.fnama4,
-			hidden		: me.fhide4,
-            allowBlank	: false
+			fieldLabel	: me.lket,
+            name		: me.nmket,
+			hidden		: me.hidket,
+            allowBlank	: me.blankket
+		},{
+			fieldLabel	: me.luserid,
+            name		: me.nmuserid,
+			hidden		: me.hiduserid,
+            allowBlank	: me.blankuid
+		},{
+			fieldLabel	: me.lpwd,
+            name		: me.nmpwd,
+			inputType	: 'password',
+			hidden		: me.hidpwd,
+            allowBlank	: me.blankpwd
 		}];
 		
 		me.buttons = [{
 			text: 'Save',
 			formBind: true, //only enabled once the form is valid
 			disabled: true,
-            handler: function() {
-                alert ('simpan dulu');
+            // handler: function() {
+                // fireEvent('SimpanAksi', args ) ;
+				// alert ('simpan dulu');
 				// this.up('form').getForm().isValid();
-            }
+            // }
         },{
             text: 'Edit',
             // handler: function() {

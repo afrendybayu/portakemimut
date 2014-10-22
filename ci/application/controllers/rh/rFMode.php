@@ -1,6 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class rFMode extends CI_Controller {
+	function __construct() {
+        parent::__construct();
+		$this->load->model('fmea');
+	}
 	
 	public function index()	{
 		
@@ -43,6 +47,57 @@ class rFMode extends CI_Controller {
 			);
 		}
 		//$this->load->view('welcome_message');
+		echo json_encode($jsonResult);
+	}
+	public function rModedef(){
+		try	{
+			$hsl = $this->fmea->get_modedef();
+			
+			$jsonResult = array(
+				'success' => true,
+				'modedef' => $hsl
+			);
+		}
+		catch (Exception $e)	{
+			 $jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
+	public function rRefer(){
+		try	{
+			$hsl = $this->fmea->get_refer();
+			
+			$jsonResult = array(
+				'success' => true,
+				'refer' => $hsl
+			);
+		}
+		catch (Exception $e)	{
+			 $jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
+	public function rSymptom(){
+		try	{
+			$hsl = $this->fmea->get_symptom();
+			
+			$jsonResult = array(
+				'success' => true,
+				'symptom' => $hsl
+			);
+		}
+		catch (Exception $e)	{
+			 $jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
 		echo json_encode($jsonResult);
 	}
 }
