@@ -969,6 +969,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.AvSpeedo": [],
   "rcm.store.CatHir": [],
   "rcm.store.Cause": [],
+  "rcm.store.Causes": [],
   "rcm.store.CbEquip": [],
   "rcm.store.CbParent": [],
   "rcm.store.CbUnit": [],
@@ -1069,6 +1070,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.konfig.Aksi": [],
   "rcm.view.konfig.AksiForm": [],
   "rcm.view.konfig.AksiGrid": [],
+  "rcm.view.konfig.Cause": [],
   "rcm.view.konfig.ConfHirarki": [],
   "rcm.view.konfig.DetailLokasi": [],
   "rcm.view.konfig.GridEquip": [],
@@ -2227,6 +2229,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.AvSpeedo": [],
   "rcm.store.CatHir": [],
   "rcm.store.Cause": [],
+  "rcm.store.Causes": [],
   "rcm.store.CbEquip": [],
   "rcm.store.CbParent": [],
   "rcm.store.CbUnit": [],
@@ -2360,6 +2363,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.konfig.AksiGrid": [
     "widget.gridAksi"
+  ],
+  "rcm.view.konfig.Cause": [
+    "widget.tCause"
   ],
   "rcm.view.konfig.ConfHirarki": [
     "widget.cHirarki"
