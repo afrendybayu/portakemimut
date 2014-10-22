@@ -51,7 +51,7 @@ class Pm extends CI_Model {
 		return $query->result();
     }
     
-    function ins_pmlist($data)	{
+    function set_pmlist($data)	{
 		$this->db->trans_start();
 		$this->db->insert('pmlist', $data); 
 		$insert_id = $this->db->insert_id();

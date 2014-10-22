@@ -105,7 +105,7 @@ Ext.define('rcm.controller.Config', {
     hdlDropListC: function(data, cat, tab)	{
 		var me=this,
 			dl,
-			p={ eqcat:cat,pm:data.get("id") };
+			p={ eqcat:cat,list:data.get("id") };
 		//alert("tab: "+tab+",cat: "+cat+", data: "+data.get("id"));
 
 		if (tab=="tk_pl")	{

@@ -5,7 +5,7 @@ Ext.define('rcm.model.GridOPIn', {
 		'Ext.data.proxy.Ajax'
 	],
 	
-	fields: [ 'id','kode','nama','eqcat', 'opart' ],
+	fields: [ 'id','kode','nama','eqcat', 'list' ],
     
     proxy: {
 		type: 'ajax',

@@ -39,7 +39,7 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			xtype:'tpKonfigList',
 			jdlKi: 'Pilih Object Part',
 			jdlKa: 'Object Part Tersedia',
-			dstoreKi: 'GridPMIn',
+			dstoreKi: 'GridOPIn',
 			dstoreKa: 'GridOPnIn',
 			jdlDet: 'List Equipment',
 			jdlTb: 'List Kiri',

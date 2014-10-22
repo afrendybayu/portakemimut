@@ -120,7 +120,7 @@ class rOPart extends CI_Controller {
 		}
 
 		try {
-			$data = array('eqcat' => $param->eqcat, 'opart' => $param->pm);
+			$data = array('eqcat' => $param->eqcat, 'opart' => $param->list);
 			$hasil = $this->opart->set_oplist($data);
 			
 			//echo "hsl: $hsl";
