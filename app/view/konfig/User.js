@@ -15,7 +15,7 @@ Ext.define('rcm.view.konfig.User', {
 	defaults: {autoScroll: true},
 	
 	items : [{
-		title	: 'Form User List',
+		title	: 'Form User List1',
         region	: 'center',     
         xtype	: 'panel',
 		height	: '30%',
