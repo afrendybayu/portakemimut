@@ -51,6 +51,19 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			idBtnD: 'iGOpdef',
 			dstoreD: 'GridKfEquip'
 		},{
+			id: 'tk_md',
+			title: 'Mode List',
+			xtype:'tpKonfigList',
+			jdlKi: 'Pilih Mode',
+			jdlKa: 'Mode Tersedia',
+			dstoreKi: 'GridModeIn',
+			dstoreKa: 'GridModenIn',
+			jdlDet: 'List Equipment',
+			jdlTb: 'List Kiri',
+			jdlBtnD: 'Go to Mode Definition',
+			idBtnD: 'iGMddef',
+			dstoreD: 'GridKfEquip'
+		},{
 			id: 'tk_pd',
 			title: 'Pd. Maintenance Def.',
 			xtype:'tPmDef'

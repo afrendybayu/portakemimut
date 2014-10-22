@@ -37,7 +37,8 @@ Ext.define('rcm.controller.Config', {
 		'CatHir',
 		'GridOPnIn',
 		'GridOPIn',
-
+		'GridModenIn',
+		'GridModeIn'
     ],
     
     models: [
@@ -146,6 +147,9 @@ Ext.define('rcm.controller.Config', {
 		else if (tab=="tk_ol")	{
 			dl=new rcm.model.GridOPIn(p);
 		}
+		else if (tab=="tk_md")	{
+			dl=new rcm.model.GridModeIn(p);
+		}
 		dl.save();
 		//console.log("listeners GridL 3");
 	},
@@ -163,6 +167,10 @@ Ext.define('rcm.controller.Config', {
 		else if (tab=="tk_ol")	{
 			me.getGridOPInStore().load({ params: {cat:id} });
 			me.getGridOPnInStore().load({ params: {cat:id} });
+		}
+		else if (tab=="tk_md")	{
+			me.getGridModeInStore().load({ params: {cat:id} });
+			me.getGridModenInStore().load({ params: {cat:id} });
 		}		
 	},
 	
