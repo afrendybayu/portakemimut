@@ -51,6 +51,9 @@ Ext.define('rcm.controller.Config', {
 			ref: 'treeHirarki',
 			selector: 'treeHirarki'
 		},{
+			ref: 't_Konfig',
+			selector: 't_Konfig'
+		},{
 			ref: 'tCatHir',
 			selector: 'tCatHir'
 		},{
@@ -103,11 +106,29 @@ Ext.define('rcm.controller.Config', {
 			'fAksi button[text=Save]' : {
 				click : me.hdlSimpanForm
 			
+			},
+			'#iGMddef': {
+				click: me.iGMddef
+			},
+			'#iGOpdef': {
+				click: me.iGOpdef
+			},
+			'#iGPmdef': {
+				click: me.iGPmdef
 			}
-			
 		});
 		
     },
+    
+    iGMddef: function()	{
+		this.getT_Konfig().showTab('mdd');
+	},
+	iGOpdef: function()	{
+		this.getT_Konfig().showTab('opd');
+	},
+	iGPmdef: function()	{
+		this.getT_Konfig().showTab('pmd');
+	},
     
 	hdlSimpanForm : function(){
 		alert('tekan tombol simpan');

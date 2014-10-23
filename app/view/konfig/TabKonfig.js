@@ -21,7 +21,7 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		var me=this;
 		
 		me.items = [{
-			id: 'tk_ak',
+			//id: 'tk_ak',
 			title: 'Aksi Def.',
 			xtype:'tAksi'
 		},{
@@ -64,39 +64,42 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			idBtnD: 'iGMddef',
 			dstoreD: 'GridKfEquip'
 		},{
-			id: 'tk_pd',
+			//id: 'tk_pd',
+			itemId: 'pmd',
 			title: 'Pd. Maintenance Def.',
 			xtype:'tPmDef'
 		},{
-			id: 'ts_cause',
+			//id: 'ts_cause',
 			title: 'Cause Def.',
 			xtype:'tCause'
 		},{
-			id: 'ts_damage',
+			//id: 'ts_damage',
 			title: 'Damage Def.',
 			xtype:'tDamage'
 		},{
-			id: 'ts_failure',
+			//id: 'tk_failure',
+			itemId: 'mdd',
 			title: 'Failure Mode Def.',
 			xtype:'tFailure'
 		},{
-			id: 'ts_refer',
+			//id: 'ts_refer',
 			title: 'Referensi Def.',
 			xtype:'tRefer'
 		},{
-			id: 'ts_symptom',
+			//id: 'ts_symptom',
 			title: 'Symptom Def.',
 			xtype:'tSymptom'
 		},{
-			id: 'ts_opart',
+			//id: 'tk_opart',
+			itemId: 'opd',
 			title: 'Object Part Def.',
 			xtype:'tOpartDef'
 		},{
-			id: 'ts_user',
+			//id: 'ts_user',
 			title: 'User List Def.',
 			xtype:'tUser'
 		},{
-			id: 'ts_hr',
+			//id: 'ts_hr',
 			title: 'Lokasi',
 			xtype:'cHirarki'
 		}];
@@ -106,5 +109,12 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 	},
 	handleSapTab: function()	{
 		rcmSettings.tkf = this.getActiveTab().getId();
+	},
+	
+	showTab: function(tab)	{
+		var t = this.child('#'+tab);
+		//console.log('sampe sini showRelia');
+		t.tab.show();
+		this.setActiveTab(t);
 	}
 });
