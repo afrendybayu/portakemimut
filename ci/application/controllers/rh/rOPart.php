@@ -5,7 +5,7 @@ class rOPart extends CI_Controller {
         parent::__construct();
 		$this->load->model('opart');
 	}
-	
+	/*
 	public function index()	{
 		
 		try	{
@@ -28,17 +28,7 @@ class rOPart extends CI_Controller {
 
 			$strcat = join(" or ", $cat);
 			//print_r($cat); echo "<br/><br/>strcat: $strcat<br/><br/>";
-			//*
-			$s = "SELECT id,cat,nama FROM opart where $strcat order by cat asc, nama asc";
-			$query = $this->db->query($s);
-			
-			$part = array();
-			if ($query->num_rows() > 0)	{
-				foreach ($query->result() as $row)	{
-					$part[] = $row;
-				}
-			}
-			//*/
+
 
 			$jsonResult = array(
 				'success' => true,
@@ -54,7 +44,7 @@ class rOPart extends CI_Controller {
 		//$this->load->view('welcome_message');
 		echo json_encode($jsonResult);
 	}
-
+	//*/
 	public function rOPdef()	{
 		
 		try{
