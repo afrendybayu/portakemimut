@@ -2,20 +2,21 @@
 
 class fmea extends CI_Model {
 	function get_aksi()    {
-        $this->db->select('id,nama');
-        //$query = $this->db->select('id');
+        // $this->db->select('id,nama');
+        $this->db->order_by('nama','asc');
+		//$query = $this->db->select('id');
         //$query = $this->db->select('nama');
         $query = $this->db->get('aksi');
         return $query->result();
     }
     
-	function get_aksi_grid()    {
-        // $this->db->select('id,nama');
-        //$query = $this->db->select('id');
-        //$query = $this->db->select('nama');
-        $query = $this->db->get('aksi');
-        return $query->result();
-    }
+	// function get_aksi_grid()    {
+        // // $this->db->select('id,nama');
+        // //$query = $this->db->select('id');
+        // //$query = $this->db->select('nama');
+        // $query = $this->db->get('aksi');
+        // return $query->result();
+    // }
 	
     function cause()	{
 		$this->db->select('id,nama');
@@ -42,6 +43,12 @@ class fmea extends CI_Model {
 		return $query->result();
 	
 	}
+	// function create_aksi(){
+		// $aksisave = json_decode(file_get_contents('php://input'));
+		
+		
+		
+	// }
 }
 
 /* End of file fmea.php */

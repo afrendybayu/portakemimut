@@ -10,10 +10,11 @@ class rAksi extends CI_Controller {
 		try	{
 			//$id = $this->input->get('id')?:'0';
 			// $this->load->model('fmea');
+			$hsl = $this->fmea->get_aksi();
 			
 			$jsonResult = array(
 				'success' => true,
-				'aksi' => $this->fmea->get_aksi()
+				'aksi' => $hsl
 			);
 		}
 		catch (Exception $e)	{
@@ -22,13 +23,13 @@ class rAksi extends CI_Controller {
 				'message' => $e->getMessage()
 			);
 		}
-		$hasil['json'] = $jsonResult;
+		// $hasil['json'] = $jsonResult;
 
-		$this->load->view('json',$hasil);
+		// $this->load->view('json',$hasil);
 		//$this->output->set_content_type('application/json');
 		//$this->output->set_output(json_encode($jsonResult));
 		//$this->output->enable_profiler(TRUE);
-		
+		echo json_encode($jsonResult);
 	}
 	
 	public function gAksi(){

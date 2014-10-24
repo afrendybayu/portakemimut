@@ -1,7 +1,7 @@
-Ext.define('rcm.view.konfig.AksiGrid', {
+Ext.define('rcm.view.konfig.PmDefGrid', {
 	extend: 'Ext.grid.Panel',
 
-	xtype: 'gridAksi',
+	xtype: 'gridPmDef',
 	
 	xstore 		: '',
 	kolgrid1	: '',
@@ -59,18 +59,18 @@ Ext.define('rcm.view.konfig.AksiGrid', {
 				//visible		: false,
 				//disabled: true,
 				tooltip		: 'Hapus',
-				handler		: Ext.bind(me.dhlAksiGridDel, me)
+				handler		: Ext.bind(me.dhlPmDefGridDel, me)
 			}]
 		};
 		
 		me.callParent(arguments);
 	
 	},
-	dhlAksiGridDel: function(gridView, rowIndex, colIndex, column, e) {
+	dhlPmDefGridDel: function(gridView, rowIndex, colIndex, column, e) {
         // Fire a "deleteclick" event with all the same args as this handler
         // 
 		var rec = gridView.getStore().getAt(rowIndex);
 		// console.log (rec);
-		this.fireEvent('AksiGridDel', rec);
+		this.fireEvent('PmDefGridDel', rec);
     },
 });
