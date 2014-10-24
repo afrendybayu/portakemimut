@@ -11,21 +11,22 @@ Ext.define('rcm.view.konfig.TreeCat', {
     rootVisible: true,
     store: 'CatHir',
 	hideHeaders: true,
-    //*
+
 	dockedItems: [
         {
             xtype: 'toolbar',
             dock: 'bottom',
             items: [{
-					text : 'Tambah Unit',
+					text : 'Tambah Kategori',
 					//id	: 'tambah_lokasi'
 				},'->',{
-                    iconCls: 'new_folder_tree',
-                    tooltip: 'New Folder'
+                    iconCls: 'new_cat_tree',
+                    tooltip: 'Kategoti Baru'
                 },{
                     iconCls: 'delete_folder_tree',
-                    //id: 'delete-folder-btn',
-                    tooltip: 'Delete Folder'
+                    //id: 
+                    //id: 'delete-cat-btn',
+                    tooltip: 'Hapus Kategori'
                 }
             ]
         }
@@ -40,7 +41,7 @@ Ext.define('rcm.view.konfig.TreeCat', {
 
 	initComponent: function() {
 		var me = this;
-        me.plugins = [me.cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing')];
+		//me.plugins = [me.cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing')];
 
         me.columns = [{
                 xtype: 'treecolumn',
@@ -65,36 +66,12 @@ Ext.define('rcm.view.konfig.TreeCat', {
                 xtype	: 'actioncolumn',
                 text: 'Hapus',
                 width	: 24,
-				//icon	: 'resources/css/images/delete.png',
+				icon	: 'resources/css/images/delete.png',
                 iconCls	: 'x-hidden',
                 tooltip	: 'Delete',
                 handler	: Ext.bind(me.handleDeleteClick, me)
             }];
-		/*
-		var me = this;
-		
-		/*
-		
-		me.items = [{
-			xtype: 'treecolumn',
-			dataIndex: 'text'
-			// flex: 1,
-		//	editor: {
-		//		xtype: 'textfield',
-		//		selectOnFocus: true,
-		//		allowOnlyWhitespace: false
-		//	},
-		//	renderer: Ext.bind(me.renderName, me)
-		}];
-		/*
-		me.listeners = [{
-			itemclick: function(s,r) {
-				alert("diclick item");
-                //alert(r.data.text);
-			}
-		}];
-		me.callParent();
-		//*/
+
 		
         me.callParent(arguments);
 		
