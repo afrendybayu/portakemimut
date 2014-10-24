@@ -43,7 +43,8 @@ Ext.define('rcm.view.konfig.PanelList', {
 				xstore: me.dstoreKi,
 				dragGroup: 'GrupA',
 				dropGroup: 'GrupB',
-				flex: 1
+				flex: 1,
+				hide: me.dhide
 			},{
 				title: me.jdlKa,
 				xtype: 'tKGridL',

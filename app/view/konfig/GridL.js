@@ -49,11 +49,17 @@ Ext.define('rcm.view.konfig.GridL', {
 			},{ 
 				header		: 'Kode',
 				dataIndex	: 'kode',
-				width:80
+				width:90
+			},{ 
+				header		: 'Lokasi',
+				dataIndex	: 'lok',
+				width: 120,
+				hidden: me.hide ? true:false
 			},{ 
 				header		: 'Nama',
 				dataIndex	: 'nama',
-				flex:1
+				flex:1,
+				minWidth: 330
 			}]
 		};
 		

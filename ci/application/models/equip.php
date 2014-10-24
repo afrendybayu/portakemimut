@@ -14,13 +14,29 @@ class Equip extends CI_Model {
 	}
 	//*/
 	function get_equip_cat($cat){
-
+		$where = (strlen($cat)>0)?" WHERE eq.cat = $cat ":"";
 		$sql = "SELECT SUBSTRING_INDEX(hhh.nama,' ',-1) AS ket,CONCAT(eq.nama,' @',h.nama) AS nama
 				,eq.tag AS kode,eq.cat AS durasi
-				FROM equip eq
+				FROM equip eq 
 				INNER JOIN hirarki h ON eq.unit_id = h.id
 				INNER JOIN hirarki hh ON hh.id = h.parent
 				INNER JOIN hirarki hhh ON hhh.id = hh.parent
+				$where
+				ORDER BY hhh.nama ASC, h.nama ASC";
+		
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
+	function get_equipcat($cat){
+		$where = (strlen($cat)>0)?" WHERE eq.cat = $cat ":"";
+		$sql = "SELECT eq.id,SUBSTRING(hhh.nama FROM LOCATE(' ',hhh.nama)) AS lok,CONCAT(h.nama,', ',eq.nama) AS nama
+				,eq.tag AS kode
+				FROM equip eq 
+				INNER JOIN hirarki h ON eq.unit_id = h.id
+				INNER JOIN hirarki hh ON hh.id = h.parent
+				INNER JOIN hirarki hhh ON hhh.id = hh.parent
+				$where
 				ORDER BY hhh.nama ASC, h.nama ASC";
 		
 		$query = $this->db->query($sql);

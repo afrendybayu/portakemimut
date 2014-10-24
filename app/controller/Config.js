@@ -43,7 +43,8 @@ Ext.define('rcm.controller.Config', {
 		'GridOPnIn',
 		'GridOPIn',
 		'GridModenIn',
-		'GridModeIn'
+		'GridModeIn',
+		'GridEqcIn'
     ],
     
     models: [
@@ -298,6 +299,9 @@ Ext.define('rcm.controller.Config', {
 		else if (tab=="tk_md")	{
 			dl=new rcm.model.GridModeIn(p);
 		}
+		else if (tab=="tk_eq")	{
+			
+		}
 		dl.save();
 		//console.log("listeners GridL 3");
 	},
@@ -319,7 +323,11 @@ Ext.define('rcm.controller.Config', {
 		else if (tab=="tk_md")	{
 			me.getGridModeInStore().load({ params: {cat:id} });
 			me.getGridModenInStore().load({ params: {cat:id} });
-		}		
+		}
+		else if (tab=="tk_eq")	{
+			me.getGridEqcInStore().load({ params: {cat:id} });
+			//me.getGridModenInStore().load({ params: {cat:id} });
+		}
 	},
 	
 	tambahLokasi : function(){
