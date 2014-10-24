@@ -24,10 +24,6 @@ Ext.define('rcm.view.konfig.Aksi', {
 		frame	: true,
 		items	: [{
 			xtype : 'fAksi',
-			lnama:'Nama Aksi',lket:'Keterangan',
-			nmnama:'nama',nmket:'ket',
-			hidnama:false,hidkode:true,hidket:false,hidjab:true,hidckbox:true,hiduserid:true,hidpwd:true,hiddur:true,
-			blanknama:false,blankkode:true,blankjab:true,blankldur:true,blankket:false,blankuid:true,blankpwd:true,
 		}]
 		
         
@@ -44,7 +40,7 @@ Ext.define('rcm.view.konfig.Aksi', {
 		// collapsed	: true,
 		split	: true,
 		
-		xstore		: 'GridAksi',
+		xstore		: 'FormAksis',
 		kolgrid1	: 'Nama Aksi',
 		kolgrid2	: 'Keterangan',
 		// kolgrid3	: '',

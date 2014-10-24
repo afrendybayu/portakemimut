@@ -1,7 +1,7 @@
-Ext.define('rcm.view.konfig.AksiForm', {
+Ext.define('rcm.view.konfig.FormPmDef', {
 	extend: 'Ext.form.Panel',
 
-	xtype: 'fAksi',
+	xtype: 'fPmDef',
 	
 	// layout: {
 		// type :'form'
@@ -14,27 +14,31 @@ Ext.define('rcm.view.konfig.AksiForm', {
         // },
 	defaultType: 'textfield',
 	
+	
 	initComponent: function() {
 		var me = this;
 		me.items = [{
-			fieldLabel	: 'Nama Aksi',
+			fieldLabel	: 'Nama PM',
             name		: 'nama',
+            allowBlank	: false
+		},{
+			fieldLabel	: 'Kode PM',
+            name		: 'kode',
+            allowBlank	: false
+		},{
+			fieldLabel	: 'Durasi PM',
+            name		: 'durasi',
             allowBlank	: false
 		},{
 			fieldLabel	: 'Keterangan',
             name		: 'ket',
-            allowBlank	: false
+            allowBlank	: true
 		}];
 		
 		me.buttons = [{
 			text: 'Simpan',
-			formBind: true, //only enabled once the form is valid
+			formBind: true, 
 			disabled: true,
-            // handler: function() {
-                // fireEvent('SimpanAksi', args ) ;
-				// alert ('simpan dulu');
-				// this.up('form').getForm().isValid();
-            // }
         },{
             text: 'Batal',
             handler: function() {

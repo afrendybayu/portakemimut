@@ -11,7 +11,8 @@ Ext.define('rcm.controller.Config', {
 		'konfig.AksiGrid',
 		'konfig.PanelList',
 		'konfig.TreeCat',
-		'konfig.AksiForm'
+		'konfig.AksiForm',
+		'konfig.AksiGrid'
 		
     ],
 
@@ -21,8 +22,12 @@ Ext.define('rcm.controller.Config', {
 
     stores: [
 		'LokUnit',
-		'GridAksi',
-		'PMDefs',
+		
+		'FormAksis',
+		'FormPmDefs',
+		
+		// 'GridAksi',
+		//'PMDefs',
 		'Causes',
 		'Damages',
 		'ModeDefs',
@@ -43,8 +48,14 @@ Ext.define('rcm.controller.Config', {
     
     models: [
 		'LokUnit',
-		'GridAksi',
-		'GridPMIn'
+		// 'GridAksi',
+		
+		'FormAksi',
+		'FormPmDef',
+		
+		
+		'GridPMIn',
+		
 	],
     
     refs: [{
@@ -64,6 +75,15 @@ Ext.define('rcm.controller.Config', {
 		},{
 			ref: 'fAksi',
 			selector : 'fAksi'
+		},{
+			ref : 'gridAksi',
+			selector : 'gridAksi'
+		},{
+			ref : 'fPmDef',
+			selector : 'fPmDef'
+		},{
+			ref : 'gridPmDef',
+			selector : 'gridPmDef'
 	}],
     
     init: function() {
@@ -103,7 +123,7 @@ Ext.define('rcm.controller.Config', {
 				ddragdrop: me.hdlDropListD
 			},
 			 
-			'fAksi button[text=Save]' : {
+			'fAksi button[text=Simpan]' : {
 				click : me.hdlSimpanForm
 			
 			},
@@ -115,6 +135,18 @@ Ext.define('rcm.controller.Config', {
 			},
 			'#iGPmdef': {
 				click: me.iGPmdef
+			},
+			'fPmDef button[text=Simpan]' : {
+				click : me.hdlPmDefForm
+			},
+			'gridAksi' :{
+				AksiGridDel  : me.delAksiGrid,
+				selectionchange : me.slctAksiGrid
+			},
+			
+			'gridPmDef' : {
+				PmDefGridDel : me.delPmDefGrid,
+				selectionchange : me.slctPmDefGrid
 			}
 		});
 		
@@ -129,21 +161,116 @@ Ext.define('rcm.controller.Config', {
 	iGPmdef: function()	{
 		this.getT_Konfig().showTab('pmd');
 	},
-    
-	hdlSimpanForm : function(){
-		alert('tekan tombol simpan');
+
+	slctPmDefGrid : function (model, records){
+		var me =this;
+		if (records[0]) {
+			me.getFPmDef().getForm().loadRecord(records[0]);
+        }
+	},
+	
+	delPmDefGrid : function (rec){
+		alert ('Awas Kau Pencet-Penccet Aku '+rec);
+		console.log(rec);
+		
+		var me = this, 
+		record = rec.data,
+		delPm = new rcm.model.FormPmDef(record );
+		Ext.MessageBox.show({
+				title : 'Hapus Predictive Maintenance Def.',
+				msg   : 'Yakin Data Akan di Hapus ??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						delAksi.destroy ({
+							success : function(delPm, operation){
+								// dcmon.destroy();
+								// me.getConMonStore().reload();
+								me.getFormPmDefsStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+					
+				}
+			});
+	
+	},
+	
+	hdlPmDefForm : function (){
+		alert('ke teken');
 		var me = this,
-		// f_aksi = me.getTAksi().getForm(),
-		// var	f_aksi = me.getFAksi();
-		getDataAksi = me.getFAksi().getForm().getValues(),
-			// t=Ext.getCmp('idThnOh').getValue(),
-		// foh.id_unit = this.getTaskOverHaul().idunit;
-		// foh.id_equip = this.getTaskOverHaul().ideq;
-		// foh.oh = this.getTaskOverHaul().idoh;
-		AksiSave = Ext.create('rcm.model.GridAksi', getDataAksi);
+		f_pmdef = me.getFPmDef().getForm(),
+		getDataPMDef = f_pmdef.getValues(),
+		PmDefSave = new rcm.model.FormPmDef(getDataPMDef);
+		console.log(PmDefSave);
+		f_pmdef.reset();
+		PmDefSave.save({
+			success: function(record, operation){
+				me.getFormPmDefsStore().reload();
+			}
+			
+		
+		});
+	},
+    slctAksiGrid : function (model, records){
+		var me =this;
+		if (records[0]) {
+			me.getFAksi().getForm().loadRecord(records[0]);
+        }
+	},
+	
+	delAksiGrid : function (rec){
+		alert ('Awas Kau Pencet-Penccet Aku '+rec);
+		console.log(rec);
+		
+		var me = this, 
+		record = rec.data,
+		delAksi 	= new rcm.model.FormAksi(record );
+		Ext.MessageBox.show({
+				title : 'Hapus Aksi',
+				msg   : 'Yakin Data Akan di Hapus ??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						delAksi.destroy ({
+							success : function(delAksi, operation){
+								// dcmon.destroy();
+								// me.getConMonStore().reload();
+								me.getFormAksisStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+					
+				}
+			});
+	
+	},
+	
+	hdlSimpanForm : function(){
+		// alert('tekan tombol simpan');
+		var me = this,
+		f_aksi = me.getFAksi().getForm(),
+		getDataAksi = f_aksi.getValues(),
+		AksiSave = new rcm.model.FormAksi(getDataAksi);
 		console.log(AksiSave);
+		f_aksi.reset();
+		AksiSave.save({
+			success: function(record, operation){
+				me.getFormAksisStore().reload();
+			}
+			
 		
-		
+		});
 	},
 	
     hdlDropListD: function(data, cat, tab)	{

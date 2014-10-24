@@ -56,25 +56,7 @@ class rPM extends CI_Controller {
 		echo json_encode($jsonResult);
 	}
 	
-	public function rPMdef(){
-		try{
-			$hsl = $this->pm->get_pmdef();
-			
-			$jsonResult = array(
-				'success' => true,
-				'pmdef' => $hsl
-			);
-		}
-		catch(Exception $e){
-			$jsonResult = array(
-				'success' => false,
-				'message' => $e->getMessage()
-			);
-		}
-		echo json_encode($jsonResult);
-		
 	
-	}
 	
 	public function rPMnotdef() {
 		try{			

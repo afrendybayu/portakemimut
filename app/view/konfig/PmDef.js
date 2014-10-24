@@ -3,8 +3,8 @@ Ext.define('rcm.view.konfig.PmDef', {
     xtype: 'tPmDef',
 	
 	requires: [
-        'rcm.view.konfig.AksiForm',
-		'rcm.view.konfig.AksiGrid'
+        'rcm.view.konfig.PmDefForm',
+		'rcm.view.konfig.PmDefGrid'
         
     ],
 	
@@ -18,15 +18,12 @@ Ext.define('rcm.view.konfig.PmDef', {
 		title	: 'Form Predictive Maintenance',
         region	: 'center',     
         xtype	: 'panel',
-		height	: '30%',
+		height	: '40%',
 		layout	: 'fit',
 		autoScroll: true,
 		frame	: true,
 		items	: [{
-			xtype 	: 'fAksi',
-			lnama:'Nama PM',lkode:'Kode PM',lket:'Keterangan',ldur:'Durasi',
-			nmnama:'nama',nmkode:'kode',nmket:'ket',nmdur:'Durasi',
-			hidnama:false,hidkode:false,hidket:false,hidjab:true,hidckbox:true,hiduserid:true,hidpwd:true,hiddur:false
+			xtype 	: 'fPmDef',
 			
 		}]
 		
@@ -37,13 +34,13 @@ Ext.define('rcm.view.konfig.PmDef', {
 	},{
 		title	: 'Data Predictive Maintenance',
         region	: 'south',     
-        xtype	: 'gridAksi',
-        height	: '70%',
+        xtype	: 'gridPmDef',
+        height	: '60%',
         collapsible	: true,
 		// collapsed	: true,
 		split	: true,
 		
-		xstore		: 'PMDefs',
+		xstore		: 'FormPmDefs',
 		kolgrid1	: 'Nama PM',
 		kolgrid2	: 'Kode PM',
 		kolgrid3	: 'Durasi',
