@@ -109,6 +109,13 @@
 .delete_folder_tree {
     background-image: url('./images/folder-delete.png');
 }
+
+.new_cat_tree {
+    background-image: url('./images/folder-add.png');
+}
+.delete_cat_tree {
+    background-image: url('./images/folder-delete.png');
+}
 .tasks-new-list {
     background-image: url('./images/new_list.png');
 }

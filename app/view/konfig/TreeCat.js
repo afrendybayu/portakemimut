@@ -16,15 +16,15 @@ Ext.define('rcm.view.konfig.TreeCat', {
         {
             xtype: 'toolbar',
             dock: 'bottom',
-            items: [{
+            items: [/*{
 					text : 'Tambah Kategori',
 					//id	: 'tambah_lokasi'
-				},'->',{
+				},*/
+				'->',{
                     iconCls: 'new_cat_tree',
-                    tooltip: 'Kategoti Baru'
+                    tooltip: 'Kategori Baru'
                 },{
-                    iconCls: 'delete_folder_tree',
-                    //id: 
+                    iconCls: 'delete_cat_tree',
                     //id: 'delete-cat-btn',
                     tooltip: 'Hapus Kategori'
                 }
