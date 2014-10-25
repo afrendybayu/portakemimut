@@ -44,7 +44,7 @@ Ext.define('rcm.view.konfig.PanelList', {
 				dragGroup: 'GrupA',
 				dropGroup: 'GrupB',
 				flex: 1,
-				hide: me.dhide
+				hide: me.dhideA
 			},{
 				title: me.jdlKa,
 				xtype: 'tKGridL',
@@ -54,7 +54,19 @@ Ext.define('rcm.view.konfig.PanelList', {
 				flex: 1,
 				jdlBtn: me.jdlBtnD,
 				idBtn: me.idBtnD,
-				dock: true
+				dock: true,
+				hidden: me.dhideB ? true:false
+			},{
+				title: me.jdlKa,
+				xtype: 'treeHirarki',
+				//dragGroup: 'GrupB',
+				//dropGroup: 'GrupA',
+				xstore: me.dstoreKa,
+				flex: 1,
+				jdlBtn: me.jdlBtnD,
+				idBtn: me.idBtnD,
+				dock: true,
+				hidden: me.dhideC ? true:false
 			}]
 			//*/
 		},{

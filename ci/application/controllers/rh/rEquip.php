@@ -61,5 +61,21 @@ class rEquip extends CI_Controller {
 		}
 		echo json_encode($jsonResult);
 	}
+	
+	public function rEqncat()	{
+		try{			
+			$jsonResult = array(
+				'success' => true,
+				'eqlist' => $this->equip->get_equipnotcat()
+			);
+		}
+		catch(Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
 
 }

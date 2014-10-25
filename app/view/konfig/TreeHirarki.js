@@ -18,13 +18,13 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
             dock: 'bottom',
             items: [{
 					text : 'Tambah Lokasi',
-					id	: 'tambah_lokasi'
+					//id	: 'tambah_lokasi'
 				},'->',{
                     iconCls: 'new_folder_tree',
                     tooltip: 'New Folder'
                 },{
                     iconCls: 'delete_folder_tree',
-                    id: 'delete-folder-btn',
+                    //id: 'delete-folder-btn',
                     tooltip: 'Delete Folder'
                 }
             ]

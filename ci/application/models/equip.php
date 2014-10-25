@@ -43,6 +43,19 @@ class Equip extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_equipnotcat()	{
+		$sql = "SELECT SUBSTRING(hhh.nama FROM LOCATE(' ',hhh.nama)) AS ket,CONCAT(eq.nama,' @',h.nama) AS nama
+				,eq.tag AS kode,eq.cat
+				FROM equip eq
+				INNER JOIN hirarki h ON eq.unit_id = h.id
+				INNER JOIN hirarki hh ON hh.id = h.parent
+				INNER JOIN hirarki hhh ON hhh.id = hh.parent
+				WHERE eq.cat IS NULL OR eq.cat = ''
+				ORDER BY hhh.nama ASC, h.nama ASC";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
 	function get_equip_gconcat(){
 		// $sql = "SELECT group_concat('e',id separator'') as eq,unit_id FROM equip where unit_id = ? GROUP BY unit_id";
 		$sql = "SELECT group_concat('e',e.id separator'') as eq,e.unit_id, h.flag 
