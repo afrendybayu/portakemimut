@@ -5,7 +5,7 @@ Ext.define('rcm.model.LokUnit', {
 		'Ext.data.proxy.Ajax'
 	],
 	
-	fields:	['id', 'nama', 'kode'],
+	fields:	['id', 'nama', 'kode','cat'],
 	
 	// [ 'id','nama','level'],
     proxy: {

@@ -20,7 +20,8 @@ Ext.Loader.addClassPathMappings({
   "Ext.view.Table": "../../ext/src/view/Table.js",
   "Ext.view.TableLayout": "../../ext/src/view/TableLayout.js",
   "Ext.view.View": "../../ext/src/view/View.js",
-  "rcm": "../../app"
+  "rcm": "../../app",
+  "rcm.view.konfig.AksiForm": "../../app/view/konfig/AksiForm - Copy.js"
 });
 Ext.ClassManager.addNameAlternateMappings({
   "Chart.ux.Highcharts": [],
@@ -929,7 +930,11 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.Event": [],
   "rcm.model.EventList": [],
   "rcm.model.FMode": [],
+  "rcm.model.FormAksi": [],
+  "rcm.model.FormPmDef": [],
   "rcm.model.GridAksi": [],
+  "rcm.model.GridEqcIn": [],
+  "rcm.model.GridEqnIn": [],
   "rcm.model.GridModeIn": [],
   "rcm.model.GridOPIn": [],
   "rcm.model.GridPMIn": [],
@@ -994,7 +999,11 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.EventList": [],
   "rcm.store.FMode": [],
   "rcm.store.Failures": [],
+  "rcm.store.FormAksis": [],
+  "rcm.store.FormPmDefs": [],
   "rcm.store.GridAksi": [],
+  "rcm.store.GridEqcIn": [],
+  "rcm.store.GridEqnIn": [],
   "rcm.store.GridKfEquip": [],
   "rcm.store.GridModeIn": [],
   "rcm.store.GridModenIn": [],
@@ -1017,7 +1026,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.OpartDefs": [],
   "rcm.store.OverHaulIn": [],
   "rcm.store.PM": [],
-  "rcm.store.PMDefs": [],
   "rcm.store.ReHome": [],
   "rcm.store.ReSpeedo": [],
   "rcm.store.Refers": [],
@@ -1086,11 +1094,14 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.konfig.Damage": [],
   "rcm.view.konfig.DetailLokasi": [],
   "rcm.view.konfig.Failure": [],
+  "rcm.view.konfig.FormPmDef": [],
   "rcm.view.konfig.GridEquip": [],
   "rcm.view.konfig.GridL": [],
   "rcm.view.konfig.Opart": [],
   "rcm.view.konfig.PanelList": [],
   "rcm.view.konfig.PmDef": [],
+  "rcm.view.konfig.PmDefForm": [],
+  "rcm.view.konfig.PmDefGrid": [],
   "rcm.view.konfig.Refer": [],
   "rcm.view.konfig.Symptom": [],
   "rcm.view.konfig.TabKonfig": [],
@@ -2206,7 +2217,11 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.Event": [],
   "rcm.model.EventList": [],
   "rcm.model.FMode": [],
+  "rcm.model.FormAksi": [],
+  "rcm.model.FormPmDef": [],
   "rcm.model.GridAksi": [],
+  "rcm.model.GridEqcIn": [],
+  "rcm.model.GridEqnIn": [],
   "rcm.model.GridModeIn": [],
   "rcm.model.GridOPIn": [],
   "rcm.model.GridPMIn": [],
@@ -2271,7 +2286,11 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.EventList": [],
   "rcm.store.FMode": [],
   "rcm.store.Failures": [],
+  "rcm.store.FormAksis": [],
+  "rcm.store.FormPmDefs": [],
   "rcm.store.GridAksi": [],
+  "rcm.store.GridEqcIn": [],
+  "rcm.store.GridEqnIn": [],
   "rcm.store.GridKfEquip": [],
   "rcm.store.GridModeIn": [],
   "rcm.store.GridModenIn": [],
@@ -2294,7 +2313,6 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.OpartDefs": [],
   "rcm.store.OverHaulIn": [],
   "rcm.store.PM": [],
-  "rcm.store.PMDefs": [],
   "rcm.store.ReHome": [],
   "rcm.store.ReSpeedo": [],
   "rcm.store.Refers": [],
@@ -2407,6 +2425,9 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.konfig.Failure": [
     "widget.tFailure"
   ],
+  "rcm.view.konfig.FormPmDef": [
+    "widget.fPmDef"
+  ],
   "rcm.view.konfig.GridEquip": [
     "widget.tGridKEq"
   ],
@@ -2421,6 +2442,12 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.konfig.PmDef": [
     "widget.tPmDef"
+  ],
+  "rcm.view.konfig.PmDefForm": [
+    "widget.fPmDef"
+  ],
+  "rcm.view.konfig.PmDefGrid": [
+    "widget.gridPmDef"
   ],
   "rcm.view.konfig.Refer": [
     "widget.tRefer"

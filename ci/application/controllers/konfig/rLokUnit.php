@@ -9,16 +9,18 @@ class rLokUnit extends CI_Controller {
 		
 		try {
 			$parent_id = (isset($_GET['node']))?($_GET['node']):0;
-			// echo $parent_id.'<br>';
+			//echo $parent_id.'<br>';
 			// echo $_GET['node'].'<br>';
 			
 			$arr = array(); $k=0;
 			$hsl = $this->hirarki->get_hirarki($parent_id);
+			//print_r($hsl);
 			if ($hsl->num_rows() > 0)	{
 				foreach ($hsl->result() as $row)	{
 					//print_r($row); echo "<br/>";
 					$arr[$k]['id'] 		= $row->id;
-					$arr[$k]['nama'] 	= $row->nama.' '.$row->id;
+					$arr[$k]['nama'] 	= $row->nama;
+					//$arr[$k]['nama'] 	= $row->nama.' '.$row->id;
 					// $arr[$k]['level'] 	= $row->level;
 					$arr[$k]['leaf'] 	= 'false';
 					
@@ -30,9 +32,11 @@ class rLokUnit extends CI_Controller {
 				$hsl1 = $this->hirarki->get_hirarki_equip($parent_id);
 				foreach ($hsl1->result() as $row)	{
 					$arr[$k]['id'] 		= $row->id;
-					$arr[$k]['nama'] 	= '['.$row->tag.'] '.$row->nama .' '.$row->id;
+					$arr[$k]['nama'] 	= '['.$row->tag.'] '.$row->nama;
+					//$arr[$k]['nama'] 	= '['.$row->tag.'] '.$row->nama .' '.$row->id;
 					// $arr[$k]['level'] 	= '';
 					$arr[$k]['leaf'] 	= 'true';
+					$arr[$k]['cat'] 	= $row->cat;
 					$k++;
 				}
 			}

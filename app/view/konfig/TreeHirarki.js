@@ -11,31 +11,26 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
     rootVisible: true,
     store: 'LokUnit',
 	hideHeaders: true,
-    
-	dockedItems: [
-        {
-            xtype: 'toolbar',
-            dock: 'bottom',
-            items: [{
-					text : 'Tambah Lokasi',
-					//id	: 'tambah_lokasi'
-				},'->',{
-                    iconCls: 'new_folder_tree',
-                    tooltip: 'New Folder'
-                },{
-                    iconCls: 'delete_folder_tree',
-                    //id: 'delete-folder-btn',
-                    tooltip: 'Delete Folder'
-                }
-            ]
-        }
-    ],
-	
-    
+
 	initComponent: function() {
 		var me = this;
         me.plugins = [me.cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing')];
-
+		me.dockedItems= me.dock ? []:[{
+				xtype: 'toolbar',
+				dock: 'bottom',
+				items: [{
+						text : 'Tambah Lokasi',
+						//id	: 'tambah_lokasi'
+					},'->',{
+						iconCls: 'new_folder_tree',
+						tooltip: 'New Folder'
+					},{
+						iconCls: 'delete_folder_tree',
+						//id: 'delete-folder-btn',
+						tooltip: 'Delete Folder'
+					}
+				]
+			}];
         me.columns = [{
                 xtype: 'treecolumn',
                 dataIndex: 'nama',
@@ -46,6 +41,10 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
                     allowOnlyWhitespace: false
 				}
 			},{
+                width	: 100,
+                dataIndex: 'cat'
+			},{
+				hidden  : true,
                 xtype	: 'actioncolumn',
                 width	: 24,
 				icon	: 'resources/css/images/delete.png',
