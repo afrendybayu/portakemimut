@@ -24,7 +24,6 @@ Ext.define('rcm.view.konfig.GridEquip', {
 			},{
 				header		: 'Tag',
 				dataIndex	: 'kode',
-
 				flex:1
 			}]
 		};

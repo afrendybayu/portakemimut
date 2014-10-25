@@ -44,8 +44,8 @@ class Equip extends CI_Model {
 	}
 	
 	function get_equipnotcat()	{
-		$sql = "SELECT SUBSTRING(hhh.nama FROM LOCATE(' ',hhh.nama)) AS ket,CONCAT(eq.nama,' @',h.nama) AS nama
-				,eq.tag AS kode,eq.cat
+		$sql = "SELECT SUBSTRING(hhh.nama FROM LOCATE(' ',hhh.nama)) AS ket,CONCAT(h.nama,', ',eq.nama) AS nama
+				,eq.tag AS kode
 				FROM equip eq
 				INNER JOIN hirarki h ON eq.unit_id = h.id
 				INNER JOIN hirarki hh ON hh.id = h.parent

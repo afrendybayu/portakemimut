@@ -75,16 +75,15 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			xtype:'tpKonfigList',
 			dhideA: false,
 			dhideB: true,
-			//dhideC: false,
 			jdlKi: 'Pilih Equipment',
 			jdlKa: 'Hirarki',
 			dstoreKi: 'GridEqcIn',
-			dstoreKa: 'GridModenIn',
+			dstoreKa: 'GridEqcIn',
 			jdlDet: 'Equipment List yang belum dipetakan',
 			jdlTb: 'List Kiri',
-			jdlBtnD: 'Go to Mode Definition',
+			jdlBtnD: ' ',
 			idBtnD: 'iGEqdef',
-			dstoreD: 'GridKfEquip'
+			dstoreD: 'GridEqnIn'
 		},{
 			//id: 'tk_pd',
 			itemId: 'pmd',

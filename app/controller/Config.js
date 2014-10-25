@@ -44,7 +44,8 @@ Ext.define('rcm.controller.Config', {
 		'GridOPIn',
 		'GridModenIn',
 		'GridModeIn',
-		'GridEqcIn'
+		'GridEqcIn',
+		'GridEqnIn'
     ],
     
     models: [
