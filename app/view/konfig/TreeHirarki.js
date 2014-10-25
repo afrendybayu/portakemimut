@@ -15,6 +15,29 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 	initComponent: function() {
 		var me = this;
         me.plugins = [me.cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing')];
+        me.viewConfig = {
+            plugins: {
+                ptype: 'treeviewdragdrop',
+                dragGroup: me.dragGroup,
+                dropGroup: me.dropGroup
+            },
+            listeners: {
+                drop: function(node, data) {	// , dropRec, dropPosition
+					//alert("listeners GridL "+me.dropGroup+" "+data.records[0].get("kode"));
+					if (me.dropGroup=="GrupB")	{
+						me.fireEvent('cdragdrop', data.records[0],rcmSettings.idc,rcmSettings.tkf);
+						//console.log("listeners GridL "+me.dropGroup);
+					}
+					//*
+					//console.log(me.dropGroup+" GrupA");
+					if (me.dropGroup=="GrupA")	{
+						me.fireEvent('ddragdrop', data.records[0],rcmSettings.idc,rcmSettings.tkf);
+						//alert("listeners GridL "+me.dropGroup+" "+data.records[0].get("kode"));
+					}
+					//*/
+                }
+            }
+        };
 		me.dockedItems= me.dock ? []:[{
 				xtype: 'toolbar',
 				dock: 'bottom',
@@ -34,6 +57,7 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
         me.columns = [{
                 xtype: 'treecolumn',
                 dataIndex: 'nama',
+                text: 'Hirarki',
                 flex: 1,
                 editor: {
                     xtype: 'textfield',
@@ -41,6 +65,7 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
                     allowOnlyWhitespace: false
 				}
 			},{
+				text: 'Ketegori',
                 width	: 100,
                 dataIndex: 'cat'
 			},{
