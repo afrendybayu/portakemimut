@@ -237,7 +237,7 @@ Ext.define('rcm.controller.Config', {
 	},
 	
 	delAksiGrid : function (rec){
-		alert ('Awas Kau Pencet-Penccet Aku '+rec);
+		//alert ('Awas Kau Pencet-Penccet Aku '+rec);
 		console.log(rec);
 		
 		var me = this, 
@@ -368,12 +368,38 @@ Ext.define('rcm.controller.Config', {
 	tblDelCat: function()	{
 		this.treeCat(true);
 	},
-	hdlDelCatHir: function(id)	{
-		console.log("Hapus id: "+id);
+	hdlDelCatHir: function(rec)	{
+		console.log("Hapus id: "+rec.get('id')+", nama: "+rec.get('text'));
 		//console.log(e);
-		var me=this,
-			dl=new rcm.model.CatHir({ id:id });
-		dl.destroy();
+		var me=this;
+		Ext.MessageBox.show({
+			title : 'Hapus Kategori',
+			msg   : "Yakin Kategori \""+rec.get('text')+"\" akan diHapus ??",
+			buttons: Ext.MessageBox.OKCANCEL,
+			//icon  : Ext.MessageBox.WARNING,
+			fn	: function (oks){
+				if (oks === 'ok'){ 
+					dl=new rcm.model.CatHir({ id:rec.get('id') });
+					dl.destroy({
+						success : function(del, op){
+							alert('sukses');
+						},
+						failure: function(task, op)	{
+							var error = op.getError(),
+								msg = Ext.isObject(error) ? error.status + ' ' + error.statusText : error;
+
+							Ext.MessageBox.show({
+								title: 'Hapus Kategori Gagal',
+								msg: msg,
+								icon: Ext.Msg.ERROR,
+								buttons: Ext.Msg.OK
+							});
+						}
+					});
+				}
+			}
+		});
+		
 		me.getCatHirStore().reload();
 	},
 	
@@ -383,19 +409,20 @@ Ext.define('rcm.controller.Config', {
             ce = hTree.ce,
             selectionModel = hTree.getSelectionModel(),
             selectedList = selectionModel.getSelection()[0],
-			//parentList = selectedList.isLeaf() ? selectedList.parentNode : selectedList; //if leaf, then selecetd parent id, else select id
-			parentList = selectedList;
-		//console.log(selectedList);
+			parentList = selectedList.isLeaf() ? selectedList.parentNode : selectedList; //if leaf, then selecetd parent id, else select id
+			//parentList = selectedList;
+		console.log(selectedList);
+		rcmSettings.abc = hTree;
 		//console.log(selectedList.isLeaf());
 		var newList = Ext.create('rcm.model.CatHir', {
-				text: 'New Cat',
-                leaf: leaf,
-                tipe: 'kode',
-				// level : selectedList.data.depth,
-                loaded: true // set loaded to true, so the tree won't try to dynamically load children for this node when expanded
-            });
+			text: 'New Cat',
+			leaf: leaf,
+			tipe: 'kode',
+			// level : selectedList.data.depth,
+			loaded: true // set loaded to true, so the tree won't try to dynamically load children for this node when expanded
+		});
 		//console.log(parentList);
-		//rcmSettings.abc = parentList;
+		//
 		parentList.appendChild(newList);
 		var hirStore = me.getCatHirStore();
 		hirStore.sync();
@@ -405,14 +432,14 @@ Ext.define('rcm.controller.Config', {
 			if(parentList.isExpanded()) {
 				selectionModel.select(newList);
 				me.addedNode = newList;
-				ce.startEdit(newList, 0);
+				//ce.startEdit(newList, 0);
 			} else {
 				hTree.on('afteritemexpand', function startEdit(list) {
 					if(list === parentList) {
 						selectionModel.select(newList);
 						me.addedNode = newList;
 						// console.log(newList);
-						ce.startEdit(newList, 0);
+						//ce.startEdit(newList, 0);
 						// remove the afterexpand event listener
 						hTree.un('afteritemexpand', startEdit);
 					}
@@ -498,7 +525,7 @@ Ext.define('rcm.controller.Config', {
     },
 	
 	updateTreeHirarki: function(editor, e) {
-		console.log('diedit');
+		console.log('updateTreeHirarki diedit');
         //*
 		var me = this,
             list = e.record;

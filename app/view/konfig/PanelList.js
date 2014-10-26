@@ -29,10 +29,11 @@ Ext.define('rcm.view.konfig.PanelList', {
 		me.items = [{
 			region: 'center',
 			flex:1,
-			xtype: 'container',
+			xtype: 'panel',
 			layout: {
-				type: 'hbox',
-				align: 'stretch'
+				//type: 'hbox',
+				type: 'border'
+				//align: 'stretch'
 			},
 			//text: 'me.jdlGr',
 			//btnFilter: me.btnFilter,
@@ -44,7 +45,9 @@ Ext.define('rcm.view.konfig.PanelList', {
 				dragGroup: 'GrupA',
 				dropGroup: 'GrupB',
 				flex: 1,
-				hide: me.dhideA
+				hide: me.dhideA,
+				region: 'center'
+				//collapsible: true,
 			},{
 				title: me.jdlKa,
 				xtype: 'tKGridL',
@@ -55,7 +58,11 @@ Ext.define('rcm.view.konfig.PanelList', {
 				jdlBtn: me.jdlBtnD,
 				idBtn: me.idBtnD,
 				dock: true,
-				hidden: me.dhideB ? true:false
+				hidden: me.dhideB ? true:false,
+				region: 'east',
+				collapsible: true,
+				//collapsed: true,
+				split: true,
 			},{
 				title: me.jdlKa,
 				xtype: 'treeHirarki',
@@ -67,7 +74,11 @@ Ext.define('rcm.view.konfig.PanelList', {
 				jdlBtn: me.jdlBtnD,
 				idBtn: me.idBtnD,
 				dock: true,
-				hidden: me.dhideC ? true:false
+				hidden: me.dhideC ? true:false,
+				region: 'east',
+				collapsible: true,
+				//collapsed: true,
+				split: true,
 			}]
 			//*/
 		},{

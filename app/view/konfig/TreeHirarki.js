@@ -10,7 +10,7 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 	
     rootVisible: true,
     store: 'LokUnit',
-	hideHeaders: true,
+	//hideHeaders: true,
 
 	initComponent: function() {
 		var me = this;
@@ -67,8 +67,15 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 			},{
 				hidden  : me.hideCat,
 				text: 'Kategori',
-                width	: 100,
-                dataIndex: 'cat'
+                minWidth : 100,
+                flex:1,
+                dataIndex: 'cat',
+                editor: {
+					xtype: 'treepicker',
+					displayField: 'text',
+					store: Ext.create('rcm.store.CatHir', {storeId: 'Lists-TaskGrid' }),
+					renderer: me.renderList
+				},
 			},{
 				hidden  : me.hideDel,
                 xtype	: 'actioncolumn',
@@ -87,5 +94,13 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
         // Fire a "deleteclick" event with all the same args as this handler
 		// alert ('klik hirarki delete');
         this.fireEvent('deleteclick', grid, row, col, column, e);
-    }
+    },
+    
+    renderList: function(value, metaData, task, rowIndex, colIndex, store, view) {
+		alert(value);
+        var listsStore = Ext.getStore('CatHir'),
+            node = value ? listsStore.getNodeById(value) : listsStore.getRootNode();
+		
+        return node.get('text');
+    },
 });

@@ -8,10 +8,10 @@ Ext.define('rcm.view.konfig.TreeCat', {
         'Ext.grid.column.Action'
     ],
 	
-	id: '',
+	rec: '',
     rootVisible: true,
     store: 'CatHir',
-	hideHeaders: true,
+	//hideHeaders: true,
 
 	dockedItems: [
         {
@@ -44,15 +44,13 @@ Ext.define('rcm.view.konfig.TreeCat', {
 				this.fireEvent('catclick', r.data.id,rcmSettings.tkf);
 			},
 			itemmouseenter: function(gridview, record) {
-				id = record.get('id');
-				//console.log('Mouse over on record:');
-				//console.log(id);
+				rec = record;	//.get('id');
 			}
 		},
 
         me.columns = [{
                 xtype: 'treecolumn',
-                //text: 'Hirarki',
+                text: 'Hirarki',
                 dataIndex: 'text',
                 //width:200,
                 flex: 1,
@@ -62,7 +60,7 @@ Ext.define('rcm.view.konfig.TreeCat', {
                     allowOnlyWhitespace: false
 				}
             },{
-				//text: 'Kode',
+				text: 'Kode',
 				dataIndex: 'tipe',
 				width:50,
 				editor: {
@@ -92,6 +90,6 @@ Ext.define('rcm.view.konfig.TreeCat', {
 	hdlDeleteClick: function() {
         // Fire a "deleteclick" event with all the same args as this handler
 		//alert ('klik hirarki delete: '+id);
-        this.fireEvent('deleteclick', id);
+        this.fireEvent('deleteclick', rec);
     }
 });

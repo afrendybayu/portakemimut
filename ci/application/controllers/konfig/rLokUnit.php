@@ -72,6 +72,7 @@ class rLokUnit extends CI_Controller {
 	
 	public function updateHirarki(){
 		$params = json_decode(file_get_contents('php://input'));
+		$data = array('nama' => $params->nama);
 		/*
 		$sql = array(
 					'nama' 		=> $params->nama,

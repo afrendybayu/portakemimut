@@ -25,13 +25,32 @@ class Catequip extends CI_Model {
 	}
 	
 	function del_cathir($ids)	{
-		$this->db->where_in('id', $ids);
-		if ($this->db->delete('cat_equip'))	{
-			return $ids;
+		//*
+		$sql = "SELECT COUNT(*) AS jml FROM equip WHERE cat='$ids'";
+		//echo "sql: $sql<br/>";
+		$query = $this->db->query($sql);
+		$hsl = $query->result();
+		//print_r($hsl);
+		//echo "jml: ".$hsl[0]->jml;
+		
+		if ($hsl[0]->jml==0)	{
+			//echo "masuk sini";
+			//*
+			$this->db->where_in('id', $ids);
+			if ($this->db->delete('cat_equip'))	{
+				return array('id'=>$ids,'jml'=>$hsl[0]->jml);
+			}
+			else {
+				return array('id'=>'0');
+			}
+			//*/
+			//return array('id'=>$ids);
 		}
 		else {
-			return array('id'=>'0');
+			//echo "ada isinya";
+			return array('jml'=>$hsl[0]->jml);
 		}
+		//*/
 	}
 	
 	function get_tipe_id()	{
@@ -59,14 +78,19 @@ class Catequip extends CI_Model {
 	
 	function get_hirarki($parent){
 		
-		$sql = "SELECT ci.id,ci.nama,ci.kode,(select count(*) from cat_equip ce where ce.parent = ci.id) as jml
+		$sql = "SELECT ci.id,ci.nama AS text,ci.kode AS tipe
+				,(select count(*) from cat_equip ce where ce.parent = ci.id) as jml
+				,(SELECT CASE WHEN jml>0 THEN 'false' ELSE 'true' END) AS leaf
 				FROM cat_equip ci
 				where parent = $parent";
 		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql);
+		//echo "jml: {$query->num_rows()}<br/>";
+		//return $query->result();
 		return $query->result();
 	}
 }
 
 /* End of file catequip.php */
 /* Location: ./application/models/catequip.php */
+

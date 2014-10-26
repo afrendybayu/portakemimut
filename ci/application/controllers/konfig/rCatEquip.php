@@ -5,34 +5,20 @@ class rCatEquip extends CI_Controller {
         parent::__construct();
 		$this->load->model('catequip');
 	}
+	
 	public function rHirarki()	{
 		
 		try {
-			$parent_id = $this->input->get('node')?:'0';
-			//echo $parent_id.'<br>';
+			$parent = $this->input->get('node')?:'0';
+			//echo $parent.'<br>';
 			// echo $_GET['node'].'<br>';
 			
 			$arr = array(); $k=0;
-			$hsl = $this->catequip->get_hirarki($parent_id);
-			//echo "jml: ".$hsl->num_rows();
-			//print_r($hsl);
-			//if ($hsl->num_rows() > 0)	{
-				foreach ($hsl as $row)	{
-					//print_r($row); echo "<br/>";
-					$arr[$k]['id'] 		= $row->id;
-					$arr[$k]['text'] 	= $row->nama;	//.' '.$row->id;
-					$arr[$k]['tipe'] 	= $row->kode;
-					if ($row->jml>0)
-						$arr[$k]['leaf'] 	= 'false';
-					else
-						$arr[$k]['leaf'] 	= 'true';
-					$k++;
-				}
-			//}
+			$hsl = $this->catequip->get_hirarki($parent);
 
 			$jsonResult = array(
 				'success' => true,
-				'cateq' => $arr
+				'cateq' => $hsl
 			);
 		}
 		catch (Exception $e){
@@ -78,10 +64,12 @@ class rCatEquip extends CI_Controller {
 		}
 		
 		try {
-			//$data = array('nama'=>$par->text,'parent'=>$par->parentId,'kode'=>$par->tipe);
 			//print_r($data);
 			$hasil = $this->catequip->del_cathir($par->id);
-			
+
+			if ($hasil['jml']>0)	{
+				throw new Exception("Ada {$hasil['jml']} Equipment yang berkategori ini !");
+			}
 			$jsonResult = array(
 				'success' => true,
 				'cateq' => array('id' => $hasil)

@@ -118,7 +118,12 @@ Ext.define('rcm.view.laporan.ConMon', {
 				width: 200
 			},{
 				region: 'center',    
-				xtype : 'iConMon',
+				//xtype : 'iConMon',
+				xtype : 'tGridContract',
+				duit: false,
+				totcv: true,
+				budg: true,
+				pbudg: true,
 				region:'center'
 		}]
 		//*/
