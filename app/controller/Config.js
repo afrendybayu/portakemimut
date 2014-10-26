@@ -13,7 +13,6 @@ Ext.define('rcm.controller.Config', {
 		'konfig.TreeCat',
 		'konfig.AksiForm',
 		'konfig.AksiGrid'
-		
     ],
 
     controllers: [
@@ -57,7 +56,9 @@ Ext.define('rcm.controller.Config', {
 		
 		
 		'GridPMIn',
-		
+		'GridOPIn',
+		'GridModeIn',
+		'CatHir'
 	],
     
     refs: [{
@@ -98,6 +99,12 @@ Ext.define('rcm.controller.Config', {
 			'[iconCls=delete_folder_tree]': {
                 click: me.tblDelLokasi
             },
+            '[iconCls=new_cat_tree]': {
+                click: me.tblNewCat
+            },
+			'[iconCls=del_cat_tree]': {
+                click: me.tblDelCat
+            },
 			'#tambah_lokasi' : {
 				click : me.tambahLokasi
 			},
@@ -117,7 +124,10 @@ Ext.define('rcm.controller.Config', {
             },
             
             'tCatHir': {
-				catclick: me.hdlCatHir
+				catclick: me.hdlCatHir,
+				deleteclick: me.hdlDelCatHir,
+				itemmouseenter: me.showActions,
+				itemmouseleave: me.hideActions
 			},
 			
 			'tKGridL': {
@@ -278,9 +288,15 @@ Ext.define('rcm.controller.Config', {
     hdlDropListD: function(data, cat, tab)	{
 		//alert("hdlDropListD: "+data.get("id"));
 		var me=this,
-			dl;
+			dl, p={ id:data.get("id") };
 		if (tab=="tk_pl")	{
-			dl=new rcm.model.GridPMIn({ id:data.get("id") });
+			dl=new rcm.model.GridPMIn(p);
+		}
+		else if (tab=="tk_ol")	{
+			dl=new rcm.model.GridOPIn(p);
+		}
+		else if (tab=="tk_md")	{
+			dl=new rcm.model.GridModeIn(p);
 		}
 		dl.destroy();
 	},
@@ -310,9 +326,9 @@ Ext.define('rcm.controller.Config', {
     hdlCatHir: function(id,tab)	{
 		var me=this;
 		//alert("hdlCatHir: "+id+" "+tab);
-		//me.getGridKfEquipStore().load({ params: {cat:id} });
-		me.getGridKfEquipStore().clearFilter(true);
-		me.getGridKfEquipStore().filter('durasi',id);
+		me.getGridKfEquipStore().load({ params: {cat:id} });
+		//me.getGridKfEquipStore().clearFilter(true);
+		//me.getGridKfEquipStore().filter('durasi',id);
 		if (tab=="tk_pl")	{
 			me.getGridPMInStore().load({ params: {cat:id} });
 			me.getGridPMnInStore().load({ params: {cat:id} });
@@ -345,6 +361,79 @@ Ext.define('rcm.controller.Config', {
 		this.addTreeHirarki(true);
 	},
 	
+	tblNewCat: function()	{
+		//console.log("tblNewCat");
+		this.treeCat(true);
+	},
+	tblDelCat: function()	{
+		this.treeCat(true);
+	},
+	hdlDelCatHir: function(id)	{
+		console.log("Hapus id: "+id);
+		//console.log(e);
+		var me=this,
+			dl=new rcm.model.CatHir({ id:id });
+		dl.destroy();
+		me.getCatHirStore().reload();
+	},
+	
+	treeCat: function(leaf)	{
+		var me = this,
+            hTree = me.getTCatHir(),
+            ce = hTree.ce,
+            selectionModel = hTree.getSelectionModel(),
+            selectedList = selectionModel.getSelection()[0],
+			//parentList = selectedList.isLeaf() ? selectedList.parentNode : selectedList; //if leaf, then selecetd parent id, else select id
+			parentList = selectedList;
+		//console.log(selectedList);
+		//console.log(selectedList.isLeaf());
+		var newList = Ext.create('rcm.model.CatHir', {
+				text: 'New Cat',
+                leaf: leaf,
+                tipe: 'kode',
+				// level : selectedList.data.depth,
+                loaded: true // set loaded to true, so the tree won't try to dynamically load children for this node when expanded
+            });
+		//console.log(parentList);
+		//rcmSettings.abc = parentList;
+		parentList.appendChild(newList);
+		var hirStore = me.getCatHirStore();
+		hirStore.sync();
+		hirStore.reload();
+		
+		var expandAndEdit = function() {
+			if(parentList.isExpanded()) {
+				selectionModel.select(newList);
+				me.addedNode = newList;
+				ce.startEdit(newList, 0);
+			} else {
+				hTree.on('afteritemexpand', function startEdit(list) {
+					if(list === parentList) {
+						selectionModel.select(newList);
+						me.addedNode = newList;
+						// console.log(newList);
+						ce.startEdit(newList, 0);
+						// remove the afterexpand event listener
+						hTree.un('afteritemexpand', startEdit);
+					}
+				});
+				parentList.expand();
+			}
+		};
+		
+		if(hTree.getView().isVisible(true)) {
+            expandAndEdit();
+        } else {
+            hTree.on('expand', function onExpand() {
+                expandAndEdit();
+                hTree.un('expand', onExpand);
+            });
+            hTree.expand();
+        }
+		
+		//alert(selectedList);
+	},
+	
 	addTreeHirarki: function(leaf) {
         var me = this,
             hTree = me.getTreeHirarki(),
@@ -356,7 +445,7 @@ Ext.define('rcm.controller.Config', {
 				nama: 'New ' + (leaf ? 'Equipt' : 'FuncLoc'),
                 leaf: leaf,
 				// level : selectedList.data.depth,
-                loaded: true // set loaded to true, so the tree won't try to dynamically load children for this node when expanded
+                loaded: false // set loaded to true, so the tree won't try to dynamically load children for this node when expanded
             }),
 			//*
             expandAndEdit = function() {
@@ -390,7 +479,7 @@ Ext.define('rcm.controller.Config', {
 		
         parentList.appendChild(newList);
         
-		hirarkiStore = me.getLokUnitStore();
+		var hirarkiStore = me.getLokUnitStore();
 		hirarkiStore.sync();
 		hirarkiStore.reload();
 		

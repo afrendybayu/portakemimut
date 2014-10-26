@@ -46,6 +46,56 @@ class rCatEquip extends CI_Controller {
 	
 	}
 	
+	public function cHirCat()	{
+		$par = json_decode(file_get_contents('php://input'));
+		if (!isset($par))	{
+			throw new Exception("Input Data Tidak Ada");
+		}
+		
+		try {
+			$data = array('nama'=>$par->text,'parent'=>$par->parentId,'kode'=>$par->tipe);
+			//print_r($data);
+			$hasil = $this->catequip->set_cathir($data);
+			
+			$jsonResult = array(
+				'success' => true,
+				'cateq' => array('id' => $hasil)
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
+	
+	public function dHirCat()	{
+		$par = json_decode(file_get_contents('php://input'));
+		if (!isset($par))	{
+			throw new Exception("Input Data Tidak Ada");
+		}
+		
+		try {
+			//$data = array('nama'=>$par->text,'parent'=>$par->parentId,'kode'=>$par->tipe);
+			//print_r($data);
+			$hasil = $this->catequip->del_cathir($par->id);
+			
+			$jsonResult = array(
+				'success' => true,
+				'cateq' => array('id' => $hasil)
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
+	
 	public function createHirarki(){
 		try{
 			// $params = json_decode(file_get_contents('php://input'));

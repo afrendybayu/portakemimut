@@ -8,6 +8,7 @@ Ext.define('rcm.view.konfig.TreeCat', {
         'Ext.grid.column.Action'
     ],
 	
+	id: '',
     rootVisible: true,
     store: 'CatHir',
 	hideHeaders: true,
@@ -24,7 +25,7 @@ Ext.define('rcm.view.konfig.TreeCat', {
                     iconCls: 'new_cat_tree',
                     tooltip: 'Kategori Baru'
                 },{
-                    iconCls: 'delete_cat_tree',
+                    iconCls: 'del_cat_tree',
                     //id: 'delete-cat-btn',
                     tooltip: 'Hapus Kategori'
                 }
@@ -32,20 +33,26 @@ Ext.define('rcm.view.konfig.TreeCat', {
         }
     ],
 	//*/
-	listeners: {
-        itemclick: function(s,r) {
-			rcmSettings.idc = r.data.id;
-			this.fireEvent('catclick', r.data.id,rcmSettings.tkf);
-        }
-    },
+	
 
 	initComponent: function() {
 		var me = this;
-		//me.plugins = [me.cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing')];
+		me.plugins = [me.ce = Ext.create('Ext.grid.plugin.CellEditing')];
+		me.listeners = {
+			itemclick: function(s,r) {
+				rcmSettings.idc = r.data.id;
+				this.fireEvent('catclick', r.data.id,rcmSettings.tkf);
+			},
+			itemmouseenter: function(gridview, record) {
+				id = record.get('id');
+				//console.log('Mouse over on record:');
+				//console.log(id);
+			}
+		},
 
         me.columns = [{
                 xtype: 'treecolumn',
-                text: 'Hirarki',
+                //text: 'Hirarki',
                 dataIndex: 'text',
                 //width:200,
                 flex: 1,
@@ -55,21 +62,26 @@ Ext.define('rcm.view.konfig.TreeCat', {
                     allowOnlyWhitespace: false
 				}
             },{
-				text: 'Kode',
+				//text: 'Kode',
 				dataIndex: 'tipe',
 				width:50,
+				editor: {
+                    xtype: 'textfield',
+                    selectOnFocus: true,
+                    allowOnlyWhitespace: false
+				}
 			},{
-				text: 'ID',
+				//text: 'ID',
                 dataIndex: 'id',
-                width:50,
+                width:40,
             },{
                 xtype	: 'actioncolumn',
-                text: 'Hapus',
+                //text: 'Hapus',
                 width	: 24,
 				icon	: 'resources/css/images/delete.png',
-                iconCls	: 'x-hidden',
-                tooltip	: 'Delete',
-                handler	: Ext.bind(me.handleDeleteClick, me)
+				iconCls	: 'x-hidden',
+                tooltip	: 'Hapus Kategori',
+                handler	: Ext.bind(me.hdlDeleteClick,me)
             }];
 
 		
@@ -77,9 +89,9 @@ Ext.define('rcm.view.konfig.TreeCat', {
 		
 	},
 	
-	handleDeleteClick: function(gridView, rowIndex, colIndex, column, e) {
+	hdlDeleteClick: function() {
         // Fire a "deleteclick" event with all the same args as this handler
-		// alert ('klik hirarki delete');
-        this.fireEvent('deleteclick', gridView, rowIndex, colIndex, column, e);
+		//alert ('klik hirarki delete: '+id);
+        this.fireEvent('deleteclick', id);
     }
 });

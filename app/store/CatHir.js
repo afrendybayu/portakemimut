@@ -1,8 +1,8 @@
 /* AfrendyBayu 2Des2013 */
 Ext.define('rcm.store.CatHir', {
     extend: 'Ext.data.TreeStore',
-    model: 'rcm.model.Hirarki',
-    requires: 'rcm.model.Hirarki',
+    model: 'rcm.model.CatHir',
+    requires: 'rcm.model.CatHir',
     autoLoad: true, //--> load read.php
 	
 	//*
@@ -10,9 +10,9 @@ Ext.define('rcm.store.CatHir', {
         expanded: true,
         id: 0,
         text: 'Equipment Category'
-    },
+    }
     //*/
-
+	/*
     proxy: {
 		type: 'ajax',
 		//url: 'php/hirarki/read.php',
@@ -23,5 +23,6 @@ Ext.define('rcm.store.CatHir', {
             messageProperty: 'message'
         }
     }
+    //*/
 });
 

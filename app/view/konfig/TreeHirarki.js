@@ -65,26 +65,27 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
                     allowOnlyWhitespace: false
 				}
 			},{
-				text: 'Ketegori',
+				hidden  : me.hideCat,
+				text: 'Kategori',
                 width	: 100,
                 dataIndex: 'cat'
 			},{
-				hidden  : true,
+				hidden  : me.hideDel,
                 xtype	: 'actioncolumn',
                 width	: 24,
 				icon	: 'resources/css/images/delete.png',
-                iconCls	: 'x-hidden',
-                tooltip	: 'Delete',
-                handler	: Ext.bind(me.handleDeleteClick, me)
+				iconCls	: 'x-hidden',
+				tooltip	: 'Delete',
+				handler	: Ext.bind(me.hdlDelClk, me)
             }];
 		
         me.callParent(arguments);
 		
 	},
 	
-	handleDeleteClick: function(gridView, rowIndex, colIndex, column, e) {
+	hdlDelClk: function(grid, row, col, column, e) {
         // Fire a "deleteclick" event with all the same args as this handler
 		// alert ('klik hirarki delete');
-        this.fireEvent('deleteclick', gridView, rowIndex, colIndex, column, e);
+        this.fireEvent('deleteclick', grid, row, col, column, e);
     }
 });

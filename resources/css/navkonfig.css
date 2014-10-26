@@ -113,7 +113,7 @@
 .new_cat_tree {
     background-image: url('./images/folder-add.png');
 }
-.delete_cat_tree {
+.del_cat_tree {
     background-image: url('./images/folder-delete.png');
 }
 .tasks-new-list {

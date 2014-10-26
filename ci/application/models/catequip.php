@@ -16,6 +16,24 @@ class Catequip extends CI_Model {
 		return $query->result();
 	}
 	
+	function set_cathir($data)	{
+		$this->db->trans_start();
+		$this->db->insert('cat_equip', $data); 
+		$insert_id = $this->db->insert_id();
+		$this->db->trans_complete();
+		return  $insert_id;
+	}
+	
+	function del_cathir($ids)	{
+		$this->db->where_in('id', $ids);
+		if ($this->db->delete('cat_equip'))	{
+			return $ids;
+		}
+		else {
+			return array('id'=>'0');
+		}
+	}
+	
 	function get_tipe_id()	{
 		$this->db->select('id');
 		$this->db->where('parent',0);
