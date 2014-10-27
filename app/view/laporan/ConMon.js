@@ -32,7 +32,8 @@ Ext.define('rcm.view.laporan.ConMon', {
 		//margins: '0 5 5 5',
 		layout : {
 			type : 'vbox',
-			align : 'stretch'},
+			align : 'stretch'
+		},
 		items:[{
 			xtype : 'panel',
 			
