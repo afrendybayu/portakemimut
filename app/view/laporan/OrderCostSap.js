@@ -48,14 +48,16 @@ Ext.define('rcm.view.laporan.OrderCostSap', {
 				field: 'tPlCost',
 				jdl: 'Order Costing Planned Cost',
 				dsat: '%',
-				dstore: 'SapPsOCwo'
+				dstore: 'SapPsOCwo',
+				subjdl: 'Object Type'
 			},{
 				xtype: 'tSapPie',
 				flex: 1,
 				field: 'tAcCost',
 				jdl: 'Order Costing Actual Cost',
 				dsat: '%',
-				dstore: 'SapPsOCwo'
+				dstore: 'SapPsOCwo',
+				subjdl: 'Object Type'
 			}]
 		},{
 			xtype: 'container',
@@ -76,14 +78,16 @@ Ext.define('rcm.view.laporan.OrderCostSap', {
 				field: 'tPlCost',
 				jdl: 'Order Costing Planned Cost',
 				dsat: '%',
-				dstore: 'SapPsOCot'
+				dstore: 'SapPsOCot',
+				subjdl: 'Work Order Type'
 			},{
 				xtype: 'tSapPie',
 				flex: 1,
 				field: 'tAcCost',
 				jdl: 'Order Costing Actual Cost',
 				dsat: '%',
-				dstore: 'SapPsOCot'
+				dstore: 'SapPsOCot',
+				subjdl: 'Work Order Type'
 			}]
 		}];
 		me.callParent(arguments);

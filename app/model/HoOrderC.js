@@ -12,11 +12,12 @@ Ext.define('rcm.model.HoOrderC', {
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/home/rOrderCost/sapOCost'
+			//read: 'ci/index.php/home/rOrderCost/sapOCost'
+			read: 'ci/index.php/sap/rOrderCost/sapOCostWo'
         },
         reader: {
             type: 'json',
-            root: 'hoorderc',
+            root: 'orderc',
             messageProperty: 'message'
         }
     }
