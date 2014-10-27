@@ -100,23 +100,20 @@ Ext.define('rcm.view.laporan.ConMon', {
         collapsible: true,        
 		collapsed: true,
 		height: 220,
+		/*
+		xtype : 'tGridContract',
+		duit: false,
+		totcv: true,
+		budg: true,
+		pbudg: true
+		//*/
         //*
 		layout: 'border',
 		items: [{
-				xtype: 'tFUpl',
-				region:'north',
-				idbDownL: 'idDwCm',
-				idbUpl: 'idUpCm',
-				idtLok: 'idLFileCm',
-				idThn: 'idThnCm',
-				etext: 'Upload File ConMon',
-				nameFile: 'fileCm',
-				idbSr: 'idSrCm',
-				idbPdf: 'idPdfCm'
-			},{
-				region:'west',
-				xtype : 'tGridConMon',
-				width: 200
+				idThn: 'iThnCM',
+				idbSr: 'srCM',
+				xtype: 'tFThnNo',
+				region: 'north'
 			},{
 				region: 'center',    
 				//xtype : 'iConMon',
