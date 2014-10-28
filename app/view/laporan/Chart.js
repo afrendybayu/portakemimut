@@ -92,7 +92,8 @@ Ext.define('rcm.view.laporan.Chart', {
 				idbSr: 'srPM',
 				jdl: 'PM Activity Planned Cost',
 				param: 'PM Cost',
-				yNama: 'Cost ($)'
+				yNama: 'Cost ($)',
+				duit: 1
 			},{
 				id: 'ts_ct',
 				title: 'Contract',
