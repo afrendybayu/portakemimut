@@ -375,10 +375,23 @@ class Sap extends CI_Model {
 	}
 
 	function get_pm_cost($thn)	{
+		$sql = "SELECT ordertype AS ortype, pmtype AS desk, ROUND(SUM(totplancost),2) as jml,
+				(SELECT CASE WHEN ortype = 'EP01' THEN '#2f7ed8'
+					WHEN ortype = 'EP02' THEN '#0d233a'
+					WHEN ortype = 'EP03' THEN '#8bbc21'
+					WHEN ortype = 'EP04' THEN '#910000'
+					WHEN ortype = 'EP05' THEN '#ffa81f' END) AS color 
+				FROM sap
+				WHERE YEAR(planstart)=$thn AND pmtype <> ''
+				GROUP BY ordertype,pmtype
+				ORDER BY ordertype asc, jml desc";
+		echo "sql: $sql";
+		/*
 		$sql =	"SELECT ordertype AS ortype, pmtype AS desk, ROUND(SUM(totplancost),2) as jml FROM sap ".
 				"WHERE YEAR(planstart)=$thn ".
 				"GROUP BY ordertype,pmtype ".
 				"ORDER BY ordertype asc, jml desc";
+		//*/
 		$query = $this->db->query($sql);
 		return $query->result();
 	}

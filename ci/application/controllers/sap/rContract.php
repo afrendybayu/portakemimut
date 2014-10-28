@@ -1,9 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class rContract extends CI_Controller {
+	function __construct() {
+        parent::__construct();
+		$this->load->model('contract');
+	}
 	
 	public function index()	{
-		echo "index";
+		echo "index contract";
 	}
 	
 	public function sapContract()	{
