@@ -26,7 +26,7 @@ Ext.define('rcm.controller.Main', {
     onLaunch: function() {
 		//this.ubahFieldRH();
 		//Ext.getCmp('idwest').collapse();
-        //alert("ini muncul: onLaunch");
+        alert("ini muncul: onLaunch");
 	}
 
 });

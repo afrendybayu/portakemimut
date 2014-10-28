@@ -919,6 +919,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.ConMonGr": [],
   "rcm.model.ConMonId": [],
   "rcm.model.ConMonIn": [],
+  "rcm.model.ConmonInput": [],
   "rcm.model.Contract": [],
   "rcm.model.ContractInput": [],
   "rcm.model.ContractLine": [],
@@ -1111,6 +1112,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.konfig.TreeCat": [],
   "rcm.view.konfig.TreeHirarki": [],
   "rcm.view.konfig.User": [],
+  "rcm.view.konfig.wCatHir": [],
   "rcm.view.lapobama.Av2Thn": [],
   "rcm.view.lapobama.AvGroup": [],
   "rcm.view.lapobama.AvHome": [],
@@ -1175,7 +1177,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.utama.HoChart": [],
   "rcm.view.utama.HoHistori": [],
   "rcm.view.utama.HoPie": [],
-  "rcm.view.utama.HoSpeedo": []
+  "rcm.view.utama.HoSpeedo": [],
+  "rcm.view.utama.Run": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Chart.ux.Highcharts": [
@@ -2209,6 +2212,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.ConMonGr": [],
   "rcm.model.ConMonId": [],
   "rcm.model.ConMonIn": [],
+  "rcm.model.ConmonInput": [],
   "rcm.model.Contract": [],
   "rcm.model.ContractInput": [],
   "rcm.model.ContractLine": [],
@@ -2473,6 +2477,9 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.konfig.User": [
     "widget.tUser"
   ],
+  "rcm.view.konfig.wCatHir": [
+    "widget.useredit"
+  ],
   "rcm.view.lapobama.Av2Thn": [
     "widget.tAv2Thn"
   ],
@@ -2671,6 +2678,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.utama.HoSpeedo": [
     "widget.tHoSpeedo"
+  ],
+  "rcm.view.utama.Run": [
+    "widget.tAksi"
   ]
 });
 Ext.setVersion("ext-theme-base", "4.2.1");

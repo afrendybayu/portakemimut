@@ -17,7 +17,13 @@ Ext.define('rcm.view.nav.AppHeader', {
 			},
 			html: document.title,
 			flex: 1
-		}, {
+		},{
+			id: 'lblClk',
+			xtype: 'label',
+			//text: 'tessss',
+			margin: '10 0',
+			width: 200
+		},{
 			
 			xtype : 'authlogin'
 			//title : 'login'

@@ -12,7 +12,8 @@ Ext.define('rcm.controller.Config', {
 		'konfig.PanelList',
 		'konfig.TreeCat',
 		'konfig.AksiForm',
-		'konfig.AksiGrid'
+		'konfig.AksiGrid',
+		'konfig.wCatHir'
     ],
 
     controllers: [
@@ -70,6 +71,11 @@ Ext.define('rcm.controller.Config', {
 		},{
 			ref: 'tCatHir',
 			selector: 'tCatHir'
+		},{
+			ref: 'tWCatHir',
+			selector: 'tWCatHir',
+			xtype: 'tWCatHir',
+			autoCreate: true
 		},{
 			ref: 'tKGridL',
 			selector: 'tKGridL'
@@ -369,7 +375,7 @@ Ext.define('rcm.controller.Config', {
 		this.treeCat(true);
 	},
 	hdlDelCatHir: function(rec)	{
-		console.log("Hapus id: "+rec.get('id')+", nama: "+rec.get('text'));
+		//console.log("Hapus id: "+rec.get('id')+", nama: "+rec.get('text'));
 		//console.log(e);
 		var me=this;
 		Ext.MessageBox.show({
@@ -382,7 +388,7 @@ Ext.define('rcm.controller.Config', {
 					dl=new rcm.model.CatHir({ id:rec.get('id') });
 					dl.destroy({
 						success : function(del, op){
-							alert('sukses');
+							//alert('sukses');
 						},
 						failure: function(task, op)	{
 							var error = op.getError(),
@@ -400,19 +406,25 @@ Ext.define('rcm.controller.Config', {
 			}
 		});
 		
-		me.getCatHirStore().reload();
+		me.getCatHirStore().load();
 	},
 	
 	treeCat: function(leaf)	{
 		var me = this,
             hTree = me.getTCatHir(),
-            ce = hTree.ce,
+            //ce = hTree.ce,
             selectionModel = hTree.getSelectionModel(),
             selectedList = selectionModel.getSelection()[0],
 			parentList = selectedList.isLeaf() ? selectedList.parentNode : selectedList; //if leaf, then selecetd parent id, else select id
 			//parentList = selectedList;
 		console.log(selectedList);
-		rcmSettings.abc = hTree;
+		
+		
+		var wHir = me.getTWCatHir();
+		//rcmSettings.def = me;
+		//rcmSettings.abc = me.getTWCatHir();
+		wHir.show();
+		return;
 		//console.log(selectedList.isLeaf());
 		var newList = Ext.create('rcm.model.CatHir', {
 			text: 'New Cat',

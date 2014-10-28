@@ -230,10 +230,25 @@ Ext.define('rcm.controller.Login', {
 			}
 		});
 	},
+	
+	updateClock: function()	{
+		//console.log(Ext.Date.format(new Date(), "g:i:s A"));
+		Ext.fly('lblClk').update(Ext.Date.format(new Date(), "l, j-M-Y G:i:s"));
+	},
+	
 	onLaunch: function(){
 		// console.log('launch sesi login');
 		var me = this;
 		var LSesi = this.getLoginSesiStore();
+		
+		//rcmSettings.abcd = Ext.fly('lblClk');
+		//*
+		var runner = new Ext.util.TaskRunner();
+		var task = runner.start({
+			 run: this.updateClock,
+			 interval: 1000
+		});
+		//*/
 		LSesi.load({
 			scope: this,
 			callback: function(records, operation, success) {
@@ -267,8 +282,8 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('gridedit').setVisible(false);
 					Ext.getCmp('btnUplBpm3').setDisabled(true);
 					Ext.getCmp('bwbpm3').setDisabled(true);
-					Ext.getCmp('conmondel').setDisabled(true);
-					Ext.getCmp('cmform').setDisabled(true);
+					//Ext.getCmp('conmondel').setDisabled(true);
+					//Ext.getCmp('cmform').setDisabled(true);
 					
 					Ext.getCmp('ohform').setDisabled(true);
 					Ext.getCmp('ohdel').setDisabled(true);
