@@ -30,15 +30,55 @@ class Conf extends CI_Controller {
 	}
 	
 	public function cAksi(){
-		$aksi = json_decode(file_get_contents('php://input'));
+		try {
+			$aksi = json_decode(file_get_contents('php://input'));
+			
+			$cek = "select nama from aksi where nama = '{$aksi->nama}'";
+			$query = $this->db->query($cek);
+			if ($query->num_rows() > 0){
+				// echo "Sudah ada data ".$aksi->nama;
+				$sql = "update aksi set nama = '{$aksi->nama}', ket = '{$aksi->ket}' where nama = '{$aksi->nama}' ";
+			}
+			else{
+				$sql = "insert into aksi (nama, ket) values ('{$aksi->nama}','{$aksi->ket}')";
+				
+			}
+			$hsl = $this->db->query($sql);
+					
 		
-		// echo $aksi->nama . ' - dan - '.$aksi->ket;
-		//*
-		$sql = "replace into aksi (nama, ket) 
-				VALUES ('{$aksi->nama}','{$aksi->ket}')";
-		$query = $this->db->query($sql);
-		//*/
+		} catch (Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		
+		
+
 	}
+
+	public function uAksi(){
+		try {
+			$uaksi = json_decode(file_get_contents('php://input'));
+			
+			$upd = array(
+				// 'id' => $uaksi->id ,
+				'nama' => $uaksi->nama ,
+				'ket' => $uaksi->ket 
+			 );
+			
+			$this->db->where('id',$uaksi->id);
+			$this->db->update('aksi', $upd);
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+	}
+	
 	public function dAksi(){
 		
 		try {
@@ -78,15 +118,59 @@ class Conf extends CI_Controller {
 		
 	
 	}
+	public function uPmDef(){
+		try {
+			$pmdef = json_decode(file_get_contents('php://input'));
+			
+			$upd = array(
+				// 'id' => $uaksi->id ,
+				'nama' => $pmdef->nama ,
+				'kode' => $pmdef->kode,
+				'durasi' => $pmdef->durasi,
+				'ket' => $pmdef->ket 
+			 );
+			
+			$this->db->where('id',$pmdef->id);
+			$this->db->update('pmdef', $upd);
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+	}
 	public function cPMdef(){
-		$pmdef = json_decode(file_get_contents('php://input'));
-		// echo strtoupper($pmdef->nama);
-		// echo $aksi->nama . ' - dan - '.$aksi->ket;
-		//*
-		$sql = "replace into pmdef (nama, kode, durasi, ket) 
-				VALUES ('".strtoupper($pmdef->nama)."','".strtoupper($pmdef->kode)."','".$pmdef->durasi."','".$pmdef->ket."')";
-		$query = $this->db->query($sql);
-		//*/
+		try {
+			$pmdef = json_decode(file_get_contents('php://input'));
+			
+			// $query = $this->db->query($cek);
+			$cek = "select nama, kode, durasi from pmdef where nama = '{$pmdef->nama}' or kode = '{$pmdef->nama}' or durasi = '{$pmdef->durasi}'";
+			$query = $this->db->query($cek);
+			if ($query->num_rows() > 0){
+				// echo "Sudah ada data ".$aksi->nama;
+				// $sql = "update pmdef set nama = '".strtoupper($pmdef->nama)."',kode = '".strtoupper($pmdef->kode)."',
+				// 		durasi = '{$pmdef->durasi}', ket = '{$pmdef->durasi}'";
+				return false;
+			}
+			else{
+				// $sql = "insert into aksi (nama, ket) values ('{$aksi->nama}','{$aksi->ket}')";
+				$sql = "insert into pmdef (nama, kode, durasi, ket) 
+				VALUES ('".strtoupper($pmdef->nama)."','".strtoupper($pmdef->kode)."','{$pmdef->durasi}','{$pmdef->ket}')";
+			}
+			$hsl = $this->db->query($sql);
+					
+		
+		} catch (Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+
+
 	}
 	public function dPmDef(){
 		

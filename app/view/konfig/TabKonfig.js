@@ -22,6 +22,8 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		
 		me.items = [{
 			//id: 'tk_ak',
+			//*
+			id: 'tk_ak',
 			title: 'Aksi Def.',
 			xtype:'tAksi'
 		},{
@@ -85,8 +87,12 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			idBtnD: 'iGEqdef',
 			dstoreD: 'GridEqnIn'
 		},{
+		/*
 			//id: 'tk_pd',
 			itemId: 'pmd',
+		},{
+		//*/
+			id: 'tk_pd',
 			title: 'Pd. Maintenance Def.',
 			xtype:'tPmDef'
 		},{

@@ -23,18 +23,28 @@ Ext.define('rcm.view.konfig.AksiForm', {
 		},{
 			fieldLabel	: 'Keterangan',
             name		: 'ket',
-            allowBlank	: false
+            allowBlank	: true
 		}];
 		
 		me.buttons = [{
 			text: 'Simpan',
-			formBind: true, //only enabled once the form is valid
-			disabled: true,
+			formBind: true, 
+			disabled: true
             // handler: function() {
                 // fireEvent('SimpanAksi', args ) ;
 				// alert ('simpan dulu');
 				// this.up('form').getForm().isValid();
             // }
+        },{
+        	text: 'Edit',
+			formBind: true,
+			disabled: true,
+			// handler : function(){
+			// 		onChange(newVal, oldVal) {
+	  //               alert(newVal);
+   //          	}	
+			// }
+			
         },{
             text: 'Batal',
             handler: function() {

@@ -142,8 +142,7 @@ Ext.define('rcm.controller.Config', {
 			},
 			 
 			'fAksi button[text=Simpan]' : {
-				click : me.hdlSimpanForm
-			
+				click : me.hdlSmpAksiForm
 			},
 			'#iGMddef': {
 				click: me.iGMddef
@@ -154,8 +153,14 @@ Ext.define('rcm.controller.Config', {
 			'#iGPmdef': {
 				click: me.iGPmdef
 			},
+			'fAksi button[text=Edit]' : {
+				click : me.hdlEditAksiForm
+			},
 			'fPmDef button[text=Simpan]' : {
-				click : me.hdlPmDefForm
+				click : me.hdlSmpPmDefForm
+			},
+			'fPmDef button[text=Edit]' : {
+				click : me.hdlEditPmDefForm
 			},
 			'gridAksi' :{
 				AksiGridDel  : me.delAksiGrid,
@@ -202,7 +207,7 @@ Ext.define('rcm.controller.Config', {
 				fn	: function (oks){
 					if (oks === 'ok'){ 
 						
-						delAksi.destroy ({
+						delPm.destroy ({
 							success : function(delPm, operation){
 								// dcmon.destroy();
 								// me.getConMonStore().reload();
@@ -218,8 +223,42 @@ Ext.define('rcm.controller.Config', {
 			});
 	
 	},
+
+	hdlEditPmDefForm : function(){
+		alert ('edit Form PM DEF');
+
+		var me = this;
+		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
+		isiform = me.getFPmDef().getForm();
+		dataid = isiform.getRecord().data.id;
+		isivalue = isiform.getValues();
+		// isiform.//.newValues();
+		// isistore = me.getFormAksisStore().getNewRecords();
+		
+		// editsave = new rcm.model.FormAksi();
+		// editsave.set({id:dataid, nama:isivalue.nama, ket : isivalue.ket});
+
+		editpmdef = Ext.create(rcm.model.FormPmDef,{
+			id:dataid, 
+			nama:isivalue.nama,
+			kode:isivalue.kode,
+			durasi:isivalue.durasi,
+			ket : isivalue.ket
+		});
+		// console.log(isivalue);
+		// console.log(dataid);
+
+		// console.log(editsave);
+		isiform.reset();
+		editpmdef.save({
+			success: function(record, operation){
+				me.getFormPmDefsStore().reload();
+			}
+
+		});
+	},
 	
-	hdlPmDefForm : function (){
+	hdlSmpPmDefForm : function (){
 		alert('ke teken');
 		var me = this,
 		f_pmdef = me.getFPmDef().getForm(),
@@ -273,14 +312,41 @@ Ext.define('rcm.controller.Config', {
 			});
 	
 	},
-	
-	hdlSimpanForm : function(){
+	hdlEditAksiForm : function(){
+		// alert ('ini tombol edit');
+		var me = this;
+		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
+		isiform = me.getFAksi().getForm();
+		dataid = isiform.getRecord().data.id;
+		isivalue = isiform.getValues();
+		// isiform.//.newValues();
+		// isistore = me.getFormAksisStore().getNewRecords();
+		
+		// editsave = new rcm.model.FormAksi();
+		// editsave.set({id:dataid, nama:isivalue.nama, ket : isivalue.ket});
+
+		editsave = Ext.create(rcm.model.FormAksi,{id:dataid, nama:isivalue.nama, ket : isivalue.ket});
+		// console.log(isivalue);
+		// console.log(dataid);
+
+		// console.log(editsave);
+		isiform.reset();
+		editsave.save({
+			success: function(record, operation){
+				me.getFormAksisStore().reload();
+			}
+
+		});
+
+		
+	},
+	hdlSmpAksiForm : function(){
 		// alert('tekan tombol simpan');
 		var me = this,
 		f_aksi = me.getFAksi().getForm(),
 		getDataAksi = f_aksi.getValues(),
 		AksiSave = new rcm.model.FormAksi(getDataAksi);
-		console.log(AksiSave);
+		// console.log(AksiSave);
 		f_aksi.reset();
 		AksiSave.save({
 			success: function(record, operation){
