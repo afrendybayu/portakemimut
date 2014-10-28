@@ -118,15 +118,59 @@ class Conf extends CI_Controller {
 		
 	
 	}
+	public function uPmDef(){
+		try {
+			$pmdef = json_decode(file_get_contents('php://input'));
+			
+			$upd = array(
+				// 'id' => $uaksi->id ,
+				'nama' => $pmdef->nama ,
+				'kode' => $pmdef->kode,
+				'durasi' => $pmdef->durasi,
+				'ket' => $pmdef->ket 
+			 );
+			
+			$this->db->where('id',$pmdef->id);
+			$this->db->update('pmdef', $upd);
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+	}
 	public function cPMdef(){
-		$pmdef = json_decode(file_get_contents('php://input'));
-		// echo strtoupper($pmdef->nama);
-		// echo $aksi->nama . ' - dan - '.$aksi->ket;
-		//*
-		$sql = "replace into pmdef (nama, kode, durasi, ket) 
-				VALUES ('".strtoupper($pmdef->nama)."','".strtoupper($pmdef->kode)."','".$pmdef->durasi."','".$pmdef->ket."')";
-		$query = $this->db->query($sql);
-		//*/
+		try {
+			$pmdef = json_decode(file_get_contents('php://input'));
+			
+			// $query = $this->db->query($cek);
+			$cek = "select nama, kode, durasi from pmdef where nama = '{$pmdef->nama}' or kode = '{$pmdef->nama}' or durasi = '{$pmdef->durasi}'";
+			$query = $this->db->query($cek);
+			if ($query->num_rows() > 0){
+				// echo "Sudah ada data ".$aksi->nama;
+				// $sql = "update pmdef set nama = '".strtoupper($pmdef->nama)."',kode = '".strtoupper($pmdef->kode)."',
+				// 		durasi = '{$pmdef->durasi}', ket = '{$pmdef->durasi}'";
+				return false;
+			}
+			else{
+				// $sql = "insert into aksi (nama, ket) values ('{$aksi->nama}','{$aksi->ket}')";
+				$sql = "insert into pmdef (nama, kode, durasi, ket) 
+				VALUES ('".strtoupper($pmdef->nama)."','".strtoupper($pmdef->kode)."','{$pmdef->durasi}','{$pmdef->ket}')";
+			}
+			$hsl = $this->db->query($sql);
+					
+		
+		} catch (Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+
+
 	}
 	public function dPmDef(){
 		

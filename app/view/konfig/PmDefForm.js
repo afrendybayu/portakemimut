@@ -41,6 +41,11 @@ Ext.define('rcm.view.konfig.PmDefForm', {
 			formBind: true, //only enabled once the form is 
 			disabled: true,
         },{
+        	text: 'Edit',
+			formBind: true,
+			disabled: true,
+			
+        },{
             text: 'Batal',
             handler: function() {
                 this.up('form').getForm().reset();

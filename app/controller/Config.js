@@ -126,7 +126,10 @@ Ext.define('rcm.controller.Config', {
 				click : me.hdlEditAksiForm
 			},
 			'fPmDef button[text=Simpan]' : {
-				click : me.hdlPmDefForm
+				click : me.hdlSmpPmDefForm
+			},
+			'fPmDef button[text=Edit]' : {
+				click : me.hdlEditPmDefForm
 			},
 			'gridAksi' :{
 				AksiGridDel  : me.delAksiGrid,
@@ -180,8 +183,42 @@ Ext.define('rcm.controller.Config', {
 			});
 	
 	},
+
+	hdlEditPmDefForm : function(){
+		alert ('edit Form PM DEF');
+
+		var me = this;
+		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
+		isiform = me.getFPmDef().getForm();
+		dataid = isiform.getRecord().data.id;
+		isivalue = isiform.getValues();
+		// isiform.//.newValues();
+		// isistore = me.getFormAksisStore().getNewRecords();
+		
+		// editsave = new rcm.model.FormAksi();
+		// editsave.set({id:dataid, nama:isivalue.nama, ket : isivalue.ket});
+
+		editpmdef = Ext.create(rcm.model.FormPmDef,{
+			id:dataid, 
+			nama:isivalue.nama,
+			kode:isivalue.kode,
+			durasi:isivalue.durasi,
+			ket : isivalue.ket
+		});
+		// console.log(isivalue);
+		// console.log(dataid);
+
+		// console.log(editsave);
+		isiform.reset();
+		editpmdef.save({
+			success: function(record, operation){
+				me.getFormPmDefsStore().reload();
+			}
+
+		});
+	},
 	
-	hdlPmDefForm : function (){
+	hdlSmpPmDefForm : function (){
 		alert('ke teken');
 		var me = this,
 		f_pmdef = me.getFPmDef().getForm(),

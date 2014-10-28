@@ -11,6 +11,7 @@ Ext.define('rcm.model.FormPmDef', {
 		api: {
 			read	: 'ci/index.php/konfig/Conf/rPmDef',
 			create 	: 'ci/index.php/konfig/Conf/cPmDef',
+			update 	: 'ci/index.php/konfig/Conf/uPmDef',
 			destroy	: 'ci/index.php/konfig/Conf/dPmDef'
         },
         reader: {
