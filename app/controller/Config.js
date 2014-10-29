@@ -167,7 +167,10 @@ Ext.define('rcm.controller.Config', {
 			
 			'tKGridL': {
 				cdragdrop: me.hdlDropListC,
-				ddragdrop: me.hdlDropListD
+				ddragdrop: me.hdlDropListD,
+				itemmouseenter: me.showActions,
+				itemmouseleave: me.hideActions,
+				deleteclick: me.hdlDelEq
 			},
 			 
 			'fAksi button[text=Simpan]' : {
@@ -384,6 +387,10 @@ Ext.define('rcm.controller.Config', {
 			
 		
 		});
+	},
+	
+	hdlDelEq: function(rec)	{
+		alert("Del: "+rec.get('id'));
 	},
 	
     hdlDropListD: function(data, cat, tab)	{

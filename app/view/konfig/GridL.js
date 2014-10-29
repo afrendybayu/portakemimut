@@ -2,7 +2,7 @@ Ext.define('rcm.view.konfig.GridL', {
 	extend: 'Ext.grid.Panel',
 	xtype: 'tKGridL',	
 	xstore:'',
-
+	rec: '',
 
 	initComponent: function() {
 		var me=this;
@@ -15,7 +15,14 @@ Ext.define('rcm.view.konfig.GridL', {
 				id: me.idBtn,
 				iconCls: 'more'
 			}]
-		}]: [],
+		}]: [];
+		
+		me.listeners = {
+			itemmouseenter: function(gridview, record) {
+				rec = record;	//.get('id');
+			}
+		},
+
 		
 		me.viewConfig = {
             plugins: {
@@ -60,10 +67,22 @@ Ext.define('rcm.view.konfig.GridL', {
 				dataIndex	: 'nama',
 				flex:1,
 				minWidth: 330
+			},{
+                xtype	: 'actioncolumn',
+                hidden: me.hide ? true:false,
+                width	: 24,
+				icon	: 'resources/css/images/delete.png',
+				iconCls	: 'x-hidden',
+                tooltip	: 'Hapus Kategori',
+                handler	: Ext.bind(me.hdlDeleteClick,me)
 			}]
 		};
 		
 		me.callParent(arguments);
 	
-	}
+	},
+	hdlDeleteClick: function() {
+		//alert ('klik hirarki delete: ');
+		this.fireEvent('deleteclick', rec);
+    }
 });
