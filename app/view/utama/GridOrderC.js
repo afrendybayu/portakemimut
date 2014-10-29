@@ -48,6 +48,7 @@ Ext.define('rcm.view.utama.GridOrderC', {
 								total += parseFloat(record.get('tplcost'));
 							}
 							return total.toFixed(2);
+							//return rcm.view.Util.format2(1,total.'$');
 						}
 					}]
 				},
@@ -70,9 +71,10 @@ Ext.define('rcm.view.utama.GridOrderC', {
 					}]
 				}
 				//*
-				,{ header:'Budget',dataIndex:'budget',flex:1,
+				,{ header:'Budget',dataIndex:'budget',flex:1, renderer:'usMoney',
 					summaryType:'average',summaryRenderer: function(value) {
-						return Ext.String.format('${0}',value.toFixed(2));	} }
+						//return Ext.String.format('${0}',value.toFixed(2));	} }
+						return rcm.view.Util.format2(1,value,'$');	} }
 				,{ header:'% Budget',dataIndex:'persen',flex:1,
 					summaryType:'average',summaryRenderer: function(value) {
 						return Ext.String.format('{0} %', value.toFixed(2));	} }
