@@ -5,5 +5,5 @@ Ext.define('rcm.model.SapTop', {
 		'Ext.data.proxy.Ajax'
 	],
 
-	fields: [ 'ortype','desk',{name: 'jml',type:'float'} ]
+	fields: [ 'ortype','desk',{name: 'jml',type:'float'},'color' ]
 });

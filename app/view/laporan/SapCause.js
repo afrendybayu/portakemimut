@@ -20,7 +20,8 @@ Ext.define('rcm.view.laporan.SapCause', {
 		var me=this;
 		me.series = [{
 			dataIndex: 'jml',
-			name: me.param
+			name: me.param,
+			colorField: 'color'
 		}];
 		me.store= me.dstore;
 		me.chartConfig= {

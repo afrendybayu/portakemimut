@@ -385,7 +385,7 @@ class Sap extends CI_Model {
 				WHERE YEAR(planstart)=$thn AND pmtype <> ''
 				GROUP BY ordertype,pmtype
 				ORDER BY ordertype asc, jml desc";
-		echo "sql: $sql";
+		//echo "sql: $sql";
 		/*
 		$sql =	"SELECT ordertype AS ortype, pmtype AS desk, ROUND(SUM(totplancost),2) as jml FROM sap ".
 				"WHERE YEAR(planstart)=$thn ".
