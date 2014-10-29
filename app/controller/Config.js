@@ -14,6 +14,8 @@ Ext.define('rcm.controller.Config', {
 		'konfig.AksiForm',
 		'konfig.PmDefForm',
 		'konfig.CauseForm',
+		'konfig.DamageGrid',
+		'konfig.DamageForm',
 		
 		'konfig.wCatHir'
     ],
@@ -28,10 +30,10 @@ Ext.define('rcm.controller.Config', {
 		'FormAksis',
 		'FormPmDefs',
 		'Causes',
+		'Damages',
 		// 'GridAksi',
 		//'PMDefs',
 		
-		'Damages',
 		'ModeDefs',
 		'Refers',
 		'Symptoms',
@@ -57,8 +59,8 @@ Ext.define('rcm.controller.Config', {
 		'FormAksi',
 		'FormPmDef',
 		'Cause',
-		
-		
+		'Damage',
+
 		'GridPMIn',
 		'GridOPIn',
 		'GridModeIn',
@@ -100,6 +102,12 @@ Ext.define('rcm.controller.Config', {
 		},{
 			ref : 'fCause',
 			selector : 'fCause'
+		},{
+			ref : 'gridDamage',
+			selector : 'gridDamage'
+		},{
+			ref : 'fDamage',
+			selector : 'fDamage'
 	}],
     
     init: function() {
@@ -175,6 +183,12 @@ Ext.define('rcm.controller.Config', {
 			'fCause button[text=Edit]' : {
 				click : me.hdlEditCauseForm
 			},
+			'fDamage button[text=Simpan]' : {
+				click : me.hdlSmpDamageForm
+			},
+			'fDamage button[text=Edit]' : {
+				click : me.hdlEditDamageForm
+			},
 			'gridAksi' :{
 				AksiGridDel  : me.delAksiGrid,
 				selectionchange : me.slctAksiGrid
@@ -187,12 +201,96 @@ Ext.define('rcm.controller.Config', {
 			'gridCauseDef' : {
 				CauseGridDel : me.delCauseGrid,
 				selectionchange : me.slctCauseGrid
+			},
+			'gridDamage' : {
+				DamageGridDel : me.delDamageGrid,
+				selectionchange : me.slctDamageGrid
 			}
 		});
 		
     },
+    slctDamageGrid : function(model, records){
+    	var me =this;
+		if (records[0]) {
+			me.getFDamage().getForm().loadRecord(records[0]);
+        }
+    },
+    hdlSmpDamageForm : function(){
+    	// alert ('Tombol damage simpan');
+    	var me = this,
+    	fdmg = me.getFDamage().getForm(),
+		getDataDmg = fdmg.getValues(),
+		DmgSave = new rcm.model.Damage(getDataDmg);
+		// console.log(getDataCause);
+		// console.log(DmgSave);
+		fdmg.reset();
+		DmgSave.save({
+			success: function(record, operation){
+				me.getDamagesStore().reload();
+			}
+			
+		
+		});
+    },
+	hdlEditDamageForm : function(){
+		alert('Tombol Edit damage');
+		var me = this,
+		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
+		isidmg = me.getFDamage().getForm(),
+		dataid = isidmg.getRecord().data.id,
+		isivalue = isidmg.getValues();
+		// cobama 	= isivalue.obama ? 1 : 0;
+		editdmg = Ext.create(rcm.model.Damage,{
+			id:dataid, nama:isivalue.nama, kode:isivalue.kode
+		});
+		// console.log(isivalue);
+		// console.log(cobama);
+
+		// console.log(editsave);
+
+		isidmg.reset();
+		// me.getCausesStore().reload();
+		editdmg.save({
+			success: function(record, operation){
+				me.getDamagesStore().reload();
+			}
+
+		});
+	},
+
+    delDamageGrid : function(rec){
+    	// alert ('grid Cause Delete');
+		// console.log(rec);
+		
+		var me = this, 
+		record = rec.data,
+		deldmg = new rcm.model.Damage(record );
+		Ext.MessageBox.show({
+				title : 'Hapus Damage Def.',
+				msg   : 'Yakin Data Akan di Hapus ??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						deldmg.destroy ({
+							success : function(record, operation){
+								// dcmon.destroy();
+								// me.getConMonStore().reload();
+								me.getDamagesStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+					
+				}
+			});
+    },
+
     hdlEditCauseForm : function(){
-    	alert ('Form Edit');
+    	// alert ('Form Edit');
     	var me = this;
 		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
 		isicause = me.getFCause().getForm();
@@ -217,7 +315,7 @@ Ext.define('rcm.controller.Config', {
 		});
     },
     hdlSmpCauseForm : function(){
-    	alert ('Form Simpan');
+    	// alert ('Form Simpan');
     	var me = this,
     	f_cause = me.getFCause().getForm(),
 		getDataCause = f_cause.getValues(),
@@ -359,12 +457,12 @@ Ext.define('rcm.controller.Config', {
 	},
 	
 	hdlSmpPmDefForm : function (){
-		alert('ke teken');
+		// alert('ke teken');
 		var me = this,
 		f_pmdef = me.getF_PmDef().getForm(),
 		getDataPMDef = f_pmdef.getValues(),
 		PmDefSave = new rcm.model.FormPmDef(getDataPMDef);
-		console.log(PmDefSave);
+		// console.log(PmDefSave);
 		f_pmdef.reset();
 		PmDefSave.save({
 			success: function(record, operation){
@@ -383,7 +481,7 @@ Ext.define('rcm.controller.Config', {
 	
 	delAksiGrid : function (rec){
 		//alert ('Awas Kau Pencet-Penccet Aku '+rec);
-		console.log(rec);
+		// console.log(rec);
 		
 		var me = this, 
 		record = rec.data,

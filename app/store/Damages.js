@@ -1,7 +1,7 @@
 /* AfrendyBayu 4Des2013 */
 Ext.define('rcm.store.Damages', {
     extend: 'Ext.data.Store',
-    model: 'rcm.model.GridAksi' ,
+    model: 'rcm.model.Damage' ,
     // requires:[
 		// 'Ext.data.proxy.Ajax'
 		// ,'rcm.model.Aksi'
@@ -11,17 +11,17 @@ Ext.define('rcm.store.Damages', {
 	
 	autoLoad: true,
 	
-	proxy: {
-		type: 'ajax',
-		api: {
-			read: 'ci/index.php/rh/rDamage/readDamage'
-        },
-        reader: {
-            type: 'json',
-            root: 'damage',
-            messageProperty: 'message'
-        }
-    }
+	// proxy: {
+	// 	type: 'ajax',
+	// 	api: {
+	// 		read: 'ci/index.php/rh/rDamage/readDamage'
+ //        },
+ //        reader: {
+ //            type: 'json',
+ //            root: 'damage',
+ //            messageProperty: 'message'
+ //        }
+ //    }
 	
 	
 });

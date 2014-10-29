@@ -3,8 +3,8 @@ Ext.define('rcm.view.konfig.Damage', {
     xtype: 'tDamage',
 	
 	requires: [
-        'rcm.view.konfig.AksiForm',
-		'rcm.view.konfig.AksiGrid'
+        'rcm.view.konfig.DamageForm',
+		'rcm.view.konfig.DamageGrid'
         
     ],
 	
@@ -23,10 +23,8 @@ Ext.define('rcm.view.konfig.Damage', {
 		autoScroll: true,
 		frame	: true,
 		items	: [{
-			xtype 	: 'fAksi',
-			lnama:'Nama Damage',lkode:'Kode Damage',
-			nmnama:'nama',nmkode:'kode',
-			hidnama:false,hidkode:false,hidket:true,hidjab:true,hidckbox:true,hiduserid:true,hidpwd:true,hiddur:true
+			xtype 	: 'fDamage',
+			
 			
 		}]
 		
@@ -37,14 +35,14 @@ Ext.define('rcm.view.konfig.Damage', {
 	},{
 		title	: 'Data Damages',
         region	: 'south',     
-        xtype	: 'gridAksi',
+        xtype	: 'gridDamage',
 		html	: 'bawah',
         height	: '70%',
         collapsible	: true,
 		// collapsed	: true,
 		split	: true,
 		
-		xstore		: 'Damages',
+		/*xstore		: 'Damages',
 		kolgrid1	: 'Nama Damage',
 		kolgrid2	: 'Kode Damage',
 		// kolgrid3	: 'Obama',
@@ -59,7 +57,7 @@ Ext.define('rcm.view.konfig.Damage', {
 		hidegrid2	: false,
 		hidegrid3	: true,
 		hidegrid4	: true,
-		hidegrid5	: true
+		hidegrid5	: true*/
 		
 		
 	

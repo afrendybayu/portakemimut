@@ -22,8 +22,8 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		
 		me.items = [{
 			//id: 'tk_ak',
-			/*
-			id: 'tk_ak',
+			
+			/*id: 'tk_ak',
 			title: 'Aksi Def.',
 			xtype:'tAksi'
 		},{
@@ -57,54 +57,51 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			idBtnD: 'iGOpdef',
 			dstoreD: 'GridKfEquip'
 		},{
-// <<<<<<< HEAD
+
 			id: 'tk_pd',
 			title: 'Pd. Maintenance Def.',
 			xtype:'tPmDef'
-		},{//*/
+		},{
 			// id: 'ts_cause',
-// =======
-		// 	id: 'tk_md',
-		// 	title: 'Mode List',
-		// 	xtype:'tpKonfigList',
-		// 	jdlKi: 'Pilih Mode',
-		// 	dhideA: true,
-		// 	dhideC: true,
-		// 	jdlKa: 'Mode Tersedia',
-		// 	dstoreKi: 'GridModeIn',
-		// 	dstoreKa: 'GridModenIn',
-		// 	jdlDet: 'List Equipment',
-		// 	jdlTb: 'List Kiri',
-		// 	jdlBtnD: 'Go to Mode Definition',
-		// 	idBtnD: 'iGMddef',
-		// 	dstoreD: 'GridKfEquip'
-		// },{
-		// 	id: 'tk_eq',
-		// 	title: 'Equipment List',
-		// 	xtype:'tpKonfigList',
-		// 	dhideA: false,
-		// 	dhideB: true,
-		// 	jdlKi: 'Pilih Equipment',
-		// 	jdlKa: 'Hirarki',
-		// 	dstoreKi: 'GridEqcIn',
-		// 	dstoreKa: 'GridEqcIn',
-		// 	jdlDet: 'Equipment List yang belum dipetakan',
-		// 	jdlTb: 'List Kiri',
-		// 	jdlBtnD: ' ',
-		// 	idBtnD: 'iGEqdef',
-		// 	dstoreD: 'GridEqnIn'
-		// },{
-		// /*
-		// 	//id: 'tk_pd',
-		// 	itemId: 'pmd',
-		// },{
-		// //*/
-		// 	id: 'tk_pd',
-		// 	title: 'Pd. Maintenance Def.',
-		// 	xtype:'tPmDef'
-		// },{
-			//id: 'ts_cause',
-// >>>>>>> afrendy
+
+			id: 'tk_md',
+			title: 'Mode List',
+			xtype:'tpKonfigList',
+			jdlKi: 'Pilih Mode',
+			dhideA: true,
+			dhideC: true,
+			jdlKa: 'Mode Tersedia',
+			dstoreKi: 'GridModeIn',
+			dstoreKa: 'GridModenIn',
+			jdlDet: 'List Equipment',
+			jdlTb: 'List Kiri',
+			jdlBtnD: 'Go to Mode Definition',
+			idBtnD: 'iGMddef',
+			dstoreD: 'GridKfEquip'
+		},{
+			id: 'tk_eq',
+			title: 'Equipment List',
+			xtype:'tpKonfigList',
+			dhideA: false,
+			dhideB: true,
+			jdlKi: 'Pilih Equipment',
+			jdlKa: 'Hirarki',
+			dstoreKi: 'GridEqcIn',
+			dstoreKa: 'GridEqcIn',
+			jdlDet: 'Equipment List yang belum dipetakan',
+			jdlTb: 'List Kiri',
+			jdlBtnD: ' ',
+			idBtnD: 'iGEqdef',
+			dstoreD: 'GridEqnIn'
+		},{
+		
+			// id: 'tk_pd',
+			// itemId: 'pmd',
+			title: 'Pd. Maintenance Def.',
+			xtype:'tPmDef'
+		},{*/
+			// id: 'ts_cause',
+
 			title: 'Cause Def.',
 			xtype:'tCause'
 		},{
