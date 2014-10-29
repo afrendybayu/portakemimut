@@ -58,6 +58,10 @@ Ext.define('rcm.view.laporan.SapPie', {
 				text : me.jdl,
 				x : -20 //center
 			},
+			subtitle: {
+				//text: 'Availability'
+				text: me.subjdl
+			},
 			plotOptions: { 
 				pie: { 
 					allowPointSelect: true 

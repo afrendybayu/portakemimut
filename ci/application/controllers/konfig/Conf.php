@@ -146,7 +146,7 @@ class Conf extends CI_Controller {
 			$pmdef = json_decode(file_get_contents('php://input'));
 			
 			// $query = $this->db->query($cek);
-			$cek = "select nama, kode, durasi from pmdef where nama = '{$pmdef->nama}' or kode = '{$pmdef->nama}' or durasi = '{$pmdef->durasi}'";
+			$cek = "select nama, kode, durasi from pmdef where nama = '{$pmdef->nama}' or kode = '{$pmdef->kode}' or durasi = '{$pmdef->durasi}'";
 			$query = $this->db->query($cek);
 			if ($query->num_rows() > 0){
 				// echo "Sudah ada data ".$aksi->nama;
@@ -215,9 +215,27 @@ class Conf extends CI_Controller {
 		try {
 			$dcause = json_decode(file_get_contents('php://input'));
 			
+			/*echo 'nama : '.{$dcause->nama}.'</br>';
+			echo 'nama : '.{$dcause->kode}.'</br>';
+			echo 'nama : '.{$dcause->obama}.'</br>';
+			echo 'nama : '.{$dcause->sap}.'</br>';
+			echo 'nama : '.{$dcause->ket}.'</br>';*/
+
+			$cek = "select * from cause where nama = '{$dcause->nama}' or kode = '{$dcause->kode}'";
+			$query = $this->db->query($cek);
+			if ($query->num_rows() > 0){
+				// echo "Sudah ada data ".$aksi->nama;
+				// $sql = "update pmdef set nama = '".strtoupper($pmdef->nama)."',kode = '".strtoupper($pmdef->kode)."',
+				// 		durasi = '{$pmdef->durasi}', ket = '{$pmdef->durasi}'";
+				return false;
+			}
+			else{
+				// $sql = "insert into aksi (nama, ket) values ('{$aksi->nama}','{$aksi->ket}')";
+				$sql = "insert into cause (nama, kode, obama, sap, ket) 
+				VALUES ('{$dcause->nama}','{$dcause->kode}','{$dcause->obama}','{$dcause->sap}','{$dcause->ket}')";
+				$hsl = $this->db->query($sql);
+			}
 			
-			// $this->db->where('id', $dcause->id);
-			// $this->db->delete('cause'); 
 			
 			
 		} catch(Exception $e) {
@@ -229,7 +247,30 @@ class Conf extends CI_Controller {
 
 		
 	}
-	
+	public function uCause(){
+		try {
+			$ucause = json_decode(file_get_contents('php://input'));
+			
+			$upd = array(
+				// 'id' => $uaksi->id ,
+				'nama' => $ucause->nama ,
+				'kode' => $ucause->kode,
+				'obama' => $ucause->obama,
+				'sap'	=> $ucause->sap,
+				'ket' => $ucause->ket 
+			 );
+			
+			$this->db->where('id',$ucause->id);
+			$this->db->update('cause', $upd);
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+	}
 	
 	
 	

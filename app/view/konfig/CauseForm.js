@@ -34,10 +34,12 @@ Ext.define('rcm.view.konfig.CauseForm', {
 			// hidden		: me.hidckbox,
 			items: [{
 				boxLabel: 'Obama', 
-				name: 'obama'
+				name: 'obama',
+				inputValue : 1
 			},{
 				boxLabel: 'SAP', 
 				name: 'sap', 
+				inputValue : 1
 				// checked: true
 			}]
 
@@ -45,7 +47,7 @@ Ext.define('rcm.view.konfig.CauseForm', {
 			fieldLabel	: 'Keterangan',
             name		: 'ket',
 			// hidden		: me.hidkode,
-            allowBlank	: true
+            // allowBlank	: true
 		}];
 		
 		me.buttons = [{

@@ -1,7 +1,7 @@
 Ext.define('rcm.view.konfig.PmDefForm', {
 	extend: 'Ext.form.Panel',
 
-	xtype: 'fPmDef',
+	xtype: 'f_PmDef',
 	
 	// layout: {
 		// type :'form'

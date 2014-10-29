@@ -4,5 +4,5 @@ Ext.define('rcm.store.ConMonIn', {
     model: 'rcm.model.ConMonIn',
     requires: 'rcm.model.ConMonIn',
 
-    autoLoad: true
+	//autoLoad: true
 });

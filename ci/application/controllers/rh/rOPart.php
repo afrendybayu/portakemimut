@@ -5,7 +5,7 @@ class rOPart extends CI_Controller {
         parent::__construct();
 		$this->load->model('opart');
 	}
-	
+	/*
 	public function index()	{
 		
 		try	{
@@ -28,17 +28,7 @@ class rOPart extends CI_Controller {
 
 			$strcat = join(" or ", $cat);
 			//print_r($cat); echo "<br/><br/>strcat: $strcat<br/><br/>";
-			//*
-			$s = "SELECT id,cat,nama FROM opart where $strcat order by cat asc, nama asc";
-			$query = $this->db->query($s);
-			
-			$part = array();
-			if ($query->num_rows() > 0)	{
-				foreach ($query->result() as $row)	{
-					$part[] = $row;
-				}
-			}
-			//*/
+
 
 			$jsonResult = array(
 				'success' => true,
@@ -54,8 +44,9 @@ class rOPart extends CI_Controller {
 		//$this->load->view('welcome_message');
 		echo json_encode($jsonResult);
 	}
-
+	//*/
 	public function rOPdef()	{
+		
 		try{
 			$hsl = $this->opart->get_opartdef_cat($cat);
 			
@@ -92,6 +83,25 @@ class rOPart extends CI_Controller {
 		echo json_encode($jsonResult);
 	}
 	
+	public function rOPartList() {
+		$cat = $this->input->get('cat')?:'0';
+		try{
+			$hsl = $this->opart->get_opartlistcat($cat);
+			
+			$jsonResult = array(
+				'success' => true,
+				'oplist' => $hsl
+			);
+		}
+		catch(Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
+	
 	public function cOPList()	{
 		$param = json_decode(file_get_contents('php://input'));
 			
@@ -100,8 +110,8 @@ class rOPart extends CI_Controller {
 		}
 
 		try {
-			$data = array('eqcat' => $param->eqcat, 'pm' => $param->pm);
-			$hasil = $this->opart->ins_oplist($data);
+			$data = array('eqcat' => $param->eqcat, 'opart' => $param->list);
+			$hasil = $this->opart->set_oplist($data);
 			
 			//echo "hsl: $hsl";
 			$jsonResult = array(

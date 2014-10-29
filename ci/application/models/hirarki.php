@@ -74,22 +74,44 @@ class Hirarki extends CI_Model {
 	}
 	
 	function get_hirarki($parent){
-		$this->db->select('id, nama, level');
-		$this->db->where ('parent',$parent);
-		$this->db->order_by('nama', 'asc'); 
-		$query = $this->db->get('hirarki');
-		
+		if ($parent==0)	{
+			$sql = "SELECT id,SUBSTRING(nama FROM LOCATE(' ',nama)) AS nama 
+					FROM hirarki WHERE parent = $parent
+					ORDER BY urut ASC";
+		}
+		else {
+			$sql = "SELECT id,nama FROM hirarki WHERE parent = $parent
+					ORDER BY nama ASC";
+		}
+		//echo "sql: $sql<br/>";
+		$query = $this->db->query($sql);
 		return $query;
+		
+		//$this->db->select('id, nama, level');
+		//$this->db->where ('parent',$parent);
+		//$this->db->order_by('nama', 'asc'); 
+		//$query = $this->db->get('hirarki');
+		
+		//return $query;
 	}
 	
 	function get_hirarki_equip($parent){
+		$sql = "SELECT eq.id,eq.nama,eq.tag,ce.nama AS cat
+				FROM equip  eq
+				LEFT JOIN cat_equip ce ON ce.id = eq.cat
+				WHERE unit_id = $parent
+				ORDER BY nama ASC";
+		//echo "sql: $sql<br/>";
+		$query = $this->db->query($sql);
+		return $query;
+		/*
 		$this->db->select('id, nama, tag');
 		$this->db->where('unit_id',$parent);
 		$this->db->order_by('nama','asc');
 		$query = $this->db->get('equip');
 		
 		return $query;
-	
+		//*/
 	}
 	
 	function create_hirarki_new(){

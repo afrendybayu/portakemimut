@@ -8,7 +8,7 @@ Ext.define('rcm.view.utama.HoChart', {
 		,'rcm.view.utama.GridWO'
 		,'rcm.view.utama.HoPie'
 		,'rcm.view.utama.HoSpeedo'
-		//,'rcm.view.utama.HoHistori'
+		,'rcm.view.Util'
 	],
 	
 	layout: {
@@ -56,7 +56,7 @@ Ext.define('rcm.view.utama.HoChart', {
 			iconCls: 'dollar',
 			xtype: 'tGridOrderC',
 			flex: 4,
-			title: 'Order Costing'
+			title: 'Order Costing '+rcm.view.Util.U1th('')
 		}]
 	}]
 });

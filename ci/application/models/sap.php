@@ -97,7 +97,7 @@ class Sap extends CI_Model {
 		$sql =	"select sf.pid AS noorder,if(notifno=0,'',notifno) AS nosap
 				,sf.damage,if(sf.damage<>'',damage.nama,'') AS damagenm
 				,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm
-				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm
+				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm,orderdesc
 				,manwork AS mainwork,down,eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart
 				from sapfmea sf
 				LEFT JOIN sap ON sap.pid = sf.pid
@@ -138,7 +138,7 @@ class Sap extends CI_Model {
 		$sql =	"select sf.pid AS noorder,if(notifno=0,'',notifno) AS nosap
 				,sf.damage,if(sf.damage<>'',damage.nama,'') AS damagenm
 				,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm
-				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm
+				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm,orderdesc
 				,manwork AS mainwork,down,eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart
 				from sapfmea sf
 				LEFT JOIN sap ON sap.pid = sf.pid
@@ -179,10 +179,10 @@ class Sap extends CI_Model {
 	}
 	
 	function get_opart_info($opart)	{
-		$sql = "SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,opart,eqkode AS equip,".
-				"notiftype AS tipe,ordertype,downstart ".
-				"FROM sapfmea ".
-				"LEFT JOIN sap ON sap.pid = sapfmea.pid";
+		$sql = "SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,opart,eqkode AS equip,
+				notiftype AS tipe,ordertype,downstart,orderdesc
+				FROM sapfmea
+				LEFT JOIN sap ON sap.pid = sapfmea.pid";
 		
 		if (strlen($damage)>0)	{
 			$sql .= "WHERE opart LIKE '%$opart%'";
@@ -204,10 +204,10 @@ class Sap extends CI_Model {
 	}
 	
 	function get_symptom_info($opart)	{
-		$sql = "SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,opart,eqkode AS equip,".
-				"notiftype AS tipe,ordertype,downstart ".
-				"FROM sapfmea ".
-				"LEFT JOIN sap ON sap.pid = sapfmea.pid";
+		$sql = "SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,opart,eqkode AS equip,
+				notiftype AS tipe,ordertype,downstart,orderdesc
+				FROM sapfmea
+				LEFT JOIN sap ON sap.pid = sapfmea.pid";
 		
 		if (strlen($damage)>0)	{
 			$sql .= "WHERE opart LIKE '%$opart%'";
@@ -375,10 +375,23 @@ class Sap extends CI_Model {
 	}
 
 	function get_pm_cost($thn)	{
+		$sql = "SELECT ordertype AS ortype, pmtype AS desk, ROUND(SUM(totplancost),2) as jml,
+				(SELECT CASE WHEN ortype = 'EP01' THEN '#2f7ed8'
+					WHEN ortype = 'EP02' THEN '#0d233a'
+					WHEN ortype = 'EP03' THEN '#8bbc21'
+					WHEN ortype = 'EP04' THEN '#910000'
+					WHEN ortype = 'EP05' THEN '#ffa81f' END) AS color 
+				FROM sap
+				WHERE YEAR(planstart)=$thn AND pmtype <> ''
+				GROUP BY ordertype,pmtype
+				ORDER BY ordertype asc, jml desc";
+		//echo "sql: $sql";
+		/*
 		$sql =	"SELECT ordertype AS ortype, pmtype AS desk, ROUND(SUM(totplancost),2) as jml FROM sap ".
 				"WHERE YEAR(planstart)=$thn ".
 				"GROUP BY ordertype,pmtype ".
 				"ORDER BY ordertype asc, jml desc";
+		//*/
 		$query = $this->db->query($sql);
 		return $query->result();
 	}

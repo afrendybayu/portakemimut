@@ -8,39 +8,45 @@ Ext.define('rcm.view.konfig.TreeCat', {
         'Ext.grid.column.Action'
     ],
 	
+	rec: '',
     rootVisible: true,
     store: 'CatHir',
-	hideHeaders: true,
-    //*
+	//hideHeaders: true,
+
 	dockedItems: [
         {
             xtype: 'toolbar',
             dock: 'bottom',
-            items: [{
-					text : 'Tambah Unit',
+            items: [/*{
+					text : 'Tambah Kategori',
 					//id	: 'tambah_lokasi'
-				},'->',{
-                    iconCls: 'new_folder_tree',
-                    tooltip: 'New Folder'
+				},*/
+				'->',{
+                    iconCls: 'new_cat_tree',
+                    tooltip: 'Kategori Baru'
                 },{
-                    iconCls: 'delete_folder_tree',
-                    //id: 'delete-folder-btn',
-                    tooltip: 'Delete Folder'
+                    iconCls: 'del_cat_tree',
+                    //id: 'delete-cat-btn',
+                    tooltip: 'Hapus Kategori'
                 }
             ]
         }
     ],
 	//*/
-	listeners: {
-        itemclick: function(s,r) {
-			rcmSettings.idc = r.data.id;
-			this.fireEvent('catclick', r.data.id,rcmSettings.tkf);
-        }
-    },
+	
 
 	initComponent: function() {
 		var me = this;
-        me.plugins = [me.cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing')];
+		me.plugins = [me.ce = Ext.create('Ext.grid.plugin.CellEditing')];
+		me.listeners = {
+			itemclick: function(s,r) {
+				rcmSettings.idc = r.data.id;
+				this.fireEvent('catclick', r.data.id,rcmSettings.tkf);
+			},
+			itemmouseenter: function(gridview, record) {
+				rec = record;	//.get('id');
+			}
+		},
 
         me.columns = [{
                 xtype: 'treecolumn',
@@ -57,52 +63,33 @@ Ext.define('rcm.view.konfig.TreeCat', {
 				text: 'Kode',
 				dataIndex: 'tipe',
 				width:50,
+				editor: {
+                    xtype: 'textfield',
+                    selectOnFocus: true,
+                    allowOnlyWhitespace: false
+				}
 			},{
-				text: 'ID',
+				//text: 'ID',
                 dataIndex: 'id',
-                width:50,
+                width:40,
             },{
                 xtype	: 'actioncolumn',
-                text: 'Hapus',
+                //text: 'Hapus',
                 width	: 24,
-				//icon	: 'resources/css/images/delete.png',
-                iconCls	: 'x-hidden',
-                tooltip	: 'Delete',
-                handler	: Ext.bind(me.handleDeleteClick, me)
+				icon	: 'resources/css/images/delete.png',
+				iconCls	: 'x-hidden',
+                tooltip	: 'Hapus Kategori',
+                handler	: Ext.bind(me.hdlDeleteClick,me)
             }];
-		/*
-		var me = this;
-		
-		/*
-		
-		me.items = [{
-			xtype: 'treecolumn',
-			dataIndex: 'text'
-			// flex: 1,
-		//	editor: {
-		//		xtype: 'textfield',
-		//		selectOnFocus: true,
-		//		allowOnlyWhitespace: false
-		//	},
-		//	renderer: Ext.bind(me.renderName, me)
-		}];
-		/*
-		me.listeners = [{
-			itemclick: function(s,r) {
-				alert("diclick item");
-                //alert(r.data.text);
-			}
-		}];
-		me.callParent();
-		//*/
+
 		
         me.callParent(arguments);
 		
 	},
 	
-	handleDeleteClick: function(gridView, rowIndex, colIndex, column, e) {
+	hdlDeleteClick: function() {
         // Fire a "deleteclick" event with all the same args as this handler
-		// alert ('klik hirarki delete');
-        this.fireEvent('deleteclick', gridView, rowIndex, colIndex, column, e);
+		//alert ('klik hirarki delete: '+id);
+        this.fireEvent('deleteclick', rec);
     }
 });

@@ -129,8 +129,12 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('gridedit').setVisible(true);
 					Ext.getCmp('btnUplBpm3').setDisabled(false);
 					Ext.getCmp('bwbpm3').setDisabled(false);
-					Ext.getCmp('conmondel').setDisabled(false);
-					Ext.getCmp('cmform').setDisabled(false);
+					//Ext.fly('idGridCM').ngedit = 1;
+					console.log(Ext.getCmp('idGridCM'));
+					Ext.getCmp('idGridCM').ngedit = 1;
+					//Ext.fly('idGridCM').ngedit = 1;
+					//Ext.getCmp('conmondel').setDisabled(false);
+					//Ext.getCmp('cmform').setDisabled(false);
 					
 					Ext.getCmp('ohdel').setDisabled(false);
 					Ext.getCmp('ohform').setDisabled(false);
@@ -138,9 +142,9 @@ Ext.define('rcm.controller.Login', {
 					
 					//Ext.getCmp('conmondel').setEnabled(false);
 					
-					me.getIConMon().ngedit = 1;
+					//me.getIConMon().ngedit = 1;
 					me.getExcelgrid().ngedit = 1;
-					me.getTGridContract().ngedit = 1;
+					//me.getTGridContract().ngedit = 1;
 
 					
 				},
@@ -198,9 +202,9 @@ Ext.define('rcm.controller.Login', {
 					});
 						
 
-					me.getIConMon().ngedit = 0;
+					//me.getIConMon().ngedit = 0;
 					me.getExcelgrid().ngedit = 0;
-					me.getTGridContract().ngedit = 0;
+					//me.getTGridContract().ngedit = 0;
 					me.getAuthlogin().level = 10;
 					Ext.getCmp('p_login').setVisible(true);
 					Ext.getCmp('p_logout').setVisible(false);
@@ -208,13 +212,14 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('gridedit').setVisible(false);
 					Ext.getCmp('btnUplBpm3').setDisabled(true);
 					Ext.getCmp('bwbpm3').setDisabled(true);
-					Ext.getCmp('conmondel').setDisabled(true);
-					Ext.getCmp('cmform').setDisabled(true);
+					//Ext.getCmp('conmondel').setDisabled(true);
+					//Ext.getCmp('cmform').setDisabled(true);
 					
 					Ext.getCmp('ohform').setDisabled(true);
 					Ext.getCmp('ohdel').setDisabled(true);
 					// Ext.getCmp('tu_kf').setDisabled(true);
-					
+					Ext.getCmp('idGridCM').ngedit = 0;
+					//Ext.fly('idGridCM').ngedit = 0;
 					
 					//Ext.getCmp('ConMonSave').setDisabled(true);
 				}
@@ -225,10 +230,25 @@ Ext.define('rcm.controller.Login', {
 			}
 		});
 	},
+	
+	updateClock: function()	{
+		//console.log(Ext.Date.format(new Date(), "g:i:s A"));
+		Ext.fly('lblClk').update(Ext.Date.format(new Date(), "l, j-M-Y G:i:s"));
+	},
+	
 	onLaunch: function(){
 		// console.log('launch sesi login');
 		var me = this;
 		var LSesi = this.getLoginSesiStore();
+		
+		//rcmSettings.abcd = Ext.fly('lblClk');
+		//*
+		var runner = new Ext.util.TaskRunner();
+		var task = runner.start({
+			 run: this.updateClock,
+			 interval: 1000
+		});
+		//*/
 		LSesi.load({
 			scope: this,
 			callback: function(records, operation, success) {
@@ -242,16 +262,17 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('gridedit').setVisible(true);
 					Ext.getCmp('btnUplBpm3').setDisabled(false);
 					Ext.getCmp('bwbpm3').setDisabled(false);
-					Ext.getCmp('conmondel').setDisabled(false);
-					Ext.getCmp('cmform').setDisabled(false);
+					//Ext.getCmp('conmondel').setDisabled(false);
+					//Ext.getCmp('cmform').setDisabled(false);
 					
 					Ext.getCmp('ohdel').setDisabled(false);
 					Ext.getCmp('ohform').setDisabled(false);
 					// Ext.getCmp('tu_kf').setDisabled(false);
 					
+					Ext.getCmp('idGridCM').ngedit = 1;
 					me.getAuthlogin().level = res.level;
 					me.getExcelgrid().ngedit = 1;
-					me.getIConMon().ngedit = 1;
+					//me.getIConMon().ngedit = 1;
 				}
 				else{
 					//console.log('sesine ilang je');
@@ -261,8 +282,8 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('gridedit').setVisible(false);
 					Ext.getCmp('btnUplBpm3').setDisabled(true);
 					Ext.getCmp('bwbpm3').setDisabled(true);
-					Ext.getCmp('conmondel').setDisabled(true);
-					Ext.getCmp('cmform').setDisabled(true);
+					//Ext.getCmp('conmondel').setDisabled(true);
+					//Ext.getCmp('cmform').setDisabled(true);
 					
 					Ext.getCmp('ohform').setDisabled(true);
 					Ext.getCmp('ohdel').setDisabled(true);

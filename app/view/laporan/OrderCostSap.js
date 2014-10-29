@@ -8,15 +8,6 @@ Ext.define('rcm.view.laporan.OrderCostSap', {
 		'rcm.view.laporan.GridOrderC'
 		,'rcm.view.laporan.SapPie'
 	],
-
-	layout: {
-		type: 'vbox',
-		align: 'stretch'
-	},
-	defaults: {
-		flex: 1,
-		hideLabel: true
-	},
 	
 	dockedItems: [{
 		dock: 'top',
@@ -25,65 +16,84 @@ Ext.define('rcm.view.laporan.OrderCostSap', {
 		xtype: 'tFThn'
 	}],
 	
+	layout: 'border',
+
 	//*
 	initComponent: function() {		
 		var me=this;
 		
 		me.items= [{
-			xtype: 'container',
-			layout: {
-				type: 'hbox',
-				align: 'stretch'
-			},
-			border:0,
+			xtype: 'panel',
+			region: 'center',
+			layout: { type: 'vbox',	align: 'stretch' },
+			flex: 1,
+			//border:0,
 			items:[{
-				xtype: 'tSapOrderC',
-				flex: 2,
-				dstore: 'SapOrderCwo',
-				jdl: 'Object Type',
-				title: 'Order Costing (Object Type)'
-			},{
-				xtype: 'tSapPie',
+				xtype: 'panel',
 				flex: 1,
-				field: 'tPlCost',
-				jdl: 'Order Costing Planned Cost',
-				dsat: '%',
-				dstore: 'SapPsOCwo'
+				layout: { type: 'hbox', align: 'stretch' },
+				items:[{
+					xtype: 'tSapPie',
+					flex: 1,
+					field: 'tPlCost',
+					jdl: 'Order Costing Planned Cost',
+					dsat: '%',
+					dstore: 'SapPsOCot',
+					subjdl: 'Work Order Type'
+				},{
+					xtype: 'tSapPie',
+					flex: 1,
+					field: 'tAcCost',
+					jdl: 'Order Costing Actual Cost',
+					dsat: '%',
+					dstore: 'SapPsOCot',
+					subjdl: 'Work Order Type'
+				}]
 			},{
-				xtype: 'tSapPie',
+				xtype: 'panel',
 				flex: 1,
-				field: 'tAcCost',
-				jdl: 'Order Costing Actual Cost',
-				dsat: '%',
-				dstore: 'SapPsOCwo'
+				layout: { type: 'hbox', align: 'stretch' },
+				items:[{
+					xtype: 'tSapPie',
+					flex: 1,
+					field: 'tPlCost',
+					jdl: 'Order Costing Planned Cost',
+					dsat: '%',
+					dstore: 'SapPsOCwo',
+					subjdl: 'Object Type'
+				},{
+					xtype: 'tSapPie',
+					flex: 1,
+					field: 'tAcCost',
+					jdl: 'Order Costing Actual Cost',
+					dsat: '%',
+					dstore: 'SapPsOCwo',
+					subjdl: 'Object Type'
+				}]
 			}]
 		},{
-			xtype: 'container',
-			layout: {
-				type: 'hbox',
-				align: 'stretch'
-			},
-			border:0,
+			region: 'west',
+			minWidth: 500,
+			title: 'Order Cost Table View',
+			flex: 1,
+			collapsed: true,
+			collapsible: true,
+			split: true,
+			xtype: 'panel',
+			layout: { type: 'vbox', align: 'stretch' },
+			//border:0,
 			items:[{
 				xtype: 'tSapOrderC',
-				flex: 2,
-				jdl: 'Object Type',
+				flex: 1,
+				jdl: 'WO Type',
 				dstore: 'SapOrderCot',
 				title: 'Order Costing (WO Type)'
 			},{
-				xtype: 'tSapPie',
+				xtype: 'tSapOrderC',
 				flex: 1,
-				field: 'tPlCost',
-				jdl: 'Order Costing Planned Cost',
-				dsat: '%',
-				dstore: 'SapPsOCot'
-			},{
-				xtype: 'tSapPie',
-				flex: 1,
-				field: 'tAcCost',
-				jdl: 'Order Costing Actual Cost',
-				dsat: '%',
-				dstore: 'SapPsOCot'
+				dstore: 'SapOrderCwo',
+				jdl: 'Object Type',
+				title: 'Order Costing (Object Type)'
 			}]
 		}];
 		me.callParent(arguments);

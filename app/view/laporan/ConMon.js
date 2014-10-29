@@ -32,7 +32,8 @@ Ext.define('rcm.view.laporan.ConMon', {
 		//margins: '0 5 5 5',
 		layout : {
 			type : 'vbox',
-			align : 'stretch'},
+			align : 'stretch'
+		},
 		items:[{
 			xtype : 'panel',
 			
@@ -99,27 +100,37 @@ Ext.define('rcm.view.laporan.ConMon', {
         collapsible: true,        
 		collapsed: true,
 		height: 220,
+		/*
+		xtype : 'tGridContract',
+		duit: false,
+		totcv: true,
+		budg: true,
+		pbudg: true
+		//*/
         //*
 		layout: 'border',
 		items: [{
-				xtype: 'tFUpl',
-				region:'north',
-				idbDownL: 'idDwCm',
-				idbUpl: 'idUpCm',
-				idtLok: 'idLFileCm',
-				idThn: 'idThnCm',
-				etext: 'Upload File ConMon',
-				nameFile: 'fileCm',
-				idbSr: 'idSrCm',
-				idbPdf: 'idPdfCm'
+				idThn: 'iThnCM',
+				idbSr: 'srCM',
+				xtype: 'tFThnNo',
+				region: 'north'
 			},{
 				region:'west',
 				xtype : 'tGridConMon',
-				width: 200
+				width: 180
 			},{
+				id: 'idGridCM',
 				region: 'center',    
-				xtype : 'iConMon',
-				region:'center'
+				//xtype : 'iConMon',
+				xtype : 'tGridContract',
+				duit: false,
+				totcv: true,
+				budg: true,
+				pbudg: true,
+				cm: true,
+				region:'center',
+				dstore: 'GridConMon',
+				event: 'evConMon'
 		}]
 		//*/
 		/*

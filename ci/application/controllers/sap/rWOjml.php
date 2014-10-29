@@ -5,6 +5,7 @@ class rWOjml extends CI_Controller {
 		echo "tesTgl 29/04/2014 00:00<br/>";
 		$a = fDT("29/04/2014 00:00"); echo "<br/>";
 		echo "isi A: "; print_r($a);
+		echo date('Y-m-d');
 	}
 	
 	public function index()	{
@@ -14,7 +15,7 @@ class rWOjml extends CI_Controller {
 			$hsl = $this->sap->jml_sap();
 			for($i=0; $i<count($hsl); $i++)	{
 				//print_r($hsl);
-				if ($i==0)	echo "Jml record Sap: ".$hsl[$i]->sap."<br/>";
+				if ($i==0)	echo "----Jml record Sap: ".$hsl[$i]->sap."<br/>";
 				if ($i==1)	echo "Jml record SapFmea: ".$hsl[$i]->sap;
 			}
 		}

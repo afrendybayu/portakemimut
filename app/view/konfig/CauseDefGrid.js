@@ -69,6 +69,13 @@ Ext.define('rcm.view.konfig.CauseDefGrid', {
 				// hidden		: me.hidegrid4,
 				// width:60
 				flex:1
+			},{
+				header		: 'Keterangan',
+				dataIndex	: 'ket',
+				
+				// hidden		: me.hidegrid4,
+				// width:60
+				width	: '250'
 
 			},{
 				xtype		:'actioncolumn',

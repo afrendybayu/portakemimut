@@ -47,11 +47,16 @@ Ext.define('rcm.view.laporan.WOComp', {
 					flex: 1,
 					jdl: 'WO Compliance'
 				},{
-					xtype: 'tWOManCP',
+					//xtype: 'tWOManCP',
+					xtype: 'tGridWork',
 					flex: 1,
 					jdl: 'WO Compliance'
 			}]
 		},{
+			xtype: 'tWOStack',
+			flex: 1,
+			jdl: 'WO Compliance'
+			/*
 			xtype: 'panel',
 			flex: 1,
 			layout: {
@@ -67,6 +72,7 @@ Ext.define('rcm.view.laporan.WOComp', {
 					xtype: 'tGridWork',
 					flex: 1
 			}]
+			//*/
 		}]
 	}]
 });

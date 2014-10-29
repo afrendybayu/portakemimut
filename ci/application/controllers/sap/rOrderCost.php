@@ -1,9 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class rOrderCost extends CI_Controller {
+	function __construct() {
+        parent::__construct();
+		$this->load->model('sap');
+	}
 	
 	public function index()	{
-		echo "index";
+		echo "index saop";
 	}
 	
 	public function sapOCostWo()	{
@@ -155,6 +159,7 @@ class rOrderCost extends CI_Controller {
 	}
 	
 	public function sapPmCost()		{
+		//echo "ini ";
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
 			//echo "thn: $thn<br/>";

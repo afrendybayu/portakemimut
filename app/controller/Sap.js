@@ -41,6 +41,7 @@ Ext.define('rcm.controller.Sap', {
 		,'SapHistori'
 		,'ManOCost'
 		
+		,'GridConMon'
 		,'ConMon','ConMonIn','CbParent','CbUnit','CbEquip','ConMonGr'
 		,'DetConMonGr','DetConMonPmp','DetConMonGs'
 		,'OhTahun','OverHaulIn'
@@ -49,6 +50,7 @@ Ext.define('rcm.controller.Sap', {
     
     models: [
 		'ContractInput',
+		'ConmonInput',
 		'ConMonIn',
 		'OverHaulIn',
 		'ManOCost'
@@ -136,6 +138,9 @@ Ext.define('rcm.controller.Sap', {
 			'#srPM': {
 				click: me.bFiltPM
 			},
+			'#srCM': {
+				click: me.bFiltCM
+			},
 			'#srTop10': {
 				click: me.bFiltTop10
 			},
@@ -166,12 +171,13 @@ Ext.define('rcm.controller.Sap', {
 			'#ConMonSave' : {
 				click : me.tblsimpanConMon
 			},
-			
-			'tGridContract': {
+			'#idGridCM': {
+				recordedit: me.uConMon
+			},
+			'#idGridKontrak': {
 				recordedit: me.ubahKontrak
 			},
 			'#cb_parent':{
-
 				select : me.pilihComboParent
 			},
 			'#cb_unit' : {
@@ -239,7 +245,11 @@ Ext.define('rcm.controller.Sap', {
 			
 		});
     },
-    
+    /*
+    uConMon: function()	{
+		alert('uConMon');
+	},
+    //*/
     hdlChThnMoc: function(tf,newV,oldV)	{
 		//alert('berubah '+newV);
 		var me=this;
@@ -670,6 +680,9 @@ Ext.define('rcm.controller.Sap', {
 		//alert("PM Thn: "+Ext.getCmp('thnPM').getValue());
 		this.getSapPMCostStore().load({ params:{thn:Ext.getCmp('thnPM').getValue()} });
 	},
+	bFiltCM: function()	{
+		this.getGridConMonStore().load({ params:{thn:Ext.getCmp('iThnCM').getValue()} });
+	},
 	
 	bFiltTop10: function()	{
 		//alert("Top10 Thn: "+Ext.getCmp('thnTop10').getValue());
@@ -919,9 +932,10 @@ Ext.define('rcm.controller.Sap', {
 	
 	ubahKontrak: function( e,nilai,bln,tipe,thn )	{
 		var me=this,
+			thn=Ext.getCmp('iThnCont').getValue(),
 			kont=new rcm.model.ContractInput({
-			nilai:nilai,bln:bln,tipe:tipe,thn:thn
-        });
+				nilai:nilai,bln:bln,tipe:tipe,thn:thn
+			});
 		/*
 		Ext.MessageBox.show({
 			title:'Save Changes?',
@@ -972,9 +986,68 @@ Ext.define('rcm.controller.Sap', {
 				}
 			}
 		});
+	},
+	
+	uConMon: function( e,nilai,bln,tipe)	{
+		var me=this,
+			thn=Ext.getCmp('iThnCM').getValue(),
+			cm=new rcm.model.ConmonInput({
+				nilai:nilai,bln:bln,tipe:tipe,thn:thn
+			});
 		/*
-        
-		//*/
+		Ext.MessageBox.show({
+			title:'Save Changes?',
+			//msg: 'Data will be changed into '+nilai+'<br />Would you like to save your changes?',
+			msg: 'Data will be changed into <br />Would you like to save your changes?',
+			buttons: Ext.MessageBox.YESNOCANCEL,
+			fn: showResult,
+			animEl: 'mb4',
+			icon: Ext.MessageBox.QUESTION
+		});
+       //*/
+       if (e.originalValue == nilai)	{
+			//console.log("sama");
+		   return;
+	   }
+       
+		Ext.MessageBox.show({
+			title : 'Simpan ?',
+			msg : 'Simpan Jml ConMon nilai awal '+e.originalValue+', menjadi '+nilai+' ?',
+			//width : 300,
+			buttons : Ext.MessageBox.OKCANCEL,
+			//multiline : true,
+			scope : this,
+			fn : function(btn, reason, cfg){ 
+				if (btn =='ok') {
+					//alert('ok with text');
+					cm.save({
+						success: function(respon, operation) {
+							var resp = operation.request.scope.reader.jsonData["conmon"];
+							//var t=Ext.getCmp('iThnCont').getValue();
+							//rcmSettings.yyyyyy = resp;
+							//console.log("sukses: "+resp + ", id: "+resp[0].id);
+							me.getGridConMonStore().load({params:{thn:thn}});
+							me.getConMonStore().load();
+							me.getConMonGrStore().load();
+							me.getDetConMonGrStore().load();
+							me.getDetConMonGsStore().load();
+							me.getDetConMonPmpStore().load();
+						},
+						failure: function(task, operation) {
+							var error = operation.getError(),
+								msg = Ext.isObject(error) ? error.status + ' ' + error.statusText : error;
+
+							Ext.MessageBox.show({
+								title: 'Update Contract Cost Failed',
+								msg: msg,
+								icon: Ext.Msg.ERROR,
+								buttons: Ext.Msg.OK
+							});
+						}
+					});
+				}
+			}
+		});
 	},
 	
 	showResult: function(a)	{

@@ -12,8 +12,10 @@ Ext.define('rcm.controller.Config', {
 		'konfig.PanelList',
 		'konfig.TreeCat',
 		'konfig.AksiForm',
-		'konfig.CauseForm'
+		'konfig.PmDefForm',
+		'konfig.CauseForm',
 		
+		'konfig.wCatHir'
     ],
 
     controllers: [
@@ -41,7 +43,11 @@ Ext.define('rcm.controller.Config', {
 		'GridKfEquip',
 		'CatHir',
 		'GridOPnIn',
-
+		'GridOPIn',
+		'GridModenIn',
+		'GridModeIn',
+		'GridEqcIn',
+		'GridEqnIn'
     ],
     
     models: [
@@ -54,15 +60,25 @@ Ext.define('rcm.controller.Config', {
 		
 		
 		'GridPMIn',
-		
+		'GridOPIn',
+		'GridModeIn',
+		'CatHir'
 	],
     
     refs: [{
 			ref: 'treeHirarki',
 			selector: 'treeHirarki'
 		},{
+			ref: 't_Konfig',
+			selector: 't_Konfig'
+		},{
 			ref: 'tCatHir',
 			selector: 'tCatHir'
+		},{
+			ref: 'tWCatHir',
+			selector: 'tWCatHir',
+			xtype: 'tWCatHir',
+			autoCreate: true
 		},{
 			ref: 'tKGridL',
 			selector: 'tKGridL'
@@ -72,11 +88,9 @@ Ext.define('rcm.controller.Config', {
 			ref: 'fAksi',
 			selector : 'fAksi'
 		},{
-			ref : 'gridAksi',
-			selector : 'gridAksi'
-		},{
-			ref : 'fPmDef',
-			selector : 'fPmDef'
+			
+			ref : 'f_PmDef',
+			selector : 'f_PmDef'
 		},{
 			ref : 'gridPmDef',
 			selector : 'gridPmDef'
@@ -98,6 +112,12 @@ Ext.define('rcm.controller.Config', {
 			'[iconCls=delete_folder_tree]': {
                 click: me.tblDelLokasi
             },
+            '[iconCls=new_cat_tree]': {
+                click: me.tblNewCat
+            },
+			'[iconCls=del_cat_tree]': {
+                click: me.tblDelCat
+            },
 			'#tambah_lokasi' : {
 				click : me.tambahLokasi
 			},
@@ -117,7 +137,10 @@ Ext.define('rcm.controller.Config', {
             },
             
             'tCatHir': {
-				catclick: me.hdlCatHir
+				catclick: me.hdlCatHir,
+				deleteclick: me.hdlDelCatHir,
+				itemmouseenter: me.showActions,
+				itemmouseleave: me.hideActions
 			},
 			
 			'tKGridL': {
@@ -127,19 +150,30 @@ Ext.define('rcm.controller.Config', {
 			 
 			'fAksi button[text=Simpan]' : {
 				click : me.hdlSmpAksiForm
-			
+			},
+			'#iGMddef': {
+				click: me.iGMddef
+			},
+			'#iGOpdef': {
+				click: me.iGOpdef
+			},
+			'#iGPmdef': {
+				click: me.iGPmdef
 			},
 			'fAksi button[text=Edit]' : {
 				click : me.hdlEditAksiForm
 			},
-			'fPmDef button[text=Simpan]' : {
+			'f_PmDef button[text=Simpan]' : {
 				click : me.hdlSmpPmDefForm
 			},
-			'fPmDef button[text=Edit]' : {
+			'f_PmDef button[text=Edit]' : {
 				click : me.hdlEditPmDefForm
 			},
 			'fCause button[text=Simpan]' : {
 				click : me.hdlSmpCauseForm
+			},
+			'fCause button[text=Edit]' : {
+				click : me.hdlEditCauseForm
 			},
 			'gridAksi' :{
 				AksiGridDel  : me.delAksiGrid,
@@ -154,9 +188,33 @@ Ext.define('rcm.controller.Config', {
 				CauseGridDel : me.delCauseGrid,
 				selectionchange : me.slctCauseGrid
 			}
-			
 		});
 		
+    },
+    hdlEditCauseForm : function(){
+    	alert ('Form Edit');
+    	var me = this;
+		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
+		isicause = me.getFCause().getForm();
+		dataid = isicause.getRecord().data.id;
+		isivalue = isicause.getValues();
+		// cobama 	= isivalue.obama ? 1 : 0;
+		editcause = Ext.create(rcm.model.Cause,{
+			id:dataid, nama:isivalue.nama, kode:isivalue.kode, obama:isivalue.obama, sap :isivalue.sap ,ket : isivalue.ket
+		});
+		// console.log(isivalue);
+		// console.log(cobama);
+
+		// console.log(editsave);
+
+		isicause.reset();
+		// me.getCausesStore().reload();
+		editcause.save({
+			success: function(record, operation){
+				me.getCausesStore().reload();
+			}
+
+		});
     },
     hdlSmpCauseForm : function(){
     	alert ('Form Simpan');
@@ -164,8 +222,9 @@ Ext.define('rcm.controller.Config', {
     	f_cause = me.getFCause().getForm(),
 		getDataCause = f_cause.getValues(),
 		CauseSave = new rcm.model.Cause(getDataCause);
+		// console.log(getDataCause);
 		console.log(CauseSave);
-		f_pmdef.reset();
+		f_cause.reset();
 		CauseSave.save({
 			success: function(record, operation){
 				me.getCausesStore().reload();
@@ -213,10 +272,23 @@ Ext.define('rcm.controller.Config', {
 			});
     },
 	
+
+    
+    iGMddef: function()	{
+		this.getT_Konfig().showTab('mdd');
+	},
+	iGOpdef: function()	{
+		this.getT_Konfig().showTab('opd');
+	},
+	iGPmdef: function()	{
+		this.getT_Konfig().showTab('pmd');
+	},
+
+
 	slctPmDefGrid : function (model, records){
 		var me =this;
 		if (records[0]) {
-			me.getFPmDef().getForm().loadRecord(records[0]);
+			me.getF_PmDef().getForm().loadRecord(records[0]);
         }
 	},
 	
@@ -253,11 +325,11 @@ Ext.define('rcm.controller.Config', {
 	},
 
 	hdlEditPmDefForm : function(){
-		alert ('edit Form PM DEF');
+		// alert ('edit Form PM DEF');
 
 		var me = this;
 		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
-		isiform = me.getFPmDef().getForm();
+		isiform = me.getF_PmDef().getForm();
 		dataid = isiform.getRecord().data.id;
 		isivalue = isiform.getValues();
 		// isiform.//.newValues();
@@ -289,7 +361,7 @@ Ext.define('rcm.controller.Config', {
 	hdlSmpPmDefForm : function (){
 		alert('ke teken');
 		var me = this,
-		f_pmdef = me.getFPmDef().getForm(),
+		f_pmdef = me.getF_PmDef().getForm(),
 		getDataPMDef = f_pmdef.getValues(),
 		PmDefSave = new rcm.model.FormPmDef(getDataPMDef);
 		console.log(PmDefSave);
@@ -310,7 +382,7 @@ Ext.define('rcm.controller.Config', {
 	},
 	
 	delAksiGrid : function (rec){
-		alert ('Awas Kau Pencet-Penccet Aku '+rec);
+		//alert ('Awas Kau Pencet-Penccet Aku '+rec);
 		console.log(rec);
 		
 		var me = this, 
@@ -388,9 +460,15 @@ Ext.define('rcm.controller.Config', {
     hdlDropListD: function(data, cat, tab)	{
 		//alert("hdlDropListD: "+data.get("id"));
 		var me=this,
-			dl;
+			dl, p={ id:data.get("id") };
 		if (tab=="tk_pl")	{
-			dl=new rcm.model.GridPMIn({ id:data.get("id") });
+			dl=new rcm.model.GridPMIn(p);
+		}
+		else if (tab=="tk_ol")	{
+			dl=new rcm.model.GridOPIn(p);
+		}
+		else if (tab=="tk_md")	{
+			dl=new rcm.model.GridModeIn(p);
 		}
 		dl.destroy();
 	},
@@ -398,7 +476,7 @@ Ext.define('rcm.controller.Config', {
     hdlDropListC: function(data, cat, tab)	{
 		var me=this,
 			dl,
-			p={ eqcat:cat,pm:data.get("id") };
+			p={ eqcat:cat,list:data.get("id") };
 		//alert("tab: "+tab+",cat: "+cat+", data: "+data.get("id"));
 
 		if (tab=="tk_pl")	{
@@ -407,6 +485,12 @@ Ext.define('rcm.controller.Config', {
 		else if (tab=="tk_ol")	{
 			dl=new rcm.model.GridOPIn(p);
 		}
+		else if (tab=="tk_md")	{
+			dl=new rcm.model.GridModeIn(p);
+		}
+		else if (tab=="tk_eq")	{
+			
+		}
 		dl.save();
 		//console.log("listeners GridL 3");
 	},
@@ -414,16 +498,25 @@ Ext.define('rcm.controller.Config', {
     hdlCatHir: function(id,tab)	{
 		var me=this;
 		//alert("hdlCatHir: "+id+" "+tab);
-		//me.getGridKfEquipStore().load({ params: {cat:id} });
-		me.getGridKfEquipStore().clearFilter(true);
-		me.getGridKfEquipStore().filter('durasi',id);
+		me.getGridKfEquipStore().load({ params: {cat:id} });
+		//me.getGridKfEquipStore().clearFilter(true);
+		//me.getGridKfEquipStore().filter('durasi',id);
 		if (tab=="tk_pl")	{
 			me.getGridPMInStore().load({ params: {cat:id} });
 			me.getGridPMnInStore().load({ params: {cat:id} });
 		}
 		else if (tab=="tk_ol")	{
-			//me.get
-		}		
+			me.getGridOPInStore().load({ params: {cat:id} });
+			me.getGridOPnInStore().load({ params: {cat:id} });
+		}
+		else if (tab=="tk_md")	{
+			me.getGridModeInStore().load({ params: {cat:id} });
+			me.getGridModenInStore().load({ params: {cat:id} });
+		}
+		else if (tab=="tk_eq")	{
+			me.getGridEqcInStore().load({ params: {cat:id} });
+			//me.getGridModenInStore().load({ params: {cat:id} });
+		}
 	},
 	
 	tambahLokasi : function(){
@@ -440,6 +533,112 @@ Ext.define('rcm.controller.Config', {
 		this.addTreeHirarki(true);
 	},
 	
+	tblNewCat: function()	{
+		//console.log("tblNewCat");
+		this.treeCat(true);
+	},
+	tblDelCat: function()	{
+		this.treeCat(true);
+	},
+	hdlDelCatHir: function(rec)	{
+		//console.log("Hapus id: "+rec.get('id')+", nama: "+rec.get('text'));
+		//console.log(e);
+		var me=this;
+		Ext.MessageBox.show({
+			title : 'Hapus Kategori',
+			msg   : "Yakin Kategori \""+rec.get('text')+"\" akan diHapus ??",
+			buttons: Ext.MessageBox.OKCANCEL,
+			//icon  : Ext.MessageBox.WARNING,
+			fn	: function (oks){
+				if (oks === 'ok'){ 
+					dl=new rcm.model.CatHir({ id:rec.get('id') });
+					dl.destroy({
+						success : function(del, op){
+							//alert('sukses');
+						},
+						failure: function(task, op)	{
+							var error = op.getError(),
+								msg = Ext.isObject(error) ? error.status + ' ' + error.statusText : error;
+
+							Ext.MessageBox.show({
+								title: 'Hapus Kategori Gagal',
+								msg: msg,
+								icon: Ext.Msg.ERROR,
+								buttons: Ext.Msg.OK
+							});
+						}
+					});
+				}
+			}
+		});
+		
+		me.getCatHirStore().load();
+	},
+	
+	treeCat: function(leaf)	{
+		var me = this,
+            hTree = me.getTCatHir(),
+            //ce = hTree.ce,
+            selectionModel = hTree.getSelectionModel(),
+            selectedList = selectionModel.getSelection()[0],
+			parentList = selectedList.isLeaf() ? selectedList.parentNode : selectedList; //if leaf, then selecetd parent id, else select id
+			//parentList = selectedList;
+		console.log(selectedList);
+		
+		
+		var wHir = me.getTWCatHir();
+		//rcmSettings.def = me;
+		//rcmSettings.abc = me.getTWCatHir();
+		wHir.show();
+		return;
+		//console.log(selectedList.isLeaf());
+		var newList = Ext.create('rcm.model.CatHir', {
+			text: 'New Cat',
+			leaf: leaf,
+			tipe: 'kode',
+			// level : selectedList.data.depth,
+			loaded: true // set loaded to true, so the tree won't try to dynamically load children for this node when expanded
+		});
+		//console.log(parentList);
+		//
+		parentList.appendChild(newList);
+		var hirStore = me.getCatHirStore();
+		hirStore.sync();
+		hirStore.reload();
+		
+		var expandAndEdit = function() {
+			if(parentList.isExpanded()) {
+				selectionModel.select(newList);
+				me.addedNode = newList;
+				//ce.startEdit(newList, 0);
+			} else {
+				hTree.on('afteritemexpand', function startEdit(list) {
+					if(list === parentList) {
+						selectionModel.select(newList);
+						me.addedNode = newList;
+						// console.log(newList);
+						//ce.startEdit(newList, 0);
+						// remove the afterexpand event listener
+						hTree.un('afteritemexpand', startEdit);
+					}
+				});
+				parentList.expand();
+			}
+		};
+		
+		if(hTree.getView().isVisible(true)) {
+            expandAndEdit();
+        } else {
+            hTree.on('expand', function onExpand() {
+                expandAndEdit();
+                hTree.un('expand', onExpand);
+            });
+            hTree.expand();
+        }
+		
+		//alert(selectedList);
+	},
+	
 	addTreeHirarki: function(leaf) {
         var me = this,
             hTree = me.getTreeHirarki(),
@@ -451,7 +650,7 @@ Ext.define('rcm.controller.Config', {
 				nama: 'New ' + (leaf ? 'Equipt' : 'FuncLoc'),
                 leaf: leaf,
 				// level : selectedList.data.depth,
-                loaded: true // set loaded to true, so the tree won't try to dynamically load children for this node when expanded
+                loaded: false // set loaded to true, so the tree won't try to dynamically load children for this node when expanded
             }),
 			//*
             expandAndEdit = function() {
@@ -485,7 +684,7 @@ Ext.define('rcm.controller.Config', {
 		
         parentList.appendChild(newList);
         
-		hirarkiStore = me.getLokUnitStore();
+		var hirarkiStore = me.getLokUnitStore();
 		hirarkiStore.sync();
 		hirarkiStore.reload();
 		
@@ -504,7 +703,7 @@ Ext.define('rcm.controller.Config', {
     },
 	
 	updateTreeHirarki: function(editor, e) {
-		console.log('diedit');
+		console.log('updateTreeHirarki diedit');
         //*
 		var me = this,
             list = e.record;
@@ -532,14 +731,7 @@ Ext.define('rcm.controller.Config', {
         });
 		//*/
     },
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	handleDeleteIconClick: function(view, rowIndex, colIndex, column, e) {
         alert ('delete nya ketahuan di controller');

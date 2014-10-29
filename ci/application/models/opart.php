@@ -3,22 +3,39 @@
 class Opart extends CI_Model {
 
 	function get_opartdefnotin($cat){
-
-		$sql = "SELECT id,nama,kode
+		
+		$sql = "SELECT id,nama AS nama,kode
 				FROM opartdef
 				WHERE kode NOT IN (
 					SELECT od.kode
 					FROM opartlist ol
 					LEFT JOIN opartdef od ON ol.opart = od.id
 					WHERE ol.eqcat = $cat
-				) ORDER BY kode ASC";
+				) ORDER BY nama ASC";
 		
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
 	
-	function ins_oplist()	{
-		
+	function get_opartlistcat($cat)    {
+
+		$sql =	"SELECT ol.id,ol.opart,od.kode,od.nama
+				FROM opartlist ol
+				INNER JOIN opartdef od ON od.id = ol.opart
+				WHERE ol.eqcat=$cat
+				ORDER BY od.nama ASC";
+		//echo "sql: $sql";
+				
+		$query = $this->db->query($sql);
+		return $query->result();
+    }
+	
+	function set_oplist($data)	{
+		$this->db->trans_start();
+		$this->db->insert('opartlist', $data); 
+		$insert_id = $this->db->insert_id();
+		$this->db->trans_complete();
+		return  $insert_id;
 	}
 	
 	function get_equip_gconcat(){

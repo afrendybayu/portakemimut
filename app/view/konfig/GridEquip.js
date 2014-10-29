@@ -5,7 +5,7 @@ Ext.define('rcm.view.konfig.GridEquip', {
 	xstore 		: '',
 	
 	initComponent: function() {
-		var me =this;
+		var me = this;
 		
 		me.store = me.xstore;		
 		me.columns = {	
@@ -24,7 +24,6 @@ Ext.define('rcm.view.konfig.GridEquip', {
 			},{
 				header		: 'Tag',
 				dataIndex	: 'kode',
-
 				flex:1
 			}]
 		};

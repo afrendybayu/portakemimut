@@ -1,6 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class rEquip extends CI_Controller {
+	function __construct() {
+        parent::__construct();
+		$this->load->model('equip');
+	}
+	
 	
 	public function index()	{
 		
@@ -37,4 +42,40 @@ class rEquip extends CI_Controller {
 		//$this->load->view('welcome_message');
 		echo json_encode($jsonResult);
 	}
+
+	public function rEqcat()	{
+		try{
+			$cat = $this->input->get('cat')?:'';
+			$hsl = $this->equip->get_equipcat($cat);
+			
+			$jsonResult = array(
+				'success' => true,
+				'eqlist' => $hsl
+			);
+		}
+		catch(Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
+	
+	public function rEqncat()	{
+		try{			
+			$jsonResult = array(
+				'success' => true,
+				'eqlist' => $this->equip->get_equipnotcat()
+			);
+		}
+		catch(Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
+
 }

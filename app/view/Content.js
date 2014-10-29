@@ -27,7 +27,7 @@ Ext.define('rcm.view.Content', {
     initComponent: function() {
 		var me=this;
 		me.items = [{
-		/*==========================
+		//*==========================
 			id: 'tu_ho',
 			title: 'Dashboard Home',
 			iconCls: 'Dashboard',
@@ -48,7 +48,7 @@ Ext.define('rcm.view.Content', {
 			id: 'tu_pr',
 			iconCls: 'perform',
 			title: 'Prestasi Mesin',
-		
+		//*/
 		},{
 			id: 'tu_rh',
 			title: 'Runnning Hour',
@@ -82,9 +82,9 @@ Ext.define('rcm.view.Content', {
 				//hidden: true,
 				iconCls: 'up'
 			//}]
-		
-		},{
 		//*/
+		},{
+		
 			id		: 'tu_kf',
 			title	: 'Konfigurasi',
 			iconCls	: 'Konfigurasi',

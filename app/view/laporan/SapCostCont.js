@@ -22,9 +22,14 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 	initComponent: function() {
 		var me=this;
 		me.items = [{
+			id: 'idGridKontrak',
 			xtype: 'tGridContract',
 			dstore: 'SapPMCost',
-			region: 'north'
+			region: 'north',
+			duit: true,
+			dstore: 'Contract',
+			minHeight: 130,
+			split: true
 		},{
 		//*/
 			id: 'grContL',

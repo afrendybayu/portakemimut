@@ -14,7 +14,8 @@ Ext.define('rcm.view.konfig.ConfHirarki', {
 		title: 'Konfigurasi Hirarki',
         region: 'west',     
         xtype: 'treeHirarki',
-        width: 200,
+        width: 400,
+        hideCat: true,
         collapsible: true,
 		// collapsed	: true,
 		split: true

@@ -111,9 +111,9 @@ class rPM extends CI_Controller {
 			//print_r ($params);
 			//$this->load->model('pmlist');
 		try {
-			$data = array('eqcat' => $param->eqcat, 'pm' => $param->pm);
+			$data = array('eqcat' => $param->eqcat, 'pm' => $param->list);
 			//print_r($data);
-			$hasil = $this->pm->ins_pmlist($data);
+			$hasil = $this->pm->set_pmlist($data);
 			
 			//echo "hsl: $hsl";
 			$jsonResult = array(
