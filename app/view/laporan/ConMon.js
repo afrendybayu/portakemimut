@@ -115,6 +115,10 @@ Ext.define('rcm.view.laporan.ConMon', {
 				xtype: 'tFThnNo',
 				region: 'north'
 			},{
+				region:'west',
+				xtype : 'tGridConMon',
+				width: 180
+			},{
 				region: 'center',    
 				//xtype : 'iConMon',
 				xtype : 'tGridContract',
@@ -122,6 +126,7 @@ Ext.define('rcm.view.laporan.ConMon', {
 				totcv: true,
 				budg: true,
 				pbudg: true,
+				cm: true,
 				region:'center',
 				dstore: 'GridConMon'
 		}]

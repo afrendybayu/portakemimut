@@ -91,11 +91,12 @@ class rConMon extends CI_Controller {
 	
 	public function JConMon()	{
 		try {
-			$hsl = $this->cmon->count_conmon();
+			//$hsl = $this->cmon->count_conmon();
+			$hsl = $this->conmon->jml_conmon();
 			
 			$jsonResult = array(
 					'success' => true,
-					'conmonth' => $hsl
+					'conmon' => $hsl
 			);
 		}
 		catch (Exception $e){
@@ -237,7 +238,8 @@ class rConMon extends CI_Controller {
 	//==================
 	function gConMon(){
 		try {
-			$hsl = $this->cmon->graf_conmon();
+			//$hsl = $this->cmon->graf_conmon();
+			$hsl = $this->conmon->gr_conmon();
 			
 			$jsonResult = array(
 					'success' => true,
@@ -272,7 +274,8 @@ class rConMon extends CI_Controller {
 			}
 			// print_r($hslbln);
 			
-			$hsl = $this->cmon->gunit_conmon($tipe);
+			//$hsl = $this->cmon->gunit_conmon($tipe);
+			$hsl = $this->conmon->gunit_conmon($tipe);
 			 // print_r($hsl); echo '<br><br>';
 			for($k=0; $k<count($hsl); $k++){
 				$hslbln[$hsl[$k]->bln-1] 			= $hsl[$k];
@@ -282,10 +285,7 @@ class rConMon extends CI_Controller {
 				
 				
 			}
-			// echo 'isi dari hsl bulan : <br>';
-			// foreach($hslbln as $ro){
-			// print_r($ro); echo '<br>';
-			// }
+
 			
 			$jsonResult = array(
 					'success' => true,

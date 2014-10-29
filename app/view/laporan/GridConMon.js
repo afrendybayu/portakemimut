@@ -12,7 +12,7 @@ Ext.define('rcm.view.laporan.GridConMon', {
 		me.columns = {	
 			items: [
 			{ xtype:'rownumberer',width:25, header : 'No' },
-			{ header:'Year',dataIndex:'tahun',width:60, 
+			{ header:'Year',dataIndex:'tahun',width:55, 
 				summaryRenderer: function() {
 					return Ext.String.format('TOTAL'); 
 				} 
@@ -29,6 +29,7 @@ Ext.define('rcm.view.laporan.GridConMon', {
 				this.fireEvent('filterThConMon', thn);
 			}
 		};
+		/*
 		me.bbar = {
 			items : ['->',{
 				xtype : 'button',
@@ -38,7 +39,8 @@ Ext.define('rcm.view.laporan.GridConMon', {
 				
 			}]
 		
-		}
+		};
+		//*/
 		me.callParent(arguments);
 		me.addEvents(
         );

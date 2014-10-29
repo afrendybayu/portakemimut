@@ -14,7 +14,7 @@ Ext.define('rcm.model.ConMon', {
         },
         reader: {
             type: 'json',
-            root: 'conmonth',
+            root: 'conmon',
             messageProperty: 'message'
         }
     }
