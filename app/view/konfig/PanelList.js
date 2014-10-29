@@ -82,6 +82,7 @@ Ext.define('rcm.view.konfig.PanelList', {
 			}]
 			//*/
 		},{
+			id: me.cHir,
 			//title: me.jdlTb,
 			xtype: 'tCatHir',
 			//xtype: 'label',

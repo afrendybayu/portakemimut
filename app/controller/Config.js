@@ -111,16 +111,31 @@ Ext.define('rcm.controller.Config', {
             },
             //*/
             '#idnCPM': {
-				click: me.tblNewCat
+				click: me.tblNCatPM
 			},
 			'#idnCOP': {
-				click: me.tblNewCat
+				click: me.tblNCatOP
 			},
 			'#idnCMd': {
-				click: me.tblNewCat
+				click: me.tblNCatMd
+			},
+			'#idnCEq': {
+				click: me.tblNCatEq
 			},
 			'#saveCatH': {
 				click: me.saveNCatH
+			},
+			'#iddCPM': {
+				click: me.tblDelCat
+			},
+			'#iddCOP': {
+				click: me.tblDelCat
+			},
+			'#iddCMd': {
+				click: me.tblDelCat
+			},
+			'#iddCEq': {
+				click: me.tblDelCat
 			},
 			'[iconCls=del_cat_tree]': {
                 click: me.tblDelCat
@@ -447,17 +462,34 @@ Ext.define('rcm.controller.Config', {
 		this.addTreeHirarki(true);
 	},
 	
-	saveNCatH: function()	{
+	tblNCatPM: function()	{
+		this.treeCat(Ext.getCmp('idkPM'));
+	},
+	
+	tblNCatOP: function()	{
+		this.treeCat(Ext.getCmp('idkOP'));
+	},
+	
+	tblNCatMd: function()	{
+		this.treeCat(Ext.getCmp('idkMd'));
+	},
+	
+	tblNCatEq: function()	{
+		this.treeCat(Ext.getCmp('idkEq'));
+	},
+	
+	saveNCatH: function(ch)	{
 		var me = this
 			wc = me.getTWCatHir(),
 			winEl = wc.getEl(),
             form = wc.down('form').getForm(),
-            ch = me.getTCatHir(),
+            //ch = me.getTCatHir(),
 			selModel = ch.getSelectionModel(),
             selList = selModel.getSelection()[0];
 
 		if(!form.isValid()) {
             Ext.Msg.alert('Invalid Data', 'Please correct form errors');
+            return;
 		}
 		winEl.mask('menyimpan');
 		//console.log(form.findField('wcNama').getValue()+" "+form.findField('wcKode').getValue());
@@ -552,9 +584,9 @@ Ext.define('rcm.controller.Config', {
 		me.getCatHirStore().load();
 	},
 	
-	treeCat: function(leaf)	{
+	treeCat: function(hTree)	{
 		var me = this,
-            hTree = me.getTCatHir(),
+            //hTree = me.getTCatHir(),
             //ce = hTree.ce,
             selectionModel = hTree.getSelectionModel(),
             selectedList = selectionModel.getSelection()[0],
@@ -570,19 +602,6 @@ Ext.define('rcm.controller.Config', {
 
 		wHir.show();
 		return;
-		//console.log(selectedList.isLeaf());
-		var newList = Ext.create('rcm.model.CatHir', {
-			text: 'New Cat',
-			leaf: leaf,
-			tipe: 'kode',
-			// level : selectedList.data.depth,
-			loaded: true // set loaded to true, so the tree won't try to dynamically load children for this node when expanded
-		});
-		//console.log(parentList);
-		//
-		
-		
-		//alert(selectedList);
 	},
 	
 	addTreeHirarki: function(leaf) {

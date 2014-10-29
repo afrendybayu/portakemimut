@@ -2478,7 +2478,7 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.tUser"
   ],
   "rcm.view.konfig.wCatHir": [
-    "widget.useredit"
+    "widget.tWCatHir"
   ],
   "rcm.view.lapobama.Av2Thn": [
     "widget.tAv2Thn"
