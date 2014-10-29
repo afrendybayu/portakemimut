@@ -4,7 +4,7 @@ class Contract extends CI_Model {
 
 	function get_contract($thn)	{
 
-		$sql =	"SELECT c.tipe, cat_equip.nama
+		$sql =	"SELECT c.tipe, u.nama
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=1 AND tahun=$thn THEN nilai END),0) as b1
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=2 AND tahun=$thn THEN nilai END),0) as b2
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=3 AND tahun=$thn THEN nilai END),0) as b3
@@ -21,9 +21,9 @@ class Contract extends CI_Model {
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=15 AND tahun=$thn THEN nilai END),0) as budget
 				,CONCAT(IFNULL(ROUND(SUM(CASE WHEN tahun=$thn THEN nilai END)*100/GROUP_CONCAT(CASE WHEN bulan=15 AND tahun=$thn THEN nilai END),2),0),'%') as persen
 				FROM contract c
-				LEFT JOIN cat_equip ON c.tipe = cat_equip.id
+				LEFT JOIN unitlist u ON c.tipe = u.id
 				group by tipe
-				ORDER by cat_equip.urut asc";
+				ORDER by u.urut asc";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
