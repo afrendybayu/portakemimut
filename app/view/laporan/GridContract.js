@@ -3,7 +3,7 @@ Ext.define('rcm.view.laporan.GridContract', {
 	extend: 'Ext.grid.Panel',
 	//alias: 'widget.gridCause',
 	xtype: 'tGridContract',
-	//dstore:'Contract',	
+	dstore:'Contract',	
 	ngedit: 0,	
 	
 	requires: [
@@ -21,7 +21,8 @@ Ext.define('rcm.view.laporan.GridContract', {
 		var me=this,
 			ce=Ext.create('Ext.grid.plugin.CellEditing', { clicksToEdit: 1});
 			
-		me.store = 'Contract';	//me.dstore,
+		//me.store = 'Contract';	//me.dstore,
+		me.store = me.dstore;
 		me.plugins = ce;
 		me.features = [{ftype: 'summary'}];
 		me.columns = {	

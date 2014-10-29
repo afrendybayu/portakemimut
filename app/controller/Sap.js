@@ -41,6 +41,7 @@ Ext.define('rcm.controller.Sap', {
 		,'SapHistori'
 		,'ManOCost'
 		
+		,'GridConMon'
 		,'ConMon','ConMonIn','CbParent','CbUnit','CbEquip','ConMonGr'
 		,'DetConMonGr','DetConMonPmp','DetConMonGs'
 		,'OhTahun','OverHaulIn'

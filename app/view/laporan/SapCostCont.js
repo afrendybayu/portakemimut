@@ -24,7 +24,8 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 		me.items = [{
 			xtype: 'tGridContract',
 			dstore: 'SapPMCost',
-			region: 'north'
+			region: 'north',
+			dstore: 'Contract'
 		},{
 		//*/
 			id: 'grContL',

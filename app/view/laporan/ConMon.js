@@ -122,7 +122,8 @@ Ext.define('rcm.view.laporan.ConMon', {
 				totcv: true,
 				budg: true,
 				pbudg: true,
-				region:'center'
+				region:'center',
+				dstore: 'GridConMon'
 		}]
 		//*/
 		/*

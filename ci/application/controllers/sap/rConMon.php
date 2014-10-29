@@ -4,8 +4,47 @@ class rConMon extends CI_Controller {
 	function __construct() {
         parent::__construct();
 		$this->load->model('cmon');
+		$this->load->model('conmon');
 		$this->load->model('hirarki');
 	}
+	
+	public function index()	{
+		echo "qwerty";
+	}
+	
+	public function rCM()	{
+		try {
+			$thn = $this->input->get('thn')?:date('Y');
+			/*
+			$hsl = array();
+			for ($i=0; $i<12; $i++)	{
+				$obj = new stdClass();
+				$obj->m = $i+1;
+				$obj->bln = nmMonth($i,1);
+				$obj->gc = '0';
+				$obj->gs = '0';
+				$obj->pm = '0';
+				array_push($hsl,$obj);
+			}
+			print_r($hsl); echo "<br/><br/><br/>";
+			//*/
+			$hsl = $this->conmon->get_conmongrid($thn);
+			//print_r($hsl);
+			$jsonResult = array(
+				'success' => true,
+				'conmon' => $hsl
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+	}
+	
 	public function ReadCMon()	{
 		
 		try {

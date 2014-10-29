@@ -25,6 +25,7 @@ class rContract extends CI_Controller {
 				$obj->pm = '0';
 				array_push($hsl,$obj);
 			}
+			//print_r($hsl); echo "<br/><br/>";
 			//*/
 			$hsl = $this->contract->get_contract($thn);
 			/*
