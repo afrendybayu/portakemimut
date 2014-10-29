@@ -129,6 +129,10 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('gridedit').setVisible(true);
 					Ext.getCmp('btnUplBpm3').setDisabled(false);
 					Ext.getCmp('bwbpm3').setDisabled(false);
+					//Ext.fly('idGridCM').ngedit = 1;
+					console.log(Ext.getCmp('idGridCM'));
+					Ext.getCmp('idGridCM').ngedit = 1;
+					//Ext.fly('idGridCM').ngedit = 1;
 					//Ext.getCmp('conmondel').setDisabled(false);
 					//Ext.getCmp('cmform').setDisabled(false);
 					
@@ -140,7 +144,7 @@ Ext.define('rcm.controller.Login', {
 					
 					//me.getIConMon().ngedit = 1;
 					me.getExcelgrid().ngedit = 1;
-					me.getTGridContract().ngedit = 1;
+					//me.getTGridContract().ngedit = 1;
 
 					
 				},
@@ -200,7 +204,7 @@ Ext.define('rcm.controller.Login', {
 
 					//me.getIConMon().ngedit = 0;
 					me.getExcelgrid().ngedit = 0;
-					me.getTGridContract().ngedit = 0;
+					//me.getTGridContract().ngedit = 0;
 					me.getAuthlogin().level = 10;
 					Ext.getCmp('p_login').setVisible(true);
 					Ext.getCmp('p_logout').setVisible(false);
@@ -214,7 +218,8 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('ohform').setDisabled(true);
 					Ext.getCmp('ohdel').setDisabled(true);
 					// Ext.getCmp('tu_kf').setDisabled(true);
-					
+					Ext.getCmp('idGridCM').ngedit = 0;
+					//Ext.fly('idGridCM').ngedit = 0;
 					
 					//Ext.getCmp('ConMonSave').setDisabled(true);
 				}
@@ -249,6 +254,7 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('ohform').setDisabled(false);
 					// Ext.getCmp('tu_kf').setDisabled(false);
 					
+					Ext.getCmp('idGridCM').ngedit = 1;
 					me.getAuthlogin().level = res.level;
 					me.getExcelgrid().ngedit = 1;
 					//me.getIConMon().ngedit = 1;

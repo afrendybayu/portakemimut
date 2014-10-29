@@ -4,7 +4,7 @@ Ext.define('rcm.view.laporan.GridContract', {
 	//alias: 'widget.gridCause',
 	xtype: 'tGridContract',
 	//dstore:'Contract',	
-	ngedit: 0,	
+	ngedit: 1,	
 	
 	requires: [
 		'rcm.view.Util',
@@ -55,6 +55,7 @@ Ext.define('rcm.view.laporan.GridContract', {
 		me.callParent(arguments);
 		me.addEvents(
 			'recordedit'
+			//,'evConMon'
 			//'budgetedit'
         );
         ce.on('edit', me.handleCellEdit, this);
@@ -70,6 +71,7 @@ Ext.define('rcm.view.laporan.GridContract', {
 			this.fireEvent('recordedit',e,e.value,'b15',rec.get('tipe'),this.thn );
 		else
 			this.fireEvent('recordedit',e,e.value,e.field,rec.get('tipe'),this.thn );
+			//this.fireEvent(this.evConMon,e,e.value,e.field,rec.get('tipe'),this.thn );
 		
     },
     

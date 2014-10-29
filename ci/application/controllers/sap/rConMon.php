@@ -45,6 +45,55 @@ class rConMon extends CI_Controller {
 		echo json_encode($jsonResult);
 	}
 	
+	public function uCM()	{
+		try	{
+			$par = json_decode(file_get_contents('php://input'));
+			/*
+			$params->bln = 'b4';
+			$params->thn = '2014';
+			$params->nilai = 134;
+			$params->tipe = 5;
+			//print_r($params); echo "<br/>";
+			//*/
+			if (!isset($par))	{
+				throw new Exception("Data Tidak ada !!");
+			}
+			//*
+			if (isset($par->bln))	{
+				$dbln = explode('b',$par->bln);
+				$bln = $dbln[1];
+			}
+			else {
+				$bln = date('n');
+			}
+			$thn = (isset($par->thn))?$par->thn:date('Y');
+
+			//$this->load->model('contract');
+			//echo "nilai: ".floatval($params->nilai).",bln: ".$bln.", tipe: ".$params->tipe.",thn: ".$params->thn;
+			$hasil = $this->conmon->uiconmon(floatval($par->nilai), $bln, $par->tipe, $par->thn);
+			
+			//print_r($hasil);
+			$jsonResult = array(
+				'success' => true,
+				'conmon' => $hasil
+			);
+			
+			//*/
+		}
+		catch (Exception $e)	{
+			 $jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		
+		
+		//$hasil['json'] = $jsonResult;
+		//$this->output->set_content_type('application/json');
+		//$this->output->set_output(json_encode($jsonResult));
+		echo json_encode($jsonResult);
+	}
+	
 	public function ReadCMon()	{
 		
 		try {

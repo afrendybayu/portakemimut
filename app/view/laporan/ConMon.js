@@ -119,6 +119,7 @@ Ext.define('rcm.view.laporan.ConMon', {
 				xtype : 'tGridConMon',
 				width: 180
 			},{
+				id: 'idGridCM',
 				region: 'center',    
 				//xtype : 'iConMon',
 				xtype : 'tGridContract',
@@ -128,7 +129,8 @@ Ext.define('rcm.view.laporan.ConMon', {
 				pbudg: true,
 				cm: true,
 				region:'center',
-				dstore: 'GridConMon'
+				dstore: 'GridConMon',
+				event: 'evConMon'
 		}]
 		//*/
 		/*

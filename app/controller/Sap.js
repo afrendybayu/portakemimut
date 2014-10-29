@@ -50,6 +50,7 @@ Ext.define('rcm.controller.Sap', {
     
     models: [
 		'ContractInput',
+		'ConmonInput',
 		'ConMonIn',
 		'OverHaulIn',
 		'ManOCost'
@@ -167,8 +168,10 @@ Ext.define('rcm.controller.Sap', {
 			'#ConMonSave' : {
 				click : me.tblsimpanConMon
 			},
-			
-			'tGridContract': {
+			'#idGridCM': {
+				recordedit: me.uConMon
+			},
+			'#idGridKontrak': {
 				recordedit: me.ubahKontrak
 			},
 			'#cb_parent':{
@@ -240,7 +243,11 @@ Ext.define('rcm.controller.Sap', {
 			
 		});
     },
-    
+    /*
+    uConMon: function()	{
+		alert('uConMon');
+	},
+    //*/
     hdlChThnMoc: function(tf,newV,oldV)	{
 		//alert('berubah '+newV);
 		var me=this;
@@ -973,9 +980,66 @@ Ext.define('rcm.controller.Sap', {
 				}
 			}
 		});
+	},
+	
+	uConMon: function( e,nilai,bln,tipe,thn )	{
+		var me=this,
+			//kont=new rcm.model.ContractInput({
+			cm=new rcm.model.ConmonInput({
+			nilai:nilai,bln:bln,tipe:tipe,thn:thn
+        });
 		/*
-        
-		//*/
+		Ext.MessageBox.show({
+			title:'Save Changes?',
+			//msg: 'Data will be changed into '+nilai+'<br />Would you like to save your changes?',
+			msg: 'Data will be changed into <br />Would you like to save your changes?',
+			buttons: Ext.MessageBox.YESNOCANCEL,
+			fn: showResult,
+			animEl: 'mb4',
+			icon: Ext.MessageBox.QUESTION
+		});
+       //*/
+       if (e.originalValue == nilai)	{
+			//console.log("sama");
+		   return;
+	   }
+       
+		Ext.MessageBox.show({
+			title : 'Simpan ?',
+			msg : 'Simpan Jml ConMon nilai awal '+e.originalValue+', menjadi '+nilai+' ?',
+			//width : 300,
+			buttons : Ext.MessageBox.OKCANCEL,
+			//multiline : true,
+			scope : this,
+			fn : function(btn, reason, cfg){ 
+				if (btn =='ok') {
+					//alert('ok with text');
+					cm.save({
+						success: function(respon, operation) {
+							var resp = operation.request.scope.reader.jsonData["conmon"];
+							//var t=Ext.getCmp('iThnCont').getValue();
+							//rcmSettings.yyyyyy = resp;
+							//console.log("sukses: "+resp + ", id: "+resp[0].id);
+							me.getGridConMonStore().load({params:{thn:thn}});
+							me.getConMonStore().load();
+							//ConMon
+							//me.getContractLineStore().load({params:{tgl:t}});
+						},
+						failure: function(task, operation) {
+							var error = operation.getError(),
+								msg = Ext.isObject(error) ? error.status + ' ' + error.statusText : error;
+
+							Ext.MessageBox.show({
+								title: 'Update Contract Cost Failed',
+								msg: msg,
+								icon: Ext.Msg.ERROR,
+								buttons: Ext.Msg.OK
+							});
+						}
+					});
+				}
+			}
+		});
 	},
 	
 	showResult: function(a)	{

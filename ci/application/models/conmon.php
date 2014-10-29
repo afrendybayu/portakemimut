@@ -37,8 +37,7 @@ class Conmon extends CI_Model {
 				IFNULL((SELECT SUM(nilai) FROM conmon cd WHERE cd.thn = cm.thn AND cd.tipe=5),0) AS gc,
 				IFNULL((SELECT SUM(nilai) FROM conmon cd WHERE cd.thn = cm.thn AND cd.tipe=7),0) AS gs,
 				IFNULL((SELECT SUM(nilai) FROM conmon cd WHERE cd.thn = cm.thn AND cd.tipe=6),0) AS pmp
-				FROM conmon cm WHERE thn in (YEAR(NOW()),YEAR(NOW())-1,YEAR(NOW())-2) GROUP BY thn
-				ORDER BY thn desc";
+				FROM conmon cm WHERE thn in (YEAR(NOW()),YEAR(NOW())-1,YEAR(NOW())-2) GROUP BY thn";
 				
 		$query = $this->db->query($sql);
 		return $query->result();
@@ -68,8 +67,8 @@ class Conmon extends CI_Model {
 		return $query->result();
 	}
 
-	function uicontract($val, $bln, $tipe, $thn)	{
-		$sql = "call iucontract('$val','$bln','$tipe','$thn')";
+	function uiconmon($val, $bln, $tipe, $thn)	{
+		$sql = "call iuconmon('$val','$bln','$tipe','$thn')";
 		//echo "sql: $sql<br/>";
 		$hsl = new stdClass();
 		$l1=0; $l2 = 0;
