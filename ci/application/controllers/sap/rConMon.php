@@ -181,7 +181,7 @@ class rConMon extends CI_Controller {
 
 		
 	}
-	//==================
+
 	public function updateCMon(){
 		
 		try {
@@ -235,15 +235,40 @@ class rConMon extends CI_Controller {
 
 		
 	}
-	//==================
+
 	function gConMon(){
 		try {
 			//$hsl = $this->cmon->graf_conmon();
+			$hslg = array();
+			$jt = 3-1;
+			for ($i=$jt; $i>=0; $i--){
+				$obj = new stdClass();
+				$obj->thn = date('Y')-$i;
+				$obj->gc = 0;
+				$obj->gp = 0;
+				$obj->pmp = 0;
+				array_push($hslg,$obj);
+			}
+			//print_r($hslg); echo "<br/><br/>";
+			
 			$hsl = $this->conmon->gr_conmon();
+			//print_r($hsl); echo "<br/><br/>";
+			for ($k=0; $k<count($hslg); $k++)	{
+				
+				//*
+				for($j=count($hsl)-1; $j>=0; $j--)	{
+					//echo "hsl[$k] {$hslg[$k]->thn} {$hsl[$j]->thn} <br/>";
+					if ($hsl[$j]->thn==$hslg[$k]->thn)	{
+						//echo ">>>> {$hsl[$j]->thn}=={$hslg[$k]->thn}<br/>";
+						$hslg[$k] = $hsl[$j];
+					}
+				}
+				//*/
+			}
 			
 			$jsonResult = array(
 					'success' => true,
-					'gcmon' => $hsl
+					'gcmon' => $hslg
 				);
 		}
 		catch (Exception $e){
@@ -280,10 +305,6 @@ class rConMon extends CI_Controller {
 			for($k=0; $k<count($hsl); $k++){
 				$hslbln[$hsl[$k]->bln-1] 			= $hsl[$k];
 				$hslbln[$hsl[$k]->bln-1]->mbln 		= nmMonth($hsl[$k]->bln-1,2);
-				
-				
-				
-				
 			}
 
 			

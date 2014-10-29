@@ -129,8 +129,8 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('gridedit').setVisible(true);
 					Ext.getCmp('btnUplBpm3').setDisabled(false);
 					Ext.getCmp('bwbpm3').setDisabled(false);
-					Ext.getCmp('conmondel').setDisabled(false);
-					Ext.getCmp('cmform').setDisabled(false);
+					//Ext.getCmp('conmondel').setDisabled(false);
+					//Ext.getCmp('cmform').setDisabled(false);
 					
 					Ext.getCmp('ohdel').setDisabled(false);
 					Ext.getCmp('ohform').setDisabled(false);
@@ -138,7 +138,7 @@ Ext.define('rcm.controller.Login', {
 					
 					//Ext.getCmp('conmondel').setEnabled(false);
 					
-					me.getIConMon().ngedit = 1;
+					//me.getIConMon().ngedit = 1;
 					me.getExcelgrid().ngedit = 1;
 					me.getTGridContract().ngedit = 1;
 
@@ -198,7 +198,7 @@ Ext.define('rcm.controller.Login', {
 					});
 						
 
-					me.getIConMon().ngedit = 0;
+					//me.getIConMon().ngedit = 0;
 					me.getExcelgrid().ngedit = 0;
 					me.getTGridContract().ngedit = 0;
 					me.getAuthlogin().level = 10;
@@ -208,8 +208,8 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('gridedit').setVisible(false);
 					Ext.getCmp('btnUplBpm3').setDisabled(true);
 					Ext.getCmp('bwbpm3').setDisabled(true);
-					Ext.getCmp('conmondel').setDisabled(true);
-					Ext.getCmp('cmform').setDisabled(true);
+					//Ext.getCmp('conmondel').setDisabled(true);
+					//Ext.getCmp('cmform').setDisabled(true);
 					
 					Ext.getCmp('ohform').setDisabled(true);
 					Ext.getCmp('ohdel').setDisabled(true);
@@ -242,8 +242,8 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('gridedit').setVisible(true);
 					Ext.getCmp('btnUplBpm3').setDisabled(false);
 					Ext.getCmp('bwbpm3').setDisabled(false);
-					Ext.getCmp('conmondel').setDisabled(false);
-					Ext.getCmp('cmform').setDisabled(false);
+					//Ext.getCmp('conmondel').setDisabled(false);
+					//Ext.getCmp('cmform').setDisabled(false);
 					
 					Ext.getCmp('ohdel').setDisabled(false);
 					Ext.getCmp('ohform').setDisabled(false);
@@ -251,7 +251,7 @@ Ext.define('rcm.controller.Login', {
 					
 					me.getAuthlogin().level = res.level;
 					me.getExcelgrid().ngedit = 1;
-					me.getIConMon().ngedit = 1;
+					//me.getIConMon().ngedit = 1;
 				}
 				else{
 					//console.log('sesine ilang je');
