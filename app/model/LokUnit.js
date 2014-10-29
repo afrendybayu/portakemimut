@@ -5,14 +5,14 @@ Ext.define('rcm.model.LokUnit', {
 		'Ext.data.proxy.Ajax'
 	],
 	
-	fields:	['id', 'nama', 'kode','cat'],
+	fields:	['id', 'nama', 'kode','cat','flag'],
 
     proxy: {
 		type: 'ajax',
 		api: {
-			create	: 'ci/index.php/konfig/rLokUnit/createHirarki',
+			create	: 'ci/index.php/konfig/rLokUnit/cHirarki',
             read	: 'ci/index.php/konfig/rLokUnit/rHirarki',
-            update	: 'ci/index.php/konfig/rLokUnit/updateHirarki'
+            update	: 'ci/index.php/konfig/rLokUnit/uHirarki'
         },
         reader: {
             type: 'json',

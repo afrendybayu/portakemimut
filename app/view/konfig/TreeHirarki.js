@@ -5,7 +5,8 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 	requires: [
         'Ext.grid.plugin.CellEditing',
         'Ext.tree.plugin.TreeViewDragDrop',
-        'Ext.grid.column.Action'
+        'Ext.grid.column.Action',
+        'Ext.ux.TreePicker'
     ],
 	
     rootVisible: true,
@@ -13,8 +14,9 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 	//hideHeaders: true,
 
 	initComponent: function() {
-		var me = this;
-        me.plugins = [me.cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing')];
+		var me = this,
+			cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing');
+        me.plugins = [cellEditingPlugin];
         me.viewConfig = {
             plugins: {
                 ptype: 'treeviewdragdrop',
@@ -38,27 +40,33 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
                 }
             }
         };
-		me.dockedItems= me.dock ? []:[{
-				xtype: 'toolbar',
-				dock: 'bottom',
-				items: [{
-						text : 'Tambah Lokasi',
-						//id	: 'tambah_lokasi'
-					},'->',{
-						iconCls: 'new_folder_tree',
-						tooltip: 'New Folder'
-					},{
-						iconCls: 'delete_folder_tree',
-						//id: 'delete-folder-btn',
-						tooltip: 'Delete Folder'
-					}
-				]
-			}];
+		me.dockedItems= [{
+			xtype: 'toolbar',
+			dock: 'bottom',
+			items: me.dock ? ['->',{
+					//id: 'idTrEqCHir',
+					id: me.idEqCH,
+					xtype: 'button',
+					text: 'Simpan',
+					iconCls: 'savedisk',
+					tooltip: 'Simpan Kategori'
+				}]:[{
+					text : 'Tambah Lokasi',
+					//id	: 'tambah_lokasi'
+				},'->',{
+					iconCls: 'new_folder_tree',
+					tooltip: 'New Folder'
+				},{
+					iconCls: 'delete_folder_tree',
+					//id: 'delete-folder-btn',
+					tooltip: 'Delete Folder'
+			}]
+		}];
         me.columns = [{
                 xtype: 'treecolumn',
                 dataIndex: 'nama',
                 text: 'Hirarki',
-                flex: 1,
+                flex: 3,
                 editor: {
                     xtype: 'textfield',
                     selectOnFocus: true,
@@ -77,6 +85,14 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 					renderer: me.renderList
 				},
 			},{
+				//hidden  : me.hideDel,
+                xtype	: 'actioncolumn',
+                width	: 24,
+				icon	: 'resources/css/images/edit1.png',
+				iconCls	: 'x-hidden',
+				tooltip	: 'Edit',
+				//handler	: Ext.bind(me.hdlDelClk, me)
+			},{
 				hidden  : me.hideDel,
                 xtype	: 'actioncolumn',
                 width	: 24,
@@ -87,7 +103,10 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
             }];
 		
         me.callParent(arguments);
+		me.addEvents(
 		
+		);
+		cellEditingPlugin.on('edit', me.handleCellEdit, this);
 	},
 	
 	hdlDelClk: function(grid, row, col, column, e) {
@@ -102,5 +121,10 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
             node = value ? listsStore.getNodeById(value) : listsStore.getRootNode();
 		
         return node.get('text');
+    },
+    
+    handleCellEdit: function(editor, e) {
+		alert("Ganti");
+        //this.fireEvent('recordedit', e.record);
     },
 });

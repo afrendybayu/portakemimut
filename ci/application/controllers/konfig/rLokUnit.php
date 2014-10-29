@@ -5,6 +5,8 @@ class rLokUnit extends CI_Controller {
         parent::__construct();
 		$this->load->model('hirarki');
 	}
+	
+	
 	public function rHirarki()	{
 		
 		try {
@@ -23,7 +25,7 @@ class rLokUnit extends CI_Controller {
 					//$arr[$k]['nama'] 	= $row->nama.' '.$row->id;
 					// $arr[$k]['level'] 	= $row->level;
 					$arr[$k]['leaf'] 	= 'false';
-					
+					$arr[$k]['flag']	= 'h';
 					$k++;
 				}
 			}
@@ -37,6 +39,7 @@ class rLokUnit extends CI_Controller {
 					// $arr[$k]['level'] 	= '';
 					$arr[$k]['leaf'] 	= 'true';
 					$arr[$k]['cat'] 	= $row->cat;
+					$arr[$k]['flag']	= 'e';
 					$k++;
 				}
 			}
@@ -56,33 +59,63 @@ class rLokUnit extends CI_Controller {
 	
 	}
 	
-	public function createHirarki(){
-		try{
+	public function cHirarki() {
+		try {
 			// $params = json_decode(file_get_contents('php://input'));
 			// $sql = insert into hirarki ('nama', 'parent', 'level') values ({$params->});
-			$hsl = $this->hirarki->create_hirarki_new();
+			//$hsl = $this->hirarki->create_hirarki_new();
 			// echo 'succeed';
+			$jsonResult = array(
+				'success' => true,
+				'hir' => $hsl
+			);
+		}
+		catch (Exception $e)	{
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
+	//*
+	public function uHirarki() {
+		//$str = "[GM-A01A00001] ELMOT RELIANCE 30 HP";
+		$params = json_decode(file_get_contents('php://input'));
+		//*
+		try {
+			//*
+			if (!isset($params))	{
+				throw new Exception("Input Data Tidak Ada");
+			}
 			
+			$isi = explode("]",$params->nama);
+			$kode = trim(substr($isi[0],1));
+			$nama = trim($isi[1]);
+			//print_r($isi);			echo "<br/>1: $kode,2: $nama<br/>";
+			
+			$data = array(
+				'nama' => $nama,
+				'tag'  => $kode,
+				'cat'  => $params->cat
+			);
+			
+			$this->load->model('equip');
+			$this->equip->update_equip($data,$params->id);
+			//*/
+			$jsonResult = array(
+				'success' => true,
+				'hir' => array('id' => $params->id)
+			);
 		}
 		catch (Exception $e){
-			// ech`o 'failed';
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
 		}
-	
-	}
-	
-	public function updateHirarki(){
-		$params = json_decode(file_get_contents('php://input'));
-		$data = array('nama' => $params->nama);
-		/*
-		$sql = array(
-					'nama' 		=> $params->nama,
-					'parent' 	=> $params->parentId,
-					'level'		=> $params->level +1,
-					
-				);
-		$this->db->where('id',$params->id);
-		$this->db->update('hirarki', $sql);
-			*/
+		echo json_encode($jsonResult);
+		
 	}
 	
 }

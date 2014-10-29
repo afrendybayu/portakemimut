@@ -92,6 +92,12 @@ class Equip extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
+	
+	function update_equip($data,$id)	{
+		$this->db->set($data);
+		$this->db->where('id', $id);
+		return $this->db->update('equip');
+	}
 }
 
 /* End of file option.php */

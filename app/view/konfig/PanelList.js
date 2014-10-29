@@ -66,6 +66,7 @@ Ext.define('rcm.view.konfig.PanelList', {
 			},{
 				title: me.jdlKa,
 				xtype: 'treeHirarki',
+				idEqCH: me.idEqCH,
 				hideDel: true,
 				//dragGroup: 'GrupB',
 				//dropGroup: 'GrupA',

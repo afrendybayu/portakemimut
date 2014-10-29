@@ -59,7 +59,8 @@ Ext.define('rcm.controller.Config', {
 		'GridPMIn',
 		'GridOPIn',
 		'GridModeIn',
-		'CatHir'
+		'CatHir',
+		'CatHirEq'
 	],
     
     refs: [{
@@ -140,6 +141,9 @@ Ext.define('rcm.controller.Config', {
 			'[iconCls=del_cat_tree]': {
                 click: me.tblDelCat
             },
+            '#idEqCH': {
+				 click: me.hdlCatHirEq
+			},
 			'#tambah_lokasi' : {
 				click : me.tambahLokasi
 			},
@@ -225,12 +229,12 @@ Ext.define('rcm.controller.Config', {
 	},
 	
 	delPmDefGrid : function (rec){
-		alert ('Awas Kau Pencet-Penccet Aku '+rec);
-		console.log(rec);
+		//alert ('Awas Kau Pencet-Penccet Aku '+rec);
+		//console.log(rec);
 		
 		var me = this, 
-		record = rec.data,
-		delPm = new rcm.model.FormPmDef(record );
+			record = rec.data,
+			delPm = new rcm.model.FormPmDef(record );
 		Ext.MessageBox.show({
 				title : 'Hapus Predictive Maintenance Def.',
 				msg   : 'Yakin Data Akan di Hapus ??',
@@ -390,7 +394,31 @@ Ext.define('rcm.controller.Config', {
 	},
 	
 	hdlDelEq: function(rec)	{
-		alert("Del: "+rec.get('id'));
+		//alert("Del: "+rec.get('id'));
+		console.log(rec);
+		var me = this, 
+			dEqCH = new rcm.model.CatHirEq({id:rec.get('id')});
+		Ext.MessageBox.show({
+			title : 'Hapus Kategori Equipment',
+			msg   : 'Yakin Kategori '+rec.get('nama')+' Akan diHapus ??',
+			buttons: Ext.MessageBox.OKCANCEL,
+			icon  : Ext.MessageBox.WARNING,
+			fn	: function (oks){
+				if (oks === 'ok'){ 
+					dEqCH.destroy ({
+						success: function(del, op){
+							// dcmon.destroy();
+							// me.getConMonStore().reload();
+							me.getGridEqcInStore().reload();
+							me.getGridEqnInStore().reload();
+						},
+						callback: function(){
+							
+						}
+					}) 
+				}
+			}
+		});
 	},
 	
     hdlDropListD: function(data, cat, tab)	{
@@ -408,7 +436,6 @@ Ext.define('rcm.controller.Config', {
 		}
 		dl.destroy();
 	},
-    
     hdlDropListC: function(data, cat, tab)	{
 		var me=this,
 			dl,
@@ -470,34 +497,38 @@ Ext.define('rcm.controller.Config', {
 	},
 	
 	tblNCatPM: function()	{
-		this.treeCat(Ext.getCmp('idkPM'));
+		this.treeCat('idkPM');
 	},
-	
 	tblNCatOP: function()	{
-		this.treeCat(Ext.getCmp('idkOP'));
+		this.treeCat('idkOP');
 	},
-	
 	tblNCatMd: function()	{
-		this.treeCat(Ext.getCmp('idkMd'));
+		this.treeCat('idkMd');
 	},
-	
 	tblNCatEq: function()	{
-		this.treeCat(Ext.getCmp('idkEq'));
+		this.treeCat('idkEq');
 	},
 	
-	saveNCatH: function(ch)	{
-		var me = this
+	hdlCatHirEq: function()		{
+		//alert("hdlCatHirEq");
+	},
+	
+	saveNCatH: function()	{
+		rcmSettings.qwer = ch;
+		var me = this,
 			wc = me.getTWCatHir(),
-			winEl = wc.getEl(),
-            form = wc.down('form').getForm(),
-            //ch = me.getTCatHir(),
-			selModel = ch.getSelectionModel(),
-            selList = selModel.getSelection()[0];
+			form = wc.down('form').getForm(),
+			winEl = wc.getEl();
 
 		if(!form.isValid()) {
             Ext.Msg.alert('Invalid Data', 'Please correct form errors');
             return;
 		}
+		console.log("idCatH: "+form.findField('idCatH').getValue());
+		//return;
+		var ch = Ext.getCmp(form.findField('idCatH').getValue()),
+			selModel = ch.getSelectionModel(),
+            selList = selModel.getSelection()[0];
 		winEl.mask('menyimpan');
 		//console.log(form.findField('wcNama').getValue()+" "+form.findField('wcKode').getValue());
 
@@ -521,14 +552,14 @@ Ext.define('rcm.controller.Config', {
 				me.addedNode = newList;
 				//ce.startEdit(newList, 0);
 			} else {
-				hTree.on('afteritemexpand', function startEdit(list) {
+				ch.on('afteritemexpand', function startEdit(list) {
 					if(list === parentList) {
 						selModel.select(newList);
 						me.addedNode = newList;
 						// console.log(newList);
 						//ce.startEdit(newList, 0);
 						// remove the afterexpand event listener
-						hTree.un('afteritemexpand', startEdit);
+						ch.un('afteritemexpand', startEdit);
 					}
 				});
 				selList.expand();
@@ -589,26 +620,29 @@ Ext.define('rcm.controller.Config', {
 		});
 		
 		me.getCatHirStore().load();
+		me.getGridEqcInStore().reload();
+        me.getGridEqnInStore().load();
 	},
 	
-	treeCat: function(hTree)	{
+	treeCat: function(id)	{
+		//console.log("id: "+id);
 		var me = this,
-            //hTree = me.getTCatHir(),
-            //ce = hTree.ce,
-            selectionModel = hTree.getSelectionModel(),
-            selectedList = selectionModel.getSelection()[0],
+            hTree = Ext.getCmp(id);
+		//console.log(hTree);
+            
+		//ce = hTree.ce,
+		var selModel = hTree.getSelectionModel(),
+            selList = selModel.getSelection()[0],
 			//parentList = selectedList.isLeaf() ? selectedList.parentNode : selectedList; //if leaf, then selecetd parent id, else select id
-			parentList = selectedList;
-		//console.log(selectedList);
-		
-		
+			parentList = selList;
+
 		var wHir = me.getTWCatHir();
-		wHir.setTitle('Form Tambah Kategori [Parent: '+selectedList.get('text')+']');
+		wHir.setTitle('Form Tambah Kategori [Parent: '+selList.get('text')+']');
 		wHir.down('form').getForm().reset();
-		Ext.getCmp('idCatH').setValue(selectedList.get('id'));
+		//Ext.getCmp('idCatH').setValue(selList.get('id'));
+		Ext.getCmp('idCatH').setValue(id);
 
 		wHir.show();
-		return;
 	},
 	
 	addTreeHirarki: function(leaf) {
@@ -675,19 +709,22 @@ Ext.define('rcm.controller.Config', {
     },
 	
 	updateTreeHirarki: function(editor, e) {
-		console.log('updateTreeHirarki diedit');
+		//console.log('updateTreeHirarki diedit');
         //*
 		var me = this,
             list = e.record;
-		// console.log(e.row);
-		console.log(e);
-       //*
+		//console.log(e.row);
+		//console.log(e);
+		//*
 		list.save({
             success: function(list, operation) {
                 // filter the task list by the currently selected list.  This is necessary for newly added lists
                 // since this is the first point at which we have a primary key "id" from the server.
                 // If we don't filter here then any new tasks that are added will not appear until the filter is triggered by a selection change.
                 // me.filterTaskGrid(me.getTreeHirarki().getSelectionModel(), [list]);
+                me.getLokUnitStore().reload();
+				me.getGridEqcInStore().reload();
+				me.getGridEqnInStore().load();
             },
             failure: function(list, operation) {
                 var error = operation.getError(),
@@ -701,6 +738,7 @@ Ext.define('rcm.controller.Config', {
                 });
             }
         });
+        
 		//*/
     },
 
@@ -725,7 +763,7 @@ Ext.define('rcm.controller.Config', {
         });
 		//*/
     },
-	 hideActions: function(view, list, node, rowIndex, e) {
+	hideActions: function(view, list, node, rowIndex, e) {
 		// console.log(node);
 		// console.log('ikon hideActions');
 		var icons = Ext.DomQuery.select('.x-action-col-icon', node);

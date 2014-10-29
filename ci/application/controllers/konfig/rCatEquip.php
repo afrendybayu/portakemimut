@@ -84,6 +84,34 @@ class rCatEquip extends CI_Controller {
 		echo json_encode($jsonResult);
 	}
 	
+	public function dHirCatEq()	{
+		$par = json_decode(file_get_contents('php://input'));
+		if (!isset($par))	{
+			throw new Exception("Input Data Tidak Ada");
+		}
+		
+		try {
+			$data = array('cat'	=> '');
+			$hasil = $this->catequip->del_cathireq($data,$par->id);
+			/*
+			if ($hasil['jml']>0)	{
+				throw new Exception("Ada {$hasil['jml']} Equipment yang berkategori ini !");
+			}
+			//*/
+			$jsonResult = array(
+				'success' => true,
+				'cateq' => array('id' => $par->id)
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
+	
 	public function createHirarki(){
 		try{
 			// $params = json_decode(file_get_contents('php://input'));

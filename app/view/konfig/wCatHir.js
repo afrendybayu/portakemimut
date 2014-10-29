@@ -17,8 +17,9 @@ Ext.define('rcm.view.konfig.wCatHir', {
 			xtype: 'form',
 			//bodypadding : 40,
 			//padding: '5 10',
+			defaultType: 'textfield',
 			items: [{
-				xtype: 'textfield',
+				//xtype: 'textfield',
 				name : 'wcNama',
 				fieldLabel: 'Nama',
 				allowBlank: false
@@ -26,13 +27,13 @@ Ext.define('rcm.view.konfig.wCatHir', {
 				xtype: 'hiddenfield',
 				id: 'idCatH'
 			},{
-				xtype: 'textfield',
+				//xtype: 'textfield',
 				name : 'wcKode',
 				fieldLabel: 'Kode',
 				allowBlank: false
 			},{
 				//xtype: 'textarea',
-				xtype: 'textfield',
+				//xtype: 'textfield',
 				name : 'wcKet',
 				fieldLabel: 'Keterangan',
 				//anchor    : '100%'

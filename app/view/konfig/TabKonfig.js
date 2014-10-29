@@ -87,6 +87,7 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			cHir: 'idkEq',
 			idnC: 'idnCEq',
 			iddC: 'iddCEq',
+			idEqCH: 'idEqCH',
 			dhideA: false,
 			dhideB: true,
 			jdlKi: 'Pilih Equipment',

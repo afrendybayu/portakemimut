@@ -53,6 +53,11 @@ class Catequip extends CI_Model {
 		//*/
 	}
 	
+	function del_cathireq($data,$id)	{
+		$this->db->where('id',$id);
+		$this->db->update('equip',$data);
+	}
+	
 	function get_tipe_id()	{
 		$this->db->select('id');
 		$this->db->where('parent',0);

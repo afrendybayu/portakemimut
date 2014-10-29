@@ -65,8 +65,8 @@ Ext.define('rcm.view.konfig.GridL', {
 			},{ 
 				header		: 'Nama',
 				dataIndex	: 'nama',
-				flex:1,
-				minWidth: 330
+				flex:1
+				//minWidth: 330
 			},{
                 xtype	: 'actioncolumn',
                 hidden: me.hide ? true:false,
