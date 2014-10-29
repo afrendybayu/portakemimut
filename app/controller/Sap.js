@@ -138,6 +138,9 @@ Ext.define('rcm.controller.Sap', {
 			'#srPM': {
 				click: me.bFiltPM
 			},
+			'#srCM': {
+				click: me.bFiltCM
+			},
 			'#srTop10': {
 				click: me.bFiltTop10
 			},
@@ -175,7 +178,6 @@ Ext.define('rcm.controller.Sap', {
 				recordedit: me.ubahKontrak
 			},
 			'#cb_parent':{
-
 				select : me.pilihComboParent
 			},
 			'#cb_unit' : {
@@ -678,6 +680,9 @@ Ext.define('rcm.controller.Sap', {
 		//alert("PM Thn: "+Ext.getCmp('thnPM').getValue());
 		this.getSapPMCostStore().load({ params:{thn:Ext.getCmp('thnPM').getValue()} });
 	},
+	bFiltCM: function()	{
+		this.getGridConMonStore().load({ params:{thn:Ext.getCmp('iThnCM').getValue()} });
+	},
 	
 	bFiltTop10: function()	{
 		//alert("Top10 Thn: "+Ext.getCmp('thnTop10').getValue());
@@ -927,9 +932,10 @@ Ext.define('rcm.controller.Sap', {
 	
 	ubahKontrak: function( e,nilai,bln,tipe,thn )	{
 		var me=this,
+			thn=Ext.getCmp('iThnCont').getValue(),
 			kont=new rcm.model.ContractInput({
-			nilai:nilai,bln:bln,tipe:tipe,thn:thn
-        });
+				nilai:nilai,bln:bln,tipe:tipe,thn:thn
+			});
 		/*
 		Ext.MessageBox.show({
 			title:'Save Changes?',
@@ -982,12 +988,12 @@ Ext.define('rcm.controller.Sap', {
 		});
 	},
 	
-	uConMon: function( e,nilai,bln,tipe,thn )	{
+	uConMon: function( e,nilai,bln,tipe)	{
 		var me=this,
-			//kont=new rcm.model.ContractInput({
+			thn=Ext.getCmp('iThnCM').getValue(),
 			cm=new rcm.model.ConmonInput({
-			nilai:nilai,bln:bln,tipe:tipe,thn:thn
-        });
+				nilai:nilai,bln:bln,tipe:tipe,thn:thn
+			});
 		/*
 		Ext.MessageBox.show({
 			title:'Save Changes?',
@@ -1022,8 +1028,10 @@ Ext.define('rcm.controller.Sap', {
 							//console.log("sukses: "+resp + ", id: "+resp[0].id);
 							me.getGridConMonStore().load({params:{thn:thn}});
 							me.getConMonStore().load();
-							//ConMon
-							//me.getContractLineStore().load({params:{tgl:t}});
+							me.getConMonGrStore().load();
+							me.getDetConMonGrStore().load();
+							me.getDetConMonGsStore().load();
+							me.getDetConMonPmpStore().load();
 						},
 						failure: function(task, operation) {
 							var error = operation.getError(),
