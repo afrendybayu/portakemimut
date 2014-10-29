@@ -105,9 +105,23 @@ Ext.define('rcm.controller.Config', {
 			'[iconCls=delete_folder_tree]': {
                 click: me.tblDelLokasi
             },
+            /*
             '[iconCls=new_cat_tree]': {
-                click: me.tblNewCat
+                //click: me.tblNewCat
             },
+            //*/
+            '#idnCPM': {
+				click: me.tblNewCat
+			},
+			'#idnCOP': {
+				click: me.tblNewCat
+			},
+			'#idnCMd': {
+				click: me.tblNewCat
+			},
+			'#saveCatH': {
+				click: me.saveNCatH
+			},
 			'[iconCls=del_cat_tree]': {
                 click: me.tblDelCat
             },
@@ -433,6 +447,69 @@ Ext.define('rcm.controller.Config', {
 		this.addTreeHirarki(true);
 	},
 	
+	saveNCatH: function()	{
+		var me = this
+			wc = me.getTWCatHir(),
+			winEl = wc.getEl(),
+            form = wc.down('form').getForm(),
+            ch = me.getTCatHir(),
+			selModel = ch.getSelectionModel(),
+            selList = selModel.getSelection()[0];
+
+		if(!form.isValid()) {
+            Ext.Msg.alert('Invalid Data', 'Please correct form errors');
+		}
+		winEl.mask('menyimpan');
+		//console.log(form.findField('wcNama').getValue()+" "+form.findField('wcKode').getValue());
+
+		var newList = Ext.create('rcm.model.CatHir', {
+			text: form.findField('wcNama').getValue(),
+			leaf: true,
+			tipe: form.findField('wcKode').getValue(),
+			ket: form.findField('wcKet').getValue(),
+			// level : selectedList.data.depth,
+			loaded: true // set loaded to true, so the tree won't try to dynamically load children for this node when expanded
+		});
+		wc.close();
+		selList.appendChild(newList);
+		var hirStore = me.getCatHirStore();
+		hirStore.sync();
+		hirStore.reload();
+		
+		var expandAndEdit = function() {
+			if(selList.isExpanded()) {
+				selModel.select(newList);
+				me.addedNode = newList;
+				//ce.startEdit(newList, 0);
+			} else {
+				hTree.on('afteritemexpand', function startEdit(list) {
+					if(list === parentList) {
+						selModel.select(newList);
+						me.addedNode = newList;
+						// console.log(newList);
+						//ce.startEdit(newList, 0);
+						// remove the afterexpand event listener
+						hTree.un('afteritemexpand', startEdit);
+					}
+				});
+				selList.expand();
+			}
+		};
+		
+		if(ch.getView().isVisible(true)) {
+            expandAndEdit();
+        } else {
+            ch.on('expand', function onExpand() {
+                expandAndEdit();
+                ch.un('expand', onExpand);
+            });
+            ch.expand();
+        }
+		
+		winEl.unmask();
+
+	},
+	
 	tblNewCat: function()	{
 		//console.log("tblNewCat");
 		this.treeCat(true);
@@ -481,14 +558,16 @@ Ext.define('rcm.controller.Config', {
             //ce = hTree.ce,
             selectionModel = hTree.getSelectionModel(),
             selectedList = selectionModel.getSelection()[0],
-			parentList = selectedList.isLeaf() ? selectedList.parentNode : selectedList; //if leaf, then selecetd parent id, else select id
-			//parentList = selectedList;
-		console.log(selectedList);
+			//parentList = selectedList.isLeaf() ? selectedList.parentNode : selectedList; //if leaf, then selecetd parent id, else select id
+			parentList = selectedList;
+		//console.log(selectedList);
 		
 		
 		var wHir = me.getTWCatHir();
-		//rcmSettings.def = me;
-		//rcmSettings.abc = me.getTWCatHir();
+		wHir.setTitle('Form Tambah Kategori [Parent: '+selectedList.get('text')+']');
+		wHir.down('form').getForm().reset();
+		Ext.getCmp('idCatH').setValue(selectedList.get('id'));
+
 		wHir.show();
 		return;
 		//console.log(selectedList.isLeaf());
@@ -501,40 +580,7 @@ Ext.define('rcm.controller.Config', {
 		});
 		//console.log(parentList);
 		//
-		parentList.appendChild(newList);
-		var hirStore = me.getCatHirStore();
-		hirStore.sync();
-		hirStore.reload();
 		
-		var expandAndEdit = function() {
-			if(parentList.isExpanded()) {
-				selectionModel.select(newList);
-				me.addedNode = newList;
-				//ce.startEdit(newList, 0);
-			} else {
-				hTree.on('afteritemexpand', function startEdit(list) {
-					if(list === parentList) {
-						selectionModel.select(newList);
-						me.addedNode = newList;
-						// console.log(newList);
-						//ce.startEdit(newList, 0);
-						// remove the afterexpand event listener
-						hTree.un('afteritemexpand', startEdit);
-					}
-				});
-				parentList.expand();
-			}
-		};
-		
-		if(hTree.getView().isVisible(true)) {
-            expandAndEdit();
-        } else {
-            hTree.on('expand', function onExpand() {
-                expandAndEdit();
-                hTree.un('expand', onExpand);
-            });
-            hTree.expand();
-        }
 		
 		//alert(selectedList);
 	},

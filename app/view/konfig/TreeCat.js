@@ -13,31 +13,28 @@ Ext.define('rcm.view.konfig.TreeCat', {
     store: 'CatHir',
 	//hideHeaders: true,
 
-	dockedItems: [
-        {
-            xtype: 'toolbar',
-            dock: 'bottom',
-            items: [/*{
-					text : 'Tambah Kategori',
-					//id	: 'tambah_lokasi'
-				},*/
-				'->',{
-                    iconCls: 'new_cat_tree',
-                    tooltip: 'Kategori Baru'
-                },{
-                    iconCls: 'del_cat_tree',
-                    //id: 'delete-cat-btn',
-                    tooltip: 'Hapus Kategori'
-                }
-            ]
-        }
-    ],
+	
 	//*/
 	
 
 	initComponent: function() {
 		var me = this;
-		me.plugins = [me.ce = Ext.create('Ext.grid.plugin.CellEditing')];
+		//me.plugins = [me.ce = Ext.create('Ext.grid.plugin.CellEditing')];
+		
+		me.dockedItems = [{
+            xtype: 'toolbar',
+            dock: 'bottom',
+            items: ['->',{
+					id: me.idnC,
+                    iconCls: 'new_cat_tree',
+                    tooltip: 'Kategori Baru'
+                },{
+					id: me.iddC,
+                    iconCls: 'del_cat_tree',
+                    tooltip: 'Hapus Kategori'
+                }
+            ]
+        }];
 		me.listeners = {
 			itemclick: function(s,r) {
 				rcmSettings.idc = r.data.id;

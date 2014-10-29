@@ -2,32 +2,47 @@ Ext.define('rcm.view.konfig.wCatHir', {
     extend: 'Ext.window.Window',
     xtype: 'tWCatHir',
 
-    title: 'Kategori Hirarki',
+    //title: 'Kategori Hirarki',
     layout: 'fit',
+    modal: true,
+	
+    closable: false,
+	resizable: false,
+	plain: true,
     //autoShow: true,
 
     initComponent: function() {
 		var me=this;
         me.items = [{
 			xtype: 'form',
+			//bodypadding : 40,
+			//padding: '5 10',
 			items: [{
 				xtype: 'textfield',
-				name : 'nama',
-				fieldLabel: 'Nama'
+				name : 'wcNama',
+				fieldLabel: 'Nama',
+				allowBlank: false
+			},{
+				xtype: 'hiddenfield',
+				id: 'idCatH'
 			},{
 				xtype: 'textfield',
-				name : 'kode',
-				fieldLabel: 'Kode'
+				name : 'wcKode',
+				fieldLabel: 'Kode',
+				allowBlank: false
 			},{
+				//xtype: 'textarea',
 				xtype: 'textfield',
-				name : 'ket',
-				fieldLabel: 'Keterangan'
+				name : 'wcKet',
+				fieldLabel: 'Keterangan',
+				//anchor    : '100%'
 			}]
 		}];
 
         me.buttons = [{
 			text: 'Save',
-			action: 'save'
+			//action: 'save'
+			id: 'saveCatH'
 		},{
 			text: 'Cancel',
 			scope: this,

@@ -126,4 +126,6 @@
     background-image: url('./images/delete_list.png');
 }
 
-
+.x-grid-row-summary {
+    background-color: #fdff5c;
+}

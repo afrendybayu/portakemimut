@@ -85,6 +85,8 @@ Ext.define('rcm.view.konfig.PanelList', {
 			//title: me.jdlTb,
 			xtype: 'tCatHir',
 			//xtype: 'label',
+			idnC: me.idnC,
+			iddC: me.iddC,
 			text: 'kiri',
 			region: 'west',
 			//flex:1,
