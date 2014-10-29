@@ -38,37 +38,7 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
     ],*/
     viewConfig: {
         getRowClass: function(record, index) {
-			/*
-			var c = record.get('k140521');
-			if (c==24)	return 'baik2';
-			else 		return 'rusak2';
-			
-			c = record.get('k140522');
-			if (c==24)	return 'baik1';
-			else 		return 'rusak1';
-			
-			var cc = record.get('k140524');
-			if (cc==24)	return 'sip';
-			else 		return 'rusak';
-			//*/
-			/*
-			var alertText = "record: "+index+' --- ';
-			for (property in record.data) {
-				if (property.substring(0,1)=='k')	{
-					alertText += property+": "+record.data[property]+" ";
-					if (record.data[property]==24)	{
-						//alert(index+": rusak "+ property);
-						alertText += "baik --";
-						//return 'baik';
-					}
-					else {
-						alertText += "rusak --";
-						//return 'rusak';
-					}
-				}
-			}
-			//alert(alertText);
-			//*/
+
         }
     },
 	

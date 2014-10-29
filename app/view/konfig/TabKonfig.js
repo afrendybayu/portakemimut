@@ -88,8 +88,10 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			idnC: 'idnCEq',
 			iddC: 'iddCEq',
 			idEqCH: 'idEqCH',
+			idTreeH: 'tEqKonfigs',
 			dhideA: false,
 			dhideB: true,
+			ngedit: true,
 			jdlKi: 'Pilih Equipment',
 			jdlKa: 'Hirarki',
 			dstoreKi: 'GridEqcIn',
@@ -99,6 +101,10 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			jdlBtnD: ' ',
 			idBtnD: 'iGEqdef',
 			dstoreD: 'GridEqnIn'
+		},{
+			//id: 'ts_hr',
+			title: 'Lokasi',
+			xtype:'cHirarki'
 		},{
 		/*
 			//id: 'tk_pd',
@@ -138,10 +144,7 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			//id: 'ts_user',
 			title: 'User List Def.',
 			xtype:'tUser'
-		},{
-			//id: 'ts_hr',
-			title: 'Lokasi',
-			xtype:'cHirarki'
+		
 		}];
 
 		me.callParent(arguments);

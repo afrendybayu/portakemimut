@@ -154,7 +154,7 @@ Ext.define('rcm.controller.Config', {
                 // completeedit: me.handleCompleteEdit,
                 // canceledit: me.handleCancelEdit,
                 deleteclick: me.handleDeleteIconClick,
-                // selectionchange: me.filterTaskGrid,
+                selectionchange: me.hdlSelChHir,
                 // taskdrop: me.updateTaskList,
                 // listdrop: me.reorderList,
                 itemmouseenter: me.showActions,
@@ -210,6 +210,20 @@ Ext.define('rcm.controller.Config', {
 		});
 		
     },
+    
+    hdlSelChHir: function(selModel,tasks)	{
+		//alert("ini");
+		//
+		var d = selModel.getSelection()[0];
+		//console.log("controller hdlSelChHir: "+d.get('flag'));
+		if (d.get('flag')=='e')	{
+			Ext.getCmp('tEqKonfigs').ngedit = 1;
+		}
+		else {
+			Ext.getCmp('tEqKonfigs').ngedit = 0;
+		}
+		//console.log(d.get('flag'));
+	},
     
     iGMddef: function()	{
 		this.getT_Konfig().showTab('mdd');
@@ -319,7 +333,7 @@ Ext.define('rcm.controller.Config', {
 	
 	delAksiGrid : function (rec){
 		//alert ('Awas Kau Pencet-Penccet Aku '+rec);
-		console.log(rec);
+		//console.log(rec);
 		
 		var me = this, 
 		record = rec.data,
@@ -602,6 +616,10 @@ Ext.define('rcm.controller.Config', {
 					dl.destroy({
 						success : function(del, op){
 							//alert('sukses');
+							me.getLokUnitStore().reload();
+							//me.getCatHirStore().load();
+							me.getGridEqcInStore().reload();
+							me.getGridEqnInStore().load();
 						},
 						failure: function(task, op)	{
 							var error = op.getError(),
@@ -619,9 +637,7 @@ Ext.define('rcm.controller.Config', {
 			}
 		});
 		
-		me.getCatHirStore().load();
-		me.getGridEqcInStore().reload();
-        me.getGridEqnInStore().load();
+		
 	},
 	
 	treeCat: function(id)	{
@@ -722,6 +738,7 @@ Ext.define('rcm.controller.Config', {
                 // since this is the first point at which we have a primary key "id" from the server.
                 // If we don't filter here then any new tasks that are added will not appear until the filter is triggered by a selection change.
                 // me.filterTaskGrid(me.getTreeHirarki().getSelectionModel(), [list]);
+                //alert("tes");
                 me.getLokUnitStore().reload();
 				me.getGridEqcInStore().reload();
 				me.getGridEqnInStore().load();

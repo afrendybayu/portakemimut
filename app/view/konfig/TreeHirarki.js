@@ -11,6 +11,7 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 	
     rootVisible: true,
     store: 'LokUnit',
+    ngedit: 0,
 	//hideHeaders: true,
 
 	initComponent: function() {
@@ -81,11 +82,12 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
                 editor: {
 					xtype: 'treepicker',
 					displayField: 'text',
-					store: Ext.create('rcm.store.CatHir', {storeId: 'Lists-TaskGrid' }),
+					//store: Ext.create('rcm.store.CatHir', {storeId: 'Lists-TaskGrid' }),
+					store: Ext.create('rcm.store.CatHir'),
 					renderer: me.renderList
 				},
 			},{
-				//hidden  : me.hideDel,
+				hidden  : me.hideDel,
                 xtype	: 'actioncolumn',
                 width	: 24,
 				icon	: 'resources/css/images/edit1.png',
@@ -106,7 +108,8 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 		me.addEvents(
 		
 		);
-		cellEditingPlugin.on('edit', me.handleCellEdit, this);
+		//cellEditingPlugin.on('edit', me.handleCellEdit, this);
+		cellEditingPlugin.on('beforeedit', me.hdlCellEna, this);
 	},
 	
 	hdlDelClk: function(grid, row, col, column, e) {
@@ -115,16 +118,20 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
         this.fireEvent('deleteclick', grid, row, col, column, e);
     },
     
+    hdlCellEna: function(editor,a,eOpts)	{
+		//alert(this.ngedit);
+		if (this.ngedit)	return true;
+		else return false;
+	}
+    /*
     renderList: function(value, metaData, task, rowIndex, colIndex, store, view) {
 		alert(value);
         var listsStore = Ext.getStore('CatHir'),
             node = value ? listsStore.getNodeById(value) : listsStore.getRootNode();
 		
         return node.get('text');
-    },
+    }
     
-    handleCellEdit: function(editor, e) {
-		alert("Ganti");
-        //this.fireEvent('recordedit', e.record);
-    },
+    
+    //*/
 });

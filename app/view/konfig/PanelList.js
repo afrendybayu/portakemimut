@@ -65,6 +65,8 @@ Ext.define('rcm.view.konfig.PanelList', {
 				split: true,
 			},{
 				title: me.jdlKa,
+				ngedit: me.ngedit,
+				id: me.idTreeH,
 				xtype: 'treeHirarki',
 				idEqCH: me.idEqCH,
 				hideDel: true,
