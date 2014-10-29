@@ -12,7 +12,7 @@ Ext.define('rcm.controller.Config', {
 		'konfig.PanelList',
 		'konfig.TreeCat',
 		'konfig.AksiForm',
-		'konfig.AksiGrid'
+		'konfig.CauseForm'
 		
     ],
 
@@ -25,10 +25,10 @@ Ext.define('rcm.controller.Config', {
 		
 		'FormAksis',
 		'FormPmDefs',
-		
+		'Causes',
 		// 'GridAksi',
 		//'PMDefs',
-		'Causes',
+		
 		'Damages',
 		'ModeDefs',
 		'Refers',
@@ -50,6 +50,7 @@ Ext.define('rcm.controller.Config', {
 		
 		'FormAksi',
 		'FormPmDef',
+		'Cause',
 		
 		
 		'GridPMIn',
@@ -79,6 +80,12 @@ Ext.define('rcm.controller.Config', {
 		},{
 			ref : 'gridPmDef',
 			selector : 'gridPmDef'
+		},{
+			ref : 'gridCauseDef',
+			selector : 'gridCauseDef'
+		},{
+			ref : 'fCause',
+			selector : 'fCause'
 	}],
     
     init: function() {
@@ -131,6 +138,9 @@ Ext.define('rcm.controller.Config', {
 			'fPmDef button[text=Edit]' : {
 				click : me.hdlEditPmDefForm
 			},
+			'fCause button[text=Simpan]' : {
+				click : me.hdlSmpCauseForm
+			},
 			'gridAksi' :{
 				AksiGridDel  : me.delAksiGrid,
 				selectionchange : me.slctAksiGrid
@@ -139,10 +149,68 @@ Ext.define('rcm.controller.Config', {
 			'gridPmDef' : {
 				PmDefGridDel : me.delPmDefGrid,
 				selectionchange : me.slctPmDefGrid
+			},
+			'gridCauseDef' : {
+				CauseGridDel : me.delCauseGrid,
+				selectionchange : me.slctCauseGrid
 			}
 			
 		});
 		
+    },
+    hdlSmpCauseForm : function(){
+    	alert ('Form Simpan');
+    	var me = this,
+    	f_cause = me.getFCause().getForm(),
+		getDataCause = f_cause.getValues(),
+		CauseSave = new rcm.model.Cause(getDataCause);
+		console.log(CauseSave);
+		f_pmdef.reset();
+		CauseSave.save({
+			success: function(record, operation){
+				me.getCausesStore().reload();
+			}
+			
+		
+		});
+    },
+
+    slctCauseGrid : function(model, records){
+    	var me =this;
+		if (records[0]) {
+			me.getFCause().getForm().loadRecord(records[0]);
+        }
+    },
+
+    delCauseGrid : function(rec){
+    	// alert ('grid Cause Delete');
+		// console.log(rec);
+		
+		var me = this, 
+		record = rec.data,
+		delcause = new rcm.model.Cause(record );
+		Ext.MessageBox.show({
+				title : 'Hapus Cause Def.',
+				msg   : 'Yakin Data Akan di Hapus ??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						delcause.destroy ({
+							success : function(delPm, operation){
+								// dcmon.destroy();
+								// me.getConMonStore().reload();
+								me.getCausesStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+					
+				}
+			});
     },
 	
 	slctPmDefGrid : function (model, records){
@@ -153,8 +221,8 @@ Ext.define('rcm.controller.Config', {
 	},
 	
 	delPmDefGrid : function (rec){
-		alert ('Awas Kau Pencet-Penccet Aku '+rec);
-		console.log(rec);
+		// alert ('Awas Kau Pencet-Penccet Aku '+rec);
+		// console.log(rec);
 		
 		var me = this, 
 		record = rec.data,

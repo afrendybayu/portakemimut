@@ -50,11 +50,11 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			jdlBtnD: 'Go to Object Part Definition',
 			idBtnD: 'iGOpdef',
 			dstoreD: 'GridKfEquip'
-		},{*/
+		},{
 			id: 'tk_pd',
 			title: 'Pd. Maintenance Def.',
 			xtype:'tPmDef'
-		},{
+		},{*/
 			id: 'ts_cause',
 			title: 'Cause Def.',
 			xtype:'tCause'

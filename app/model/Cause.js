@@ -5,11 +5,13 @@ Ext.define('rcm.model.Cause', {
 		'Ext.data.proxy.Ajax'
 	],
 
-	fields: [ 'kode','nama', 'id','cat',"ket" ],
+	// fields: [ 'kode','nama', 'id','cat',"ket" ],
+	fields: [ 'id','nama','kode','obama','sap','ket' ],
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/rh/rCause'
+			read: 'ci/index.php/rh/rCause',
+			destroy: 'ci/index.php/konfig/Conf/dCause'
         },
         reader: {
             type: 'json',

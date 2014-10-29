@@ -1,9 +1,9 @@
-Ext.define('rcm.view.konfig.PmDefGrid', {
+Ext.define('rcm.view.konfig.CauseDefGrid', {
 	extend: 'Ext.grid.Panel',
 
-	xtype: 'gridPmDef',
+	xtype: 'gridCauseDef',
 	
-	xstore 		: '',
+	/*xstore 		: '',
 	kolgrid1	: '',
 	kolgrid2	: '',
 	kolgrid3	: '',
@@ -14,10 +14,27 @@ Ext.define('rcm.view.konfig.PmDefGrid', {
 	hidegrid2	: '',
 	hidegrid3	: '',
 	
+	xstore		: 'Causes',
+		kolgrid1	: 'Nama Cause',
+		kolgrid2	: 'Kode Cause',
+		kolgrid3	: 'Obama',
+		kolgrid4	: 'SAP',
+		kolgrid5	: 'Keterangan',
+		idgrid1		: 'nama',
+		idgrid2		: 'kode',
+		idgrid3		: 'obama',
+		idgrid4		: 'sap',
+		idgrid5		: 'ket',
+		hidegrid1	: false,
+		hidegrid2	: false,
+		hidegrid3	: false,
+		hidegrid4	: false,
+		hidegrid5	: false*/
+
 	initComponent: function() {
 		var me =this;
 		
-		me.store = me.xstore;
+		me.store = 'Causes';
 		
 		me.columns = {	
 			items: [{ 
@@ -26,29 +43,33 @@ Ext.define('rcm.view.konfig.PmDefGrid', {
 				header : 'No'
 				// hidden: me.hiden1
 			},{ 
-				header		: me.kolgrid1,
-				dataIndex	: me.idgrid1,
-				hidden		: me.hidegrid1,
+				header		: 'Nama Cause',
+				dataIndex	: 'nama',
+				// hidden		: me.hidegrid1,
 				flex:1
 				 
 			},{ 
-				header		: me.kolgrid2,
-				dataIndex	: me.idgrid2,
-				hidden		: me.hidegrid2,
+				header		: 'Kode Cause',
+				dataIndex	: 'kode',
+				// hidden		: me.hidegrid2,
 				// width:60
 				flex:1
 			},{
-				header		: me.kolgrid3,
-				dataIndex	: me.idgrid3,
-				hidden		: me.hidegrid3,
+				xtype		: 'checkcolumn',
+				header		: 'Obama',
+				dataIndex	: 'obama',
+				// hidden		: me.hidegrid3,
 				// width:60
 				flex:1
 			},{
-				header		: me.kolgrid4,
-				dataIndex	: me.idgrid4,
-				hidden		: me.hidegrid4,
+				xtype		:'checkcolumn',
+				header		: 'SAP',
+				dataIndex	: 'sap',
+				
+				// hidden		: me.hidegrid4,
 				// width:60
 				flex:1
+
 			},{
 				xtype		:'actioncolumn',
 				width		:25,
@@ -71,6 +92,6 @@ Ext.define('rcm.view.konfig.PmDefGrid', {
         // 
 		var rec = gridView.getStore().getAt(rowIndex);
 		// console.log (rec);
-		this.fireEvent('PmDefGridDel', rec);
+		this.fireEvent('CauseGridDel', rec);
     },
 });

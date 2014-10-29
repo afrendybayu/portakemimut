@@ -191,6 +191,44 @@ class Conf extends CI_Controller {
 
 		
 	}
+	public function dCause(){
+		
+		try {
+			$dcause = json_decode(file_get_contents('php://input'));
+			
+			
+			$this->db->where('id', $dcause->id);
+			$this->db->delete('cause'); 
+			
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+		
+	}
+	public function cCause(){
+		
+		try {
+			$dcause = json_decode(file_get_contents('php://input'));
+			
+			
+			// $this->db->where('id', $dcause->id);
+			// $this->db->delete('cause'); 
+			
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+		
+	}
 	
 	
 	

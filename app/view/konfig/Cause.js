@@ -3,8 +3,8 @@ Ext.define('rcm.view.konfig.Cause', {
     xtype: 'tCause',
 	
 	requires: [
-        'rcm.view.konfig.AksiForm',
-		'rcm.view.konfig.AksiGrid'
+        'rcm.view.konfig.CauseForm',
+		'rcm.view.konfig.CauseDefGrid'
         
     ],
 	
@@ -23,10 +23,10 @@ Ext.define('rcm.view.konfig.Cause', {
 		autoScroll: true,
 		frame	: true,
 		items	: [{
-			xtype 	: 'fAksi',
-			lnama:'Nama Cause',lkode:'Kode Cause',lket:'keterangan',lckbox:'Kategori',lckbox1:'Obama',lckbox2:'SAP',
-			nmnama:'nama',nmkode:'kode',nmket:'ket',nmckbox1:'obama',nmckbox2:'sap',
-			hidnama:false,hidkode:false,hidket:false,hidjab:true,hidckbox:false,hiduserid:true,hidpwd:true,hiddur:true
+			xtype 	: 'fCause'
+			// lnama:'Nama Cause',lkode:'Kode Cause',lket:'keterangan',lckbox:'Kategori',lckbox1:'Obama',lckbox2:'SAP',
+			// nmnama:'nama',nmkode:'kode',nmket:'ket',nmckbox1:'obama',nmckbox2:'sap',
+			// hidnama:false,hidkode:false,hidket:false,hidjab:true,hidckbox:false,hiduserid:true,hidpwd:true,hiddur:true
 			
 		}]
 		
@@ -37,7 +37,7 @@ Ext.define('rcm.view.konfig.Cause', {
 	},{
 		title	: 'Data Cause',
         region	: 'south',     
-        xtype	: 'gridAksi',
+        xtype	: 'gridCauseDef',
 		html	: 'bawah',
         height	: '70%',
         collapsible	: true,
