@@ -44,23 +44,6 @@ Ext.define('rcm.view.konfig.Cause', {
 		// collapsed	: true,
 		split	: true,
 		
-		/*xstore		: 'Causes',
-		kolgrid1	: 'Nama Cause',
-		kolgrid2	: 'Kode Cause',
-		kolgrid3	: 'Obama',
-		kolgrid4	: 'SAP',
-		kolgrid5	: 'Keterangan',
-		idgrid1		: 'nama',
-		idgrid2		: 'kode',
-		idgrid3		: 'obama',
-		idgrid4		: 'sap',
-		idgrid5		: 'ket',
-		hidegrid1	: false,
-		hidegrid2	: false,
-		hidegrid3	: false,
-		hidegrid4	: false,
-		hidegrid5	: false*/
-		
 		
 	
 	}]

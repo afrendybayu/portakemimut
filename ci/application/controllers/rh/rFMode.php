@@ -49,23 +49,7 @@ class rFMode extends CI_Controller {
 		//$this->load->view('welcome_message');
 		echo json_encode($jsonResult);
 	}
-	public function rModedef(){
-		try	{
-			$hsl = $this->fmea->get_modedef();
-			
-			$jsonResult = array(
-				'success' => true,
-				'modedef' => $hsl
-			);
-		}
-		catch (Exception $e)	{
-			 $jsonResult = array(
-				'success' => false,
-				'message' => $e->getMessage()
-			);
-		}
-		echo json_encode($jsonResult);
-	}
+	
 	public function rRefer(){
 		try	{
 			$hsl = $this->fmea->get_refer();

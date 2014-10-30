@@ -1,12 +1,14 @@
-Ext.define('rcm.view.konfig.CauseDefGrid', {
+Ext.define('rcm.view.konfig.FailureGrid', {
 	extend: 'Ext.grid.Panel',
 
-	xtype: 'gridCauseDef',
+	xtype: 'gridFailure',
 	
+	
+		
 	initComponent: function() {
 		var me =this;
 		
-		me.store = 'Causes';
+		me.store = 'ModeDefs';
 		
 		me.columns = {	
 			items: [{ 
@@ -15,41 +17,23 @@ Ext.define('rcm.view.konfig.CauseDefGrid', {
 				header : 'No'
 				// hidden: me.hiden1
 			},{ 
-				header		: 'Nama Cause',
+				header		: 'Nama Failure',
 				dataIndex	: 'nama',
 				// hidden		: me.hidegrid1,
 				flex:1
 				 
 			},{ 
-				header		: 'Kode Cause',
+				header		: 'Kode Failure',
 				dataIndex	: 'kode',
 				// hidden		: me.hidegrid2,
 				// width:60
 				flex:1
-			},{
-				xtype		: 'checkcolumn',
-				header		: 'Obama',
-				dataIndex	: 'obama',
-				// hidden		: me.hidegrid3,
-				// width:60
-				flex:1,
-				listeners: { beforecheckchange: function () { return false; } }
-			},{
-				xtype		:'checkcolumn',
-				header		: 'SAP',
-				dataIndex	: 'sap',
-				
-				// hidden		: me.hidegrid4,
-				// width:60
-				flex:1,
-				listeners: { beforecheckchange: function () { return false; } }
-			},{
+			},{ 
 				header		: 'Keterangan',
 				dataIndex	: 'ket',
-				
-				// hidden		: me.hidegrid4,
+				// hidden		: me.hidegrid2,
 				// width:60
-				flex :1
+				flex:1
 
 			},{
 				xtype		:'actioncolumn',
@@ -73,6 +57,6 @@ Ext.define('rcm.view.konfig.CauseDefGrid', {
         // 
 		var rec = gridView.getStore().getAt(rowIndex);
 		// console.log (rec);
-		this.fireEvent('CauseGridDel', rec);
+		this.fireEvent('FailureGridDel', rec);
     }
 });

@@ -45,7 +45,7 @@ Ext.define('rcm.view.konfig.CauseForm', {
 
 		},{
 			fieldLabel	: 'Keterangan',
-            name		: 'ket',
+            name		: 'ket'
 			// hidden		: me.hidkode,
             // allowBlank	: true
 		}];
@@ -67,7 +67,10 @@ Ext.define('rcm.view.konfig.CauseForm', {
                 // this.up('form').getForm().reset();
             // }
 		},{
-			text: 'Cancel'
+			text: 'Batal',
+			handler: function() {
+                this.up('form').getForm().reset();
+            }
 		}];
 	
 		me.callParent(arguments);

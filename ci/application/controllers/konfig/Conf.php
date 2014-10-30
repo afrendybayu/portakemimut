@@ -365,8 +365,75 @@ class Conf extends CI_Controller {
 		}
 
 	}
+	public function rModedef(){
+		try	{
+			$hsl = $this->fmea->get_modedef();
+			
+			$jsonResult = array(
+				'success' => true,
+				'modedef' => $hsl
+			);
+		}
+		catch (Exception $e)	{
+			 $jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
+	public function cModedef(){
+		
+		try {
+			$dmg = json_decode(file_get_contents('php://input'));
+			
+			$cek = "select * from modedef where nama = '{$dmg->nama}' or kode = '{$dmg->kode}'";
+			$query = $this->db->query($cek);
+			if ($query->num_rows() > 0){
+				// echo "Sudah ada data ".$aksi->nama;
+				// $sql = "update pmdef set nama = '".strtoupper($pmdef->nama)."',kode = '".strtoupper($pmdef->kode)."',
+				// 		durasi = '{$pmdef->durasi}', ket = '{$pmdef->durasi}'";
+				return false;
+			}
+			else{
+				// $sql = "insert into aksi (nama, ket) values ('{$aksi->nama}','{$aksi->ket}')";
+				$sql = "insert into modedef (nama, kode, ket) 
+				VALUES ('{$dmg->nama}','".strtoupper($dmg->kode)."','{$dmg->ket}')";
+				$hsl = $this->db->query($sql);
+			}
+			
+			
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+		
+	}
 	
-	
+
+	public function dModedef(){
+		
+		try {
+			$dfail = json_decode(file_get_contents('php://input'));
+			
+			
+			$this->db->where('id', $dfail->id);
+			$this->db->delete('modedef'); 
+			
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+		
+	}
 	
 }
 

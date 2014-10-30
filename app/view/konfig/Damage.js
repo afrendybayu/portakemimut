@@ -42,22 +42,7 @@ Ext.define('rcm.view.konfig.Damage', {
 		// collapsed	: true,
 		split	: true,
 		
-		/*xstore		: 'Damages',
-		kolgrid1	: 'Nama Damage',
-		kolgrid2	: 'Kode Damage',
-		// kolgrid3	: 'Obama',
-		// kolgrid4	: 'SAP',
-		// kolgrid5	: 'Keterangan',
-		idgrid1		: 'nama',
-		idgrid2		: 'kode',
-		// idgrid3		: 'obama',
-		// idgrid4		: 'sap',
-		// idgrid5		: 'ket',
-		hidegrid1	: false,
-		hidegrid2	: false,
-		hidegrid3	: true,
-		hidegrid4	: true,
-		hidegrid5	: true*/
+		
 		
 		
 	

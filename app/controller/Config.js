@@ -16,6 +16,8 @@ Ext.define('rcm.controller.Config', {
 		'konfig.CauseForm',
 		'konfig.DamageGrid',
 		'konfig.DamageForm',
+		// 'konfig.FailureGrid',
+		// 'konfig.FailureForm',
 		
 		'konfig.wCatHir'
     ],
@@ -31,10 +33,11 @@ Ext.define('rcm.controller.Config', {
 		'FormPmDefs',
 		'Causes',
 		'Damages',
+		'ModeDefs',
 		// 'GridAksi',
 		//'PMDefs',
 		
-		'ModeDefs',
+		
 		'Refers',
 		'Symptoms',
 		'OpartDefs',
@@ -60,6 +63,7 @@ Ext.define('rcm.controller.Config', {
 		'FormPmDef',
 		'Cause',
 		'Damage',
+		'ModeDef',
 
 		'GridPMIn',
 		'GridOPIn',
@@ -108,6 +112,12 @@ Ext.define('rcm.controller.Config', {
 		},{
 			ref : 'fDamage',
 			selector : 'fDamage'
+		},{
+			ref : 'fFailure',
+			selector : 'fFailure'
+		},{
+			ref : 'gridFailure',
+			selector : 'gridFailure'
 	}],
     
     init: function() {
@@ -189,6 +199,12 @@ Ext.define('rcm.controller.Config', {
 			'fDamage button[text=Edit]' : {
 				click : me.hdlEditDamageForm
 			},
+			'fFailure button[text=Simpan]' : {
+				click : me.hdlSmpFailForm
+			},
+			'fFailure button[text=Edit]' : {
+				click : me.hdlEditFailForm
+			},
 			'gridAksi' :{
 				AksiGridDel  : me.delAksiGrid,
 				selectionchange : me.slctAksiGrid
@@ -205,9 +221,90 @@ Ext.define('rcm.controller.Config', {
 			'gridDamage' : {
 				DamageGridDel : me.delDamageGrid,
 				selectionchange : me.slctDamageGrid
+			},
+			'gridFailure' : {
+				FailureGridDel	: me.delFailureGrid,
+				selectionchange : me.slctFailureGrid
 			}
+
 		});
 		
+    },
+
+    hdlSmpFailForm : function(){
+    	alert('tekan tombol simpan');
+    	var me = this,
+    	fail = me.getFFailure().getForm(),
+		getDataFail = fail.getValues(),
+		failSave = new rcm.model.ModeDef(getDataFail);
+		// console.log(getDataCause);
+		// console.log(DmgSave);
+		fail.reset();
+		failSave.save({
+			success: function(record, operation){
+				me.getModeDefsStore().reload();
+			}
+			
+		
+		});
+    },
+    hdlEditFailForm : function(){
+    	alert ('tekan tombol edit');
+    	var me = this,
+		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
+		isifail = me.getFFailure().getForm(),
+		dataid = isifail.getRecord().data.id,
+		isivalue = isifail.getValues();
+		// cobama 	= isivalue.obama ? 1 : 0;
+		editfail = Ext.create(rcm.model.ModeDef,{
+			id:dataid, nama:isivalue.nama, kode:isivalue.kode, ket:isivalue.ket
+		});
+		// console.log(isivalue);
+		// console.log(cobama);
+
+		// console.log(editsave);
+
+		isifail.reset();
+		// me.getCausesStore().reload();
+		editfail.save({
+			success: function(record, operation){
+				me.getModeDefsStore().reload();
+			}
+
+		});
+    },
+    slctFailureGrid : function(model, records){
+    	var me =this;
+		if (records[0]) {
+			me.getFFailure().getForm().loadRecord(records[0]);
+        }
+    },
+    delFailureGrid : function(rec){
+    	var me = this, 
+		record = rec.data,
+		delfail = new rcm.model.ModeDef(record );
+		Ext.MessageBox.show({
+				title : 'Hapus Failure Mode Def.',
+				msg   : 'Yakin Data Akan di Hapus ??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						delfail.destroy ({
+							success : function(record, operation){
+								// dcmon.destroy();
+								// me.getConMonStore().reload();
+								me.getModeDefsStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+					
+				}
+			});
     },
     slctDamageGrid : function(model, records){
     	var me =this;
