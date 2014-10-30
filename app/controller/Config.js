@@ -12,7 +12,13 @@ Ext.define('rcm.controller.Config', {
 		'konfig.PanelList',
 		'konfig.TreeCat',
 		'konfig.AksiForm',
-		'konfig.AksiGrid',
+		'konfig.PmDefForm',
+		'konfig.CauseForm',
+		'konfig.DamageGrid',
+		'konfig.DamageForm',
+		// 'konfig.FailureGrid',
+		// 'konfig.FailureForm',
+		
 		'konfig.wCatHir'
     ],
 
@@ -25,12 +31,13 @@ Ext.define('rcm.controller.Config', {
 		
 		'FormAksis',
 		'FormPmDefs',
-		
-		// 'GridAksi',
-		//'PMDefs',
 		'Causes',
 		'Damages',
 		'ModeDefs',
+		// 'GridAksi',
+		//'PMDefs',
+		
+		
 		'Refers',
 		'Symptoms',
 		'OpartDefs',
@@ -54,8 +61,10 @@ Ext.define('rcm.controller.Config', {
 		
 		'FormAksi',
 		'FormPmDef',
-		
-		
+		'Cause',
+		'Damage',
+		'ModeDef',
+
 		'GridPMIn',
 		'GridOPIn',
 		'GridModeIn',
@@ -86,14 +95,30 @@ Ext.define('rcm.controller.Config', {
 			ref: 'fAksi',
 			selector : 'fAksi'
 		},{
-			ref : 'gridAksi',
-			selector : 'gridAksi'
-		},{
-			ref : 'fPmDef',
-			selector : 'fPmDef'
+			
+			ref : 'f_PmDef',
+			selector : 'f_PmDef'
 		},{
 			ref : 'gridPmDef',
 			selector : 'gridPmDef'
+		},{
+			ref : 'gridCauseDef',
+			selector : 'gridCauseDef'
+		},{
+			ref : 'fCause',
+			selector : 'fCause'
+		},{
+			ref : 'gridDamage',
+			selector : 'gridDamage'
+		},{
+			ref : 'fDamage',
+			selector : 'fDamage'
+		},{
+			ref : 'fFailure',
+			selector : 'fFailure'
+		},{
+			ref : 'gridFailure',
+			selector : 'gridFailure'
 	}],
     
     init: function() {
@@ -192,11 +217,29 @@ Ext.define('rcm.controller.Config', {
 			'fAksi button[text=Edit]' : {
 				click : me.hdlEditAksiForm
 			},
-			'fPmDef button[text=Simpan]' : {
+			'f_PmDef button[text=Simpan]' : {
 				click : me.hdlSmpPmDefForm
 			},
-			'fPmDef button[text=Edit]' : {
+			'f_PmDef button[text=Edit]' : {
 				click : me.hdlEditPmDefForm
+			},
+			'fCause button[text=Simpan]' : {
+				click : me.hdlSmpCauseForm
+			},
+			'fCause button[text=Edit]' : {
+				click : me.hdlEditCauseForm
+			},
+			'fDamage button[text=Simpan]' : {
+				click : me.hdlSmpDamageForm
+			},
+			'fDamage button[text=Edit]' : {
+				click : me.hdlEditDamageForm
+			},
+			'fFailure button[text=Simpan]' : {
+				click : me.hdlSmpFailForm
+			},
+			'fFailure button[text=Edit]' : {
+				click : me.hdlEditFailForm
 			},
 			'gridAksi' :{
 				AksiGridDel  : me.delAksiGrid,
@@ -206,10 +249,261 @@ Ext.define('rcm.controller.Config', {
 			'gridPmDef' : {
 				PmDefGridDel : me.delPmDefGrid,
 				selectionchange : me.slctPmDefGrid
+			},
+			'gridCauseDef' : {
+				CauseGridDel : me.delCauseGrid,
+				selectionchange : me.slctCauseGrid
+			},
+			'gridDamage' : {
+				DamageGridDel : me.delDamageGrid,
+				selectionchange : me.slctDamageGrid
+			},
+			'gridFailure' : {
+				FailureGridDel	: me.delFailureGrid,
+				selectionchange : me.slctFailureGrid
 			}
+
 		});
 		
     },
+
+    hdlSmpFailForm : function(){
+    	alert('tekan tombol simpan');
+    	var me = this,
+    	fail = me.getFFailure().getForm(),
+		getDataFail = fail.getValues(),
+		failSave = new rcm.model.ModeDef(getDataFail);
+		// console.log(getDataCause);
+		// console.log(DmgSave);
+		fail.reset();
+		failSave.save({
+			success: function(record, operation){
+				me.getModeDefsStore().reload();
+			}
+			
+		
+		});
+    },
+    hdlEditFailForm : function(){
+    	alert ('tekan tombol edit');
+    	var me = this,
+		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
+		isifail = me.getFFailure().getForm(),
+		dataid = isifail.getRecord().data.id,
+		isivalue = isifail.getValues();
+		// cobama 	= isivalue.obama ? 1 : 0;
+		editfail = Ext.create(rcm.model.ModeDef,{
+			id:dataid, nama:isivalue.nama, kode:isivalue.kode, ket:isivalue.ket
+		});
+		// console.log(isivalue);
+		// console.log(cobama);
+
+		// console.log(editsave);
+
+		isifail.reset();
+		// me.getCausesStore().reload();
+		editfail.save({
+			success: function(record, operation){
+				me.getModeDefsStore().reload();
+			}
+
+		});
+    },
+    slctFailureGrid : function(model, records){
+    	var me =this;
+		if (records[0]) {
+			me.getFFailure().getForm().loadRecord(records[0]);
+        }
+    },
+    delFailureGrid : function(rec){
+    	var me = this, 
+		record = rec.data,
+		delfail = new rcm.model.ModeDef(record );
+		Ext.MessageBox.show({
+				title : 'Hapus Failure Mode Def.',
+				msg   : 'Yakin Data Akan di Hapus ??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						delfail.destroy ({
+							success : function(record, operation){
+								// dcmon.destroy();
+								// me.getConMonStore().reload();
+								me.getModeDefsStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+					
+				}
+			});
+    },
+    slctDamageGrid : function(model, records){
+    	var me =this;
+		if (records[0]) {
+			me.getFDamage().getForm().loadRecord(records[0]);
+        }
+    },
+    hdlSmpDamageForm : function(){
+    	// alert ('Tombol damage simpan');
+    	var me = this,
+    	fdmg = me.getFDamage().getForm(),
+		getDataDmg = fdmg.getValues(),
+		DmgSave = new rcm.model.Damage(getDataDmg);
+		// console.log(getDataCause);
+		// console.log(DmgSave);
+		fdmg.reset();
+		DmgSave.save({
+			success: function(record, operation){
+				me.getDamagesStore().reload();
+			}
+			
+		
+		});
+    },
+	hdlEditDamageForm : function(){
+		alert('Tombol Edit damage');
+		var me = this,
+		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
+		isidmg = me.getFDamage().getForm(),
+		dataid = isidmg.getRecord().data.id,
+		isivalue = isidmg.getValues();
+		// cobama 	= isivalue.obama ? 1 : 0;
+		editdmg = Ext.create(rcm.model.Damage,{
+			id:dataid, nama:isivalue.nama, kode:isivalue.kode
+		});
+		// console.log(isivalue);
+		// console.log(cobama);
+
+		// console.log(editsave);
+
+		isidmg.reset();
+		// me.getCausesStore().reload();
+		editdmg.save({
+			success: function(record, operation){
+				me.getDamagesStore().reload();
+			}
+
+		});
+	},
+
+    delDamageGrid : function(rec){
+    	// alert ('grid Cause Delete');
+		// console.log(rec);
+		
+		var me = this, 
+		record = rec.data,
+		deldmg = new rcm.model.Damage(record );
+		Ext.MessageBox.show({
+				title : 'Hapus Damage Def.',
+				msg   : 'Yakin Data Akan di Hapus ??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						deldmg.destroy ({
+							success : function(record, operation){
+								// dcmon.destroy();
+								// me.getConMonStore().reload();
+								me.getDamagesStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+					
+				}
+			});
+    },
+
+    hdlEditCauseForm : function(){
+    	// alert ('Form Edit');
+    	var me = this;
+		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
+		isicause = me.getFCause().getForm();
+		dataid = isicause.getRecord().data.id;
+		isivalue = isicause.getValues();
+		// cobama 	= isivalue.obama ? 1 : 0;
+		editcause = Ext.create(rcm.model.Cause,{
+			id:dataid, nama:isivalue.nama, kode:isivalue.kode, obama:isivalue.obama, sap :isivalue.sap ,ket : isivalue.ket
+		});
+		// console.log(isivalue);
+		// console.log(cobama);
+
+		// console.log(editsave);
+
+		isicause.reset();
+		// me.getCausesStore().reload();
+		editcause.save({
+			success: function(record, operation){
+				me.getCausesStore().reload();
+			}
+
+		});
+    },
+    hdlSmpCauseForm : function(){
+    	// alert ('Form Simpan');
+    	var me = this,
+    	f_cause = me.getFCause().getForm(),
+		getDataCause = f_cause.getValues(),
+		CauseSave = new rcm.model.Cause(getDataCause);
+		// console.log(getDataCause);
+		console.log(CauseSave);
+		f_cause.reset();
+		CauseSave.save({
+			success: function(record, operation){
+				me.getCausesStore().reload();
+			}
+			
+		
+		});
+    },
+
+    slctCauseGrid : function(model, records){
+    	var me =this;
+		if (records[0]) {
+			me.getFCause().getForm().loadRecord(records[0]);
+        }
+    },
+
+    delCauseGrid : function(rec){
+    	// alert ('grid Cause Delete');
+		// console.log(rec);
+		
+		var me = this, 
+		record = rec.data,
+		delcause = new rcm.model.Cause(record );
+		Ext.MessageBox.show({
+				title : 'Hapus Cause Def.',
+				msg   : 'Yakin Data Akan di Hapus ??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						delcause.destroy ({
+							success : function(delPm, operation){
+								// dcmon.destroy();
+								// me.getConMonStore().reload();
+								me.getCausesStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+					
+				}
+			});
+    },
+	
+
     
     hdlSelChHir: function(selModel,tasks)	{
 		//alert("ini");
@@ -235,10 +529,11 @@ Ext.define('rcm.controller.Config', {
 		this.getT_Konfig().showTab('pmd');
 	},
 
+
 	slctPmDefGrid : function (model, records){
 		var me =this;
 		if (records[0]) {
-			me.getFPmDef().getForm().loadRecord(records[0]);
+			me.getF_PmDef().getForm().loadRecord(records[0]);
         }
 	},
 	
@@ -275,11 +570,11 @@ Ext.define('rcm.controller.Config', {
 	},
 
 	hdlEditPmDefForm : function(){
-		alert ('edit Form PM DEF');
+		// alert ('edit Form PM DEF');
 
 		var me = this;
 		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
-		isiform = me.getFPmDef().getForm();
+		isiform = me.getF_PmDef().getForm();
 		dataid = isiform.getRecord().data.id;
 		isivalue = isiform.getValues();
 		// isiform.//.newValues();
@@ -309,12 +604,12 @@ Ext.define('rcm.controller.Config', {
 	},
 	
 	hdlSmpPmDefForm : function (){
-		alert('ke teken');
+		// alert('ke teken');
 		var me = this,
-		f_pmdef = me.getFPmDef().getForm(),
+		f_pmdef = me.getF_PmDef().getForm(),
 		getDataPMDef = f_pmdef.getValues(),
 		PmDefSave = new rcm.model.FormPmDef(getDataPMDef);
-		console.log(PmDefSave);
+		// console.log(PmDefSave);
 		f_pmdef.reset();
 		PmDefSave.save({
 			success: function(record, operation){

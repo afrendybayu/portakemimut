@@ -5,6 +5,7 @@ class Conf extends CI_Controller {
         parent::__construct();
 		$this->load->model('fmea');
 		$this->load->model('pm');
+		$this->load->model('damage');
 	}
 	
 	public function rAksi()	{
@@ -146,7 +147,7 @@ class Conf extends CI_Controller {
 			$pmdef = json_decode(file_get_contents('php://input'));
 			
 			// $query = $this->db->query($cek);
-			$cek = "select nama, kode, durasi from pmdef where nama = '{$pmdef->nama}' or kode = '{$pmdef->nama}' or durasi = '{$pmdef->durasi}'";
+			$cek = "select nama, kode, durasi from pmdef where nama = '{$pmdef->nama}' or kode = '{$pmdef->kode}' or durasi = '{$pmdef->durasi}'";
 			$query = $this->db->query($cek);
 			if ($query->num_rows() > 0){
 				// echo "Sudah ada data ".$aksi->nama;
@@ -191,9 +192,248 @@ class Conf extends CI_Controller {
 
 		
 	}
+	public function dCause(){
+		
+		try {
+			$dcause = json_decode(file_get_contents('php://input'));
+			
+			
+			$this->db->where('id', $dcause->id);
+			$this->db->delete('cause'); 
+			
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+		
+	}
+	public function cCause(){
+		
+		try {
+			$dcause = json_decode(file_get_contents('php://input'));
+			
+			/*echo 'nama : '.{$dcause->nama}.'</br>';
+			echo 'nama : '.{$dcause->kode}.'</br>';
+			echo 'nama : '.{$dcause->obama}.'</br>';
+			echo 'nama : '.{$dcause->sap}.'</br>';
+			echo 'nama : '.{$dcause->ket}.'</br>';*/
+
+			$cek = "select * from cause where nama = '{$dcause->nama}' or kode = '{$dcause->kode}'";
+			$query = $this->db->query($cek);
+			if ($query->num_rows() > 0){
+				// echo "Sudah ada data ".$aksi->nama;
+				// $sql = "update pmdef set nama = '".strtoupper($pmdef->nama)."',kode = '".strtoupper($pmdef->kode)."',
+				// 		durasi = '{$pmdef->durasi}', ket = '{$pmdef->durasi}'";
+				return false;
+			}
+			else{
+				// $sql = "insert into aksi (nama, ket) values ('{$aksi->nama}','{$aksi->ket}')";
+				$sql = "insert into cause (nama, kode, obama, sap, ket) 
+				VALUES ('{$dcause->nama}','{$dcause->kode}','{$dcause->obama}','{$dcause->sap}','{$dcause->ket}')";
+				$hsl = $this->db->query($sql);
+			}
+			
+			
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+		
+	}
+	public function uCause(){
+		try {
+			$ucause = json_decode(file_get_contents('php://input'));
+			
+			$upd = array(
+				// 'id' => $uaksi->id ,
+				'nama' => $ucause->nama ,
+				'kode' => $ucause->kode,
+				'obama' => $ucause->obama,
+				'sap'	=> $ucause->sap,
+				'ket' => $ucause->ket 
+			 );
+			
+			$this->db->where('id',$ucause->id);
+			$this->db->update('cause', $upd);
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+	}
+	public function rDamage(){
+		try	{
+			
+			$hsl = $this->damage->get_damage();
+			
+			$jsonResult = array(
+				'success' => true,
+				'damage' => $hsl
+			);
+		}
+		catch (Exception $e)	{
+			 $jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
 	
+	}
+	public function dDamage(){
+		
+		try {
+			$ddmg = json_decode(file_get_contents('php://input'));
+			
+			
+			$this->db->where('id', $ddmg->id);
+			$this->db->delete('damage'); 
+			
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+		
+	}
+	public function cDamage(){
+		
+		try {
+			$dmg = json_decode(file_get_contents('php://input'));
+			
+			$cek = "select * from damage where nama = '{$dmg->nama}' or kode = '{$dmg->kode}'";
+			$query = $this->db->query($cek);
+			if ($query->num_rows() > 0){
+				// echo "Sudah ada data ".$aksi->nama;
+				// $sql = "update pmdef set nama = '".strtoupper($pmdef->nama)."',kode = '".strtoupper($pmdef->kode)."',
+				// 		durasi = '{$pmdef->durasi}', ket = '{$pmdef->durasi}'";
+				return false;
+			}
+			else{
+				// $sql = "insert into aksi (nama, ket) values ('{$aksi->nama}','{$aksi->ket}')";
+				$sql = "insert into damage (nama, kode) 
+				VALUES ('{$dmg->nama}','".strtoupper($dmg->kode)."')";
+				$hsl = $this->db->query($sql);
+			}
+			
+			
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+		
+	}
+	public function uDamage(){
+		try {
+			$dmg = json_decode(file_get_contents('php://input'));
+			
+			$upd = array(
+				// 'id' => $uaksi->id ,
+				'nama' => $dmg->nama ,
+				'kode' => strtoupper($dmg->kode),
+				// 'obama' => $ucause->obama,
+				// 'sap'	=> $ucause->sap,
+				// 'ket' => $ucause->ket 
+			 );
+			
+			$this->db->where('id',$dmg->id);
+			$this->db->update('damage', $upd);
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+	}
+	public function rModedef(){
+		try	{
+			$hsl = $this->fmea->get_modedef();
+			
+			$jsonResult = array(
+				'success' => true,
+				'modedef' => $hsl
+			);
+		}
+		catch (Exception $e)	{
+			 $jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
+	public function cModedef(){
+		
+		try {
+			$dmg = json_decode(file_get_contents('php://input'));
+			
+			$cek = "select * from modedef where nama = '{$dmg->nama}' or kode = '{$dmg->kode}'";
+			$query = $this->db->query($cek);
+			if ($query->num_rows() > 0){
+				// echo "Sudah ada data ".$aksi->nama;
+				// $sql = "update pmdef set nama = '".strtoupper($pmdef->nama)."',kode = '".strtoupper($pmdef->kode)."',
+				// 		durasi = '{$pmdef->durasi}', ket = '{$pmdef->durasi}'";
+				return false;
+			}
+			else{
+				// $sql = "insert into aksi (nama, ket) values ('{$aksi->nama}','{$aksi->ket}')";
+				$sql = "insert into modedef (nama, kode, ket) 
+				VALUES ('{$dmg->nama}','".strtoupper($dmg->kode)."','{$dmg->ket}')";
+				$hsl = $this->db->query($sql);
+			}
+			
+			
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+		
+	}
 	
-	
+
+	public function dModedef(){
+		
+		try {
+			$dfail = json_decode(file_get_contents('php://input'));
+			
+			
+			$this->db->where('id', $dfail->id);
+			$this->db->delete('modedef'); 
+			
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+		
+	}
 	
 }
 

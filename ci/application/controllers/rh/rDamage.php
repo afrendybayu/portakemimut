@@ -6,7 +6,7 @@ class rDamage extends CI_Controller {
 		$this->load->model('damage');
 	}
 	
-	public function readDamage(){
+	public function index(){
 		try	{
 			
 			$hsl = $this->damage->get_damage();

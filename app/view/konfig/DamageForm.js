@@ -1,7 +1,7 @@
-Ext.define('rcm.view.konfig.FormPmDef', {
+Ext.define('rcm.view.konfig.DamageForm', {
 	extend: 'Ext.form.Panel',
 
-	xtype: 'fPmDef',
+	xtype: 'fDamage',
 	
 	// layout: {
 		// type :'form'
@@ -14,31 +14,37 @@ Ext.define('rcm.view.konfig.FormPmDef', {
         // },
 	defaultType: 'textfield',
 	
-	
 	initComponent: function() {
 		var me = this;
 		me.items = [{
-			fieldLabel	: 'Nama PM',
+			fieldLabel	: 'Nama Damage',
             name		: 'nama',
             allowBlank	: false
 		},{
-			fieldLabel	: 'Kode PM',
+			fieldLabel	: 'Kode Damage',
             name		: 'kode',
-            allowBlank	: false
-		},{
-			fieldLabel	: 'Durasi PM',
-            name		: 'durasi',
-            allowBlank	: false
-		},{
-			fieldLabel	: 'Keterangan',
-            name		: 'ket',
             allowBlank	: true
 		}];
 		
 		me.buttons = [{
 			text: 'Simpan',
 			formBind: true, 
+			disabled: true
+            // handler: function() {
+                // fireEvent('SimpanAksi', args ) ;
+				// alert ('simpan dulu');
+				// this.up('form').getForm().isValid();
+            // }
+        },{
+        	text: 'Edit',
+			formBind: true,
 			disabled: true,
+			// handler : function(){
+			// 		onChange(newVal, oldVal) {
+	  //               alert(newVal);
+   //          	}	
+			// }
+			
         },{
             text: 'Batal',
             handler: function() {

@@ -23,7 +23,7 @@ Ext.define('rcm.view.konfig.PmDef', {
 		autoScroll: true,
 		frame	: true,
 		items	: [{
-			xtype 	: 'fPmDef',
+			xtype 	: 'f_PmDef',
 			
 		}]
 		

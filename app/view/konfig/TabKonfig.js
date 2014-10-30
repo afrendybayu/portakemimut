@@ -22,6 +22,7 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		
 		me.items = [{
 			//id: 'tk_ak',
+			
 			//*
 			id: 'tk_ak',
 			title: 'Aksi Def.',
@@ -62,7 +63,16 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			jdlBtnD: 'Go to Object Part Definition',
 			idBtnD: 'iGOpdef',
 			dstoreD: 'GridKfEquip'
+		/*
 		},{
+
+			id: 'tk_pd',
+			title: 'Pd. Maintenance Def.',
+			xtype:'tPmDef'
+		//*/
+		},{
+			// id: 'ts_cause',
+
 			id: 'tk_md',
 			title: 'Mode List',
 			xtype:'tpKonfigList',
@@ -107,16 +117,15 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			idKfHir: 'idKfHir',
 			xtype:'cHirarki'
 		},{
-		/*
-			//id: 'tk_pd',
-			itemId: 'pmd',
-		},{
-		//*/
+
 			id: 'tk_pd',
+
 			title: 'Pd. Maintenance Def.',
 			xtype:'tPmDef'
 		},{
-			//id: 'ts_cause',
+		//*/
+			// id: 'ts_cause',
+
 			title: 'Cause Def.',
 			xtype:'tCause'
 		},{
