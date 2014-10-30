@@ -74,7 +74,7 @@ class Waktudown extends CI_Model {
     }
     
     function get_waktudown_list($tglaw, $tglak)	{
-
+		/*
 		$sql =	"SELECT (select group_concat((select concat('e',waktudown.id)) separator '')) as id, ".
 				"waktudown.unit_id as eqid ,event as idevent,group_concat(if(tipeev=0,'',concat('e',eqid,'pm',tipeev))) as tipeev ".
 				",concat(ifnull((select group_concat('[',kode,': ',(select pmdef.nama from pmdef where pmdef.id ".
@@ -90,11 +90,12 @@ class Waktudown extends CI_Model {
 				"LEFT JOIN equip ON equip.id = waktudown.eqid ".
 				"LEFT JOIN event ON event.down_id = waktudown.id WHERE downt BETWEEN ? AND ? ".
 				"group by downt,downj,upt,upj order by downt desc, downj desc, id desc ";
-		/*
+		//*/
+		//*
 		$sql = "SELECT GROUP_CONCAT(DISTINCT CONCAT('e',wd.id) SEPARATOR '') AS id
 				,GROUP_CONCAT(CONCAT(CASE WHEN event=2 THEN IFNULL(CONCAT('[',eq.kode,': ',pd.nama,']'),'') 
 					WHEN event>2 THEN IFNULL(CONCAT('[',eq.kode,': ',fm.nama,']'),'')  END) SEPARATOR '') AS fm
-				,GROUP_CONCAT(CONCAT(CASE WHEN event=2 THEN IF(wd.tipeev<>0,CONCAT('e',eq.id,'pm',wd.tipeev),"")
+				,GROUP_CONCAT(CONCAT(CASE WHEN event=2 THEN IF(wd.tipeev<>0,CONCAT('e',eq.id,'pm',wd.tipeev),'')
 					WHEN event>2 THEN IFNULL(CONCAT('e',eq.id,'cb',fm.id),'')  END) SEPARATOR '') AS tipeev
 				,le.nama AS `event`,wd.event AS idevent, eq.unit_id,h.nama,SUBSTRING(hhh.nama FROM LOCATE(' ',hhh.nama)) AS lok,wd.downt,DATE_FORMAT(wd.downj,'%H:%i') as downj
 				,wd.upt,DATE_FORMAT(wd.upj,'%H:%i') as upj,wd.startt,DATE_FORMAT(wd.startj,'%H:%i') as startj,wd.endt,DATE_FORMAT(wd.endj,'%H:%i') as endj,wd.exe,wd.ket
