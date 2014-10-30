@@ -46,16 +46,16 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 				var pos = view.getPositionByEvent(e),
 					col = pos.column;
 				//alert(col);
-				//console.log('unit: '+rec.get('eqid')+', id: '+rec.get('id'));
+				//console.log('unit: '+rec.get('unit_id')+', id: '+rec.get('id'));
 				if (col==13)	{
 					me.end = '-';
 					//if ()
-					me.end = {u:rec.get('eqid'), id:rec.get('id'), n:index};
+					me.end = {u:rec.get('unit_id'), id:rec.get('id'), n:index};
 					me.jdl = {l:rec.get('lok'), n:rec.get('nama')};
 				}
 				if (col==14)	{
 					me.start = '-';
-					if (me.end.u!=rec.get('eqid') && (me.end!='-' ))	{
+					if (me.end.u!=rec.get('unit_id') && (me.end!='-' ))	{
 						me.hpsRStart();
 						rcmSettings.end = me.end;
 						rcmSettings.start = me.start;
@@ -66,7 +66,7 @@ Ext.define('rcm.view.dataentry.DaftarGagal', {
 						Ext.Msg.alert('Status', 'Pilih baris event yang beda');
 					}
 					else {
-						me.start = {u:rec.get('eqid'),id:rec.get('id')};
+						me.start = {u:rec.get('unit_id'),id:rec.get('id')};
 					}
 				}
 			},

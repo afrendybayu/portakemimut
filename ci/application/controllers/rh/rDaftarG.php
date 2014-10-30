@@ -276,6 +276,7 @@ class rDaftarG extends CI_Controller {
 		//*/
 		$awal = explode('e',substr($aw,1));
 		$akhr = explode('e',substr($ak,1));
+		//echo "unit $unit, awal: {$awal[0]}, akhir: {$akhr[0]}<br/>";
 		try {
 			$this->load->model('waktudown');
 			$q = $this->waktudown->get_reliaww($unit,$awal[0],$akhr[0]);

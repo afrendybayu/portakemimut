@@ -155,7 +155,8 @@ Ext.define('rcm.controller.ExcelGrid', {
 			Ext.Msg.alert('Error', 'Pilih baris event start');
 			return;
 		}
-		
+		//console.log();
+		//return;
 		Ext.getCmp('lblRelia').setText('Reliability '+dg.jdl.n+' @'+dg.jdl.l);
 		
 		this.getDaftarReliaStore().load({
