@@ -22,8 +22,9 @@ class rDetailFMEA extends CI_Controller {
 					"LEFT JOIN aksi ON event.aksi like aksi.id ".
 					"where down_id in ($id) order by enama asc;";
 			//*/
+			//*
 			$sql =	"SELECT ev.down_id, ev.id, ev.eq, ev.opart, ev.fm, ev.cause, ev.aksi, 
-					CONCAT('[',eq.tag,'] ',eq.nama) AS enama,IFNULL(od.nama,'') AS opnama,ca.nama AS cnama,
+					CONCAT('[',eq.tag,'] ',eq.nama) AS enama,IFNULL(od.nama,'') AS opnama,IFNULL(ca.nama,'') AS cnama,
 					IFNULL(ak.nama,'') AS anama,IFNULL(md.nama,'') AS fnama
 					FROM `event` ev
 					INNER JOIN equip eq ON eq.id = ev.eq
@@ -32,6 +33,7 @@ class rDetailFMEA extends CI_Controller {
 					LEFT JOIN cause ca ON ev.cause = ca.id
 					LEFT JOIN aksi ak ON ak.id = ev.aksi
 					WHERE down_id IN ($id)";
+			//*/
 			//echo "sql: $sql<br/>";
 			$query = $this->db->query($sql, $id);
 			

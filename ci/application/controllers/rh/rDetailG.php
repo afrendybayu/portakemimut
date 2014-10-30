@@ -41,7 +41,7 @@ class rDetailG extends CI_Controller {
 					INNER JOIN listEvent le ON le.id = wd.event
 					LEFT JOIN pmlist pl ON pl.id = wd.tipeev
 					LEFT JOIN pmdef pd ON pd.id = wd.tipeev
-					WHERE wd.id IN (305,304) 
+					WHERE wd.id IN ($id) 
 					ORDER BY downt DESC, downj DESC";
 			//echo "sql: $sql<br/>";
 			//*/

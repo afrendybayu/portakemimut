@@ -12,7 +12,7 @@ Ext.define('rcm.view.konfig.ConfHirarki', {
 	
 	items : [{
 		title: 'Konfigurasi Hirarki',
-		idKfHir: me.idKfHir,
+		idKfHir: this.idKfHir,
         region: 'west',     
         xtype: 'treeHirarki',
         width: 400,
