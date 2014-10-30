@@ -65,11 +65,14 @@ Ext.define('rcm.view.Util', {
 		},
 		
 		cid: function(str)	{
-			if (str.localeCompare("Gas Comp")==0)	{
+			//if (str.localeCompare("Gas Comp")==0)	{
+			if (str=="Gas Compressor")	{
 				return 5;
-			} else if (str.localeCompare("Pump")==0)	{
+			//} else if (str.localeCompare("Pump")==0)	{
+			} else if (str=="Pump System")	{
 				return 6;
-			} else if (str.localeCompare("Generator Set")==0)	{
+			//} else if (str.localeCompare("Generator Set")==0)	{
+			} else if (str=="Generator Set")	{
 				return 7;
 			}
 		},

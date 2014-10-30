@@ -197,7 +197,7 @@ Ext.define('rcm.controller.AvRe', {
 		this.getTAvGroup().waktu = d.series.name;
 		this.getTAvGroup().nama = nama;
 		this.getTAvGroup().cat = id;
-		alert(nama + " "+ d.series.name+" " +id);
+		//alert(nama + " "+ d.series.name+" " +id);
 		this.updateAvRe(d.series.name,nama,id);
 	},
 	

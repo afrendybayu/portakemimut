@@ -39,8 +39,10 @@ class rAvHome extends CI_Controller {
 			
 			$this->load->model("runninghour");
 			$this->load->model("catequip");
+			$this->load->model("equiplist");
 			
-			$arUnit = $this->catequip->get_tipe('');
+			//$arUnit = $this->catequip->get_tipe('');
+			$arUnit = $this->equiplist->get_tipe('');
 			$nUnit = isset($arUnit)?count($arUnit):0;
 			//echo "n: $nUnit";
 			$arAvRe = array();

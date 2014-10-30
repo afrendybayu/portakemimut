@@ -27,7 +27,7 @@ Ext.define('rcm.view.Content', {
     initComponent: function() {
 		var me=this;
 		me.items = [{
-		/*==========================
+		//*==========================
 			id: 'tu_ho',
 			title: 'Dashboard Home',
 			iconCls: 'Dashboard',
@@ -49,9 +49,9 @@ Ext.define('rcm.view.Content', {
 			id: 'tu_pr',
 			iconCls: 'perform',
 			title: 'Prestasi Mesin',
-		
-		},{
 		//*/
+		},{
+		
 			id: 'tu_rh',
 			title: 'Runnning Hour',
 			iconCls: 'RunnningHour',
@@ -65,25 +65,7 @@ Ext.define('rcm.view.Content', {
 				id: 'app-runninghour',
 				iconCls: 'icon-grid'
 
-			/*
-			},{
-				id: 'tu_ag',
-				title: 'Agenda & Aktivitas',
-				icon: 'modul/icons/calender.png',
-				
-				xtype: 'extensible.calendarpanel',
-				//eventStore: Ext.create('Extensible.calendar.data.MemoryEventStore', {
-				//	data: Ext.create('Extensible.example.calendar.data.Events')
-				//}),
-			
-			},{
-				title: 'Reliability',
-				xtype: 'tDaftarRelia',
-				//id: 'app-relia',
-				itemId: 'relia',
-				//hidden: true,
-				iconCls: 'up'
-			//}]
+			//*/
 		
 		},{
 		
@@ -94,7 +76,7 @@ Ext.define('rcm.view.Content', {
 			//disabled : true
 			// hidden: true
 
-		//*/
+		
 		}];
 		
 		me.callParent(arguments);
