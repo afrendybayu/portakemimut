@@ -4,12 +4,15 @@ class rFMode extends CI_Controller {
 	function __construct() {
         parent::__construct();
 		$this->load->model('fmea');
+		$this->load->model('mode');
 	}
 	
 	public function index()	{
 		
 		try	{
-			$id = $this->input->get('unit')?:'0';
+			$unit = $this->input->get('unit')?:'0';
+			
+			/*
 			$s = "SELECT cat FROM equip where unit_id=? order by nama asc";
 			
 			$query = $this->db->query($s, $id);
@@ -29,15 +32,17 @@ class rFMode extends CI_Controller {
 			$query = $this->db->query($s);
 			
 			$mode = array();	//$jml=0;
+			 
+			
 			if ($query->num_rows() > 0)	{
 				foreach ($query->result() as $row)	{
 					$mode[] = $row;
 				}
 			}
-
+			//*/
 			$jsonResult = array(
 				'success' => true,
-				'mode' => $mode
+				'mode' => $this->mode->get_mode_eq($unit)
 			);
 		}
 		catch (Exception $e)	{

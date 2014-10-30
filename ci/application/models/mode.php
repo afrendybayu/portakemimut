@@ -1,7 +1,20 @@
 <?php
 
 class Mode extends CI_Model {
-	
+
+	function get_mode_eq($unit)	{
+		$sql =	"SELECT md.id, eqcat AS cat, md.nama
+				FROM modelist ml
+				INNER JOIN modedef md ON md.id = ml.mode
+				INNER JOIN equip eq ON eq.unit_id = $unit
+				WHERE eq.cat = ml.eqcat
+				ORDER BY nama ASC";
+		$query = $this->db->query($sql);
+		
+		return $query->result();
+		;
+	}
+
 	function get_modedefnotin($cat)    {
 
 		$sql =	"SELECT * 

@@ -14,8 +14,7 @@ class Opart extends CI_Model {
 				FROM opartlist ol
 				INNER JOIN opartdef od ON od.id = ol.opart
 				INNER JOIN equip eq ON eq.unit_id = $unit
-				WHERE eq.cat = ol.eqcat
-				ORDER BY nama ASC";
+				WHERE eq.cat = ol.eqcat";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}

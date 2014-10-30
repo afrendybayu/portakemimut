@@ -266,7 +266,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 	edDGClick: function(rec)	{
 	
 		//alert("Controller editDG ganti ke ExcelGrid");
-		var me = this, ev = rec.get('idevent'), un = rec.get('eqid'),
+		var me = this, ev = rec.get('idevent'), un = rec.get('unit_id'),
             tFG = me.getTaskFormGagal();
 		
 		tFG.down('form').getForm().reset();
