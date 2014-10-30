@@ -303,8 +303,10 @@ Ext.define('rcm.controller.ExcelGrid', {
 	hpsDGClick: function(task,row,grid)	{
 		//alert("Controller hpsDG ganti ke ExcelGrid");
 		var de = this,
-			ee = task.get('event')+" "+task.get('nama');
-
+			ee = task.get('event')+" "+task.get('nama'),
+			gagal = new rcm.model.DaftarGagal(task.data);
+		//console.log(task.data);
+		//return;
 		Ext.Msg.show({
             title: ee,
             msg: 'Hapus Kejadian '+ee,
@@ -313,8 +315,8 @@ Ext.define('rcm.controller.ExcelGrid', {
                 if(response === 'yes') {
 					//task.destroy();
 					//*
-					task.destroy({
-						callback: function() {
+					gagal.destroy({
+						success: function() {
 							//alert("masuk");
 							de.getRunningHourStore().reload();
 							de.getDaftarGagalStore().reload();
@@ -454,13 +456,18 @@ Ext.define('rcm.controller.ExcelGrid', {
 	KalenderClick: function(pt)	{
 		rcmSettings.tgl = pt;
 		//alert("KalenderClick tgl: "+pt);
+		//console.log("KalenderClick tgl: "+pt);
 		var tab=rcmSettings.tab.split("_");
 		//console.log("tab: "+tab[0]+", no: "+tab[1]);
-		if ((tab[0].localeCompare("tu")==0) && (tab[1].localeCompare("rh")==0))	{
+		//if ((tab[0].localeCompare("tu")==0) && (tab[1].localeCompare("rh")==0))	{
+		if ((tab[0]=="tu") && (tab[1]=="rh"))	{
 			//pt = (t.getFullYear())+"-"+rcm.view.Util.Upad(t.getMonth()+1)+"-"+rcm.view.Util.Upad(t.getDate());
+			//console.log("1cat: "+rcmSettings.cat);
 			this.ubahFieldRH(pt);
+			//console.log("2cat: "+rcmSettings.cat);
 			//*
-			Ext.suspendLayouts();			
+			Ext.suspendLayouts();
+			//console.log("3cat: "+rcmSettings.cat);
 			this.getExcelgrid().reconfigure(this.getRunningHourStore().load({ params:{tgl:pt, cat:rcmSettings.cat} }), rcm.view.Util.UxcolGrid());
 			Ext.resumeLayouts(true);
 		}

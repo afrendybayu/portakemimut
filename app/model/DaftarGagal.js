@@ -5,7 +5,7 @@ Ext.define('rcm.model.DaftarGagal', {
 		'Ext.data.proxy.Ajax'
     ],
     
-    fields: [ 'edit','id','eqid','lok','nama','cat',
+    fields: [ 'edit','id','unit_id','lok','nama','cat',
 		//'downt','downj','startt','startj','endt','endj','upt','upj',
 		{ name:'downt',dateFormat:'d-m-Y' },{ name:'downj'},
 		{ name:'startt',dateFormat:'d-m-Y' },{ name:'startj'},

@@ -202,7 +202,7 @@ Ext.define('rcm.view.Util', {
 			items.push.apply(items,blnthn);
 			
 			//alert("blnthn[0]: "+blnthn[0].header+" "+blnthn[1].header);
-			items.push({ header:'Catatan',dataIndex:'note',flex:1 });		// ganti dgn note
+			items.push({ header:'Catatan',dataIndex:'note',flex:1,minWidth:300 });		// ganti dgn note
 			//console.log(items);
 			//rcmS = items;
 			

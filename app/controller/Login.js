@@ -19,7 +19,7 @@ Ext.define('rcm.controller.Login', {
     stores: [
 		'LoginAuth'
 		,'UnsetSesi'
-		,'LoginSesi'
+		,'LoginSesi' 
 	],
     
     models: [
@@ -241,8 +241,7 @@ Ext.define('rcm.controller.Login', {
 		var me = this;
 		var LSesi = this.getLoginSesiStore();
 		
-		//rcmSettings.abcd = Ext.fly('lblClk');
-		//*
+
 		var runner = new Ext.util.TaskRunner();
 		var task = runner.start({
 			 run: this.updateClock,
@@ -255,6 +254,7 @@ Ext.define('rcm.controller.Login', {
 				var res = operation.request.scope.reader.jsonData["sesi"];
 				if (success){
 					//console.log('masuk sebagai admin');
+					me.getExcelgrid().ngedit = 1;
 					Ext.getCmp('p_login').setVisible(false);
 					Ext.getCmp('p_logout').setVisible(true);
 					Ext.getCmp('t_welcome').setText('Selamat Datang '+res.nama);
@@ -271,7 +271,8 @@ Ext.define('rcm.controller.Login', {
 					
 					Ext.getCmp('idGridCM').ngedit = 1;
 					me.getAuthlogin().level = res.level;
-					me.getExcelgrid().ngedit = 1;
+					
+					//alert("me.getExcelgrid().ngedit = 1;");
 					//me.getIConMon().ngedit = 1;
 				}
 				else{
@@ -288,7 +289,7 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('ohform').setDisabled(true);
 					Ext.getCmp('ohdel').setDisabled(true);
 					// Ext.getCmp('tu_kf').setDisabled(true);
-					
+					alert("Session Habis");
 				}
 				// console.log(res.nama);
 			}

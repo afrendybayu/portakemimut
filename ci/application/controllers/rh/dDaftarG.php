@@ -23,7 +23,7 @@ class dDaftarG extends CI_Controller {
 			}
 			
 			$id = isset($params->id)?$params->id:"e0";
-			$eq = isset($params->eqid)?$params->eqid:0;
+			$eq = isset($params->unit_id)?$params->unit_id:0;
 			$ids = array_filter(explode("e",$id));
 						
 			$this->load->model('waktudown');

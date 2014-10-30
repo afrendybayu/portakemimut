@@ -1,7 +1,25 @@
 <?php
 
 class Opart extends CI_Model {
-
+	
+	function get_equip_rh($unit)	{
+		/*
+		$sql = "SELECT ol.id, ol.eqcat, ol.opart, od.kode, od.nama
+				FROM opartlist ol
+				INNER JOIN opartdef od ON od.id = ol.opart
+				INNER JOIN equip eq ON eq.unit_id = $unit
+				WHERE eq.cat = ol.eqcat";
+		//*/
+		$sql =	"SELECT ol.opart AS id,ol.eqcat AS cat,od.nama
+				FROM opartlist ol
+				INNER JOIN opartdef od ON od.id = ol.opart
+				INNER JOIN equip eq ON eq.unit_id = $unit
+				WHERE eq.cat = ol.eqcat
+				ORDER BY nama ASC";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
 	function get_opartdefnotin($cat){
 		
 		$sql = "SELECT id,nama AS nama,kode
