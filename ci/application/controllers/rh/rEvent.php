@@ -7,6 +7,7 @@ class rEvent extends CI_Controller {
 			$id = $this->input->get('down')?:'0';
 			$idar = array_filter(explode("e",$id));
 			$idx = implode(",",$idar);
+			//print_r($idar);
 			
 			$this->load->model('event');
 			
@@ -24,8 +25,9 @@ class rEvent extends CI_Controller {
 		$hasil['json'] = $jsonResult;
 
 		//$this->load->view('json',$hasil);
-		$this->output->set_content_type('application/json');
-		$this->output->set_output(json_encode($jsonResult));
+		echo json_encode($jsonResult);
+		//$this->output->set_content_type('application/json');
+		//$this->output->set_output(json_encode($jsonResult));
 		//$this->output->enable_profiler(TRUE);
 	}
 }
