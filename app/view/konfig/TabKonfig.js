@@ -104,6 +104,7 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		},{
 			//id: 'ts_hr',
 			title: 'Lokasi',
+			idKfHir: 'idKfHir',
 			xtype:'cHirarki'
 		},{
 		/*

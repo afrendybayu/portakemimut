@@ -99,6 +99,21 @@ class Equip extends CI_Model {
 		return $this->db->update('equip');
 	}
 }
-
+/*
+SELECT wd.id,wd.tipeev,h.nama,SUBSTRING(hhh.nama FROM LOCATE(' ',hhh.nama)) AS lok,
+le.nama,pd.nama AS namapm,
+wd.downt,wd.downj,wd.upt,wd.upj,wd.startt,wd.startj,wd.endt,wd.endj 
+FROM waktudown wd
+LEFT JOIN equip eq ON eq.id = wd.eqid
+INNER JOIN hirarki h ON h.id = wd.unit_id
+INNER JOIN hirarki hh ON hh.id = h.parent
+INNER JOIN hirarki hhh ON hhh.id = hh.parent
+INNER JOIN listEvent le ON le.id = wd.event
+LEFT JOIN pmlist pl ON pl.id = wd.tipeev
+LEFT JOIN pmdef pd ON pd.id = wd.tipeev
+order by downt desc, downj desc; 
+ 
+ 
+//*/
 /* End of file option.php */
 /* Location: ./application/models/option.php */

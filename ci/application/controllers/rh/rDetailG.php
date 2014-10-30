@@ -2,7 +2,7 @@
 
 class rDetailG extends CI_Controller {
 	
-	public function index()	{
+	public function index()	{		// untuk properties grid running hour
 		//$this->load->view('welcome_message');
 		try	{
 			$id = $this->input->get('id')?:'0';
@@ -13,8 +13,8 @@ class rDetailG extends CI_Controller {
 			$id = implode(",",array_filter($rid));
 			
 			//echo "id: $id<br/>";
-
-			$sql =	"SELECT waktudown.id,event as idevent,tipeev,eqid,kode,fm,tag ".
+			/*
+			$sql =	"SELECT waktudown.id,event as idevent,tipeev,eqid,equip.kode,fm,tag ".
 					",(select pmdef.nama from pmdef where pmdef.id = (select pmlist.pm from pmlist where pmlist.id=tipeev)) as namapm ".
 					",down_id,exe,downt,downj,upt,upj,startt,startj,endt,endj ".
 					",(select hirarki.nama from hirarki where hirarki.id ".
@@ -28,8 +28,23 @@ class rDetailG extends CI_Controller {
 					"LEFT JOIN event ON event.down_id = waktudown.id ".
 					"LEFT JOIN pmdef ON pmdef.id = waktudown.tipeev ".
 					"where waktudown.id in ($id) order by downt desc, downj desc";
-			
+			//*/
+			//*
+			$sql =	"SELECT wd.id,wd.event AS idevent,wd.tipeev,h.nama,eq.kode,eq.tag,SUBSTRING(hhh.nama FROM LOCATE(' ',hhh.nama)) AS lok,
+					le.nama as `event`,pd.nama AS namapm,wd.exe,
+					wd.downt,wd.downj,wd.upt,wd.upj,wd.startt,wd.startj,wd.endt,wd.endj 
+					FROM waktudown wd
+					LEFT JOIN equip eq ON eq.id = wd.eqid
+					INNER JOIN hirarki h ON h.id = wd.unit_id
+					INNER JOIN hirarki hh ON hh.id = h.parent
+					INNER JOIN hirarki hhh ON hhh.id = hh.parent
+					INNER JOIN listEvent le ON le.id = wd.event
+					LEFT JOIN pmlist pl ON pl.id = wd.tipeev
+					LEFT JOIN pmdef pd ON pd.id = wd.tipeev
+					WHERE wd.id IN (305,304) 
+					ORDER BY downt DESC, downj DESC";
 			//echo "sql: $sql<br/>";
+			//*/
 			$query = $this->db->query($sql, $id);
 			
 			$jml = -1; $idd = -1; $idn = 'e';

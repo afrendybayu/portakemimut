@@ -9,18 +9,25 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 	*/
 	
 	
-	bodyPadding: 5,  // Don't want content to crunch against the borders
+	bodyPadding: 10,  // Don't want content to crunch against the borders
     width: 300,
     // title: 'Filters',
     items: [{
-        xtype: 'textfield',
-        fieldLabel: 'Lokasi'
+		xtype: 'label',
+        //fieldLabel: 'Lokasi',
+        text: 'Lokasi'
     }, {
         xtype: 'textfield',
-        fieldLabel: 'Kode'
+        fieldLabel: 'Nama',
+        disabled: true
+    }, {
+        xtype: 'textfield',
+        fieldLabel: 'Kode',
+        disabled: true
 	},{
 		xtype: 'textfield',
-        fieldLabel: 'Unit'
+        fieldLabel: 'Unit',
+        disabled: true
 	},{
 		xtype: 'textfield',
         fieldLabel: 'Type Unit'

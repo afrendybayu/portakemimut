@@ -12,12 +12,13 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
     rootVisible: true,
     store: 'LokUnit',
     ngedit: 0,
-	//hideHeaders: true,
+	
 
 	initComponent: function() {
 		var me = this,
 			cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing');
         me.plugins = [cellEditingPlugin];
+        me.hideHeaders = me.hideDel?false:true;
         me.viewConfig = {
             plugins: {
                 ptype: 'treeviewdragdrop',
