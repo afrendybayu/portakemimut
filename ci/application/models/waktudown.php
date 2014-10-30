@@ -108,7 +108,7 @@ class Waktudown extends CI_Model {
 				LEFT JOIN pmlist pl ON pl.id = wd.tipeev
 				LEFT JOIN pmdef pd ON pd.id = pl.pm
 				LEFT JOIN event ev ON ev.down_id = wd.id
-				LEFT JOIN failuremode fm ON fm.id = ev.fm
+				LEFT JOIN modedef fm ON fm.id = ev.fm
 				WHERE wd.downt BETWEEN ? AND ? 
 				GROUP BY downt,downj,upt,upj ,unit_id
 				ORDER BY downt DESC, downj DESC, id DESC";
