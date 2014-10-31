@@ -1,7 +1,7 @@
 Ext.define('rcm.view.konfig.SympGrid', {
 	extend: 'Ext.grid.Panel',
 
-	xtype: 'Symptoms',
+	xtype: 'gridSymptom',
 
 	initComponent: function() {
 		var me =this;

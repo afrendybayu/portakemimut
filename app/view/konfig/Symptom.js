@@ -3,8 +3,8 @@ Ext.define('rcm.view.konfig.Symptom', {
     xtype: 'tSymptom',
 	
 	requires: [
-        // 'rcm.view.konfig.AksiForm',
-		'rcm.view.konfig.AksiGrid'
+        'rcm.view.konfig.SympForm',
+		'rcm.view.konfig.SympGrid'
         
     ],
 	
@@ -42,22 +42,7 @@ Ext.define('rcm.view.konfig.Symptom', {
 		// collapsed	: true,
 		split	: true,
 		
-		xstore		: 'Symptoms',
-		kolgrid1	: 'Nama Symptom',
-		kolgrid2	: 'Kode Symptom',
-		// kolgrid3	: 'Keterangan',
-		// kolgrid4	: 'SAP',
-		// kolgrid5	: 'Keterangan',
-		idgrid1		: 'nama',
-		idgrid2		: 'kode',
-		// idgrid3		: 'ket',
-		// idgrid4		: 'sap',
-		// idgrid5		: 'ket',
-		hidegrid1	: false,
-		hidegrid2	: false,
-		hidegrid3	: true,
-		hidegrid4	: true,
-		hidegrid5	: true
+		
 		
 		
 	

@@ -64,7 +64,7 @@ Ext.define('rcm.controller.Config', {
 		'Damage',
 		'ModeDef',
 		'Refer',
-		'Symptom'
+		'Symptom',
 
 		'GridPMIn',
 		'GridOPIn',
@@ -254,6 +254,12 @@ Ext.define('rcm.controller.Config', {
 			'fRefer button[text=Edit]' : {
 				click : me.hdlEditReferForm
 			},
+			'fSymptom button[text=Simpan]' : {
+				click : me.hdlSmpSympForm
+			},
+			'fSymptom button[text=Edit]' : {
+				click : me.hdlEditSympForm
+			},
 			'gridAksi' :{
 				AksiGridDel  : me.delAksiGrid,
 				selectionchange : me.slctAksiGrid
@@ -283,8 +289,14 @@ Ext.define('rcm.controller.Config', {
 		});
 		
     },
+    hdlSmpSympForm : function(){
+    	alert('Symptom klik simpan');
+    },
+    hdlEditSympForm : function(){
+    	alert('Symptom klik edit');
+    },
     hdlSmpReferForm : function(){
-    	alert('Referensi klik simpan');
+    	// alert('Referensi klik simpan');
     	var me = this,
     	refer = me.getFRefer().getForm(),
 		getDataRefer = refer.getValues(),
@@ -301,7 +313,7 @@ Ext.define('rcm.controller.Config', {
 		});
     },
     hdlEditReferForm : function(){
-    	alert('Referensi klik edit');
+    	// alert('Referensi klik edit');
     	var me = this,
 		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
 		isiref = me.getFFailure().getForm(),
