@@ -126,6 +126,12 @@ Ext.define('rcm.controller.Config', {
 		},{
 			ref : 'fRefer',
 			selector : 'fRefer'
+		},{
+			ref : 'fSymptom',
+			selector : 'fSymptom'
+		},{
+			ref : 'gridSymptom',
+			selector : 'gridSymptom'
 	}],
     
     init: function() {
@@ -285,15 +291,82 @@ Ext.define('rcm.controller.Config', {
 				ReferGridDel : me.delReferGrid,
 				selectionchange : me.slctReferGrid
 			},
+			'gridSymptom' : {
+				SympGridDel : me.delSympGrid,
+				selectionchange : me.slctSympGrid
+			},
 
 		});
 		
     },
     hdlSmpSympForm : function(){
-    	alert('Symptom klik simpan');
+    	// alert('Symptom klik simpan');
+    	var me = this,
+    	symp = me.getFSymptom().getForm(),
+		getDataSymp = symp.getValues(),
+		sympSave = new rcm.model.Symptom(getDataSymp);
+		// console.log(getDataCause);
+		// console.log(DmgSave);
+		symp.reset();
+		sympSave.save({
+			success: function(record, operation){
+				me.getSymptomsStore().reload();
+			}
+		});
     },
     hdlEditSympForm : function(){
-    	alert('Symptom klik edit');
+    	// alert('Symptom klik edit');
+    	var me = this,
+		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
+		isisymp = me.getFSymptom().getForm(),
+		dataid = isisymp.getRecord().data.id,
+		isivalue = isisymp.getValues();
+		// cobama 	= isivalue.obama ? 1 : 0;
+		editsymp = Ext.create(rcm.model.Symptom,{
+			id:dataid, nama:isivalue.nama, kode:isivalue.kode
+		});
+		// console.log(isivalue);
+		// console.log(dataid);
+		isisymp.reset();
+		// me.getCausesStore().reload();
+		editsymp.save({
+			success: function(record, operation){
+				me.getSymptomsStore().reload();
+			}
+
+		});
+    },
+    delSympGrid : function(rec){
+    	var me = this, 
+		record = rec.data,
+		delsymp = new rcm.model.Symptom(record );
+		Ext.MessageBox.show({
+				title : 'Hapus Symptom Def.',
+				msg   : 'Yakin Data Akan di Hapus ??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						delsymp.destroy ({
+							success : function(record, operation){
+								// dcmon.destroy();
+								// me.getConMonStore().reload();
+								me.getSymptomsStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+				}
+			});
+    },
+    slctSympGrid : function(model,records){
+    	var me =this;
+		if (records[0]) {
+			me.getFSymptom().getForm().loadRecord(records[0]);
+        }
     },
     hdlSmpReferForm : function(){
     	// alert('Referensi klik simpan');
@@ -308,8 +381,6 @@ Ext.define('rcm.controller.Config', {
 			success: function(record, operation){
 				me.getRefersStore().reload();
 			}
-			
-		
 		});
     },
     hdlEditReferForm : function(){

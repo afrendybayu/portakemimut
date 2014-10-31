@@ -10,9 +10,9 @@ Ext.define('rcm.model.Symptom', {
 		type: 'ajax',
 		api: {
 			read	: 'ci/index.php/konfig/Conf/rSymptom', 
-			// destroy : 'ci/index.php/konfig/Conf/dRefer',
-			// create	: 'ci/index.php/konfig/Conf/cRefer',
-			// update	: 'ci/index.php/konfig/Conf/uRefer'
+			destroy : 'ci/index.php/konfig/Conf/dSymptom',
+			create	: 'ci/index.php/konfig/Conf/cSymptom',
+			update	: 'ci/index.php/konfig/Conf/uSymptom'
         },
         reader: {
             type: 'json',

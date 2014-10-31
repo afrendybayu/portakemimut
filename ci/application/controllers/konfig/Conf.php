@@ -565,6 +565,78 @@ class Conf extends CI_Controller {
 		}
 		echo json_encode($jsonResult);
 	}
+	public function cSymptom(){
+		
+		try {
+			$dmg = json_decode(file_get_contents('php://input'));
+			
+			$cek = "select * from symptoms where nama = '{$dmg->nama}' or kode = '{$dmg->kode}'";
+			$query = $this->db->query($cek);
+			if ($query->num_rows() > 0){
+				// echo "Sudah ada data ".$aksi->nama;
+				// $sql = "update pmdef set nama = '".strtoupper($pmdef->nama)."',kode = '".strtoupper($pmdef->kode)."',
+				// 		durasi = '{$pmdef->durasi}', ket = '{$pmdef->durasi}'";
+				return false;
+			}
+			else{
+				// $sql = "insert into aksi (nama, ket) values ('{$aksi->nama}','{$aksi->ket}')";
+				$sql = "insert into symptoms (nama, kode) 
+				VALUES ('{$dmg->nama}','".strtoupper($dmg->kode)."')";
+				$hsl = $this->db->query($sql);
+			}
+			
+			
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+		
+	}
+	public function dSymptom(){
+		
+		try {
+			$dref = json_decode(file_get_contents('php://input'));
+			
+			
+			$this->db->where('id', $dref->id);
+			$this->db->delete('symptoms'); 
+			
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+	}
+	public function uSymptom(){
+		try {
+			$refer = json_decode(file_get_contents('php://input'));
+			
+			$upd = array(
+				// 'id' => $uaksi->id ,
+				'nama' 	=> $refer->nama ,
+				'kode' 	=> strtoupper($refer->kode),
+				// 'ket' 	=> $fail->ket 
+				// 'obama' => $ucause->obama,
+				// 'sap'	=> $ucause->sap,
+				// 
+			 );
+			
+			$this->db->where('id',$refer->id);
+			$this->db->update('symptoms', $upd);
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+	}
 }
 
 /* End of file rLokUnit.php */
