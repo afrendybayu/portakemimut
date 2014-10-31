@@ -59,9 +59,7 @@ if ( ! function_exists('nextpm'))	{
 			//$xpm = $pm[1];
 			$jLwt = count($lwt);
 			if ($jLwt>0)	{
-				//echo "disini";
-				
-					$xpm = end($lwt);
+				$xpm = end($lwt);
 			}
 			else {
 				$xpm = $npm;
@@ -69,9 +67,11 @@ if ( ! function_exists('nextpm'))	{
 		} else {
 			$xpm = $pm[0];
 		}
-		//$pml += $xpm;
-		//$sisa = $rh-;
-		//print_r();
+		
+		while ($pml<$rh) {
+			$pml += end($pm);
+		}
+		
 		
 		//$npm = $aw+$xpm;
 		//echo "rh: $rh, pml: $pml<br/>";
@@ -82,6 +82,7 @@ if ( ! function_exists('nextpm'))	{
 		$obj->npm = $xpm;
 		$obj->sisa = $pml-$rh;
 		$obj->hari = intval($obj->sisa/24);
+		$obj->tgl = next_day(date('Y-m-d'),$obj->hari);
 		return $obj;
 	}
 }
@@ -155,6 +156,15 @@ if ( ! function_exists('kombinasi_waktu'))	{
 		}
 		//print_r($xar);
 		return $xar;
+	}
+}
+
+if ( ! function_exists('next_day'))	{
+	function next_day($tgl,$a)	{
+		//$wkt = bwaktu($tgl)->t+($a*60*60*24*cek_tole_hari());
+		$wkt = bwaktu($tgl)->t+($a*60*60*24);
+		//echo date('d-m-Y',$wkt);
+		return date('j M Y',$wkt);
 	}
 }
 

@@ -96,7 +96,7 @@ class rPM extends CI_Controller {
 		nextpm(54000,$pm);
 		//*/
 
-		//*
+		/*
 		$a = nextpm(6300,$pm);	print_r($a); echo "<br/>========<br/>";
 		$a = nextpm(7400,$pm);	print_r($a); echo "<br/>========<br/>";
 		$a = nextpm(7500,$pm);	print_r($a); echo "<br/>========<br/>";
@@ -104,9 +104,9 @@ class rPM extends CI_Controller {
 		$a = nextpm(35000,$pm);	print_r($a); echo "<br/>========<br/>";
 		$a = nextpm(15000,$pm);	print_r($a); echo "<br/>========<br/>";
 		//*/
-		$a = nextpm(12000,$pm);	print_r($a); echo "<br/>========<br/>";
-		//$a = nextpm(71000,$pm);	print_r($a); echo "<br/>";
-		$a = nextpm(7000,$pm);	print_r($a); echo "<br/>========<br/>";
+		$a = nextpm(12000,$pm);	print_r($a); echo "<br/>";
+		$a = nextpm(72000,$pm);	print_r($a); echo "<br/>";
+		$a = nextpm(7000,$pm);	print_r($a); echo "<br/>";
 		//echo $a->npm;
 	}
 	
