@@ -97,7 +97,7 @@ class Sap extends CI_Model {
 		$sql =	"select sf.pid AS noorder,if(notifno=0,'',notifno) AS nosap
 				,sf.damage,if(sf.damage<>'',damage.nama,'') AS damagenm
 				,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm
-				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm,orderdesc
+				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm,deskord AS orderdesc
 				,manwork AS mainwork,down,eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart
 				from sapfmea sf
 				LEFT JOIN sap ON sap.pid = sf.pid
@@ -138,7 +138,7 @@ class Sap extends CI_Model {
 		$sql =	"select sf.pid AS noorder,if(notifno=0,'',notifno) AS nosap
 				,sf.damage,if(sf.damage<>'',damage.nama,'') AS damagenm
 				,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm
-				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm,orderdesc
+				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm,deskord AS orderdesc
 				,manwork AS mainwork,down,eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart
 				from sapfmea sf
 				LEFT JOIN sap ON sap.pid = sf.pid
@@ -180,7 +180,7 @@ class Sap extends CI_Model {
 	
 	function get_opart_info($opart)	{
 		$sql = "SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,opart,eqkode AS equip,
-				notiftype AS tipe,ordertype,downstart,orderdesc
+				notiftype AS tipe,ordertype,downstart,deskord AS orderdesc
 				FROM sapfmea
 				LEFT JOIN sap ON sap.pid = sapfmea.pid";
 		
@@ -205,7 +205,7 @@ class Sap extends CI_Model {
 	
 	function get_symptom_info($opart)	{
 		$sql = "SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,opart,eqkode AS equip,
-				notiftype AS tipe,ordertype,downstart,orderdesc
+				notiftype AS tipe,ordertype,downstart,deskord AS orderdesc
 				FROM sapfmea
 				LEFT JOIN sap ON sap.pid = sapfmea.pid";
 		

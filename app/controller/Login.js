@@ -289,7 +289,7 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('ohform').setDisabled(true);
 					Ext.getCmp('ohdel').setDisabled(true);
 					// Ext.getCmp('tu_kf').setDisabled(true);
-					alert("Session Habis");
+					//alert("Session Habis");
 				}
 				// console.log(res.nama);
 			}
