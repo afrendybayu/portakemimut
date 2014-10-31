@@ -1,6 +1,86 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
+if ( ! function_exists('nextpm'))	{
+    function nextpm($rh, $pm)	{
+		$jpm = count($pm);
+		//$trh = 2900;
+		
+		$lwt = array(); $tmb = array();
+		$srh = $rh%$pm[$jpm-1]; 	$hrh = intval($rh/$pm[$jpm-1]);
+		//echo "rh: $rh<br/>";
+		
+		$arh = 0; $i=0;	$aw=0;
+		for($j=0; $j<$jpm; $j++)	{
+			if ($srh<$pm[$j])	{
+				$npm = $pm[$j];
+				$ipm = $j-1;
+				break;
+			}		
+		}
+		//echo "ipm: $ipm<br/>";
+		for($j=0; $j<$ipm; $j++)	{
+			$w = $i+$pm[$ipm-$j];
+			//echo "w: $w<br/>";
+			if ($w<=$rh)	{
+				$i += $pm[$ipm-$j];
+				//echo "ditambah {$pm[$ipm-$j]} <br/>";
+				array_push($tmb, $pm[$ipm-$j]);
+				if ($pm[$ipm-$j]==$pm[1])	$fpm4500=1;
+			}
+			else {
+				//echo "dilewat {$pm[$ipm-$j]} <br/>";
+				array_push($lwt, $pm[$ipm-$j]);
+			}
+			//echo "i: $i<br/>";
+		}
+		
+		$si = $srh-$i;
+		/*
+		echo "tot: $i, sisa: $si, ipm: $ipm<br/>";
+		echo "dilewat: ";	print_r($lwt);	echo "<br/>";
+		echo "ditamb: ";	print_r($tmb);	echo "<br/>";
+		echo "top pm: $npm<br/>";
+		echo "ke next pm: ".($npm-$i).", si: $si<br/>";
+		//*/
+		
+		$m = 0;
+		do {
+			$m += $pm[0];
+		} while($m<=$si);
+		
+		//echo "m: $m, untuk next pm, {$pm[1]}<br/>";		
+
+		if ($npm-$si<=$pm[0])	{
+			$xpm = $npm;
+		}
+		else if ($m==$pm[1])	{
+			//$xpm = $pm[1];
+			$jLwt = count($lwt);
+			if ($jLwt>0)	{
+				//echo "disini";
+				
+					$xpm = end($lwt);
+			}
+			else {
+				$xpm = $npm;
+			}
+		} else {
+			$xpm = $pm[0];
+		}
+		//print_r();
+		
+		//$npm = $aw+$xpm;
+		echo "rh: $rh, Next pm: $xpm<br/>";
+		//echo "==========================<br/><br/>";
+		
+		$obj = new stdClass();
+		$obj->rh = $rh;
+		$obj->npm = $xpm;
+		return $obj;
+	}
+}
+//*/
 if ( ! function_exists('format_rh_time'))	{
     function format_rh_time($a)	{
 		//echo ">>>>>>>>>"; print_r($a);	echo "<br/>";

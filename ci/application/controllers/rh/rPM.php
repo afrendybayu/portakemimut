@@ -56,7 +56,49 @@ class rPM extends CI_Controller {
 		echo json_encode($jsonResult);
 	}
 	
-	
+	public function nextPm()	{
+		$pm = array(1500,4500,9000,18000,36000,72000);
+		/*
+		nextpm(1000,$pm);
+		nextpm(1500,$pm);
+		nextpm(2000,$pm);
+		nextpm(3000,$pm);
+		nextpm(4000,$pm);
+		nextpm(4500,$pm);
+		nextpm(6000,$pm);
+		nextpm(7000,$pm);
+		nextpm(7500,$pm);
+		nextpm(7500,$pm);
+		nextpm(8000,$pm);
+		nextpm(9000,$pm);
+		nextpm(10000,$pm);
+		nextpm(10500,$pm);
+		nextpm(11000,$pm);
+		nextpm(12000,$pm);
+		nextpm(13000,$pm);
+		nextpm(13500,$pm);
+		nextpm(16000,$pm);
+		nextpm(17000,$pm);
+		nextpm(16500,$pm);
+		nextpm(18000,$pm);
+		
+		nextpm(23500,$pm);
+		nextpm(25000,$pm);
+		nextpm(25500,$pm);
+		nextpm(27000,$pm);
+		nextpm(28500,$pm);
+		nextpm(30000,$pm);
+		nextpm(31000,$pm);
+		nextpm(31500,$pm);
+		nextpm(32000,$pm);
+		nextpm(35000,$pm);
+		nextpm(52500,$pm);
+		nextpm(54000,$pm);
+		//*/
+		$a = nextpm(71000,$pm);	print_r($a); echo "<br/>";
+		$a = nextpm(75000,$pm);	print_r($a); echo "<br/>";
+		echo $a->npm;
+	}
 	
 	public function rPMnotdef() {
 		try{			
