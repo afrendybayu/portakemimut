@@ -3,7 +3,7 @@ Ext.define('rcm.view.konfig.Symptom', {
     xtype: 'tSymptom',
 	
 	requires: [
-        'rcm.view.konfig.AksiForm',
+        // 'rcm.view.konfig.AksiForm',
 		'rcm.view.konfig.AksiGrid'
         
     ],
@@ -23,10 +23,8 @@ Ext.define('rcm.view.konfig.Symptom', {
 		autoScroll: true,
 		frame	: true,
 		items	: [{
-			xtype 	: 'fAksi',
-			lnama:'Nama Symptom',lkode:'Kode Symptom',
-			nmnama:'nama',nmkode:'kode',
-			hidnama:false,hidkode:false,hidket:true,hidjab:true,hidckbox:true,hiduserid:true,hidpwd:true,hiddur:true
+			xtype 	: 'fSymptom',
+			
 			
 		}]
 		
@@ -37,7 +35,7 @@ Ext.define('rcm.view.konfig.Symptom', {
 	},{
 		title	: 'Data Symptom',
         region	: 'south',     
-        xtype	: 'gridAksi',
+        xtype	: 'gridSymptom',
 		html	: 'bawah',
         height	: '70%',
         collapsible	: true,

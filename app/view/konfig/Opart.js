@@ -3,8 +3,8 @@ Ext.define('rcm.view.konfig.Opart', {
     xtype: 'tOpartDef',
 	
 	requires: [
-        'rcm.view.konfig.AksiForm',
-		'rcm.view.konfig.AksiGrid'
+        // 'rcm.view.konfig.AksiForm',
+		// 'rcm.view.konfig.AksiGrid'
         
     ],
 	
@@ -23,10 +23,10 @@ Ext.define('rcm.view.konfig.Opart', {
 		autoScroll: true,
 		frame	: true,
 		items	: [{
-			xtype 	: 'fAksi',
-			lnama:'Nama Object Part',lkode:'Kode Object Part',lckbox:'Kategori',lckbox1:'Obama',lckbox2:'SAP',
-			nmnama:'nama',nmkode:'kode',nmckbox1:'obama',nmckbox2:'sap',
-			hidnama:false,hidkode:false,hidket:true,hidjab:true,hidckbox:false,hiduserid:true,hidpwd:true,hiddur:true
+			// xtype 	: 'fAksi',
+			// lnama:'Nama Object Part',lkode:'Kode Object Part',lckbox:'Kategori',lckbox1:'Obama',lckbox2:'SAP',
+			// nmnama:'nama',nmkode:'kode',nmckbox1:'obama',nmckbox2:'sap',
+			// hidnama:false,hidkode:false,hidket:true,hidjab:true,hidckbox:false,hiduserid:true,hidpwd:true,hiddur:true
 			
 		}]
 		

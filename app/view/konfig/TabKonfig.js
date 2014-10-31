@@ -21,13 +21,7 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		var me=this;
 		
 		me.items = [{
-			//id: 'tk_ak',
 			
-			//*
-			id: 'tk_ak',
-			title: 'Aksi Def.',
-			xtype:'tAksi'
-		},{
 			id: 'tk_pl',
 			title: 'PM List',
 			xtype:'tpKonfigList',
@@ -116,6 +110,13 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			title: 'Lokasi',
 			idKfHir: 'idKfHir',
 			xtype:'cHirarki'
+		},{
+			//id: 'tk_ak',
+			
+			//*
+			id: 'tk_ak',
+			title: 'Aksi Def.',
+			xtype:'tAksi'
 		},{
 
 			id: 'tk_pd',

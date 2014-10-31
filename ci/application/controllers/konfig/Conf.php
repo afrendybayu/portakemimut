@@ -434,7 +434,137 @@ class Conf extends CI_Controller {
 
 		
 	}
-	
+	public function uModedef(){
+		try {
+			$fail = json_decode(file_get_contents('php://input'));
+			
+			$upd = array(
+				// 'id' => $uaksi->id ,
+				'nama' 	=> $fail->nama ,
+				'kode' 	=> strtoupper($fail->kode),
+				'ket' 	=> $fail->ket 
+				// 'obama' => $ucause->obama,
+				// 'sap'	=> $ucause->sap,
+				// 
+			 );
+			
+			$this->db->where('id',$fail->id);
+			$this->db->update('modedef', $upd);
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+	}
+	public function rRefer(){
+		try	{
+			$hsl = $this->fmea->get_refer();
+			
+			$jsonResult = array(
+				'success' => true,
+				'refer' => $hsl
+			);
+		}
+		catch (Exception $e)	{
+			 $jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
+	public function cRefer(){
+		
+		try {
+			$dmg = json_decode(file_get_contents('php://input'));
+			
+			$cek = "select * from refer where nama = '{$dmg->nama}' or kode = '{$dmg->kode}'";
+			$query = $this->db->query($cek);
+			if ($query->num_rows() > 0){
+				// echo "Sudah ada data ".$aksi->nama;
+				// $sql = "update pmdef set nama = '".strtoupper($pmdef->nama)."',kode = '".strtoupper($pmdef->kode)."',
+				// 		durasi = '{$pmdef->durasi}', ket = '{$pmdef->durasi}'";
+				return false;
+			}
+			else{
+				// $sql = "insert into aksi (nama, ket) values ('{$aksi->nama}','{$aksi->ket}')";
+				$sql = "insert into refer (nama, kode) 
+				VALUES ('".strtoupper($dmg->nama)."','".strtoupper($dmg->kode)."')";
+				$hsl = $this->db->query($sql);
+			}
+			
+			
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+		
+	}
+	public function dRefer(){
+		
+		try {
+			$dref = json_decode(file_get_contents('php://input'));
+			
+			
+			$this->db->where('id', $dref->id);
+			$this->db->delete('refer'); 
+			
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+	}
+	public function uRefer(){
+		try {
+			$refer = json_decode(file_get_contents('php://input'));
+			
+			$upd = array(
+				// 'id' => $uaksi->id ,
+				'nama' 	=> $refer->nama ,
+				'kode' 	=> strtoupper($refer->kode),
+				// 'ket' 	=> $fail->ket 
+				// 'obama' => $ucause->obama,
+				// 'sap'	=> $ucause->sap,
+				// 
+			 );
+			
+			$this->db->where('id',$refer->id);
+			$this->db->update('refer', $upd);
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+	}
+	public function rSymptom(){
+		try	{
+			$hsl = $this->fmea->get_symptom();
+			
+			$jsonResult = array(
+				'success' => true,
+				'symptom' => $hsl
+			);
+		}
+		catch (Exception $e)	{
+			 $jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
 }
 
 /* End of file rLokUnit.php */

@@ -3,7 +3,7 @@ Ext.define('rcm.view.konfig.User', {
     xtype: 'tUser',
 	
 	requires: [
-        'rcm.view.konfig.AksiForm',
+        // 'rcm.view.konfig.AksiForm',
 		'rcm.view.konfig.AksiGrid'
         
     ],
@@ -23,7 +23,7 @@ Ext.define('rcm.view.konfig.User', {
 		autoScroll: true,
 		frame	: true,
 		items	: [{
-			xtype 	: 'fAksi',
+			// xtype 	: 'fAksi',
 			lnama:'Nama',ljab:'Level',lket:'Keterangan',luserid:'User ID',lpwd:'Password',
 			nmnama:'nama',nmket:'ket',nmjab:'akses',nmuserid:'userid',nmpwd:'pass',
 			hidnama:false,hidkode:true,hidket:false,hidjab:false,hidckbox:true,hiduserid:false,hidpwd:false,hiddur:true

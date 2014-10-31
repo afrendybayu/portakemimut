@@ -39,23 +39,6 @@ Ext.define('rcm.view.konfig.PmDef', {
         collapsible	: true,
 		// collapsed	: true,
 		split	: true,
-		
-		xstore		: 'FormPmDefs',
-		kolgrid1	: 'Nama PM',
-		kolgrid2	: 'Kode PM',
-		kolgrid3	: 'Durasi',
-		kolgrid4	: 'Keterangan',
-		idgrid1		: 'nama',
-		idgrid2		: 'kode',
-		idgrid3		: 'durasi',
-		idgrid4		: 'ket',
-		hidegrid1	: false,
-		hidegrid2	: false,
-		hidegrid3	: false,
-		hidegrid3	: false
-		
-		
-	
 	}]
 	
 	

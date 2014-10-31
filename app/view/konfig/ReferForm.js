@@ -1,7 +1,7 @@
-Ext.define('rcm.view.konfig.AksiForm', {
+Ext.define('rcm.view.konfig.ReferForm', {
 	extend: 'Ext.form.Panel',
 
-	xtype: 'fAksi',
+	xtype: 'fRefer',
 	
 	// layout: {
 		// type :'form'
@@ -17,12 +17,12 @@ Ext.define('rcm.view.konfig.AksiForm', {
 	initComponent: function() {
 		var me = this;
 		me.items = [{
-			fieldLabel	: 'Nama Aksi',
+			fieldLabel	: 'Nama Referensi',
             name		: 'nama',
             allowBlank	: false
 		},{
-			fieldLabel	: 'Keterangan',
-            name		: 'ket',
+			fieldLabel	: 'Kode Referensi',
+            name		: 'kode',
             allowBlank	: true
 		}];
 		
@@ -30,21 +30,10 @@ Ext.define('rcm.view.konfig.AksiForm', {
 			text: 'Simpan',
 			formBind: true, 
 			disabled: true
-            // handler: function() {
-                // fireEvent('SimpanAksi', args ) ;
-				// alert ('simpan dulu');
-				// this.up('form').getForm().isValid();
-            // }
         },{
         	text: 'Edit',
 			formBind: true,
 			disabled: true,
-			// handler : function(){
-			// 		onChange(newVal, oldVal) {
-	  //               alert(newVal);
-   //          	}	
-			// }
-			
         },{
             text: 'Batal',
             handler: function() {

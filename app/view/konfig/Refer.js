@@ -3,8 +3,8 @@ Ext.define('rcm.view.konfig.Refer', {
     xtype: 'tRefer',
 	
 	requires: [
-        'rcm.view.konfig.AksiForm',
-		'rcm.view.konfig.AksiGrid'
+        'rcm.view.konfig.ReferForm',
+		'rcm.view.konfig.ReferGrid'
         
     ],
 	
@@ -20,14 +20,10 @@ Ext.define('rcm.view.konfig.Refer', {
         xtype	: 'panel',
 		height	: '30%',
 		layout	: 'fit',
-		autoScroll: true,
+		// autoScroll: true,
 		frame	: true,
 		items	: [{
-			xtype 	: 'fAksi',
-			lnama:'Nama Referensi',lkode:'Kode Referensi',
-			nmnama:'nama',nmkode:'kode',
-			hidnama:false,hidkode:false,hidket:true,hidjab:true,hidckbox:true,hiduserid:true,hidpwd:true,hiddur:true
-			
+			xtype 	: 'fRefer',
 		}]
 		
         
@@ -37,30 +33,12 @@ Ext.define('rcm.view.konfig.Refer', {
 	},{
 		title	: 'Data Failures',
         region	: 'south',     
-        xtype	: 'gridAksi',
+        xtype	: 'gridRefer',
 		html	: 'bawah',
         height	: '70%',
         collapsible	: true,
 		// collapsed	: true,
 		split	: true,
-		
-		xstore		: 'Refers',
-		kolgrid1	: 'Nama Referensi',
-		kolgrid2	: 'Kode Refrensi',
-		// kolgrid3	: 'Keterangan',
-		// kolgrid4	: 'SAP',
-		// kolgrid5	: 'Keterangan',
-		idgrid1		: 'nama',
-		idgrid2		: 'kode',
-		// idgrid3		: 'ket',
-		// idgrid4		: 'sap',
-		// idgrid5		: 'ket',
-		hidegrid1	: false,
-		hidegrid2	: false,
-		hidegrid3	: true,
-		hidegrid4	: true,
-		hidegrid5	: true
-		
 		
 	
 	}]

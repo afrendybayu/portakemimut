@@ -8,10 +8,10 @@ Ext.define('rcm.controller.Config', {
         // TODO: add views here
         'konfig.TabKonfig',
 		'konfig.TreeHirarki',
-		'konfig.AksiGrid',
+		// 'konfig.AksiGrid',
 		'konfig.PanelList',
 		'konfig.TreeCat',
-		'konfig.AksiForm',
+		// 'konfig.AksiForm',
 		'konfig.PmDefForm',
 		'konfig.CauseForm',
 		'konfig.DamageGrid',
@@ -34,12 +34,11 @@ Ext.define('rcm.controller.Config', {
 		'Causes',
 		'Damages',
 		'ModeDefs',
-		// 'GridAksi',
-		//'PMDefs',
-		
-		
 		'Refers',
 		'Symptoms',
+		// 'GridAksi',
+		//'PMDefs',
+
 		'OpartDefs',
 		'Users',
 		
@@ -64,6 +63,8 @@ Ext.define('rcm.controller.Config', {
 		'Cause',
 		'Damage',
 		'ModeDef',
+		'Refer',
+		'Symptom'
 
 		'GridPMIn',
 		'GridOPIn',
@@ -119,6 +120,12 @@ Ext.define('rcm.controller.Config', {
 		},{
 			ref : 'gridFailure',
 			selector : 'gridFailure'
+		},{
+			ref : 'gridRefer',
+			selector : 'gridRefer'
+		},{
+			ref : 'fRefer',
+			selector : 'fRefer'
 	}],
     
     init: function() {
@@ -241,6 +248,12 @@ Ext.define('rcm.controller.Config', {
 			'fFailure button[text=Edit]' : {
 				click : me.hdlEditFailForm
 			},
+			'fRefer button[text=Simpan]' : {
+				click : me.hdlSmpReferForm
+			},
+			'fRefer button[text=Edit]' : {
+				click : me.hdlEditReferForm
+			},
 			'gridAksi' :{
 				AksiGridDel  : me.delAksiGrid,
 				selectionchange : me.slctAksiGrid
@@ -261,14 +274,93 @@ Ext.define('rcm.controller.Config', {
 			'gridFailure' : {
 				FailureGridDel	: me.delFailureGrid,
 				selectionchange : me.slctFailureGrid
-			}
+			},
+			'gridRefer' : {
+				ReferGridDel : me.delReferGrid,
+				selectionchange : me.slctReferGrid
+			},
 
 		});
 		
     },
+    hdlSmpReferForm : function(){
+    	alert('Referensi klik simpan');
+    	var me = this,
+    	refer = me.getFRefer().getForm(),
+		getDataRefer = refer.getValues(),
+		referSave = new rcm.model.Refer(getDataRefer);
+		// console.log(getDataCause);
+		// console.log(DmgSave);
+		refer.reset();
+		referSave.save({
+			success: function(record, operation){
+				me.getRefersStore().reload();
+			}
+			
+		
+		});
+    },
+    hdlEditReferForm : function(){
+    	alert('Referensi klik edit');
+    	var me = this,
+		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
+		isiref = me.getFFailure().getForm(),
+		dataid = isiref.getRecord().data.id,
+		isivalue = isiref.getValues();
+		// cobama 	= isivalue.obama ? 1 : 0;
+		editref = Ext.create(rcm.model.Refer,{
+			id:dataid, nama:isivalue.nama, kode:isivalue.kode
+		});
+		// console.log(isivalue);
+		// console.log(dataid);
+
+		// console.log(editsave);
+
+		isifail.reset();
+		// me.getCausesStore().reload();
+		editref.save({
+			success: function(record, operation){
+				me.getRefersStore().reload();
+			}
+
+		});
+    },
+    delReferGrid : function(rec){
+    	var me = this, 
+		record = rec.data,
+		delref = new rcm.model.Refer(record );
+		Ext.MessageBox.show({
+				title : 'Hapus Referensi Def.',
+				msg   : 'Yakin Data Akan di Hapus ??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						delref.destroy ({
+							success : function(record, operation){
+								// dcmon.destroy();
+								// me.getConMonStore().reload();
+								me.getRefersStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+				}
+			});
+    },
+
+    slctReferGrid : function(model, records){
+    	var me =this;
+		if (records[0]) {
+			me.getFRefer().getForm().loadRecord(records[0]);
+        }
+    },
 
     hdlSmpFailForm : function(){
-    	alert('tekan tombol simpan');
+    	// alert('tekan tombol simpan');
     	var me = this,
     	fail = me.getFFailure().getForm(),
 		getDataFail = fail.getValues(),
@@ -285,7 +377,7 @@ Ext.define('rcm.controller.Config', {
 		});
     },
     hdlEditFailForm : function(){
-    	alert ('tekan tombol edit');
+    	// alert ('tekan tombol edit');
     	var me = this,
 		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
 		isifail = me.getFFailure().getForm(),
@@ -296,7 +388,7 @@ Ext.define('rcm.controller.Config', {
 			id:dataid, nama:isivalue.nama, kode:isivalue.kode, ket:isivalue.ket
 		});
 		// console.log(isivalue);
-		// console.log(cobama);
+		// console.log(dataid);
 
 		// console.log(editsave);
 
