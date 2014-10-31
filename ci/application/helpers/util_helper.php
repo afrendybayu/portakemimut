@@ -4,13 +4,12 @@
 if ( ! function_exists('nextpm'))	{
     function nextpm($rh, $pm)	{
 		$jpm = count($pm);
-		//$trh = 2900;
-		
 		$lwt = array(); $tmb = array();
 		$srh = $rh%$pm[$jpm-1]; 	$hrh = intval($rh/$pm[$jpm-1]);
 		//echo "rh: $rh<br/>";
 		
-		$arh = 0; $i=0;	$aw=0;
+		
+		$arh = 0; $i=0;	$aw=0;	$pml=0;
 		for($j=0; $j<$jpm; $j++)	{
 			if ($srh<$pm[$j])	{
 				$npm = $pm[$j];
@@ -26,7 +25,8 @@ if ( ! function_exists('nextpm'))	{
 				$i += $pm[$ipm-$j];
 				//echo "ditambah {$pm[$ipm-$j]} <br/>";
 				array_push($tmb, $pm[$ipm-$j]);
-				if ($pm[$ipm-$j]==$pm[1])	$fpm4500=1;
+				$pml += $pm[$ipm-$j];
+				//if ($pm[$ipm-$j]==$pm[1])	$fpm4500=1;
 			}
 			else {
 				//echo "dilewat {$pm[$ipm-$j]} <br/>";
@@ -34,22 +34,23 @@ if ( ! function_exists('nextpm'))	{
 			}
 			//echo "i: $i<br/>";
 		}
-		
+		//$pml = $i;
 		$si = $srh-$i;
-		/*
-		echo "tot: $i, sisa: $si, ipm: $ipm<br/>";
-		echo "dilewat: ";	print_r($lwt);	echo "<br/>";
-		echo "ditamb: ";	print_r($tmb);	echo "<br/>";
-		echo "top pm: $npm<br/>";
-		echo "ke next pm: ".($npm-$i).", si: $si<br/>";
+		//*
+		//echo "tot: $i, sisa: $si, ipm: $ipm, pml: $pml<br/>";
+		//echo "dilewat: ";	print_r($lwt);	echo "<br/>";
+		//echo "ditamb: ";	print_r($tmb);	echo "<br/>";
+		//echo "top pm: $npm<br/>";
+		//echo "ke next pm: ".($npm-$i).", si: $si<br/>";
 		//*/
 		
 		$m = 0;
 		do {
 			$m += $pm[0];
 		} while($m<=$si);
-		
-		//echo "m: $m, untuk next pm, {$pm[1]}<br/>";		
+		$pml +=$m;
+
+		//echo "m: $m, untuk next pm, {$pm[1]}, pml: $pml<br/>";		
 
 		if ($npm-$si<=$pm[0])	{
 			$xpm = $npm;
@@ -68,18 +69,24 @@ if ( ! function_exists('nextpm'))	{
 		} else {
 			$xpm = $pm[0];
 		}
+		//$pml += $xpm;
+		//$sisa = $rh-;
 		//print_r();
 		
 		//$npm = $aw+$xpm;
-		echo "rh: $rh, Next pm: $xpm<br/>";
+		//echo "rh: $rh, pml: $pml<br/>";
 		//echo "==========================<br/><br/>";
 		
 		$obj = new stdClass();
 		$obj->rh = $rh;
 		$obj->npm = $xpm;
+		$obj->sisa = $pml-$rh;
+		$obj->hari = intval($obj->sisa/24);
 		return $obj;
 	}
 }
+
+
 //*/
 if ( ! function_exists('format_rh_time'))	{
     function format_rh_time($a)	{
