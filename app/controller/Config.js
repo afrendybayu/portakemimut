@@ -270,7 +270,7 @@ Ext.define('rcm.controller.Config', {
 	getDelayedStore: function()	{
 		//console.log("Konfig getDelayedStore");
 		var me=this;
-		
+		//*
 		if (rcmSettings.cKfg!=1)	{
 			me.getGridModenInStore().load();
 			me.getGridPMnInStore().load();
@@ -287,22 +287,8 @@ Ext.define('rcm.controller.Config', {
 			me.getUsersStore().load();
 			me.getFormAksisStore().load();
 			me.getFormPmDefsStore().load();
-			/*
-			FormAksis',
-			'FormPmDefs',
-			'Causes',
-			'Damages',
-			'ModeDefs',
-			// 'GridAksi',
-			//'PMDefs',
-			
-			
-			'Refers',
-			'Symptoms',
-			'OpartDefs',
-			'Users
-		//*/
 		}
+		//*/
 	},
 
 	onLaunch: function(){
@@ -310,7 +296,7 @@ Ext.define('rcm.controller.Config', {
 		var task = new Ext.util.DelayedTask(function(){
 			me.getDelayedStore();
 		});
-		task.delay(10*1000);
+		task.delay(rcmSettings.dlyKfg*1000);
 	},
 
     hdlSmpFailForm : function(){

@@ -250,6 +250,7 @@ Ext.define('rcm.controller.Sap', {
 		alert('uConMon');
 	},
     //*/
+    
     hdlChThnMoc: function(tf,newV,oldV)	{
 		//alert('berubah '+newV);
 		var me=this;
@@ -808,10 +809,80 @@ Ext.define('rcm.controller.Sap', {
 		//*/
 	},
 	
+	getDelayedStore2: function()	{
+		var me=this;
+		me.getSapCauseStore().load();
+		me.getSapCauseInfoStore().load();
+		me.getSapDamageStore().load();
+		me.getSapDamageInfoStore().load();
+		me.getSapOPartStore().load();
+		me.getSapOPartInfoStore().load();
+		
+		//me.getSapSymptomInfoStore().load();
+	},
+	
+	getDelayedStore: function()	{
+		//console.log("Konfig getDelayedStore");
+		var me=this;
+		//*
+		if (rcmSettings.cSap!=1)	{
+			console.log("Sap getDelayedStore");
+			me.getSapTop10Store().load();
+			me.getSapTop10FLStore().load();
+			me.getSapOrderCwoStore().load();
+			me.getSapOrderCotStore().load();
+			
+			me.getContractStore().load();
+			me.getContractLineStore().load();
+			me.getSapPMCostStore().load();
+			me.getSapThnStore().load();
+			me.getSapMwcStore().load();
+			me.getSapLocStore().load();
+			me.getSapOTypeStore().load();
+			
+			me.getSapEPOStore().load();
+			me.getSapHistoriStore().load();
+			
+			//me.getManOCostStore().load();
+			//me.getSapEPOStore().load();
+
+			var task = new Ext.util.DelayedTask(function(){
+				me.getDelayedStore2();
+			});
+			task.delay(10*1000);
+		}
+		//*/
+		/*
+		'HoTeco','HoMan','HoOrderC'
+		,'SapEPO'
+
+
+		,'SapOrderCwo','SapOrderCot'
+		,'SapThn','SapMwc','SapOType','SapLoc'
+		
+		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10','SapTop10FL'
+		,'Contract','ContractLine', 'ContractInput'
+
+		,'SapHistori'
+		,'ManOCost'
+		
+		,'GridConMon'
+		,'ConMon','ConMonIn','CbParent','CbUnit','CbEquip','ConMonGr'
+		,'DetConMonGr','DetConMonPmp','DetConMonGs'
+		,'OhTahun','OverHaulIn'
+
+		//*/
+	},
+	
 	onLaunch: function() {
+		var me=this;
+		var task = new Ext.util.DelayedTask(function(){
+			me.getDelayedStore();
+		});
+		task.delay(rcmSettings.dlySap*1000);
 		//alert("tes");
-		this.ubahLabelWO({});
-		this.getManOCostStore().load({
+		me.ubahLabelWO();
+		me.getManOCostStore().load({
 			scope: this,
 			callback: function(rec, op, suc) {
 				//console.log(rec);
