@@ -19,18 +19,21 @@ Ext.define('rcm.view.konfig.CauseForm', {
 		me.items = [{
 			fieldLabel	: 'Nama Cause',
             name		: 'nama',
+            width: 400,
 			// hidden		: me.hidnama,
             allowBlank	: false
 		},{
 			fieldLabel	: 'Kode Cause',
             name		: 'kode',
 			// hidden		: me.hidkode,
+			width: 400,
             allowBlank	: false
 	
 		},{
 			xtype		: 'checkboxgroup',
             fieldLabel	: 'Kategori Cause',
 			columns		: [70, 70],
+			width: 400,
 			// hidden		: me.hidckbox,
 			items: [{
 				boxLabel: 'Obama', 
@@ -45,7 +48,9 @@ Ext.define('rcm.view.konfig.CauseForm', {
 
 		},{
 			fieldLabel	: 'Keterangan',
-            name		: 'ket'
+            name		: 'ket',
+            width: 400,
+            xtype: 'textarea'
 			// hidden		: me.hidkode,
             // allowBlank	: true
 		}];

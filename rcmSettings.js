@@ -13,6 +13,7 @@ rcmSettings = {
 	idc: 0,
 	asa: '',
 	sas: '',
+	tkf: 'tk_pl',
 	/*
 	dlyKfg: 90,
 	dlyAvre: 10,

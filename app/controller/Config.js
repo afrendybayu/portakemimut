@@ -173,6 +173,16 @@ Ext.define('rcm.controller.Config', {
 				click : me.tambahLokasi
 			},
 			
+			'#idKfHir': {
+				selectionchange: me.slctKfHir
+			},
+
+			'#tk_hr': {
+				selectionchange: me.tmbhEqCH,
+				itemmouseenter: me.showActions,
+				itemmouseleave: me.hideActions
+			},
+			/*
 			'treeHirarki': {
                 // afterrender: me.handleAfterListTreeRender,
                 edit: me.updateTreeHirarki,
@@ -186,7 +196,7 @@ Ext.define('rcm.controller.Config', {
                 itemmouseleave: me.hideActions,
                 // itemcontextmenu: me.showContextMenu
             },
-            
+            //*/
             'tCatHir': {
 				catclick: me.hdlCatHir,
 				deleteclick: me.hdlDelCatHir,
@@ -423,6 +433,13 @@ Ext.define('rcm.controller.Config', {
 		});
 	},
 
+	slctKfHir: function(model, records)	{
+		console.log(records[0]);
+	},
+	tmbhEqCH: function(model, rec)	{
+		console.log(rec[0]);
+	},
+
     delDamageGrid : function(rec){
     	// alert ('grid Cause Delete');
 		// console.log(rec);
@@ -482,11 +499,11 @@ Ext.define('rcm.controller.Config', {
     hdlSmpCauseForm : function(){
     	// alert ('Form Simpan');
     	var me = this,
-    	f_cause = me.getFCause().getForm(),
-		getDataCause = f_cause.getValues(),
-		CauseSave = new rcm.model.Cause(getDataCause);
+			f_cause = me.getFCause().getForm(),
+			getDataCause = f_cause.getValues(),
+			CauseSave = new rcm.model.Cause(getDataCause);
 		// console.log(getDataCause);
-		console.log(CauseSave);
+		//console.log(CauseSave);
 		f_cause.reset();
 		CauseSave.save({
 			success: function(record, operation){
@@ -541,7 +558,7 @@ Ext.define('rcm.controller.Config', {
 		//alert("ini");
 		//
 		var d = selModel.getSelection()[0];
-		//console.log("controller hdlSelChHir: "+d.get('flag'));
+		console.log(tasks[0]);
 		if (d.get('flag')=='e')	{
 			Ext.getCmp('tEqKonfigs').ngedit = 1;
 		}
@@ -856,8 +873,8 @@ Ext.define('rcm.controller.Config', {
 	
 	saveNCatH: function()	{
 		//rcmSettings.qwer = ch;
-		return;
-		/*
+		//return;
+		//*
 		var me = this,
 			wc = me.getTWCatHir(),
 			form = wc.down('form').getForm(),

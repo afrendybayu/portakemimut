@@ -37,13 +37,13 @@ Ext.define('rcm.view.konfig.TreeCat', {
         }];
 		me.listeners = {
 			itemclick: function(s,r) {
-				rcmSettings.idc = r.data.id;
+				//rcmSettings.idc = r.data.id;
 				this.fireEvent('catclick', r.data.id,rcmSettings.tkf);
 			},
 			itemmouseenter: function(gridview, record) {
 				rec = record;	//.get('id');
 			}
-		},
+		};
 
         me.columns = [{
                 xtype: 'treecolumn',

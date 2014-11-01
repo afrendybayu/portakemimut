@@ -10,20 +10,27 @@ Ext.define('rcm.view.konfig.ConfHirarki', {
 	],
 	layout: 'border',
 	
-	items : [{
-		title: 'Konfigurasi Hirarki',
-		idKfHir: this.idKfHir,
-        region: 'west',     
-        xtype: 'treeHirarki',
-        width: 400,
-        hideCat: true,
-        collapsible: true,
-		// collapsed	: true,
-		split: true
-	},{
-		title : 'Form Hirarki dan Equipment',
-		region : 'center',
-		xtype : 'panLokasi'
-	
-	}]
+	initComponent: function() {
+		var me = this;
+		me.items = [{
+			title: 'Konfigurasi Hirarki',
+			idKfHir: me.idKfHir,
+			id: me.tHir,
+			region: 'west',     
+			xtype: 'treeHirarki',
+			//idEqHir: this.idEqHir,
+			width: 400,
+			hideCat: true,
+			collapsible: true,
+			// collapsed	: true,
+			split: true
+		},{
+			title : 'Form Hirarki dan Equipment',
+			region : 'center',
+			xtype : 'panLokasi'
+		
+		}];
+		
+		me.callParent(arguments);
+	}
 })

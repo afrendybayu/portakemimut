@@ -20,14 +20,9 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 	initComponent: function() {
 		var me=this;
 		
-		me.items = [{
-			//id: 'tk_ak',
-			
+		me.items = [{			
 			//*
-			id: 'tk_ak',
-			title: 'Aksi Def.',
-			xtype:'tAksi'
-		},{
+			
 			id: 'tk_pl',
 			title: 'PM List',
 			xtype:'tpKonfigList',
@@ -112,20 +107,21 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			idBtnD: 'iGEqdef',
 			dstoreD: 'GridEqnIn'
 		},{
-			//id: 'ts_hr',
+			tHir: 'tk_hr',
 			title: 'Lokasi',
-			idKfHir: 'idKfHir',
+			idKfHir: 'idKfHirEq',
+			idEqHir: 'idTmbhEqH',
 			xtype:'cHirarki'
 		},{
-
-			id: 'tk_pd',
-
+			//id: 'tk_ak',
+			title: 'Aksi Def.',
+			xtype:'tAksi'
+		},{
+			//id: 'tk_pd',
 			title: 'PM Def.',
 			xtype:'tPmDef'
 		},{
-		//*/
 			// id: 'ts_cause',
-
 			title: 'Cause Def.',
 			xtype:'tCause'
 		},{
