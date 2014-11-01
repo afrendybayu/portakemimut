@@ -9,7 +9,7 @@ Ext.define('rcm.store.GridAksi', {
 	
 	
 	
-	autoLoad: true,
+	//autoLoad: true,
 	
 	proxy: {
 		type: 'ajax',

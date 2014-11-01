@@ -57,16 +57,13 @@ Ext.define('rcm.view.Content', {
 			iconCls: 'RunnningHour',
 			//layout: 'accordion',
 			xtype: 'tabRh'
-			/*
-			xtype: 'tabpanel',
-			items: [{
-				title: 'Data Running Hour',
-				xtype: 'excelgrid',
-				id: 'app-runninghour',
-				iconCls: 'icon-grid'
-
-			//*/
-		
+		//*
+		},{
+			id: 'tu_co',
+			title: 'Condition Monitoring',
+			iconCls: 'connect',
+			xtype:'tConMon'
+		//*/
 		},{
 		
 			id		: 'tu_kf',

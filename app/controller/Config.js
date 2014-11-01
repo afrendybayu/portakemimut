@@ -267,8 +267,54 @@ Ext.define('rcm.controller.Config', {
 		
     },
 
+	getDelayedStore: function()	{
+		//console.log("Konfig getDelayedStore");
+		var me=this;
+		
+		if (rcmSettings.cKfg!=1)	{
+			me.getGridModenInStore().load();
+			me.getGridPMnInStore().load();
+			me.getGridOPnInStore().load();
+			me.getGridEqnInStore().load();
+			
+			me.getCausesStore().load();
+			me.getDamagesStore().load();
+			me.getUsersStore().load();
+			me.getRefersStore().load();
+			me.getSymptomsStore().load();
+			me.getOpartDefsStore().load();
+			me.getModeDefsStore().load();
+			me.getUsersStore().load();
+			me.getFormAksisStore().load();
+			me.getFormPmDefsStore().load();
+			/*
+			FormAksis',
+			'FormPmDefs',
+			'Causes',
+			'Damages',
+			'ModeDefs',
+			// 'GridAksi',
+			//'PMDefs',
+			
+			
+			'Refers',
+			'Symptoms',
+			'OpartDefs',
+			'Users
+		//*/
+		}
+	},
+
+	onLaunch: function(){
+		var me=this;
+		var task = new Ext.util.DelayedTask(function(){
+			me.getDelayedStore();
+		});
+		task.delay(10*1000);
+	},
+
     hdlSmpFailForm : function(){
-    	alert('tekan tombol simpan');
+    	//alert('tekan tombol simpan');
     	var me = this,
     	fail = me.getFFailure().getForm(),
 		getDataFail = fail.getValues(),
@@ -823,7 +869,9 @@ Ext.define('rcm.controller.Config', {
 	},
 	
 	saveNCatH: function()	{
-		rcmSettings.qwer = ch;
+		//rcmSettings.qwer = ch;
+		return;
+		/*
 		var me = this,
 			wc = me.getTWCatHir(),
 			form = wc.down('form').getForm(),
@@ -833,7 +881,7 @@ Ext.define('rcm.controller.Config', {
             Ext.Msg.alert('Invalid Data', 'Please correct form errors');
             return;
 		}
-		console.log("idCatH: "+form.findField('idCatH').getValue());
+		//console.log("idCatH: "+form.findField('idCatH').getValue());
 		//return;
 		var ch = Ext.getCmp(form.findField('idCatH').getValue()),
 			selModel = ch.getSelectionModel(),
@@ -886,7 +934,7 @@ Ext.define('rcm.controller.Config', {
         }
 		
 		winEl.unmask();
-
+		//*/
 	},
 	
 	tblNewCat: function()	{

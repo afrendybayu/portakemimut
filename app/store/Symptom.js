@@ -9,7 +9,7 @@ Ext.define('rcm.store.Symptom', {
 	
 	
 	
-	autoLoad: true,
+	//autoLoad: true,
 	
 	proxy: {
 		type: 'ajax',

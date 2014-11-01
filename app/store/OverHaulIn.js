@@ -2,7 +2,8 @@
 Ext.define('rcm.store.OverHaulIn', {
     extend: 'Ext.data.Store',
     model: 'rcm.model.OverHaulIn',
-    requires: 'rcm.model.OverHaulIn',
+    //autoLoad: true,
+    requires: 'rcm.model.OverHaulIn'
 
-    autoLoad: true
+    
 });

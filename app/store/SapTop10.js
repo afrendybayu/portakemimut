@@ -3,7 +3,7 @@ Ext.define('rcm.store.SapTop10', {
 	extend: 'Ext.data.Store',
 	model: 'rcm.model.SapTop',
 	requires: 'rcm.model.SapTop',
-	autoLoad: true,
+	//autoLoad: true,
 
 	proxy: {
 		type: 'ajax',

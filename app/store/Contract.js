@@ -2,6 +2,7 @@
 Ext.define('rcm.store.Contract', {
     extend: 'Ext.data.Store',
     model: 'rcm.model.Contract',
-    requires: 'rcm.model.Contract',
-    autoLoad: true
+    //autoLoad: true,
+    requires: 'rcm.model.Contract'
+    
 });

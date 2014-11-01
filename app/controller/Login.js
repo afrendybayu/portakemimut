@@ -1,3 +1,5 @@
+var cnt=0;
+
 Ext.define('rcm.controller.Login', {
     extend: 'Ext.app.Controller', 
 	
@@ -130,7 +132,7 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('btnUplBpm3').setDisabled(false);
 					Ext.getCmp('bwbpm3').setDisabled(false);
 					//Ext.fly('idGridCM').ngedit = 1;
-					console.log(Ext.getCmp('idGridCM'));
+					//console.log(Ext.getCmp('idGridCM'));
 					Ext.getCmp('idGridCM').ngedit = 1;
 					//Ext.fly('idGridCM').ngedit = 1;
 					//Ext.getCmp('conmondel').setDisabled(false);
@@ -234,6 +236,12 @@ Ext.define('rcm.controller.Login', {
 	updateClock: function()	{
 		//console.log(Ext.Date.format(new Date(), "g:i:s A"));
 		Ext.fly('lblClk').update(Ext.Date.format(new Date(), "l, j M Y G:i:s"));
+		cnt++;
+		/*
+		if (cnt==5)	{
+			console.log("Load PHP t: "+cnt);
+		}
+		//*/
 	},
 	
 	onLaunch: function(){
@@ -241,12 +249,13 @@ Ext.define('rcm.controller.Login', {
 		var me = this;
 		var LSesi = this.getLoginSesiStore();
 		
-
 		var runner = new Ext.util.TaskRunner();
 		var task = runner.start({
-			 run: this.updateClock,
-			 interval: 1000
+			run: this.updateClock,
+			interval: 1000
 		});
+
+
 		//*/
 		LSesi.load({
 			scope: this,
@@ -285,6 +294,7 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('bwbpm3').setDisabled(true);
 					//Ext.getCmp('conmondel').setDisabled(true);
 					//Ext.getCmp('cmform').setDisabled(true);
+					Ext.getCmp('idGridCM').ngedit = 0;
 					
 					Ext.getCmp('ohform').setDisabled(true);
 					Ext.getCmp('ohdel').setDisabled(true);

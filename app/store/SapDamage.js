@@ -2,6 +2,7 @@
 Ext.define('rcm.store.SapDamage', {
     extend: 'Ext.data.Store',
     model: 'rcm.model.SapDamage',
-    requires: 'rcm.model.SapDamage',
-    autoLoad: true
+    //autoLoad: true,
+    requires: 'rcm.model.SapDamage'
+    
 });

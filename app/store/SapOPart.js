@@ -2,6 +2,7 @@
 Ext.define('rcm.store.SapOPart', {
     extend: 'Ext.data.Store',
     model: 'rcm.model.SapOPart',
-    requires: 'rcm.model.SapOPart',
-    autoLoad: true
+    //autoLoad: true,
+    requires: 'rcm.model.SapOPart'
+	
 });

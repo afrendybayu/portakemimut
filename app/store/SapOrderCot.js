@@ -3,7 +3,7 @@ Ext.define('rcm.store.SapOrderCot', {
 	extend: 'Ext.data.Store',
 	model: 'rcm.model.HoOrderC',
 	requires: 'rcm.model.HoOrderC',
-	autoLoad: true,
+	//autoLoad: true,
 
 	proxy: {
 		type: 'ajax',
