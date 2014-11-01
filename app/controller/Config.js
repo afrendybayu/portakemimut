@@ -16,6 +16,7 @@ Ext.define('rcm.controller.Config', {
 		'konfig.CauseForm',
 		'konfig.DamageGrid',
 		'konfig.DamageForm',
+		'konfig.DetailLokasi',
 		// 'konfig.FailureGrid',
 		// 'konfig.FailureForm',
 		
@@ -119,6 +120,9 @@ Ext.define('rcm.controller.Config', {
 		},{
 			ref : 'gridFailure',
 			selector : 'gridFailure'
+		},{
+			ref : 'panLokasi',
+			selector : 'panLokasi'
 	}],
     
     init: function() {
@@ -178,7 +182,7 @@ Ext.define('rcm.controller.Config', {
 			},
 
 			'#tk_hr': {
-				selectionchange: me.tmbhEqCH,
+				selectionchange: me.EdtEqCH,
 				itemmouseenter: me.showActions,
 				itemmouseleave: me.hideActions
 			},
@@ -436,8 +440,20 @@ Ext.define('rcm.controller.Config', {
 	slctKfHir: function(model, records)	{
 		console.log(records[0]);
 	},
-	tmbhEqCH: function(model, rec)	{
-		console.log(rec[0]);
+	EdtEqCH: function(model, rec)	{
+		//console.log(rec[0]);
+		var me=this;
+		var r=rec[0];
+		if (r) {
+			if (r.get('flag')=="h")	{		// hirarki
+				console.log("hirarki");
+			}
+			else {		// equip
+				console.log("equip");
+			}
+			me.getPanLokasi().getForm().loadRecord(rec[0]);
+			//rcmSettings.jjj = me.getPanLokasi();
+        }
 	},
 
     delDamageGrid : function(rec){
