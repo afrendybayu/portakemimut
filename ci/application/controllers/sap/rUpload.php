@@ -29,12 +29,14 @@ class rUpload extends CI_Controller {
 			try {
 				$this->load->library('excel');
 				$this->load->model('upload');
-						
+				//echo "setelah load model";
 				$objPHPExcel = PHPExcel_IOFactory::load($hsl["lokasi"]);
 				//$objPHPExcel = PHPExcel_IOFactory::load('WO100.xlsx');
+				//echo "setelah load excel";
 				//print_r($objPHPExcel);
 				$dt = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
 				//print_r($dt);
+				//echo "setelah get sheet excel";
 				$bacaFileEnd = microtime(true);
 				$bacaFile = $bacaFileEnd - $bacaFileStart;
 				//echo 'Waktu untuk baca File ' , sprintf('%.4f',$bacaFile) , " seconds<br/>";

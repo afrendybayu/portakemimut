@@ -357,6 +357,7 @@ Ext.define('rcm.controller.Sap', {
 	hdlUplOh: function(btn)	{
 		//alert("hdlUplOh");
 		//
+		var me = this;
 		var tpl = new Ext.XTemplate(
 			'File processed on the server.<br/>',
 			'Name: {fNama}<br/>',
@@ -384,14 +385,14 @@ Ext.define('rcm.controller.Sap', {
 				waitMsg: 'Uploading your file...',
 				success: function(fp, o) {
 					msg('Success', tpl.apply(o.result));
-					
+					me.hdlFiltThnOh();
 				},
 				falure: function(fp, o)	{
 					Ext.Msg.alert("Error", Ext.JSON.decode(this.response.responseText).message);
 				}
 			});
 		}
-		this.hdlFiltThnOh();
+		//this.hdlFiltThnOh();
 	},
     
 	updateGridOH : function(record){
@@ -826,7 +827,10 @@ Ext.define('rcm.controller.Sap', {
 		var me=this;
 		//*
 		if (rcmSettings.cSap!=1)	{
-			console.log("Sap getDelayedStore");
+			//console.log("Sap getDelayedStore");
+			me.getSapEPOStore().load();
+			me.getSapHistoriStore().load();
+			
 			me.getSapTop10Store().load();
 			me.getSapTop10FLStore().load();
 			me.getSapOrderCwoStore().load();
@@ -840,11 +844,20 @@ Ext.define('rcm.controller.Sap', {
 			me.getSapLocStore().load();
 			me.getSapOTypeStore().load();
 			
-			me.getSapEPOStore().load();
-			me.getSapHistoriStore().load();
+			me.getSapPsOCotStore().load();
+			me.getSapPsOCwoStore().load();
 			
-			//me.getManOCostStore().load();
-			//me.getSapEPOStore().load();
+			me.getConMonStore().load();
+			me.getConMonGrStore().load();
+			me.getGridConMonStore().load();
+			me.getDetConMonGrStore().load();
+			me.getDetConMonPmpStore().load();
+			me.getDetConMonGsStore().load();
+			
+			
+			
+			me.getOhTahunStore().load();
+			me.getOverHaulInStore().load();
 
 			var task = new Ext.util.DelayedTask(function(){
 				me.getDelayedStore2();
