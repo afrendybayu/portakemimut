@@ -107,6 +107,7 @@ class rPM extends CI_Controller {
 		$a = nextpm(12000,$pm);	print_r($a); echo "<br/>";
 		$a = nextpm(72000,$pm);	print_r($a); echo "<br/>";
 		$a = nextpm(7000,$pm);	print_r($a); echo "<br/>";
+		$a = nextpm(49490,$pm);	print_r($a); echo "<br/>";
 		//echo $a->npm;
 	}
 	
