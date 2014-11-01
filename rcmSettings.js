@@ -13,9 +13,10 @@ rcmSettings = {
 	idc: 0,
 	asa: '',
 	sas: '',
-	dlyKfg: 10,
+	dlyKfg: 30,
 	dlyAvre: 10,
-	dlySap: 10,
+	dlySap: 20,
+	dlySapI: 40,
 	server: 1
 };
 

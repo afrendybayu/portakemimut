@@ -849,7 +849,7 @@ Ext.define('rcm.controller.Sap', {
 			var task = new Ext.util.DelayedTask(function(){
 				me.getDelayedStore2();
 			});
-			task.delay(10*1000);
+			task.delay(rcmSettings.dlySapI*1000);
 		}
 		//*/
 		/*
