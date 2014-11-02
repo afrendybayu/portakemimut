@@ -36,7 +36,7 @@ Ext.define('rcm.controller.Config', {
 		// 'GridAksi',
 		//'PMDefs',
 		
-		
+		'HirDef',
 		'Refers',
 		'Symptoms',
 		'OpartDefs',
@@ -457,9 +457,10 @@ Ext.define('rcm.controller.Config', {
 	EdtEqH: function(model, rec)	{
 		var me=this,
 			r=rec[0],
-			f=r.get('flag'),
+			f=r.get('sil'),
 			l=me.getPanLokasi();
 		//console.log(r.get('nama')+" flag: "+f);
+		console.log(r.data);
 		l.showInput(f);
 		if (r) {
 			if (f=="h") {
@@ -597,13 +598,14 @@ Ext.define('rcm.controller.Config', {
 		//
 		var d = selModel.getSelection()[0];
 		console.log(tasks[0]);
-		if (d.get('flag')=='e')	{
+		//if (d.get('flag')=='e')	{
+		if (d.get('sil')=='e')	{
 			Ext.getCmp('tEqKonfigs').ngedit = 1;
 		}
 		else {
 			Ext.getCmp('tEqKonfigs').ngedit = 0;
 		}
-		//console.log(d.get('flag'));
+		//console.log(d.get('sil'));
 	},
     
     iGMddef: function()	{

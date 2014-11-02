@@ -94,9 +94,9 @@ class Sap extends CI_Model {
 				LEFT JOIN cause ON sapfmea.cause = cause.kode
 				group by noorder,damage,cause,opart";
 		//*/
-		$sql =	"select sf.pid AS noorder,if(notifno=0,'',notifno) AS nosap
+		$sql =	"select sf.pid AS noorder,if(orderno=0,'',orderno) AS nosap
 				,sf.damage,if(sf.damage<>'',damage.nama,'') AS damagenm
-				,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm
+				,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm,planstart AS plnstr
 				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm,deskord AS orderdesc
 				,manwork AS mainwork,down,eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart
 				from sapfmea sf

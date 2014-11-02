@@ -38,7 +38,7 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 		}];
 		me.items = [{
 				//xtype:'hiddenfield',
-				name: 'flag'
+				name: 'sil'
 			},{
 				//xtype:'hiddenfield',
 				name: 'id'
@@ -51,7 +51,26 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 				fieldLabel: 'Hirarki Induk',
 				name: 'parent',
 				xtype: 'treepicker',
+				/*
+				store: new Ext.data.TreeStore({
+					model: rcm.model.HirDef,
+					proxy: {
+						type: 'ajax',
+						url: 'ci/index.php/konfig/rLokUnit/hirAll'
+					},
+					folderSort: true
+				}),
+				
+				store: new Ext.data.TreeStore({
+					model: rcm.model.HirDef,
+					proxy: {
+						type: 'ajax',
+						url: 'ci/index.php/konfig/rLokUnit/hirAll'
+					}
+				}),
+				//*/
 				store: Ext.create('rcm.store.LokUnit'),
+				//store: Ext.create('rcm.store.HirDef'),
 				dataIndex: 'parent',
 				displayField: 'nama'
 			},{
@@ -94,10 +113,10 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
     clrForm: function()	{			
 		var me = this.up('form').getForm(),
 			id = me.findField('id').getValue(),
-			f  = me.findField('flag').getValue();
+			f  = me.findField('sil').getValue();
 
 		me.reset();
-		me.findField('flag').setValue(f);
+		me.findField('sil').setValue(f);
 		me.findField('rhinit').setValue(0);
 		me.findField('id').setValue(id);
 		if (f=="h")	{	// TAMBAHKAN INI buat manipulasi form dinamis

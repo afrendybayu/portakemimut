@@ -73,6 +73,43 @@ class Hirarki extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_hirarki_all()	{
+		/*
+		$this->db->select('id,nama,parent');
+		$this->db->order_by('parent','ASC');
+		$this->db->order_by('urut','ASC');
+		$query = $this->db->get('hirarki');
+		
+		return $query->result();
+		//*/
+		
+		$sql = "SELECT id,nama,parent FROM hirarki";
+		
+		$hsl = array(); $i=0;
+		if ($q = mysqli_multi_query($this->db->conn_id,$sql))	{
+			//echo "masuk sini";
+			//print_r($q);
+			do {
+				if ($result=mysqli_store_result($this->db->conn_id))	{
+					while ($row=mysqli_fetch_row($result))	{
+						$hsl[$i]['id'] = $row[0];
+						$hsl[$i]['nama'] = $row[1];
+						$hsl[$i]['parent'] = $row[2];
+						$i++;
+					}
+					mysqli_free_result($result);
+				}
+			}
+			while (mysqli_next_result($this->db->conn_id));
+		}
+		//
+		else {
+			echo "DB Error, could not query the database\n";
+		}
+		//print_r($hsl);
+		return $hsl;
+	}
+	
 	function get_hirarki($parent){
 		
 		/*
@@ -95,7 +132,7 @@ class Hirarki extends CI_Model {
 		//*/
 		$sql =	"SELECT h.id,h.nama,IFNULL(h.kode,'') AS kode,h.parent,h.rhinit, IFNULL(h.urut,'') AS urut, 
 				IFNULL(h.funcloc,'') AS funcloc,h.flag,IFNULL(GROUP_CONCAT(eq.id),'') AS eqid, 
-				CASE WHEN eq.id>0 THEN 'u' ELSE 'h' END AS flag,
+				CASE WHEN eq.id>0 THEN 'u' ELSE 'h' END AS sil,
 				CASE WHEN hh.id>0 THEN 'false' ELSE 'true' END AS leaf
 				FROM hirarki h LEFT JOIN equip eq ON eq.unit_id = h.id 
 				LEFT JOIN hirarki hh  ON hh.parent = h.id 
@@ -123,7 +160,7 @@ class Hirarki extends CI_Model {
 		//*/
 		$sql =	"SELECT eq.id,CONCAT('[',eq.tag,'] ',eq.nama) AS nama,
 				eq.tag,eq.unit_id AS parent, ce.id AS idcat,ce.nama AS cat,eq.kode,IFNULL(eq.rhinit,0) AS rhinit,
-				'e' AS flag, 'true' AS leaf
+				'e' AS sil, 'true' AS leaf
 				FROM equip  eq
 					LEFT JOIN cat_equip ce ON ce.id = eq.cat
 				WHERE unit_id = $parent

@@ -87,6 +87,55 @@ if ( ! function_exists('nextpm'))	{
 	}
 }
 
+if ( ! function_exists('buildTree'))	{
+	/*
+	function buildTree($data, $parent = 0) {
+		
+		$tree = new stdClass();
+		foreach ($data as $d) {
+			print_r($d); echo "---- parent: $parent";	echo "<br/>";
+			if ($d->parent == $parent) {
+				echo ">>>>>>>> masuk sini, id: {$d->id}<br/>";
+				$children = buildTree($data, $d->id);
+				echo " ++++++ kesini <br/>";
+				// set a trivial key
+				if (!empty($children)) {
+					echo "mnasuk tidak empty: "; print_r($children); echo"<br/>";
+					$d->children = $children;	// 
+					//$d['expanded'] = 'false';	// 
+				} else {
+					$d->leaf = 'true';	// 
+					echo "leaf<br/>";
+				}
+				//$d['leaf'] = 'true';	// 
+				$tree[] = $d;
+			}
+		}
+		print_r($tree);
+		return $tree;
+	}
+	//*/
+	//*
+	function buildTree(array $data, $parent = 0) {
+		$tree = array();
+		foreach ($data as $d) {
+			if ($d['parent'] == $parent) {
+				$children = buildTree($data, $d['id']);
+				// set a trivial key
+				if (!empty($children)) {
+					$d['children'] = $children;	// 
+					//$d['expanded'] = 'false';	// 
+				} else {
+					$d['leaf'] = 'true';	// 
+				}
+				//$d['leaf'] = 'true';	// 
+				$tree[] = $d;
+			}
+		}
+		return $tree;
+	}
+	//*/
+}
 
 //*/
 if ( ! function_exists('format_rh_time'))	{

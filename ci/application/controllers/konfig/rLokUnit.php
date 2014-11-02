@@ -85,6 +85,25 @@ class rLokUnit extends CI_Controller {
 		echo json_encode($jsonResult);
 	}
 	
+	public function hirAll()	{
+		try {
+			$hsl = $this->hirarki->get_hirarki_all();
+			$hir = buildTree($hsl,0);
+			
+			$jsonResult = array(
+				'success' => true,
+				'hirarki' => $hir
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($hir);
+	}
+	
 	public function uHirarki() {
 		$par = json_decode(file_get_contents('php://input'));
 
@@ -98,8 +117,9 @@ class rLokUnit extends CI_Controller {
 			else {
 				$data = array(
 					'nama' => $par->nama,
-					'parent' => $par->paren,
-					'kode' => $par->kode
+					'parent' => $par->parent,
+					'kode' => $par->kode,
+					'urut' => $par->urut,
 				);
 			}
 			$jsonResult = array(
