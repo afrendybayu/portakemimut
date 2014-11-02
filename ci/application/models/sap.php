@@ -23,13 +23,13 @@ class Sap extends CI_Model {
 		
 		$sql =	"select ordertype AS kode,pmtype,count(*) AS wo
 				,ROUND((100*count(*)/(
-					select count(*) from sap WHERE year(planstart) = '$thn' AND 
+					select count(*) from sap WHERE year(planstart) = '$thn' $fmc $flok AND 
 					ordertype in ('EP01','EP02','EP03','EP04','EP05'))),2) as persen
 				FROM sap
 				LEFT JOIN hirarki h ON h.urut = sap.lokasi
 				WHERE year(planstart) = '$thn' $fmc $flok
 				GROUP BY ordertype ";
-		//echo "sql: $sql<br/><br/>";
+		echo "sql: $sql<br/><br/>";
 		$query = $this->db->query($sql);
 		
 		return $query->result();
