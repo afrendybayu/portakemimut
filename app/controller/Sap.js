@@ -784,6 +784,7 @@ Ext.define('rcm.controller.Sap', {
 			scope: this,
 			callback: function(rec) {
 				// Ext.getCmp('wo3s7').setText(rec[0].get('teks'));
+				Ext.fly('wo3s7').update(rec[0].get('teks'));
 			}
 		});
 		me.getWoOpen30Store().load({
@@ -791,13 +792,15 @@ Ext.define('rcm.controller.Sap', {
 			scope: this,
 			callback: function(rec) {
 				// Ext.getCmp('wo7s30').setText(rec[0].get('teks'));
+				Ext.fly('wo7s30').update(rec[0].get('teks'));
 			}
 		});
 		me.getWoOpen60Store().load({
 			params: p,
 			scope: this,
 			callback: function(rec) {
-				// Ext.getCmp('wo30s60').setText(rec[0].get('teks'));
+				//Ext.getCmp('wo30s60').setText(rec[0].get('teks'));
+				Ext.fly('wo30s60').update(rec[0].get('teks'));
 			}
 		});
 		me.getWoOpenL60Store().load({
@@ -805,6 +808,7 @@ Ext.define('rcm.controller.Sap', {
 			scope: this,
 			callback: function(rec) {
 				// Ext.getCmp('wo60').setText(rec[0].get('teks'));
+				Ext.fly('wo60').update(rec[0].get('teks'));
 			}
 		});
 		//*/
