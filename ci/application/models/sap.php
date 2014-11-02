@@ -29,7 +29,7 @@ class Sap extends CI_Model {
 				LEFT JOIN hirarki h ON h.urut = sap.lokasi
 				WHERE year(planstart) = '$thn' $fmc $flok
 				GROUP BY ordertype ";
-		echo "sql: $sql<br/><br/>";
+		//echo "sql: $sql<br/><br/>";
 		$query = $this->db->query($sql);
 		
 		return $query->result();
