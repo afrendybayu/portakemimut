@@ -858,7 +858,10 @@ Ext.define('rcm.controller.Sap', {
 			me.getDetConMonPmpStore().load();
 			me.getDetConMonGsStore().load();
 			
-			
+			me.getWoOpen7Store().load();
+			me.getWoOpen30Store().load();
+			me.getWoOpen60Store().load();
+			me.getWoOpenL60Store().load();
 			
 			me.getOhTahunStore().load();
 			me.getOverHaulInStore().load();
@@ -898,7 +901,7 @@ Ext.define('rcm.controller.Sap', {
 		});
 		task.delay(rcmSettings.dlySap*1000);
 		//alert("tes");
-		me.ubahLabelWO();
+		//me.ubahLabelWO();
 		me.getManOCostStore().load({
 			scope: this,
 			callback: function(rec, op, suc) {
