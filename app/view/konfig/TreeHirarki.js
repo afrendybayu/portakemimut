@@ -66,18 +66,22 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 					text: 'Simpan',
 					iconCls: 'savedisk',
 					tooltip: 'Simpan Kategori'
-				}]:[{
+				}]:[/*{
 					id: me.idEqHir,
 					xtype: 'button',
 					text : 'Tambah Lokasi',
 					//id	: 'tambah_lokasi'
-				},'->',{
+				},*/'->',{
 					iconCls: 'new_folder_tree',
-					tooltip: 'New Folder'
+					tooltip: 'Tambah Hirarki'
 				},{
-					iconCls: 'delete_folder_tree',
+					iconCls: 'new_folder_tree',
 					//id: 'delete-folder-btn',
-					tooltip: 'Delete Folder'
+					tooltip: 'Tambah Unit'
+				},{
+					iconCls: 'new_folder_tree',
+					//id: 'delete-folder-btn',
+					tooltip: 'Tambah Equipment'
 			}]
 		}];
         me.columns = [{

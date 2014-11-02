@@ -16,8 +16,10 @@ class rLokUnit extends CI_Controller {
 			
 			$arr = array(); $k=0;
 			$hsl = $this->hirarki->get_hirarki($parent_id);
-			//print_r($hsl);
+			//print_r($hsl->result()); echo "<br/><br/>";
 			if ($hsl->num_rows() > 0)	{
+				$arr = $hsl->result();
+				/*
 				foreach ($hsl->result() as $row)	{
 					//print_r($row); echo "<br/>";
 					$arr[$k]['id'] 		= $row->id;
@@ -28,10 +30,13 @@ class rLokUnit extends CI_Controller {
 					$arr[$k]['flag']	= 'h';
 					$k++;
 				}
+				//*/
 			}
 			
 			else {
-				$hsl1 = $this->hirarki->get_hirarki_equip($parent_id);
+				$hsl = $this->hirarki->get_hirarki_equip($parent_id);
+				$arr = $hsl->result();
+				/*
 				foreach ($hsl1->result() as $row)	{
 					$arr[$k]['id'] 		= $row->id;
 					$arr[$k]['nama'] 	= '['.$row->tag.'] '.$row->nama;
@@ -42,6 +47,7 @@ class rLokUnit extends CI_Controller {
 					$arr[$k]['flag']	= 'e';
 					$k++;
 				}
+				//*/
 			}
 			$jsonResult = array(
 				'success' => true,
@@ -78,7 +84,39 @@ class rLokUnit extends CI_Controller {
 		}
 		echo json_encode($jsonResult);
 	}
-	//*
+	
+	public function uHirarki() {
+		$par = json_decode(file_get_contents('php://input'));
+
+		try {
+			if (!isset($par))	{
+				throw new Exception("Input Data Tidak Ada");
+			}
+			if ($par->flag=="e")	{
+				
+			}
+			else {
+				$data = array(
+					'nama' => $par->nama,
+					'parent' => $par->paren,
+					'kode' => $par->kode
+				);
+			}
+			$jsonResult = array(
+				'success' => true,
+				'hir' => array('id' => $params->id)
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
+	
+	/*
 	public function uHirarki() {
 		//$str = "[GM-A01A00001] ELMOT RELIANCE 30 HP";
 		$params = json_decode(file_get_contents('php://input'));
@@ -102,7 +140,7 @@ class rLokUnit extends CI_Controller {
 			
 			$this->load->model('equip');
 			$this->equip->update_equip($data,$params->id);
-			//*/
+			
 			$jsonResult = array(
 				'success' => true,
 				'hir' => array('id' => $params->id)
@@ -117,7 +155,7 @@ class rLokUnit extends CI_Controller {
 		echo json_encode($jsonResult);
 		
 	}
-	
+	//*/
 }
 
 /* End of file rLokUnit.php */

@@ -446,7 +446,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 		//alert(Ext.getCmp('idtfevent').getValue());
 		
 		//alert("masuk "+(rec.get('idevent')+1)+", event: "+rec.get('event'));
-		rcmSettings.bbb = rec;
+		//rcmSettings.bbb = rec;
 		//var ev = parseInt(rec.get('idevent'));
 		Ext.getCmp('fmEq').setValue(rec.get('nama')+" @"+rec.get('lok'));
 		Ext.getCmp('fgid').setValue(rec.get('id'));

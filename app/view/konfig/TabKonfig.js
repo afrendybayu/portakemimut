@@ -22,7 +22,12 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		
 		me.items = [{			
 			//*
-			
+			tHir: 'tk_hr',
+			title: 'Lokasi',
+			idKfHir: 'idKfHirEq',
+			idEqHir: 'idTmbhEqH',
+			xtype:'cHirarki'
+		},{
 			id: 'tk_pl',
 			title: 'PM List',
 			xtype:'tpKonfigList',
@@ -106,12 +111,14 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			jdlBtnD: ' ',
 			idBtnD: 'iGEqdef',
 			dstoreD: 'GridEqnIn'
+		/*
 		},{
 			tHir: 'tk_hr',
 			title: 'Lokasi',
 			idKfHir: 'idKfHirEq',
 			idEqHir: 'idTmbhEqH',
 			xtype:'cHirarki'
+		//*/
 		},{
 			//id: 'tk_ak',
 			title: 'Aksi Def.',

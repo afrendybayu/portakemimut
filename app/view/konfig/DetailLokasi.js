@@ -3,7 +3,7 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
     xtype: 'panLokasi',
 
 	bodyPadding: 10,  // Don't want content to crunch against the borders
-    //width: 300,
+    //fh: 'h',
     
     defaultType: 'textfield',
     defaults: {
@@ -12,41 +12,137 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
     // title: 'Filters',
     initComponent: function() {
 		var me = this;
+		me.buttons = [{
+			text: 'Simpan',
+			iconCls: 'savedisk',
+			formBind: true, 
+			disabled: true
+            // handler: function() {
+                // fireEvent('SimpanAksi', args ) ;
+				// alert ('simpan dulu');
+				// this.up('form').getForm().isValid();
+            // }
+        },{
+        	text: 'Update',
+        	iconCls: 'editEvent',
+			formBind: true,
+			disabled: true,
+        },{
+            text: 'Clear',
+            handler: me.clrForm
+            /*
+            handler: function() {
+                this.up('form').getForm().reset();
+            }
+            //*/
+		}];
 		me.items = [{
-				//xtype: 'textfield',
+				//xtype:'hiddenfield',
+				name: 'flag'
+			},{
+				//xtype:'hiddenfield',
+				name: 'id'
+			},{
 				fieldLabel: 'Nama',
 				name: 'nama',
-				//width: 400
-				//disabled: true
+				emptyText: 'Masukkan Nama Hirarki/Equipment',
+				allowBlank: false
 			},{
-				//xtype: 'textfield',
-				fieldLabel: 'Fuction Location',
-				name: 'floc'
+				fieldLabel: 'Hirarki Induk',
+				name: 'parent',
+				xtype: 'treepicker',
+				store: Ext.create('rcm.store.LokUnit'),
+				dataIndex: 'parent',
+				displayField: 'nama'
 			},{
-				//xtype: 'textfield',
+				fieldLabel: 'Function Location',
+				name: 'funcloc',
+				emptyText: 'Masukkan nilai Func Loc',
+				allowBlank: false,
+				hidden: true
+			},{
 				fieldLabel: 'Tag',
 				name: 'tag',
-				//width: 400
-				//disabled: true
+				emptyText: 'Masukkan nilai No Tag',
+				allowBlank: false,
+				hidden: true
 			},{
 				xtype: 'numberfield',
 				fieldLabel: 'No urut',
 				name: 'urut',
-				//width: 400
+				minValue: 0,
+				hidden: true
 			},{
-				//xtype: 'textfield',
 				fieldLabel: 'Kode',
 				name: 'kode',
-				//width: 400
-				//disabled: true
+				emptyText: 'Masukkan Kode',
+				allowBlank: false
 			},{
-				//xtype: 'textfield',
+				xtype: 'numberfield',
 				fieldLabel: 'Running Hour init',
-				name: 'rhinit'
-				//disabled: true
+				name: 'rhinit',
+				align: 'right',
+				//emptyText: 0,
+				minValue: 0,
+				hidden: true
 			
 		}];
 		me.callParent(arguments);
-    }
+    },
+    
+    
+    clrForm: function()	{			
+		var me = this.up('form').getForm(),
+			id = me.findField('id').getValue(),
+			f  = me.findField('flag').getValue();
+
+		me.reset();
+		me.findField('flag').setValue(f);
+		me.findField('rhinit').setValue(0);
+		me.findField('id').setValue(id);
+		if (f=="h")	{	// TAMBAHKAN INI buat manipulasi form dinamis
+			me.findField('tag').setValue(" ");
+			me.findField('funcloc').setValue(" ");
+		}
+		else if (f=="u")	{
+			me.findField('tag').setValue(" ");
+		}
+		else if (f=="e")	{
+			me.findField('funcloc').setValue(" ");
+		}
+	},
+    
+    showInput: function(n)	{
+		var me = this.getForm();
+		rcmSettings.yyy = me;
+		//this.ubahFlag(n);
+		//*
+		if (n=="h")	{
+			me.findField('rhinit').setVisible(false);
+			me.findField('tag').setVisible(false);
+			me.findField('funcloc').setVisible(false);
+			me.findField('urut').setVisible(true);
+		}
+		else if (n=="u")	{
+			me.findField('funcloc').setVisible(true);
+			me.findField('rhinit').setVisible(true);
+			me.findField('tag').setVisible(false);
+			me.findField('urut').setVisible(false);
+		}
+		else if (n=="e")	{
+			me.findField('rhinit').setVisible(true);
+			me.findField('tag').setVisible(true);
+			me.findField('urut').setVisible(false);
+			me.findField('funcloc').setVisible(false);
+		}
+		else {
+			me.findField('rhinit').setVisible(false);
+			me.findField('tag').setVisible(false);
+			me.findField('funcloc').setVisible(false);
+			me.findField('urut').setVisible(false);
+			me.reset();
+		}
+		//*/
+	}
 
 });

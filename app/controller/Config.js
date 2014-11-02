@@ -1,9 +1,7 @@
 Ext.define('rcm.controller.Config', {
     extend: 'Ext.app.Controller',
     //*
-    
-	
-	
+
 	views: [
         // TODO: add views here
         'konfig.TabKonfig',
@@ -182,7 +180,7 @@ Ext.define('rcm.controller.Config', {
 			},
 
 			'#tk_hr': {
-				selectionchange: me.EdtEqCH,
+				selectionchange: me.EdtEqH,
 				itemmouseenter: me.showActions,
 				itemmouseleave: me.hideActions
 			},
@@ -275,6 +273,9 @@ Ext.define('rcm.controller.Config', {
 			'gridFailure' : {
 				FailureGridDel	: me.delFailureGrid,
 				selectionchange : me.slctFailureGrid
+			},
+			'panLokasi button[text=Update]': {
+				click : me.hdlSmpHir
 			}
 
 		});
@@ -316,9 +317,9 @@ Ext.define('rcm.controller.Config', {
     hdlSmpFailForm : function(){
     	//alert('tekan tombol simpan');
     	var me = this,
-    	fail = me.getFFailure().getForm(),
-		getDataFail = fail.getValues(),
-		failSave = new rcm.model.ModeDef(getDataFail);
+			fail = me.getFFailure().getForm(),
+			getDataFail = fail.getValues(),
+			failSave = new rcm.model.ModeDef(getDataFail);
 		// console.log(getDataCause);
 		// console.log(DmgSave);
 		fail.reset();
@@ -437,22 +438,43 @@ Ext.define('rcm.controller.Config', {
 		});
 	},
 
+	hdlSmpHir: function()	{
+		var me = this,
+			hir = me.getPanLokasi().getForm(),
+			getData = hir.getValues(),
+			hUpt = new rcm.model.LokUnit(getData);
+		console.log(getData);
+		
+		//hUpt.save();
+		hUpt.save();
+		console.log("config hdlSmpHir");
+		
+	},
+
 	slctKfHir: function(model, records)	{
 		console.log(records[0]);
 	},
-	EdtEqCH: function(model, rec)	{
-		//console.log(rec[0]);
-		var me=this;
-		var r=rec[0];
+	EdtEqH: function(model, rec)	{
+		var me=this,
+			r=rec[0],
+			f=r.get('flag'),
+			l=me.getPanLokasi();
+		//console.log(r.get('nama')+" flag: "+f);
+		l.showInput(f);
 		if (r) {
-			if (r.get('flag')=="h")	{		// hirarki
-				console.log("hirarki");
+			if (f=="h") {
+				r.data.tag=" ";
+				r.data.funcloc=" ";
 			}
-			else {		// equip
-				console.log("equip");
+			else if (f=="u") {
+				r.data.tag=" ";
 			}
-			me.getPanLokasi().getForm().loadRecord(rec[0]);
-			//rcmSettings.jjj = me.getPanLokasi();
+			else if (f=="e") {		// equip
+				r.data.funcloc=" ";
+				var n=r.get('nama').split("] ");
+				r.data.nama = (n.length==2)?n[1]:n[0];
+			}
+			if (f!="")	me.getPanLokasi().getForm().loadRecord(r);
         }
 	},
 
@@ -961,7 +983,8 @@ Ext.define('rcm.controller.Config', {
 		this.treeCat(true);
 	},
 	tblDelCat: function()	{
-		this.treeCat(true);
+		alert("Config controller tblDelCat");
+		//this.treeCat(true);
 	},
 	hdlDelCatHir: function(rec)	{
 		//console.log("Hapus id: "+rec.get('id')+", nama: "+rec.get('text'));
@@ -1024,6 +1047,7 @@ Ext.define('rcm.controller.Config', {
 	},
 	
 	addTreeHirarki: function(leaf) {
+	/*
         var me = this,
             hTree = me.getTreeHirarki(),
             cellEditingPlugin = hTree.cellEditingPlugin,
@@ -1056,7 +1080,7 @@ Ext.define('rcm.controller.Config', {
                     parentList.expand();
                 }
             };
-            //*/
+           
 		// console.log(selectionModel);
 		// console.log('newlist : ');
 		// console.log(newList);
