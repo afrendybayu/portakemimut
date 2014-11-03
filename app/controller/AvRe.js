@@ -82,8 +82,35 @@ Ext.define('rcm.controller.AvRe', {
 		});
     },
 	
+	getDelayedStore: function()	{
+		console.log("AvRe getDelayedStore");
+		var me=this;
+		me.getAvHomeStore().load();
+		me.getReHomeStore().load();
+		//me.getAvSpeedoStore().load();
+		//me.getReSpeedoStore().load();
+		me.getAvGroupStore().load();		// list equip masing2 pergroup
+		me.getAvReUnitStore().load();
+		
+		/*
+		'AvReUnit','AvHome','ReHome','AvGroup','AvSpeedo','ReSpeedo'
+		//,'SapHistoriUt'
+		
+		//,'SpAvGcUt','SpAvGsUt','SpAvPmUt','SpReGcUt','SpReGsUt','SpRePmUt'
+		 
+		//*/
+	},
+	
 	onLaunch: function() {
-		console.log("AvRe");
+		//console.log("AvRe");
+		
+		var me = this,
+			task = new Ext.util.DelayedTask(function(){
+			me.getDelayedStore();
+		});
+		//task.delay(rcmSettings.dlySap*1000);
+		task.delay(rcmSettings.dlyAR*1000);
+		
 		this.getTAvGroup().cat = 5;
 		
 		//this.updAvRe();
