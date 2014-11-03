@@ -1119,6 +1119,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.konfig.Symptom": [],
   "rcm.view.konfig.TabKonfig": [],
   "rcm.view.konfig.TreeCat": [],
+  "rcm.view.konfig.TreeHirDef": [],
   "rcm.view.konfig.TreeHirarki": [],
   "rcm.view.konfig.User": [],
   "rcm.view.konfig.wCatHir": [],
@@ -2498,6 +2499,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.konfig.TreeCat": [
     "widget.tCatHir"
+  ],
+  "rcm.view.konfig.TreeHirDef": [
+    "widget.tHirDef"
   ],
   "rcm.view.konfig.TreeHirarki": [
     "widget.treeHirarki"

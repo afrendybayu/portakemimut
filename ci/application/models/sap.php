@@ -184,7 +184,7 @@ class Sap extends CI_Model {
 				FROM sapfmea
 				LEFT JOIN sap ON sap.pid = sapfmea.pid";
 		
-		if (strlen($damage)>0)	{
+		if (strlen($opart)>0)	{
 			$sql .= "WHERE opart LIKE '%$opart%'";
 		}
 		$query = $this->db->query($sql);

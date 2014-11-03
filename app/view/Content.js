@@ -27,8 +27,6 @@ Ext.define('rcm.view.Content', {
     initComponent: function() {
 		var me=this;
 		me.items = [{
-			xtype: 'tHirDef'
-		},{
 		//*==========================
 			id: 'tu_ho',
 			title: 'Dashboard Home',

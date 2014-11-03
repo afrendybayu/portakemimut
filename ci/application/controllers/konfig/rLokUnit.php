@@ -6,9 +6,13 @@ class rLokUnit extends CI_Controller {
 		$this->load->model('hirarki');
 	}
 	
+	function index()	{
+		echo "res";
+	}
 	
 	public function rHirarki()	{
-		
+		echo "res";
+		/*
 		try {
 			$parent_id = (isset($_GET['node']))?($_GET['node']):0;
 			//echo $parent_id.'<br>';
@@ -19,35 +23,12 @@ class rLokUnit extends CI_Controller {
 			//print_r($hsl->result()); echo "<br/><br/>";
 			if ($hsl->num_rows() > 0)	{
 				$arr = $hsl->result();
-				/*
-				foreach ($hsl->result() as $row)	{
-					//print_r($row); echo "<br/>";
-					$arr[$k]['id'] 		= $row->id;
-					$arr[$k]['nama'] 	= $row->nama;
-					//$arr[$k]['nama'] 	= $row->nama.' '.$row->id;
-					// $arr[$k]['level'] 	= $row->level;
-					$arr[$k]['leaf'] 	= 'false';
-					$arr[$k]['flag']	= 'h';
-					$k++;
-				}
-				//*/
+
 			}
 			
 			else {
 				$hsl = $this->hirarki->get_hirarki_equip($parent_id);
 				$arr = $hsl->result();
-				/*
-				foreach ($hsl1->result() as $row)	{
-					$arr[$k]['id'] 		= $row->id;
-					$arr[$k]['nama'] 	= '['.$row->tag.'] '.$row->nama;
-					//$arr[$k]['nama'] 	= '['.$row->tag.'] '.$row->nama .' '.$row->id;
-					// $arr[$k]['level'] 	= '';
-					$arr[$k]['leaf'] 	= 'true';
-					$arr[$k]['cat'] 	= $row->cat;
-					$arr[$k]['flag']	= 'e';
-					$k++;
-				}
-				//*/
 			}
 			$jsonResult = array(
 				'success' => true,
@@ -60,7 +41,7 @@ class rLokUnit extends CI_Controller {
 				'message' => $e->getMessage()
 			);	
 		}
-		
+		//*/
 		echo json_encode($jsonResult);
 	
 	}
@@ -86,6 +67,7 @@ class rLokUnit extends CI_Controller {
 	}
 	
 	public function hirAll()	{
+		/*
 		try {
 			$hsl = $this->hirarki->get_hirarki_all();
 			$hir = buildTree($hsl,0);
@@ -101,7 +83,11 @@ class rLokUnit extends CI_Controller {
 				'message' => $e->getMessage()
 			);
 		}
-		//echo json_encode($jsonResult);
+		echo json_encode($jsonResult);
+		//*/
+		
+		$hsl = $this->hirarki->get_hirarki_all();
+		$hir = buildTree($hsl,0);
 		echo json_encode($hir);
 	}
 	

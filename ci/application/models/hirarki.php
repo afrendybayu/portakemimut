@@ -133,8 +133,17 @@ class Hirarki extends CI_Model {
 		$sql =	"SELECT h.id,h.nama,IFNULL(h.kode,'') AS kode,h.parent,h.rhinit, IFNULL(h.urut,'') AS urut, 
 				IFNULL(h.funcloc,'') AS funcloc,h.flag,IFNULL(GROUP_CONCAT(eq.id),'') AS eqid, 
 				CASE WHEN eq.id>0 THEN 'u' ELSE 'h' END AS sil,
-				CASE WHEN hh.id>0 THEN 'false' ELSE 'true' END AS leaf
+				CASE WHEN hh.id>0 THEN 'false' WHEN eq.id<>"" THEN 'false' ELSE 'true' END AS leaf
 				FROM hirarki h LEFT JOIN equip eq ON eq.unit_id = h.id 
+				LEFT JOIN hirarki hh  ON hh.parent = h.id 
+				WHERE h.parent = $parent GROUP BY h.id
+				ORDER BY urut ASC, nama ASC";
+		$sql =	"SELECT h.id,h.nama,IFNULL(h.kode,'') AS kode,h.parent,h.rhinit, IFNULL(h.urut,'') AS urut, 
+				IFNULL(h.funcloc,'') AS funcloc,h.flag,IFNULL(GROUP_CONCAT(eq.id),'') AS eqid
+				,CASE WHEN eq.id>0 THEN 'u' ELSE 'h' END AS sil
+				,CASE WHEN hh.id>0 THEN 'false' WHEN eq.id<>"" THEN 'false' ELSE 'true' END AS leaf
+				FROM hirarki h 
+				LEFT JOIN equip eq ON eq.unit_id = h.id 
 				LEFT JOIN hirarki hh  ON hh.parent = h.id 
 				WHERE h.parent = $parent GROUP BY h.id
 				ORDER BY urut ASC, nama ASC";

@@ -14,6 +14,32 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
     // title: 'Filters',
     initComponent: function() {
 		var me = this;
+		me.dockedItems= [{
+			xtype: 'toolbar',
+			dock: 'bottom',
+			items: ['->',{
+					id: me.idEqCH,
+					xtype: 'button',
+					text: 'Simpan',
+					iconCls: 'savedisk',
+					tooltip: 'Simpan Data Baru'
+				},{
+					xtype: 'label',
+					width: 30
+				},{
+					id: me.idEqCH,
+					xtype: 'button',
+					text: 'Update',
+					iconCls: 'editEvent',
+					tooltip: 'Update Data'
+				},{
+					text: 'Clear',
+					iconCls: 'editEvent',
+					tooltip: 'Bersihkan Form',
+					handler: me.clrForm
+			}]
+		}];
+		/*
 		me.buttons = [{
 			text: 'Simpan',
 			iconCls: 'savedisk',
@@ -28,15 +54,24 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
             text: 'Clear',
             handler: me.clrForm
 		}];
+		//*/
 		me.items = [{
-				//xtype:'hiddenfield',
+				xtype:'label',
+				//name: 'lbl',
+				id: 'lblFormHir',
+				cls: 'jdlForm',
+				text: 'Form Hirarki dan Equipment',
+				
+			},{
+				xtype:'hiddenfield',
 				name: 'sil'
 			},{
-				//xtype:'hiddenfield',
+				xtype:'hiddenfield',
 				name: 'id'
 			},{
 				fieldLabel: 'Nama',
 				name: 'nama',
+				margin: '20 0 0 0',
 				emptyText: 'Masukkan Nama Hirarki/Equipment',
 				allowBlank: false
 			},{
@@ -47,6 +82,7 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 				name: 'parent',
 				xtype: 'treepicker',
 				store: Ext.create('rcm.store.HirDef'),
+				//emptyText: 'Pilih Induk Hirarki/Equipment',
 				dataIndex: 'parent',
 				displayField: 'nama'
 				//*/
@@ -110,22 +146,27 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
     
     showInput: function(n)	{
 		var me = this.getForm();
-		rcmSettings.yyy = me;
+		//rcmSettings.yyy = me;
 		//this.ubahFlag(n);
 		//*
 		if (n=="h")	{
+			Ext.fly('lblFormHir').update("Edit Hirarki");
+			//this.up('form').getForm().findField('lbl').setValue("Edit Hirarki");
 			me.findField('rhinit').setVisible(false);
 			me.findField('tag').setVisible(false);
 			me.findField('funcloc').setVisible(false);
 			me.findField('urut').setVisible(true);
 		}
 		else if (n=="u")	{
+			Ext.fly('lblFormHir').update("Edit Unit");
+			//this.up('form').getForm().findField('lbl').setValue("Edit Unit");
 			me.findField('funcloc').setVisible(true);
 			me.findField('rhinit').setVisible(true);
 			me.findField('tag').setVisible(false);
 			me.findField('urut').setVisible(false);
 		}
 		else if (n=="e")	{
+			//this.up('form').getForm().findField('lbl').setValue("Edit Equipment");
 			me.findField('rhinit').setVisible(true);
 			me.findField('tag').setVisible(true);
 			me.findField('urut').setVisible(false);
