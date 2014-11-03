@@ -83,10 +83,14 @@ Ext.define('rcm.controller.AvRe', {
     },
 	
 	onLaunch: function() {
-		//console.log("AvRe");
+		console.log("AvRe");
 		this.getTAvGroup().cat = 5;
+		
+		//this.updAvRe();
+
+
 		//this.updateAvRe();
-		this.updAvRe();
+		
 	},
 	
 	updateAvRe: function(t,n,id) {
