@@ -111,46 +111,20 @@ class Hirarki extends CI_Model {
 	}
 	
 	function get_hirarki($parent){
-		
-		/*
-		if ($parent==0)	{
-			//$sql = "SELECT id,SUBSTRING(nama FROM LOCATE(' ',nama)) AS nama 
-			//		FROM hirarki WHERE parent = $parent
-			//		ORDER BY urut ASC";
-		}
-		else {
-			$sql = "SELECT id,nama FROM hirarki WHERE parent = $parent
-					ORDER BY nama ASC";
-		}
-		
-		$sql =	"SELECT h.id,h.nama,IFNULL(h.kode,'') AS kode,h.parent,h.rhinit, IFNULL(h.urut,'') AS urut, 
-				IFNULL(h.funcloc,'') AS funcloc,h.flag,IFNULL(GROUP_CONCAT(eq.id),'') AS eqid, 
-				CASE WHEN eq.id>0 THEN 'u' ELSE 'h' END AS flag,'false' AS leaf 
-				FROM hirarki h LEFT JOIN equip eq ON eq.unit_id = h.id 
-				WHERE parent = $parent GROUP BY id
-				ORDER BY urut ASC, nama ASC";	//
-		//*/
+		//*
 		$sql =	"SELECT h.id,h.nama,IFNULL(h.kode,'') AS kode,h.parent,h.rhinit, IFNULL(h.urut,'') AS urut, 
 				IFNULL(h.funcloc,'') AS funcloc,h.flag,IFNULL(GROUP_CONCAT(eq.id),'') AS eqid, 
 				CASE WHEN eq.id>0 THEN 'u' ELSE 'h' END AS sil,
-				CASE WHEN hh.id>0 THEN 'false' WHEN eq.id<>"" THEN 'false' ELSE 'true' END AS leaf
+				CASE WHEN hh.id>0 THEN 'false' WHEN eq.id<>'' THEN 'false' ELSE 'true' END AS leaf
 				FROM hirarki h LEFT JOIN equip eq ON eq.unit_id = h.id 
 				LEFT JOIN hirarki hh  ON hh.parent = h.id 
 				WHERE h.parent = $parent GROUP BY h.id
 				ORDER BY urut ASC, nama ASC";
-		$sql =	"SELECT h.id,h.nama,IFNULL(h.kode,'') AS kode,h.parent,h.rhinit, IFNULL(h.urut,'') AS urut, 
-				IFNULL(h.funcloc,'') AS funcloc,h.flag,IFNULL(GROUP_CONCAT(eq.id),'') AS eqid
-				,CASE WHEN eq.id>0 THEN 'u' ELSE 'h' END AS sil
-				,CASE WHEN hh.id>0 THEN 'false' WHEN eq.id<>"" THEN 'false' ELSE 'true' END AS leaf
-				FROM hirarki h 
-				LEFT JOIN equip eq ON eq.unit_id = h.id 
-				LEFT JOIN hirarki hh  ON hh.parent = h.id 
-				WHERE h.parent = $parent GROUP BY h.id
-				ORDER BY urut ASC, nama ASC";
+		
 		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql);
 		return $query;
-		
+		//*/
 		//$this->db->select('id, nama, level');
 		//$this->db->where ('parent',$parent);
 		//$this->db->order_by('nama', 'asc'); 

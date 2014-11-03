@@ -11,8 +11,7 @@ class rLokUnit extends CI_Controller {
 	}
 	
 	public function rHirarki()	{
-		echo "res";
-		/*
+		//*
 		try {
 			$parent_id = (isset($_GET['node']))?($_GET['node']):0;
 			//echo $parent_id.'<br>';
