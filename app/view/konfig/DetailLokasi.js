@@ -17,7 +17,18 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 		me.dockedItems= [{
 			xtype: 'toolbar',
 			dock: 'bottom',
-			items: ['->',{
+			items: [{
+					iconCls: 'newHir',
+					tooltip: 'Tambah Hirarki'
+				},{
+					iconCls: 'newUnit',
+					//id: 'delete-folder-btn',
+					tooltip: 'Tambah Unit'
+				},{
+					iconCls: 'newEquip',
+					//id: 'delete-folder-btn',
+					tooltip: 'Tambah Equipment'
+				},'->',{
 					id: me.idEqCH,
 					xtype: 'button',
 					text: 'Hapus',
@@ -34,18 +45,18 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 					text: 'Simpan',
 					hidden: true,
 					iconCls: 'savedisk',
-					tooltip: 'Simpan Data Baru'
+					//tooltip: 'Simpan Data Baru'
 				},{
 					id: 'bUptKEH',
 					xtype: 'button',
 					text: 'Update',
 					formBind: true, 
 					iconCls: 'editEvent',
-					tooltip: 'Update Data'
+					//tooltip: 'Update Data'
 				},{
 					text: 'Clear',
 					//iconCls: 'editEvent',
-					tooltip: 'Bersihkan Form',
+					//tooltip: 'Bersihkan Form',
 					handler: me.clrForm
 			}]
 		}];
@@ -112,7 +123,10 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 				//emptyText: 0,
 				minValue: 0,
 				hidden: true
-			
+			},{
+				xtype: 'textarea',
+				fieldLabel: 'Keterangan',
+				name: 'ket'
 		}];
 		me.callParent(arguments);
     },
@@ -128,16 +142,34 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 		else {				// tambah
 			Ext.getCmp('bSmpKEH').setVisible(true);
 		}
-		console.log("nilai n: "+n);
+		//console.log("nilai n: "+n);
 		//*/
 	},
 	
 	tmbhForm: function(n)	{
-		this.showInput(n);
+		var me = this.getForm();
+		this.showInput(n);		
 		this.chkVisBtn("t");
-		if (n=="h")			Ext.fly('lblFormHir').update("Tambah Hirarki");
-		else if (n=="u")	Ext.fly('lblFormHir').update("Tambah Unit");
-		else if (n=="e")	Ext.fly('lblFormHir').update("Tambah Equipment");
+
+		me.findField('id').setValue("");
+		if (n=="h")			{
+			Ext.fly('lblFormHir').update("Tambah Hirarki");
+			me.findField('funcloc').setValue(" ");
+			me.findField('tag').setValue(" ");
+			me.findField('sil').setValue("h");
+		}
+		else if (n=="u")	{
+			Ext.fly('lblFormHir').update("Tambah Unit");
+			me.findField('funcloc').setValue("");
+			me.findField('tag').setValue(" ");
+			me.findField('sil').setValue("u");
+		}
+		else if (n=="e")	{
+			Ext.fly('lblFormHir').update("Tambah Equipment");
+			me.findField('funcloc').setValue(" ");
+			me.findField('tag').setValue("");
+			me.findField('tag').setValue("e");
+		}
 	},
     
     editForm: function(n)	{
@@ -148,15 +180,20 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 		else if (n=="e")	Ext.fly('lblFormHir').update("Edit Equipment");
 	},
     
-    clrForm: function()	{			
-		var me = this.up('form').getForm(),
-			id = me.findField('id').getValue(),
+    clrForm: function()	{
+		console.log("clrForm");
+		var me = this.up('form').getForm();
+		this.up('form').clearIsi(me);
+	},
+    
+    clearIsi: function(me)	{
+		//var me = this.getForm()
+		rcmSettings.tttttt = me;
+		var id = me.findField('id').getValue(),
 			f  = me.findField('sil').getValue();
-
 		me.reset();
 		me.findField('sil').setValue(f);
 		me.findField('rhinit').setValue(0);
-		me.findField('id').setValue(id);
 		if (f=="h")	{	// TAMBAHKAN INI buat manipulasi form dinamis
 			me.findField('tag').setValue(" ");
 			me.findField('funcloc').setValue(" ");
@@ -168,6 +205,8 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 			me.findField('funcloc').setValue(" ");
 		}
 	},
+    
+    
     
     showInput: function(n)	{
 		var me = this.getForm();

@@ -60,7 +60,7 @@ Ext.define('rcm.controller.Config', {
     models: [
 		'LokUnit',
 		// 'GridAksi',
-		
+
 		'FormAksi',
 		'FormPmDef',
 		'Cause',
@@ -97,7 +97,6 @@ Ext.define('rcm.controller.Config', {
 			ref: 'fAksi',
 			selector : 'fAksi'
 		},{
-			
 			ref : 'f_PmDef',
 			selector : 'f_PmDef'
 		},{
@@ -133,7 +132,6 @@ Ext.define('rcm.controller.Config', {
 		var me = this;
         me.control({
 			//*
-			
 			'[iconCls=delete_folder_tree]': {
                 click: me.tblDelLokasi
             },
@@ -279,6 +277,9 @@ Ext.define('rcm.controller.Config', {
 				selectionchange : me.slctFailureGrid
 			},
 			'panLokasi button[text=Update]': {
+				click : me.hdlUptHir
+			},
+			'panLokasi button[text=Simpan]': {
 				click : me.hdlSmpHir
 			},
 			'[iconCls=newHir]': {
@@ -450,8 +451,8 @@ Ext.define('rcm.controller.Config', {
 		});
 	},
 
-	hdlSmpHir: function()	{
-		console.log("COnfig hdlSmpHir");
+	hdlUptHir: function()	{
+		console.log("COnfig hdlUptHir");
 		var me = this,
 			hir = me.getPanLokasi().getForm(),
 			getData = hir.getValues(),
@@ -466,6 +467,32 @@ Ext.define('rcm.controller.Config', {
 			}
 		});
 	},
+	hdlSmpHir: function()	{
+		console.log("COnfig hdlSmpHir");
+
+		var me = this,
+			vPL = me.getPanLokasi(),
+			hir = vPL.getForm(),
+			getData = hir.getValues();
+		//hir.findField('sil').setVisible(false);
+		
+		console.log(getData);
+		//*
+		var	hSmp = new rcm.model.LokUnit(getData);
+		//var hSmp = me.getLokUnitStore();
+
+		hSmp.save({
+			success: function(rec, op){
+				console.log("config hdlSmpHir success");
+				me.getLokUnitStore().reload();
+				//me.getHirDefStore().reload();
+				Ext.Msg.alert('Sukses', 'Data baru sudah ditambahkan');
+				//vPL.clearIsi(vPL.getForm());
+			}
+		});
+		console.log("disini ....");
+		//*/
+	},
 
 	slctKfHir: function(model, records)	{
 		console.log(records[0]);
@@ -475,8 +502,8 @@ Ext.define('rcm.controller.Config', {
 			r=rec[0],
 			f=r.get('sil'),
 			l=me.getPanLokasi();
-		console.log("KOnfig EdtEqH");
-		console.log(r.data);
+		//console.log("KOnfig EdtEqH");
+		//console.log(r.data);
 		l.editForm(f);
 		if (r) {
 			if (f=="h") {
@@ -494,8 +521,6 @@ Ext.define('rcm.controller.Config', {
 			if (f!="")	me.getPanLokasi().getForm().loadRecord(r);
         }
 	},
-
-	
 
 
     delDamageGrid : function(rec){
@@ -905,19 +930,12 @@ Ext.define('rcm.controller.Config', {
 	
 	//tblNewLokasi : function(){
 	newHir: function()	{
-		//alert('buat lokasi baru');
-		//this.addTreeHirarki();
 		this.getPanLokasi().tmbhForm("h");
-		//Ext.fly('lblFormHir').update("Tambah Hirarki");
 	},
 	newUnit: function()	{
-		//alert('buat lokasi baru');
-		//this.addTreeHirarki();
 		this.getPanLokasi().tmbhForm("u");
 	},
 	newEquip: function()	{
-		//alert('buat lokasi baru');
-		//this.addTreeHirarki();
 		this.getPanLokasi().tmbhForm("e");
 	},
 	tblDelLokasi : function(){

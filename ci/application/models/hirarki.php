@@ -83,7 +83,7 @@ class Hirarki extends CI_Model {
 		return $query->result();
 		//*/
 		
-		$sql = "SELECT id,nama,parent FROM hirarki";
+		$sql = "SELECT id,nama,parent FROM hirarki ORDER BY urut ASC,nama ASC";
 		
 		$hsl = array(); $i=0;
 		if ($q = mysqli_multi_query($this->db->conn_id,$sql))	{
@@ -179,6 +179,18 @@ class Hirarki extends CI_Model {
 		$this->db->set($data);
 		$this->db->where('id', $id);
 		return $this->db->update('hirarki');
+	}
+	
+	function ins_hirarki($data)	{
+		$this->db->trans_start();
+		$this->db->insert('hirarki', $data); 
+		$insert_id = $this->db->insert_id();
+		$this->db->trans_complete();
+		return  $insert_id;
+		/*
+		$this->db->set($data);
+		return $this->db->insert('hirarki');
+		//*/
 	}
 
 }

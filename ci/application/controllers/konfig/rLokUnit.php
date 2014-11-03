@@ -4,6 +4,7 @@ class rLokUnit extends CI_Controller {
 	function __construct() {
         parent::__construct();
 		$this->load->model('hirarki');
+		$this->load->model('equip');
 	}
 	
 	function index()	{
@@ -46,14 +47,45 @@ class rLokUnit extends CI_Controller {
 	}
 	
 	public function cHirarki() {
+		$par = json_decode(file_get_contents('php://input'));
+
 		try {
-			// $params = json_decode(file_get_contents('php://input'));
+			if (!isset($par))	{
+				throw new Exception("Input Data Tidak Ada");
+			}
+			
+			if ($par->sil=="e")	{
+				$data = array(
+					'nama' => $par->nama,
+					'unit_id' => $par->parent,
+					'kode' => $par->kode,
+					'tag' => $par->tag,
+					//'cat' => $par->cat,
+					'rhinit' => $par->rhinit,
+					'urut' => $par->urut,
+					'ket' => $par->ket
+					
+				);
+				//$this->equip->ins_hirarki($data);
+			}
+			else {
+				$data = array(
+					'nama' => $par->nama,
+					'parent' => $par->parent,
+					'kode' => $par->kode,
+					'funcloc' => $par->funcloc,
+					'rhinit' => $par->rhinit,
+					'urut' => $par->urut,
+					'ket' => $par->ket
+				);
+				$hsl = $this->hirarki->ins_hirarki($data);
+			}
 			// $sql = insert into hirarki ('nama', 'parent', 'level') values ({$params->});
 			//$hsl = $this->hirarki->create_hirarki_new();
 			// echo 'succeed';
 			$jsonResult = array(
 				'success' => true,
-				'hir' => $hsl
+				'hir' => array('id' => $hsl)
 			);
 		}
 		catch (Exception $e)	{
@@ -97,7 +129,7 @@ class rLokUnit extends CI_Controller {
 			if (!isset($par))	{
 				throw new Exception("Input Data Tidak Ada");
 			}
-			if ($par->flag=="e")	{
+			if ($par->sil=="e")	{
 				
 			}
 			else {
@@ -105,7 +137,7 @@ class rLokUnit extends CI_Controller {
 					'nama' => $par->nama,
 					'parent' => $par->parent,
 					'kode' => $par->kode,
-					'urut' => $par->urut,
+					'urut' => $par->urut
 				);
 				$this->hirarki->upd_hirarki($data,$par->id);
 			}
