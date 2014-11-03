@@ -14,7 +14,8 @@ Ext.define('rcm.model.LokUnit', {
 		api: {
 			create	: 'ci/index.php/konfig/rLokUnit/cHirarki',
             read	: 'ci/index.php/konfig/rLokUnit/rHirarki',
-            update	: 'ci/index.php/konfig/rLokUnit/uHirarki'
+            update	: 'ci/index.php/konfig/rLokUnit/uHirarki',
+            destroy	: 'ci/index.php/konfig/rLokUnit/dHirarki'
         },
         reader: {
             type: 'json',

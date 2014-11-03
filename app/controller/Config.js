@@ -282,6 +282,9 @@ Ext.define('rcm.controller.Config', {
 			'panLokasi button[text=Simpan]': {
 				click : me.hdlSmpHir
 			},
+			'panLokasi button[text=Hapus]': {
+				click : me.hdlDelHir
+			},
 			'[iconCls=newHir]': {
                 click: me.newHir
             },
@@ -462,8 +465,8 @@ Ext.define('rcm.controller.Config', {
 		hUpt.save({
 			success: function(rec, op){
 				//console.log("config hdlSmpHir");
-				me.getHirDefStore().reload();
-				//me.getLokUnitStore().reload();
+				//me.getHirDefStore().reload();
+				me.getLokUnitStore().reload();
 			}
 		});
 	},
@@ -474,13 +477,11 @@ Ext.define('rcm.controller.Config', {
 			vPL = me.getPanLokasi(),
 			hir = vPL.getForm(),
 			getData = hir.getValues();
-		//hir.findField('sil').setVisible(false);
-		
+
 		console.log(getData);
+		//vPL.clearIsi(vPL.getForm());
 		//*
 		var	hSmp = new rcm.model.LokUnit(getData);
-		//var hSmp = me.getLokUnitStore();
-
 		hSmp.save({
 			success: function(rec, op){
 				console.log("config hdlSmpHir success");
@@ -491,7 +492,47 @@ Ext.define('rcm.controller.Config', {
 			}
 		});
 		console.log("disini ....");
+		vPL.clearIsi(vPL.getForm());
+		//me.getLokUnitStore().reload();
 		//*/
+	},
+	hdlDelHir: function()	{
+		console.log("COnfig hdlDelHir");
+
+		var me = this,
+			vPL = me.getPanLokasi(),
+			hir = vPL.getForm(),
+			data = hir.getValues();
+		
+		//console.log(data);
+		var	hDel = new rcm.model.LokUnit(data);
+		if (!data.id)
+			Ext.Msg.show({
+				title: 'Gagal Hapus',
+				msg: 'Hapus Hirarki Equipment Gagal !!!<br/>Pilih Hirarki atau Equipment-nya',
+				icon: Ext.Msg.ERROR,
+				buttons: Ext.Msg.OK
+			});
+		else
+			Ext.MessageBox.show({
+				title : 'Hapus Hirarki Equipment',
+				msg   : 'Yakin Data Akan di Hapus??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						hDel.destroy ({
+							success : function(dcmon, operation){
+								Ext.Msg.alert('Sukses', 'Data berhasil dihapus');
+							}
+						}) 
+					}
+					
+				}
+			});
+		vPL.clearIsi(vPL.getForm());
+		//me.getHirDefStore().reload();
+		me.getLokUnitStore().reload();
 	},
 
 	slctKfHir: function(model, records)	{

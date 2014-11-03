@@ -155,34 +155,18 @@ class rLokUnit extends CI_Controller {
 		echo json_encode($jsonResult);
 	}
 	
-	/*
-	public function uHirarki() {
-		//$str = "[GM-A01A00001] ELMOT RELIANCE 30 HP";
-		$params = json_decode(file_get_contents('php://input'));
-		//*
+	public function dHirarki()	{
+		$par = json_decode(file_get_contents('php://input'));
+
 		try {
-			//*
-			if (!isset($params))	{
+			if (!isset($par))	{
 				throw new Exception("Input Data Tidak Ada");
 			}
-			
-			$isi = explode("]",$params->nama);
-			$kode = trim(substr($isi[0],1));
-			$nama = trim($isi[1]);
-			//print_r($isi);			echo "<br/>1: $kode,2: $nama<br/>";
-			
-			$data = array(
-				'nama' => $nama,
-				'tag'  => $kode,
-				'cat'  => $params->cat
-			);
-			
-			$this->load->model('equip');
-			$this->equip->update_equip($data,$params->id);
+			$id = $this->hirarki->del_hirarki($par->id);
 			
 			$jsonResult = array(
 				'success' => true,
-				'hir' => array('id' => $params->id)
+				'hir' => array('id' => $id)
 			);
 		}
 		catch (Exception $e){
@@ -192,9 +176,7 @@ class rLokUnit extends CI_Controller {
 			);
 		}
 		echo json_encode($jsonResult);
-		
 	}
-	//*/
 }
 
 /* End of file rLokUnit.php */

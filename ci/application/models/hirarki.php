@@ -193,6 +193,13 @@ class Hirarki extends CI_Model {
 		//*/
 	}
 
+	function del_hirarki($ids)	{
+		$this->db->where_in('id', $ids);
+		$this->db->delete('hirarki');
+		
+		return $ids;
+	}
+
 }
 
 /* End of file hirarki.php */
