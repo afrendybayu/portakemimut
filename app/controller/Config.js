@@ -36,10 +36,11 @@ Ext.define('rcm.controller.Config', {
 		'ModeDefs',
 		'Refers',
 		'Symptoms',
-		// 'GridAksi',
+		'GridAksi',
+		'OPartDefs',
 		//'PMDefs',
 
-		'OpartDefs',
+
 		'Users',
 		
 		'GridPMIn',
@@ -56,7 +57,7 @@ Ext.define('rcm.controller.Config', {
     
     models: [
 		'LokUnit',
-		// 'GridAksi',
+		'GridAksi',
 		
 		'FormAksi',
 		'FormPmDef',
@@ -65,6 +66,7 @@ Ext.define('rcm.controller.Config', {
 		'ModeDef',
 		'Refer',
 		'Symptom',
+		'OPartDef',
 
 		'GridPMIn',
 		'GridOPIn',

@@ -1,7 +1,7 @@
 /* AfrendyBayu 4Des2013 */
-Ext.define('rcm.store.OpartDefs', {
+Ext.define('rcm.store.OPartDefs', {
     extend: 'Ext.data.Store',
-    model: 'rcm.model.GridAksi' ,
+    model: 'rcm.model.OPartDef' ,
     // requires:[
 		// 'Ext.data.proxy.Ajax'
 		// ,'rcm.model.Aksi'
@@ -11,7 +11,7 @@ Ext.define('rcm.store.OpartDefs', {
 	
 	autoLoad: true,
 	
-	proxy: {
+	/*proxy: {
 		type: 'ajax',
 		api: {
 			read: 'ci/index.php/rh/rOPart/rOpartDef'
@@ -21,7 +21,7 @@ Ext.define('rcm.store.OpartDefs', {
             root: 'opartdef',
             messageProperty: 'message'
         }
-    }
+    }*/
 	
 	
 });
