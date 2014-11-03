@@ -18,7 +18,10 @@ Ext.define('rcm.controller.Config', {
 		// 'konfig.FailureGrid',
 		// 'konfig.FailureForm',
 		
-		'konfig.wCatHir'
+		'konfig.wCatHir',
+				
+		
+		'konfig.TreeHirDef'
     ],
 
     controllers: [
@@ -121,6 +124,9 @@ Ext.define('rcm.controller.Config', {
 		},{
 			ref : 'panLokasi',
 			selector : 'panLokasi'
+		},{
+			ref : 'tHirDef',
+			selector : 'tHirDef'
 	}],
     
     init: function() {

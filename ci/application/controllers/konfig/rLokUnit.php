@@ -101,6 +101,7 @@ class rLokUnit extends CI_Controller {
 				'message' => $e->getMessage()
 			);
 		}
+		//echo json_encode($jsonResult);
 		echo json_encode($hir);
 	}
 	

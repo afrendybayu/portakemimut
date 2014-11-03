@@ -1,5 +1,3 @@
-var cnt=0;
-
 Ext.define('rcm.controller.Login', {
     extend: 'Ext.app.Controller', 
 	
@@ -15,7 +13,7 @@ Ext.define('rcm.controller.Login', {
 		,'dataentry.FormGagal'
 		,'dataentry.DaftarGagal'
 		// ,'dataentry.IsiTabForm'
-		
+
     ],
 
     stores: [
@@ -236,12 +234,6 @@ Ext.define('rcm.controller.Login', {
 	updateClock: function()	{
 		//console.log(Ext.Date.format(new Date(), "g:i:s A"));
 		Ext.fly('lblClk').update(Ext.Date.format(new Date(), "l, j M Y G:i:s"));
-		cnt++;
-		/*
-		if (cnt==5)	{
-			console.log("Load PHP t: "+cnt);
-		}
-		//*/
 	},
 	
 	onLaunch: function(){

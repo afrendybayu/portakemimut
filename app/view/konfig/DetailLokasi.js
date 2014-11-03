@@ -2,8 +2,10 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
     extend: 'Ext.form.Panel',
     xtype: 'panLokasi',
 
+	requires: [
+		'rcm.view.konfig.TreeHirDef'
+	],
 	bodyPadding: 10,  // Don't want content to crunch against the borders
-    //fh: 'h',
     
     defaultType: 'textfield',
     defaults: {
@@ -17,11 +19,6 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 			iconCls: 'savedisk',
 			formBind: true, 
 			disabled: true
-            // handler: function() {
-                // fireEvent('SimpanAksi', args ) ;
-				// alert ('simpan dulu');
-				// this.up('form').getForm().isValid();
-            // }
         },{
         	text: 'Update',
         	iconCls: 'editEvent',
@@ -30,11 +27,6 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
         },{
             text: 'Clear',
             handler: me.clrForm
-            /*
-            handler: function() {
-                this.up('form').getForm().reset();
-            }
-            //*/
 		}];
 		me.items = [{
 				//xtype:'hiddenfield',
@@ -49,30 +41,15 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 				allowBlank: false
 			},{
 				fieldLabel: 'Hirarki Induk',
+				//name: 'nama',
+				//xtype: 'tHirDef'
+				//*
 				name: 'parent',
 				xtype: 'treepicker',
-				/*
-				store: new Ext.data.TreeStore({
-					model: rcm.model.HirDef,
-					proxy: {
-						type: 'ajax',
-						url: 'ci/index.php/konfig/rLokUnit/hirAll'
-					},
-					folderSort: true
-				}),
-				
-				store: new Ext.data.TreeStore({
-					model: rcm.model.HirDef,
-					proxy: {
-						type: 'ajax',
-						url: 'ci/index.php/konfig/rLokUnit/hirAll'
-					}
-				}),
-				//*/
-				store: Ext.create('rcm.store.LokUnit'),
-				//store: Ext.create('rcm.store.HirDef'),
+				store: Ext.create('rcm.store.HirDef'),
 				dataIndex: 'parent',
 				displayField: 'nama'
+				//*/
 			},{
 				fieldLabel: 'Function Location',
 				name: 'funcloc',

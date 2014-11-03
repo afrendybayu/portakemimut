@@ -27,12 +27,14 @@ Ext.define('rcm.view.Content', {
     initComponent: function() {
 		var me=this;
 		me.items = [{
+			xtype: 'tHirDef'
+		},{
 		//*==========================
 			id: 'tu_ho',
 			title: 'Dashboard Home',
 			iconCls: 'Dashboard',
 			xtype: 'tHoChart'
-		
+		/*
 		},{
 			id: 'tu_re',
 			title: 'Reliability',
@@ -43,12 +45,6 @@ Ext.define('rcm.view.Content', {
 			title: 'SAP Report',
 			xtype: 'tabChart',
 			iconCls: 'sap'
-	
-		/*
-		},{
-			id: 'tu_pr',
-			iconCls: 'perform',
-			title: 'Prestasi Mesin',
 		//*/
 		},{
 		
