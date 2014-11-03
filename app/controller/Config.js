@@ -133,9 +133,7 @@ Ext.define('rcm.controller.Config', {
 		var me = this;
         me.control({
 			//*
-			'[iconCls=new_folder_tree]': {
-                click: me.tblNewLokasi
-            },
+			
 			'[iconCls=delete_folder_tree]': {
                 click: me.tblDelLokasi
             },
@@ -282,8 +280,16 @@ Ext.define('rcm.controller.Config', {
 			},
 			'panLokasi button[text=Update]': {
 				click : me.hdlSmpHir
-			}
-
+			},
+			'[iconCls=newHir]': {
+                click: me.newHir
+            },
+            '[iconCls=newUnit]': {
+                click: me.newUnit
+            },
+            '[iconCls=newEquip]': {
+                click: me.newEquip
+            }
 		});
 		
     },
@@ -445,16 +451,20 @@ Ext.define('rcm.controller.Config', {
 	},
 
 	hdlSmpHir: function()	{
+		console.log("COnfig hdlSmpHir");
 		var me = this,
 			hir = me.getPanLokasi().getForm(),
 			getData = hir.getValues(),
 			hUpt = new rcm.model.LokUnit(getData);
 		console.log(getData);
 		
-		//hUpt.save();
-		hUpt.save();
-		console.log("config hdlSmpHir");
-		
+		hUpt.save({
+			success: function(rec, op){
+				//console.log("config hdlSmpHir");
+				me.getHirDefStore().reload();
+				//me.getLokUnitStore().reload();
+			}
+		});
 	},
 
 	slctKfHir: function(model, records)	{
@@ -465,9 +475,9 @@ Ext.define('rcm.controller.Config', {
 			r=rec[0],
 			f=r.get('sil'),
 			l=me.getPanLokasi();
-		//console.log(r.get('nama')+" flag: "+f);
+		console.log("KOnfig EdtEqH");
 		console.log(r.data);
-		l.showInput(f);
+		l.editForm(f);
 		if (r) {
 			if (f=="h") {
 				r.data.tag=" ";
@@ -484,6 +494,9 @@ Ext.define('rcm.controller.Config', {
 			if (f!="")	me.getPanLokasi().getForm().loadRecord(r);
         }
 	},
+
+	
+
 
     delDamageGrid : function(rec){
     	// alert ('grid Cause Delete');
@@ -890,10 +903,22 @@ Ext.define('rcm.controller.Config', {
 		console.log('tambah lokasi');
 	},
 	
-	tblNewLokasi : function(){
-		// alert('buat lokasi baru');
-		this.addTreeHirarki();
-	
+	//tblNewLokasi : function(){
+	newHir: function()	{
+		//alert('buat lokasi baru');
+		//this.addTreeHirarki();
+		this.getPanLokasi().tmbhForm("h");
+		//Ext.fly('lblFormHir').update("Tambah Hirarki");
+	},
+	newUnit: function()	{
+		//alert('buat lokasi baru');
+		//this.addTreeHirarki();
+		this.getPanLokasi().tmbhForm("u");
+	},
+	newEquip: function()	{
+		//alert('buat lokasi baru');
+		//this.addTreeHirarki();
+		this.getPanLokasi().tmbhForm("e");
 	},
 	tblDelLokasi : function(){
 		// alert('delete Lokasi');

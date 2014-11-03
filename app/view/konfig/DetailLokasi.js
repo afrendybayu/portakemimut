@@ -3,7 +3,7 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
     xtype: 'panLokasi',
 
 	requires: [
-		'rcm.view.konfig.TreeHirDef'
+	//	'rcm.view.konfig.TreeHirDef'
 	],
 	bodyPadding: 10,  // Don't want content to crunch against the borders
     
@@ -20,41 +20,35 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 			items: ['->',{
 					id: me.idEqCH,
 					xtype: 'button',
-					text: 'Simpan',
-					iconCls: 'savedisk',
-					tooltip: 'Simpan Data Baru'
+					text: 'Hapus',
+					//hidden: true,
+					iconCls: 'hpsEvent',
+					tooltip: 'Hapus Data'
 				},{
 					xtype: 'label',
 					width: 30
 				},{
-					id: me.idEqCH,
+					id: 'bSmpKEH',
+					xtype: 'button',
+					formBind: true, 
+					text: 'Simpan',
+					hidden: true,
+					iconCls: 'savedisk',
+					tooltip: 'Simpan Data Baru'
+				},{
+					id: 'bUptKEH',
 					xtype: 'button',
 					text: 'Update',
+					formBind: true, 
 					iconCls: 'editEvent',
 					tooltip: 'Update Data'
 				},{
 					text: 'Clear',
-					iconCls: 'editEvent',
+					//iconCls: 'editEvent',
 					tooltip: 'Bersihkan Form',
 					handler: me.clrForm
 			}]
 		}];
-		/*
-		me.buttons = [{
-			text: 'Simpan',
-			iconCls: 'savedisk',
-			formBind: true, 
-			disabled: true
-        },{
-        	text: 'Update',
-        	iconCls: 'editEvent',
-			formBind: true,
-			disabled: true,
-        },{
-            text: 'Clear',
-            handler: me.clrForm
-		}];
-		//*/
 		me.items = [{
 				xtype:'label',
 				//name: 'lbl',
@@ -81,8 +75,9 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 				//*
 				name: 'parent',
 				xtype: 'treepicker',
+				//store: 'HirDef',
 				store: Ext.create('rcm.store.HirDef'),
-				//emptyText: 'Pilih Induk Hirarki/Equipment',
+				emptyText: 'Pilih Induk Hirarki/Equipment',
 				dataIndex: 'parent',
 				displayField: 'nama'
 				//*/
@@ -121,7 +116,37 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 		}];
 		me.callParent(arguments);
     },
+
+    chkVisBtn: function(n)	{
+		//*
+		Ext.getCmp('bSmpKEH').setVisible(false);
+		Ext.getCmp('bUptKEH').setVisible(false);
+		//*
+		if (n=="u")	{		// update
+			Ext.getCmp('bUptKEH').setVisible(true);
+		}
+		else {				// tambah
+			Ext.getCmp('bSmpKEH').setVisible(true);
+		}
+		console.log("nilai n: "+n);
+		//*/
+	},
+	
+	tmbhForm: function(n)	{
+		this.showInput(n);
+		this.chkVisBtn("t");
+		if (n=="h")			Ext.fly('lblFormHir').update("Tambah Hirarki");
+		else if (n=="u")	Ext.fly('lblFormHir').update("Tambah Unit");
+		else if (n=="e")	Ext.fly('lblFormHir').update("Tambah Equipment");
+	},
     
+    editForm: function(n)	{
+		this.showInput(n);
+		this.chkVisBtn("u");
+		if (n=="h")			Ext.fly('lblFormHir').update("Edit Hirarki");
+		else if (n=="u")	Ext.fly('lblFormHir').update("Edit Unit");
+		else if (n=="e")	Ext.fly('lblFormHir').update("Edit Equipment");
+	},
     
     clrForm: function()	{			
 		var me = this.up('form').getForm(),
@@ -146,27 +171,20 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
     
     showInput: function(n)	{
 		var me = this.getForm();
-		//rcmSettings.yyy = me;
-		//this.ubahFlag(n);
 		//*
 		if (n=="h")	{
-			Ext.fly('lblFormHir').update("Edit Hirarki");
-			//this.up('form').getForm().findField('lbl').setValue("Edit Hirarki");
 			me.findField('rhinit').setVisible(false);
 			me.findField('tag').setVisible(false);
 			me.findField('funcloc').setVisible(false);
 			me.findField('urut').setVisible(true);
 		}
 		else if (n=="u")	{
-			Ext.fly('lblFormHir').update("Edit Unit");
-			//this.up('form').getForm().findField('lbl').setValue("Edit Unit");
 			me.findField('funcloc').setVisible(true);
 			me.findField('rhinit').setVisible(true);
 			me.findField('tag').setVisible(false);
 			me.findField('urut').setVisible(false);
 		}
 		else if (n=="e")	{
-			//this.up('form').getForm().findField('lbl').setValue("Edit Equipment");
 			me.findField('rhinit').setVisible(true);
 			me.findField('tag').setVisible(true);
 			me.findField('urut').setVisible(false);

@@ -107,10 +107,11 @@ class rLokUnit extends CI_Controller {
 					'kode' => $par->kode,
 					'urut' => $par->urut,
 				);
+				$this->hirarki->upd_hirarki($data,$par->id);
 			}
 			$jsonResult = array(
 				'success' => true,
-				'hir' => array('id' => $params->id)
+				'hir' => array('id' => $par->id)
 			);
 		}
 		catch (Exception $e){

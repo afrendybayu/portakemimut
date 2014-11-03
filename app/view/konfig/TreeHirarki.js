@@ -72,14 +72,14 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 					text : 'Tambah Lokasi',
 					//id	: 'tambah_lokasi'
 				},*/'->',{
-					iconCls: 'new_folder_tree',
+					iconCls: 'newHir',
 					tooltip: 'Tambah Hirarki'
 				},{
-					iconCls: 'new_folder_tree',
+					iconCls: 'newUnit',
 					//id: 'delete-folder-btn',
 					tooltip: 'Tambah Unit'
 				},{
-					iconCls: 'new_folder_tree',
+					iconCls: 'newEquip',
 					//id: 'delete-folder-btn',
 					tooltip: 'Tambah Equipment'
 			}]
@@ -106,7 +106,8 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 					//store: Ext.create('rcm.store.CatHir', {storeId: 'Lists-TaskGrid' }),
 					store: Ext.create('rcm.store.CatHir'),
 					renderer: me.renderList
-				},
+				}
+			/*
 			},{
 				hidden  : me.hideDel,
                 xtype	: 'actioncolumn',
@@ -123,6 +124,7 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 				iconCls	: 'x-hidden',
 				tooltip	: 'Delete',
 				handler	: Ext.bind(me.hdlDelClk, me)
+			//*/
             }];
 		
         me.callParent(arguments);
