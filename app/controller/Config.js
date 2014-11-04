@@ -134,6 +134,12 @@ Ext.define('rcm.controller.Config', {
 		},{
 			ref : 'gridSymptom',
 			selector : 'gridSymptom'
+		},{
+			ref : 'fOpart',
+			selector : 'fOpart'
+		},{
+			ref : 'gridOpart',
+			selector : 'gridOpart'
 	}],
     
     init: function() {
@@ -268,6 +274,12 @@ Ext.define('rcm.controller.Config', {
 			'fSymptom button[text=Edit]' : {
 				click : me.hdlEditSympForm
 			},
+			'fOpart button[text=Simpan]' : {
+				click : me.hdlSmpOpartForm
+			},
+			'fOpart button[text=Edit]' : {
+				click : me.hdlEditOpartForm
+			},
 			'gridAksi' :{
 				AksiGridDel  : me.delAksiGrid,
 				selectionchange : me.slctAksiGrid
@@ -297,9 +309,84 @@ Ext.define('rcm.controller.Config', {
 				SympGridDel : me.delSympGrid,
 				selectionchange : me.slctSympGrid
 			},
+			'gridOpart' : {
+				OpartGridDel : me.delOpartGrid,
+				selectionchange : me.slctOpartGrid
+			}
 
 		});
 		
+    },
+    hdlSmpOpartForm : function(){
+    	alert ('tekan opart simpan');
+    	var me =this,
+    	opt = me.getFOpart().getForm(),
+		getDOpart = opt.getValues(),
+		optSave = new rcm.model.OPartDef(getDOpart);
+		console.log(getDOpart);
+		console.log(optSave);
+		opt.reset();
+		optSave.save({
+			success: function(record, operation){
+				me.getOPartDefsStore().reload();
+			}
+		});
+    	
+    },
+    hdlEditOpartForm : function(){
+    	alert ('tekan edit opart');
+    	var me =this,
+    	isiopt = me.getFOpart().getForm(),
+		dataid = isiopt.getRecord().data.id,
+		isivalue = isiopt.getValues();
+		// cobama 	= isivalue.obama ? 1 : 0;
+		editopt = Ext.create(rcm.model.OPartDef,{
+			id:dataid, nama:isivalue.nama, kode:isivalue.kode, obama:isivalue.obama, sap:isivalue.sap
+		});
+		// console.log(isivalue);
+		// console.log(dataid);
+		isiopt.reset();
+		// me.getCausesStore().reload();
+		editopt.save({
+			success: function(record, operation){
+				me.getOPartDefsStore().reload();
+			}
+
+		});
+    	
+    },
+    delOpartGrid : function(rec){
+    	var me = this, 
+		record = rec.data,
+		delopt = new rcm.model.OPartDef(record );
+		Ext.MessageBox.show({
+				title : 'Hapus Object Part Def.',
+				msg   : 'Yakin Data Akan di Hapus ??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						delopt.destroy ({
+							success : function(record, operation){
+								// dcmon.destroy();
+								// me.getConMonStore().reload();
+								me.getOPartDefsStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+				}
+			});
+    },
+
+    slctOpartGrid : function(model,records){
+    	var me =this;
+		if (records[0]) {
+			me.getFOpart().getForm().loadRecord(records[0]);
+        }
     },
     hdlSmpSympForm : function(){
     	// alert('Symptom klik simpan');

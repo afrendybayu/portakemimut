@@ -637,6 +637,71 @@ class Conf extends CI_Controller {
 			);
 		}
 	}
+	public function cOpartDef(){
+		
+		try {
+			$dmg = json_decode(file_get_contents('php://input'));
+			
+			$cek = "select * from opartdef where nama = '{$dmg->nama}' or kode = '{$dmg->kode}'";
+			$query = $this->db->query($cek);
+			if ($query->num_rows() > 0){
+				return false;
+			}
+			else{
+				// $sql = "insert into aksi (nama, ket) values ('{$aksi->nama}','{$aksi->ket}')";
+				$sql = "insert into opartdef (nama, kode,obama, sap) 
+				VALUES ('{$dmg->nama}','".strtoupper($dmg->kode)."','{$dmg->obama}','{$dmg->sap}')";
+				$hsl = $this->db->query($sql);
+			}
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+	}
+	public function uOpartDef(){
+		try {
+			$refer = json_decode(file_get_contents('php://input'));
+			
+			$upd = array(
+				// 'id' => $uaksi->id ,
+				'nama' 	=> $refer->nama ,
+				'kode' 	=> strtoupper($refer->kode),
+				// 'ket' 	=> $fail->ket 
+				'obama' => $refer->obama,
+				'sap'	=> $refer->sap,
+				// 
+			 );
+			
+			$this->db->where('id',$refer->id);
+			$this->db->update('opartdef', $upd);
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+	}
+	public function dOpartDef(){
+		
+		try {
+			$dref = json_decode(file_get_contents('php://input'));
+			
+			
+			$this->db->where('id', $dref->id);
+			$this->db->delete('opartdef'); 
+			
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+	}
 }
 
 /* End of file rLokUnit.php */

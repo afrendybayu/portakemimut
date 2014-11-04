@@ -24,16 +24,8 @@ Ext.define('rcm.view.konfig.Opart', {
 		frame	: true,
 		items	: [{
 			xtype 	: 'fOpart',
-			// lnama:'Nama Object Part',lkode:'Kode Object Part',lckbox:'Kategori',lckbox1:'Obama',lckbox2:'SAP',
-			// nmnama:'nama',nmkode:'kode',nmckbox1:'obama',nmckbox2:'sap',
-			// hidnama:false,hidkode:false,hidket:true,hidjab:true,hidckbox:false,hiduserid:true,hidpwd:true,hiddur:true
-			
 		}]
 		
-        
-		// collapsible: true,
-		// collapsed	: true,
-		// split	: true
 	},{
 		title	: 'Data Object Part',
         region	: 'south',     

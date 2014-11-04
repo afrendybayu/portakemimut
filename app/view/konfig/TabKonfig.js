@@ -120,7 +120,7 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		},{
 
 			id: 'tk_pd',
-
+			itemId : 'pmd',
 			title: 'Pd. Maintenance Def.',
 			xtype:'tPmDef'
 		},{
