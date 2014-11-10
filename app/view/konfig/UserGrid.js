@@ -49,6 +49,6 @@ Ext.define('rcm.view.konfig.SympGrid', {
         // 
 		var rec = gridView.getStore().getAt(rowIndex);
 		// console.log (rec);
-		this.fireEvent('SympGridDel', rec);
+		this.fireEvent('UserGridDel', rec);
     }
 });

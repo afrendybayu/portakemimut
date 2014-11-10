@@ -42,6 +42,7 @@ Ext.define('rcm.controller.Config', {
 
 
 		'Users',
+		'CbLvlUsers',
 		
 		'GridPMIn',
 		'GridPMnIn',
@@ -67,6 +68,8 @@ Ext.define('rcm.controller.Config', {
 		'Refer',
 		'Symptom',
 		'OPartDef',
+
+		'CbLvlUser',
 
 		'GridPMIn',
 		'GridOPIn',

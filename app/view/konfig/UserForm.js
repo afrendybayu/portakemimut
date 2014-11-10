@@ -35,12 +35,11 @@ Ext.define('rcm.view.konfig.UserForm', {
             name		: 'akses',
            	editable	: false,
             allowBlank	: false,
-            store 		: '',
-            displayField: 'nama',
-            valueField 	: 'id',
-            queryMode 	: 'local',
-            emptyText	: 'Lokasi',
-
+            store 		: 'CbLvlUsers',
+            emptyText	: 'Hak Akses',
+            queryMode	: 'local',
+		    displayField: 'nama',
+		    valueField	: 'level',
 		}];
 		
 		me.buttons = [{
