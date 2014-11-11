@@ -158,12 +158,6 @@ class Sap extends CI_Model {
 	
 	function get_opart($thn)	{
 		/*
-		$s = "select count(*) as jml, opart as kode,CONCAT('[',sapfmea.opart,'] ',damage.nama) AS desk, ".
-			 "(select nama from opart where opart.kode = sapfmea.opart limit 0,1) as nama, ".
-			 "ROUND((100*count(*)/(select count(*) from sapfmea)),2) as persen ".
-			 "from sapfmea ".
-			 "group by opart order by jml desc";
-		//*/
 		$sql = "select count(*) as jml, opart as kode,
 				(select nama from opart where opart.kode = sapfmea.opart limit 0,1) as nama,
 				concat('[',opart,'] ',(select nama from opart where opart.kode = sapfmea.opart limit 0,1)) AS desk,
@@ -173,20 +167,32 @@ class Sap extends CI_Model {
 				left join sap on sapfmea.pid= sap.pid
 				where YEAR(planstart)=$thn
 				group by opart,kode order by jml desc, kode asc";
+		//*/
+		$sql =	"SELECT sf.opart AS kode, count(*) AS jml,od.nama,CONCAT('[',sf.opart,'] ',od.nama) AS desk
+				,ROUND((100*COUNT(*)/(SELECT COUNT(*) FROM sapfmea LEFT JOIN sap ON sapfmea.pid=sap.pid
+					WHERE YEAR(planstart)=2014)),2) as persen
+				FROM sapfmea sf
+				LEFT JOIN sap ON sf.pid= sap.pid
+				LEFT JOIN opartdef od ON od.kode = sf.opart 
+				WHERE YEAR(planstart)=$thn
+				GROUP BY opart
+				ORDER BY jml DESC";
 		$query = $this->db->query($sql);
 		
 		return $query->result();
 	}
 	
-	function get_opart_info($opart)	{
-		$sql = "SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,opart,eqkode AS equip,
+	function get_opart_info($opart, $thn)	{
+		$sql =	"SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,opart,eqkode AS equip,
 				notiftype AS tipe,ordertype,downstart,deskord AS orderdesc
 				FROM sapfmea
-				LEFT JOIN sap ON sap.pid = sapfmea.pid";
-		
+				LEFT JOIN sap ON sap.pid = sapfmea.pid
+				WHERE YEAR(planstart)=$thn ";
+				
 		if (strlen($opart)>0)	{
-			$sql .= "WHERE opart LIKE '%$opart%'";
+			$sql .= "AND opart LIKE '%$opart%'";
 		}
+		//echo "sql: $sql";
 		$query = $this->db->query($sql);
 		
 		return $query->result();
@@ -207,7 +213,8 @@ class Sap extends CI_Model {
 		$sql = "SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,opart,eqkode AS equip,
 				notiftype AS tipe,ordertype,downstart,deskord AS orderdesc
 				FROM sapfmea
-				LEFT JOIN sap ON sap.pid = sapfmea.pid";
+				LEFT JOIN sap ON sap.pid = sapfmea.pid
+				WHERE ";
 		
 		if (strlen($damage)>0)	{
 			$sql .= "WHERE opart LIKE '%$opart%'";
