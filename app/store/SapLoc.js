@@ -2,7 +2,8 @@
 Ext.define('rcm.store.SapLoc', {
     extend: 'Ext.data.Store',
     model: 'rcm.model.SapLoc',
-    requires: 'rcm.model.SapLoc',
+    //autoLoad: true,
+    requires: 'rcm.model.SapLoc'
 
-    autoLoad: true
+	
 });

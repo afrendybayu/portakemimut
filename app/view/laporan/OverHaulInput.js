@@ -28,7 +28,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 	initComponent: function() {
 		var me=this; 
 		// rmode = 'rowmodel'; 
-		edit = Ext.create('Ext.grid.plugin.RowEditing',{
+		var edit = Ext.create('Ext.grid.plugin.RowEditing',{
 			clicksToEdit: 2, 
 			autoCancel : true 
 			// hideTooltip: true

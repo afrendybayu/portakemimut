@@ -50,6 +50,7 @@ Ext.define('rcm.view.laporan.Chart', {
 				//idThn: 'thnWoC',
 				//idbSr: 'srWoC',
 				xtype:'tWOComp'
+			/*
 			},{
 				id: 'ts_hi',
 				title: 'Condition Monitoring',

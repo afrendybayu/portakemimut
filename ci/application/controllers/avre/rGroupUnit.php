@@ -16,7 +16,7 @@ class rGroupUnit extends CI_Controller {
 			$thn = date("Y");
 			$bln = date("n");
 		}
-		//echo " $gr --- $thn --- $bln";
+		//echo " $gr --- $thn --- $bln   ".$this->catequip->get_tipe_id();
 		
 		try {
 			//echo $this->catequip->get_tipe_kode($gr)."<br/>";

@@ -3,7 +3,7 @@ Ext.define('rcm.store.SapPsOCot', {
 	extend: 'Ext.data.Store',
 	model: 'rcm.model.SapOcPs',
 	requires: 'rcm.model.SapOcPs',
-	autoLoad: true,
+	//autoLoad: true,
 
 	proxy: {
 		type: 'ajax',

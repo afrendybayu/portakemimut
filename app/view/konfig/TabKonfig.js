@@ -19,9 +19,15 @@ Ext.define('rcm.view.konfig.TabKonfig', {
     
 	initComponent: function() {
 		var me=this;
-		
 		me.items = [{
-			
+			//*
+			tHir: 'tk_hr',
+			title: 'Lokasi',
+			idKfHir: 'idKfHirEq',
+			idEqHir: 'idTmbhEqH',
+			xtype:'cHirarki'
+		},{
+
 			id: 'tk_pl',
 			title: 'PM List',
 			xtype:'tpKonfigList',
@@ -105,14 +111,16 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			jdlBtnD: ' ',
 			idBtnD: 'iGEqdef',
 			dstoreD: 'GridEqnIn'
+		/*
 		},{
-			//id: 'ts_hr',
+			tHir: 'tk_hr',
 			title: 'Lokasi',
-			idKfHir: 'idKfHir',
+			idKfHir: 'idKfHirEq',
+			idEqHir: 'idTmbhEqH',
 			xtype:'cHirarki'
+		//*/
 		},{
 			//id: 'tk_ak',
-			
 			//*
 			id: 'tk_ak',
 			title: 'Aksi Def.',
@@ -124,9 +132,7 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			title: 'Pd. Maintenance Def.',
 			xtype:'tPmDef'
 		},{
-		//*/
 			// id: 'ts_cause',
-
 			title: 'Cause Def.',
 			xtype:'tCause'
 		},{

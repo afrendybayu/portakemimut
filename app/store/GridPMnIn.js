@@ -3,7 +3,7 @@ Ext.define('rcm.store.GridPMnIn', {
     extend: 'Ext.data.Store',
     model: 'rcm.model.GridAksi' ,
 	
-	autoLoad: true,
+	//autoLoad: true,
 	
 	proxy: {
 		type: 'ajax',

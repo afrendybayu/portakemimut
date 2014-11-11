@@ -4,10 +4,8 @@ Ext.define('rcm.view.konfig.CauseDefGrid', {
 	xtype: 'gridCauseDef',
 	
 	initComponent: function() {
-		var me =this;
-		
+		var me = this;
 		me.store = 'Causes';
-		
 		me.columns = {	
 			items: [{ 
 				xtype:'rownumberer',
@@ -19,20 +17,21 @@ Ext.define('rcm.view.konfig.CauseDefGrid', {
 				dataIndex	: 'nama',
 				// hidden		: me.hidegrid1,
 				flex:1
-				 
+				
 			},{ 
 				header		: 'Kode Cause',
 				dataIndex	: 'kode',
 				// hidden		: me.hidegrid2,
 				// width:60
-				flex:1
+				width: 120
 			},{
 				xtype		: 'checkcolumn',
 				header		: 'Obama',
 				dataIndex	: 'obama',
 				// hidden		: me.hidegrid3,
 				// width:60
-				flex:1,
+				//flex:1,
+				width:60,
 				listeners: { beforecheckchange: function () { return false; } }
 			},{
 				xtype		:'checkcolumn',
@@ -41,7 +40,8 @@ Ext.define('rcm.view.konfig.CauseDefGrid', {
 				
 				// hidden		: me.hidegrid4,
 				// width:60
-				flex:1,
+				//flex:1,
+				width:60,
 				listeners: { beforecheckchange: function () { return false; } }
 			},{
 				header		: 'Keterangan',
@@ -49,7 +49,7 @@ Ext.define('rcm.view.konfig.CauseDefGrid', {
 				
 				// hidden		: me.hidegrid4,
 				// width:60
-				flex :1
+				flex :3
 
 			},{
 				xtype		:'actioncolumn',
@@ -72,7 +72,7 @@ Ext.define('rcm.view.konfig.CauseDefGrid', {
         // Fire a "deleteclick" event with all the same args as this handler
         // 
 		var rec = gridView.getStore().getAt(rowIndex);
-		// console.log (rec);
+		//console.log (rec);
 		this.fireEvent('CauseGridDel', rec);
     }
 });

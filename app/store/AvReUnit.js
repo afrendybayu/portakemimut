@@ -2,6 +2,7 @@
 Ext.define('rcm.store.AvReUnit', {
 	extend: 'Ext.data.Store',
 	model: 'rcm.model.AvReUnit',
-	requires: 'rcm.model.AvReUnit',
-	autoLoad: true
+	//autoLoad: true,
+	requires: 'rcm.model.AvReUnit'
+	
 });

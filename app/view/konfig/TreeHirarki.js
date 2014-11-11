@@ -19,6 +19,20 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 			cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing');
         me.plugins = [cellEditingPlugin];
         me.hideHeaders = me.hideDel?false:true;
+        /*
+        me.listeners = {
+			itemclick: function(s,r) {
+				console.log("itemclick");
+				
+				//rcmSettings.idc = r.data.id;
+				me.fireEvent('catclick', s, r);
+				console.log(r);
+			},
+			itemmouseenter: function(gridview, record) {
+				rec = record;	//.get('id');
+			}
+		};
+        //*/
         me.viewConfig = {
             plugins: {
                 ptype: 'treeviewdragdrop',
@@ -52,16 +66,22 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 					text: 'Simpan',
 					iconCls: 'savedisk',
 					tooltip: 'Simpan Kategori'
-				}]:[{
+				}]:[/*{
+					id: me.idEqHir,
+					xtype: 'button',
 					text : 'Tambah Lokasi',
 					//id	: 'tambah_lokasi'
-				},'->',{
-					iconCls: 'new_folder_tree',
-					tooltip: 'New Folder'
+				},*/'->',{
+					iconCls: 'newHir',
+					tooltip: 'Tambah Hirarki'
 				},{
-					iconCls: 'delete_folder_tree',
+					iconCls: 'newUnit',
 					//id: 'delete-folder-btn',
-					tooltip: 'Delete Folder'
+					tooltip: 'Tambah Unit'
+				},{
+					iconCls: 'newEquip',
+					//id: 'delete-folder-btn',
+					tooltip: 'Tambah Equipment'
 			}]
 		}];
         me.columns = [{
@@ -86,7 +106,8 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 					//store: Ext.create('rcm.store.CatHir', {storeId: 'Lists-TaskGrid' }),
 					store: Ext.create('rcm.store.CatHir'),
 					renderer: me.renderList
-				},
+				}
+			/*
 			},{
 				hidden  : me.hideDel,
                 xtype	: 'actioncolumn',
@@ -103,6 +124,7 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 				iconCls	: 'x-hidden',
 				tooltip	: 'Delete',
 				handler	: Ext.bind(me.hdlDelClk, me)
+			//*/
             }];
 		
         me.callParent(arguments);

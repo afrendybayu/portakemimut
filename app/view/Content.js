@@ -32,24 +32,19 @@ Ext.define('rcm.view.Content', {
 			title: 'Dashboard Home',
 			iconCls: 'Dashboard',
 			xtype: 'tHoChart'
-		
+		//*
 		},{
+		//*/
 			id: 'tu_re',
 			title: 'Reliability',
 			iconCls: 'Reliability',
 			xtype: 'tAvReChart'
+		//*
 		},{
 			id: 'tu_sap',
 			title: 'SAP Report',
 			xtype: 'tabChart',
 			iconCls: 'sap'
-	
-		/*
-		},{
-			id: 'tu_pr',
-			iconCls: 'perform',
-			title: 'Prestasi Mesin',
-		//*/
 		},{
 		
 			id: 'tu_rh',
@@ -57,16 +52,12 @@ Ext.define('rcm.view.Content', {
 			iconCls: 'RunnningHour',
 			//layout: 'accordion',
 			xtype: 'tabRh'
-			/*
-			xtype: 'tabpanel',
-			items: [{
-				title: 'Data Running Hour',
-				xtype: 'excelgrid',
-				id: 'app-runninghour',
-				iconCls: 'icon-grid'
 
-			//*/
-		
+		},{
+			id: 'tu_co',
+			title: 'Condition Monitoring',
+			iconCls: 'connect',
+			xtype:'tConMon'
 		},{
 		
 			id		: 'tu_kf',
@@ -75,7 +66,7 @@ Ext.define('rcm.view.Content', {
 			xtype 	: 't_Konfig',
 			//disabled : true
 			// hidden: true
-
+		//*/
 		
 		}];
 		

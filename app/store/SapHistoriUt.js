@@ -2,8 +2,9 @@
 Ext.define('rcm.store.SapHistoriUt', {
     extend: 'Ext.data.Store',
     model: 'rcm.model.SapHistori',
-    requires: 'rcm.model.SapHistori',
-    autoLoad: true
+    autoLoad: true,
+    requires: 'rcm.model.SapHistori'
+    
     /*
     ,proxy: {
 		type: 'ajax',

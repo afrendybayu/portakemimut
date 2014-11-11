@@ -2,6 +2,7 @@
 Ext.define('rcm.store.SapEPO', {
 	extend: 'Ext.data.Store',
 	model: 'rcm.model.SapEPO',
-	requires: 'rcm.model.SapEPO',
-	autoLoad: true
+	//autoLoad: true,
+	requires: 'rcm.model.SapEPO'
+	
 });

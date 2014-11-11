@@ -1,9 +1,7 @@
 Ext.define('rcm.controller.Config', {
     extend: 'Ext.app.Controller',
     //*
-    
-	
-	
+
 	views: [
         // TODO: add views here
         'konfig.TabKonfig',
@@ -16,10 +14,14 @@ Ext.define('rcm.controller.Config', {
 		'konfig.CauseForm',
 		'konfig.DamageGrid',
 		'konfig.DamageForm',
+		'konfig.DetailLokasi',
 		// 'konfig.FailureGrid',
 		// 'konfig.FailureForm',
 		
-		'konfig.wCatHir'
+		'konfig.wCatHir',
+				
+		
+		'konfig.TreeHirDef'
     ],
 
     controllers: [
@@ -34,6 +36,10 @@ Ext.define('rcm.controller.Config', {
 		'Causes',
 		'Damages',
 		'ModeDefs',
+		// 'GridAksi',
+		//'PMDefs',
+		
+		'HirDef',
 		'Refers',
 		'Symptoms',
 		'GridAksi',
@@ -58,8 +64,10 @@ Ext.define('rcm.controller.Config', {
     
     models: [
 		'LokUnit',
-		'GridAksi',
+		//'GridAksi',
 		
+		// 'GridAksi',
+
 		'FormAksi',
 		'FormPmDef',
 		'Cause',
@@ -101,7 +109,6 @@ Ext.define('rcm.controller.Config', {
 			ref: 'fAksi',
 			selector : 'fAksi'
 		},{
-			
 			ref : 'f_PmDef',
 			selector : 'f_PmDef'
 		},{
@@ -143,15 +150,18 @@ Ext.define('rcm.controller.Config', {
 		},{
 			ref : 'gridOpart',
 			selector : 'gridOpart'
+		},{
+			ref : 'panLokasi',
+			selector : 'panLokasi'
+		},{
+			ref : 'tHirDef',
+			selector : 'tHirDef'
 	}],
     
     init: function() {
 		var me = this;
         me.control({
 			//*
-			'[iconCls=new_folder_tree]': {
-                click: me.tblNewLokasi
-            },
 			'[iconCls=delete_folder_tree]': {
                 click: me.tblDelLokasi
             },
@@ -197,6 +207,16 @@ Ext.define('rcm.controller.Config', {
 				click : me.tambahLokasi
 			},
 			
+			'#idKfHir': {
+				selectionchange: me.slctKfHir
+			},
+
+			'#tk_hr': {
+				selectionchange: me.EdtEqH,
+				itemmouseenter: me.showActions,
+				itemmouseleave: me.hideActions
+			},
+			/*
 			'treeHirarki': {
                 // afterrender: me.handleAfterListTreeRender,
                 edit: me.updateTreeHirarki,
@@ -210,7 +230,7 @@ Ext.define('rcm.controller.Config', {
                 itemmouseleave: me.hideActions,
                 // itemcontextmenu: me.showContextMenu
             },
-            
+            //*/
             'tCatHir': {
 				catclick: me.hdlCatHir,
 				deleteclick: me.hdlDelCatHir,
@@ -315,8 +335,25 @@ Ext.define('rcm.controller.Config', {
 			'gridOpart' : {
 				OpartGridDel : me.delOpartGrid,
 				selectionchange : me.slctOpartGrid
-			}
-
+			},
+			'panLokasi button[text=Update]': {
+				click : me.hdlUptHir
+			},
+			'panLokasi button[text=Simpan]': {
+				click : me.hdlSmpHir
+			},
+			'panLokasi button[text=Hapus]': {
+				click : me.hdlDelHir
+			},
+			'[iconCls=newHir]': {
+                click: me.newHir
+            },
+            '[iconCls=newUnit]': {
+                click: me.newUnit
+            },
+            '[iconCls=newEquip]': {
+                click: me.newEquip
+            }
 		});
 		
     },
@@ -534,12 +571,44 @@ Ext.define('rcm.controller.Config', {
         }
     },
 
+	getDelayedStore: function()	{
+		//console.log("Konfig getDelayedStore");
+		var me=this;
+		//*
+		if (rcmSettings.cKfg!=1)	{
+			me.getGridModenInStore().load();
+			me.getGridPMnInStore().load();
+			me.getGridOPnInStore().load();
+			me.getGridEqnInStore().load();
+			
+			me.getCausesStore().load();
+			me.getDamagesStore().load();
+			me.getUsersStore().load();
+			me.getRefersStore().load();
+			me.getSymptomsStore().load();
+			me.getOpartDefsStore().load();
+			me.getModeDefsStore().load();
+			me.getUsersStore().load();
+			me.getFormAksisStore().load();
+			me.getFormPmDefsStore().load();
+		}
+		//*/
+	},
+
+	onLaunch: function(){
+		var me=this;
+		var task = new Ext.util.DelayedTask(function(){
+			me.getDelayedStore();
+		});
+		task.delay(rcmSettings.dlyKfg*1000);
+	},
+
     hdlSmpFailForm : function(){
     	// alert('tekan tombol simpan');
     	var me = this,
-    	fail = me.getFFailure().getForm(),
-		getDataFail = fail.getValues(),
-		failSave = new rcm.model.ModeDef(getDataFail);
+			fail = me.getFFailure().getForm(),
+			getDataFail = fail.getValues(),
+			failSave = new rcm.model.ModeDef(getDataFail);
 		// console.log(getDataCause);
 		// console.log(DmgSave);
 		fail.reset();
@@ -658,6 +727,116 @@ Ext.define('rcm.controller.Config', {
 		});
 	},
 
+	hdlUptHir: function()	{
+		console.log("COnfig hdlUptHir");
+		var me = this,
+			hir = me.getPanLokasi().getForm(),
+			getData = hir.getValues(),
+			hUpt = new rcm.model.LokUnit(getData);
+		console.log(getData);
+		
+		hUpt.save({
+			success: function(rec, op){
+				//console.log("config hdlSmpHir");
+				//me.getHirDefStore().reload();
+				me.getLokUnitStore().reload();
+			}
+		});
+	},
+	hdlSmpHir: function()	{
+		console.log("COnfig hdlSmpHir");
+
+		var me = this,
+			vPL = me.getPanLokasi(),
+			hir = vPL.getForm(),
+			getData = hir.getValues();
+
+		console.log(getData);
+		//vPL.clearIsi(vPL.getForm());
+		//*
+		var	hSmp = new rcm.model.LokUnit(getData);
+		hSmp.save({
+			success: function(rec, op){
+				console.log("config hdlSmpHir success");
+				me.getLokUnitStore().reload();
+				//me.getHirDefStore().reload();
+				Ext.Msg.alert('Sukses', 'Data baru sudah ditambahkan');
+				//vPL.clearIsi(vPL.getForm());
+			}
+		});
+		console.log("disini ....");
+		vPL.clearIsi(vPL.getForm());
+		//me.getLokUnitStore().reload();
+		//*/
+	},
+	hdlDelHir: function()	{
+		console.log("COnfig hdlDelHir");
+
+		var me = this,
+			vPL = me.getPanLokasi(),
+			hir = vPL.getForm(),
+			data = hir.getValues();
+		
+		//console.log(data);
+		var	hDel = new rcm.model.LokUnit(data);
+		if (!data.id)
+			Ext.Msg.show({
+				title: 'Gagal Hapus',
+				msg: 'Hapus Hirarki Equipment Gagal !!!<br/>Pilih Hirarki atau Equipment-nya',
+				icon: Ext.Msg.ERROR,
+				buttons: Ext.Msg.OK
+			});
+		else
+			Ext.MessageBox.show({
+				title : 'Hapus Hirarki Equipment',
+				msg   : 'Yakin Data Akan di Hapus??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						hDel.destroy ({
+							success : function(dcmon, operation){
+								Ext.Msg.alert('Sukses', 'Data berhasil dihapus');
+							}
+						}) 
+					}
+					
+				}
+			});
+		vPL.clearIsi(vPL.getForm());
+		//me.getHirDefStore().reload();
+		me.getLokUnitStore().reload();
+	},
+
+	slctKfHir: function(model, records)	{
+		console.log(records[0]);
+	},
+	EdtEqH: function(model, rec)	{
+		var me=this,
+			r=rec[0],
+			f=r.get('sil'),
+			l=me.getPanLokasi();
+		//console.log("KOnfig EdtEqH");
+		//console.log(r.data);
+		l.editForm(f);
+		if (r) {
+			if (f=="h") {
+				r.data.tag=" ";
+				r.data.funcloc=" ";
+			}
+			else if (f=="u") {
+				r.data.tag=" ";
+			}
+			else if (f=="e") {		// equip
+				r.data.funcloc=" ";
+				var n=r.get('nama').split("] ");
+				r.data.nama = (n.length==2)?n[1]:n[0];
+			}
+			if (f!="")	me.getPanLokasi().getForm().loadRecord(r);
+        }
+	},
+
+
     delDamageGrid : function(rec){
     	// alert ('grid Cause Delete');
 		// console.log(rec);
@@ -717,11 +896,11 @@ Ext.define('rcm.controller.Config', {
     hdlSmpCauseForm : function(){
     	// alert ('Form Simpan');
     	var me = this,
-    	f_cause = me.getFCause().getForm(),
-		getDataCause = f_cause.getValues(),
-		CauseSave = new rcm.model.Cause(getDataCause);
+			f_cause = me.getFCause().getForm(),
+			getDataCause = f_cause.getValues(),
+			CauseSave = new rcm.model.Cause(getDataCause);
 		// console.log(getDataCause);
-		console.log(CauseSave);
+		//console.log(CauseSave);
 		f_cause.reset();
 		CauseSave.save({
 			success: function(record, operation){
@@ -776,14 +955,15 @@ Ext.define('rcm.controller.Config', {
 		//alert("ini");
 		//
 		var d = selModel.getSelection()[0];
-		//console.log("controller hdlSelChHir: "+d.get('flag'));
-		if (d.get('flag')=='e')	{
+		console.log(tasks[0]);
+		//if (d.get('flag')=='e')	{
+		if (d.get('sil')=='e')	{
 			Ext.getCmp('tEqKonfigs').ngedit = 1;
 		}
 		else {
 			Ext.getCmp('tEqKonfigs').ngedit = 0;
 		}
-		//console.log(d.get('flag'));
+		//console.log(d.get('sil'));
 	},
     
     iGMddef: function()	{
@@ -1062,10 +1242,15 @@ Ext.define('rcm.controller.Config', {
 		console.log('tambah lokasi');
 	},
 	
-	tblNewLokasi : function(){
-		// alert('buat lokasi baru');
-		this.addTreeHirarki();
-	
+	//tblNewLokasi : function(){
+	newHir: function()	{
+		this.getPanLokasi().tmbhForm("h");
+	},
+	newUnit: function()	{
+		this.getPanLokasi().tmbhForm("u");
+	},
+	newEquip: function()	{
+		this.getPanLokasi().tmbhForm("e");
 	},
 	tblDelLokasi : function(){
 		// alert('delete Lokasi');
@@ -1090,7 +1275,9 @@ Ext.define('rcm.controller.Config', {
 	},
 	
 	saveNCatH: function()	{
-		rcmSettings.qwer = ch;
+		//rcmSettings.qwer = ch;
+		//return;
+		//*
 		var me = this,
 			wc = me.getTWCatHir(),
 			form = wc.down('form').getForm(),
@@ -1100,7 +1287,7 @@ Ext.define('rcm.controller.Config', {
             Ext.Msg.alert('Invalid Data', 'Please correct form errors');
             return;
 		}
-		console.log("idCatH: "+form.findField('idCatH').getValue());
+		//console.log("idCatH: "+form.findField('idCatH').getValue());
 		//return;
 		var ch = Ext.getCmp(form.findField('idCatH').getValue()),
 			selModel = ch.getSelectionModel(),
@@ -1153,7 +1340,7 @@ Ext.define('rcm.controller.Config', {
         }
 		
 		winEl.unmask();
-
+		//*/
 	},
 	
 	tblNewCat: function()	{
@@ -1161,7 +1348,8 @@ Ext.define('rcm.controller.Config', {
 		this.treeCat(true);
 	},
 	tblDelCat: function()	{
-		this.treeCat(true);
+		alert("Config controller tblDelCat");
+		//this.treeCat(true);
 	},
 	hdlDelCatHir: function(rec)	{
 		//console.log("Hapus id: "+rec.get('id')+", nama: "+rec.get('text'));
@@ -1224,6 +1412,7 @@ Ext.define('rcm.controller.Config', {
 	},
 	
 	addTreeHirarki: function(leaf) {
+	/*
         var me = this,
             hTree = me.getTreeHirarki(),
             cellEditingPlugin = hTree.cellEditingPlugin,
@@ -1256,7 +1445,7 @@ Ext.define('rcm.controller.Config', {
                     parentList.expand();
                 }
             };
-            //*/
+           
 		// console.log(selectionModel);
 		// console.log('newlist : ');
 		// console.log(newList);

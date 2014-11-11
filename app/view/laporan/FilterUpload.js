@@ -68,6 +68,7 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 					width: 100,
 					text: 'Upload',
 					margin: '2 5'
+				/*
 				},{
 					id: me.idbPdf,
 					xtype: 'button',

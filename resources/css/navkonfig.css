@@ -134,3 +134,18 @@
 	margin: 10px 10px;
 	font-size: 18px;
 }
+
+.jdlForm {
+	/*margin: 100 0 100 20px;*/
+	font-size: 18px;
+}
+
+.newHir {
+    background-image: url('./images/folder-add.png');
+}
+.newUnit	{
+	background-image: url('./images/comp16.png');
+}
+.newEquip {
+	background-image: url('./images/connect.png');
+}

@@ -44,12 +44,20 @@ class Conmon extends CI_Model {
 	}
 	
 	function gunit_conmon($tipe)	{
+		/*
 		$sql = "SELECT bln,IF(thn=YEAR(NOW())-2,SUM(nilai),0) as skr2
 				,IF(thn=YEAR(NOW())-1,SUM(nilai),0) as skr1
 				,IF(thn=YEAR(NOW()),SUM(nilai),0) as skr
 				FROM conmon
 				WHERE tipe = $tipe GROUP BY bln";
-				
+		//*/
+		$sql =	"SELECT bln,
+				IFNULL(GROUP_CONCAT(CASE WHEN thn=YEAR(NOW()) THEN nilai END),0) AS skr,
+				IFNULL(GROUP_CONCAT(CASE WHEN thn=YEAR(NOW())-1 THEN nilai END),0) AS skr1,
+				IFNULL(GROUP_CONCAT(CASE WHEN thn=YEAR(NOW())-2 THEN nilai END),0) AS skr2
+				FROM conmon
+				WHERE tipe=$tipe GROUP BY bln";	
+		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}

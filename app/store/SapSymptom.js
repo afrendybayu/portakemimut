@@ -2,6 +2,7 @@
 Ext.define('rcm.store.SapSymptom', {
     extend: 'Ext.data.Store',
     model: 'rcm.model.SapSymptom',
-    requires: 'rcm.model.SapSymptom',
-    autoLoad: true
+    //autoLoad: true,
+    requires: 'rcm.model.SapSymptom'
+    
 });

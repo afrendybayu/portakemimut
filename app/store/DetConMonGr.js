@@ -2,7 +2,8 @@
 Ext.define('rcm.store.DetConMonGr', {
     extend: 'Ext.data.Store',
     model: 'rcm.model.DetConMonGr',
-    requires: 'rcm.model.DetConMonGr',
+    //autoLoad: true,
+    requires: 'rcm.model.DetConMonGr'
 
-    autoLoad: true
+    
 });

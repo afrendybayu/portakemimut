@@ -925,6 +925,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.ContractInput": [],
   "rcm.model.ContractLine": [],
   "rcm.model.DaftarGagal": [],
+  "rcm.model.Damage": [],
   "rcm.model.DetConMonGr": [],
   "rcm.model.DetConMonGs": [],
   "rcm.model.DetConMonPmp": [],
@@ -942,6 +943,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.GridModeIn": [],
   "rcm.model.GridOPIn": [],
   "rcm.model.GridPMIn": [],
+  "rcm.model.HirDef": [],
   "rcm.model.Hirarki": [],
   "rcm.model.HoMan": [],
   "rcm.model.HoOrderC": [],
@@ -950,6 +952,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.LoginSesi": [],
   "rcm.model.LokUnit": [],
   "rcm.model.ManOCost": [],
+  "rcm.model.ModeDef": [],
   "rcm.model.Note": [],
   "rcm.model.OPart": [],
   "rcm.model.OhTahun": [],
@@ -1002,7 +1005,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.EventInfo": [],
   "rcm.store.EventList": [],
   "rcm.store.FMode": [],
-  "rcm.store.Failures": [],
   "rcm.store.FormAksis": [],
   "rcm.store.FormPmDefs": [],
   "rcm.store.GridAksi": [],
@@ -1016,6 +1018,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.GridOPnIn": [],
   "rcm.store.GridPMIn": [],
   "rcm.store.GridPMnIn": [],
+  "rcm.store.HirDef": [],
   "rcm.store.Hirarki": [],
   "rcm.store.HoMan": [],
   "rcm.store.HoOrderC": [],
@@ -1095,11 +1098,16 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.konfig.AksiForm": [],
   "rcm.view.konfig.AksiGrid": [],
   "rcm.view.konfig.Cause": [],
+  "rcm.view.konfig.CauseDefGrid": [],
+  "rcm.view.konfig.CauseForm": [],
   "rcm.view.konfig.ConfHirarki": [],
   "rcm.view.konfig.Damage": [],
+  "rcm.view.konfig.DamageForm": [],
+  "rcm.view.konfig.DamageGrid": [],
   "rcm.view.konfig.DetailLokasi": [],
   "rcm.view.konfig.Failure": [],
-  "rcm.view.konfig.FormPmDef": [],
+  "rcm.view.konfig.FailureForm": [],
+  "rcm.view.konfig.FailureGrid": [],
   "rcm.view.konfig.GridEquip": [],
   "rcm.view.konfig.GridL": [],
   "rcm.view.konfig.Opart": [],
@@ -1111,6 +1119,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.konfig.Symptom": [],
   "rcm.view.konfig.TabKonfig": [],
   "rcm.view.konfig.TreeCat": [],
+  "rcm.view.konfig.TreeHirDef": [],
   "rcm.view.konfig.TreeHirarki": [],
   "rcm.view.konfig.User": [],
   "rcm.view.konfig.wCatHir": [],
@@ -2219,6 +2228,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.ContractInput": [],
   "rcm.model.ContractLine": [],
   "rcm.model.DaftarGagal": [],
+  "rcm.model.Damage": [],
   "rcm.model.DetConMonGr": [],
   "rcm.model.DetConMonGs": [],
   "rcm.model.DetConMonPmp": [],
@@ -2236,6 +2246,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.GridModeIn": [],
   "rcm.model.GridOPIn": [],
   "rcm.model.GridPMIn": [],
+  "rcm.model.HirDef": [],
   "rcm.model.Hirarki": [],
   "rcm.model.HoMan": [],
   "rcm.model.HoOrderC": [],
@@ -2244,6 +2255,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.LoginSesi": [],
   "rcm.model.LokUnit": [],
   "rcm.model.ManOCost": [],
+  "rcm.model.ModeDef": [],
   "rcm.model.Note": [],
   "rcm.model.OPart": [],
   "rcm.model.OhTahun": [],
@@ -2296,7 +2308,6 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.EventInfo": [],
   "rcm.store.EventList": [],
   "rcm.store.FMode": [],
-  "rcm.store.Failures": [],
   "rcm.store.FormAksis": [],
   "rcm.store.FormPmDefs": [],
   "rcm.store.GridAksi": [],
@@ -2310,6 +2321,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.GridOPnIn": [],
   "rcm.store.GridPMIn": [],
   "rcm.store.GridPMnIn": [],
+  "rcm.store.HirDef": [],
   "rcm.store.Hirarki": [],
   "rcm.store.HoMan": [],
   "rcm.store.HoOrderC": [],
@@ -2425,11 +2437,23 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.konfig.Cause": [
     "widget.tCause"
   ],
+  "rcm.view.konfig.CauseDefGrid": [
+    "widget.gridCauseDef"
+  ],
+  "rcm.view.konfig.CauseForm": [
+    "widget.fCause"
+  ],
   "rcm.view.konfig.ConfHirarki": [
     "widget.cHirarki"
   ],
   "rcm.view.konfig.Damage": [
     "widget.tDamage"
+  ],
+  "rcm.view.konfig.DamageForm": [
+    "widget.fDamage"
+  ],
+  "rcm.view.konfig.DamageGrid": [
+    "widget.gridDamage"
   ],
   "rcm.view.konfig.DetailLokasi": [
     "widget.panLokasi"
@@ -2437,8 +2461,11 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.konfig.Failure": [
     "widget.tFailure"
   ],
-  "rcm.view.konfig.FormPmDef": [
-    "widget.fPmDef"
+  "rcm.view.konfig.FailureForm": [
+    "widget.fFailure"
+  ],
+  "rcm.view.konfig.FailureGrid": [
+    "widget.gridFailure"
   ],
   "rcm.view.konfig.GridEquip": [
     "widget.tGridKEq"
@@ -2456,7 +2483,7 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.tPmDef"
   ],
   "rcm.view.konfig.PmDefForm": [
-    "widget.fPmDef"
+    "widget.f_PmDef"
   ],
   "rcm.view.konfig.PmDefGrid": [
     "widget.gridPmDef"
@@ -2472,6 +2499,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.konfig.TreeCat": [
     "widget.tCatHir"
+  ],
+  "rcm.view.konfig.TreeHirDef": [
+    "widget.tHirDef"
   ],
   "rcm.view.konfig.TreeHirarki": [
     "widget.treeHirarki"

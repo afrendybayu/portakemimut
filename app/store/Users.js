@@ -9,7 +9,7 @@ Ext.define('rcm.store.Users', {
 	
 	
 	
-	autoLoad: true,
+	//autoLoad: true,
 	
 	proxy: {
 		type: 'ajax',

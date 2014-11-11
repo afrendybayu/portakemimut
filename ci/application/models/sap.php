@@ -23,7 +23,7 @@ class Sap extends CI_Model {
 		
 		$sql =	"select ordertype AS kode,pmtype,count(*) AS wo
 				,ROUND((100*count(*)/(
-					select count(*) from sap WHERE year(planstart) = '$thn' AND 
+					select count(*) from sap WHERE year(planstart) = '$thn' $fmc $flok AND 
 					ordertype in ('EP01','EP02','EP03','EP04','EP05'))),2) as persen
 				FROM sap
 				LEFT JOIN hirarki h ON h.urut = sap.lokasi
@@ -94,10 +94,10 @@ class Sap extends CI_Model {
 				LEFT JOIN cause ON sapfmea.cause = cause.kode
 				group by noorder,damage,cause,opart";
 		//*/
-		$sql =	"select sf.pid AS noorder,if(notifno=0,'',notifno) AS nosap
+		$sql =	"select sf.pid AS noorder,if(orderno=0,'',orderno) AS nosap
 				,sf.damage,if(sf.damage<>'',damage.nama,'') AS damagenm
-				,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm
-				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm,orderdesc
+				,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm,planstart AS plnstr
+				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm,deskord AS orderdesc
 				,manwork AS mainwork,down,eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart
 				from sapfmea sf
 				LEFT JOIN sap ON sap.pid = sf.pid
@@ -138,7 +138,7 @@ class Sap extends CI_Model {
 		$sql =	"select sf.pid AS noorder,if(notifno=0,'',notifno) AS nosap
 				,sf.damage,if(sf.damage<>'',damage.nama,'') AS damagenm
 				,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm
-				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm,orderdesc
+				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm,deskord AS orderdesc
 				,manwork AS mainwork,down,eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart
 				from sapfmea sf
 				LEFT JOIN sap ON sap.pid = sf.pid
@@ -180,11 +180,11 @@ class Sap extends CI_Model {
 	
 	function get_opart_info($opart)	{
 		$sql = "SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,opart,eqkode AS equip,
-				notiftype AS tipe,ordertype,downstart,orderdesc
+				notiftype AS tipe,ordertype,downstart,deskord AS orderdesc
 				FROM sapfmea
 				LEFT JOIN sap ON sap.pid = sapfmea.pid";
 		
-		if (strlen($damage)>0)	{
+		if (strlen($opart)>0)	{
 			$sql .= "WHERE opart LIKE '%$opart%'";
 		}
 		$query = $this->db->query($sql);
@@ -205,7 +205,7 @@ class Sap extends CI_Model {
 	
 	function get_symptom_info($opart)	{
 		$sql = "SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,opart,eqkode AS equip,
-				notiftype AS tipe,ordertype,downstart,orderdesc
+				notiftype AS tipe,ordertype,downstart,deskord AS orderdesc
 				FROM sapfmea
 				LEFT JOIN sap ON sap.pid = sapfmea.pid";
 		

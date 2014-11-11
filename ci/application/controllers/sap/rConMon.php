@@ -350,7 +350,7 @@ class rConMon extends CI_Controller {
 			
 			//$hsl = $this->cmon->gunit_conmon($tipe);
 			$hsl = $this->conmon->gunit_conmon($tipe);
-			 // print_r($hsl); echo '<br><br>';
+			//print_r($hsl); echo '<br><br>';
 			for($k=0; $k<count($hsl); $k++){
 				$hslbln[$hsl[$k]->bln-1] 			= $hsl[$k];
 				$hslbln[$hsl[$k]->bln-1]->mbln 		= nmMonth($hsl[$k]->bln-1,2);

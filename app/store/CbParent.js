@@ -2,7 +2,8 @@
 Ext.define('rcm.store.CbParent', {
     extend: 'Ext.data.Store',
     model: 'rcm.model.CbParent',
-    requires: 'rcm.model.CbParent',
+    //autoLoad: true,
+    requires: 'rcm.model.CbParent'
 
-    autoLoad: true
+	
 });

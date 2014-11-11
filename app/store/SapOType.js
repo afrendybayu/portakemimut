@@ -2,7 +2,8 @@
 Ext.define('rcm.store.SapOType', {
     extend: 'Ext.data.Store',
     model: 'rcm.model.SapOType',
-    requires: 'rcm.model.SapOType',
+    //autoLoad: true,
+    requires: 'rcm.model.SapOType'
 
-    autoLoad: true
+	
 });

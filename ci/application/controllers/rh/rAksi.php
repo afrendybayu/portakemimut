@@ -32,13 +32,17 @@ class rAksi extends CI_Controller {
 		echo json_encode($jsonResult);
 	}
 	
-	public function gAksi(){
+	public function gAksi()	{
+		
 		try	{
+			//echo "tes";
 			$hsl = $this->fmea->get_aksi_grid();
+			echo "tes";
 			$jsonResult = array(
 				'success' => true,
 				'gaksi' => $hsl
 			);
+			
 		}
 		catch (Exception $e)	{
 			 $jsonResult = array(

@@ -4,13 +4,15 @@ Ext.define('rcm.store.SapCause', {
     model: 'rcm.model.SapCause',
     requires: 'rcm.model.SapCause',
 	
+	//autoLoad: true,
+	
 	sorters: [{
         property: 'jml',
         direction: 'desc'
     }, {
 		property: 'kode',
         direction: 'asc'
-	}],
+	}]
 	
-    autoLoad: true
+    
 });

@@ -250,6 +250,7 @@ Ext.define('rcm.controller.Sap', {
 		alert('uConMon');
 	},
     //*/
+    
     hdlChThnMoc: function(tf,newV,oldV)	{
 		//alert('berubah '+newV);
 		var me=this;
@@ -279,7 +280,7 @@ Ext.define('rcm.controller.Sap', {
 	},
     
     loadOCost: function(rec)	{
-		rcmSettings.hhh = rec;
+		//rcmSettings.hhh = rec;
 		Ext.getCmp('mbudg').setValue(rec.get('budget')),
 		Ext.getCmp('mwo').setValue(rec.get('wo')),
 		Ext.getCmp('motype').setValue(rec.get('otype'));
@@ -356,6 +357,7 @@ Ext.define('rcm.controller.Sap', {
 	hdlUplOh: function(btn)	{
 		//alert("hdlUplOh");
 		//
+		var me = this;
 		var tpl = new Ext.XTemplate(
 			'File processed on the server.<br/>',
 			'Name: {fNama}<br/>',
@@ -383,14 +385,14 @@ Ext.define('rcm.controller.Sap', {
 				waitMsg: 'Uploading your file...',
 				success: function(fp, o) {
 					msg('Success', tpl.apply(o.result));
-					
+					me.hdlFiltThnOh();
 				},
 				falure: function(fp, o)	{
 					Ext.Msg.alert("Error", Ext.JSON.decode(this.response.responseText).message);
 				}
 			});
 		}
-		this.hdlFiltThnOh();
+		//this.hdlFiltThnOh();
 	},
     
 	updateGridOH : function(record){
@@ -782,6 +784,7 @@ Ext.define('rcm.controller.Sap', {
 			scope: this,
 			callback: function(rec) {
 				// Ext.getCmp('wo3s7').setText(rec[0].get('teks'));
+				Ext.fly('wo3s7').update(rec[0].get('teks'));
 			}
 		});
 		me.getWoOpen30Store().load({
@@ -789,13 +792,15 @@ Ext.define('rcm.controller.Sap', {
 			scope: this,
 			callback: function(rec) {
 				// Ext.getCmp('wo7s30').setText(rec[0].get('teks'));
+				Ext.fly('wo7s30').update(rec[0].get('teks'));
 			}
 		});
 		me.getWoOpen60Store().load({
 			params: p,
 			scope: this,
 			callback: function(rec) {
-				// Ext.getCmp('wo30s60').setText(rec[0].get('teks'));
+				//Ext.getCmp('wo30s60').setText(rec[0].get('teks'));
+				Ext.fly('wo30s60').update(rec[0].get('teks'));
 			}
 		});
 		me.getWoOpenL60Store().load({
@@ -803,15 +808,101 @@ Ext.define('rcm.controller.Sap', {
 			scope: this,
 			callback: function(rec) {
 				// Ext.getCmp('wo60').setText(rec[0].get('teks'));
+				Ext.fly('wo60').update(rec[0].get('teks'));
 			}
 		});
 		//*/
 	},
 	
+	getDelayedStore2: function()	{
+		var me=this;
+		me.getSapCauseStore().load();
+		me.getSapCauseInfoStore().load();
+		me.getSapDamageStore().load();
+		me.getSapDamageInfoStore().load();
+		me.getSapOPartStore().load();
+		me.getSapOPartInfoStore().load();
+		
+		//me.getSapSymptomInfoStore().load();
+	},
+	
+	getDelayedStore: function()	{
+		//console.log("Konfig getDelayedStore");
+		var me=this;
+		//*
+		if (rcmSettings.cSap!=1)	{
+			//console.log("Sap getDelayedStore");
+			me.getSapEPOStore().load();
+			me.getSapHistoriStore().load();
+			
+			me.getSapTop10Store().load();
+			me.getSapTop10FLStore().load();
+			me.getSapOrderCwoStore().load();
+			me.getSapOrderCotStore().load();
+			
+			me.getContractStore().load();
+			me.getContractLineStore().load();
+			me.getSapPMCostStore().load();
+			me.getSapThnStore().load();
+			me.getSapMwcStore().load();
+			me.getSapLocStore().load();
+			me.getSapOTypeStore().load();
+			
+			me.getSapPsOCotStore().load();
+			me.getSapPsOCwoStore().load();
+			
+			me.getConMonStore().load();
+			me.getConMonGrStore().load();
+			me.getGridConMonStore().load();
+			me.getDetConMonGrStore().load();
+			me.getDetConMonPmpStore().load();
+			me.getDetConMonGsStore().load();
+			
+			me.getWoOpen7Store().load();
+			me.getWoOpen30Store().load();
+			me.getWoOpen60Store().load();
+			me.getWoOpenL60Store().load();
+			
+			me.getOhTahunStore().load();
+			me.getOverHaulInStore().load();
+
+			var task = new Ext.util.DelayedTask(function(){
+				me.getDelayedStore2();
+			});
+			task.delay(rcmSettings.dlySapI*1000);
+		}
+		//*/
+		/*
+		'HoTeco','HoMan','HoOrderC'
+		,'SapEPO'
+
+
+		,'SapOrderCwo','SapOrderCot'
+		,'SapThn','SapMwc','SapOType','SapLoc'
+		
+		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10','SapTop10FL'
+		,'Contract','ContractLine', 'ContractInput'
+
+		,'SapHistori'
+		,'ManOCost'
+		
+		,'GridConMon'
+		,'ConMon','ConMonIn','CbParent','CbUnit','CbEquip','ConMonGr'
+		,'DetConMonGr','DetConMonPmp','DetConMonGs'
+		,'OhTahun','OverHaulIn'
+
+		//*/
+	},
+	
 	onLaunch: function() {
+		var me=this;
+		var task = new Ext.util.DelayedTask(function(){
+			me.getDelayedStore();
+		});
+		task.delay(rcmSettings.dlySap*1000);
 		//alert("tes");
-		this.ubahLabelWO({});
-		this.getManOCostStore().load({
+		//me.ubahLabelWO();
+		me.getManOCostStore().load({
 			scope: this,
 			callback: function(rec, op, suc) {
 				//console.log(rec);

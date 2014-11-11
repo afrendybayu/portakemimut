@@ -2,6 +2,7 @@
 Ext.define('rcm.store.ReHome', {
 	extend: 'Ext.data.Store',
 	model: 'rcm.model.ReHome',
-	requires: 'rcm.model.ReHome',
-	autoLoad: true
+	//autoLoad: true,
+	requires: 'rcm.model.ReHome'
+	
 });

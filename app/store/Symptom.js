@@ -1,5 +1,5 @@
 /* AfrendyBayu 4Des2013 */
-Ext.define('rcm.store.GridAksi', {
+Ext.define('rcm.store.Symptom', {
     extend: 'Ext.data.Store',
     model: 'rcm.model.GridAksi' ,
     // requires:[
@@ -14,11 +14,11 @@ Ext.define('rcm.store.GridAksi', {
 	proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/rh/rAksi/gAksi'
+			read: 'ci/index.php/rh/rFMode/rSymptom'
         },
         reader: {
             type: 'json',
-            root: 'gaksi',
+            root: 'symptom',
             messageProperty: 'message'
         }
     }

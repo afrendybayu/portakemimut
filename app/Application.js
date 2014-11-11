@@ -14,12 +14,12 @@ Ext.define('rcm.Application', {
 		//,'Laporan'
 		
 		//=================
-		
-		'ExcelGrid'
+		'AvRe'
+		,'ExcelGrid'
 		,'DetailInfo'		
 		,'Sap'
 		,'Login'
-		,'AvRe'
+		
 		,'Config'
 		
 		//=================
