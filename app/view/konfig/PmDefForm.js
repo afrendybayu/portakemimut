@@ -39,11 +39,11 @@ Ext.define('rcm.view.konfig.PmDefForm', {
 		me.buttons = [{
 			text: 'Simpan',
 			formBind: true, //only enabled once the form is 
-			disabled: true,
+			disabled: true
         },{
         	text: 'Edit',
 			formBind: true,
-			disabled: true,
+			disabled: true
 			
         },{
             text: 'Batal',

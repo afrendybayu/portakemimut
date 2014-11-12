@@ -72,5 +72,5 @@ Ext.define('rcm.view.konfig.AksiGrid', {
 		var rec = gridView.getStore().getAt(rowIndex);
 		// console.log (rec);
 		this.fireEvent('AksiGridDel', rec);
-    },
+    }
 });

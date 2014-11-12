@@ -19,7 +19,7 @@ Ext.define('rcm.view.nav.Navigation', {
     items: [{
 		xtype: 'treecolumn',
 		dataIndex: 'text'
-	}],
+	}]
     /*listeners: {
         itemclick: function(s,r) {
 			this.fireEvent('hirUAvRe', r.data);

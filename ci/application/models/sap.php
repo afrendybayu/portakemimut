@@ -174,7 +174,7 @@ class Sap extends CI_Model {
 				FROM sapfmea sf
 				LEFT JOIN sap ON sf.pid= sap.pid
 				LEFT JOIN opartdef od ON od.kode = sf.opart 
-				WHERE YEAR(planstart)=$thn
+				WHERE YEAR(planstart)=$thn AND (sf.cause <> 'COTH' OR sap.ordertype <> 'EP03')
 				GROUP BY opart
 				ORDER BY jml DESC";
 		$query = $this->db->query($sql);

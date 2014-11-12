@@ -44,14 +44,14 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 					formBind: true, 
 					text: 'Simpan',
 					hidden: true,
-					iconCls: 'savedisk',
+					iconCls: 'savedisk'
 					//tooltip: 'Simpan Data Baru'
 				},{
 					id: 'bUptKEH',
 					xtype: 'button',
 					text: 'Update',
 					formBind: true, 
-					iconCls: 'editEvent',
+					iconCls: 'editEvent'
 					//tooltip: 'Update Data'
 				},{
 					text: 'Clear',
@@ -65,7 +65,7 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 				//name: 'lbl',
 				id: 'lblFormHir',
 				cls: 'jdlForm',
-				text: 'Form Hirarki dan Equipment',
+				text: 'Form Hirarki dan Equipment'
 				
 			},{
 				xtype:'hiddenfield',

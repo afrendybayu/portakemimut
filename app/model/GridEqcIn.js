@@ -12,7 +12,7 @@ Ext.define('rcm.model.GridEqcIn', {
 		api: {
 			read: 'ci/index.php/rh/rEquip/rEqcat',
 			create: 'ci/index.php/rh/rOPart/cOPList',
-			destroy: 'ci/index.php/rh/rOPart/dOPList',
+			destroy: 'ci/index.php/rh/rOPart/dOPList'
         },
         reader: {
             type: 'json',

@@ -35,7 +35,7 @@ Ext.define('rcm.view.konfig.wCatHir', {
 				//xtype: 'textarea',
 				//xtype: 'textfield',
 				name : 'wcKet',
-				fieldLabel: 'Keterangan',
+				fieldLabel: 'Keterangan'
 				//anchor    : '100%'
 			}]
 		}];

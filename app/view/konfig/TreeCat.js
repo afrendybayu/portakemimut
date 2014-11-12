@@ -68,7 +68,7 @@ Ext.define('rcm.view.konfig.TreeCat', {
 			},{
 				//text: 'ID',
                 dataIndex: 'id',
-                width:40,
+                width:40
             },{
                 xtype	: 'actioncolumn',
                 //text: 'Hapus',

@@ -12,7 +12,7 @@ Ext.define('rcm.model.GridOPIn', {
 		api: {
 			read: 'ci/index.php/rh/rOPart/rOPartList',
 			create: 'ci/index.php/rh/rOPart/cOPList',
-			destroy: 'ci/index.php/rh/rOPart/dOPList',
+			destroy: 'ci/index.php/rh/rOPart/dOPList'
         },
         reader: {
             type: 'json',

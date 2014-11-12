@@ -23,7 +23,7 @@ Ext.define('rcm.view.konfig.Damage', {
 		autoScroll: true,
 		frame	: true,
 		items	: [{
-			xtype 	: 'fDamage',
+			xtype 	: 'fDamage'
 			
 			
 		}]
@@ -40,7 +40,7 @@ Ext.define('rcm.view.konfig.Damage', {
         height	: '70%',
         collapsible	: true,
 		// collapsed	: true,
-		split	: true,
+		split	: true
 		
 		
 		

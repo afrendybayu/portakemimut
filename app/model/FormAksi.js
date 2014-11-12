@@ -12,7 +12,7 @@ Ext.define('rcm.model.FormAksi', {
 			read	: 'ci/index.php/konfig/Conf/rAksi',
 			create 	: 'ci/index.php/konfig/Conf/cAksi',
 			destroy	: 'ci/index.php/konfig/Conf/dAksi',
-			update	: 'ci/index.php/konfig/Conf/uAksi',
+			update	: 'ci/index.php/konfig/Conf/uAksi'
         },
         reader: {
             type: 'json',

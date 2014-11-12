@@ -38,7 +38,7 @@ Ext.define('rcm.view.konfig.AksiForm', {
         },{
         	text: 'Edit',
 			formBind: true,
-			disabled: true,
+			disabled: true
 			// handler : function(){
 			// 		onChange(newVal, oldVal) {
 	  //               alert(newVal);

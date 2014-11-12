@@ -72,5 +72,5 @@ Ext.define('rcm.view.konfig.PmDefGrid', {
 		var rec = gridView.getStore().getAt(rowIndex);
 		// console.log (rec);
 		this.fireEvent('PmDefGridDel', rec);
-    },
+    }
 });

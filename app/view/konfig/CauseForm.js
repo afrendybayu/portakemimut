@@ -58,7 +58,7 @@ Ext.define('rcm.view.konfig.CauseForm', {
 		me.buttons = [{
 			text: 'Simpan',
 			formBind: true, 
-			disabled: true,
+			disabled: true
             // handler: function() {
                 // fireEvent('SimpanAksi', args ) ;
 				// alert ('simpan dulu');
@@ -67,7 +67,7 @@ Ext.define('rcm.view.konfig.CauseForm', {
         },{
             text: 'Edit',
             formBind: true, 
-			disabled: true,
+			disabled: true
             // handler: function() {
                 // this.up('form').getForm().reset();
             // }

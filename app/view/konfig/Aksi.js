@@ -23,7 +23,7 @@ Ext.define('rcm.view.konfig.Aksi', {
 		autoScroll: true,
 		frame	: true,
 		items	: [{
-			xtype : 'fAksi',
+			xtype : 'fAksi'
 		}]
 		
         

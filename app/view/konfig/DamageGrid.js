@@ -51,5 +51,5 @@ Ext.define('rcm.view.konfig.DamageGrid', {
 		var rec = gridView.getStore().getAt(rowIndex);
 		// console.log (rec);
 		this.fireEvent('DamageGridDel', rec);
-    },
+    }
 });

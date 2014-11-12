@@ -13,7 +13,7 @@ Ext.define('rcm.model.HirDef', {
 	proxy: {
 		type: 'ajax',
 		url: 'ci/index.php/konfig/rLokUnit/hirAll'
-	},
+	}
     //*/
 	/*
     proxy: {

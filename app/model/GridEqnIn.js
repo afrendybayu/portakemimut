@@ -10,7 +10,7 @@ Ext.define('rcm.model.GridEqnIn', {
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/rh/rEquip/rEqncat',
+			read: 'ci/index.php/rh/rEquip/rEqncat'
         },
         reader: {
             type: 'json',

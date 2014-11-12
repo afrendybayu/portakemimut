@@ -62,7 +62,7 @@ Ext.define('rcm.view.konfig.PanelList', {
 				region: 'east',
 				collapsible: true,
 				//collapsed: true,
-				split: true,
+				split: true
 			},{
 				title: me.jdlKa,
 				ngedit: me.ngedit,
@@ -81,7 +81,7 @@ Ext.define('rcm.view.konfig.PanelList', {
 				region: 'east',
 				collapsible: true,
 				//collapsed: true,
-				split: true,
+				split: true
 			}]
 			//*/
 		},{

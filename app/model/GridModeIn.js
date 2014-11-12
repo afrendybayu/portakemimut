@@ -12,7 +12,7 @@ Ext.define('rcm.model.GridModeIn', {
 		api: {
 			read: 'ci/index.php/rh/rMode/rModeList',
 			create: 'ci/index.php/rh/rMode/cModeList',
-			destroy: 'ci/index.php/rh/rMode/dModeList',
+			destroy: 'ci/index.php/rh/rMode/dModeList'
         },
         reader: {
             type: 'json',

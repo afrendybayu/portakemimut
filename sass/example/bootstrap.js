@@ -1187,8 +1187,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.utama.HoChart": [],
   "rcm.view.utama.HoHistori": [],
   "rcm.view.utama.HoPie": [],
-  "rcm.view.utama.HoSpeedo": [],
-  "rcm.view.utama.Run": []
+  "rcm.view.utama.HoSpeedo": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Chart.ux.Highcharts": [
@@ -2710,9 +2709,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.utama.HoSpeedo": [
     "widget.tHoSpeedo"
-  ],
-  "rcm.view.utama.Run": [
-    "widget.tAksi"
   ]
 });
 Ext.setVersion("ext-theme-base", "4.2.1");

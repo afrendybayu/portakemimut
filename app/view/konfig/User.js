@@ -58,7 +58,7 @@ Ext.define('rcm.view.konfig.User', {
 		hidegrid2	: false,
 		hidegrid3	: false,
 		hidegrid4	: true,
-		hidegrid5	: true,
+		hidegrid5	: true
 	
 		
 	

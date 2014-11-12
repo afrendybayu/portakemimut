@@ -23,7 +23,7 @@ Ext.define('rcm.view.konfig.Failure', {
 		autoScroll: true,
 		frame	: true,
 		items	: [{
-			xtype 	: 'fFailure',
+			xtype 	: 'fFailure'
 			
 			
 		}]
@@ -40,7 +40,7 @@ Ext.define('rcm.view.konfig.Failure', {
         height	: '70%',
         collapsible	: true,
 		// collapsed	: true,
-		split	: true,
+		split	: true
 		
 		
 		

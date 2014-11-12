@@ -3,6 +3,6 @@ Ext.define('rcm.store.SapCauseInfo', {
     extend: 'Ext.data.Store',
     model: 'rcm.model.SapCauseInfo',
     //autoLoad: true,
-    requires: 'rcm.model.SapCauseInfo',
+    requires: 'rcm.model.SapCauseInfo'
 	
 });
