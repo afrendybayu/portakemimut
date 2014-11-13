@@ -8,37 +8,21 @@ Ext.define('rcm.view.konfig.Aksi', {
         
     ],
 	
-	layout	: {
-		type : 'border'
-		
-	},
+	layout	: 'border',
 	defaults: {autoScroll: true},
 	
 	items : [{
 		title	: 'Form Aksi',
-        region	: 'center',     
-        xtype	: 'panel',
-		height	: '30%',
-		layout	: 'fit',
-		// autoScroll: true,
-		frame	: true,
-		items	: [{
-			xtype : 'f_Aksi',
-		}]
-		
-        
-		// collapsible: true,
-		// collapsed	: true,
-		// split	: true
+        region	: 'east',     
+        xtype	: 'f_Aksi',
+		minWidth: '420',
+		collapsible	: true,
+		split	: true
+
 	},{
 		title	: 'Data Aksi',
-        region	: 'south',     
+        region	: 'center',     
         xtype	: 'gridAksi',
-		html	: 'bawah',
-        height	: '70%',
-        collapsible	: true,
-		// collapsed	: true,
-		split	: true,
 	
 	}]
 	

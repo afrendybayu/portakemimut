@@ -2,16 +2,7 @@ Ext.define('rcm.view.konfig.AksiFForm', {
 	extend: 'Ext.form.Panel',
 
 	xtype: 'f_Aksi',
-	
-	// layout: {
-		// type :'form'
-	// },
-	
     bodyPadding: 5,       
-	// padding : '10 10 0 10', //top right bottom left
-	// plugins: {
-            // ptype: 'datatip'
-        // },
 	defaultType: 'textfield',
 	
 	initComponent: function() {
@@ -19,11 +10,13 @@ Ext.define('rcm.view.konfig.AksiFForm', {
 		me.items = [{
 			fieldLabel	: 'Nama Aksi',
             name		: 'nama',
+            width		: 400,
             allowBlank	: false
 		},{
+			xtype		: 'textarea',
 			fieldLabel	: 'Keterangan',
+			width		: 400,
             name		: 'ket',
-            allowBlank	: true
 		}];
 		
 		me.buttons = [{
@@ -39,12 +32,6 @@ Ext.define('rcm.view.konfig.AksiFForm', {
         	text: 'Edit',
 			formBind: true,
 			disabled: true,
-			// handler : function(){
-			// 		onChange(newVal, oldVal) {
-	  //               alert(newVal);
-   //          	}	
-			// }
-			
         },{
             text: 'Batal',
             handler: function() {
