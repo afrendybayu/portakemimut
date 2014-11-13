@@ -20,8 +20,7 @@ Ext.Loader.addClassPathMappings({
   "Ext.view.Table": "ext/src/view/Table.js",
   "Ext.view.TableLayout": "ext/src/view/TableLayout.js",
   "Ext.view.View": "ext/src/view/View.js",
-  "rcm": "app",
-  "rcm.view.konfig.AksiForm": "app/view/konfig/AksiForm - Copy.js"
+  "rcm": "app"
 });
 Ext.ClassManager.addNameAlternateMappings({
   "Chart.ux.Highcharts": [],
