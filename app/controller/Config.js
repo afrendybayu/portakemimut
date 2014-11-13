@@ -586,7 +586,7 @@ Ext.define('rcm.controller.Config', {
 			me.getUsersStore().load();
 			me.getRefersStore().load();
 			me.getSymptomsStore().load();
-			me.getOpartDefsStore().load();
+			me.getOPartDefsStore().load();
 			me.getModeDefsStore().load();
 			me.getUsersStore().load();
 			me.getFormAksisStore().load();
