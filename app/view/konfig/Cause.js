@@ -14,17 +14,15 @@ Ext.define('rcm.view.konfig.Cause', {
 	items : [{
 		title	: 'Form Cause',
         region	: 'east',     
-        xtype	: 'f_Aksi',
+        xtype	: 'fCause',
 		minWidth: '420',
 		collapsible	: true,
 		split	: true
 
 	},{
-		title	: 'Data Aksi',
+		title	: 'Data Cause',
         region	: 'center',     
         xtype	: 'gridCauseDef',
 	
 	}]
-	
-	
 });
