@@ -3,17 +3,8 @@ Ext.define('rcm.view.konfig.PmDefForm', {
 
 	xtype: 'f_PmDef',
 	
-	// layout: {
-		// type :'form'
-	// },
-	
     bodyPadding: 5,       
-	// padding : '10 10 0 10', //top right bottom left
-	// plugins: {
-            // ptype: 'datatip'
-        // },
 	defaultType: 'textfield',
-	
 	
 	initComponent: function() {
 		var me = this;
@@ -38,12 +29,12 @@ Ext.define('rcm.view.konfig.PmDefForm', {
 		
 		me.buttons = [{
 			text: 'Simpan',
-			formBind: true, //only enabled once the form is 
-			disabled: true,
+			formBind: true, 
+			disabled: true
         },{
         	text: 'Edit',
 			formBind: true,
-			disabled: true,
+			disabled: true
 			
         },{
             text: 'Batal',
