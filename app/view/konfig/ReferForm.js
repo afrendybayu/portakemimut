@@ -19,11 +19,13 @@ Ext.define('rcm.view.konfig.ReferForm', {
 		me.items = [{
 			fieldLabel	: 'Nama Referensi',
             name		: 'nama',
+            width		: 400,
             allowBlank	: false
 		},{
 			fieldLabel	: 'Kode Referensi',
             name		: 'kode',
-            allowBlank	: true
+            width		: 400
+            // allowBlank	: true
 		}];
 		
 		me.buttons = [{
@@ -33,7 +35,7 @@ Ext.define('rcm.view.konfig.ReferForm', {
         },{
         	text: 'Edit',
 			formBind: true,
-			disabled: true,
+			disabled: true
         },{
             text: 'Batal',
             handler: function() {

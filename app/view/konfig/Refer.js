@@ -7,41 +7,22 @@ Ext.define('rcm.view.konfig.Refer', {
 		'rcm.view.konfig.ReferGrid'
         
     ],
-	
-	layout	: {
-		type : 'border'
-		
-	},
+	layout	: 'border',
 	defaults: {autoScroll: true},
 	
 	items : [{
 		title	: 'Form Referensi',
-        region	: 'center',     
-        xtype	: 'panel',
-		height	: '30%',
-		layout	: 'fit',
-		// autoScroll: true,
-		frame	: true,
-		items	: [{
-			xtype 	: 'fRefer',
-		}]
-		
-        
-		// collapsible: true,
-		// collapsed	: true,
-		// split	: true
+        region	: 'east',     
+        xtype	: 'fRefer',
+		minWidth: '420',
+		collapsible	: true,
+		split	: true
+
 	},{
-		title	: 'Data Failures',
-        region	: 'south',     
+		title	: 'Data Referensi',
+        region	: 'center',     
         xtype	: 'gridRefer',
-		html	: 'bawah',
-        height	: '70%',
-        collapsible	: true,
-		// collapsed	: true,
-		split	: true,
-		
 	
 	}]
-	
-	
+
 });
