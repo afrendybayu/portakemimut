@@ -8,45 +8,23 @@ Ext.define('rcm.view.konfig.Symptom', {
         
     ],
 	
-	layout	: {
-		type : 'border'
-		
-	},
+	layout	: 'border',
 	defaults: {autoScroll: true},
 	
 	items : [{
 		title	: 'Form Symptom',
-        region	: 'center',     
-        xtype	: 'panel',
-		height	: '30%',
-		layout	: 'fit',
-		autoScroll: true,
-		frame	: true,
-		items	: [{
-			xtype 	: 'fSymptom',
-			
-			
-		}]
-		
-        
-		// collapsible: true,
-		// collapsed	: true,
-		// split	: true
+        region	: 'east',     
+        xtype	: 'fSymptom',
+		minWidth: '420',
+		collapsible	: true,
+		split	: true
+
 	},{
 		title	: 'Data Symptom',
-        region	: 'south',     
+        region	: 'center',     
         xtype	: 'gridSymptom',
-		html	: 'bawah',
-        height	: '70%',
-        collapsible	: true,
-		// collapsed	: true,
-		split	: true,
-		
-		
-		
-		
 	
 	}]
-	
+
 	
 });

@@ -19,11 +19,13 @@ Ext.define('rcm.view.konfig.SympForm', {
 		me.items = [{
 			fieldLabel	: 'Nama Symptom',
             name		: 'nama',
+            width		: 400,
             allowBlank	: false
 		},{
 			fieldLabel	: 'Kode Symptom',
             name		: 'kode',
-            allowBlank	: true
+            width		: 400
+            // allowBlank	: true
 		}];
 		
 		me.buttons = [{
@@ -33,7 +35,7 @@ Ext.define('rcm.view.konfig.SympForm', {
         },{
         	text: 'Edit',
 			formBind: true,
-			disabled: true,
+			disabled: true
 			
         },{
             text: 'Batal',
