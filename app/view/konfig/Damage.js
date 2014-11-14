@@ -7,46 +7,22 @@ Ext.define('rcm.view.konfig.Damage', {
 		'rcm.view.konfig.DamageGrid'
         
     ],
-	
-	layout	: {
-		type : 'border'
-		
-	},
+	layout	: 'border',
 	defaults: {autoScroll: true},
 	
 	items : [{
 		title	: 'Form Damages',
-        region	: 'center',     
-        xtype	: 'panel',
-		height	: '30%',
-		layout	: 'fit',
-		autoScroll: true,
-		frame	: true,
-		items	: [{
-			xtype 	: 'fDamage',
-			
-			
-		}]
-		
-        
-		// collapsible: true,
-		// collapsed	: true,
-		// split	: true
+        region	: 'east',     
+        xtype	: 'fDamage',
+		minWidth: '420',
+		collapsible	: true,
+		split	: true
+
 	},{
 		title	: 'Data Damages',
-        region	: 'south',     
+        region	: 'center',     
         xtype	: 'gridDamage',
-		html	: 'bawah',
-        height	: '70%',
-        collapsible	: true,
-		// collapsed	: true,
-		split	: true,
-		
-		
-		
-		
 	
 	}]
-	
 	
 });

@@ -3,15 +3,7 @@ Ext.define('rcm.view.konfig.DamageForm', {
 
 	xtype: 'fDamage',
 	
-	// layout: {
-		// type :'form'
-	// },
-	
     bodyPadding: 5,       
-	// padding : '10 10 0 10', //top right bottom left
-	// plugins: {
-            // ptype: 'datatip'
-        // },
 	defaultType: 'textfield',
 	
 	initComponent: function() {
@@ -19,11 +11,12 @@ Ext.define('rcm.view.konfig.DamageForm', {
 		me.items = [{
 			fieldLabel	: 'Nama Damage',
             name		: 'nama',
+            width		: 400,
             allowBlank	: false
 		},{
 			fieldLabel	: 'Kode Damage',
             name		: 'kode',
-            allowBlank	: true
+            width		: 400,
 		}];
 		
 		me.buttons = [{
