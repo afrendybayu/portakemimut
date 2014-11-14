@@ -27,17 +27,12 @@ Ext.define('rcm.view.konfig.PmDef', {
 			
 		}]
 		
-        
-		// collapsible: true,
-		// collapsed	: true,
-		// split	: true
 	},{
 		title	: 'Data Predictive Maintenance',
         region	: 'south',     
         xtype	: 'gridPmDef',
         height	: '60%',
         collapsible	: true,
-		// collapsed	: true,
 		split	: true,
 	}]
 	
