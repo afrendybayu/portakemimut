@@ -20,19 +20,19 @@ Ext.define('rcm.view.konfig.FailureForm', {
 		me.items = [{
 			fieldLabel	: 'Nama Failure',
             name		: 'nama',
-			// hidden		: me.hidnama,
+			width		: 400,
             allowBlank	: false
 		},{
 			fieldLabel	: 'Kode Failure',
             name		: 'kode',
-			// hidden		: me.hidkode,
+			width		: 400,
             allowBlank	: false
 		
 		},{
 			fieldLabel	: 'Keterangan',
             name		: 'ket',
-			// hidden		: me.hiddur,
-            allowBlank	: true
+			width		: 400,
+            xtype	: 'textarea'
 
 		}];
 		
