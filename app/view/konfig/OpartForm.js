@@ -11,12 +11,12 @@ Ext.define('rcm.view.konfig.OpartForm', {
 		me.items = [{
 			fieldLabel	: 'Nama Object Part',
             name		: 'nama',
-			// hidden		: me.hidnama,
+			width		: 400,
             allowBlank	: false
 		},{
 			fieldLabel	: 'Kode Object Part',
             name		: 'kode',
-			// hidden		: me.hidkode,
+			width		: 400,
             allowBlank	: false
 	
 		},{

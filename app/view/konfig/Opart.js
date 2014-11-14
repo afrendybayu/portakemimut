@@ -8,36 +8,21 @@ Ext.define('rcm.view.konfig.Opart', {
         
     ],
 	
-	layout	: {
-		type : 'border'
-		
-	},
+    layout	: 'border',
 	defaults: {autoScroll: true},
 	
 	items : [{
 		title	: 'Form Object Part',
-        region	: 'center',     
-        xtype	: 'panel',
-		height	: '30%',
-		layout	: 'fit',
-		autoScroll: true,
-		frame	: true,
-		items	: [{
-			xtype 	: 'fOpart',
-		}]
-		
+        region	: 'east',     
+        xtype	: 'fOpart',
+		minWidth: '420',
+		collapsible	: true,
+		split	: true
+
 	},{
 		title	: 'Data Object Part',
-        region	: 'south',     
+        region	: 'center',     
         xtype	: 'gridOpart',
-		html	: 'bawah',
-        height	: '70%',
-        collapsible	: true,
-		// collapsed	: true,
-		split	: true,
-		
 	
 	}]
-	
-	
 });
