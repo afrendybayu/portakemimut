@@ -34,7 +34,7 @@ Ext.define('rcm.view.konfig.SympForm', {
 			formBind: true, 
 			disabled: true
         },{
-        	id : 'tbleditsymp'
+        	id : 'tbleditsymp',
         	text: 'Edit',
 			formBind: true,
 			disabled: true,
