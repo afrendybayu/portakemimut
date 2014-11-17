@@ -33,18 +33,23 @@ Ext.define('rcm.view.konfig.PmDefForm', {
 		}];
 		
 		me.buttons = [{
+			id : 'tblsmppmdef',
 			text: 'Simpan',
 			formBind: true, 
 			disabled: true
         },{
+        	id : 'tbleditpmdef',
         	text: 'Edit',
 			formBind: true,
-			disabled: true
+			disabled: true,
+			hidden	: true
 			
         },{
             text: 'Batal',
             handler: function() {
                 this.up('form').getForm().reset();
+                Ext.getCmp('tblsmppmdef').setVisible(true);
+        		Ext.getCmp('tbleditpmdef').setVisible(false);
             }
 		}];
 	

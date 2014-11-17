@@ -46,13 +46,13 @@ Ext.define('rcm.view.konfig.OpartForm', {
 			id : 'tblsmpopart',
 			text: 'Simpan',
 			formBind: true, 
-			disabled: true,
+			disabled: true
         },{
             id : 'tbleditopart',
             text: 'Edit',
             formBind: true, 
 			disabled: true,
-			hidden	: true,
+			hidden	: true
 		},{
 			text: 'Batal',
 			handler: function() {

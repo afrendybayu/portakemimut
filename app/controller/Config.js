@@ -986,6 +986,8 @@ Ext.define('rcm.controller.Config', {
 		var me =this;
 		if (records[0]) {
 			me.getF_PmDef().getForm().loadRecord(records[0]);
+			Ext.getCmp('tblsmppmdef').setVisible(false);
+        	Ext.getCmp('tbleditpmdef').setVisible(true);
         }
 	},
 	
