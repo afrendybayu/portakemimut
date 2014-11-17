@@ -16,9 +16,9 @@ Ext.define('rcm.model.User', {
 		type: 'ajax',
 		api: {
 			read	: 'ci/index.php/konfig/Conf/rUser',
-			/*destroy : 'ci/index.php/konfig/Conf/dCause',
-			create	: 'ci/index.php/konfig/Conf/cCause',
-			update	: 'ci/index.php/konfig/Conf/uCause'*/
+			destroy : 'ci/index.php/konfig/Conf/dUser',
+			create	: 'ci/index.php/konfig/Conf/cUser',
+			//update	: 'ci/index.php/konfig/Conf/uCause'*/
         },
         reader: {
             type: 'json',

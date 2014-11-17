@@ -723,6 +723,48 @@ class Conf extends CI_Controller {
 		
 		echo json_encode($jsonResult);
 	}
+	public function cUser(){
+		
+		try {
+			$dmg = json_decode(file_get_contents('php://input'));
+			
+			$cek = "select * from user where nama = '{$dmg->nama}' or userid = '{$dmg->userid}'";
+			$query = $this->db->query($cek);
+			if ($query->num_rows() > 0){
+				return false;
+			}
+			else{
+				// $sql = "insert into aksi (nama, ket) values ('{$aksi->nama}','{$aksi->ket}')";
+				// nama, userid, pass, akses, active, ket
+				$sql = "insert into user (nama, userid, pass, akses, active, ket) 
+				VALUES ('{$dmg->nama}','{$dmg->userid}','{$dmg->pass}','{$dmg->akses}','{$dmg->active}','{$dmg->ket}')";
+				$hsl = $this->db->query($sql);
+			}
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+	}
+	public function dUser(){
+		
+		try {
+			$dref = json_decode(file_get_contents('php://input'));
+			
+			
+			$this->db->where('id', $dref->id);
+			$this->db->delete('user'); 
+			
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+	}
 }
 
 /* End of file rLokUnit.php */

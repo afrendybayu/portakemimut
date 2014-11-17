@@ -376,12 +376,48 @@ Ext.define('rcm.controller.Config', {
     },
     hdlSmpUserForm : function(){
     	alert ('pencet user simpan');
+    	var me =this,
+    	usr = me.getF_User().getForm(),
+		getdUsr = usr.getValues(),
+		usrSave = new rcm.model.User(getdUsr);
+		// console.log(getDOpart);
+		// console.log(optSave);
+		usr.reset();
+		usrSave.save({
+			success: function(record, operation){
+				me.getUsersStore().reload();
+			}
+		});
     },
     hdlEditUserForm : function(){
     	alert ('pencet user udit');
     },
     delUserGrid : function(rec){
     	alert ('pencet tombol apuss');
+    	var me = this, 
+		record = rec.data,
+		delusr = new rcm.model.User(record );
+		Ext.MessageBox.show({
+				title : 'Hapus User',
+				msg   : 'Yakin Data Akan di Hapus ??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						delusr.destroy ({
+							success : function(record, operation){
+								// dcmon.destroy();
+								// me.getConMonStore().reload();
+								me.getUsersStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+				}
+			});
     },
 
     slctUserGrid : function(model,records){

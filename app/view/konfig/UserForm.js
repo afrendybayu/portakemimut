@@ -51,7 +51,8 @@ Ext.define('rcm.view.konfig.UserForm', {
 			},{
 				xtype	: 'checkboxfield',
 	            name	: 'active',
-	            checked: true,
+	            // checked: true,
+	            inputValue : 1,
 	            margins: '0 0 0 10',
 	            boxLabel: 'Aktif',
 	            flex : 1,
