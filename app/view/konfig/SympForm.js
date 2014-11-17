@@ -29,18 +29,23 @@ Ext.define('rcm.view.konfig.SympForm', {
 		}];
 		
 		me.buttons = [{
+			id : 'tblsmpsymp',
 			text: 'Simpan',
 			formBind: true, 
 			disabled: true
         },{
+        	id : 'tbleditsymp'
         	text: 'Edit',
 			formBind: true,
-			disabled: true
+			disabled: true,
+			hidden	: true
 			
         },{
             text: 'Batal',
             handler: function() {
                 this.up('form').getForm().reset();
+                Ext.getCmp('tblsmpsymp').setVisible(true);
+        		Ext.getCmp('tbleditsymp').setVisible(false);
             }
 		}];
 	

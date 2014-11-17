@@ -500,6 +500,8 @@ Ext.define('rcm.controller.Config', {
     	var me =this;
 		if (records[0]) {
 			me.getFSymptom().getForm().loadRecord(records[0]);
+			Ext.getCmp('tblsmpsymp').setVisible(false);
+        	Ext.getCmp('tbleditsymp').setVisible(true);
         }
     },
     hdlSmpReferForm : function(){
