@@ -5,7 +5,7 @@
  * metadata-driven class system features 
  */
 Ext.Loader.addClassPathMappings({
-  "Chart": "ext/src/Chart",
+  "Chart.ux.Highcharts.WaterfallSerie": "ext/src/Chart/ux/Highcharts/WaterfallSerie.js",
   "Ext": "ext/src",
   "Ext.DomHelper": "ext/src/dom/Helper.js",
   "Ext.DomQuery": "ext/src/dom/Query.js",

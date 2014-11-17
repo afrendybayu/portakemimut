@@ -106,8 +106,8 @@ Ext.define('rcm.controller.Config', {
 			//xtype: 'tKGridL',
 			//autoCreate: true
 		},{
-			ref: 'fAksi',
-			selector : 'fAksi'
+			ref: 'f_Aksi',
+			selector : 'f_Aksi'
 		},{
 			ref : 'f_PmDef',
 			selector : 'f_PmDef'
@@ -246,7 +246,7 @@ Ext.define('rcm.controller.Config', {
 				deleteclick: me.hdlDelEq
 			},
 			 
-			'fAksi button[text=Simpan]' : {
+			'f_Aksi button[text=Simpan]' : {
 				click : me.hdlSmpAksiForm
 			},
 			'#iGMddef': {
@@ -258,7 +258,7 @@ Ext.define('rcm.controller.Config', {
 			'#iGPmdef': {
 				click: me.iGPmdef
 			},
-			'fAksi button[text=Edit]' : {
+			'f_Aksi button[text=Edit]' : {
 				click : me.hdlEditAksiForm
 			},
 			'f_PmDef button[text=Simpan]' : {
@@ -426,7 +426,11 @@ Ext.define('rcm.controller.Config', {
     	var me =this;
 		if (records[0]) {
 			me.getFOpart().getForm().loadRecord(records[0]);
+			// Ext.getCmp('tblsmpopart').setHidden = true;
+        	Ext.getCmp('tblsmpopart').setVisible(false);
+        	Ext.getCmp('tbleditopart').setVisible(true);
         }
+
     },
     hdlSmpSympForm : function(){
     	// alert('Symptom klik simpan');
@@ -1069,7 +1073,7 @@ Ext.define('rcm.controller.Config', {
     slctAksiGrid : function (model, records){
 		var me =this;
 		if (records[0]) {
-			me.getFAksi().getForm().loadRecord(records[0]);
+			me.getF_Aksi().getForm().loadRecord(records[0]);
         }
 	},
 	
@@ -1108,7 +1112,7 @@ Ext.define('rcm.controller.Config', {
 		// alert ('ini tombol edit');
 		var me = this;
 		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
-		isiform = me.getFAksi().getForm();
+		isiform = me.getF_Aksi().getForm();
 		dataid = isiform.getRecord().data.id;
 		isivalue = isiform.getValues();
 		// isiform.//.newValues();
@@ -1135,11 +1139,11 @@ Ext.define('rcm.controller.Config', {
 	hdlSmpAksiForm : function(){
 		// alert('tekan tombol simpan');
 		var me = this,
-		f_aksi = me.getFAksi().getForm(),
-		getDataAksi = f_aksi.getValues(),
+		ff_aksi = me.getF_Aksi().getForm(),
+		getDataAksi = ff_aksi.getValues(),
 		AksiSave = new rcm.model.FormAksi(getDataAksi);
 		// console.log(AksiSave);
-		f_aksi.reset();
+		ff_aksi.reset();
 		AksiSave.save({
 			success: function(record, operation){
 				me.getFormAksisStore().reload();

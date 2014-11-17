@@ -11,7 +11,7 @@ Ext.define('rcm.view.konfig.OpartGrid', {
 		me.columns = {	
 			items: [{ 
 				xtype:'rownumberer',
-				width:25, 
+				width:45, 
 				header : 'No'
 				// hidden: me.hiden1
 			},{ 
@@ -26,7 +26,7 @@ Ext.define('rcm.view.konfig.OpartGrid', {
 				// hidden		: me.hidegrid2,
 				// width:60
 				flex:1
-			},{
+			/*},{
 				xtype		: 'checkcolumn',
 				header		: 'Obama',
 				dataIndex	: 'obama',
@@ -42,7 +42,7 @@ Ext.define('rcm.view.konfig.OpartGrid', {
 				// hidden		: me.hidegrid4,
 				// width:60
 				flex:1,
-				listeners: { beforecheckchange: function () { return false; } }
+				listeners: { beforecheckchange: function () { return false; } }*/
 			/*},{
 				header		: 'Keterangan',
 				dataIndex	: 'ket',

@@ -43,17 +43,22 @@ Ext.define('rcm.view.konfig.OpartForm', {
 		}];
 		
 		me.buttons = [{
+			id : 'tblsmpopart',
 			text: 'Simpan',
 			formBind: true, 
 			disabled: true,
         },{
+            id : 'tbleditopart',
             text: 'Edit',
             formBind: true, 
 			disabled: true,
+			hidden	: true,
 		},{
 			text: 'Batal',
 			handler: function() {
                 this.up('form').getForm().reset();
+                Ext.getCmp('tblsmpopart').setVisible(true);
+        		Ext.getCmp('tbleditopart').setVisible(false);
             }
 		}];
 	

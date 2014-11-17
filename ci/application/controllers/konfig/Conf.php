@@ -38,7 +38,8 @@ class Conf extends CI_Controller {
 			$query = $this->db->query($cek);
 			if ($query->num_rows() > 0){
 				// echo "Sudah ada data ".$aksi->nama;
-				$sql = "update aksi set nama = '{$aksi->nama}', ket = '{$aksi->ket}' where nama = '{$aksi->nama}' ";
+				// $sql = "update aksi set nama = '{$aksi->nama}', ket = '{$aksi->ket}' where nama = '{$aksi->nama}' ";
+				return false;
 			}
 			else{
 				$sql = "insert into aksi (nama, ket) values ('{$aksi->nama}','{$aksi->ket}')";

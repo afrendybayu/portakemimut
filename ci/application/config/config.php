@@ -14,7 +14,8 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/daunbiru/portakemimut/ci'; //medco/ci/';
+// $config['base_url']	= 'http://localhost/daunbiru/portakemimut/ci'; //medco/ci/';
+$config['base_url']	= 'http://localhost/daunbiru/mulyoharjo/'; //medco/ci/';
 
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +27,8 @@ $config['base_url']	= 'http://localhost/daunbiru/portakemimut/ci'; //medco/ci/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php?';
-//$config['index_page'] = '';
+// $config['index_page'] = 'index.php?';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -58,8 +59,8 @@ $config['uri_protocol']	= 'AUTO';
 | http://codeigniter.com/user_guide/general/urls.html
 */
 
-//$config['url_suffix'] = '';
-$config['url_suffix'] = '.ab';
+$config['url_suffix'] = '';
+// $config['url_suffix'] = '.ab';
 
 /*
 |--------------------------------------------------------------------------
