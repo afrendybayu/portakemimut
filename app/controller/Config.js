@@ -687,6 +687,8 @@ Ext.define('rcm.controller.Config', {
     	var me =this;
 		if (records[0]) {
 			me.getFDamage().getForm().loadRecord(records[0]);
+			Ext.getCmp('tblsmpdamage').setVisible(false);
+        	Ext.getCmp('tbleditdamage').setVisible(true);
         }
     },
     hdlSmpDamageForm : function(){

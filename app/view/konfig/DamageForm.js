@@ -20,6 +20,7 @@ Ext.define('rcm.view.konfig.DamageForm', {
 		}];
 		
 		me.buttons = [{
+			id : 'tblsmpdamage',
 			text: 'Simpan',
 			formBind: true, 
 			disabled: true
@@ -29,9 +30,11 @@ Ext.define('rcm.view.konfig.DamageForm', {
 				// this.up('form').getForm().isValid();
             // }
         },{
+        	id : 'tbleditdamage',
         	text: 'Edit',
 			formBind: true,
 			disabled: true,
+			hidden	: true
 			// handler : function(){
 			// 		onChange(newVal, oldVal) {
 	  //               alert(newVal);
@@ -42,6 +45,8 @@ Ext.define('rcm.view.konfig.DamageForm', {
             text: 'Batal',
             handler: function() {
                 this.up('form').getForm().reset();
+                Ext.getCmp('tblsmpdamage').setVisible(true);
+        		Ext.getCmp('tbleditdamage').setVisible(false);
             }
 		}];
 	
