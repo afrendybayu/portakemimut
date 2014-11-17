@@ -57,6 +57,7 @@ Ext.define('rcm.view.konfig.OpartForm', {
 			text: 'Batal',
 			handler: function() {
                 this.up('form').getForm().reset();
+                // this.getComponent('tblsmpopart').setVisible(true);
                 Ext.getCmp('tblsmpopart').setVisible(true);
         		Ext.getCmp('tbleditopart').setVisible(false);
             }

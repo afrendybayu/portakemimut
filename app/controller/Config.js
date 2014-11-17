@@ -358,13 +358,13 @@ Ext.define('rcm.controller.Config', {
 		
     },
     hdlSmpOpartForm : function(){
-    	alert ('tekan opart simpan');
+    	// alert ('tekan opart simpan');
     	var me =this,
     	opt = me.getFOpart().getForm(),
 		getDOpart = opt.getValues(),
 		optSave = new rcm.model.OPartDef(getDOpart);
-		console.log(getDOpart);
-		console.log(optSave);
+		// console.log(getDOpart);
+		// console.log(optSave);
 		opt.reset();
 		optSave.save({
 			success: function(record, operation){
@@ -374,14 +374,14 @@ Ext.define('rcm.controller.Config', {
     	
     },
     hdlEditOpartForm : function(){
-    	alert ('tekan edit opart');
+    	// alert ('tekan edit opart');
     	var me =this,
     	isiopt = me.getFOpart().getForm(),
 		dataid = isiopt.getRecord().data.id,
 		isivalue = isiopt.getValues();
 		// cobama 	= isivalue.obama ? 1 : 0;
 		editopt = Ext.create(rcm.model.OPartDef,{
-			id:dataid, nama:isivalue.nama, kode:isivalue.kode, obama:isivalue.obama, sap:isivalue.sap
+			id:dataid, nama:isivalue.nama, kode:isivalue.kode
 		});
 		// console.log(isivalue);
 		// console.log(dataid);
@@ -427,6 +427,7 @@ Ext.define('rcm.controller.Config', {
 		if (records[0]) {
 			me.getFOpart().getForm().loadRecord(records[0]);
 			// Ext.getCmp('tblsmpopart').setHidden = true;
+        	// me.getFOpart().getComponent('tblsmpopart').setVisible(true);
         	Ext.getCmp('tblsmpopart').setVisible(false);
         	Ext.getCmp('tbleditopart').setVisible(true);
         }

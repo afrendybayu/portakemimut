@@ -650,8 +650,8 @@ class Conf extends CI_Controller {
 			}
 			else{
 				// $sql = "insert into aksi (nama, ket) values ('{$aksi->nama}','{$aksi->ket}')";
-				$sql = "insert into opartdef (nama, kode,obama, sap) 
-				VALUES ('{$dmg->nama}','".strtoupper($dmg->kode)."','{$dmg->obama}','{$dmg->sap}')";
+				$sql = "insert into opartdef (nama, kode) 
+				VALUES ('{$dmg->nama}','".strtoupper($dmg->kode)."')";
 				$hsl = $this->db->query($sql);
 			}
 			
@@ -671,8 +671,8 @@ class Conf extends CI_Controller {
 				'nama' 	=> $refer->nama ,
 				'kode' 	=> strtoupper($refer->kode),
 				// 'ket' 	=> $fail->ket 
-				'obama' => $refer->obama,
-				'sap'	=> $refer->sap,
+				// 'obama' => $refer->obama,
+				// 'sap'	=> $refer->sap,
 				// 
 			 );
 			
