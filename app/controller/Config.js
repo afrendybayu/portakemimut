@@ -920,6 +920,8 @@ Ext.define('rcm.controller.Config', {
     	var me =this;
 		if (records[0]) {
 			me.getFCause().getForm().loadRecord(records[0]);
+			Ext.getCmp('tblsmpcause').setVisible(false);
+        	Ext.getCmp('tbleditcause').setVisible(true);
         }
     },
 

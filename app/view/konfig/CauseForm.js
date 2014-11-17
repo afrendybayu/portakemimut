@@ -48,15 +48,18 @@ Ext.define('rcm.view.konfig.CauseForm', {
 			text: 'Simpan',
 			formBind: true, 
 			disabled: true,
+			id  :'tblsmpcause'
             // handler: function() {
                 // fireEvent('SimpanAksi', args ) ;
 				// alert ('simpan dulu');
 				// this.up('form').getForm().isValid();
             // }
         },{
+        	id : 'tbleditcause',
             text: 'Edit',
             formBind: true, 
 			disabled: true,
+			hidden	: true
             // handler: function() {
                 // this.up('form').getForm().reset();
             // }
@@ -64,6 +67,8 @@ Ext.define('rcm.view.konfig.CauseForm', {
 			text: 'Batal',
 			handler: function() {
                 this.up('form').getForm().reset();
+                Ext.getCmp('tblsmpcause').setVisible(true);
+        		Ext.getCmp('tbleditcause').setVisible(false);
             }
 		}];
 	
