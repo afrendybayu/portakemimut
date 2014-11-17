@@ -29,17 +29,22 @@ Ext.define('rcm.view.konfig.ReferForm', {
 		}];
 		
 		me.buttons = [{
+			id : 'tblsmprefer',
 			text: 'Simpan',
 			formBind: true, 
 			disabled: true
         },{
+        	id : 'tbleditrefer',
         	text: 'Edit',
 			formBind: true,
-			disabled: true
+			disabled: true,
+			hidden	: true
         },{
             text: 'Batal',
             handler: function() {
                 this.up('form').getForm().reset();
+                Ext.getCmp('tblsmprefer').setVisible(true);
+        		Ext.getCmp('tbleditrefer').setVisible(false);
             }
 		}];
 	

@@ -37,19 +37,24 @@ Ext.define('rcm.view.konfig.FailureForm', {
 		}];
 		
 		me.buttons = [{
+			id : 'tblsmpfail',
 			text: 'Simpan',
 			formBind: true, 
 			disabled: true
             
         },{
+        	id : 'tbleditfail',
             text: 'Edit',
             formBind: true, 
-			disabled: true
-            
+			disabled: true,
+			hidden	: true
+            //
 		},{
 			text: 'Batal',
 			handler: function() {
                 this.up('form').getForm().reset();
+                Ext.getCmp('tblsmpfail').setVisible(true);
+        		Ext.getCmp('tbleditfail').setVisible(false);
             }
 		}];
 	

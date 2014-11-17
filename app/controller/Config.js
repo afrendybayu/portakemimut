@@ -573,6 +573,8 @@ Ext.define('rcm.controller.Config', {
     	var me =this;
 		if (records[0]) {
 			me.getFRefer().getForm().loadRecord(records[0]);
+			Ext.getCmp('tblsmprefer').setVisible(false);
+        	Ext.getCmp('tbleditrefer').setVisible(true);
         }
     },
 
@@ -654,6 +656,8 @@ Ext.define('rcm.controller.Config', {
     	var me =this;
 		if (records[0]) {
 			me.getFFailure().getForm().loadRecord(records[0]);
+			Ext.getCmp('tblsmpfail').setVisible(false);
+        	Ext.getCmp('tbleditfail').setVisible(true);
         }
     },
     delFailureGrid : function(rec){
