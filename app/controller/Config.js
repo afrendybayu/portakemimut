@@ -1075,6 +1075,9 @@ Ext.define('rcm.controller.Config', {
 		var me =this;
 		if (records[0]) {
 			me.getF_Aksi().getForm().loadRecord(records[0]);
+			Ext.getCmp('tblsmpaksi').setVisible(false);
+        	Ext.getCmp('tbleditaksi').setVisible(true);
+
         }
 	},
 	

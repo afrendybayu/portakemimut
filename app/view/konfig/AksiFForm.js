@@ -20,6 +20,7 @@ Ext.define('rcm.view.konfig.AksiFForm', {
 		}];
 		
 		me.buttons = [{
+			id : 'tblsmpaksi',
 			text: 'Simpan',
 			formBind: true, 
 			disabled: true
@@ -29,13 +30,17 @@ Ext.define('rcm.view.konfig.AksiFForm', {
 				// this.up('form').getForm().isValid();
             // }
         },{
+        	id : 'tbleditaksi',
         	text: 'Edit',
 			formBind: true,
 			disabled: true,
+			hidden	: true
         },{
             text: 'Batal',
             handler: function() {
                 this.up('form').getForm().reset();
+                Ext.getCmp('tblsmpaksi').setVisible(true);
+        		Ext.getCmp('tbleditaksi').setVisible(false);
             }
 		}];
 	
