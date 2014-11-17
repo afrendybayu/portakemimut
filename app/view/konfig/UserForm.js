@@ -13,6 +13,9 @@ Ext.define('rcm.view.konfig.UserForm', {
             // ptype: 'datatip'
         // },
 	defaultType: 'textfield',
+	defaults: {
+    	width : 400
+    },
 
 	initComponent: function() {
 		var me = this;
@@ -23,25 +26,53 @@ Ext.define('rcm.view.konfig.UserForm', {
 		},{
 			fieldLabel	: 'User ID',
             name		: 'userid',
+            allowBlank	: false
 		},{
 			fieldLabel	: 'Password',
             name		: 'pass',
            	inputType	: 'password',
+           	allowBlank	: false
         },{
-			/*xtype		: 'combobox',
-			fieldLabel	: 'Level Akses',
-            name		: 'akses',
-           	editable	: false,
-            allowBlank	: false,
-            // store 		: 'CbLvlUsers',
-            emptyText	: 'Hak Akses',
-            queryMode	: 'local',
-		    // displayField: 'nama',
-		    valueField	: 'level',
-		},{*/
+        	xtype		: 'fieldcontainer',
+            fieldLabel	: 'Level Akses',
+            layout: 'hbox',
+            items		: [{
+            	xtype		: 'combobox',
+            	flex		: 3,
+	            name		: 'akses',
+	           	editable	: false,
+	            allowBlank	: false,
+	            store 		: 'CbLvlUsers',
+	            emptyText	: 'Hak Akses',
+	            queryMode	: 'local',
+			    displayField: 'nama',
+			    valueField	: 'level',
+			    allowBlank	: false
+			},{
+				xtype	: 'checkboxfield',
+	            name	: 'checkbox1',
+	            margins: '0 0 0 10',
+	            boxLabel: 'Aktif',
+	            flex : 1,
+            }]
+
+			
+		/*},{
+			fieldLabel	: 'Aktif',
+            name		: 'active',
+           	xtype		: 'checkboxfield',
+           	allowBlank	: false,
+           	items: [{
+                    // boxLabel  : 'Anchovies',
+                    name      : 'active',
+                    inputValue: '1',
+                    id        : 'checkbox1'
+                }]*/
+           	
+        },{
 			xtype		: 'textarea',
 			fieldLabel	: 'Keterangan',
-            name		: 'ket',
+            name		: 'ket'
 
 		}];
 		

@@ -350,7 +350,7 @@ Ext.define('rcm.controller.Config', {
 				selectionchange : me.slctOpartGrid
 			},
 			'gridUserList' : {
-				// UserGridDel : me.delUserGrid,
+				UserGridDel : me.delUserGrid,
 				selectionchange : me.slctUserGrid
 			},
 			'panLokasi button[text=Update]': {
@@ -379,6 +379,9 @@ Ext.define('rcm.controller.Config', {
     },
     hdlEditUserForm : function(){
     	alert ('pencet user udit');
+    },
+    delUserGrid : function(rec){
+    	alert ('pencet tombol apuss');
     },
 
     slctUserGrid : function(model,records){
