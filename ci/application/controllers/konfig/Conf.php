@@ -765,6 +765,30 @@ class Conf extends CI_Controller {
 			);
 		}
 	}
+	public function uUser(){
+		try {
+			$refer = json_decode(file_get_contents('php://input'));
+			
+			$upd = array(
+				// 'id' => $uaksi->id ,
+				'nama' 	=> $refer->nama,
+				'userid' 	=> $refer->userid,
+				'pass' 	=> $refer->pass,
+				'akses' 	=> $refer->akses,
+				'active' 	=> $refer->active,
+				'ket' 	=> $refer->ket
+			 );
+			
+			$this->db->where('id',$refer->id);
+			$this->db->update('user', $upd);
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+	}
 }
 
 /* End of file rLokUnit.php */

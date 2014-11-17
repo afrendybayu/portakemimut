@@ -375,7 +375,7 @@ Ext.define('rcm.controller.Config', {
 		
     },
     hdlSmpUserForm : function(){
-    	alert ('pencet user simpan');
+    	// alert ('pencet user simpan');
     	var me =this,
     	usr = me.getF_User().getForm(),
 		getdUsr = usr.getValues(),
@@ -391,9 +391,27 @@ Ext.define('rcm.controller.Config', {
     },
     hdlEditUserForm : function(){
     	alert ('pencet user udit');
+    	var me =this,
+    	isiusr = me.getF_User().getForm(),
+		dataid = isiusr.getRecord().data.id,
+		isivalue = isiusr.getValues();
+		// cobama 	= isivalue.obama ? 1 : 0;
+		editusr = Ext.create(rcm.model.User,{
+			id:dataid, nama:isivalue.nama, userid:isivalue.userid,pass:isivalue.pass, akses:isivalue.akses,active:isivalue.active
+		});
+		// console.log(isivalue);
+		// console.log(dataid);
+		isiusr.reset();
+		// me.getCausesStore().reload();
+		editusr.save({
+			success: function(record, operation){
+				me.getUsersStore().reload();
+			}
+
+		});
     },
     delUserGrid : function(rec){
-    	alert ('pencet tombol apuss');
+    	// alert ('pencet tombol apuss');
     	var me = this, 
 		record = rec.data,
 		delusr = new rcm.model.User(record );
