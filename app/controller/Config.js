@@ -15,8 +15,8 @@ Ext.define('rcm.controller.Config', {
 		'konfig.DamageGrid',
 		'konfig.DamageForm',
 		'konfig.DetailLokasi',
-		// 'konfig.FailureGrid',
-		// 'konfig.FailureForm',
+		'konfig.UserGGrid',
+		'konfig.UserForm',
 		
 		'konfig.wCatHir',
 				
@@ -76,6 +76,7 @@ Ext.define('rcm.controller.Config', {
 		'Refer',
 		'Symptom',
 		'OPartDef',
+		'User',
 
 		'CbLvlUser',
 
@@ -130,6 +131,9 @@ Ext.define('rcm.controller.Config', {
 			ref : 'fFailure',
 			selector : 'fFailure'
 		},{
+			ref: 'f_User',
+			selector : 'f_User'
+		},{
 			ref : 'gridFailure',
 			selector : 'gridFailure'
 		},{
@@ -142,14 +146,17 @@ Ext.define('rcm.controller.Config', {
 			ref : 'fSymptom',
 			selector : 'fSymptom'
 		},{
-			ref : 'gridSymptom',
-			selector : 'gridSymptom'
+			ref : 'griddSymptom',
+			selector : 'griddSymptom'
 		},{
 			ref : 'fOpart',
 			selector : 'fOpart'
 		},{
 			ref : 'gridOpart',
 			selector : 'gridOpart'
+		},{
+			ref : 'gridUserList',
+			selector : 'gridUserList'
 		},{
 			ref : 'panLokasi',
 			selector : 'panLokasi'
@@ -303,6 +310,12 @@ Ext.define('rcm.controller.Config', {
 			'fOpart button[text=Edit]' : {
 				click : me.hdlEditOpartForm
 			},
+			'f_User button[text=Simpan]' : {
+				click : me.hdlSmpUserForm
+			},
+			'f_User button[text=Edit]' : {
+				click : me.hdlEditUserForm
+			},
 			'gridAksi' :{
 				AksiGridDel  : me.delAksiGrid,
 				selectionchange : me.slctAksiGrid
@@ -328,13 +341,17 @@ Ext.define('rcm.controller.Config', {
 				ReferGridDel : me.delReferGrid,
 				selectionchange : me.slctReferGrid
 			},
-			'gridSymptom' : {
+			'griddSymptom' : {
 				SympGridDel : me.delSympGrid,
 				selectionchange : me.slctSympGrid
 			},
 			'gridOpart' : {
 				OpartGridDel : me.delOpartGrid,
 				selectionchange : me.slctOpartGrid
+			},
+			'gridUserList' : {
+				// UserGridDel : me.delUserGrid,
+				selectionchange : me.slctUserGrid
 			},
 			'panLokasi button[text=Update]': {
 				click : me.hdlUptHir
@@ -357,6 +374,23 @@ Ext.define('rcm.controller.Config', {
 		});
 		
     },
+    hdlSmpUserForm : function(){
+    	alert ('pencet user simpan');
+    },
+    hdlEditUserForm : function(){
+    	alert ('pencet user udit');
+    },
+
+    slctUserGrid : function(model,records){
+    	var me =this;
+		if (records[0]) {
+		 	me.getF_User().getForm().loadRecord(records[0]);
+		
+        	Ext.getCmp('tblsmpuser').setVisible(false);
+        	Ext.getCmp('tbledituser').setVisible(true);
+        }
+    },
+
     hdlSmpOpartForm : function(){
     	// alert ('tekan opart simpan');
     	var me =this,
@@ -592,7 +626,7 @@ Ext.define('rcm.controller.Config', {
 			
 			me.getCausesStore().load();
 			me.getDamagesStore().load();
-			me.getUsersStore().load();
+			// me.getUsersStore().load();
 			me.getRefersStore().load();
 			me.getSymptomsStore().load();
 			me.getOPartDefsStore().load();

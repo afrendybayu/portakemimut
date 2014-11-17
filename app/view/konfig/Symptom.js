@@ -4,7 +4,7 @@ Ext.define('rcm.view.konfig.Symptom', {
 	
 	requires: [
         'rcm.view.konfig.SympForm',
-		'rcm.view.konfig.SympGrid'
+		'rcm.view.konfig.SympGGrid'
         
     ],
 	
@@ -22,7 +22,7 @@ Ext.define('rcm.view.konfig.Symptom', {
 	},{
 		title	: 'Data Symptom',
         region	: 'center',     
-        xtype	: 'gridSymptom',
+        xtype	: 'griddSymptom',
 	
 	}]
 

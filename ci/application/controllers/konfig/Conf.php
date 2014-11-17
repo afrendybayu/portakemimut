@@ -6,6 +6,7 @@ class Conf extends CI_Controller {
 		$this->load->model('fmea');
 		$this->load->model('pm');
 		$this->load->model('damage');
+		$this->load->model('login');
 	}
 	
 	public function rAksi()	{
@@ -702,6 +703,25 @@ class Conf extends CI_Controller {
 				'message' => $e->getMessage()
 			);
 		}
+	}
+	public function rUser(){
+		try {
+			
+			$hsl = $this->login->get_user();
+			
+			$jsonResult = array(
+				'success' => true,
+				'userlist' => $hsl
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
 	}
 }
 

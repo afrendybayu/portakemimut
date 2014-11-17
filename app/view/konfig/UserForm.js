@@ -1,7 +1,7 @@
 Ext.define('rcm.view.konfig.UserForm', {
 	extend: 'Ext.form.Panel',
 
-	xtype: 'fUser',
+	xtype: 'f_User',
 	
 	// layout: {
 		// type :'form'
@@ -23,38 +23,46 @@ Ext.define('rcm.view.konfig.UserForm', {
 		},{
 			fieldLabel	: 'User ID',
             name		: 'userid',
-            allowBlank	: true
 		},{
 			fieldLabel	: 'Password',
             name		: 'pass',
            	inputType	: 'password',
-            allowBlank	: true
         },{
-			xtype		: 'combobox',
+			/*xtype		: 'combobox',
 			fieldLabel	: 'Level Akses',
             name		: 'akses',
            	editable	: false,
             allowBlank	: false,
-            store 		: 'CbLvlUsers',
+            // store 		: 'CbLvlUsers',
             emptyText	: 'Hak Akses',
             queryMode	: 'local',
-		    displayField: 'nama',
+		    // displayField: 'nama',
 		    valueField	: 'level',
+		},{*/
+			xtype		: 'textarea',
+			fieldLabel	: 'Keterangan',
+            name		: 'ket',
+
 		}];
 		
 		me.buttons = [{
+			id : 'tblsmpuser',
 			text: 'Simpan',
 			formBind: true, 
 			disabled: true
         },{
+        	id : 'tbledituser',
         	text: 'Edit',
 			formBind: true,
 			disabled: true,
+			hidden : true
 			
         },{
             text: 'Batal',
             handler: function() {
                 this.up('form').getForm().reset();
+                Ext.getCmp('tblsmpuser').setVisible(true);
+        		Ext.getCmp('tbledituser').setVisible(false);
             }
 		}];
 	
