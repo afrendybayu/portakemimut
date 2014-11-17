@@ -42,6 +42,16 @@ Ext.define('rcm.view.konfig.UserGGrid', {
 				flex:1
 			
 			},{
+				xtype		: 'checkcolumn',
+				header		: 'Aktif',
+				dataIndex	: 'active',
+				// hidden		: me.hidegrid3,
+				// width:60
+				//flex:1,
+				width:60,
+				listeners: { beforecheckchange: function () { return false; } }
+			
+			},{
 				header		: 'Keterangan',
 				dataIndex	: 'ket',
 				// hidden		: me.hidegrid2,

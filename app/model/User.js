@@ -5,8 +5,13 @@ Ext.define('rcm.model.User', {
 		'Ext.data.proxy.Ajax'
 	],
 
-	fields: ['id', 'akses' ,'nama' ,'userid','pass','ket' ],
-	
+	// fields: ['id', 'akses' ,'nama' ,'userid','pass', 'active' ,'ket' ],
+	fields: ['id' ,
+				{name : 'nama', type : 'string'},
+				{name : 'active', type : 'int'},
+			'akses' ,'userid','pass','ket' ],
+
+
     proxy: {
 		type: 'ajax',
 		api: {
