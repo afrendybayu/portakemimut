@@ -146,15 +146,44 @@ class Runninghour extends CI_Model {
 	}
 	
 	function get_avre_2th($cat, $thn, $thnm1)	{
-		$sql =	"SELECT bln AS b, DATE_FORMAT(tgl,'%b') AS m ".
-				",ROUND(ifnull(sum(rh_av)*100/(SELECT DAY(LAST_DAY(tgl))*24*(select count(*) from hirarki where flag = $cat and thn=$thn)),0),2) AS av2014 ".
-				",ROUND(ifnull(sum(rh_re)*100/(SELECT DAY(LAST_DAY(tgl))*24*(select count(*) from hirarki where flag = $cat and thn=$thn)),0),2) AS re2014 ".
-				",ROUND(ifnull(sum(rh_av)*100/(SELECT DAY(LAST_DAY(tgl))*24*(select count(*) from hirarki where flag = $cat and thn=$thnm1)),0),2) AS av2013 ".
-				",ROUND(ifnull(sum(rh_re)*100/(SELECT DAY(LAST_DAY(tgl))*24*(select count(*) from hirarki where flag = $cat and thn=$thnm1)),0),2) AS re2013 ".
-				"FROM rh_201311 ".
-				"WHERE cat=$cat and (thn='$thn' or thn='$thnm1') ".
-				"GROUP BY bln ORDER BY bln ASC";
+		/*
+		$sql =	"SELECT bln AS b, DATE_FORMAT(tgl,'%b') AS m
+				,ROUND(ifnull(sum(rh_av)*100/(SELECT DAY(LAST_DAY(tgl))*24*(select count(*) from hirarki where flag = $cat and thn=$thn)),0),2) AS av2014
+				,ROUND(ifnull(sum(rh_re)*100/(SELECT DAY(LAST_DAY(tgl))*24*(select count(*) from hirarki where flag = $cat and thn=$thn)),0),2) AS re2014
+				,ROUND(ifnull(sum(rh_av)*100/(SELECT DAY(LAST_DAY(tgl))*24*(select count(*) from hirarki where flag = $cat and thn=$thnm1)),0),2) AS av2013
+				,ROUND(ifnull(sum(rh_re)*100/(SELECT DAY(LAST_DAY(tgl))*24*(select count(*) from hirarki where flag = $cat and thn=$thnm1)),0),2) AS re2013
+				FROM rh_201311
+				WHERE cat=$cat and (thn='$thn' or thn='$thnm1')
+				GROUP BY bln ORDER BY bln ASC";
+		//*/
+		$hasil = array();
+		
+		$sql =	"SELECT bln AS b, DATE_FORMAT(tgl,'%b') AS m
+				,(SELECT count(*) from hirarki where flag = $cat and thn=$thn) AS jt
+				,(SELECT DAY(LAST_DAY(tgl))*24*jt) AS ld
+				,ROUND((SELECT sum(rh_av)*100/ld),2) AS av2014
+				,ROUND((SELECT sum(rh_re)*100/ld),2) AS re2014
+				FROM rh_201311 WHERE cat=$cat and thn in ($thn) 
+				GROUP BY bln ORDER BY bln ASC;";
+		echo "sql: $sql<br/><br/>";
 		$query = $this->db->query($sql);
+		$hsl1 = $this->db->query($sql)->result();
+		
+		$sql =	"SELECT bln AS b, DATE_FORMAT(tgl,'%b') AS m
+				,(SELECT count(*) from hirarki where flag = $cat and thn=$thnm1) AS jt
+				,(SELECT DAY(LAST_DAY(tgl))*24*jt) AS ld
+				,ROUND((SELECT sum(rh_av)*100/ld),2) AS av2013
+				,ROUND((SELECT sum(rh_re)*100/ld),2) AS re2013
+				FROM rh_201311 WHERE cat=$cat and thn in ($thnm1) 
+				GROUP BY bln ORDER BY bln ASC;";
+		echo "sql: $sql<br/><br/>";
+		$hsl2 = $this->db->query($sql)->result();
+		
+		print_r($hasil); echo "<br/><br/>";
+		for($k=0; $k<12; $k++)	{
+		//	if ($k==)
+		}
+		
 		return $query->result();
 	}
 }

@@ -3,10 +3,10 @@
 class rAvReUnit extends CI_Controller {
 	
 	public function index()	{
-		
+		//
 		$this->load->model("runninghour");
 		$this->load->model("catequip");
-			
+			//echo "tes";
 		$gr = $this->input->get('gr')?:$this->catequip->get_tipe_id();
 		//echo "gr: $gr ".$nowD = date('j')+1;
 		
