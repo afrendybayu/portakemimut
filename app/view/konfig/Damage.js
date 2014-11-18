@@ -7,15 +7,12 @@ Ext.define('rcm.view.konfig.Damage', {
 		'rcm.view.konfig.DamageGrid'
         
     ],
-	
-	layout	: {
-		type : 'border'
-		
-	},
+	layout	: 'border',
 	defaults: {autoScroll: true},
 	
 	items : [{
 		title	: 'Form Damages',
+<<<<<<< HEAD
         region	: 'center',     
         xtype	: 'panel',
 		height	: '30%',
@@ -32,10 +29,19 @@ Ext.define('rcm.view.konfig.Damage', {
 		// collapsible: true,
 		// collapsed	: true,
 		// split	: true
+=======
+        region	: 'east',     
+        xtype	: 'fDamage',
+		minWidth: '420',
+		collapsible	: true,
+		split	: true
+
+>>>>>>> jono
 	},{
 		title	: 'Data Damages',
-        region	: 'south',     
+        region	: 'center',     
         xtype	: 'gridDamage',
+<<<<<<< HEAD
 		html	: 'bawah',
         height	: '70%',
         collapsible	: true,
@@ -50,3 +56,9 @@ Ext.define('rcm.view.konfig.Damage', {
 	
 	
 });
+=======
+	
+	}]
+	
+});
+>>>>>>> jono

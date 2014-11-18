@@ -7,9 +7,16 @@
 Ext.Loader.addClassPathMappings({
   "Chart": "../../ext/src/Chart",
   "Ext": "../../ext/src",
+  "Ext.DomHelper": "../../ext/src/dom/Helper.js",
+  "Ext.DomQuery": "../../ext/src/dom/Query.js",
+  "Ext.EventObjectImpl": "../../ext/src/EventObject.js",
   "Ext.Msg": "../../ext/src/window/MessageBox.js",
+  "Ext.Supports": "../../ext/src/Support.js",
   "Ext.chart": "../../ext/src/chart__",
+  "Ext.core.DomHelper": "../../ext/src/dom/Helper.js",
+  "Ext.core.DomQuery": "../../ext/src/dom/Query.js",
   "Ext.rtl.EventObjectImpl": "../../ext/src/rtl/EventObject.js",
+<<<<<<< HEAD
   "Ext.view": "../../app/view",
   "Ext.view.AbstractView": "../../ext/src/view/AbstractView.js",
   "Ext.view.BoundList": "../../ext/src/view/BoundList.js",
@@ -21,6 +28,11 @@ Ext.Loader.addClassPathMappings({
   "Ext.view.TableLayout": "../../ext/src/view/TableLayout.js",
   "Ext.view.View": "../../ext/src/view/View.js",
   "rcm": "../../app"
+=======
+  "rcm": "../../app",
+  "rcm.store.OPartDefs": "../../app/store/OpartDefs.js",
+  "rcm.view.konfig.SympGrid": "../../app/view/konfig/UserGrid.js"
+>>>>>>> jono
 });
 Ext.ClassManager.addNameAlternateMappings({
   "Chart.ux.Highcharts": [],
@@ -889,7 +901,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.view.View": [
     "Ext.DataView"
   ],
-  "Ext.view.override.Table": [],
   "Ext.window.MessageBox": [],
   "Ext.window.Window": [
     "Ext.Window"
@@ -913,6 +924,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.CatHirEq": [],
   "rcm.model.Cause": [],
   "rcm.model.CbEquip": [],
+  "rcm.model.CbLvlUser": [],
   "rcm.model.CbParent": [],
   "rcm.model.CbUnit": [],
   "rcm.model.ConMon": [],
@@ -954,10 +966,12 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.ModeDef": [],
   "rcm.model.Note": [],
   "rcm.model.OPart": [],
+  "rcm.model.OPartDef": [],
   "rcm.model.OhTahun": [],
   "rcm.model.OverHaulIn": [],
   "rcm.model.PM": [],
   "rcm.model.ReHome": [],
+  "rcm.model.Refer": [],
   "rcm.model.RunningHour": [],
   "rcm.model.SapCause": [],
   "rcm.model.SapCauseInfo": [],
@@ -970,9 +984,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.SapOType": [],
   "rcm.model.SapOcPs": [],
   "rcm.model.SapSpeedo": [],
-  "rcm.model.SapSymptom": [],
   "rcm.model.SapThn": [],
   "rcm.model.SapTop": [],
+  "rcm.model.Symptom": [],
   "rcm.model.UnsetSesi": [],
   "rcm.store.Aksi": [],
   "rcm.store.AvGroup": [],
@@ -983,6 +997,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.Cause": [],
   "rcm.store.Causes": [],
   "rcm.store.CbEquip": [],
+  "rcm.store.CbLvlUsers": [],
   "rcm.store.CbParent": [],
   "rcm.store.CbUnit": [],
   "rcm.store.ConMon": [],
@@ -1029,8 +1044,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.ModeDefs": [],
   "rcm.store.Note": [],
   "rcm.store.OPart": [],
+  "rcm.store.OPartDefs": [],
+  "rcm.store.OParts": [],
   "rcm.store.OhTahun": [],
-  "rcm.store.OpartDefs": [],
   "rcm.store.OverHaulIn": [],
   "rcm.store.PM": [],
   "rcm.store.ReHome": [],
@@ -1094,7 +1110,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.dataentry.PropGrid": [],
   "rcm.view.dataentry.Tab": [],
   "rcm.view.konfig.Aksi": [],
-  "rcm.view.konfig.AksiForm": [],
+  "rcm.view.konfig.AksiFForm": [],
   "rcm.view.konfig.AksiGrid": [],
   "rcm.view.konfig.Cause": [],
   "rcm.view.konfig.CauseDefGrid": [],
@@ -1110,17 +1126,24 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.konfig.GridEquip": [],
   "rcm.view.konfig.GridL": [],
   "rcm.view.konfig.Opart": [],
+  "rcm.view.konfig.OpartForm": [],
+  "rcm.view.konfig.OpartGrid": [],
   "rcm.view.konfig.PanelList": [],
   "rcm.view.konfig.PmDef": [],
   "rcm.view.konfig.PmDefForm": [],
   "rcm.view.konfig.PmDefGrid": [],
   "rcm.view.konfig.Refer": [],
+  "rcm.view.konfig.ReferForm": [],
+  "rcm.view.konfig.ReferGrid": [],
+  "rcm.view.konfig.SympForm": [],
+  "rcm.view.konfig.SympGrid": [],
   "rcm.view.konfig.Symptom": [],
   "rcm.view.konfig.TabKonfig": [],
   "rcm.view.konfig.TreeCat": [],
   "rcm.view.konfig.TreeHirDef": [],
   "rcm.view.konfig.TreeHirarki": [],
   "rcm.view.konfig.User": [],
+  "rcm.view.konfig.UserForm": [],
   "rcm.view.konfig.wCatHir": [],
   "rcm.view.lapobama.Av2Thn": [],
   "rcm.view.lapobama.AvGroup": [],
@@ -2189,7 +2212,6 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.view.View": [
     "widget.dataview"
   ],
-  "Ext.view.override.Table": [],
   "Ext.window.MessageBox": [
     "widget.messagebox"
   ],
@@ -2215,6 +2237,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.CatHirEq": [],
   "rcm.model.Cause": [],
   "rcm.model.CbEquip": [],
+  "rcm.model.CbLvlUser": [],
   "rcm.model.CbParent": [],
   "rcm.model.CbUnit": [],
   "rcm.model.ConMon": [],
@@ -2256,10 +2279,12 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.ModeDef": [],
   "rcm.model.Note": [],
   "rcm.model.OPart": [],
+  "rcm.model.OPartDef": [],
   "rcm.model.OhTahun": [],
   "rcm.model.OverHaulIn": [],
   "rcm.model.PM": [],
   "rcm.model.ReHome": [],
+  "rcm.model.Refer": [],
   "rcm.model.RunningHour": [],
   "rcm.model.SapCause": [],
   "rcm.model.SapCauseInfo": [],
@@ -2272,9 +2297,9 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.SapOType": [],
   "rcm.model.SapOcPs": [],
   "rcm.model.SapSpeedo": [],
-  "rcm.model.SapSymptom": [],
   "rcm.model.SapThn": [],
   "rcm.model.SapTop": [],
+  "rcm.model.Symptom": [],
   "rcm.model.UnsetSesi": [],
   "rcm.store.Aksi": [],
   "rcm.store.AvGroup": [],
@@ -2285,6 +2310,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.Cause": [],
   "rcm.store.Causes": [],
   "rcm.store.CbEquip": [],
+  "rcm.store.CbLvlUsers": [],
   "rcm.store.CbParent": [],
   "rcm.store.CbUnit": [],
   "rcm.store.ConMon": [],
@@ -2331,8 +2357,9 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.ModeDefs": [],
   "rcm.store.Note": [],
   "rcm.store.OPart": [],
+  "rcm.store.OPartDefs": [],
+  "rcm.store.OParts": [],
   "rcm.store.OhTahun": [],
-  "rcm.store.OpartDefs": [],
   "rcm.store.OverHaulIn": [],
   "rcm.store.PM": [],
   "rcm.store.ReHome": [],
@@ -2426,8 +2453,8 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.konfig.Aksi": [
     "widget.tAksi"
   ],
-  "rcm.view.konfig.AksiForm": [
-    "widget.fAksi"
+  "rcm.view.konfig.AksiFForm": [
+    "widget.f_Aksi"
   ],
   "rcm.view.konfig.AksiGrid": [
     "widget.gridAksi"
@@ -2474,6 +2501,12 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.konfig.Opart": [
     "widget.tOpartDef"
   ],
+  "rcm.view.konfig.OpartForm": [
+    "widget.fOpart"
+  ],
+  "rcm.view.konfig.OpartGrid": [
+    "widget.gridOpart"
+  ],
   "rcm.view.konfig.PanelList": [
     "widget.tpKonfigList"
   ],
@@ -2488,6 +2521,18 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.konfig.Refer": [
     "widget.tRefer"
+  ],
+  "rcm.view.konfig.ReferForm": [
+    "widget.fRefer"
+  ],
+  "rcm.view.konfig.ReferGrid": [
+    "widget.gridRefer"
+  ],
+  "rcm.view.konfig.SympForm": [
+    "widget.fSymptom"
+  ],
+  "rcm.view.konfig.SympGrid": [
+    "widget.gridSymptom"
   ],
   "rcm.view.konfig.Symptom": [
     "widget.tSymptom"
@@ -2506,6 +2551,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.konfig.User": [
     "widget.tUser"
+  ],
+  "rcm.view.konfig.UserForm": [
+    "widget.fUser"
   ],
   "rcm.view.konfig.wCatHir": [
     "widget.tWCatHir"

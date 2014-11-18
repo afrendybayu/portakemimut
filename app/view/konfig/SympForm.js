@@ -1,7 +1,7 @@
-Ext.define('rcm.view.konfig.AksiForm', {
+Ext.define('rcm.view.konfig.SympForm', {
 	extend: 'Ext.form.Panel',
 
-	xtype: 'fAksi',
+	xtype: 'fSymptom',
 	
 	// layout: {
 		// type :'form'
@@ -13,42 +13,39 @@ Ext.define('rcm.view.konfig.AksiForm', {
             // ptype: 'datatip'
         // },
 	defaultType: 'textfield',
-	
+
 	initComponent: function() {
 		var me = this;
 		me.items = [{
-			fieldLabel	: 'Nama Aksi',
+			fieldLabel	: 'Nama Symptom',
             name		: 'nama',
+            width		: 400,
             allowBlank	: false
 		},{
-			fieldLabel	: 'Keterangan',
-            name		: 'ket',
-            allowBlank	: true
+			fieldLabel	: 'Kode Symptom',
+            name		: 'kode',
+            width		: 400
+            // allowBlank	: true
 		}];
 		
 		me.buttons = [{
+			id : 'tblsmpsymp',
 			text: 'Simpan',
 			formBind: true, 
 			disabled: true
-            // handler: function() {
-                // fireEvent('SimpanAksi', args ) ;
-				// alert ('simpan dulu');
-				// this.up('form').getForm().isValid();
-            // }
         },{
+        	id : 'tbleditsymp',
         	text: 'Edit',
 			formBind: true,
-			disabled: true
-			// handler : function(){
-			// 		onChange(newVal, oldVal) {
-	  //               alert(newVal);
-   //          	}	
-			// }
+			disabled: true,
+			hidden	: true
 			
         },{
             text: 'Batal',
             handler: function() {
                 this.up('form').getForm().reset();
+                Ext.getCmp('tblsmpsymp').setVisible(true);
+        		Ext.getCmp('tbleditsymp').setVisible(false);
             }
 		}];
 	

@@ -8,10 +8,7 @@ Ext.define('rcm.view.konfig.Failure', {
         
     ],
 	
-	layout	: {
-		type : 'border'
-		
-	},
+	layout	: 'border',
 	defaults: {autoScroll: true},
 	
 	items : [{
@@ -32,21 +29,22 @@ Ext.define('rcm.view.konfig.Failure', {
 		// collapsible: true,
 		// collapsed	: true,
 		// split	: true
+        region	: 'east',     
+        xtype	: 'fFailure',
+		minWidth: '420',
+		collapsible	: true,
+		split	: true
+
 	},{
 		title	: 'Data Failures',
-        region	: 'south',     
+        region	: 'center',     
         xtype	: 'gridFailure',
 		html	: 'bawah',
         height	: '70%',
         collapsible	: true,
 		// collapsed	: true,
 		split	: true
-		
-		
-		
-		
-	
+
 	}]
-	
-	
 });
+

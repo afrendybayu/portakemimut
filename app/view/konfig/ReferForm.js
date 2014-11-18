@@ -1,7 +1,7 @@
-Ext.define('rcm.view.konfig.FailureForm', {
+Ext.define('rcm.view.konfig.ReferForm', {
 	extend: 'Ext.form.Panel',
 
-	xtype: 'fFailure',
+	xtype: 'fRefer',
 	
 	// layout: {
 		// type :'form'
@@ -13,48 +13,38 @@ Ext.define('rcm.view.konfig.FailureForm', {
             // ptype: 'datatip'
         // },
 	defaultType: 'textfield',
-	// 
 	
 	initComponent: function() {
 		var me = this;
 		me.items = [{
-			fieldLabel	: 'Nama Failure',
+			fieldLabel	: 'Nama Referensi',
             name		: 'nama',
-			width		: 400,
+            width		: 400,
             allowBlank	: false
 		},{
-			fieldLabel	: 'Kode Failure',
+			fieldLabel	: 'Kode Referensi',
             name		: 'kode',
-			width		: 400,
-            allowBlank	: false
-		
-		},{
-			fieldLabel	: 'Keterangan',
-            name		: 'ket',
-			width		: 400,
-            xtype	: 'textarea'
-
+            width		: 400
+            // allowBlank	: true
 		}];
 		
 		me.buttons = [{
-			id : 'tblsmpfail',
+			id : 'tblsmprefer',
 			text: 'Simpan',
 			formBind: true, 
 			disabled: true
-            
         },{
-        	id : 'tbleditfail',
-            text: 'Edit',
-            formBind: true, 
+        	id : 'tbleditrefer',
+        	text: 'Edit',
+			formBind: true,
 			disabled: true,
 			hidden	: true
-            //
-		},{
-			text: 'Batal',
-			handler: function() {
+        },{
+            text: 'Batal',
+            handler: function() {
                 this.up('form').getForm().reset();
-                Ext.getCmp('tblsmpfail').setVisible(true);
-        		Ext.getCmp('tbleditfail').setVisible(false);
+                Ext.getCmp('tblsmprefer').setVisible(true);
+        		Ext.getCmp('tbleditrefer').setVisible(false);
             }
 		}];
 	

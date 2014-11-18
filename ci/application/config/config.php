@@ -14,7 +14,8 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/daunbiru/portakemimut/ci'; //medco/ci/';
+// $config['base_url']	= 'http://localhost/daunbiru/portakemimut/ci'; //medco/ci/';
+$config['base_url']	= 'http://localhost/daunbiru/mulyoharjo/'; //medco/ci/';
 
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +27,8 @@ $config['base_url']	= 'http://localhost/daunbiru/portakemimut/ci'; //medco/ci/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php?';
-//$config['index_page'] = '';
+// $config['index_page'] = 'index.php?';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -58,8 +59,8 @@ $config['uri_protocol']	= 'AUTO';
 | http://codeigniter.com/user_guide/general/urls.html
 */
 
-//$config['url_suffix'] = '';
-$config['url_suffix'] = '.ab';
+$config['url_suffix'] = '';
+// $config['url_suffix'] = '.ab';
 
 /*
 |--------------------------------------------------------------------------
@@ -250,7 +251,7 @@ $config['sess_cookie_name']		= 'ci_session';
 $config['sess_expiration']		= 3600*10;
 $config['sess_expire_on_close']	= FALSE;
 $config['sess_encrypt_cookie']	= FALSE;
-$config['sess_use_database']	= FALSE;
+$config['sess_use_database']	= TRUE;
 $config['sess_table_name']		= 'ci_sessions';
 $config['sess_match_ip']		= FALSE;
 $config['sess_match_useragent']	= TRUE;

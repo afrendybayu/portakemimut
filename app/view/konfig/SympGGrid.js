@@ -1,43 +1,41 @@
-Ext.define('rcm.view.konfig.PmDefGrid', {
+Ext.define('rcm.view.konfig.SympGGrid', {
 	extend: 'Ext.grid.Panel',
 
-	xtype: 'gridPmDef',
-	
-	
-	
+	xtype: 'griddSymptom',
+
 	initComponent: function() {
 		var me =this;
 		
-		me.store = 'FormPmDefs';
+		me.store = 'Symptoms';
 		
 		me.columns = {	
 			items: [{ 
 				xtype:'rownumberer',
 				width:25, 
 				header : 'No'
-				
+				// hidden: me.hiden1
 			},{ 
-				header		: 'Nama PM',
+				header		: 'Nama Symptom',
 				dataIndex	: 'nama',
+				// hidden		: me.hidegrid1,
 				flex:1
 				 
 			},{ 
-				header		: 'Kode PM',
+				header		: 'Kode Symptom',
 				dataIndex	: 'kode',
+				// hidden		: me.hidegrid2,
+				// width:60
 				flex:1
-			},{
-				header		: 'Durasi',
-				dataIndex	: 'durasi',
-				flex:1
-			},{
-				header		: 'Keterangan',
-				dataIndex	: 'ket',
-				flex:1
+			
 			},{
 				xtype		:'actioncolumn',
 				width		:25,
 				// id 			: 'conmondel', 
 				iconCls		: 'hpsEvent',
+				// menuDisabled: true,
+				//sortable	: false,
+				//visible		: false,
+				//disabled: true,
 				tooltip		: 'Hapus',
 				handler		: Ext.bind(me.dhlGridDel, me)
 			}]
@@ -51,6 +49,6 @@ Ext.define('rcm.view.konfig.PmDefGrid', {
         // 
 		var rec = gridView.getStore().getAt(rowIndex);
 		// console.log (rec);
-		this.fireEvent('PmDefGridDel', rec);
+		this.fireEvent('SympGridDel', rec);
     }
 });

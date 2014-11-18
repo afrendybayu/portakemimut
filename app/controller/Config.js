@@ -6,17 +6,17 @@ Ext.define('rcm.controller.Config', {
         // TODO: add views here
         'konfig.TabKonfig',
 		'konfig.TreeHirarki',
-		'konfig.AksiGrid',
+		// 'konfig.AksiGrid',
 		'konfig.PanelList',
 		'konfig.TreeCat',
-		'konfig.AksiForm',
+		// 'konfig.AksiForm',
 		'konfig.PmDefForm',
 		'konfig.CauseForm',
 		'konfig.DamageGrid',
 		'konfig.DamageForm',
 		'konfig.DetailLokasi',
-		// 'konfig.FailureGrid',
-		// 'konfig.FailureForm',
+		'konfig.UserGGrid',
+		'konfig.UserForm',
 		
 		'konfig.wCatHir',
 				
@@ -42,8 +42,13 @@ Ext.define('rcm.controller.Config', {
 		'HirDef',
 		'Refers',
 		'Symptoms',
-		'OpartDefs',
+		'GridAksi',
+		'OPartDefs',
+		//'PMDefs',
+
+
 		'Users',
+		'CbLvlUsers',
 		
 		'GridPMIn',
 		'GridPMnIn',
@@ -59,6 +64,8 @@ Ext.define('rcm.controller.Config', {
     
     models: [
 		'LokUnit',
+		//'GridAksi',
+		
 		// 'GridAksi',
 
 		'FormAksi',
@@ -66,6 +73,12 @@ Ext.define('rcm.controller.Config', {
 		'Cause',
 		'Damage',
 		'ModeDef',
+		'Refer',
+		'Symptom',
+		'OPartDef',
+		'User',
+
+		'CbLvlUser',
 
 		'GridPMIn',
 		'GridOPIn',
@@ -94,8 +107,8 @@ Ext.define('rcm.controller.Config', {
 			//xtype: 'tKGridL',
 			//autoCreate: true
 		},{
-			ref: 'fAksi',
-			selector : 'fAksi'
+			ref: 'f_Aksi',
+			selector : 'f_Aksi'
 		},{
 			ref : 'f_PmDef',
 			selector : 'f_PmDef'
@@ -118,8 +131,32 @@ Ext.define('rcm.controller.Config', {
 			ref : 'fFailure',
 			selector : 'fFailure'
 		},{
+			ref: 'f_User',
+			selector : 'f_User'
+		},{
 			ref : 'gridFailure',
 			selector : 'gridFailure'
+		},{
+			ref : 'gridRefer',
+			selector : 'gridRefer'
+		},{
+			ref : 'fRefer',
+			selector : 'fRefer'
+		},{
+			ref : 'fSymptom',
+			selector : 'fSymptom'
+		},{
+			ref : 'griddSymptom',
+			selector : 'griddSymptom'
+		},{
+			ref : 'fOpart',
+			selector : 'fOpart'
+		},{
+			ref : 'gridOpart',
+			selector : 'gridOpart'
+		},{
+			ref : 'gridUserList',
+			selector : 'gridUserList'
 		},{
 			ref : 'panLokasi',
 			selector : 'panLokasi'
@@ -216,7 +253,7 @@ Ext.define('rcm.controller.Config', {
 				deleteclick: me.hdlDelEq
 			},
 			 
-			'fAksi button[text=Simpan]' : {
+			'f_Aksi button[text=Simpan]' : {
 				click : me.hdlSmpAksiForm
 			},
 			'#iGMddef': {
@@ -228,7 +265,7 @@ Ext.define('rcm.controller.Config', {
 			'#iGPmdef': {
 				click: me.iGPmdef
 			},
-			'fAksi button[text=Edit]' : {
+			'f_Aksi button[text=Edit]' : {
 				click : me.hdlEditAksiForm
 			},
 			'f_PmDef button[text=Simpan]' : {
@@ -255,6 +292,30 @@ Ext.define('rcm.controller.Config', {
 			'fFailure button[text=Edit]' : {
 				click : me.hdlEditFailForm
 			},
+			'fRefer button[text=Simpan]' : {
+				click : me.hdlSmpReferForm
+			},
+			'fRefer button[text=Edit]' : {
+				click : me.hdlEditReferForm
+			},
+			'fSymptom button[text=Simpan]' : {
+				click : me.hdlSmpSympForm
+			},
+			'fSymptom button[text=Edit]' : {
+				click : me.hdlEditSympForm
+			},
+			'fOpart button[text=Simpan]' : {
+				click : me.hdlSmpOpartForm
+			},
+			'fOpart button[text=Edit]' : {
+				click : me.hdlEditOpartForm
+			},
+			'f_User button[text=Simpan]' : {
+				click : me.hdlSmpUserForm
+			},
+			'f_User button[text=Edit]' : {
+				click : me.hdlEditUserForm
+			},
 			'gridAksi' :{
 				AksiGridDel  : me.delAksiGrid,
 				selectionchange : me.slctAksiGrid
@@ -275,6 +336,22 @@ Ext.define('rcm.controller.Config', {
 			'gridFailure' : {
 				FailureGridDel	: me.delFailureGrid,
 				selectionchange : me.slctFailureGrid
+			},
+			'gridRefer' : {
+				ReferGridDel : me.delReferGrid,
+				selectionchange : me.slctReferGrid
+			},
+			'griddSymptom' : {
+				SympGridDel : me.delSympGrid,
+				selectionchange : me.slctSympGrid
+			},
+			'gridOpart' : {
+				OpartGridDel : me.delOpartGrid,
+				selectionchange : me.slctOpartGrid
+			},
+			'gridUserList' : {
+				UserGridDel : me.delUserGrid,
+				selectionchange : me.slctUserGrid
 			},
 			'panLokasi button[text=Update]': {
 				click : me.hdlUptHir
@@ -297,6 +374,302 @@ Ext.define('rcm.controller.Config', {
 		});
 		
     },
+    hdlSmpUserForm : function(){
+    	// alert ('pencet user simpan');
+    	var me =this,
+    	usr = me.getF_User().getForm(),
+		getdUsr = usr.getValues(),
+		usrSave = new rcm.model.User(getdUsr);
+		// console.log(getDOpart);
+		// console.log(optSave);
+		usr.reset();
+		usrSave.save({
+			success: function(record, operation){
+				me.getUsersStore().reload();
+			}
+		});
+    },
+    hdlEditUserForm : function(){
+    	alert ('pencet user udit');
+    	var me =this,
+    	isiusr = me.getF_User().getForm(),
+		dataid = isiusr.getRecord().data.id,
+		isivalue = isiusr.getValues();
+		// cobama 	= isivalue.obama ? 1 : 0;
+		editusr = Ext.create(rcm.model.User,{
+			id:dataid, nama:isivalue.nama, userid:isivalue.userid,pass:isivalue.pass, akses:isivalue.akses,active:isivalue.active
+		});
+		// console.log(isivalue);
+		// console.log(dataid);
+		isiusr.reset();
+		// me.getCausesStore().reload();
+		editusr.save({
+			success: function(record, operation){
+				me.getUsersStore().reload();
+			}
+
+		});
+    },
+    delUserGrid : function(rec){
+    	// alert ('pencet tombol apuss');
+    	var me = this, 
+		record = rec.data,
+		delusr = new rcm.model.User(record );
+		Ext.MessageBox.show({
+				title : 'Hapus User',
+				msg   : 'Yakin Data Akan di Hapus ??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						delusr.destroy ({
+							success : function(record, operation){
+								// dcmon.destroy();
+								// me.getConMonStore().reload();
+								me.getUsersStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+				}
+			});
+    },
+
+    slctUserGrid : function(model,records){
+    	var me =this;
+		if (records[0]) {
+		 	me.getF_User().getForm().loadRecord(records[0]);
+		
+        	Ext.getCmp('tblsmpuser').setVisible(false);
+        	Ext.getCmp('tbledituser').setVisible(true);
+        }
+    },
+
+    hdlSmpOpartForm : function(){
+    	// alert ('tekan opart simpan');
+    	var me =this,
+    	opt = me.getFOpart().getForm(),
+		getDOpart = opt.getValues(),
+		optSave = new rcm.model.OPartDef(getDOpart);
+		// console.log(getDOpart);
+		// console.log(optSave);
+		opt.reset();
+		optSave.save({
+			success: function(record, operation){
+				me.getOPartDefsStore().reload();
+			}
+		});
+    	
+    },
+    hdlEditOpartForm : function(){
+    	// alert ('tekan edit opart');
+    	var me =this,
+    	isiopt = me.getFOpart().getForm(),
+		dataid = isiopt.getRecord().data.id,
+		isivalue = isiopt.getValues();
+		// cobama 	= isivalue.obama ? 1 : 0;
+		editopt = Ext.create(rcm.model.OPartDef,{
+			id:dataid, nama:isivalue.nama, kode:isivalue.kode
+		});
+		// console.log(isivalue);
+		// console.log(dataid);
+		isiopt.reset();
+		// me.getCausesStore().reload();
+		editopt.save({
+			success: function(record, operation){
+				me.getOPartDefsStore().reload();
+			}
+
+		});
+    	
+    },
+    delOpartGrid : function(rec){
+    	var me = this, 
+		record = rec.data,
+		delopt = new rcm.model.OPartDef(record );
+		Ext.MessageBox.show({
+				title : 'Hapus Object Part Def.',
+				msg   : 'Yakin Data Akan di Hapus ??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						delopt.destroy ({
+							success : function(record, operation){
+								// dcmon.destroy();
+								// me.getConMonStore().reload();
+								me.getOPartDefsStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+				}
+			});
+    },
+
+    slctOpartGrid : function(model,records){
+    	var me =this;
+		if (records[0]) {
+			me.getFOpart().getForm().loadRecord(records[0]);
+			// Ext.getCmp('tblsmpopart').setHidden = true;
+        	// me.getFOpart().getComponent('tblsmpopart').setVisible(true);
+        	Ext.getCmp('tblsmpopart').setVisible(false);
+        	Ext.getCmp('tbleditopart').setVisible(true);
+        }
+
+    },
+    hdlSmpSympForm : function(){
+    	// alert('Symptom klik simpan');
+    	var me = this,
+    	symp = me.getFSymptom().getForm(),
+		getDataSymp = symp.getValues(),
+		sympSave = new rcm.model.Symptom(getDataSymp);
+		// console.log(getDataCause);
+		// console.log(DmgSave);
+		symp.reset();
+		sympSave.save({
+			success: function(record, operation){
+				me.getSymptomsStore().reload();
+			}
+		});
+    },
+    hdlEditSympForm : function(){
+    	// alert('Symptom klik edit');
+    	var me = this,
+		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
+		isisymp = me.getFSymptom().getForm(),
+		dataid = isisymp.getRecord().data.id,
+		isivalue = isisymp.getValues();
+		// cobama 	= isivalue.obama ? 1 : 0;
+		editsymp = Ext.create(rcm.model.Symptom,{
+			id:dataid, nama:isivalue.nama, kode:isivalue.kode
+		});
+		// console.log(isivalue);
+		// console.log(dataid);
+		isisymp.reset();
+		// me.getCausesStore().reload();
+		editsymp.save({
+			success: function(record, operation){
+				me.getSymptomsStore().reload();
+			}
+
+		});
+    },
+    delSympGrid : function(rec){
+    	var me = this, 
+		record = rec.data,
+		delsymp = new rcm.model.Symptom(record );
+		Ext.MessageBox.show({
+				title : 'Hapus Symptom Def.',
+				msg   : 'Yakin Data Akan di Hapus ??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						delsymp.destroy ({
+							success : function(record, operation){
+								// dcmon.destroy();
+								// me.getConMonStore().reload();
+								me.getSymptomsStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+				}
+			});
+    },
+    slctSympGrid : function(model,records){
+    	var me =this;
+		if (records[0]) {
+			me.getFSymptom().getForm().loadRecord(records[0]);
+			Ext.getCmp('tblsmpsymp').setVisible(false);
+        	Ext.getCmp('tbleditsymp').setVisible(true);
+        }
+    },
+    hdlSmpReferForm : function(){
+    	// alert('Referensi klik simpan');
+    	var me = this,
+    	refer = me.getFRefer().getForm(),
+		getDataRefer = refer.getValues(),
+		referSave = new rcm.model.Refer(getDataRefer);
+		// console.log(getDataCause);
+		// console.log(DmgSave);
+		refer.reset();
+		referSave.save({
+			success: function(record, operation){
+				me.getRefersStore().reload();
+			}
+		});
+    },
+    hdlEditReferForm : function(){
+    	// alert('Referensi klik edit');
+    	var me = this,
+		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
+		isiref = me.getFFailure().getForm(),
+		dataid = isiref.getRecord().data.id,
+		isivalue = isiref.getValues();
+		// cobama 	= isivalue.obama ? 1 : 0;
+		editref = Ext.create(rcm.model.Refer,{
+			id:dataid, nama:isivalue.nama, kode:isivalue.kode
+		});
+		// console.log(isivalue);
+		// console.log(dataid);
+
+		// console.log(editsave);
+
+		isifail.reset();
+		// me.getCausesStore().reload();
+		editref.save({
+			success: function(record, operation){
+				me.getRefersStore().reload();
+			}
+
+		});
+    },
+    delReferGrid : function(rec){
+    	var me = this, 
+		record = rec.data,
+		delref = new rcm.model.Refer(record );
+		Ext.MessageBox.show({
+				title : 'Hapus Referensi Def.',
+				msg   : 'Yakin Data Akan di Hapus ??',
+				buttons: Ext.MessageBox.OKCANCEL,
+				icon  : Ext.MessageBox.WARNING,
+				fn	: function (oks){
+					if (oks === 'ok'){ 
+						
+						delref.destroy ({
+							success : function(record, operation){
+								// dcmon.destroy();
+								// me.getConMonStore().reload();
+								me.getRefersStore().reload();
+							},
+							callback : function(){
+								
+							}
+						}) 
+					}
+				}
+			});
+    },
+
+    slctReferGrid : function(model, records){
+    	var me =this;
+		if (records[0]) {
+			me.getFRefer().getForm().loadRecord(records[0]);
+			Ext.getCmp('tblsmprefer').setVisible(false);
+        	Ext.getCmp('tbleditrefer').setVisible(true);
+        }
+    },
 
 	getDelayedStore: function()	{
 		//console.log("Konfig getDelayedStore");
@@ -310,10 +683,10 @@ Ext.define('rcm.controller.Config', {
 			
 			me.getCausesStore().load();
 			me.getDamagesStore().load();
-			me.getUsersStore().load();
+			// me.getUsersStore().load();
 			me.getRefersStore().load();
 			me.getSymptomsStore().load();
-			me.getOpartDefsStore().load();
+			me.getOPartDefsStore().load();
 			me.getModeDefsStore().load();
 			me.getUsersStore().load();
 			me.getFormAksisStore().load();
@@ -331,7 +704,7 @@ Ext.define('rcm.controller.Config', {
 	},
 
     hdlSmpFailForm : function(){
-    	//alert('tekan tombol simpan');
+    	// alert('tekan tombol simpan');
     	var me = this,
 			fail = me.getFFailure().getForm(),
 			getDataFail = fail.getValues(),
@@ -348,7 +721,7 @@ Ext.define('rcm.controller.Config', {
 		});
     },
     hdlEditFailForm : function(){
-    	alert ('tekan tombol edit');
+    	// alert ('tekan tombol edit');
     	var me = this,
 		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
 		isifail = me.getFFailure().getForm(),
@@ -359,7 +732,7 @@ Ext.define('rcm.controller.Config', {
 			id:dataid, nama:isivalue.nama, kode:isivalue.kode, ket:isivalue.ket
 		});
 		// console.log(isivalue);
-		// console.log(cobama);
+		// console.log(dataid);
 
 		// console.log(editsave);
 
@@ -376,6 +749,8 @@ Ext.define('rcm.controller.Config', {
     	var me =this;
 		if (records[0]) {
 			me.getFFailure().getForm().loadRecord(records[0]);
+			Ext.getCmp('tblsmpfail').setVisible(false);
+        	Ext.getCmp('tbleditfail').setVisible(true);
         }
     },
     delFailureGrid : function(rec){
@@ -409,6 +784,8 @@ Ext.define('rcm.controller.Config', {
     	var me =this;
 		if (records[0]) {
 			me.getFDamage().getForm().loadRecord(records[0]);
+			Ext.getCmp('tblsmpdamage').setVisible(false);
+        	Ext.getCmp('tbleditdamage').setVisible(true);
         }
     },
     hdlSmpDamageForm : function(){
@@ -642,6 +1019,8 @@ Ext.define('rcm.controller.Config', {
     	var me =this;
 		if (records[0]) {
 			me.getFCause().getForm().loadRecord(records[0]);
+			Ext.getCmp('tblsmpcause').setVisible(false);
+        	Ext.getCmp('tbleditcause').setVisible(true);
         }
     },
 
@@ -708,6 +1087,8 @@ Ext.define('rcm.controller.Config', {
 		var me =this;
 		if (records[0]) {
 			me.getF_PmDef().getForm().loadRecord(records[0]);
+			Ext.getCmp('tblsmppmdef').setVisible(false);
+        	Ext.getCmp('tbleditpmdef').setVisible(true);
         }
 	},
 	
@@ -796,7 +1177,10 @@ Ext.define('rcm.controller.Config', {
     slctAksiGrid : function (model, records){
 		var me =this;
 		if (records[0]) {
-			me.getFAksi().getForm().loadRecord(records[0]);
+			me.getF_Aksi().getForm().loadRecord(records[0]);
+			Ext.getCmp('tblsmpaksi').setVisible(false);
+        	Ext.getCmp('tbleditaksi').setVisible(true);
+
         }
 	},
 	
@@ -835,7 +1219,7 @@ Ext.define('rcm.controller.Config', {
 		// alert ('ini tombol edit');
 		var me = this;
 		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
-		isiform = me.getFAksi().getForm();
+		isiform = me.getF_Aksi().getForm();
 		dataid = isiform.getRecord().data.id;
 		isivalue = isiform.getValues();
 		// isiform.//.newValues();
@@ -862,11 +1246,11 @@ Ext.define('rcm.controller.Config', {
 	hdlSmpAksiForm : function(){
 		// alert('tekan tombol simpan');
 		var me = this,
-		f_aksi = me.getFAksi().getForm(),
-		getDataAksi = f_aksi.getValues(),
+		ff_aksi = me.getF_Aksi().getForm(),
+		getDataAksi = ff_aksi.getValues(),
 		AksiSave = new rcm.model.FormAksi(getDataAksi);
 		// console.log(AksiSave);
-		f_aksi.reset();
+		ff_aksi.reset();
 		AksiSave.save({
 			success: function(record, operation){
 				me.getFormAksisStore().reload();

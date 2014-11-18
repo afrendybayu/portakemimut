@@ -3,7 +3,7 @@ Ext.define('rcm.view.konfig.AksiGrid', {
 
 	xtype: 'gridAksi',
 	
-	xstore 		: '',
+	/*xstore 		: '',
 	kolgrid1	: '',
 	kolgrid2	: '',
 	kolgrid3	: '',
@@ -13,11 +13,23 @@ Ext.define('rcm.view.konfig.AksiGrid', {
 	hidegrid1	: '',
 	hidegrid2	: '',
 	hidegrid3	: '',
+
+	xstore		: 'FormAksis',
+		kolgrid1	: 'Nama Aksi',
+		kolgrid2	: 'Keterangan',
+		// kolgrid3	: '',
+		idgrid1		: 'nama',
+		idgrid2		: 'ket',
+		// idgrid3		: '',
+		hidegrid1	: false,
+		hidegrid2	: false,
+		hidegrid3	: true,
+		hidegrid4	: true*/
 	
 	initComponent: function() {
 		var me =this;
 		
-		me.store = me.xstore;
+		me.store = 'FormAksis';
 		
 		me.columns = {	
 			items: [{ 
@@ -26,29 +38,16 @@ Ext.define('rcm.view.konfig.AksiGrid', {
 				header : 'No'
 				// hidden: me.hiden1
 			},{ 
-				header		: me.kolgrid1,
-				dataIndex	: me.idgrid1,
-				hidden		: me.hidegrid1,
+				header		: 'Nama Aksi',
+				dataIndex	: 'nama',
 				flex:1
 				 
 			},{ 
-				header		: me.kolgrid2,
-				dataIndex	: me.idgrid2,
-				hidden		: me.hidegrid2,
+				header		: 'Keterangan',
+				dataIndex	: 'ket',
 				// width:60
 				flex:1
-			},{
-				header		: me.kolgrid3,
-				dataIndex	: me.idgrid3,
-				hidden		: me.hidegrid3,
-				// width:60
-				flex:1
-			},{
-				header		: me.kolgrid4,
-				dataIndex	: me.idgrid4,
-				hidden		: me.hidegrid4,
-				// width:60
-				flex:1
+			
 			},{
 				xtype		:'actioncolumn',
 				width		:25,

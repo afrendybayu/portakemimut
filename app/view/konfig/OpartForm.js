@@ -1,30 +1,28 @@
-Ext.define('rcm.view.konfig.CauseForm', {
+Ext.define('rcm.view.konfig.OpartForm', {
 	extend: 'Ext.form.Panel',
 
-	xtype: 'fCause',
+	xtype: 'fOpart',
+	
     bodyPadding: 5,       
 	defaultType: 'textfield',
 		
 	initComponent: function() {
 		var me = this;
 		me.items = [{
-			fieldLabel	: 'Nama Cause',
+			fieldLabel	: 'Nama Object Part',
             name		: 'nama',
-            width: 400,
-			// hidden		: me.hidnama,
+			width		: 400,
             allowBlank	: false
 		},{
-			fieldLabel	: 'Kode Cause',
+			fieldLabel	: 'Kode Object Part',
             name		: 'kode',
-			// hidden		: me.hidkode,
-			width: 400,
+			width		: 400,
             allowBlank	: false
 	
 		},{
 			xtype		: 'checkboxgroup',
             fieldLabel	: 'Kategori Cause',
 			columns		: [70, 70],
-			width: 400,
 			// hidden		: me.hidckbox,
 			items: [{
 				boxLabel: 'Obama', 
@@ -37,46 +35,31 @@ Ext.define('rcm.view.konfig.CauseForm', {
 				// checked: true
 			}]
 
-		},{
+		/*},{
 			fieldLabel	: 'Keterangan',
-            name		: 'ket',
-            width: 400,
-            xtype: 'textarea'
+            name		: 'ket'
+			// hidden		: me.hidkode,
+            // allowBlank	: true*/
 		}];
 		
 		me.buttons = [{
+			id : 'tblsmpopart',
 			text: 'Simpan',
 			formBind: true, 
-<<<<<<< HEAD
 			disabled: true
-=======
-			disabled: true,
-			id  :'tblsmpcause'
->>>>>>> jono
-            // handler: function() {
-                // fireEvent('SimpanAksi', args ) ;
-				// alert ('simpan dulu');
-				// this.up('form').getForm().isValid();
-            // }
         },{
-        	id : 'tbleditcause',
+            id : 'tbleditopart',
             text: 'Edit',
             formBind: true, 
-<<<<<<< HEAD
-			disabled: true
-=======
 			disabled: true,
 			hidden	: true
->>>>>>> jono
-            // handler: function() {
-                // this.up('form').getForm().reset();
-            // }
 		},{
 			text: 'Batal',
 			handler: function() {
                 this.up('form').getForm().reset();
-                Ext.getCmp('tblsmpcause').setVisible(true);
-        		Ext.getCmp('tbleditcause').setVisible(false);
+                // this.getComponent('tblsmpopart').setVisible(true);
+                Ext.getCmp('tblsmpopart').setVisible(true);
+        		Ext.getCmp('tbleditopart').setVisible(false);
             }
 		}];
 	

@@ -1,26 +1,26 @@
-Ext.define('rcm.view.konfig.DamageForm', {
+Ext.define('rcm.view.konfig.AksiFForm', {
 	extend: 'Ext.form.Panel',
 
-	xtype: 'fDamage',
-	
+	xtype: 'f_Aksi',
     bodyPadding: 5,       
 	defaultType: 'textfield',
 	
 	initComponent: function() {
 		var me = this;
 		me.items = [{
-			fieldLabel	: 'Nama Damage',
+			fieldLabel	: 'Nama Aksi',
             name		: 'nama',
             width		: 400,
             allowBlank	: false
 		},{
-			fieldLabel	: 'Kode Damage',
-            name		: 'kode',
-            width		: 400,
+			xtype		: 'textarea',
+			fieldLabel	: 'Keterangan',
+			width		: 400,
+            name		: 'ket',
 		}];
 		
 		me.buttons = [{
-			id : 'tblsmpdamage',
+			id : 'tblsmpaksi',
 			text: 'Simpan',
 			formBind: true, 
 			disabled: true
@@ -30,27 +30,27 @@ Ext.define('rcm.view.konfig.DamageForm', {
 				// this.up('form').getForm().isValid();
             // }
         },{
-        	id : 'tbleditdamage',
+        	id : 'tbleditaksi',
         	text: 'Edit',
 			formBind: true,
-<<<<<<< HEAD
+<<<<<<< HEAD:app/view/konfig/AksiForm.js
 			disabled: true
-=======
-			disabled: true,
-			hidden	: true
->>>>>>> jono
 			// handler : function(){
 			// 		onChange(newVal, oldVal) {
 	  //               alert(newVal);
    //          	}	
 			// }
 			
+=======
+			disabled: true,
+			hidden	: true
+>>>>>>> jono:app/view/konfig/AksiFForm.js
         },{
             text: 'Batal',
             handler: function() {
                 this.up('form').getForm().reset();
-                Ext.getCmp('tblsmpdamage').setVisible(true);
-        		Ext.getCmp('tbleditdamage').setVisible(false);
+                Ext.getCmp('tblsmpaksi').setVisible(true);
+        		Ext.getCmp('tbleditaksi').setVisible(false);
             }
 		}];
 	

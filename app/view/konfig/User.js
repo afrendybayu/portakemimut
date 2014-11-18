@@ -3,36 +3,22 @@ Ext.define('rcm.view.konfig.User', {
     xtype: 'tUser',
 	
 	requires: [
-        'rcm.view.konfig.AksiForm',
-		'rcm.view.konfig.AksiGrid'
+        'rcm.view.konfig.UserForm',
+		'rcm.view.konfig.UserGGrid'
         
     ],
-	
-	layout	: {
-		type : 'border'
-		
-	},
+
+    layout	: 'border',
 	defaults: {autoScroll: true},
 	
 	items : [{
-		title	: 'Form User List1',
-        region	: 'center',     
-        xtype	: 'panel',
-		height	: '30%',
-		layout	: 'fit',
-		autoScroll: true,
-		frame	: true,
-		items	: [{
-			xtype 	: 'fAksi',
-			lnama:'Nama',ljab:'Level',lket:'Keterangan',luserid:'User ID',lpwd:'Password',
-			nmnama:'nama',nmket:'ket',nmjab:'akses',nmuserid:'userid',nmpwd:'pass',
-			hidnama:false,hidkode:true,hidket:false,hidjab:false,hidckbox:true,hiduserid:false,hidpwd:false,hiddur:true
-		}]
-		
-        
-		// collapsible: true,
-		// collapsed	: true,
-		// split	: true
+		title	: 'Form User List',
+        region	: 'east',     
+        xtype	: 'f_User',
+		minWidth: '420',
+		collapsible	: true,
+		split	: true
+
 	},{
 		title	: 'Data User List',
         region	: 'south',     
@@ -60,7 +46,8 @@ Ext.define('rcm.view.konfig.User', {
 		hidegrid4	: true,
 		hidegrid5	: true
 	
-		
+        region	: 'center',     
+        xtype	: 'gridUserList'
 	
 	}]
 	

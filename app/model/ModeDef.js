@@ -11,7 +11,7 @@ Ext.define('rcm.model.ModeDef', {
 		api: {
 			read	: 'ci/index.php/konfig/Conf/rModedef',
 			create 	: 'ci/index.php/konfig/Conf/cModedef',
-			// update 	: 'ci/index.php/konfig/Conf/uPmDef',
+			update 	: 'ci/index.php/konfig/Conf/uModedef',
 			destroy	: 'ci/index.php/konfig/Conf/dModedef'
         },
         reader: {

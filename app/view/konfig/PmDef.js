@@ -8,10 +8,7 @@ Ext.define('rcm.view.konfig.PmDef', {
         
     ],
 	
-	layout	: {
-		type : 'border'
-		
-	},
+    layout	: 'border',
 	defaults: {autoScroll: true},
 	
 	items : [{
@@ -31,30 +28,15 @@ Ext.define('rcm.view.konfig.PmDef', {
 		// collapsible: true,
 		// collapsed	: true,
 		// split	: true
+        region	: 'east',     
+        xtype	: 'f_PmDef',
+		minWidth: '420',
+		collapsible	: true,
+		split	: true
 	},{
 		title	: 'Data Predictive Maintenance',
-        region	: 'south',     
+        region	: 'center',     
         xtype	: 'gridPmDef',
-        height	: '60%',
-        collapsible	: true,
-		// collapsed	: true,
-		split	: true,
-		
-		xstore		: 'FormPmDefs',
-		kolgrid1	: 'Nama PM',
-		kolgrid2	: 'Kode PM',
-		kolgrid3	: 'Durasi',
-		kolgrid4	: 'Keterangan',
-		idgrid1		: 'nama',
-		idgrid2		: 'kode',
-		idgrid3		: 'durasi',
-		idgrid4		: 'ket',
-		hidegrid1	: false,
-		hidegrid2	: false,
-		hidegrid3	: false,
-		hidegrid3	: false
-		
-		
 	
 	}]
 	

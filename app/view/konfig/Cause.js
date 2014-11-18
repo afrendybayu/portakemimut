@@ -7,41 +7,22 @@ Ext.define('rcm.view.konfig.Cause', {
 		'rcm.view.konfig.CauseDefGrid'
         
     ],
-	
-	layout	: {
-		type : 'border'
-	},
+
+    layout	: 'border',
 	defaults: {autoScroll: true},
 	
 	items : [{
-		title	: 'Form cause',
-        region	: 'center',     
-        //xtype	: 'panel',
-        xtype 	: 'fCause',
-		minHeight: 50
-		/*
-		layout	: 'fit',
-		autoScroll: true,
-		frame	: true,
-		items	: [{
-			xtype 	: 'fCause'
-		}]
-		//*/
-        
-		// collapsible: true,
-		// collapsed	: true,
-		// split	: true
+		title	: 'Form Cause',
+        region	: 'east',     
+        xtype	: 'fCause',
+		minWidth: '420',
+		collapsible	: true,
+		split	: true
+
 	},{
 		title	: 'Data Cause',
-        region	: 'south',     
+        region	: 'center',     
         xtype	: 'gridCauseDef',
-		//html	: 'bawah',
-		//height	: '70%',
-		flex: 1,
-        collapsible	: true,
-		// collapsed	: true,
-		split	: true	
+	
 	}]
-	
-	
 });
