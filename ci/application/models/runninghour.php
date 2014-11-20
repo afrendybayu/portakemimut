@@ -146,17 +146,25 @@ class Runninghour extends CI_Model {
 	}
 	
 	function get_avre_2th($cat, $thn, $thnm1)	{
-		/*
-		$sql =	"SELECT bln AS b, DATE_FORMAT(tgl,'%b') AS m
-				,ROUND(ifnull(sum(rh_av)*100/(SELECT DAY(LAST_DAY(tgl))*24*(select count(*) from hirarki where flag = $cat and thn=$thn)),0),2) AS av2014
-				,ROUND(ifnull(sum(rh_re)*100/(SELECT DAY(LAST_DAY(tgl))*24*(select count(*) from hirarki where flag = $cat and thn=$thn)),0),2) AS re2014
-				,ROUND(ifnull(sum(rh_av)*100/(SELECT DAY(LAST_DAY(tgl))*24*(select count(*) from hirarki where flag = $cat and thn=$thnm1)),0),2) AS av2013
-				,ROUND(ifnull(sum(rh_re)*100/(SELECT DAY(LAST_DAY(tgl))*24*(select count(*) from hirarki where flag = $cat and thn=$thnm1)),0),2) AS re2013
-				FROM rh_201311
-				WHERE cat=$cat and (thn='$thn' or thn='$thnm1')
-				GROUP BY bln ORDER BY bln ASC";
+		//*
+		$sql =	"SELECT (bln) AS b, DATE_FORMAT(tgl,'%b') AS m,YEAR(tgl) AS thn
+				,IFNULL((select count(*) from hirarki where flag = $cat and thn=$thn),0) AS jt
+				,IFNULL((select count(*) from hirarki where flag = $cat and thn=$thnm1),0) AS jt1
+				,CASE YEAR(tgl) 
+					WHEN $thn THEN (ROUND(ifnull(sum(rh_av)*100/(SELECT DAY(LAST_DAY(tgl))*24*jt),0),2)) 
+					WHEN $thnm1 THEN (ROUND(ifnull(sum(rh_av)*100/(SELECT DAY(LAST_DAY(tgl))*24*jt1),0),2)) 
+				END AS av
+				,CASE YEAR(tgl) 
+					WHEN $thn THEN (ROUND(ifnull(sum(rh_re)*100/(SELECT DAY(LAST_DAY(tgl))*24*jt),0),2)) 
+					WHEN $thnm1 THEN (ROUND(ifnull(sum(rh_re)*100/(SELECT DAY(LAST_DAY(tgl))*24*jt1),0),2)) 
+				END AS re
+				FROM rh_201311 WHERE cat=$cat and thn in ($thn,$thnm1) GROUP BY bln,thn,b ORDER BY bln ASC";
+				
+		//echo "sql: $sql<br/><br/>";
+		$hsl1 = $this->db->query($sql)->result();
 		//*/
-		$hasil = array();
+		/*
+		
 		
 		$sql =	"SELECT bln AS b, DATE_FORMAT(tgl,'%b') AS m
 				,(SELECT count(*) from hirarki where flag = $cat and thn=$thn) AS jt
@@ -178,13 +186,40 @@ class Runninghour extends CI_Model {
 				GROUP BY bln ORDER BY bln ASC;";
 		echo "sql: $sql<br/><br/>";
 		$hsl2 = $this->db->query($sql)->result();
+		//*/
 		
-		print_r($hasil); echo "<br/><br/>";
-		for($k=0; $k<12; $k++)	{
-		//	if ($k==)
+		$b=1;	$obj=new stdClass();	$hasil = array();
+		foreach($hsl1 as $a)	{
+			if ($b!=$a->b)	{
+				$b=$a->b;
+				array_push($hasil, $obj);
+				$obj=new stdClass();
+			}
+			//echo 'data: ';print_r($a); echo "<br/> ";
+			$obj->b=$a->b;
+			$obj->m=$a->m;
+			if ($a->jt1>0)	{
+				$obj->av2013 = $a->av;
+				$obj->re2013 = $a->re;
+			}
+			if ($a->jt>0)	{
+				$obj->av2014 = $a->av;
+				$obj->re2014 = $a->re;
+			}
+			
+			
+			//echo "---> "; print_r($obj); echo "<br/> ";
+			
 		}
 		
-		return $query->result();
+		array_push($hasil, $obj);
+		/*
+		echo "<br/> ";echo "<br/> ";echo "<br/> ";
+		foreach($hasil as $a)	{
+			print_r($a); echo "<br/> ";
+		}
+		//*/
+		return $hasil;
 	}
 }
 

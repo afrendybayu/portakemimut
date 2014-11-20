@@ -33,18 +33,8 @@ Ext.define('rcm.view.konfig.AksiFForm', {
         	id : 'tbleditaksi',
         	text: 'Edit',
 			formBind: true,
-<<<<<<< HEAD:app/view/konfig/AksiForm.js
-			disabled: true
-			// handler : function(){
-			// 		onChange(newVal, oldVal) {
-	  //               alert(newVal);
-   //          	}	
-			// }
-			
-=======
 			disabled: true,
 			hidden	: true
->>>>>>> jono:app/view/konfig/AksiFForm.js
         },{
             text: 'Batal',
             handler: function() {

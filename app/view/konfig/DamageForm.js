@@ -33,12 +33,8 @@ Ext.define('rcm.view.konfig.DamageForm', {
         	id : 'tbleditdamage',
         	text: 'Edit',
 			formBind: true,
-<<<<<<< HEAD
-			disabled: true
-=======
 			disabled: true,
 			hidden	: true
->>>>>>> jono
 			// handler : function(){
 			// 		onChange(newVal, oldVal) {
 	  //               alert(newVal);
