@@ -6,35 +6,7 @@ Ext.define('rcm.view.lapobama.Av2Thn', {
 	jdl: '-',
 	loadMask: true,
 	
-	series : [{
-		dataIndex: 'av2013',
-		//dataIndex: avrem1,
-		name: 'av2013'
-	},{
-		type: 'spline',
-		dataIndex: 'av2013',
-		//dataIndex: avre,
-		name: 'av2013',
-		visible: false,
-		marker: {
-			lineWidth: 2,
-			lineColor: Highcharts.getOptions().colors[1],
-			fillColor: 'white'
-		}
-	},{
-		dataIndex: 'av2014',
-		name: 'av2014'
-	},{
-		type: 'spline',
-		dataIndex: 'av2014',
-		name: 'av2014',
-		visible: false,
-		marker: {
-			lineWidth: 2,
-			lineColor: Highcharts.getOptions().colors[3],
-			fillColor: 'white'
-		}
-	}],
+	
 	
 	store: 'AvReUnit',
 	xField: 'm',
@@ -42,6 +14,36 @@ Ext.define('rcm.view.lapobama.Av2Thn', {
 	
 	initComponent: function() {
 		var me=this;
+		me.series = [{
+			//dataIndex: 'av2013',
+			dataIndex: me.avrem1,
+			name: me.navrem1,
+		},{
+			type: 'spline',
+			dataIndex: me.avrem1,
+			//dataIndex: avre,
+			name: me.navrem1,
+			visible: false,
+			marker: {
+				lineWidth: 2,
+				lineColor: Highcharts.getOptions().colors[1],
+				fillColor: 'white'
+			}
+		},{
+			//dataIndex: 'av2014',
+			dataIndex: me.avre,
+			name: me.navre,
+		},{
+			type: 'spline',
+			dataIndex: me.avre,
+			name: me.navre,
+			visible: false,
+			marker: {
+				lineWidth: 2,
+				lineColor: Highcharts.getOptions().colors[3],
+				fillColor: 'white'
+			}
+		}];
 		me.chartConfig = {
 			chart: {
 				type: 'column',

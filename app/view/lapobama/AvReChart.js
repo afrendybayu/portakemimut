@@ -133,7 +133,9 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 					fldY: ['av2014'],
 					jdl: 'Availability',
 					avrem1: 'av2013',
-					avre: 'av2014'
+					avre: 'av2014',
+					navre: 'av'+rcm.view.Util.U1th(''),
+					navrem1: 'av'+rcm.view.Util.Uthm1()
 				},{
 					id: 'Re2Thn',
 					//xtype: 'tAvReUnitx',
@@ -142,7 +144,9 @@ Ext.define('rcm.view.lapobama.AvReChart', {
 					//height: '33.3%',
 					jdl: 'Reliability',
 					avrem1: 're2013',
-					avre: 're2014'
+					avre: 're2014',
+					navre: 're'+rcm.view.Util.U1th(''),
+					navrem1: 're'+rcm.view.Util.Uthm1()
 				}]
 			}]
 		}]

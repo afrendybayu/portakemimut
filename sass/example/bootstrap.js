@@ -7,16 +7,9 @@
 Ext.Loader.addClassPathMappings({
   "Chart": "../../ext/src/Chart",
   "Ext": "../../ext/src",
-  "Ext.DomHelper": "../../ext/src/dom/Helper.js",
-  "Ext.DomQuery": "../../ext/src/dom/Query.js",
-  "Ext.EventObjectImpl": "../../ext/src/EventObject.js",
   "Ext.Msg": "../../ext/src/window/MessageBox.js",
-  "Ext.Supports": "../../ext/src/Support.js",
   "Ext.chart": "../../ext/src/chart__",
-  "Ext.core.DomHelper": "../../ext/src/dom/Helper.js",
-  "Ext.core.DomQuery": "../../ext/src/dom/Query.js",
   "Ext.rtl.EventObjectImpl": "../../ext/src/rtl/EventObject.js",
-<<<<<<< HEAD
   "Ext.view": "../../app/view",
   "Ext.view.AbstractView": "../../ext/src/view/AbstractView.js",
   "Ext.view.BoundList": "../../ext/src/view/BoundList.js",
@@ -27,12 +20,8 @@ Ext.Loader.addClassPathMappings({
   "Ext.view.Table": "../../ext/src/view/Table.js",
   "Ext.view.TableLayout": "../../ext/src/view/TableLayout.js",
   "Ext.view.View": "../../ext/src/view/View.js",
-  "rcm": "../../app"
-=======
   "rcm": "../../app",
-  "rcm.store.OPartDefs": "../../app/store/OpartDefs.js",
-  "rcm.view.konfig.SympGrid": "../../app/view/konfig/UserGrid.js"
->>>>>>> jono
+  "rcm.store.OPartDefs": "../../app/store/OpartDefs.js"
 });
 Ext.ClassManager.addNameAlternateMappings({
   "Chart.ux.Highcharts": [],
@@ -901,6 +890,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.view.View": [
     "Ext.DataView"
   ],
+  "Ext.view.override.Table": [],
   "Ext.window.MessageBox": [],
   "Ext.window.Window": [
     "Ext.Window"
@@ -988,6 +978,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.SapTop": [],
   "rcm.model.Symptom": [],
   "rcm.model.UnsetSesi": [],
+  "rcm.model.User": [],
   "rcm.store.Aksi": [],
   "rcm.store.AvGroup": [],
   "rcm.store.AvHome": [],
@@ -1136,7 +1127,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.konfig.ReferForm": [],
   "rcm.view.konfig.ReferGrid": [],
   "rcm.view.konfig.SympForm": [],
-  "rcm.view.konfig.SympGrid": [],
+  "rcm.view.konfig.SympGGrid": [],
   "rcm.view.konfig.Symptom": [],
   "rcm.view.konfig.TabKonfig": [],
   "rcm.view.konfig.TreeCat": [],
@@ -1144,6 +1135,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.konfig.TreeHirarki": [],
   "rcm.view.konfig.User": [],
   "rcm.view.konfig.UserForm": [],
+  "rcm.view.konfig.UserGGrid": [],
   "rcm.view.konfig.wCatHir": [],
   "rcm.view.lapobama.Av2Thn": [],
   "rcm.view.lapobama.AvGroup": [],
@@ -2212,6 +2204,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.view.View": [
     "widget.dataview"
   ],
+  "Ext.view.override.Table": [],
   "Ext.window.MessageBox": [
     "widget.messagebox"
   ],
@@ -2301,6 +2294,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.SapTop": [],
   "rcm.model.Symptom": [],
   "rcm.model.UnsetSesi": [],
+  "rcm.model.User": [],
   "rcm.store.Aksi": [],
   "rcm.store.AvGroup": [],
   "rcm.store.AvHome": [],
@@ -2531,8 +2525,8 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.konfig.SympForm": [
     "widget.fSymptom"
   ],
-  "rcm.view.konfig.SympGrid": [
-    "widget.gridSymptom"
+  "rcm.view.konfig.SympGGrid": [
+    "widget.griddSymptom"
   ],
   "rcm.view.konfig.Symptom": [
     "widget.tSymptom"
@@ -2553,7 +2547,10 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.tUser"
   ],
   "rcm.view.konfig.UserForm": [
-    "widget.fUser"
+    "widget.f_User"
+  ],
+  "rcm.view.konfig.UserGGrid": [
+    "widget.gridUserList"
   ],
   "rcm.view.konfig.wCatHir": [
     "widget.tWCatHir"
