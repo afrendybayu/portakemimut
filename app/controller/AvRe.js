@@ -196,6 +196,8 @@ Ext.define('rcm.controller.AvRe', {
 		//me.getAvReUnitStore().load({ params:{wkt:d,gr:me.getTAvGroup().cat} });
 		//*/
 		
+		//gantiLabel(av,re,av2,re2,thn,bln,thnm1);
+		
 		av[0].config.name = thnm1;
 		av[1].config.name = thn;
 		av[2].config.name = bln;
