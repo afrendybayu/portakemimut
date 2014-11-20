@@ -122,7 +122,7 @@ Ext.define('rcm.controller.AvRe', {
 	
 	updateAvRe: function(t,n,id) {
 		var me = this;
-		if (me.getAuthlogin().level>0)	return;
+		//if (me.getAuthlogin().level>0)	return;
 		me.updAvRe(t,n,id);
 		/*
 		me.getAvGroupStore().load({
@@ -140,6 +140,7 @@ Ext.define('rcm.controller.AvRe', {
 	},
 	
 	updAvRe: function(t,n,id) {
+		//alert("LOAD List Group: "+t+" "+n+" "+id);
 		var me = this;
 		me.getAvGroupStore().load({
 			params: {wkt: t, gr:id},
