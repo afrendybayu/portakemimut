@@ -92,6 +92,19 @@ Ext.define('rcm.controller.AvRe', {
 		me.getAvGroupStore().load();		// list equip masing2 pergroup
 		me.getAvReUnitStore().load();
 		
+		
+		me.filterAvRe();
+		/*
+		var me = this,
+			tFG = me.getTaskBlnAv(),
+			av=me.getTAvHome().series,
+			re=me.getTReHome().series,
+			av2=Ext.getCmp('Av2Thn').series,
+			re2=Ext.getCmp('Re2Thn').series,
+			form = tFG.down('form').getForm();
+		
+		gantiLabel(me, av,re,av2,re2,thn,bln,thnm1);
+		
 		/*
 		'AvReUnit','AvHome','ReHome','AvGroup','AvSpeedo','ReSpeedo'
 		//,'SapHistoriUt'
@@ -169,6 +182,34 @@ Ext.define('rcm.controller.AvRe', {
 		//alert("Home Update");
 	},
 	
+	gantiLabel: function(me,av,re,av2,re2,thn,bln,thnm1)	{
+		av[0].config.name = thnm1;
+		av[1].config.name = thn;
+		av[2].config.name = bln;
+		me.getTAvHome().draw();
+		
+		re[0].config.name = thnm1;
+		re[1].config.name = thn;
+		re[2].config.name = bln;
+		me.getTReHome().draw();
+
+		av2[0].config.name = "Av"+thnm1;
+		av2[1].config.name = "Av"+thnm1;
+		av2[2].config.name = "Av"+th;
+		av2[3].config.name = "Av"+th;
+		Ext.getCmp('Av2Thn').draw();
+		
+		re2[0].config.name = "Re"+thnm1;
+		re2[1].config.name = "Re"+thnm1;
+		re2[2].config.name = "Re"+th;
+		re2[3].config.name = "Re"+th;
+		Ext.getCmp('Re2Thn').draw();
+		
+		Ext.getCmp('spAvR').setSubTitle("Availability "+bln);
+		Ext.getCmp('spReR').setSubTitle("Reliability "+bln);
+		me.getTAvGroup().setSubTitle("Gas Comp "+bln);
+	},
+	
 	filterAvRe: function()	{
 		var me = this,
 			tFG = me.getTaskBlnAv(),
@@ -196,8 +237,8 @@ Ext.define('rcm.controller.AvRe', {
 		//me.getAvReUnitStore().load({ params:{wkt:d,gr:me.getTAvGroup().cat} });
 		//*/
 		
-		//gantiLabel(av,re,av2,re2,thn,bln,thnm1);
-		
+		me.gantiLabel(me, av,re,av2,re2,thn,bln,thnm1);
+		/*
 		av[0].config.name = thnm1;
 		av[1].config.name = thn;
 		av[2].config.name = bln;
@@ -223,6 +264,7 @@ Ext.define('rcm.controller.AvRe', {
 		Ext.getCmp('spAvR').setSubTitle("Availability "+bln);
 		Ext.getCmp('spReR').setSubTitle("Reliability "+bln);
 		me.getTAvGroup().setSubTitle("Gas Comp "+bln);
+		//*/
 	},
 	
 	AvHomeClick: function(d, nama, id)	{
