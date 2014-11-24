@@ -61,7 +61,9 @@ Ext.define('rcm.view.lapobama.ReHome', {
 								click: function(evt) {
 									//rcmSettings.bongkar = evt;
 									//alert(evt.currentTarget.x);
-									me.fireEvent('ReHomeCl', evt.currentTarget.x, this.category);
+									//me.fireEvent('ReHomeCl', evt.currentTarget.x, this.category);
+									me.cat = this.category;
+									me.fireEvent('ReHomeCl', evt.currentTarget, this.category, rcm.view.Util.cid(this.category));
 								}
 							}
 						}

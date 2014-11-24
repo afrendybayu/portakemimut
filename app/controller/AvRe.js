@@ -78,6 +78,9 @@ Ext.define('rcm.controller.AvRe', {
 			},
 			'tAvHome' : {
 				AvHomeCl: me.AvHomeClick
+			},
+			'tReHome' : {
+				ReHomeCl: me.AvHomeClick
 			}
 		});
     },
