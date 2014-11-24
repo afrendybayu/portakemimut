@@ -36,10 +36,12 @@ class rAvReUnit extends CI_Controller {
 			for ($i=1; $i<=12; $i++)	{
 				$k=0;
 				for ($j=0; $j<count($hsl); $j++)	{
-					if ($i==$hsl[$j]->b)	{
-						$k=1;
-						array_push($arAvRe,$hsl[$j]);
-						break;
+					if (isset($hsl[$j]->b))	{
+						if ($i==$hsl[$j]->b)	{
+							$k=1;
+							array_push($arAvRe,$hsl[$j]);
+							break;
+						}
 					}
 				}
 				if (!$k) {
