@@ -7,7 +7,8 @@ class rAvReUnit extends CI_Controller {
 		$this->load->model("runninghour");
 		$this->load->model("catequip");
 			//echo "tes";
-		$gr = $this->input->get('gr')?:$this->catequip->get_tipe_id();
+		//$gr = $this->input->get('gr')?:$this->catequip->get_tipe_id();
+		$id = $this->input->get('eq')?:$this->catequip->get_tipe_id();
 		//echo "gr: $gr ".$nowD = date('j')+1;
 		
 		if ($this->input->get('wkt'))	{
@@ -32,7 +33,7 @@ class rAvReUnit extends CI_Controller {
 		try {
 			$arAvRe = array();
 			
-			$hsl = $this->runninghour->get_avre_2th($gr, $thn, $thnm1);
+			$hsl = $this->runninghour->get_avre_2th($id, $thn, $thnm1);
 			for ($i=1; $i<=12; $i++)	{
 				$k=0;
 				for ($j=0; $j<count($hsl); $j++)	{

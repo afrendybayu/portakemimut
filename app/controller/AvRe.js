@@ -185,7 +185,7 @@ Ext.define('rcm.controller.AvRe', {
 		//alert("Home Update");
 	},
 	
-	gantiLabel: function(me,av,re,av2,re2,thn,bln,thnm1)	{
+	gantiLabel: function(me,av,re,av2,re2,th,thn,bln,thnm1)	{
 		av[0].config.name = thnm1;
 		av[1].config.name = thn;
 		av[2].config.name = bln;
@@ -240,7 +240,7 @@ Ext.define('rcm.controller.AvRe', {
 		//me.getAvReUnitStore().load({ params:{wkt:d,gr:me.getTAvGroup().cat} });
 		//*/
 		
-		me.gantiLabel(me, av,re,av2,re2,thn,bln,thnm1);
+		me.gantiLabel(me, av,re,av2,re2,th,thn,bln,thnm1);
 		/*
 		av[0].config.name = thnm1;
 		av[1].config.name = thn;
@@ -271,13 +271,14 @@ Ext.define('rcm.controller.AvRe', {
 	},
 	
 	AvHomeClick: function(d, nama, id)	{
+		var me=this;
 		//alert("AvRe AvHomeClick "+id+", tgl: "+d.series.name);
 		//this.getAvGroupStore().load({ params:{gr:id, tgl: d.series.name} })
-		this.getTAvGroup().waktu = d.series.name;
-		this.getTAvGroup().nama = nama;
-		this.getTAvGroup().cat = id;
-		//alert(nama + " "+ d.series.name+" " +id);
-		this.updateAvRe(d.series.name,nama,id);
+		me.getTAvGroup().waktu = d.series.name;
+		me.getTAvGroup().nama = nama;
+		me.getTAvGroup().cat = id;
+		alert(nama + " "+ d.series.name+" " +id);
+		me.updateAvRe(d.series.name,nama,id);
 	},
 	
 	AvGroupClick: function(d,app,bln,kat) 	{
@@ -288,6 +289,7 @@ Ext.define('rcm.controller.AvRe', {
 		plh=(app==1)?me.getAvGroupStore().getAt(d.point.x).data:me.getAvGroupStore().getAt(0).data;
 
 		//alert("wkt: "+wkt+",plh: "+plh);
+		console.log(plh);
 		//Ext.getCmp('iflAvRe').setText(plh.nama+", id:"+plh.id+", w: "+wkt);
 		Ext.getCmp('iflAvRe').setText(plh.nama+", "+wkt);
 		
@@ -297,10 +299,10 @@ Ext.define('rcm.controller.AvRe', {
 		me.getTAvGroup().setSubTitle(nnm+" "+wkt);
 		me.getAvSpeedoStore().getAt(0).set('av',plh.av);
 		me.getReSpeedoStore().getAt(0).set('av',plh.re);
-		//me.getTAvSpeedo().setTitle(plh.kode);
-		//me.getTAvSpeedo().setSubTitle("Availability "+wkt);
-		me.getAvReUnitStore().load({ params:{wkt:wkt, gr:me.getTAvGroup().cat} });
 		
+//		me.getAvReUnitStore().load({ params:{wkt:wkt, gr:me.getTAvGroup().cat} });
+		me.getAvReUnitStore().load({ params:{wkt:wkt, eq:plh.id} });
+
 		Ext.getCmp('spAvR').kode = Ext.getCmp('spReR').kode = plh.id+'@'+wkt;
 		//alert(me.getTAvSpeedo().kode);
 		

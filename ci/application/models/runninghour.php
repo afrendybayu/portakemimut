@@ -146,7 +146,7 @@ class Runninghour extends CI_Model {
 	}
 	
 	function get_avre_2th($cat, $thn, $thnm1)	{
-		//*
+		/*
 		$sql =	"SELECT (bln) AS b, DATE_FORMAT(tgl,'%b') AS m,YEAR(tgl) AS thn
 				,IFNULL((select count(*) from hirarki where flag = $cat and thn=$thn),0) AS jt
 				,IFNULL((select count(*) from hirarki where flag = $cat and thn=$thnm1),0) AS jt1
@@ -159,7 +159,14 @@ class Runninghour extends CI_Model {
 					WHEN $thnm1 THEN (ROUND(ifnull(sum(rh_re)*100/(SELECT DAY(LAST_DAY(tgl))*24*jt1),0),2)) 
 				END AS re
 				FROM rh_201311 WHERE cat=$cat and thn in ($thn,$thnm1) GROUP BY bln,thn,b ORDER BY bln ASC";
-				
+		//*/
+		$sql =	"SELECT bln b, DATE_FORMAT(tgl,'%b') AS m,thn
+				,IFNULL((select count(*) from hirarki where eq=$cat and thn=$thn),0) AS jt 
+				,IFNULL((select count(*) from hirarki where eq=$cat and thn=$thnm1),0) AS jt1
+				,IFNULL(ROUND(sum(rh_av)*100/(DAY(LAST_DAY(tgl))*24),2),0) AS av
+				,IFNULL(ROUND(sum(rh_re)*100/(DAY(LAST_DAY(tgl))*24),2),0) AS re
+				FROM rh_201311 WHERE eq=$cat AND thn IN ($thn, $thnm1)
+				GROUP BY bln,thn";		
 		//echo "sql: $sql<br/><br/>";
 		$hsl1 = $this->db->query($sql)->result();
 		//*/
