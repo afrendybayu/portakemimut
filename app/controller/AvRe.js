@@ -277,7 +277,7 @@ Ext.define('rcm.controller.AvRe', {
 		me.getTAvGroup().waktu = d.series.name;
 		me.getTAvGroup().nama = nama;
 		me.getTAvGroup().cat = id;
-		alert(nama + " "+ d.series.name+" " +id);
+		//alert(nama + " "+ d.series.name+" " +id);
 		me.updateAvRe(d.series.name,nama,id);
 	},
 	
@@ -289,7 +289,8 @@ Ext.define('rcm.controller.AvRe', {
 		plh=(app==1)?me.getAvGroupStore().getAt(d.point.x).data:me.getAvGroupStore().getAt(0).data;
 
 		//alert("wkt: "+wkt+",plh: "+plh);
-		console.log(plh);
+		console.log("AvGroupClick "+plh.nama+","+wkt);
+		//console.log(plh);
 		//Ext.getCmp('iflAvRe').setText(plh.nama+", id:"+plh.id+", w: "+wkt);
 		Ext.getCmp('iflAvRe').setText(plh.nama+", "+wkt);
 		
@@ -314,6 +315,23 @@ Ext.define('rcm.controller.AvRe', {
 		
 		Ext.getCmp('Av2Thn').setTitle("Availability "+plh.kode+" Annually");
 		Ext.getCmp('Re2Thn').setTitle("Reliability "+plh.kode+" Annually");
+		
+		var tx = rcm.view.Util.UcariThn(wkt.toString());
+		//*
+		var av2=Ext.getCmp('Av2Thn').series,
+			re2=Ext.getCmp('Re2Thn').series;
+		av2[0].config.name = "Av"+(tx-1);
+		av2[1].config.name = "Av"+(tx-1);
+		av2[2].config.name = "Av"+tx;
+		av2[3].config.name = "Av"+tx;
+		Ext.getCmp('Av2Thn').draw();
+		
+		re2[0].config.name = "Re"+(tx-1);
+		re2[1].config.name = "Re"+(tx-1);
+		re2[2].config.name = "Re"+tx;
+		re2[3].config.name = "Re"+tx;
+		Ext.getCmp('Re2Thn').draw();
+		//*/
 
 	}
 	/*

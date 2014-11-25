@@ -139,6 +139,19 @@ Ext.define('rcm.view.Util', {
 			return items;
 		},
 		
+		UcariThn: function(w)	{
+			//var trm = w.trim();
+			alert("thn: "+w);
+			var	arr = w.split(" ");
+			alert("thn: "+w+" "+arr.length);
+			if (arr.length>1)	{
+				return arr[1];
+			} 
+			else {
+				return arr[0];
+			}
+		},
+		
 		UxcolGrid: function()	{
 			var strbln = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
 			var items=new Array(), blnthn=new Array();

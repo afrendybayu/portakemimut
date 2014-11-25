@@ -45,14 +45,14 @@ Ext.define('rcm.view.Content', {
 			title: 'SAP Report',
 			xtype: 'tabChart',
 			iconCls: 'sap'
+		//*/
 		},{
-		
 			id: 'tu_rh',
 			title: 'Runnning Hour',
 			iconCls: 'RunnningHour',
 			//layout: 'accordion',
 			xtype: 'tabRh'
-
+		/*
 		},{
 			id: 'tu_co',
 			title: 'Condition Monitoring',
