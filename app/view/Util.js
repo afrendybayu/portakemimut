@@ -140,13 +140,11 @@ Ext.define('rcm.view.Util', {
 		},
 		
 		UcariThn: function(w)	{
-			//var trm = w.trim();
-			alert("thn: "+w);
-			var	arr = w.split(" ");
-			alert("thn: "+w+" "+arr.length);
+			var trm = w.trim(),
+				arr = trm.split(" ");
 			if (arr.length>1)	{
 				return arr[1];
-			} 
+			}
 			else {
 				return arr[0];
 			}

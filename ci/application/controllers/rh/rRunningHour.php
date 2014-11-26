@@ -113,6 +113,25 @@ class rRunningHour extends CI_Controller {
 		//$this->output->enable_profiler(TRUE);
 	}
 	
+	
+	public function cariRH()	{
+		/*
+		 * SELECT  h3.id,h3.nama,h1.nama AS lok
+,(CONCAT('[',(SELECT pd.nama FROM waktudown wd 
+		LEFT JOIN pmdef pd ON pd.id = wd.tipeev
+		where wd.downt = MAX(wd1.downt) AND wd.eqid = eq.id AND wd.event=2),
+	' ',eq.kode,': ',MAX(wd1.downt),']')) AS pm
+FROM hirarki h1
+LEFT JOIN hirarki h2 ON h2.parent = h1.id
+LEFT JOIN hirarki h3 ON h3.parent = h2.id
+LEFT JOIN equip eq ON eq.unit_id = h3.id
+LEFT JOIN waktudown wd1 ON h3.id = wd1.unit_id AND wd1.event=2
+WHERE h1.parent=0 AND h3.flag=5 
+	
+GROUP BY h3.id
+ORDER BY h1.urut ASC, h3.nama ASC,pm DESC;
+		//*/
+	}
 }
 
 

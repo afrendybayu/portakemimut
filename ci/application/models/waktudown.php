@@ -30,7 +30,7 @@ class Waktudown extends CI_Model {
 				"AND (downt BETWEEN '$da' AND '$db' OR upt BETWEEN '$ua' AND '$ub') ";
 		if ($edit) $sql .= "AND id NOT IN (".implode(',',$idid).")";
 		$sql .=	" group by downt, downj, upt,upj ";
-		
+
 		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql);
 		

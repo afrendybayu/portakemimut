@@ -52,7 +52,7 @@ Ext.define('rcm.view.Content', {
 			iconCls: 'RunnningHour',
 			//layout: 'accordion',
 			xtype: 'tabRh'
-		/*
+		//*
 		},{
 			id: 'tu_co',
 			title: 'Condition Monitoring',
