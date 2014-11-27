@@ -2,7 +2,7 @@
 Ext.define('rcm.store.EventList', {
     extend: 'Ext.data.Store',
     model: 'rcm.model.EventList',
-	//autoLoad: true,
+	autoLoad: true,
     requires: 'rcm.model.EventList'
     
     /*

@@ -3,6 +3,49 @@
 
 
 class rRunningHour extends CI_Controller {
+	function __construct() {
+        parent::__construct();
+		$this->load->model('runninghour');
+		$this->load->model('hirarki');
+    }
+    
+	public function rExGrid()	{
+		$sql = array();
+		$eq = 0; $jml = 0;
+		$tisi = array(); 
+		$ww=30;	$w=$ww-1; 
+		
+		
+		try {
+			$tgl = $this->input->get('tgl')?:date('Y-m-d'); 
+			$cat = $this->input->get('cat')?:5;  	
+			
+			$m = date('n', strtotime($tgl)); //month 1-12 tanpa 0
+			$y = date('Y', strtotime($tgl)); //year
+			$t = date('d', strtotime($tgl)); //day 00-31
+			
+			
+			$hir = $this->hirarki->get_excelgrid_hir($cat);
+			//echo $hir->num_rows():
+			//foreach($hir->result() as $d)	{
+			foreach($hir as $d)	{
+				print_r($d); echo "<br/>";
+			}
+			
+			
+			$jsonResult = array(
+				'success' => true,
+				'message' => ''
+			);
+		}
+		catch (Exception $e)	{
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
 	
 	public function index()	{
 		//$this->load->helper('util');
@@ -130,6 +173,46 @@ WHERE h1.parent=0 AND h3.flag=5
 	
 GROUP BY h3.id
 ORDER BY h1.urut ASC, h3.nama ASC,pm DESC;
+
+
+SELECT  h3.id,h3.nama,h1.nama AS lok,MAX(wd.downt) AS downt,GROUP_CONCAT(DISTINCT eq.id) AS eqid,wd.tipeev,wd.id
+,(SELECT GROUP_CONCAT(eq1.kode,' ',wd1.eqid, ' ',wd1.id, ' ', wd1.downt,'-->')
+	FROM waktudown wd1 
+
+	LEFT JOIN equip eq1 ON eq1.id = wd1.eqid
+	WHERE wd1.downt = MAX(wd.downt) AND wd1.event=2  
+		AND wd1.tipeev >0 
+) AS gap
+FROM hirarki h1
+LEFT JOIN hirarki h2 ON h2.parent = h1.id
+LEFT JOIN hirarki h3 ON h3.parent = h2.id
+LEFT JOIN equip eq ON eq.unit_id = h3.id
+LEFT JOIN waktudown wd ON eq.id = wd.eqid AND wd.event=2 AND wd.tipeev >0
+LEFT JOIN pmlist pl ON pl.id = wd.tipeev
+LEFT JOIN pmdef pd ON pd.id = pl.pm
+WHERE h1.parent=0 AND h3.flag=5
+GROUP BY h3.id,eq.id
+ORDER BY h1.urut ASC, h3.nama ASC;
+
+SELECT h3.id,h3.nama,h1.nama AS lok,MAX(wd.downt) AS dt,h3.rhinit
+,GROUP_CONCAT(DISTINCT eq.id) AS eqid,GROUP_CONCAT(DISTINCT wd.tipeev) as tev
+,(SELECT GROUP_CONCAT(wd1.id,' ',eq1.id,' ',pd1.nama,' ',eq1.kode,' ', wd1.downt)
+	FROM waktudown wd1 
+	LEFT JOIN pmlist pl1 ON pl1.id = wd1.tipeev
+	LEFT JOIN pmdef pd1 ON pd1.id = pl1.pm
+	LEFT JOIN equip eq1 ON eq1.id = wd1.eqid
+	WHERE wd1.downt = MAX(wd.downt) AND wd1.event=2
+		AND wd1.tipeev>0 AND wd1.eqid=eq.id
+	
+) AS gap
+FROM hirarki h1
+LEFT JOIN hirarki h2 ON h2.parent = h1.id
+LEFT JOIN hirarki h3 ON h3.parent = h2.id
+LEFT JOIN equip eq ON eq.unit_id = h3.id
+LEFT JOIN waktudown wd ON eq.id = wd.eqid AND wd.event=2 AND wd.tipeev >0
+WHERE h1.parent=0 AND h3.flag=5
+GROUP BY h3.id,eq.id
+ORDER BY h1.urut ASC, h3.nama ASC;
 		//*/
 	}
 }

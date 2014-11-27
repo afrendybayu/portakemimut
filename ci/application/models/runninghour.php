@@ -55,6 +55,19 @@ class Runninghour extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_rh_harian($tgl){
+		$this->db->select('eq,tgl');
+		$this->db->where('tgl',$tgl);
+		$query = $this->db->get('rh_201311');
+		//return $query->result();
+		
+		$hsl = array();
+		foreach($query->result() as $row)	{
+			$hsl[$row->eq] = $row;
+			//print_r($hsl[$row->eq]);
+		}
+		return $hsl;
+	}
 
 	function get_rhunit($eq,$tgl){
 		$this->db->select('eq,tgl');
@@ -81,7 +94,7 @@ class Runninghour extends CI_Model {
 		echo "sql: $sql<br/>";
 		//*/
 		$sql =	"SELECT hirarki.id AS id
-				,CONCAT(hirarki.init,'@',(SELECT hhh.kode FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS kode 
+				,CONCAT(hirarki.kode,'@',(SELECT hhh.kode FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS kode 
 				,CONCAT(hirarki.nama,', ',equip.nama,' @',(SELECT hhh.nama FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS nama 
 				,(SELECT ifnull(ROUND((sum(rh_201311.rh_av)*100/(count(rh_201311.id)*24)),2),0) 
 				FROM rh_201311 WHERE eq = hirarki.id AND thn=$thn AND bln=$bln) AS av 
@@ -104,7 +117,7 @@ class Runninghour extends CI_Model {
 				"FROM rh_201311 WHERE thn=$thn AND cat=$cat GROUP BY eq";
 		//*/
 		$sql =	"SELECT hirarki.id AS id
-				,CONCAT(hirarki.init,'@',(SELECT hhh.kode FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS kode
+				,CONCAT(hirarki.kode,'@',(SELECT hhh.kode FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS kode
 				,CONCAT(hirarki.nama,', ',equip.nama,' @',(SELECT hhh.nama FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS nama
 				,(SELECT ifnull(ROUND((sum(rh_201311.rh_av)*100/(count(rh_201311.id)*24)),2),0) 
 				FROM rh_201311 WHERE eq = hirarki.id AND thn=$thn) AS av 
@@ -128,7 +141,7 @@ class Runninghour extends CI_Model {
 				"FROM rh_201311 WHERE thn=$thn AND bln<=$bln AND cat=$cat GROUP BY eq";
 		//*/
 		$sql =	"SELECT hirarki.id AS id ".
-				",CONCAT(hirarki.init,'@',(SELECT hhh.kode FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS kode ".
+				",CONCAT(hirarki.kode,'@',(SELECT hhh.kode FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS kode ".
 				",CONCAT(hirarki.nama,', ',equip.nama,' @',(SELECT hhh.nama FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS nama ".
 				",(SELECT ifnull(ROUND((sum(rh_201311.rh_av)*100/(count(rh_201311.id)*24)),2),0) ".
 				"FROM rh_201311 WHERE eq = hirarki.id AND thn=$thn AND bln<=$bln) AS av ".

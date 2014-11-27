@@ -199,6 +199,67 @@ class Hirarki extends CI_Model {
 		
 		return $ids;
 	}
+	
+	function set_rhtot($eq)	{
+		$sql =	"UPDATE hirarki SET rhtot =
+					((SELECT sum(rx.rh) FROM rh_201311 rx		
+						WHERE eq=$eq)+rhinit)
+				WHERE id=$eq";
+		$query = $this->db->query($sql);
+		return $query;
+	}
+	
+	function get_excelgrid_hir($cat)	{
+		$sql =	"SELECT h3.id,h3.nama,h1.nama AS lok,h3.rhtot
+				,(SELECT GROUP_CONCAT('[',eq1.kode,' ',pd1.nama,' ',wd1.downt,']')
+					FROM waktudown wd1 
+					LEFT JOIN pmlist pl1 ON pl1.id = wd1.tipeev
+					LEFT JOIN pmdef pd1 ON pd1.id = pl1.pm
+					LEFT JOIN equip eq1 ON eq1.id = wd1.eqid
+					WHERE wd1.downt = MAX(wd.downt) AND wd1.event=2
+						AND wd1.tipeev>0 AND wd1.eqid=eq.id
+				) AS lpm
+				FROM hirarki h1
+				LEFT JOIN hirarki h2 ON h2.parent = h1.id
+				LEFT JOIN hirarki h3 ON h3.parent = h2.id
+				LEFT JOIN equip eq ON eq.unit_id = h3.id
+				LEFT JOIN waktudown wd ON eq.id = wd.eqid AND wd.event=2 AND wd.tipeev >0
+				WHERE h1.parent=0 AND h3.flag=?
+				GROUP BY h3.id,eq.id
+				ORDER BY h1.urut ASC, h3.nama ASC";
+		
+		$query = $this->db->query($sql,$cat);
+		
+		$d = $query->result();
+			
+		$hsl = array(); $obj = new stdClass();
+		if (count($d)>0)	{
+			$id = 0; $k=0;
+			foreach($d as $r)	{
+				//print_r($r); echo "<br/>";
+				if ($id != $r->id)	{
+					$id = $r->id;
+					//$hsl[$k]
+					$obj = new stdClass();
+					$obj->id = $r->id;
+					$obj->nama = $r->nama;
+					$obj->lok = $r->lok;
+					$obj->rhtot = $r->rhtot;
+					$obj->lpm = $r->lpm;
+				}
+				else {
+					$obj->lpm .= " ".$r->lpm;
+					array_push($hsl, $obj);
+				}
+			}
+		}
+		echo count($hsl)."<br/>";
+		//print_r($hsl);
+		//print_r($query->result());
+		//if ($query->num_rows)
+		//echo $query->num_rows():
+		return $hsl;
+	}
 
 }
 
