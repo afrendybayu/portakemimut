@@ -111,10 +111,30 @@ class Runninghour extends CI_Model {
 	}
 	
 	function get_rh_bulan($tgl)	{
-		$sql = "SELECT * FROM rh_201311 WHERE tgl BETWEEN ? AND ? ";
-		$query = $this->db->query($sql, array($tgl[0],$tgl[1]));
+		//echo "tgl: {$tgl[0]}, {$tgl[1]}<br/>";
+		$sql =	"SELECT eq,rh,DATE_FORMAT(tgl,'k%y%m%d') AS tgl 
+				FROM rh_201311 
+				WHERE (tgl BETWEEN ? AND ?) AND cat=?
+				ORDER BY eq ASC";
+		$query = $this->db->query($sql, array($tgl[0],$tgl[1],$tgl[2]));
 		
-		return $query->result();
+		$hsl = array(); $k=0;
+		if ($query->num_rows()>0)	{
+			//$d = $query->result();
+			foreach($query->result() as $d)		{
+				//if ($k!=$d->eq)	{
+				$hsl[$d->eq][] = $d;
+				//}
+			}
+		}
+		//print_r($hsl);
+		/*
+		foreach($hsl as $d)		{
+			print_r($d);	echo "<br/>";
+		}
+		//*/
+		//return $query->result();
+		return $hsl;
 	}
 	
 	function get_avre_sthn_eq($thn, $cat)	{ //  count(id) AS jmleq 

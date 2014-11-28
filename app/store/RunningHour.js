@@ -10,7 +10,8 @@ Ext.define('rcm.store.RunningHour', {
 	proxy: {
 		type: 'ajax',
 		//url: 'php/hirarki/read.php',
-		url: 'ci/index.php/rh/rRunningHour',
+		//url: 'ci/index.php/rh/rRunningHour',
+		url: 'ci/index.php/rh/rRunningHour/rExGrid',
         reader: {
             type: 'json',
             root: 'runninghour',

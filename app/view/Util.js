@@ -156,7 +156,7 @@ Ext.define('rcm.view.Util', {
 			var bln,thn,tgl,date;
 			var column = new Array();
 			var xtgl,xwkt;
-			var w=30;
+			var w=14;
 			
 			//console.log("UxcolGrid rcmSettings.tgl: "+rcmSettings.tgl+5000);
 			if (rcmSettings.tgl=='0')	{
@@ -166,8 +166,8 @@ Ext.define('rcm.view.Util', {
 			}
 			
 			items = [
-				{ xtype: 'rownumberer' },
-				{ header:'Unit', dataIndex: 'eq', width:200 }
+				{ xtype: 'rownumberer',locked:true },
+				{ header:'Unit', dataIndex: 'eq', width:200,locked:true }
 			];
 			
 			tgl.setDate(tgl.getDate() - w + 1);
@@ -216,7 +216,10 @@ Ext.define('rcm.view.Util', {
 			items.push.apply(items,blnthn);
 			
 			//alert("blnthn[0]: "+blnthn[0].header+" "+blnthn[1].header);
-			items.push({ header:'Catatan',dataIndex:'note',flex:1,minWidth:300 });		// ganti dgn note
+			//items.push({ header:'Catatan',dataIndex:'note',flex:1,minWidth:300 });		// 
+			items.push({ header:'RunningHour',dataIndex:'rhtot',flex:1,minWidth:90 });		// 
+			items.push({ header:'Last PM',dataIndex:'lpm',flex:1,minWidth:320 });		// ganti dgn note
+			items.push({ header:'Next PM',dataIndex:'npm',flex:1,minWidth:450 });		// ganti dgn note
 			//console.log(items);
 			//rcmS = items;
 			
@@ -224,9 +227,11 @@ Ext.define('rcm.view.Util', {
 		},
 		
 		Ublntgl: function(x)	{
-			var ww = 30;
+			var ww = 14;
 			var tglbln=new Array();
-			tglbln[0] = 'eq'; tglbln[1] = 'Lokasi'; tglbln[2] = 'cat'; tglbln[3] = 'note';
+			tglbln[0] = 'eq'; tglbln[1] = 'Lokasi'; tglbln[2] = 'cat'; 
+			tglbln[3] = 'rhtot'; tglbln[4] = 'lpm'; tglbln[5] = 'npm';
+			var xx = 6;
 			//*
 			//alert("x: "+x+", Ublntgl: "+rcmSettings.tgl);
 				
@@ -240,7 +245,7 @@ Ext.define('rcm.view.Util', {
 				//alert("Ublntgl tgl: "+date);
 				date.setDate(date.getDate() - i);
 				//tglbln[i] = "'"+this.Upad((date.getMonth()+1))+""+this.Upad(date.getDate())+"'";
-				tglbln[i+4] = "k"+(date.getFullYear()-2000)+this.Upad((date.getMonth()+1))+this.Upad(date.getDate());
+				tglbln[i+xx] = "k"+(date.getFullYear()-2000)+this.Upad((date.getMonth()+1))+this.Upad(date.getDate());
 				//tglbln[i+4] = "k"+i;
 			}
 			//tglbln[i+4] = 'k140426';

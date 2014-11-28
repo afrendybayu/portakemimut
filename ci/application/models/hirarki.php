@@ -209,7 +209,7 @@ class Hirarki extends CI_Model {
 		return $query;
 	}
 	
-	function get_excelgrid_hir($cat,$pm)	{
+	function get_excelgrid_hir($cat,$pm,$m,$y,$t,$w)	{
 		$sql =	"SELECT h3.id,h3.nama,h1.nama AS lok,h3.rhtot,eq.cat,eq.kode
 				,(SELECT GROUP_CONCAT('[',eq1.kode,' ',pd1.nama,' ',wd1.downt,']')
 					FROM waktudown wd1 
@@ -247,11 +247,16 @@ class Hirarki extends CI_Model {
 						array_push($hsl, $obj);
 					$obj = new stdClass();
 					$obj->id = $r->id;
-					$obj->nama = $r->nama;
-					$obj->lok = $r->lok;
+					$obj->eq = $r->nama;
+					//$obj->cat = $r->cat;
+					$obj->Lokasi = $r->lok;
 					$obj->rhtot = $r->rhtot;
 					$obj->lpm = $r->lpm;
 					$obj->npm = "[{$r->kode} PM{$npm->npm} {$npm->tgl}, {$npm->hari} hari lagi]";
+					for($i=$w;$i>=0; $i--)	{
+						//echo "eq: ".$a['id']." ".date("ymd", mktime(0, 0, 0, $m, $t-$i, $y))."<br/>";
+						$obj->{"k".date("ymd", mktime(0, 0, 0, $m, $t-$i, $y))} = '-';
+					}
 				}
 				else {
 					$obj->lpm .= " ".$r->lpm;
@@ -271,6 +276,28 @@ class Hirarki extends CI_Model {
 		//echo $query->num_rows();
 		//*/
 		return $hsl;
+	}
+
+	function exc_format($hir, $rh)	{
+		//print_r($hir);
+		//*
+		$hsl = array();	$k=0;
+		foreach ($hir as $h)	{
+			//print_r($h);	echo "<br/>id: {$h->id}<br/>";
+			//print_r($rh);	echo "<br/><br/>";
+			
+			foreach ($rh[$h->id] as $r)	{
+				//print_r($r);	echo "<br/>";
+				//echo "{$r->tgl} {$r->rh}<br/>";
+				$hir[$k]->{$r->tgl} = format_rh_time($r->rh);
+			}
+			//echo "<br/>{$h->id}<br/>";
+			//print_r($hir[$k]); echo "<br/><br/>";
+			//echo "<br/>teeeeeee<br/>";
+			$k++;
+		}
+		//*/
+		return $hir;
 	}
 
 }

@@ -14,7 +14,7 @@ class rRunningHour extends CI_Controller {
 		$sql = array();
 		$eq = 0; $jml = 0;
 		$tisi = array(); 
-		$ww=30;	$w=$ww-1;
+		$ww=14;	$w=$ww-1;
 		
 		
 		try {
@@ -32,22 +32,18 @@ class rRunningHour extends CI_Controller {
 			$pm = $this->pm->get_pmlist_array();
 			//print_r($pm);
 			
-			$hir = $this->hirarki->get_excelgrid_hir($cat,$pm);
+			$hir = $this->hirarki->get_excelgrid_hir($cat,$pm,$m,$y,$t,$w);
 			
-			$rh = $this->runninghour->get_rh_bulan(array($bts_1,$bts_0));
-			print_r($rh);
-			/*
-			if (count($hir)>0)	{
-			//foreach($hir->result() as $d)	{
-				foreach($hir as $d)	{
-			//	print_r($d); echo "<br/>";
-				}
-			}
-			//*/
+			$rh = $this->runninghour->get_rh_bulan(array($bts_1,$bts_0,$cat));
+			//print_r($rh);
+			
+			
+			$this->hirarki->exc_format($hir, $rh);
+
 			
 			$jsonResult = array(
 				'success' => true,
-				'message' => $hir
+				'runninghour' => $hir
 			);
 		}
 		catch (Exception $e)	{
