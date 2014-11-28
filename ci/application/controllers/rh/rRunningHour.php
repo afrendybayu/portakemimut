@@ -14,7 +14,7 @@ class rRunningHour extends CI_Controller {
 		$sql = array();
 		$eq = 0; $jml = 0;
 		$tisi = array(); 
-		$ww=30;	$w=$ww-1; 
+		$ww=30;	$w=$ww-1;
 		
 		
 		try {
@@ -25,10 +25,17 @@ class rRunningHour extends CI_Controller {
 			$y = date('Y', strtotime($tgl)); //year
 			$t = date('d', strtotime($tgl)); //day 00-31
 			
+			
+			$bts_0 = date("Y-m-d", mktime(0, 0, 0, $m, $t, $y));
+			$bts_1 = date("Y-m-d", mktime(0, 0, 0, $m, $t-$w, $y));
+			
 			$pm = $this->pm->get_pmlist_array();
 			//print_r($pm);
 			
 			$hir = $this->hirarki->get_excelgrid_hir($cat,$pm);
+			
+			$rh = $this->runninghour->get_rh_bulan(array($bts_1,$bts_0));
+			print_r($rh);
 			/*
 			if (count($hir)>0)	{
 			//foreach($hir->result() as $d)	{

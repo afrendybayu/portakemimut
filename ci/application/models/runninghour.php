@@ -110,7 +110,14 @@ class Runninghour extends CI_Model {
 		return $query->result();
 	}
 	
-	function get_avre_sthn_eq($thn, $cat)	{//  count(id) AS jmleq 
+	function get_rh_bulan($tgl)	{
+		$sql = "SELECT * FROM rh_201311 WHERE tgl BETWEEN ? AND ? ";
+		$query = $this->db->query($sql, array($tgl[0],$tgl[1]));
+		
+		return $query->result();
+	}
+	
+	function get_avre_sthn_eq($thn, $cat)	{ //  count(id) AS jmleq 
 		/*
 		$sql =	"SELECT eq ".		
 				",ROUND((sum(rh_av)*100/(count(id)*24)),2) AS av,ROUND((sum(rh_re)*100/(count(id)*24)),2) AS re ".
