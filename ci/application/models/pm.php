@@ -52,6 +52,33 @@ class Pm extends CI_Model {
 		return $query->result();
     }
     
+    function get_pmlist_array()	{
+		$this->db->select('pd.durasi,pl.eqcat');
+		$this->db->join('pmdef pd', 'pd.id = pl.pm', 'left');
+		$query = $this->db->get('pmlist pl');
+		
+		$pl = $query->result();
+		$hsl = array();	$k=0;
+		if (count($pl)>0)	{
+			foreach($pl as $d)	{
+				//print_r($d);	echo "<br/>";
+				if ($k!=$d->eqcat)	{
+					$hsl[$d->eqcat][] = $d->durasi;
+				}
+			}
+		}
+		/*
+		//echo "fsdf<br/>";
+		foreach($hsl as $r)	{
+			print_r($r);	echo "<br/>";
+		}
+		//print_r($query->result());
+		//return $query->result();
+		//*/
+		
+		return $hsl;
+	}
+    
     function set_pmlist($data)	{
 		$this->db->trans_start();
 		$this->db->insert('pmlist', $data); 

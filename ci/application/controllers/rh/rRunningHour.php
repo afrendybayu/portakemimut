@@ -7,6 +7,7 @@ class rRunningHour extends CI_Controller {
         parent::__construct();
 		$this->load->model('runninghour');
 		$this->load->model('hirarki');
+		$this->load->model('pm');
     }
     
 	public function rExGrid()	{
@@ -24,18 +25,22 @@ class rRunningHour extends CI_Controller {
 			$y = date('Y', strtotime($tgl)); //year
 			$t = date('d', strtotime($tgl)); //day 00-31
 			
+			$pm = $this->pm->get_pmlist_array();
+			//print_r($pm);
 			
-			$hir = $this->hirarki->get_excelgrid_hir($cat);
-			//echo $hir->num_rows():
+			$hir = $this->hirarki->get_excelgrid_hir($cat,$pm);
+			/*
+			if (count($hir)>0)	{
 			//foreach($hir->result() as $d)	{
-			foreach($hir as $d)	{
-				print_r($d); echo "<br/>";
+				foreach($hir as $d)	{
+			//	print_r($d); echo "<br/>";
+				}
 			}
-			
+			//*/
 			
 			$jsonResult = array(
 				'success' => true,
-				'message' => ''
+				'message' => $hir
 			);
 		}
 		catch (Exception $e)	{

@@ -209,8 +209,8 @@ class Hirarki extends CI_Model {
 		return $query;
 	}
 	
-	function get_excelgrid_hir($cat)	{
-		$sql =	"SELECT h3.id,h3.nama,h1.nama AS lok,h3.rhtot
+	function get_excelgrid_hir($cat,$pm)	{
+		$sql =	"SELECT h3.id,h3.nama,h1.nama AS lok,h3.rhtot,eq.cat,eq.kode
 				,(SELECT GROUP_CONCAT('[',eq1.kode,' ',pd1.nama,' ',wd1.downt,']')
 					FROM waktudown wd1 
 					LEFT JOIN pmlist pl1 ON pl1.id = wd1.tipeev
@@ -230,34 +230,46 @@ class Hirarki extends CI_Model {
 		
 		$query = $this->db->query($sql,$cat);
 		
-		$d = $query->result();
-			
+		//echo $query->num_rows();
 		$hsl = array(); $obj = new stdClass();
-		if (count($d)>0)	{
+		//if (count($d)>0)	{
+		if ($query->num_rows()>0)	{
 			$id = 0; $k=0;
+			$d = $query->result();
 			foreach($d as $r)	{
 				//print_r($r); echo "<br/>";
+				//echo "=--->"; print_r(nextpm($r->rhtot,$pm[$r->cat]));	echo "<br/>";
+				$npm = nextpm($r->rhtot,$pm[$r->cat]);
 				if ($id != $r->id)	{
 					$id = $r->id;
 					//$hsl[$k]
+					if (isset($obj->id))
+						array_push($hsl, $obj);
 					$obj = new stdClass();
 					$obj->id = $r->id;
 					$obj->nama = $r->nama;
 					$obj->lok = $r->lok;
 					$obj->rhtot = $r->rhtot;
 					$obj->lpm = $r->lpm;
+					$obj->npm = "[{$r->kode} PM{$npm->npm} {$npm->tgl}, {$npm->hari} hari lagi]";
 				}
 				else {
 					$obj->lpm .= " ".$r->lpm;
-					array_push($hsl, $obj);
+					$obj->npm .= " [{$r->kode} PM{$npm->npm} {$npm->tgl}, {$npm->hari} hari lagi]";
 				}
+				
 			}
+			array_push($hsl, $obj);
 		}
-		echo count($hsl)."<br/>";
-		//print_r($hsl);
+		/*
+		//echo count($hsl)."<br/>";
+		foreach	($hsl as $h)	{
+			print_r($h);	echo "<br/>";
+		}
 		//print_r($query->result());
 		//if ($query->num_rows)
-		//echo $query->num_rows():
+		//echo $query->num_rows();
+		//*/
 		return $hsl;
 	}
 
