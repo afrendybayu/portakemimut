@@ -27,7 +27,12 @@ class Conmon extends CI_Model {
 	}
 	
 	function jml_conmon()	{
-		$sql = "select thn AS tahun,SUM(nilai) as jml from conmon GROUP BY thn ORDER BY thn desc";
+		//$sql = "select thn AS tahun,SUM(nilai) as jml from conmon GROUP BY thn ORDER BY thn desc";
+		$sql = "SELECT thn AS tahun,SUM(nilai) AS jml 
+				FROM conmon 
+				WHERE nilai>0
+				GROUP BY thn 
+				ORDER BY thn desc";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}

@@ -211,7 +211,7 @@ class Hirarki extends CI_Model {
 	
 	function get_excelgrid_hir($cat,$pm,$m,$y,$t,$w)	{
 		$sql =	"SELECT h3.id,h3.nama,h1.nama AS lok,h3.rhtot,eq.cat,eq.kode
-				,(SELECT GROUP_CONCAT('[',eq1.kode,' ',pd1.nama,' ',wd1.downt,']')
+				,(SELECT GROUP_CONCAT('[',eq1.kode,' ',pd1.nama,' ',DATE_FORMAT(wd1.downt,'%e %b %Y'),']')
 					FROM waktudown wd1 
 					LEFT JOIN pmlist pl1 ON pl1.id = wd1.tipeev
 					LEFT JOIN pmdef pd1 ON pd1.id = pl1.pm
