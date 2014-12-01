@@ -9,7 +9,7 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 	idbDownL: '-',
 	idbUpl: '-',
 	idtLok: '-',
-	idbPdf: '-',
+	//idbPdf: '-',
 	idThn: '-',
 	idbSr: '-',
 	etext: '-',
@@ -68,7 +68,7 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 					width: 100,
 					text: 'Upload',
 					margin: '2 5'
-				/*
+				//*
 				},{
 					id: me.idbPdf,
 					xtype: 'button',
