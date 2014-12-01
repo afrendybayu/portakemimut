@@ -27,19 +27,19 @@ Ext.define('rcm.view.Content', {
     initComponent: function() {
 		var me=this;
 		me.items = [{
-		/*==========================
+		//*==========================
 			id: 'tu_ho',
 			title: 'Dashboard Home',
 			iconCls: 'Dashboard',
 			xtype: 'tHoChart'
 		//*
 		},{
-		//*/
 			id: 'tu_re',
 			title: 'Reliability',
 			iconCls: 'Reliability',
 			xtype: 'tAvReChart'
-		/*
+		//*/
+		//*
 		},{
 			id: 'tu_sap',
 			title: 'SAP Report',
@@ -53,11 +53,13 @@ Ext.define('rcm.view.Content', {
 			//layout: 'accordion',
 			xtype: 'tabRh'
 		//*
+		//*
 		},{
 			id: 'tu_co',
 			title: 'Condition Monitoring',
 			iconCls: 'connect',
 			xtype:'tConMon'
+		//*/
 		},{
 		
 			id		: 'tu_kf',
