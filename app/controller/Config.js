@@ -696,6 +696,7 @@ Ext.define('rcm.controller.Config', {
 	},
 
 	onLaunch: function(){
+		console.log("Konfig onLauch");
 		var me=this;
 		var task = new Ext.util.DelayedTask(function(){
 			me.getDelayedStore();

@@ -20,6 +20,8 @@ Ext.define('rcm.view.laporan.OverHaul', {
 		nameFile: 'fileOh',
 		idbSr: 'idSrOh',
 		idbPdf: 'idbPdfOh',
+		idbExc: 'idbExcOh',
+		hdPdf: true,
 		hdPdf: false
 	}],
 	

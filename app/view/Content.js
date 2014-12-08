@@ -27,13 +27,15 @@ Ext.define('rcm.view.Content', {
     initComponent: function() {
 		var me=this;
 		me.items = [{
-		//*==========================
+		/*==========================
 			id: 'tu_ho',
 			title: 'Dashboard Home',
 			iconCls: 'Dashboard',
 			xtype: 'tHoChart'
 		//*
 		},{
+		//*/
+		//*
 			id: 'tu_re',
 			title: 'Reliability',
 			iconCls: 'Reliability',
@@ -46,6 +48,7 @@ Ext.define('rcm.view.Content', {
 			xtype: 'tabChart',
 			iconCls: 'sap'
 		//*/
+		//*
 		},{
 			id: 'tu_rh',
 			title: 'Runnning Hour',

@@ -118,7 +118,7 @@ Ext.define('rcm.controller.AvRe', {
 	},
 	
 	onLaunch: function() {
-		//console.log("AvRe");
+		//console.log("AvRe onLaunch");
 		
 		var me = this,
 			task = new Ext.util.DelayedTask(function(){
@@ -127,7 +127,7 @@ Ext.define('rcm.controller.AvRe', {
 		//task.delay(rcmSettings.dlySap*1000);
 		task.delay(rcmSettings.dlyAR*1000);
 		
-		this.getTAvGroup().cat = 5;
+		//me.getTAvGroup().cat = 5;
 		
 		//this.updAvRe();
 
@@ -289,7 +289,7 @@ Ext.define('rcm.controller.AvRe', {
 		plh=(app==1)?me.getAvGroupStore().getAt(d.point.x).data:me.getAvGroupStore().getAt(0).data;
 
 		//alert("wkt: "+wkt+",plh: "+plh);
-		console.log("AvGroupClick "+plh.nama+","+wkt);
+		//console.log("AvGroupClick "+plh.nama+","+wkt);
 		//console.log(plh);
 		//Ext.getCmp('iflAvRe').setText(plh.nama+", id:"+plh.id+", w: "+wkt);
 		Ext.getCmp('iflAvRe').setText(plh.nama+", "+wkt);

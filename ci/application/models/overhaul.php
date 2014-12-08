@@ -136,6 +136,9 @@ class Overhaul extends CI_Model {
 	}
 	*/
 		
-
+	function proc_overhaul($thn){
+		$q = $this->db->query("call ohexcel_overhaul($thn)");
+		return $q->result_array();
+	}
 }
 ?>

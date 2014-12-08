@@ -827,11 +827,11 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	getDelayedStore: function()	{
-		//console.log("Konfig getDelayedStore");
+		console.log("Konfig getDelayedStore");
 		var me=this;
 		//*
 		if (rcmSettings.cSap!=1)	{
-			//console.log("Sap getDelayedStore");
+			console.log("Sap getDelayedStore");
 			me.getSapEPOStore().load();
 			me.getSapHistoriStore().load();
 			
@@ -895,6 +895,7 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	onLaunch: function() {
+		console.log("SAP onLaunch");
 		var me=this;
 		var task = new Ext.util.DelayedTask(function(){
 			me.getDelayedStore();
