@@ -211,6 +211,9 @@ Ext.define('rcm.controller.Sap', {
 			'#idSrCm': {
 				click : me.hdlFiltThnCm
 			},
+			'#idbExcOh': {
+				click: me.hdlExcOh
+			},
 			'#idbMoc': {
 				click: me.hdlManOCost
 			},
@@ -250,6 +253,20 @@ Ext.define('rcm.controller.Sap', {
 		alert('uConMon');
 	},
     //*/
+    
+    hdlExcOh: function(btn)	{
+		var t=Ext.getCmp('idThnOh').getValue();
+		var form = btn.up('form').getForm();
+		if(form.isValid()){
+			//alert("hdlExcOh "+t);
+			//*
+			form.submit({
+				url: 'ci/index.php/sap/rOverHaul/rExcOH?t='+t
+				
+			});
+			//*/
+		}
+	},
     
     hdlChThnMoc: function(tf,newV,oldV)	{
 		//alert('berubah '+newV);

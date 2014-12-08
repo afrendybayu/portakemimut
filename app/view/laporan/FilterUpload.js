@@ -73,7 +73,8 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 					xtype: 'button',
 					//disabled : true,
 					hidden : me.hdExc,
-					width: 100,
+					iconCls: 'excel',
+					//width: 100,
 					text: 'Export to Excel',
 					margin: '2 5'
 				//*

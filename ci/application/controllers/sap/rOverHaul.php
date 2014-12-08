@@ -53,7 +53,7 @@ class rOverHaul extends CI_Controller {
 	public function createOH(){
 		try {
 			$hsl = $this->overhaul->set_ohlist();
-			echo "createOH INSERT IGNORE";
+			//echo "createOH INSERT IGNORE";
 
 			$jsonResult = array(
 				'success' => true,
@@ -118,26 +118,38 @@ class rOverHaul extends CI_Controller {
 	}
 	
 	public function rExcOH(){
-		$sheet = $this->excel->getActiveSheet();
-		ohexcel_judul($sheet);
-		ohexcel_table($sheet);
-		ohexcel_head($sheet);
-		ohexcel_font($sheet);
-		ohexcel_size($sheet);
-		ohexcel_bg($sheet);
-		ohexcel_border($sheet);
-		/*ohexcel_image($sheet);*/
-		ohexcel_data_overhaul($sheet);
-		$filename='overhaul.xls'; //save our workbook as this file name
-		header('Content-Type: application/vnd.ms-excel'); //mime type
-		header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
-		header('Cache-Control: max-age=0'); //no cache
-					
-		//save it to Excel5 format (excel 2003 .XLS file), change this to 'Excel2007' (and adjust the filename extension, also the header mime type)
-		//if you want to save it as .XLSX Excel 2007 format
-		$objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5');  
-		//force user to download the Excel file without writing it to server's HD
-		$objWriter->save('php://output');
+		try {
+			$thn = $this->input->get('t')?:date('Y');
+			
+			$sheet = $this->excel->getActiveSheet();
+			ohexcel_judul($sheet);
+			ohexcel_table($sheet,$thn);
+			ohexcel_head($sheet);
+			ohexcel_font($sheet);
+			ohexcel_size($sheet);
+			ohexcel_bg($sheet);
+			ohexcel_border($sheet);
+			ohexcel_image($sheet);
+			
+			$oh = $this->overhaul->proc_overhaul($thn);
+			//print_r($oh);
+			
+			ohexcel_data_overhaul($sheet,$oh);
+			//*
+			$filename="overhaul$thn.xls"; //save our workbook as this file name
+			//header('Content-Type: application/vnd.ms-excel'); //mime type
+			header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
+			header('Cache-Control: max-age=0'); //no cache
+						
+			//save it to Excel5 format (excel 2003 .XLS file), change this to 'Excel2007' (and adjust the filename extension, also the header mime type)
+			//if you want to save it as .XLSX Excel 2007 format
+			$objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5');  
+			//force user to download the Excel file without writing it to server's HD
+			$objWriter->save('php://output');
+			//*/
+		} catch(Exception $e) {
+			$hsl = 'gagal';
+		}
 	}
 
 }

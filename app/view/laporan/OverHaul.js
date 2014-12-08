@@ -22,7 +22,7 @@ Ext.define('rcm.view.laporan.OverHaul', {
 		idbPdf: 'idbPdfOh',
 		idbExc: 'idbExcOh',
 		hdPdf: true,
-		hdPdf: false
+		hdExc: false
 	}],
 	
 	layout: 'border',
