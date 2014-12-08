@@ -93,7 +93,7 @@ class Upload extends CI_Model {
     }
 
 	function insert_oh($c)	{
-		$sql = "INSERT INTO ohlist (tglplan,durasiplan,equip,ohcat,wo) 
+		$sql = "INSERT IGNORE INTO ohlist (tglplan,durasiplan,equip,ohcat,wo) 
 				SELECT {$this->db->escape(trim($c[3]))},{$this->db->escape(trim($c[4]))},
 					eq.id,{$this->db->escape(trim($c[2]))},{$this->db->escape(trim($c[0]))}
 					FROM equip eq WHERE tag like {$this->db->escape(trim($c[1]))}";

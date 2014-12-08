@@ -53,6 +53,7 @@ class rOverHaul extends CI_Controller {
 	public function createOH(){
 		try {
 			$hsl = $this->overhaul->set_ohlist();
+			echo "createOH INSERT IGNORE";
 
 			$jsonResult = array(
 				'success' => true,
