@@ -5,6 +5,7 @@ Ext.define('rcm.view.laporan.Input', {
 	requires: [
 		'Ext.panel.Panel'
 		,'rcm.view.laporan.ManOCost'
+		,'rcm.view.laporan.Jabatan'
 	],
 
     layout: {
@@ -28,6 +29,14 @@ Ext.define('rcm.view.laporan.Input', {
 			//iconCls: 'Reliability',
 			xtype: 'tManOCost',
 			margin: '5 5'
+		},{
+			id: 'in_jabR',
+			title: 'Nama dan Jabatan',
+			//iconCls: 'Reliability',
+			xtype: 'tJabat',
+			margin: '5 5'	
+			
+			
 		}];
 		
 		me.callParent(arguments);

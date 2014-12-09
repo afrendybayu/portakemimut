@@ -219,6 +219,20 @@ if(!function_exists("ohexcel_image")){
 }
 //*/
 
+if(!function_exists("warna_oh")){
+	function warna_oh($nilai){
+		if ($nilai==="TOH")	{
+			return "";
+		}
+		else if ($nilai==="TOH")	{
+			return "";
+		}
+		else if ($nilai==="TOH")	{
+			return "";
+		}
+	}
+}
+
 if(!function_exists("ohexcel_data_overhaul")){
 	function ohexcel_data_overhaul($sheet, $oh){
 		/*
@@ -243,8 +257,9 @@ if(!function_exists("ohexcel_data_overhaul")){
 			$sheet->setCellValue('C'.$baris,$row['act'])->getStyle('C'.$baris)->getAlignment()->applyFromArray(
 				array('vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
 			$sheet->setCellValue('E'.$baris,$row['tgl'])->getStyle('E'.$baris)->getAlignment()->applyFromArray(
-				array('vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
-			$sheet->setCellValue('F'.$baris,$row['lama'])->getStyle('E'.$baris)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
+			$sheet->setCellValue('F'.$baris,$row['lama'])->getStyle('F'.$baris)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
 			$sheet->getStyle("BE8:BE$baris")->applyFromArray(array('borders' => array('left' => array(
