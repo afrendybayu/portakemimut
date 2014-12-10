@@ -9,7 +9,7 @@ Ext.define('rcm.model.Jabat', {
     proxy: {
 		type: 'ajax',
 		api: {
-			create: 'ci/index.php/sap/rJabat/sapManOCost',
+			create: 'ci/index.php/sap/rJabat/cNJ',
 			read: 'ci/index.php/sap/rJabat/rNJ'
         },
         reader: {

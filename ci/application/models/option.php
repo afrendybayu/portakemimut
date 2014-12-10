@@ -52,6 +52,15 @@ class Option extends CI_Model {
 		//print_r($hsl);
 		return $hsl;
 	}
+
+	function set_oh_report($nP, $jP, $nR, $jR, $nA, $jA)	{
+		$sql = "call uJabat('$nP', '$jP', '$nR', '$jR', '$nA', '$jA')";
+		//echo "sql: $sql<br/>";
+		$query = $this->db->query($sql);
+		//print_r($query->result());
+		return $query->result();
+	}
+
 }
 
 /* End of file option.php */

@@ -18,6 +18,7 @@ Ext.define('rcm.controller.Sap', {
 
 		,'laporan.OverHaulForm'
 		,'laporan.ManOCost'
+		,'laporan.Jabatan'
     ],
 
     controllers: [
@@ -39,7 +40,7 @@ Ext.define('rcm.controller.Sap', {
 		,'Contract','ContractLine', 'ContractInput'
 
 		,'SapHistori'
-		,'ManOCost'
+		,'ManOCost','Jabat'
 		
 		,'GridConMon'
 		,'ConMon','ConMonIn','CbParent','CbUnit','CbEquip','ConMonGr'
@@ -53,7 +54,8 @@ Ext.define('rcm.controller.Sap', {
 		'ConmonInput',
 		'ConMonIn',
 		'OverHaulIn',
-		'ManOCost'
+		'ManOCost',
+		'Jabat'
     ],
     
     refs: [{
@@ -243,7 +245,9 @@ Ext.define('rcm.controller.Sap', {
 				ohplhlokasi 	: me.cbohplhlokasi,
 				ohplhunit		: me.cbohplhunit,
 				ohplheq			: me.cbohplhequip
-				
+			},
+			'tJabat button[text=Simpan]' : {
+				click: me.sRepOH
 			}
 			
 		});
@@ -301,6 +305,40 @@ Ext.define('rcm.controller.Sap', {
 		Ext.getCmp('mbudg').setValue(rec.get('budget')),
 		Ext.getCmp('mwo').setValue(rec.get('wo')),
 		Ext.getCmp('motype').setValue(rec.get('otype'));
+	},
+	
+	loadJabat: function(rec)	{
+		// 'nPre','jPre','nRev','jRev','nApr','jApr'
+		Ext.getCmp('nPrep').setValue(rec.get('nPre')),
+		Ext.getCmp('jPrep').setValue(rec.get('jPre')),
+		Ext.getCmp('nRevi').setValue(rec.get('nRev'));
+		Ext.getCmp('jRevi').setValue(rec.get('jRev')),
+		Ext.getCmp('nAppr').setValue(rec.get('nApr')),
+		Ext.getCmp('jAppr').setValue(rec.get('jApr'));
+	},
+	
+	sRepOH: function(btn)	{
+		/*
+		var form = btn.up('form').getForm();
+		if(form.isValid()){
+			form.submit({
+				url: 'format_oh.xlsx'
+			});
+		}
+		//*/
+		var nP=Ext.getCmp('nPrep').getValue(),
+			jP=Ext.getCmp('jPrep').getValue(),
+			nR=Ext.getCmp('nRevi').getValue(),
+			jR=Ext.getCmp('jRevi').getValue(),
+			nA=Ext.getCmp('nAppr').getValue(),
+			jA=Ext.getCmp('jAppr').getValue();
+		
+		//alert(nP+" "+jP);
+		var rec = { nPre:nP, jPre:jP, nRev:nR, jRev:jR, nApr:nA, jApr:jA };
+		//console.log(rec);
+		var updRecOH = Ext.create('rcm.model.Jabat', rec ); 
+		
+		updRecOH.save ();
 	},
     
     hdlDlOh: function(btn)	{
@@ -583,11 +621,8 @@ Ext.define('rcm.controller.Sap', {
 			success: function(ucmon, operation){
 				// alert ('Data ConMon terSimpan');
 				me.getConMonInStore().reload();
-				
 			}
-		
 		}); 
-		
 		
 	},
 	
@@ -925,6 +960,13 @@ Ext.define('rcm.controller.Sap', {
 			callback: function(rec, op, suc) {
 				//console.log(rec);
 				this.loadOCost(rec[0]);
+			}
+		});
+		me.getJabatStore().load({
+			scope: this,
+			callback: function(rec, op, suc) {
+				//console.log(rec);
+				this.loadJabat(rec[0]);
 			}
 		});
 	},

@@ -57,6 +57,7 @@ Ext.define('rcm.view.laporan.Jabatan', {
 				msgTarget: 'side'
 			},{
 				xtype: 'button',
+				id: 'idJabatOH',
 				text: 'Simpan',
 				iconCls: 'savedisk',
 				margin: '0 210'
