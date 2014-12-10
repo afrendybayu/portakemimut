@@ -224,10 +224,10 @@ if(!function_exists("warna_oh")){
 		if ($nilai==="TOH")	{
 			return "";
 		}
-		else if ($nilai==="TOH")	{
+		else if ($nilai==="GOH")	{
 			return "";
 		}
-		else if ($nilai==="TOH")	{
+		else if ($nilai==="IFOH")	{
 			return "";
 		}
 	}

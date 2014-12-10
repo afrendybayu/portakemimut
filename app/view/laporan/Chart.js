@@ -28,6 +28,7 @@ Ext.define('rcm.view.laporan.Chart', {
 		,'rcm.view.laporan.OverHaul'
 		,'rcm.view.laporan.SapChartTop10'	
 		
+		//,'rcm.view.laporan.Jabatan'
 		,'rcm.view.laporan.Input'	
     ],
     
@@ -36,9 +37,13 @@ Ext.define('rcm.view.laporan.Chart', {
 	initComponent: function() {
 		var me=this;
 		me.items = [{
+				title: 'Nama dan Jabatan',
+				//iconCls: 'Reliability',
+				xtype: 'tJabat',
+				margin: '5 5'	
+			},{
 				id: 'ts_oh',
 				title: 'OverHaul',
-				// xtype:'tOverHaul'
 				xtype:'pOverHaul'
 			},{
 				id: 'ts_mo',
