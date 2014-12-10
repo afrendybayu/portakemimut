@@ -4,6 +4,7 @@ class rOverHaul extends CI_Controller {
 	function __construct() {
         parent::__construct();
 		$this->load->model('overhaul');
+		$this->load->model('option');
 	}
 	
 	
@@ -121,6 +122,8 @@ class rOverHaul extends CI_Controller {
 		try {
 			$thn = $this->input->get('t')?:date('Y');
 			
+			$jabat = $this->option->get_oh_report();
+			
 			$sheet = $this->excel->getActiveSheet();
 			ohexcel_judul($sheet);
 			ohexcel_table($sheet,$thn);
@@ -134,7 +137,14 @@ class rOverHaul extends CI_Controller {
 			$oh = $this->overhaul->proc_overhaul($thn);
 			//print_r($oh);
 			
-			ohexcel_data_overhaul($sheet,$oh);
+			
+			//print_r($jabat);
+			
+			$nx = ohexcel_data_overhaul($sheet,$oh);
+			
+			
+			ohexcel_jabat($sheet,$nx,$jabat);
+			
 			//*
 			$filename="overhaul$thn.xls"; //save our workbook as this file name
 			//header('Content-Type: application/vnd.ms-excel'); //mime type

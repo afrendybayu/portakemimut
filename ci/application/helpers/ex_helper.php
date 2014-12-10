@@ -154,12 +154,12 @@ if(!function_exists("ohexcel_size")){
 		$sheet->getRowDimension('10')->setRowHeight(27);
 		$sheet->getColumnDimension('A')->setWidth(3.86);
 		$sheet->getColumnDimension('B')->setWidth(23.43);
-		$sheet->getColumnDimension('C')->setWidth(55);
+		$sheet->getColumnDimension('C')->setWidth(35);
 		$sheet->getColumnDimension('D')->setWidth(14.43);
 		for($col = 'E'; $col !== 'I'; $col++) {
 		    $sheet
 		        ->getColumnDimension($col)
-		        ->setWidth(11);
+		        ->setWidth(13);
 		}
 
 		for($col = 'I'; $col !== 'BE'; $col++) {
@@ -296,7 +296,84 @@ if(!function_exists("ohexcel_data_overhaul")){
 		$sheet->getStyle("A$baris:BD$baris")->applyFromArray(array('borders' => array('top' => array('style' => PHPExcel_Style_Border::BORDER_THICK))));
 		$sheet->setCellValue("A$baris","Note :")->mergeCells("A$baris:BD$baris")->getStyle("A$baris")->getFont()->setBold(true);
 		$sheet->setCellValue("A$baris2","Perubahan dari Schedule ini harus mendapat persetujuan dari Operations Manager dengan membuat Exception Report")->mergeCells("A$baris2:BD$baris2");
+		$sheet->getRowDimension($baris)->setRowHeight(30);
+		$sheet->getRowDimension($baris2)->setRowHeight(30);
+		
 		//$sheet->setCellValue("A$baris_foot", "test jabatan")->mergeCells("A$baris_foot:F$baris_foot");
+		return ($baris_foot);
+	}
+}
+
+if(!function_exists("ohexcel_jabat"))	{
+	function ohexcel_jabat($sheet, $brs,$j)	{
+		$b = $brs;
+		//print_r($j);
+		$sheet->getRowDimension($b)->setRowHeight(47);
+		$sheet->getStyle("A$b:BD$b")->applyFromArray(array('borders' => array('top' => array(
+			'style' => PHPExcel_Style_Border::BORDER_THICK))));
+		//$sheet->getStyle("A$b:BD$b")->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_THICK);
+		$sheet->setCellValue('A'.$b," Prepared by")->mergeCells("A$b:B$b")->getStyle('A'.$b)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_BOTTOM));
+		$sheet->setCellValue('C'.$b,": {$j->nPre}")->mergeCells("C$b:F$b")->getStyle('C'.$b)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_BOTTOM));
+		$sheet->setCellValue('G'.$b," Reviewed by")->getStyle('G'.$b)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_BOTTOM));
+		$sheet->setCellValue('H'.$b,": {$j->nRev}")->getStyle('H'.$b)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_BOTTOM));
+		$sheet->setCellValue('AC'.$b," Approved by")->getStyle('AC'.$b)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_BOTTOM));	
+		$sheet->setCellValue('AI'.$b,": {$j->nApr}")->getStyle('AI'.$b)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_BOTTOM));
+		
+		$b++;
+		//$sheet->getRowDimension($b)->setRowHeight(37);
+		$sheet->setCellValue('A'.$b," Position")->getStyle('A'.$b)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));
+		$sheet->setCellValue('C'.$b,": {$j->jPre}")->getStyle('C'.$b)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));
+		$sheet->setCellValue('G'.$b," Position")->getStyle('G'.$b)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));
+		$sheet->setCellValue('H'.$b,": {$j->jRev}")->getStyle('H'.$b)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));
+		$sheet->setCellValue('AC'.$b," Position")->getStyle('AC'.$b)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));
+		$sheet->setCellValue('AI'.$b,": {$j->jApr}")->getStyle('AI'.$b)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));	
+		$sheet->getStyle("A$brs:BD$b")->getFont()->setBold(true);
+		
+		$sheet->getStyle("A$b:BD$b")->applyFromArray(array('borders' => array('top' => array(
+			'style' => PHPExcel_Style_Border::BORDER_THIN))));
+		
+		
+		$b++;
+		$sheet->setCellValue('A'.$b," Date")->getStyle('A'.$b)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));
+		$sheet->setCellValue('G'.$b," Date")->getStyle('G'.$b)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));
+		$sheet->setCellValue('AC'.$b," Date")->getStyle('AC'.$b)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));
+		
+		$sheet->getStyle("A$b:BD$b")->applyFromArray(array('borders' => array('bottom' => array(
+			'style' => PHPExcel_Style_Border::BORDER_THICK))));
+		$sheet->getStyle("F$brs:F$b")->applyFromArray(array('borders' => array('right' => array(
+			'style' => PHPExcel_Style_Border::BORDER_THICK))));
+		$sheet->getStyle("AB$brs:AB$b")->applyFromArray(array('borders' => array('right' => array(
+			'style' => PHPExcel_Style_Border::BORDER_THICK))));
 	}
 }
 

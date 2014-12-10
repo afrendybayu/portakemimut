@@ -22,14 +22,18 @@ class Option extends CI_Model {
 	}
 	
 	function get_oh_report()	{
-		//$sql = "SELECT * FROM options WHERE nama LIKE '%_oh_%'";
+		//$sql = "SELECT nama,nilai FROM options WHERE nama LIKE '%oh%'";
+		//$sql = "SELECT nama,nilai FROM options";
+		//$query = $this->db->query($sql);
+		//*
 		$this->db->select('nama,nilai');
 		$this->db->like('nama', '_oh_'); 
 		$query = $this->db->get('options');
-		
+		//*/
 		//print_r($query->result());
 		$hsl = new stdClass();
-		foreach ($query->result() as $r)	{
+		$h = $query->result();
+		foreach ($h as $r)	{
 			if ($r->nama==="jabatan_oh_prepare")	{
 				$hsl->jPre = $r->nilai;
 			}
@@ -52,13 +56,14 @@ class Option extends CI_Model {
 		//print_r($hsl);
 		return $hsl;
 	}
+	
 
 	function set_oh_report($nP, $jP, $nR, $jR, $nA, $jA)	{
 		$sql = "call uJabat('$nP', '$jP', '$nR', '$jR', '$nA', '$jA')";
 		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql);
 		//print_r($query->result());
-		return $query->result();
+		//return $query->result();
 	}
 
 }
