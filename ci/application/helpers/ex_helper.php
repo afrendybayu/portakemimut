@@ -285,8 +285,8 @@ if(!function_exists("ohexcel_data_overhaul")){
 			
 			
 			$sheet->setCellValue('G'.$baris,"")->getStyle('G'.$baris)->getAlignment()->applyFromArray(
-				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));
 			$baris++;
 			//$baris2++;
 			//$baris_foot++;			
@@ -295,7 +295,10 @@ if(!function_exists("ohexcel_data_overhaul")){
 		$baris_foot = $baris+2;	
 		$sheet->getStyle("A$baris:BD$baris")->applyFromArray(array('borders' => array('top' => array('style' => PHPExcel_Style_Border::BORDER_THICK))));
 		$sheet->setCellValue("A$baris","Note :")->mergeCells("A$baris:BD$baris")->getStyle("A$baris")->getFont()->setBold(true);
-		$sheet->setCellValue("A$baris2","Perubahan dari Schedule ini harus mendapat persetujuan dari Operations Manager dengan membuat Exception Report")->mergeCells("A$baris2:BD$baris2");
+		$sheet->setCellValue("A$baris2","- Perubahan dari Schedule ini harus mendapat persetujuan dari Operations Manager dengan membuat Exception Report")->mergeCells("A$baris2:BD$baris2")
+				->getStyle('A'.$baris2)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));
 		$sheet->getRowDimension($baris)->setRowHeight(30);
 		$sheet->getRowDimension($baris2)->setRowHeight(30);
 		
@@ -321,13 +324,13 @@ if(!function_exists("ohexcel_jabat"))	{
 		$sheet->setCellValue('G'.$b," Reviewed by")->getStyle('G'.$b)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_BOTTOM));
-		$sheet->setCellValue('H'.$b,": {$j->nRev}")->getStyle('H'.$b)->getAlignment()->applyFromArray(
+		$sheet->setCellValue('H'.$b,": {$j->nRev}")->mergeCells("H$b:AB$b")->getStyle('H'.$b)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_BOTTOM));
-		$sheet->setCellValue('AC'.$b," Approved by")->getStyle('AC'.$b)->getAlignment()->applyFromArray(
+		$sheet->setCellValue('AC'.$b," Approved by")->mergeCells("AC$b:AH$b")->getStyle('AC'.$b)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_BOTTOM));	
-		$sheet->setCellValue('AI'.$b,": {$j->nApr}")->getStyle('AI'.$b)->getAlignment()->applyFromArray(
+		$sheet->setCellValue('AI'.$b,": {$j->nApr}")->mergeCells("AI$b:BD$b")->getStyle('AI'.$b)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_BOTTOM));
 		
@@ -336,19 +339,19 @@ if(!function_exists("ohexcel_jabat"))	{
 		$sheet->setCellValue('A'.$b," Position")->getStyle('A'.$b)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));
-		$sheet->setCellValue('C'.$b,": {$j->jPre}")->getStyle('C'.$b)->getAlignment()->applyFromArray(
+		$sheet->setCellValue('C'.$b,": {$j->jPre}")->mergeCells("C$b:F$b")->getStyle('C'.$b)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));
 		$sheet->setCellValue('G'.$b," Position")->getStyle('G'.$b)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));
-		$sheet->setCellValue('H'.$b,": {$j->jRev}")->getStyle('H'.$b)->getAlignment()->applyFromArray(
+		$sheet->setCellValue('H'.$b,": {$j->jRev}")->mergeCells("H$b:AB$b")->getStyle('H'.$b)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));
 		$sheet->setCellValue('AC'.$b," Position")->getStyle('AC'.$b)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));
-		$sheet->setCellValue('AI'.$b,": {$j->jApr}")->getStyle('AI'.$b)->getAlignment()->applyFromArray(
+		$sheet->setCellValue('AI'.$b,": {$j->jApr}")->mergeCells("AI$b:BD$b")->getStyle('AI'.$b)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));	
 		$sheet->getStyle("A$brs:BD$b")->getFont()->setBold(true);
