@@ -142,16 +142,19 @@ class Conf extends CI_Controller {
 				'message' => $e->getMessage()
 			);
 		}
-
+		echo json_encode($jsonResult);
 	}
-	public function cPMdef(){
+	
+	public function cPmDef(){
+	//public function cPMdef(){
 		try {
 			$pmdef = json_decode(file_get_contents('php://input'));
 			
 			// $query = $this->db->query($cek);
-			$cek = "select nama, kode, durasi from pmdef where nama = '{$pmdef->nama}' or kode = '{$pmdef->kode}' or durasi = '{$pmdef->durasi}'";
+			$cek = "select nama, kode, durasi from pmdef where nama = '{$pmdef->nama}' AND kode = '{$pmdef->kode}' AND durasi = '{$pmdef->durasi}'";
 			$query = $this->db->query($cek);
 			if ($query->num_rows() > 0){
+				
 				// echo "Sudah ada data ".$aksi->nama;
 				// $sql = "update pmdef set nama = '".strtoupper($pmdef->nama)."',kode = '".strtoupper($pmdef->kode)."',
 				// 		durasi = '{$pmdef->durasi}', ket = '{$pmdef->durasi}'";
@@ -161,9 +164,13 @@ class Conf extends CI_Controller {
 				// $sql = "insert into aksi (nama, ket) values ('{$aksi->nama}','{$aksi->ket}')";
 				$sql = "insert into pmdef (nama, kode, durasi, ket) 
 				VALUES ('".strtoupper($pmdef->nama)."','".strtoupper($pmdef->kode)."','{$pmdef->durasi}','{$pmdef->ket}')";
+				//echo "sql: $sql<br/>";
 			}
 			$hsl = $this->db->query($sql);
-					
+			$jsonResult = array(
+				'success' => true,
+				'pm' => strtoupper($pmdef->nama)
+			);
 		
 		} catch (Exception $e) {
 			$jsonResult = array(
@@ -172,7 +179,7 @@ class Conf extends CI_Controller {
 			);
 		}
 
-
+		echo json_encode($jsonResult);
 
 	}
 	public function dPmDef(){

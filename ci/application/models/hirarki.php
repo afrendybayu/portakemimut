@@ -142,7 +142,7 @@ class Hirarki extends CI_Model {
 				ORDER BY nama ASC";
 		//*/
 		$sql =	"SELECT eq.id,CONCAT('[',eq.tag,'] ',eq.nama) AS nama,
-				eq.tag,eq.unit_id AS parent, ce.id AS idcat,ce.nama AS cat,eq.kode,IFNULL(eq.rhinit,0) AS rhinit,
+				eq.tag,eq.unit_id AS parent, ce.id AS idcat,ce.nama AS cat,eq.kode,IFNULL(eq.initrh,0) AS rhinit,
 				'e' AS sil, 'true' AS leaf
 				FROM equip  eq
 					LEFT JOIN cat_equip ce ON ce.id = eq.cat

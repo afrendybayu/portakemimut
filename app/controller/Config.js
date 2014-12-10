@@ -1290,7 +1290,7 @@ Ext.define('rcm.controller.Config', {
 	},
 	
     hdlDropListD: function(data, cat, tab)	{
-		//alert("hdlDropListD: "+data.get("id"));
+		alert("hdlDropListD: "+data.get("id"));
 		var me=this,
 			dl, p={ id:data.get("id") };
 		if (tab=="tk_pl")	{
@@ -1305,6 +1305,8 @@ Ext.define('rcm.controller.Config', {
 		dl.destroy();
 	},
     hdlDropListC: function(data, cat, tab)	{
+		//alert("hdlDropListC: "+data.get("id"));
+		console.log(data);
 		var me=this,
 			dl,
 			p={ eqcat:cat,list:data.get("id") };
