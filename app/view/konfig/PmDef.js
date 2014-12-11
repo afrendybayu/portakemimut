@@ -21,7 +21,7 @@ Ext.define('rcm.view.konfig.PmDef', {
 	},{
 		title	: 'Data Predictive Maintenance',
         region	: 'center',     
-        xtype	: 'gridPmDef',
+        xtype	: 'gridPmDef'
 	
 	}]
 	

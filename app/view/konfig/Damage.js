@@ -20,7 +20,7 @@ Ext.define('rcm.view.konfig.Damage', {
 	},{
 		title	: 'Data Damages',
         region	: 'center',     
-        xtype	: 'gridDamage',
+        xtype	: 'gridDamage'
 	
 	}]
 	

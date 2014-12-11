@@ -17,7 +17,7 @@ Ext.define('rcm.view.lapobama.Av2Thn', {
 		me.series = [{
 			//dataIndex: 'av2013',
 			dataIndex: me.avrem1,
-			name: me.navrem1,
+			name: me.navrem1
 		},{
 			type: 'spline',
 			dataIndex: me.avrem1,
@@ -32,7 +32,7 @@ Ext.define('rcm.view.lapobama.Av2Thn', {
 		},{
 			//dataIndex: 'av2014',
 			dataIndex: me.avre,
-			name: me.navre,
+			name: me.navre
 		},{
 			type: 'spline',
 			dataIndex: me.avre,

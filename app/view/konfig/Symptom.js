@@ -22,7 +22,7 @@ Ext.define('rcm.view.konfig.Symptom', {
 	},{
 		title	: 'Data Symptom',
         region	: 'center',     
-        xtype	: 'griddSymptom',
+        xtype	: 'griddSymptom'
 	
 	}]
 

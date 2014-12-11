@@ -21,7 +21,7 @@ Ext.define('rcm.view.konfig.Refer', {
 	},{
 		title	: 'Data Referensi',
         region	: 'center',     
-        xtype	: 'gridRefer',
+        xtype	: 'gridRefer'
 	
 	}]
 

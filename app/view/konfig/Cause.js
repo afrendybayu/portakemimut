@@ -22,7 +22,7 @@ Ext.define('rcm.view.konfig.Cause', {
 	},{
 		title	: 'Data Cause',
         region	: 'center',     
-        xtype	: 'gridCauseDef',
+        xtype	: 'gridCauseDef'
 	
 	}]
 });

@@ -2,7 +2,7 @@
 Ext.define('rcm.store.Symptoms', {
     extend: 'Ext.data.Store',
     model: 'rcm.model.Symptom' ,
-	autoLoad: true,
+	autoLoad: true
     // model: 'rcm.model.GridAksi' ,
     // requires:[
 		// 'Ext.data.proxy.Ajax'

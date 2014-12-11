@@ -16,7 +16,7 @@ Ext.define('rcm.view.konfig.AksiFForm', {
 			xtype		: 'textarea',
 			fieldLabel	: 'Keterangan',
 			width		: 400,
-            name		: 'ket',
+            name		: 'ket'
 		}];
 		
 		me.buttons = [{

@@ -16,7 +16,7 @@ Ext.define('rcm.view.konfig.DamageForm', {
 		},{
 			fieldLabel	: 'Kode Damage',
             name		: 'kode',
-            width		: 400,
+            width		: 400
 		}];
 		
 		me.buttons = [{

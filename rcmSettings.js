@@ -15,10 +15,10 @@ rcmSettings = {
 	sas: '',
 	tkf: 'tk_pl',
 	/*
-	dlyKfg: 90,
+	dlyKfg: 50,
 	dlyAvre: 10,
-	dlySap: 30,
-	dlySapI: 60,
+	dlySap: 20,
+	dlySapI: 40,
 	//*/
 	server: 1
 };

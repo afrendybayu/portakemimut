@@ -4,7 +4,7 @@ Ext.define('rcm.store.ModeDefs', {
     model: 'rcm.model.ModeDef' ,
   	requires: 'rcm.model.ModeDef',
 	
-	autoLoad: true,
+	autoLoad: true
   	//autoLoad: true,
 	
 });

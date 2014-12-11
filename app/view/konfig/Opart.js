@@ -22,7 +22,7 @@ Ext.define('rcm.view.konfig.Opart', {
 	},{
 		title	: 'Data Object Part',
         region	: 'center',     
-        xtype	: 'gridOpart',
+        xtype	: 'gridOpart'
 	
 	}]
 });
