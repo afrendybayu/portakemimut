@@ -35,7 +35,7 @@ Ext.define('rcm.view.Content', {
 		//*
 		},{
 		//*/
-		/*
+		//*
 			id: 'tu_re',
 			title: 'Reliability',
 			iconCls: 'Reliability',

@@ -7,6 +7,7 @@ class rGroupUnit extends CI_Controller {
 		$this->load->model("runninghour");
 		$this->load->model("catequip");
 		$this->load->model("hirarki");
+		
 
 		$gr = $this->input->get('gr')?:$this->catequip->get_tipe_id();
 		if ($this->input->get('wkt'))	{
@@ -17,7 +18,7 @@ class rGroupUnit extends CI_Controller {
 			$bln = date("n");
 		}
 		//echo " $gr --- $thn --- $bln   ".$this->catequip->get_tipe_id();
-		
+		//
 		try {
 			//echo $this->catequip->get_tipe_kode($gr)."<br/>";
 			//echo "jml: ".count($this->hirarki->get_unit_group($gr))."<br/>";
