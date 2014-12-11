@@ -7,6 +7,7 @@ if ( ! function_exists('nextpm'))	{
 		$lwt = array(); $tmb = array();
 		$srh = $rh%$pm[$jpm-1]; 	$hrh = intval($rh/$pm[$jpm-1]);
 		//echo "rh: $rh<br/>";
+		//echo "jpm: $jpm<br/>";
 		
 		
 		$arh = 0; $i=0;	$aw=0;	$pml=0;

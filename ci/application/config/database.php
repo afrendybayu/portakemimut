@@ -49,6 +49,7 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
+//$db['default']['hostname'] = '10.32.3.68';
 $db['default']['username'] = 'monita';
 $db['default']['password'] = 'monita2011';
 $db['default']['database'] = 'medco';

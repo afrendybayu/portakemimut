@@ -949,6 +949,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.HoMan": [],
   "rcm.model.HoOrderC": [],
   "rcm.model.HoTeco": [],
+  "rcm.model.Jabat": [],
   "rcm.model.LoginAuth": [],
   "rcm.model.LoginSesi": [],
   "rcm.model.LokUnit": [],
@@ -1028,6 +1029,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.HoMan": [],
   "rcm.store.HoOrderC": [],
   "rcm.store.HoTeco": [],
+  "rcm.store.Jabat": [],
   "rcm.store.LoginAuth": [],
   "rcm.store.LoginSesi": [],
   "rcm.store.LokUnit": [],
@@ -1168,6 +1170,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.laporan.GridOverHaul": [],
   "rcm.view.laporan.GridWork": [],
   "rcm.view.laporan.Input": [],
+  "rcm.view.laporan.Jabatan": [],
   "rcm.view.laporan.ManOCost": [],
   "rcm.view.laporan.OrderCostSap": [],
   "rcm.view.laporan.OverHaul": [],
@@ -2265,6 +2268,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.HoMan": [],
   "rcm.model.HoOrderC": [],
   "rcm.model.HoTeco": [],
+  "rcm.model.Jabat": [],
   "rcm.model.LoginAuth": [],
   "rcm.model.LoginSesi": [],
   "rcm.model.LokUnit": [],
@@ -2344,6 +2348,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.HoMan": [],
   "rcm.store.HoOrderC": [],
   "rcm.store.HoTeco": [],
+  "rcm.store.Jabat": [],
   "rcm.store.LoginAuth": [],
   "rcm.store.LoginSesi": [],
   "rcm.store.LokUnit": [],
@@ -2650,6 +2655,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.laporan.Input": [
     "widget.sapinput"
+  ],
+  "rcm.view.laporan.Jabatan": [
+    "widget.tJabat"
   ],
   "rcm.view.laporan.ManOCost": [
     "widget.tManOCost"

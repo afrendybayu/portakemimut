@@ -97,24 +97,7 @@ Ext.define('rcm.controller.AvRe', {
 		
 		
 		me.filterAvRe();
-		/*
-		var me = this,
-			tFG = me.getTaskBlnAv(),
-			av=me.getTAvHome().series,
-			re=me.getTReHome().series,
-			av2=Ext.getCmp('Av2Thn').series,
-			re2=Ext.getCmp('Re2Thn').series,
-			form = tFG.down('form').getForm();
-		
-		gantiLabel(me, av,re,av2,re2,thn,bln,thnm1);
-		
-		/*
-		'AvReUnit','AvHome','ReHome','AvGroup','AvSpeedo','ReSpeedo'
-		//,'SapHistoriUt'
-		
-		//,'SpAvGcUt','SpAvGsUt','SpAvPmUt','SpReGcUt','SpReGsUt','SpRePmUt'
-		 
-		//*/
+
 	},
 	
 	onLaunch: function() {
@@ -186,7 +169,7 @@ Ext.define('rcm.controller.AvRe', {
 	},
 	
 	gantiLabel: function(me,av,re,av2,re2,th,thn,bln,thnm1)	{
-		av[0].config.name = thnm1;
+		av[0].config.name = thnm1;		// ------->
 		av[1].config.name = thn;
 		av[2].config.name = bln;
 		me.getTAvHome().draw();
@@ -240,7 +223,13 @@ Ext.define('rcm.controller.AvRe', {
 		//me.getAvReUnitStore().load({ params:{wkt:d,gr:me.getTAvGroup().cat} });
 		//*/
 		
-		me.gantiLabel(me, av,re,av2,re2,th,thn,bln,thnm1);
+		me.gantiLabel(me, av,re,av2,re2,th,thn,bln,thnm1);	// ---------->
+		
+		
+		
+		
+		
+		
 		/*
 		av[0].config.name = thnm1;
 		av[1].config.name = thn;
@@ -320,7 +309,9 @@ Ext.define('rcm.controller.AvRe', {
 		//*
 		var av2=Ext.getCmp('Av2Thn').series,
 			re2=Ext.getCmp('Re2Thn').series;
-		av2[0].config.name = "Av"+(tx-1);
+		//av2[0].config.name = "Av"+(tx-1);
+		
+		// -------------------->
 		av2[1].config.name = "Av"+(tx-1);
 		av2[2].config.name = "Av"+tx;
 		av2[3].config.name = "Av"+tx;

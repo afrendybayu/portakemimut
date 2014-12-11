@@ -35,34 +35,36 @@ Ext.define('rcm.view.Content', {
 		//*
 		},{
 		//*/
-		//*
+		/*
 			id: 'tu_re',
 			title: 'Reliability',
 			iconCls: 'Reliability',
 			xtype: 'tAvReChart'
 		//*/
-		//*
+		/*
 		},{
 			id: 'tu_sap',
 			title: 'SAP Report',
 			xtype: 'tabChart',
 			iconCls: 'sap'
-		//*/
+		
 		//*
 		},{
+		//*/
 			id: 'tu_rh',
 			title: 'Runnning Hour',
 			iconCls: 'RunnningHour',
 			//layout: 'accordion',
 			xtype: 'tabRh'
 		//*
-		//*
+		/*
 		},{
 			id: 'tu_co',
 			title: 'Condition Monitoring',
 			iconCls: 'connect',
 			xtype:'tConMon'
 		//*/
+		/*
 		},{
 		
 			id		: 'tu_kf',

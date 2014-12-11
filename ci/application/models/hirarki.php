@@ -142,7 +142,7 @@ class Hirarki extends CI_Model {
 				ORDER BY nama ASC";
 		//*/
 		$sql =	"SELECT eq.id,CONCAT('[',eq.tag,'] ',eq.nama) AS nama,
-				eq.tag,eq.unit_id AS parent, ce.id AS idcat,ce.nama AS cat,eq.kode,IFNULL(eq.initrh,0) AS rhinit,
+				eq.tag,eq.unit_id AS parent, ce.id AS idcat,ce.nama AS cat,eq.kode,IFNULL(eq.rhinit,0) AS rhinit,
 				'e' AS sil, 'true' AS leaf
 				FROM equip  eq
 					LEFT JOIN cat_equip ce ON ce.id = eq.cat
@@ -230,15 +230,21 @@ class Hirarki extends CI_Model {
 		
 		$query = $this->db->query($sql,$cat);
 		
-		//echo $query->num_rows();
+		//echo $query->num_rows()."<br/>";
 		$hsl = array(); $obj = new stdClass();
 		//if (count($d)>0)	{
+		//*
 		if ($query->num_rows()>0)	{
 			$id = 0; $k=0;
 			$d = $query->result();
 			foreach($d as $r)	{
+				
 				//print_r($r); echo "<br/>";
+				//echo "--->{$pm[$r->cat]}<br/>";
+				if ($r->cat==0)	continue;
+				
 				//echo "=--->"; print_r(nextpm($r->rhtot,$pm[$r->cat]));	echo "<br/>";
+				//*
 				$npm = nextpm($r->rhtot,$pm[$r->cat]);
 				if ($id != $r->id)	{
 					$id = $r->id;
@@ -262,10 +268,11 @@ class Hirarki extends CI_Model {
 					$obj->lpm .= " ".$r->lpm;
 					$obj->npm .= " [{$r->kode} PM{$npm->npm} {$npm->tgl}, {$npm->hari} hari lagi]";
 				}
-				
+				//*/
 			}
 			array_push($hsl, $obj);
 		}
+		//*/
 		/*
 		//echo count($hsl)."<br/>";
 		foreach	($hsl as $h)	{
