@@ -43,7 +43,7 @@ Ext.define('rcm.view.Content', {
 		//*/
 		
 		},{
-		/*
+		//*
 			id: 'tu_sap',
 			title: 'SAP Report',
 			xtype: 'tabChart',
@@ -58,14 +58,14 @@ Ext.define('rcm.view.Content', {
 			//layout: 'accordion',
 			xtype: 'tabRh'
 		//*
-		/*
+		//*
 		},{
 			id: 'tu_co',
 			title: 'Condition Monitoring',
 			iconCls: 'connect',
 			xtype:'tConMon'
 		//*/
-		/*
+		//*
 		},{
 		
 			id		: 'tu_kf',

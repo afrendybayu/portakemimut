@@ -231,6 +231,8 @@ class Hirarki extends CI_Model {
 		$query = $this->db->query($sql,$cat);
 		
 		//echo $query->num_rows()."<br/>";
+		//echo count($pm)."<br/>";
+		//print_r($pm); echo "<br/>";
 		$hsl = array(); $obj = new stdClass();
 		//if (count($d)>0)	{
 		//*
@@ -241,11 +243,16 @@ class Hirarki extends CI_Model {
 				
 				//print_r($r); echo "<br/>";
 				//echo "--->{$pm[$r->cat]}<br/>";
+				//continue;
 				if ($r->cat==0)	continue;
+				if (isset($pm[$r->cat]) && (count($pm[$r->cat])>0))	{
+					//echo "cat: {$r->cat} masuk sini <br/>";
+					$npm = nextpm($r->rhtot,$pm[$r->cat]);
+				}
 				
 				//echo "=--->"; print_r(nextpm($r->rhtot,$pm[$r->cat]));	echo "<br/>";
 				//*
-				$npm = nextpm($r->rhtot,$pm[$r->cat]);
+				
 				if ($id != $r->id)	{
 					$id = $r->id;
 					//$hsl[$k]
@@ -258,15 +265,27 @@ class Hirarki extends CI_Model {
 					$obj->Lokasi = $r->lok;
 					$obj->rhtot = $r->rhtot;
 					$obj->lpm = $r->lpm;
-					$obj->npm = "[{$r->kode} PM{$npm->npm} {$npm->tgl}, {$npm->hari} hari lagi]";
+					if (isset($npm))	{
+						$obj->npm = "[{$r->kode} PM{$npm->npm} {$npm->tgl}, {$npm->hari} hari lagi]";
+						unset($npm);
+					}
 					for($i=$w;$i>=0; $i--)	{
 						//echo "eq: ".$a['id']." ".date("ymd", mktime(0, 0, 0, $m, $t-$i, $y))."<br/>";
 						$obj->{"k".date("ymd", mktime(0, 0, 0, $m, $t-$i, $y))} = '-';
 					}
 				}
 				else {
+					//print_r($npm);	echo "masuk sini<br/>";
 					$obj->lpm .= " ".$r->lpm;
-					$obj->npm .= " [{$r->kode} PM{$npm->npm} {$npm->tgl}, {$npm->hari} hari lagi]";
+					if (isset($npm))	{
+						//echo "masuk sini<br/>";
+						if (isset($obj->npm))
+							$obj->npm .= " [{$r->kode} PM{$npm->npm} {$npm->tgl}, {$npm->hari} hari lagi]";
+						else
+							$obj->npm = " [{$r->kode} PM{$npm->npm} {$npm->tgl}, {$npm->hari} hari lagi]";
+						unset($npm);
+					}
+					
 				}
 				//*/
 			}
