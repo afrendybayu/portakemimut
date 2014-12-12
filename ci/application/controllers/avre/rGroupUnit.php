@@ -9,7 +9,8 @@ class rGroupUnit extends CI_Controller {
 		$this->load->model("hirarki");
 		
 
-		$gr = $this->input->get('gr')?:$this->catequip->get_tipe_id();
+		//$gr = $this->input->get('gr')?:$this->catequip->get_tipe_id();
+		$gr = $this->input->get('gr')?:$this->catequip->get_tipeunit_id();
 		if ($this->input->get('wkt'))	{
 			list($bln,$thn) = cek_waktu_avre($this->input->get('wkt'));
 		}

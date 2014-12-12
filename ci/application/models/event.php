@@ -4,7 +4,7 @@ class Event extends CI_Model {
 
 	function get_listevent()	{
 		$this->db->select('id,nama');
-		$query = $this->db->get('listEvent');
+		$query = $this->db->get('listevent');
 		
 		return $query->result();
 	}

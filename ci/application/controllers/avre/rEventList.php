@@ -10,7 +10,7 @@ class rEventList extends CI_Controller {
 			//$query = $this->db->query("select id, nama from listEvent");
 			
 			
-			$this->db->select('id, nama')->from('listEvent');
+			$this->db->select('id, nama')->from('listevent');
 			// $this->db->query('SELECT foo FROM bar WHERE bof=? AND zot=?', array($bof, $zot)); 
 			$query = $this->db->get();
 			

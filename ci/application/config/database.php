@@ -50,9 +50,16 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 //$db['default']['hostname'] = '10.32.3.68';
+//*
 $db['default']['username'] = 'obama';
 $db['default']['password'] = 'obama2014';
+$db['default']['database'] = 'medcom';
+//*/
+/*
+$db['default']['username'] = 'monita';
+$db['default']['password'] = 'monita2011';
 $db['default']['database'] = 'medco';
+//*/
 //$db['default']['dbdriver'] = 'mysql';
 $db['default']['dbdriver'] = 'mysqli';
 //$db['default']['dbdriver'] = 'pdo';

@@ -68,6 +68,17 @@ class Catequip extends CI_Model {
 		
 		return $hsl[0]->id;
 	}
+	
+	function get_tipeunit_id()	{
+		$this->db->select('id');
+		//$this->db->where('parent',0);
+		$this->db->order_by('urut');
+
+		$query = $this->db->get('unitlist',1,0);
+		$hsl = $query->result();
+		
+		return $hsl[0]->id;
+	}
 
 	function get_tipe_kode($id)	{
 		$this->db->select('kode');

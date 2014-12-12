@@ -104,7 +104,7 @@ class Waktudown extends CI_Model {
 				INNER JOIN hirarki h ON h.id = wd.unit_id
 				INNER JOIN hirarki hh ON hh.id = h.parent
 				INNER JOIN hirarki hhh ON hhh.id = hh.parent
-				LEFT JOIN listEvent le ON le.id = wd.event
+				LEFT JOIN listevent le ON le.id = wd.event
 				LEFT JOIN pmlist pl ON pl.id = wd.tipeev
 				LEFT JOIN pmdef pd ON pd.id = pl.pm
 				LEFT JOIN event ev ON ev.down_id = wd.id
@@ -361,7 +361,7 @@ class Waktudown extends CI_Model {
 	function get_reliaww($unit,$aw,$ak)	{
 		$sql =  "SELECT waktudown.id,event as idevent
 				,downt,downj,upt,upj,listEvent.nama as event
-				FROM waktudown LEFT JOIN listEvent ON listEvent.id = waktudown.event 
+				FROM waktudown LEFT JOIN listevent ON listevent.id = waktudown.event 
 				WHERE downt BETWEEN (select downt from waktudown where id=?) 
 				AND (select downt from waktudown where id=?)  AND unit_id = ?
 				group by downt, downj,upt,upj
