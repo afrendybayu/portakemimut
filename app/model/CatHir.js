@@ -12,6 +12,7 @@ Ext.define('rcm.model.CatHir', {
 		api: {
 			read: 'ci/index.php/konfig/rCatEquip/rHirarki',
 			create: 'ci/index.php/konfig/rCatEquip/cHirCat',
+			update: 'ci/index.php/konfig/rCatEquip/uHirCat',
 			destroy: 'ci/index.php/konfig/rCatEquip/dHirCat'
         },
         reader: {

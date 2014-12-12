@@ -1401,13 +1401,13 @@ Ext.define('rcm.controller.Config', {
             Ext.Msg.alert('Invalid Data', 'Please correct form errors');
             return;
 		}
-		//console.log("idCatH: "+form.findField('idCatH').getValue());
+		console.log("idCatH: "+form.findField('idCatH').getValue());
 		//return;
 		var ch = Ext.getCmp(form.findField('idCatH').getValue()),
 			selModel = ch.getSelectionModel(),
             selList = selModel.getSelection()[0];
 		winEl.mask('menyimpan');
-		//console.log(form.findField('wcNama').getValue()+" "+form.findField('wcKode').getValue());
+		console.log(form.findField('wcNama').getValue()+" "+form.findField('wcKode').getValue());
 
 		var newList = Ext.create('rcm.model.CatHir', {
 			text: form.findField('wcNama').getValue(),
@@ -1420,8 +1420,12 @@ Ext.define('rcm.controller.Config', {
 		wc.close();
 		selList.appendChild(newList);
 		var hirStore = me.getCatHirStore();
+		
+		console.log("hirStore.sync");
 		hirStore.sync();
 		hirStore.reload();
+		
+		console.log("hirStore.reload");
 		
 		var expandAndEdit = function() {
 			if(selList.isExpanded()) {
@@ -1466,7 +1470,7 @@ Ext.define('rcm.controller.Config', {
 		//this.treeCat(true);
 	},
 	hdlDelCatHir: function(rec,row)	{
-		console.log("Hapus id: "+rec.get('id')+", nama: "+rec.get('text'));
+		//console.log("Hapus id: "+rec.get('id')+", nama: "+rec.get('text'));
 		var me=this;
 		//*
 		Ext.MessageBox.show({
