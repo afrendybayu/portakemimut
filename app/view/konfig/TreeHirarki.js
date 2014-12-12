@@ -104,7 +104,23 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 					xtype: 'treepicker',
 					displayField: 'text',
 					//store: Ext.create('rcm.store.CatHir', {storeId: 'Lists-TaskGrid' }),
+					store: Ext.create('rcm.store.CatHir', { storeId: 'CatHir-TreeHirarki' })
+					//store: Ext.create('rcm.store.CatHir')
+					//store: 'CatHir'
+					//renderer: me.renderList
+				}
+			},{
+				hidden  : me.hideCat,
+				text: 'Kategori Equipment',
+                minWidth : 100,
+                flex:1,
+                dataIndex: 'idcat',
+                editor: {
+					xtype: 'treepicker',
+					displayField: 'text',
+					//store: Ext.create('rcm.store.CatHir', {storeId: 'Lists-TaskGrid' }),
 					store: Ext.create('rcm.store.CatHir', { storeId: 'CatHir' })
+					//store: Ext.create('rcm.store.CatHir')
 					//store: 'CatHir'
 					//renderer: me.renderList
 				}

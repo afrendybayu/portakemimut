@@ -3,6 +3,7 @@ Ext.define('rcm.store.CatHir', {
     extend: 'Ext.data.TreeStore',
     model: 'rcm.model.CatHir',
     requires: 'rcm.model.CatHir',
+    storeId: 'CatHir-TreeHirarki',
     //autoLoad: true, //--> load read.php
 	
 	//*

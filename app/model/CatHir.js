@@ -4,7 +4,8 @@ Ext.define('rcm.model.CatHir', {
     requires:[
 		'Ext.data.proxy.Ajax'
     ],
-    fields: [{ name:'id',type:'int' },'text','tipe','parent' ],
+    fields: [{ name:'id',type:'int' },
+			 { name:'text'},'tipe','parent' ],
     
 	//*
     proxy: {
