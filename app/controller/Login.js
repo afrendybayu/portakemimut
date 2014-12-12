@@ -103,7 +103,7 @@ Ext.define('rcm.controller.Login', {
 	},  
 	
 	tblLogin : function(){
-		// console.log('klik login tombol');
+		console.log('klik login tombol');
 		
 		var me = this, frm = me.getAuthlogin().getForm(),
 			login 	= Ext.create('rcm.model.LoginAuth',frm.getValues());

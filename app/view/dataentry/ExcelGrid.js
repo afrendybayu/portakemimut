@@ -6,7 +6,7 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 	//xtype: 'taskExcelGrid',
 	//id: 'idexcelgrid',
 	
-	ngedit: 0,
+	ngedit: 1,
 	
 	requires: [
 		'rcm.view.Util',
@@ -35,7 +35,8 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
         Ext.create('Ext.grid.plugin.CellEditing', {
             clicksToEdit: 1
         })
-    ],*/
+    ],
+    */
     viewConfig: {
         getRowClass: function(record, index) {
 
@@ -66,7 +67,7 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 			'recordedit'
         );
         cellEditingPlugin.on('edit', me.handleCellEdit, this);
-        cellEditingPlugin.on('beforeedit', me.hdlCellEna, this);
+        //cellEditingPlugin.on('beforeedit', me.hdlCellEna, this);
 	},
 	/*
 	initComponent: function() {
@@ -136,7 +137,7 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 	},
 
     handleCellEdit: function(gridView, e) {
-		//alert("asmuk handleCellEdit: "+e.field);
+		alert("asmuk handleCellEdit: "+e.field);
         //*
         var rec = e.grid.getStore().getAt(e.rowIdx), tt=e.field;
 		rcmSettings.eqx = rec.get('id');
@@ -144,13 +145,15 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 		//console.log("handleCellEdit ExcelGrid tgl: "+rcmSettings.tgl);
         //*/
         this.fireEvent('recordedit', gridView, e);
-        
     },
     
     hdlCellEna: function(editor,a,eOpts)	{
 		//alert(this.ngedit);
+		/*
 		if (this.ngedit)	return true;
 		else return false;
+		//*/
+		return true;
 	},
     
     //*

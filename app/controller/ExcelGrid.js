@@ -438,7 +438,7 @@ Ext.define('rcm.controller.ExcelGrid', {
     updateGrid: function(view, e) {
         var me		=this, tv=e.value; 
 			drow	=this.getRunningHourStore().getAt(e.rowIdx);
-
+		alert("tes updateGrid");
 		if ((tv=='')||(tv==e.originalValue))	{		//||
 			//alert("updateGrid numpang lewat");
 		} else if (tv==e.originalValue)	{
