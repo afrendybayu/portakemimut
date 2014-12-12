@@ -87,7 +87,7 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
         me.columns = [{
                 xtype: 'treecolumn',
                 dataIndex: 'nama',
-                text: 'Hirarki',
+                text: 'Hirarki Kategori',
                 flex: 3,
                 editor: {
                     xtype: 'textfield',
@@ -96,7 +96,7 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 				}
 			},{
 				hidden  : me.hideCat,
-				text: 'Kategori',
+				text: 'Kategori Equipment',
                 minWidth : 100,
                 flex:1,
                 dataIndex: 'cat',
@@ -104,8 +104,9 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 					xtype: 'treepicker',
 					displayField: 'text',
 					//store: Ext.create('rcm.store.CatHir', {storeId: 'Lists-TaskGrid' }),
-					store: Ext.create('rcm.store.CatHir'),
-					renderer: me.renderList
+					store: Ext.create('rcm.store.CatHir', { storeId: 'CatHir' })
+					//store: 'CatHir'
+					//renderer: me.renderList
 				}
 			/*
 			},{

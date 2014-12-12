@@ -35,9 +35,6 @@ Ext.define('rcm.view.konfig.PanelList', {
 				type: 'border'
 				//align: 'stretch'
 			},
-			//text: 'me.jdlGr',
-			//btnFilter: me.btnFilter,
-			//param: me.param,
 			items:[{
 				title: me.jdlKi,
 				xtype: 'tKGridL',

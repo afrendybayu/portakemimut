@@ -1465,10 +1465,10 @@ Ext.define('rcm.controller.Config', {
 		alert("Config controller tblDelCat");
 		//this.treeCat(true);
 	},
-	hdlDelCatHir: function(rec)	{
-		//console.log("Hapus id: "+rec.get('id')+", nama: "+rec.get('text'));
-		//console.log(e);
+	hdlDelCatHir: function(rec,row)	{
+		console.log("Hapus id: "+rec.get('id')+", nama: "+rec.get('text'));
 		var me=this;
+		//*
 		Ext.MessageBox.show({
 			title : 'Hapus Kategori',
 			msg   : "Yakin Kategori \""+rec.get('text')+"\" akan diHapus ??",
@@ -1481,9 +1481,12 @@ Ext.define('rcm.controller.Config', {
 						success : function(del, op){
 							//alert('sukses');
 							me.getLokUnitStore().reload();
-							//me.getCatHirStore().load();
+							me.getCatHirStore().reload();
 							me.getGridEqcInStore().reload();
 							me.getGridEqnInStore().load();
+							//me.getCatHirStore().removeAt(row);
+							//rec.getStore().removeAt(row);
+							//rcmSettings.kkkk = rec;
 						},
 						failure: function(task, op)	{
 							var error = op.getError(),
@@ -1500,7 +1503,7 @@ Ext.define('rcm.controller.Config', {
 				}
 			}
 		});
-		
+		//*/
 		
 	},
 	

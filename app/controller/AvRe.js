@@ -96,7 +96,7 @@ Ext.define('rcm.controller.AvRe', {
 		me.getAvReUnitStore().load();
 		
 		
-		me.filterAvRe();
+		//me.filterAvRe();	// ----------->
 
 	},
 	

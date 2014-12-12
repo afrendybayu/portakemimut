@@ -27,23 +27,23 @@ Ext.define('rcm.view.Content', {
     initComponent: function() {
 		var me=this;
 		me.items = [{
-		//*==========================
+		/*==========================
 			id: 'tu_ho',
 			title: 'Dashboard Home',
 			iconCls: 'Dashboard',
 			xtype: 'tHoChart'
-		//*
+		/*
 		},{
-		//*/
+		
 		//*
 			id: 'tu_re',
 			title: 'Reliability',
 			iconCls: 'Reliability',
 			xtype: 'tAvReChart'
 		//*/
-		
+		/*
 		},{
-		//*
+		
 			id: 'tu_sap',
 			title: 'SAP Report',
 			xtype: 'tabChart',
@@ -51,7 +51,7 @@ Ext.define('rcm.view.Content', {
 		
 		//*
 		},{
-		//*/
+		
 			id: 'tu_rh',
 			title: 'Runnning Hour',
 			iconCls: 'RunnningHour',
@@ -65,9 +65,9 @@ Ext.define('rcm.view.Content', {
 			iconCls: 'connect',
 			xtype:'tConMon'
 		//*/
-		//*
+		/*
 		},{
-		
+		//*/
 			id		: 'tu_kf',
 			title	: 'Konfigurasi',
 			iconCls	: 'Konfigurasi',

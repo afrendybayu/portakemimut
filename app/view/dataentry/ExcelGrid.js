@@ -44,9 +44,9 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
     },
 	
 	initComponent: function() {
-		var me=this, 
-			 cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing', { clicksToEdit: 1});
-		me.plugins = cellEditingPlugin;
+		var me=this, 	// cellEditingPlugin
+			cex = Ext.create('Ext.grid.plugin.CellEditing', { 	clicksToEdit: 1		});
+		me.plugins = [cex];		// cellEditingPlugin
 		me.bbar = [{
 			text: 'Compressor',
 			iconCls: 'Compressor',
@@ -66,60 +66,11 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 		me.addEvents(
 			'recordedit'
         );
-        cellEditingPlugin.on('edit', me.handleCellEdit, this);
-        //cellEditingPlugin.on('beforeedit', me.hdlCellEna, this);
+        //cex.on('edit', me.handleCellEdit, this);
+        cex.on('edit', me.hdlClk, me);
+        //cex.on('beforeedit', me.hdlCellEna, this);
 	},
-	/*
-	initComponent: function() {
-		var me=this, ti=rcm.view.Util.UxcolGrid(), // tb=rcm.view.Util.Ublntgl(), tg=rcm.view.Util.Utgl(), 
-            cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing', { clicksToEdit: 1 });
 
-            groupingFeature = Ext.create('Ext.grid.feature.Grouping', {
-                //groupField: 'Lokasi',
-				groupHeaderTpl: '{columnName}: {name} [{rows.length} Unit]',
-				enableGroupingMenu: false,
-                startCollapsed: true
-            }); 
-			//groupingFeature = {ftype:'grouping',startCollapsed: true,groupHeaderTpl: '{columnName}: {name} [{rows.length} Unit]'};
-			
-        //me.plugins = [cellEditingPlugin];
-        //me.features = [groupingFeature];
-        me.selModel = { 
-			selType: 'cellmodel'
-		};
-
-		me.bbar = [{
-			text: 'Compressor',
-			icon: 'modul/icons/comp16.png',
-			scope: this,
-			handler: this.CompClick
-		},{
-			text: 'Genset',
-			scope: this,
-			handler: this.GensetClick
-		},{
-			text: 'Pump',
-			scope: this,
-			handler: this.PumpClick
-		}];
-
-        me.columns = {
-            defaults: {
-                draggable: false,
-                resizable: false,
-                hideable: false,
-                groupable: false,
-            },
-            items: ti,
-        };
-        
-        me.callParent(arguments);
-		me.addEvents(
-			'recordedit'
-        );
-        cellEditingPlugin.on('edit', me.handleCellEdit, this);
-	},
-	//*/
 	
 	renderer: function(value, metadata, record, rowIndex, colIndex, store) {
 		//alert("jos renderer");
@@ -136,15 +87,21 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 		//return colIndex;
 	},
 
+	hdlClk: function()	{
+		alert("tes hdlClk");
+	},
+
     handleCellEdit: function(gridView, e) {
-		alert("asmuk handleCellEdit: "+e.field);
-        //*
+		alert("asmuk handleCellEdit: ");
+		//alert("asmuk handleCellEdit: "+e.field);
+        /*
         var rec = e.grid.getStore().getAt(e.rowIdx), tt=e.field;
 		rcmSettings.eqx = rec.get('id');
 		rcmSettings.tgl =  "20"+tt.substring(1,3)+"-"+tt.substring(3,5)+"-"+tt.substring(5);
 		//console.log("handleCellEdit ExcelGrid tgl: "+rcmSettings.tgl);
-        //*/
+        
         this.fireEvent('recordedit', gridView, e);
+        //*/
     },
     
     hdlCellEna: function(editor,a,eOpts)	{
