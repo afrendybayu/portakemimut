@@ -1385,7 +1385,7 @@ Ext.define('rcm.controller.Config', {
 	},
 	
 	hdlCatHirEq: function()		{
-		//alert("hdlCatHirEq");
+		alert("hdlCatHirEq");
 	},
 	
 	saveNCatH: function()	{
@@ -1418,6 +1418,8 @@ Ext.define('rcm.controller.Config', {
 			loaded: true // set loaded to true, so the tree won't try to dynamically load children for this node when expanded
 		});
 		wc.close();
+		
+		console.log(newList);
 		selList.appendChild(newList);
 		var hirStore = me.getCatHirStore();
 		
