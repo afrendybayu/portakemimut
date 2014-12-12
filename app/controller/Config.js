@@ -691,6 +691,8 @@ Ext.define('rcm.controller.Config', {
 			me.getUsersStore().load();
 			me.getFormAksisStore().load();
 			me.getFormPmDefsStore().load();
+			
+			
 		}
 		//*/
 	},
@@ -1428,6 +1430,8 @@ Ext.define('rcm.controller.Config', {
 		hirStore.reload();
 		
 		console.log("hirStore.reload");
+		this.getLokUnitStore().load();
+		
 		
 		var expandAndEdit = function() {
 			if(selList.isExpanded()) {

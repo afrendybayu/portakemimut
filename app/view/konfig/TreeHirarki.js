@@ -104,8 +104,8 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 					xtype: 'treepicker',
 					displayField: 'text',
 					//store: Ext.create('rcm.store.CatHir', {storeId: 'Lists-TaskGrid' }),
-					store: Ext.create('rcm.store.CatHir', { storeId: 'CatHir-TreeHirarki' })
-					//store: Ext.create('rcm.store.CatHir')
+					//store: Ext.create('rcm.store.CatHir', { storeId: 'CatHir-TreeHirarki' })
+					store: Ext.create('rcm.store.CatHir')
 					//store: 'CatHir'
 					//renderer: me.renderList
 				}
@@ -119,8 +119,8 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 					xtype: 'treepicker',
 					displayField: 'text',
 					//store: Ext.create('rcm.store.CatHir', {storeId: 'Lists-TaskGrid' }),
-					store: Ext.create('rcm.store.CatHir', { storeId: 'CatHir' })
-					//store: Ext.create('rcm.store.CatHir')
+					//store: Ext.create('rcm.store.CatHir', { storeId: 'CatHir' })
+					store: Ext.create('rcm.store.CatHir')
 					//store: 'CatHir'
 					//renderer: me.renderList
 				}
