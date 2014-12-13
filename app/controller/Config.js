@@ -923,7 +923,7 @@ Ext.define('rcm.controller.Config', {
 	},
 	
 	hdlCHRefresh: function()	{
-		this.me.getCatHirStore().load();
+		this.getCatHirStore().load();
 	},
 
 	slctKfHir: function(model, records)	{
@@ -1424,10 +1424,10 @@ Ext.define('rcm.controller.Config', {
 		//console.log(form.findField('wcNama').getValue()+" "+form.findField('wcKode').getValue());
 
 		var newList = Ext.create('rcm.model.CatHir', {
-			text: form.findField('wcNama').getValue(),
+			text: form.findField('text').getValue(),
 			leaf: true,
-			tipe: form.findField('wcKode').getValue(),
-			ket: form.findField('wcKet').getValue(),
+			tipe: form.findField('tipe').getValue(),
+			ket: form.findField('ket').getValue(),
 			// level : selectedList.data.depth,
 			loaded: true // set loaded to true, so the tree won't try to dynamically load children for this node when expanded
 		});
