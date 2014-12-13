@@ -67,6 +67,7 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 					//disabled : true,
 					width: 100,
 					text: 'Upload',
+					disabled: true,
 					margin: '2 5'
 				},{
 					id: me.idbExc,

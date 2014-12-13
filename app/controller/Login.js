@@ -12,6 +12,7 @@ Ext.define('rcm.controller.Login', {
 		'nav.AppHeader'
 		,'dataentry.FormGagal'
 		,'dataentry.DaftarGagal'
+		,'Content'
 		// ,'dataentry.IsiTabForm'
 
     ],
@@ -38,6 +39,9 @@ Ext.define('rcm.controller.Login', {
 		},{
 			ref: 'tGridContract',
 			selector: 'tGridContract'
+		},{
+			ref: 'content',
+			selector: 'content'
 		},{
 			ref : 'authlogin',
 			selector : 'authlogin'
@@ -70,30 +74,7 @@ Ext.define('rcm.controller.Login', {
 		
 		});
 		
-	}, 
-	
-	
-	/*bfGagal : function(){
-		// var FGagal 	= this.getTaskFormGagal();
-		var DSesi	= this.getLoginSesiStore();
-		DSesi.load({
-						scope: this,
-						callback: function(records, operation, success) {
-							var res = operation.request.scope.reader.jsonData["sesi"];
-							if (res.nama == 'Administrator'){
-								//console.log('masuk sebagai admin');
-								// FGagal.show();
-							}
-							else{
-								//console.log('tidak jelas');
-								FGagal.hide();
-							}
-							// the operation object
-							// contains all of the details of the load operation
-							//console.log(res.nama);
-						}
-					});
-	},*/
+	},
 	
 	enterLogin : function(f,e){  
 		if(e.getKey()==e.ENTER){  
@@ -103,15 +84,14 @@ Ext.define('rcm.controller.Login', {
 	},  
 	
 	tblLogin : function(){
-		console.log('klik login tombol');
+		//console.log('klik login tombol');
 		
 		var me = this, frm = me.getAuthlogin().getForm(),
 			login 	= Ext.create('rcm.model.LoginAuth',frm.getValues());
-			// rcmSettings.Loginlllll = frm.getValues();
+
 		if (frm.isValid()) {
 			login.save({
 				success: function(login, operation) {
-					// alert ('sedang login');
 					var res = operation.request.scope.reader.jsonData["rule"];
 					/*
 					Ext.MessageBox.show({
@@ -146,6 +126,8 @@ Ext.define('rcm.controller.Login', {
 					me.getExcelgrid().ngedit = 1;
 					me.getTGridContract().ngedit = 1;
 
+					me.getContent().showKonfig(true);
+					Ext.getCmp('idUpOh').setDisabled(false);
 					
 				},
 				failure : function(respon, operation){
@@ -221,6 +203,8 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('idGridCM').ngedit = 0;
 					//Ext.fly('idGridCM').ngedit = 0;
 					
+					me.getContent().showKonfig(false);
+					Ext.getCmp('idUpOh').setDisabled(true);
 					//Ext.getCmp('ConMonSave').setDisabled(true);
 				}
 				else {
@@ -273,6 +257,7 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('idGridCM').ngedit = 1;
 					me.getAuthlogin().level = res.level;
 					
+					me.getContent().showKonfig(true);
 					//alert("me.getExcelgrid().ngedit = 1;");
 					//me.getIConMon().ngedit = 1;
 				}
@@ -290,6 +275,7 @@ Ext.define('rcm.controller.Login', {
 					
 					Ext.getCmp('ohform').setDisabled(true);
 					Ext.getCmp('ohdel').setDisabled(true);
+					me.getContent().showKonfig(false);
 					// Ext.getCmp('tu_kf').setDisabled(true);
 					//alert("Session Habis");
 				}

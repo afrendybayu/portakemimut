@@ -902,7 +902,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.controller.ExcelGrid": [],
   "rcm.controller.Laporan": [],
   "rcm.controller.Login": [],
-  "rcm.controller.Main": [],
   "rcm.controller.Nav": [],
   "rcm.controller.Sap": [],
   "rcm.model.Aksi": [],
@@ -1084,7 +1083,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.WoOpen7": [],
   "rcm.store.WoOpenL60": [],
   "rcm.view.Content": [],
-  "rcm.view.Main": [],
   "rcm.view.MonthYear": [
     "Ext.form.MonthField",
     "Ext.form.Month"
@@ -2221,7 +2219,6 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.controller.ExcelGrid": [],
   "rcm.controller.Laporan": [],
   "rcm.controller.Login": [],
-  "rcm.controller.Main": [],
   "rcm.controller.Nav": [],
   "rcm.controller.Sap": [],
   "rcm.model.Aksi": [],
@@ -2404,9 +2401,6 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.WoOpenL60": [],
   "rcm.view.Content": [
     "widget.content"
-  ],
-  "rcm.view.Main": [
-    "widget.app-main"
   ],
   "rcm.view.MonthYear": [
     "widget.monthfield"

@@ -67,9 +67,11 @@ Ext.define('rcm.view.Content', {
 		//*/
 		//*
 		},{
-			id		: 'tu_kf',
+			//id		: 'tu_kf',
+			itemId	: 'tu_kf',
 			title	: 'Konfigurasi',
 			iconCls	: 'Konfigurasi',
+			hidden	: true,
 			xtype 	: 't_Konfig'
 			//disabled : true
 			// hidden: true
@@ -103,6 +105,19 @@ Ext.define('rcm.view.Content', {
 			this.fireEvent('updateHome');
 		}
 	},
+	
+	showKonfig: function(st)	{
+		var t = this.child('#tu_kf');
+		//console.log('sampe sini showRelia');
+		if (st==true)	{
+			t.tab.show();
+			//this.setActiveTab(t);
+		}
+		else {
+			t.tab.hide();
+		}
+	},
+	
 	
 	TambahClick: function()	{
 		//console.log("tambah: ");

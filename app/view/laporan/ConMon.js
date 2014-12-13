@@ -100,13 +100,7 @@ Ext.define('rcm.view.laporan.ConMon', {
         collapsible: true,        
 		collapsed: true,
 		height: 220,
-		/*
-		xtype : 'tGridContract',
-		duit: false,
-		totcv: true,
-		budg: true,
-		pbudg: true
-		//*/
+
         //*
 		layout: 'border',
 		items: [{
