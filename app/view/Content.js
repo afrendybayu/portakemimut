@@ -40,17 +40,18 @@ Ext.define('rcm.view.Content', {
 			title: 'Reliability',
 			iconCls: 'Reliability',
 			xtype: 'tAvReChart'
-		//*/
-		/*
-		},{
 		
+		
+		},{
+		//*/
+		//*
 			id: 'tu_sap',
 			title: 'SAP Report',
 			xtype: 'tabChart',
 			iconCls: 'sap'
 		},{
 		//*/
-		//*
+		/*
 			id: 'tu_rh',
 			title: 'Runnning Hour',
 			iconCls: 'RunnningHour',
@@ -64,7 +65,7 @@ Ext.define('rcm.view.Content', {
 			iconCls: 'connect',
 			xtype:'tConMon'
 		//*/
-		//*
+		/*
 		},{
 		//*/
 			id		: 'tu_kf',

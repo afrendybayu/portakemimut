@@ -280,13 +280,13 @@ Ext.define('rcm.controller.Login', {
 					//console.log('sesine ilang je');
 					Ext.getCmp('p_login').setVisible(true);
 					Ext.getCmp('p_logout').setVisible(false);
-					Ext.getCmp('griddel').setVisible(false);
-					Ext.getCmp('gridedit').setVisible(false);
+					//Ext.getCmp('griddel').setVisible(false);	// ----->
+					//Ext.getCmp('gridedit').setVisible(false);	// ----->
 					Ext.getCmp('btnUplBpm3').setDisabled(true);
 					Ext.getCmp('bwbpm3').setDisabled(true);
 					//Ext.getCmp('conmondel').setDisabled(true);
 					//Ext.getCmp('cmform').setDisabled(true);
-					Ext.getCmp('idGridCM').ngedit = 0;
+					//Ext.getCmp('idGridCM').ngedit = 0;		// ----->
 					
 					Ext.getCmp('ohform').setDisabled(true);
 					Ext.getCmp('ohdel').setDisabled(true);

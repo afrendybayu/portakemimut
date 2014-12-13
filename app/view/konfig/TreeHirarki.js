@@ -103,9 +103,10 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
                 editor: {
 					xtype: 'treepicker',
 					displayField: 'text',
+					value: 'text',
 					//store: Ext.create('rcm.store.CatHir', {storeId: 'Lists-TaskGrid' }),
 					//store: Ext.create('rcm.store.CatHir', { storeId: 'CatHir-TreeHirarki' })
-					store: Ext.create('rcm.store.CatHir')
+					store: Ext.create('rcm.store.CatHir'),
 					//store: 'CatHir'
 					//renderer: me.renderList
 				}
@@ -118,12 +119,14 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
                 editor: {
 					xtype: 'treepicker',
 					displayField: 'text',
-					//store: Ext.create('rcm.store.CatHir', {storeId: 'Lists-TaskGrid' }),
-					//store: Ext.create('rcm.store.CatHir', { storeId: 'CatHir' })
-					store: Ext.create('rcm.store.CatHir')
+					//rootVisible: false,
+					//store: Ext.create('rcm.store.CatHir', {storeId: 'CatHir-TreeHirarki' }),
+					store: Ext.create('rcm.store.CatHir', { storeId: 'CatHir' })
+					//store: Ext.create('rcm.store.CatHir'),
 					//store: 'CatHir'
-					//renderer: me.renderList
-				}
+					
+				},
+				renderer: me.renderList
 			/*
 			},{
 				hidden  : me.hideDel,
@@ -162,10 +165,10 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 		//alert(this.ngedit);
 		if (this.ngedit)	return true;
 		else return false;
-	}
-    /*
+	},
+    //*
     renderList: function(value, metaData, task, rowIndex, colIndex, store, view) {
-		alert(value);
+		//alert(value);
         var listsStore = Ext.getStore('CatHir'),
             node = value ? listsStore.getNodeById(value) : listsStore.getRootNode();
 		

@@ -514,7 +514,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		
 		//rcmSettings.qqqq = this.getExcelgrid();
 
-		Ext.getCmp('htmleddet').setReadOnly(true);
+		//Ext.getCmp('htmleddet').setReadOnly(true);	// ------------->
 		this.ubahFieldRH();
 		//Ext.util.Cookies.set('tgl',t);
 		Ext.util.Cookies.set('now',Ext.Date.format(new Date(),"Y-m-d"));
