@@ -44,8 +44,8 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 	//*
 	initComponent: function() {
 		var me=this, 
-			 cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing', { clicksToEdit: 1});
-		me.plugins = [cellEditingPlugin];
+			 cex = Ext.create('Ext.grid.plugin.CellEditing', { clicksToEdit: 1});
+		me.plugins = [cex];
 		me.bbar = [{
 			text: 'Compressor',
 			iconCls: 'Compressor',
@@ -65,8 +65,8 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 		me.addEvents(
 			'recordedit'
         );
-        cellEditingPlugin.on('edit', me.handleCellEdit, this);
-        cellEditingPlugin.on('beforeedit', me.hdlCellEna, this);
+        cex.on('edit', me.handleCellEdit, this);
+        cex.on('beforeedit', me.hdlCellEna, this);
 	},
 	//*/
 	/*
