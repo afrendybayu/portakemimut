@@ -14,7 +14,8 @@ class rLokUnit extends CI_Controller {
 	public function rHirarki()	{
 		//*
 		try {
-			$parent_id = (isset($_GET['node']))?($_GET['node']):0;
+			//$parent_id = (isset($_GET['node']))?($_GET['node']):0;
+			$parent_id = (isset($_GET['node']))?$this->input->get('node'):0;
 			//echo $parent_id.'<br>';
 			// echo $_GET['node'].'<br>';
 			
@@ -22,11 +23,13 @@ class rLokUnit extends CI_Controller {
 			$hsl = $this->hirarki->get_hirarki($parent_id);
 			//print_r($hsl->result()); echo "<br/><br/>";
 			if ($hsl->num_rows() > 0)	{
+				//echo "ada row";
 				$arr = $hsl->result();
 
 			}
 			
 			else {
+				//echo "pindah sini";
 				$hsl = $this->hirarki->get_hirarki_equip($parent_id);
 				$arr = $hsl->result();
 			}

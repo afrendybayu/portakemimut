@@ -99,22 +99,6 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 				text: 'Kategori Equipment',
                 minWidth : 100,
                 flex:1,
-                dataIndex: 'cat',
-                editor: {
-					xtype: 'treepicker',
-					displayField: 'text',
-					value: 'text',
-					//store: Ext.create('rcm.store.CatHir', {storeId: 'Lists-TaskGrid' }),
-					//store: Ext.create('rcm.store.CatHir', { storeId: 'CatHir-TreeHirarki' })
-					store: Ext.create('rcm.store.CatHir'),
-					//store: 'CatHir'
-					//renderer: me.renderList
-				}
-			},{
-				hidden  : me.hideCat,
-				text: 'Kategori Equipment',
-                minWidth : 100,
-                flex:1,
                 dataIndex: 'idcat',
                 editor: {
 					xtype: 'treepicker',
@@ -168,7 +152,7 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 	},
     //*
     renderList: function(value, metaData, task, rowIndex, colIndex, store, view) {
-		//alert(value);
+		if (value==0)	return "";
         var listsStore = Ext.getStore('CatHir'),
             node = value ? listsStore.getNodeById(value) : listsStore.getRootNode();
 		
