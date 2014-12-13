@@ -69,6 +69,14 @@ Ext.define('rcm.view.konfig.TreeCat', {
 				//text: 'ID',
                 dataIndex: 'id',
                 width:40
+			},{
+                xtype	: 'actioncolumn',
+                //text: 'Hapus',
+                width	: 24,
+				icon	: 'resources/css/images/edit1.png',
+				iconCls	: 'x-hidden',
+                tooltip	: 'edit Kategori',
+                handler	: Ext.bind(me.hdlEditClick,me)
             },{
                 xtype	: 'actioncolumn',
                 //text: 'Hapus',
@@ -84,9 +92,16 @@ Ext.define('rcm.view.konfig.TreeCat', {
 		
 	},
 	
-	hdlDeleteClick: function() {
+	hdlDeleteClick: function(grid, row) {
         // Fire a "deleteclick" event with all the same args as this handler
-		//alert ('klik hirarki delete: '+id);
-        this.fireEvent('deleteclick', rec);
-    }
+		alert ('klik hirarki delete: '+id);
+        //this.fireEvent('deleteclick', rec);
+    },
+    
+    hdlEditClick: function(grid, row)	{
+		//var rec = grid.getStore().getAt(row);
+		this.fireEvent('editclick', grid,row);
+		//console.log("Edit id: "+rec.get('id'));
+		//alert ('klik hirCat edit: '+row);
+	}
 });

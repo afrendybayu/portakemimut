@@ -27,6 +27,14 @@ Ext.define('rcm.view.konfig.wCatHir', {
 				xtype: 'hiddenfield',
 				id: 'idCatH'
 			},{
+				xtype: 'treepicker',
+				name : 'wcCat',
+				fieldLabel: 'Kategori',
+				displayField: 'text',
+				store: Ext.create('rcm.store.CatHir', {storeId: 'CatHir-TreeHirarki' }),
+				hidden: true,
+				id: 'idtpCatH'
+			},{
 				//xtype: 'textfield',
 				name : 'wcKode',
 				fieldLabel: 'Kode',
@@ -41,9 +49,15 @@ Ext.define('rcm.view.konfig.wCatHir', {
 		}];
 
         me.buttons = [{
-			text: 'Save',
+			text: 'Edit',
 			//action: 'save'
-			id: 'saveCatH'
+			id: 'editCatH',
+			hidden: true
+		},{
+			text: 'Simpan',
+			//action: 'save'
+			id: 'saveCatH',
+			hidden: true
 		},{
 			text: 'Cancel',
 			scope: this,

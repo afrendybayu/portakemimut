@@ -27,12 +27,12 @@ Ext.define('rcm.view.Content', {
     initComponent: function() {
 		var me=this;
 		me.items = [{
-		/*==========================
+		//*==========================
 			id: 'tu_ho',
 			title: 'Dashboard Home',
 			iconCls: 'Dashboard',
 			xtype: 'tHoChart'
-		/*
+		//*
 		},{
 		
 		//*
@@ -51,21 +51,21 @@ Ext.define('rcm.view.Content', {
 			iconCls: 'sap'
 		},{
 		//*/
-		/*
+		//*
 			id: 'tu_rh',
 			title: 'Runnning Hour',
 			iconCls: 'RunnningHour',
 			//layout: 'accordion',
 			xtype: 'tabRh'
 		//*
-		/*
+		//*
 		},{
 			id: 'tu_co',
 			title: 'Condition Monitoring',
 			iconCls: 'connect',
 			xtype:'tConMon'
 		//*/
-		/*
+		//*
 		},{
 		//*/
 			id		: 'tu_kf',

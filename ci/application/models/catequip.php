@@ -94,7 +94,7 @@ class Catequip extends CI_Model {
 	
 	function get_hirarki($parent){
 		
-		$sql = "SELECT ci.id,ci.nama AS text,ci.kode AS tipe
+		$sql = "SELECT ci.id,ci.nama AS text,ci.kode AS tipe, ci.ket,parent
 				,(select count(*) from cat_equip ce where ce.parent = ci.id) as jml
 				,(SELECT CASE WHEN jml>0 THEN 'false' ELSE 'true' END) AS leaf
 				FROM cat_equip ci

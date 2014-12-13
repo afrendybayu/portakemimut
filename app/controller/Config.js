@@ -241,6 +241,7 @@ Ext.define('rcm.controller.Config', {
             'tCatHir': {
 				catclick: me.hdlCatHir,
 				deleteclick: me.hdlDelCatHir,
+				editclick: me.hdlEditCatHir,
 				itemmouseenter: me.showActions,
 				itemmouseleave: me.hideActions
 			},
@@ -914,6 +915,8 @@ Ext.define('rcm.controller.Config', {
 		//me.getHirDefStore().reload();
 		me.getLokUnitStore().reload();
 	},
+	
+
 
 	slctKfHir: function(model, records)	{
 		console.log(records[0]);
@@ -1412,7 +1415,7 @@ Ext.define('rcm.controller.Config', {
 			selModel = ch.getSelectionModel(),
             selList = selModel.getSelection()[0];
 		winEl.mask('menyimpan');
-		console.log(form.findField('wcNama').getValue()+" "+form.findField('wcKode').getValue());
+		//console.log(form.findField('wcNama').getValue()+" "+form.findField('wcKode').getValue());
 
 		var newList = Ext.create('rcm.model.CatHir', {
 			text: form.findField('wcNama').getValue(),
@@ -1422,9 +1425,10 @@ Ext.define('rcm.controller.Config', {
 			// level : selectedList.data.depth,
 			loaded: true // set loaded to true, so the tree won't try to dynamically load children for this node when expanded
 		});
+		
 		wc.close();
 		
-		console.log(newList);
+		//console.log(newList);
 		selList.appendChild(newList);
 		var hirStore = me.getCatHirStore();
 		
@@ -1478,6 +1482,7 @@ Ext.define('rcm.controller.Config', {
 		alert("Config controller tblDelCat");
 		//this.treeCat(true);
 	},
+	
 	hdlDelCatHir: function(rec,row)	{
 		//console.log("Hapus id: "+rec.get('id')+", nama: "+rec.get('text'));
 		var me=this;
@@ -1519,6 +1524,25 @@ Ext.define('rcm.controller.Config', {
 		//*/
 		
 	},
+	hdlEditCatHir: function(grid,row)	{
+		var rec = grid.getStore().getAt(row);
+		var me = this,
+			wc = me.getTWCatHir(),
+			form = wc.down('form').getForm(),
+			winEl = wc.getEl();
+
+		wc.setTitle('Form Edit Kategori [Nama: '+rec.get('text')+']');
+		wc.down('form').getForm().reset();
+		form.findField('wcNama').setValue(rec.get('text')),
+		form.findField('wcKode').setValue(rec.get('tipe')),
+		form.findField('wcCat').setValue(rec.get('parent')),
+		form.findField('wcKet').setValue(rec.get('ket')),
+		//Ext.getCmp('idCatH').setValue(rec.get('id'));
+		Ext.getCmp('idtpCatH').setVisible(true),
+		Ext.getCmp('editCatH').setVisible(true),
+		wc.show();
+		//console.log(rec);
+	},
 	
 	treeCat: function(id)	{
 		//console.log("id: "+id);
@@ -1537,7 +1561,7 @@ Ext.define('rcm.controller.Config', {
 		wHir.down('form').getForm().reset();
 		//Ext.getCmp('idCatH').setValue(selList.get('id'));
 		Ext.getCmp('idCatH').setValue(id);
-
+		Ext.getCmp('saveCatH').setVisible(true),
 		wHir.show();
 	},
 	
