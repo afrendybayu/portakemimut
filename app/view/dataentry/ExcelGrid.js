@@ -6,7 +6,7 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 	//xtype: 'taskExcelGrid',
 	//id: 'idexcelgrid',
 	
-	ngedit: 1,
+	ngedit: 0,
 	
 	requires: [
 		'rcm.view.Util',
@@ -35,18 +35,17 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
         Ext.create('Ext.grid.plugin.CellEditing', {
             clicksToEdit: 1
         })
-    ],
-    */
+    ],*/
     viewConfig: {
         getRowClass: function(record, index) {
 
         }
     },
-	
+	//*
 	initComponent: function() {
-		var me=this, 	// cellEditingPlugin
-			cex = Ext.create('Ext.grid.plugin.CellEditing', { 	clicksToEdit: 1		});
-		me.plugins = [cex];		// cellEditingPlugin
+		var me=this, 
+			 cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing', { clicksToEdit: 1});
+		me.plugins = [cellEditingPlugin];
 		me.bbar = [{
 			text: 'Compressor',
 			iconCls: 'Compressor',
@@ -61,56 +60,87 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 			scope: this,
 			handler: this.PumpClick
 		}];
-		//*/
+		
 		me.callParent(arguments);
 		me.addEvents(
 			'recordedit'
         );
-        //cex.on('edit', me.handleCellEdit, this);
-        cex.on('edit', me.hdlClk, me);
-        //cex.on('beforeedit', me.hdlCellEna, this);
+        cellEditingPlugin.on('edit', me.handleCellEdit, this);
+        //cellEditingPlugin.on('beforeedit', me.hdlCellEna, this);
 	},
+	//*/
+	/*
+	initComponent: function() {
+		var me=this, ti=rcm.view.Util.UxcolGrid(), // tb=rcm.view.Util.Ublntgl(), tg=rcm.view.Util.Utgl(), 
+            cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing', { clicksToEdit: 1 });
 
-	
-	renderer: function(value, metadata, record, rowIndex, colIndex, store) {
-		//alert("jos renderer");
-		//console.log("value: "+value+", rowIx: "+rowIndex+", colIx: "+colIndex);
-		//*
-		if(value.localeCompare("24:00")==0) {
-			//meta.style = "background-color:green;";
-			return '<span style="color:green;">' + val + '</span>';
-		} else {
-			//meta.style = "background-color:red;";
-			return '<span style="color:red;">' + val + '</span>';
-		}
-		//*/
-		//return colIndex;
-	},
+            groupingFeature = Ext.create('Ext.grid.feature.Grouping', {
+                //groupField: 'Lokasi',
+				groupHeaderTpl: '{columnName}: {name} [{rows.length} Unit]',
+				enableGroupingMenu: false,
+                startCollapsed: true
+            }); 
+			//groupingFeature = {ftype:'grouping',startCollapsed: true,groupHeaderTpl: '{columnName}: {name} [{rows.length} Unit]'};
+			
+        me.plugins = [cellEditingPlugin];
+        //me.features = [groupingFeature];
+        me.selModel = { 
+			selType: 'cellmodel'
+		};
 
-	hdlClk: function()	{
-		alert("tes hdlClk");
+		me.bbar = [{
+			text: 'Compressor',
+			//icon: 'modul/icons/comp16.png',
+			scope: this,
+			handler: this.CompClick
+		},{
+			text: 'Genset',
+			scope: this,
+			handler: this.GensetClick
+		},{
+			text: 'Pump',
+			scope: this,
+			handler: this.PumpClick
+		}];
+
+        me.columns = {
+            defaults: {
+                draggable: false,
+                resizable: false,
+                hideable: false,
+                groupable: false,
+            },
+            items: ti,
+        };
+        
+        me.callParent(arguments);
+		me.addEvents(
+			'recordedit'
+        );
+        cellEditingPlugin.on('edit', me.handleCellEdit, this);
 	},
+	//*/
+
 
     handleCellEdit: function(gridView, e) {
-		alert("asmuk handleCellEdit: ");
+		//alert("stresss");
 		//alert("asmuk handleCellEdit: "+e.field);
-        /*
+        //*
         var rec = e.grid.getStore().getAt(e.rowIdx), tt=e.field;
 		rcmSettings.eqx = rec.get('id');
 		rcmSettings.tgl =  "20"+tt.substring(1,3)+"-"+tt.substring(3,5)+"-"+tt.substring(5);
 		//console.log("handleCellEdit ExcelGrid tgl: "+rcmSettings.tgl);
-        
-        this.fireEvent('recordedit', gridView, e);
         //*/
+        this.fireEvent('recordedit', gridView, e);
+        
     },
     
     hdlCellEna: function(editor,a,eOpts)	{
+		//*
 		//alert(this.ngedit);
-		/*
 		if (this.ngedit)	return true;
 		else return false;
 		//*/
-		return true;
 	},
     
     //*

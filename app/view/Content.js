@@ -67,7 +67,6 @@ Ext.define('rcm.view.Content', {
 		//*/
 		//*
 		},{
-		//*/
 			id		: 'tu_kf',
 			title	: 'Konfigurasi',
 			iconCls	: 'Konfigurasi',

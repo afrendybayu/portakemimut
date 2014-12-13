@@ -166,8 +166,8 @@ Ext.define('rcm.view.Util', {
 			}
 			
 			items = [
-				{ xtype: 'rownumberer',locked:true },
-				{ header:'Unit', dataIndex: 'eq', width:200,locked:true }
+				{ xtype: 'rownumberer' },	// ,locked:true
+				{ header:'Unit', dataIndex: 'eq', width:200 }	// ,locked:true
 			];
 			
 			tgl.setDate(tgl.getDate() - w + 1);

@@ -96,7 +96,6 @@ Ext.define('rcm.controller.ExcelGrid', {
 			'#samarun-fmea-btn': {
 				click: me.samarunFMEAClick
 			},
-			//*
 			'#save-rh': {
 				click: me.simpanGagalClick
 			},
@@ -109,7 +108,6 @@ Ext.define('rcm.controller.ExcelGrid', {
 			'#btnClrReliax': {
 				click: me.clrRe
 			},
-			//*/
 			'taskIsiFormGagal': {
 				plhEventGagalXY: me.pilihEventGagalXY
 			},
@@ -126,10 +124,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 			'taskDaftarGagal': {
 				editDGClick: me.edDGClick
 				,hapusDGClick: me.hpsDGClick
-			}
-			
-			//*/
-			
+			}			
 		});
     },
     
@@ -401,30 +396,6 @@ Ext.define('rcm.controller.ExcelGrid', {
 		// tFG.show();
 		tFG.show();
 		// tFG.hide()
-		/*
-		var DSesi = me.getLoginSesiStore();
-		DSesi.load({
-			scope: this,
-			callback: function(records, operation, success) {
-				var res = operation.request.scope.reader.jsonData["sesi"];
-				if (res.akses == 0){
-					//console.log('masuk sebagai admin');
-					//rcmSettings.eeee = me;
-					me.getExcelgrid().ngedit = 1;
-					tFG.show();
-				}
-				else{
-					//console.log('tidak jelas');
-					me.getExcelgrid().ngedit = 0;
-					//tFG.hide();
-					return;
-				}
-				// the operation object
-				// contains all of the details of the load operation
-				//console.log(res.nama);
-			}
-		});
-		//*/
 		
 		
 		me.getEquipStore().load({ params:{unit:dRHs.id} });
@@ -438,7 +409,7 @@ Ext.define('rcm.controller.ExcelGrid', {
     updateGrid: function(view, e) {
         var me		=this, tv=e.value; 
 			drow	=this.getRunningHourStore().getAt(e.rowIdx);
-		alert("tes updateGrid");
+		//alert("tes updateGrid");
 		if ((tv=='')||(tv==e.originalValue))	{		//||
 			//alert("updateGrid numpang lewat");
 		} else if (tv==e.originalValue)	{
@@ -508,65 +479,9 @@ Ext.define('rcm.controller.ExcelGrid', {
 
     onLaunch: function() {
 		//console.log("onLauch ExcelGrid");
-		//this.getExcelgrid().ngedit = 1;
-		//alert(this.getExcelgrid().ngedit);
 		Ext.getCmp('idwest').collapse();
-		
-		//rcmSettings.qqqq = this.getExcelgrid();
-
+		this.ubahFieldRH();		
 		//Ext.getCmp('htmleddet').setReadOnly(true);	// ------------->
-		this.ubahFieldRH();
-		//Ext.util.Cookies.set('tgl',t);
-		Ext.util.Cookies.set('now',Ext.Date.format(new Date(),"Y-m-d"));
-		
-		
-		
-		//alert("t: "+t+"  cook: "+Ext.decode(rcm.view.Util.getCookie("tgl")));
-
-		//this.getAvGroupStore().load();
-        /*
-        this.getAvGroupStore().load({
-			scope: this,
-			callback: function(rec, operation, success) {
-				if (success) {
-					me.AvGroupClick(0,0);
-				}
-			}
-		});
-        //*/
-        
-        /*
-        Ext.define('Ext.view.override.Table', {
-			override: 'Ext.view.Table',
-		 
-			doStripeRows: function(startRow, endRow) {
-				var me = this,
-					rows,
-					rowsLn,
-					i,
-					row;
-		 
-		 
-				if (me.rendered && me.stripeRows) {
-					rows = me.getNodes(startRow, endRow);
-		 
-					for (i = 0, rowsLn = rows.length; i < rowsLn; i++) {
-						row = rows[i];
-		 
-						if (row) { // self updating; check for row existence
-							row.className = row.className.replace(me.rowClsRe, ' ');
-							startRow++;
-		 
-							if (startRow % 2 === 0) {
-								row.className += (' ' + me.altRowCls);
-							}
-						}
-					}
-				}
-			}
-		 
-		});
-		//*/
         
         Ext.apply(Ext.form.field.VTypes, {
 			daterange: function(val, field) {
@@ -699,7 +614,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 			event:o.event,tipeev:o.tipeev,ket:o.ket,exe:o.exe,server:rcmSettings.server,cat:rcmSettings.cat
         });
 		
-		rcmSettings.sadsad = rec;
+		//rcmSettings.sadsad = rec;
         
         rec.save({				// update
             success: function(respon, operation) {
@@ -817,7 +732,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 							}
 						}
 					}
-					//*/
+
 					//console.log("apa ini callback 4");
 					me.getEventStore().sync();
 					//console.log("apa ini callback resp.length: ");
@@ -840,5 +755,4 @@ Ext.define('rcm.controller.ExcelGrid', {
 		
 		//me.updateAVReDash();
 	}
-//*/
 });
