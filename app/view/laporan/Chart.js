@@ -37,11 +37,13 @@ Ext.define('rcm.view.laporan.Chart', {
 	initComponent: function() {
 		var me=this;
 		me.items = [{
+			/*
 				title: 'Nama dan Jabatan',
 				//iconCls: 'Reliability',
 				xtype: 'tJabat',
 				margin: '5 5'	
 			},{
+			//*/
 				id: 'ts_oh',
 				title: 'OverHaul',
 				xtype:'pOverHaul'
@@ -161,6 +163,7 @@ Ext.define('rcm.view.laporan.Chart', {
 			},{
 				id: 'ts_in',
 				title: 'Input Laporan',
+				hidden: true,
 				xtype: 'sapinput'
 		}];
 

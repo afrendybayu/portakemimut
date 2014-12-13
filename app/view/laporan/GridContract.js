@@ -4,7 +4,7 @@ Ext.define('rcm.view.laporan.GridContract', {
 	//alias: 'widget.gridCause',
 	xtype: 'tGridContract',
 	//dstore:'Contract',	
-	ngedit: 1,	
+	ngedit: 0,	
 	
 	requires: [
 		'rcm.view.Util',

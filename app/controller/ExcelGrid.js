@@ -481,7 +481,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		//console.log("onLauch ExcelGrid");
 		Ext.getCmp('idwest').collapse();
 		this.ubahFieldRH();		
-		//Ext.getCmp('htmleddet').setReadOnly(true);	// ------------->
+		Ext.getCmp('htmleddet').setReadOnly(true);	// ------------->
         
         Ext.apply(Ext.form.field.VTypes, {
 			daterange: function(val, field) {

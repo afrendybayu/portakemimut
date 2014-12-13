@@ -66,7 +66,7 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 			'recordedit'
         );
         cellEditingPlugin.on('edit', me.handleCellEdit, this);
-        //cellEditingPlugin.on('beforeedit', me.hdlCellEna, this);
+        cellEditingPlugin.on('beforeedit', me.hdlCellEna, this);
 	},
 	//*/
 	/*

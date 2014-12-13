@@ -30,10 +30,10 @@ Ext.define('rcm.view.laporan.Input', {
 			xtype: 'tManOCost',
 			margin: '5 5'
 		},{
-			//id: 'in_jabR',
+			id: 'in_jabR',
 			title: 'Nama dan Jabatan',
 			//iconCls: 'Reliability',
-			//xtype: 'tJabat',
+			xtype: 'tJabat',
 			margin: '5 5'	
 			
 			

@@ -144,7 +144,7 @@ Ext.define('rcm.controller.Login', {
 					
 					//me.getIConMon().ngedit = 1;
 					me.getExcelgrid().ngedit = 1;
-					//me.getTGridContract().ngedit = 1;
+					me.getTGridContract().ngedit = 1;
 
 					
 				},
@@ -204,7 +204,7 @@ Ext.define('rcm.controller.Login', {
 
 					//me.getIConMon().ngedit = 0;
 					me.getExcelgrid().ngedit = 0;
-					//me.getTGridContract().ngedit = 0;
+					me.getTGridContract().ngedit = 0;
 					me.getAuthlogin().level = 10;
 					Ext.getCmp('p_login').setVisible(true);
 					Ext.getCmp('p_logout').setVisible(false);
