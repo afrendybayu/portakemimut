@@ -189,6 +189,9 @@ Ext.define('rcm.controller.Config', {
 			'#idnCEq': {
 				click: me.tblNCatEq
 			},
+			'#editCatH': {
+				click: me.editXCatH
+			},
 			'#saveCatH': {
 				click: me.saveNCatH
 			},
@@ -363,6 +366,9 @@ Ext.define('rcm.controller.Config', {
 			'panLokasi button[text=Hapus]': {
 				click : me.hdlDelHir
 			},
+			'[iconCls=refresh]': {
+                click: me.hdlCHRefresh
+            },
 			'[iconCls=newHir]': {
                 click: me.newHir
             },
@@ -916,7 +922,9 @@ Ext.define('rcm.controller.Config', {
 		me.getLokUnitStore().reload();
 	},
 	
-
+	hdlCHRefresh: function()	{
+		this.me.getCatHirStore().load();
+	},
 
 	slctKfHir: function(model, records)	{
 		console.log(records[0]);
@@ -1397,8 +1405,6 @@ Ext.define('rcm.controller.Config', {
 	},
 	
 	saveNCatH: function()	{
-		//rcmSettings.qwer = ch;
-		//return;
 		//*
 		var me = this,
 			wc = me.getTWCatHir(),
@@ -1473,6 +1479,67 @@ Ext.define('rcm.controller.Config', {
 		winEl.unmask();
 		//*/
 	},
+	editXCatH: function(view, rowIndex, colIndex, column, e)	{
+		var me = this,
+			wc = me.getTWCatHir(),
+			form = wc.down('form').getForm(),
+            task = form.getRecord();
+			winEl = wc.getEl();
+
+		console.log(task);
+
+		if(!form.isValid()) {
+            Ext.Msg.alert('Invalid Data', 'Please correct form errors');
+            return;
+		}
+		
+		form.updateRecord(task);
+		//*
+		task.save({
+			success: function(task, operation) {
+				winEl.unmask();
+				wc.close();
+				me.getCatHirStore().load();
+			},
+			failure: function(task, operation) {
+				var error = operation.getError(),
+					msg = Ext.isObject(error) ? error.status + ' ' + error.statusText : error;
+
+				Ext.MessageBox.show({
+					title: 'Edit Katageri Equipment Gagal',
+					msg: msg,
+					icon: Ext.Msg.ERROR,
+					buttons: Ext.Msg.OK
+				});
+				winEl.unmask();
+			}
+		});
+		//*/
+		return;
+		/*
+		var ch = Ext.getCmp(form.findField('idCatH').getValue()),
+			selModel = ch.getSelectionModel(),
+            selList = selModel.getSelection()[0];
+		winEl.mask('menyimpan');
+		//console.log(form.findField('wcNama').getValue()+" "+form.findField('wcKode').getValue());
+		//*/
+
+		
+		wc.close();
+		
+		console.log(newList);
+		newList.save();
+		
+		//selList.appendChild(newList);
+		var hirStore = me.getCatHirStore();
+		
+		//console.log("hirStore.sync");
+		//hirStore.sync();
+		hirStore.reload();
+		return;
+		
+		winEl.unmask();
+	},
 	
 	tblNewCat: function()	{
 		//console.log("tblNewCat");
@@ -1525,23 +1592,19 @@ Ext.define('rcm.controller.Config', {
 		
 	},
 	hdlEditCatHir: function(grid,row)	{
-		var rec = grid.getStore().getAt(row);
 		var me = this,
 			wc = me.getTWCatHir(),
 			form = wc.down('form').getForm(),
 			winEl = wc.getEl();
 
+		var rec = grid.getStore().getAt(row);
+
+		wc.down('form').loadRecord(rec);
 		wc.setTitle('Form Edit Kategori [Nama: '+rec.get('text')+']');
-		wc.down('form').getForm().reset();
-		form.findField('wcNama').setValue(rec.get('text')),
-		form.findField('wcKode').setValue(rec.get('tipe')),
-		form.findField('wcCat').setValue(rec.get('parent')),
-		form.findField('wcKet').setValue(rec.get('ket')),
-		//Ext.getCmp('idCatH').setValue(rec.get('id'));
+
 		Ext.getCmp('idtpCatH').setVisible(true),
 		Ext.getCmp('editCatH').setVisible(true),
 		wc.show();
-		//console.log(rec);
 	},
 	
 	treeCat: function(id)	{

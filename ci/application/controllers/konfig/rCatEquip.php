@@ -126,6 +126,35 @@ class rCatEquip extends CI_Controller {
 	
 	}
 	
+	public function uHirCat()	{
+		$par = json_decode(file_get_contents('php://input'));
+		try {
+			if (!isset($par))	{
+				throw new Exception("Input Data Tidak Ada");
+			}
+			
+			$data = array(
+				'nama' => $par->text,
+				'parent' => $par->parent,
+				'kode' => $par->tipe,
+				'ket' => $par->ket
+			);
+			$this->catequip->upd_cathir($data,$par->id);
+			
+			$jsonResult = array(
+				'success' => true,
+				'hir' => array('id' => $par->id)
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
+	
 	public function updateHirarki(){
 		$params = json_decode(file_get_contents('php://input'));
 		/*

@@ -24,7 +24,11 @@ Ext.define('rcm.view.konfig.TreeCat', {
 		me.dockedItems = [{
             xtype: 'toolbar',
             dock: 'bottom',
-            items: ['->',{
+            items: [{
+					id: me.idRh,
+					iconCls: 'refresh',
+                    tooltip: 'Refresh'
+				},'->',{
 					id: me.idnC,
                     iconCls: 'new_cat_tree',
                     tooltip: 'Kategori Baru'
@@ -92,15 +96,17 @@ Ext.define('rcm.view.konfig.TreeCat', {
 		
 	},
 	
-	hdlDeleteClick: function(grid, row) {
+	//hdlDeleteClick: function(grid, row) {
+	hdlDeleteClick: function() {
         // Fire a "deleteclick" event with all the same args as this handler
-		alert ('klik hirarki delete: '+id);
-        //this.fireEvent('deleteclick', rec);
+		//alert ('klik hirarki delete: '+id);
+		//var rec = grid.getStore().getAt(row);
+        this.fireEvent('deleteclick', rec);
     },
     
-    hdlEditClick: function(grid, row)	{
+    hdlEditClick: function(grid,row,col,column,e)	{
 		//var rec = grid.getStore().getAt(row);
-		this.fireEvent('editclick', grid,row);
+		this.fireEvent('editclick', grid,row,col,column,e);
 		//console.log("Edit id: "+rec.get('id'));
 		//alert ('klik hirCat edit: '+row);
 	}

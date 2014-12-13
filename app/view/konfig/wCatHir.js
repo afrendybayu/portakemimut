@@ -20,7 +20,8 @@ Ext.define('rcm.view.konfig.wCatHir', {
 			defaultType: 'textfield',
 			items: [{
 				//xtype: 'textfield',
-				name : 'wcNama',
+				//name : 'wcNama',
+				name : 'text',
 				fieldLabel: 'Nama',
 				allowBlank: false
 			},{
@@ -28,7 +29,8 @@ Ext.define('rcm.view.konfig.wCatHir', {
 				id: 'idCatH'
 			},{
 				xtype: 'treepicker',
-				name : 'wcCat',
+				//name : 'wcCat',
+				name : 'parent',
 				fieldLabel: 'Kategori',
 				displayField: 'text',
 				store: Ext.create('rcm.store.CatHir', {storeId: 'CatHir-TreeHirarki' }),
@@ -36,13 +38,15 @@ Ext.define('rcm.view.konfig.wCatHir', {
 				id: 'idtpCatH'
 			},{
 				//xtype: 'textfield',
-				name : 'wcKode',
+				//name : 'wcKode',
+				name: 'tipe',
 				fieldLabel: 'Kode',
 				allowBlank: false
 			},{
 				//xtype: 'textarea',
 				//xtype: 'textfield',
-				name : 'wcKet',
+				//name : 'wcKet',
+				name: 'ket',
 				fieldLabel: 'Keterangan'
 				//anchor    : '100%'
 			}]
