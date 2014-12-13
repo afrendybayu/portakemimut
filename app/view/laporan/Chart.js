@@ -45,6 +45,7 @@ Ext.define('rcm.view.laporan.Chart', {
 			},{
 			//*/
 				id: 'ts_oh',
+				itemId: 'ts_oh',
 				title: 'OverHaul',
 				xtype:'pOverHaul'
 			},{
@@ -180,9 +181,11 @@ Ext.define('rcm.view.laporan.Chart', {
 		//console.log('sampe sini showRelia');
 		if (st==true)	{
 			t.tab.show();
+			//ts_oh
 		}
 		else {
 			t.tab.hide();
+			this.setActiveTab(this.child('#ts_oh'));
 		}
 	}
 });

@@ -29,6 +29,7 @@ Ext.define('rcm.view.Content', {
 		me.items = [{
 		//*==========================
 			id: 'tu_ho',
+			itemId	: 'tu_ho',
 			title: 'Dashboard Home',
 			iconCls: 'Dashboard',
 			xtype: 'tHoChart'
@@ -115,6 +116,7 @@ Ext.define('rcm.view.Content', {
 		}
 		else {
 			t.tab.hide();
+			this.setActiveTab(this.child('#tu_ho'));
 		}
 	},
 	
