@@ -18,6 +18,7 @@ Ext.define('rcm.view.laporan.OverHaul', {
 		idThn: 'idThnOh',
 		etext: 'Upload File OverHaul',
 		nameFile: 'fileOh',
+		idLok: 'idLokOh',
 		idbSr: 'idSrOh',
 		idbPdf: 'idbPdfOh',
 		idbExc: 'idbExcOh',

@@ -31,7 +31,20 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 					xtype: 'numberfield',
 					value: rcm.view.Util.U1th(''),
 					fieldLabel: '<b>Pilih Tahun</b>',
-					width: 180,
+					labelWidth: 70,
+					width: 150,
+					margin: '0 10 0 0'
+				},{
+					id: me.idLok,
+					xtype: 'combo',	
+					store: 'SapLoc',
+					labelWidth: 50,
+					width: 200,
+					value: 'ALL',
+					queryMode: 'local',
+					displayField: 'nama',
+					valueField: 'id',
+					fieldLabel: '<b>Lokasi</b>',
 					margin: '0 10 0 0'
 				},{
 					id: me.idbSr,

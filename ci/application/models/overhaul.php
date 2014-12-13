@@ -7,15 +7,15 @@ class Overhaul extends CI_Model {
     }
 
 	
-	function ohTahun($thn)	{
+	function ohTahun($thn,$lok)	{
 
 		/*
 		$sql = "select o.unit, h.nama, 'wwe' as lok from overhaul o
 				LEFT JOIN hirarki h on o.unit = h.id where thn=$thn";
 		//*/
-		$sql = "call overhaul(?)";
+		$sql = "call overhaul(?,?)";
 		//echo "sql: $sql<br/>";
-		$query = $this->db->query($sql, $thn);
+		$query = $this->db->query($sql, array($thn,$lok));
 		return $query->result();
 	}
 	

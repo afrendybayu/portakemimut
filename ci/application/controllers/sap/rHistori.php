@@ -172,6 +172,7 @@ class rHistori extends CI_Controller {
 	public function getLocSap()	{
 		try {
 			$this->load->model("hirarki");
+			//echo "sini";
 			/*
 			$hsl = array();
 			$obj = new stdClass();

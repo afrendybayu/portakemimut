@@ -361,9 +361,11 @@ Ext.define('rcm.controller.Sap', {
 	
 	hdlFiltThnOh: function()	{
 		//alert('hdlFiltThnOh: '+Ext.getCmp('idThnOh').getValue());
-		var t=Ext.getCmp('idThnOh').getValue();
-		this.getOverHaulInStore().load({ params:{thn:t} });
-		this.getOhTahunStore().load({ params:{thn:t} });
+		var t=Ext.getCmp('idThnOh').getValue(),
+			l=Ext.getCmp('idLokOh').getValue();
+		//alert(l);
+		this.getOverHaulInStore().load({ params:{thn:t,lok:l} });
+		this.getOhTahunStore().load({ params:{thn:t,lok:l} });
 	},
 	
 	hdlUplCm: function(btn)		{

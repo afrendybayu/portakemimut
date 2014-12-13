@@ -47,8 +47,8 @@ class Hirarki extends CI_Model {
 	}
 	
 	function get_parent_all(){
-		$sql =	"SELECT 0 AS id, 'ALL' AS nama, 'ALL' AS kode UNION ".
-				"(SELECT id, nama, kode FROM hirarki WHERE parent=0 ORDER BY nama ASC)";
+		$sql =	"SELECT -1 AS id, 'ALL' AS nama, 'ALL' AS kode,-1 AS urut UNION
+				SELECT id, nama, kode, urut FROM hirarki WHERE parent=0 ORDER BY urut ASC";
 		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql);
 		return $query->result();

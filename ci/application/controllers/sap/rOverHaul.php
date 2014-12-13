@@ -15,7 +15,12 @@ class rOverHaul extends CI_Controller {
 	public function ohTahun()	{
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
-			$hsl = $this->overhaul->ohTahun($thn);
+			$lok = $this->input->get('lok')?:"ALL";
+			if (($lok === "ALL") || ($lok===-1))	{
+				$lok = -1;
+			}
+			
+			$hsl = $this->overhaul->ohTahun($thn,$lok);
 			//print_r($hsl);
 			$jsonResult = array(
 				'success' => true,
