@@ -88,11 +88,6 @@ class Runninghour extends CI_Model {
 
 	function get_avre_sbln_eq($bln, $thn, $cat)	{//  count(id) AS jmleq 
 		/*
-		$sql =	"SELECT eq ".		
-				",ROUND((sum(rh_av)*100/(count(id)*24)),2) AS av,ROUND((sum(rh_re)*100/(count(id)*24)),2) AS re ".
-				"FROM rh_201311 WHERE thn=$thn AND bln=$bln AND cat=$cat GROUP BY eq";
-		echo "sql: $sql<br/>";
-		//*/
 		$sql =	"SELECT hirarki.id AS id
 				,CONCAT(hirarki.kode,'@',(SELECT hhh.kode FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS kode 
 				,CONCAT(hirarki.nama,', ',equip.nama,' @',(SELECT hhh.nama FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS nama 
@@ -106,6 +101,21 @@ class Runninghour extends CI_Model {
 				LEFT JOIN equip ON hirarki.id = equip.unit_id AND equip.kode LIKE (SELECT kode FROM cat_equip WHERE cat_equip.id=$cat) 
 				WHERE hirarki.flag=$cat 
 				GROUP BY hirarki.id ORDER BY urut,kode ASC";
+		//*/
+		$sql =	"SELECT h.id AS id, CONCAT(h.kode,'@',hhh.kode) AS kode, CONCAT(h.nama,', ',eq.nama,'@ ',hhh.nama) AS nama
+				,hhh.urut as urut
+				,(SELECT ifnull(ROUND((sum(rh_201311.rh_av)*100/(count(rh_201311.id)*24)),2),0) 
+				FROM rh_201311 WHERE eq = h.id AND thn=$thn AND bln=12) AS av 
+				,(SELECT ifnull(ROUND((sum(rh_201311.rh_re)*100/(count(rh_201311.id)*24)),2),0) 
+				FROM rh_201311 WHERE eq = h.id AND thn=$thn AND bln=12) AS re 
+				FROM hirarki h
+				LEFT JOIN rh_201311 ON h.id = rh_201311.eq 
+				LEFT JOIN hirarki hh ON h.parent = hh.id
+				LEFT JOIN hirarki hhh ON hh.parent = hhh.id
+				LEFT JOIN equip eq ON h.id = eq.unit_id
+				WHERE h.flag=$cat
+				GROUP BY h.id ORDER BY urut,kode ASC";
+		//echo "sql: $sql<br/><br/><br/>";
 		$query = $this->db->query($sql,array($thn,$bln,$cat));
 		return $query->result();
 	}
