@@ -133,7 +133,16 @@ class rLokUnit extends CI_Controller {
 				throw new Exception("Input Data Tidak Ada");
 			}
 			if ($par->sil=="e")	{
-				
+				$n = explode("] ",$par->nama);
+				$data = array(
+					'nama'	=> isset($n[1])?$n[1]:"",
+					'kode'	=> $par->kode,
+					'tag'	=> $par->tag,
+					'unit_id' => $par->parent,
+					'cat'	=> $par->idcat,
+					'rhinit' => $par->rhinit
+				);
+				$this->equip->update_equip($data,$par->id);
 			}
 			else {
 				$data = array(

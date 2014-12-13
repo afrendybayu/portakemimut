@@ -1386,8 +1386,11 @@ Ext.define('rcm.controller.Config', {
 		this.treeCat('idkEq');
 	},
 	
-	hdlCatHirEq: function()		{
-		alert("hdlCatHirEq");
+	hdlCatHirEq: function(btn)		{
+		//alert("hdlCatHirEq");
+		var lu = this.getLokUnitStore();
+		rcmSettings.kkkk = lu;
+		lu.sync();
 	},
 	
 	saveNCatH: function()	{
@@ -1403,7 +1406,7 @@ Ext.define('rcm.controller.Config', {
             Ext.Msg.alert('Invalid Data', 'Please correct form errors');
             return;
 		}
-		console.log("idCatH: "+form.findField('idCatH').getValue());
+		//console.log("idCatH: "+form.findField('idCatH').getValue());
 		//return;
 		var ch = Ext.getCmp(form.findField('idCatH').getValue()),
 			selModel = ch.getSelectionModel(),
@@ -1425,11 +1428,11 @@ Ext.define('rcm.controller.Config', {
 		selList.appendChild(newList);
 		var hirStore = me.getCatHirStore();
 		
-		console.log("hirStore.sync");
+		//console.log("hirStore.sync");
 		hirStore.sync();
 		hirStore.reload();
 		
-		console.log("hirStore.reload");
+		//console.log("hirStore.reload");
 		this.getLokUnitStore().load();
 		
 		
