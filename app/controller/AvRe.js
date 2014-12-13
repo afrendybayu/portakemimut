@@ -86,7 +86,7 @@ Ext.define('rcm.controller.AvRe', {
     },
 	
 	getDelayedStore: function()	{
-		console.log("AvRe getDelayedStore");
+		//console.log("AvRe getDelayedStore");
 		var me=this;
 		me.getAvHomeStore().load();
 		me.getReHomeStore().load();

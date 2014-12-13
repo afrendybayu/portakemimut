@@ -397,7 +397,7 @@ Ext.define('rcm.controller.Config', {
 		});
     },
     hdlEditUserForm : function(){
-    	alert ('pencet user udit');
+    	//alert ('pencet user udit');
     	var me =this,
     	isiusr = me.getF_User().getForm(),
 		dataid = isiusr.getRecord().data.id,
@@ -705,7 +705,7 @@ Ext.define('rcm.controller.Config', {
 	},
 
 	onLaunch: function(){
-		console.log("Konfig onLauch");
+		//console.log("Konfig onLauch");
 		var me=this;
 		var task = new Ext.util.DelayedTask(function(){
 			me.getDelayedStore();
@@ -816,7 +816,7 @@ Ext.define('rcm.controller.Config', {
 		});
     },
 	hdlEditDamageForm : function(){
-		alert('Tombol Edit damage');
+		//alert('Tombol Edit damage');
 		var me = this,
 		// isiform = me.getFAksi().getForm().newValue(); getValues; getUpdatedRecords
 		isidmg = me.getFDamage().getForm(),
@@ -842,12 +842,12 @@ Ext.define('rcm.controller.Config', {
 	},
 
 	hdlUptHir: function()	{
-		console.log("COnfig hdlUptHir");
+		//console.log("COnfig hdlUptHir");
 		var me = this,
 			hir = me.getPanLokasi().getForm(),
 			getData = hir.getValues(),
 			hUpt = new rcm.model.LokUnit(getData);
-		console.log(getData);
+		//console.log(getData);
 		
 		hUpt.save({
 			success: function(rec, op){
@@ -858,33 +858,33 @@ Ext.define('rcm.controller.Config', {
 		});
 	},
 	hdlSmpHir: function()	{
-		console.log("COnfig hdlSmpHir");
+		//console.log("COnfig hdlSmpHir");
 
 		var me = this,
 			vPL = me.getPanLokasi(),
 			hir = vPL.getForm(),
 			getData = hir.getValues();
 
-		console.log(getData);
+		//console.log(getData);
 		//vPL.clearIsi(vPL.getForm());
 		//*
 		var	hSmp = new rcm.model.LokUnit(getData);
 		hSmp.save({
 			success: function(rec, op){
-				console.log("config hdlSmpHir success");
+				//console.log("config hdlSmpHir success");
 				me.getLokUnitStore().reload();
 				//me.getHirDefStore().reload();
 				Ext.Msg.alert('Sukses', 'Data baru sudah ditambahkan');
 				//vPL.clearIsi(vPL.getForm());
 			}
 		});
-		console.log("disini ....");
+		//console.log("disini ....");
 		vPL.clearIsi(vPL.getForm());
 		//me.getLokUnitStore().reload();
 		//*/
 	},
 	hdlDelHir: function()	{
-		console.log("COnfig hdlDelHir");
+		//console.log("COnfig hdlDelHir");
 
 		var me = this,
 			vPL = me.getPanLokasi(),
@@ -927,7 +927,7 @@ Ext.define('rcm.controller.Config', {
 	},
 
 	slctKfHir: function(model, records)	{
-		console.log(records[0]);
+		//console.log(records[0]);
 	},
 	EdtEqH: function(model, rec)	{
 		var me=this,
@@ -1075,7 +1075,7 @@ Ext.define('rcm.controller.Config', {
 		//alert("ini");
 		//
 		var d = selModel.getSelection()[0];
-		console.log(tasks[0]);
+		//console.log(tasks[0]);
 		//if (d.get('flag')=='e')	{
 		if (d.get('sil')=='e')	{
 			Ext.getCmp('tEqKonfigs').ngedit = 1;
@@ -1276,7 +1276,7 @@ Ext.define('rcm.controller.Config', {
 	
 	hdlDelEq: function(rec)	{
 		//alert("Del: "+rec.get('id'));
-		console.log(rec);
+		//console.log(rec);
 		var me = this, 
 			dEqCH = new rcm.model.CatHirEq({id:rec.get('id')});
 		Ext.MessageBox.show({
@@ -1303,7 +1303,7 @@ Ext.define('rcm.controller.Config', {
 	},
 	
     hdlDropListD: function(data, cat, tab)	{
-		alert("hdlDropListD: "+data.get("id"));
+		//alert("hdlDropListD: "+data.get("id"));
 		var me=this,
 			dl, p={ id:data.get("id") };
 		if (tab=="tk_pl")	{
@@ -1319,7 +1319,7 @@ Ext.define('rcm.controller.Config', {
 	},
     hdlDropListC: function(data, cat, tab)	{
 		//alert("hdlDropListC: "+data.get("id"));
-		console.log(data);
+		//console.log(data);
 		var me=this,
 			dl,
 			p={ eqcat:cat,list:data.get("id") };
@@ -1366,7 +1366,7 @@ Ext.define('rcm.controller.Config', {
 	},
 	
 	tambahLokasi : function(){
-		console.log('tambah lokasi');
+		//console.log('tambah lokasi');
 	},
 	
 	//tblNewLokasi : function(){
@@ -1486,7 +1486,7 @@ Ext.define('rcm.controller.Config', {
             task = form.getRecord();
 			winEl = wc.getEl();
 
-		console.log(task);
+		//console.log(task);
 
 		if(!form.isValid()) {
             Ext.Msg.alert('Invalid Data', 'Please correct form errors');
@@ -1527,7 +1527,7 @@ Ext.define('rcm.controller.Config', {
 		
 		wc.close();
 		
-		console.log(newList);
+		//console.log(newList);
 		newList.save();
 		
 		//selList.appendChild(newList);
@@ -1730,7 +1730,7 @@ Ext.define('rcm.controller.Config', {
 	
 	handleDeleteIconClick: function(view, rowIndex, colIndex, column, e) {
         alert ('delete nya ketahuan di controller');
-		console.log ('lagi ngeklik delete');
+		//console.log ('lagi ngeklik delete');
 		// this.deleteList(view.getRecord(view.findTargetByEvent(e)));
     },
 	

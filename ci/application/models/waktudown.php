@@ -360,7 +360,7 @@ class Waktudown extends CI_Model {
 	
 	function get_reliaww($unit,$aw,$ak)	{
 		$sql =  "SELECT waktudown.id,event as idevent
-				,downt,downj,upt,upj,listEvent.nama as event
+				,downt,downj,upt,upj,listevent.nama as event
 				FROM waktudown LEFT JOIN listevent ON listevent.id = waktudown.event 
 				WHERE downt BETWEEN (select downt from waktudown where id=?) 
 				AND (select downt from waktudown where id=?)  AND unit_id = ?

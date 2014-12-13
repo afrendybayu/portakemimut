@@ -12,6 +12,7 @@ Ext.define('rcm.controller.Login', {
 		'nav.AppHeader'
 		,'dataentry.FormGagal'
 		,'dataentry.DaftarGagal'
+		,'laporan.Chart'
 		,'Content'
 		// ,'dataentry.IsiTabForm'
 
@@ -39,6 +40,9 @@ Ext.define('rcm.controller.Login', {
 		},{
 			ref: 'tGridContract',
 			selector: 'tGridContract'
+		},{
+			ref: 'tabChart',
+			selector: 'tabChart'
 		},{
 			ref: 'content',
 			selector: 'content'
@@ -127,6 +131,7 @@ Ext.define('rcm.controller.Login', {
 					me.getTGridContract().ngedit = 1;
 
 					me.getContent().showKonfig(true);
+					me.getTabChart().showInput(true);
 					Ext.getCmp('idUpOh').setDisabled(false);
 					
 				},
@@ -204,6 +209,7 @@ Ext.define('rcm.controller.Login', {
 					//Ext.fly('idGridCM').ngedit = 0;
 					
 					me.getContent().showKonfig(false);
+					me.getTabChart().showInput(false);
 					Ext.getCmp('idUpOh').setDisabled(true);
 					//Ext.getCmp('ConMonSave').setDisabled(true);
 				}
@@ -258,6 +264,7 @@ Ext.define('rcm.controller.Login', {
 					me.getAuthlogin().level = res.level;
 					
 					me.getContent().showKonfig(true);
+					me.getTabChart().showInput(true);
 					//alert("me.getExcelgrid().ngedit = 1;");
 					//me.getIConMon().ngedit = 1;
 				}
@@ -276,6 +283,7 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('ohform').setDisabled(true);
 					Ext.getCmp('ohdel').setDisabled(true);
 					me.getContent().showKonfig(false);
+					me.getTabChart().showInput(false);
 					// Ext.getCmp('tu_kf').setDisabled(true);
 					//alert("Session Habis");
 				}

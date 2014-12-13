@@ -252,11 +252,6 @@ Ext.define('rcm.controller.Sap', {
 			
 		});
     },
-    /*
-    uConMon: function()	{
-		alert('uConMon');
-	},
-    //*/
     
     hdlExcOh: function(btn)	{
 		var t=Ext.getCmp('idThnOh').getValue();
@@ -278,7 +273,7 @@ Ext.define('rcm.controller.Sap', {
 		this.getManOCostStore().load({ 
 			params:{thn:newV},
 			callback: function(rec, op, suc) {
-				console.log(rec);
+				//console.log(rec);
 				me.loadOCost(rec[0]);
 			}
 		});
@@ -394,18 +389,6 @@ Ext.define('rcm.controller.Sap', {
 		var form = btn.up('form').getForm();
 		if(form.isValid()){
 			alert('tes');
-			/*
-			form.submit({
-				url: 'ci/index.php/sap/rUpload/getUplCm',
-				waitMsg: 'Uploading your file...',
-				success: function(fp, o) {
-					msg('Success', tpl.apply(o.result));
-				},
-				falure: function(fp, o)	{
-					Ext.Msg.alert("Error", Ext.JSON.decode(this.response.responseText).message);
-				}
-			});
-			//*/
 		}
 	},
 	
@@ -467,14 +450,14 @@ Ext.define('rcm.controller.Sap', {
 		
 	},
 	cbedohplhlokasi: function(rec){
-		console.log('pencet cobobox pilih lokasi : '+rec);
+		//console.log('pencet cobobox pilih lokasi : '+rec);
 		var cbohunit = this.getCbUnitStore();
 		cbohunit.clearFilter();
 		cbohunit.filter('id_lokasi',rec);
 	
 	},
 	cbedohplhunit : function(rec){
-		console.log('pencet cobobox pilih lokasi : '+rec);
+		//console.log('pencet cobobox pilih lokasi : '+rec);
 		var cboheq = this.getCbEquipStore();
 		cboheq.clearFilter();
 		cboheq.filter('id_unit',rec);
@@ -484,7 +467,7 @@ Ext.define('rcm.controller.Sap', {
 		idunt.idunit = rec;
 	},
 	cbedohplhequip : function(unit,oh){
-		alert ('Equipmen dipilih dengan id : '+unit+' dengan idOh : '+oh);
+		//alert ('Equipmen dipilih dengan id : '+unit+' dengan idOh : '+oh);
 		var eqpOH = this.getIOverHaul();
 		eqpOH.ideq = unit; eqpOH.idoh = oh; 
 	},
@@ -879,11 +862,11 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	getDelayedStore: function()	{
-		console.log("Konfig getDelayedStore");
+		//console.log("Konfig getDelayedStore");
 		var me=this;
 		//*
 		if (rcmSettings.cSap!=1)	{
-			console.log("Sap getDelayedStore");
+			//console.log("Sap getDelayedStore");
 			me.getSapEPOStore().load();
 			me.getSapHistoriStore().load();
 			
@@ -947,7 +930,7 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	onLaunch: function() {
-		console.log("SAP onLaunch");
+		//console.log("SAP onLaunch");
 		var me=this;
 		var task = new Ext.util.DelayedTask(function(){
 			me.getDelayedStore();

@@ -55,5 +55,7 @@ Ext.define('rcm.view.laporan.Input', {
 		else if (tt.localeCompare("tu_ho")==0)	{
 			this.fireEvent('updateHome');
 		}
-	}
+	},
+	
+	
 })

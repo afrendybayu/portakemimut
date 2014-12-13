@@ -161,7 +161,8 @@ Ext.define('rcm.view.laporan.Chart', {
 				btnFilter: 'sym'
 			//*/
 			},{
-				id: 'ts_in',
+				//id: '',
+				itemId: 'ts_in',
 				title: 'Input Laporan',
 				hidden: true,
 				xtype: 'sapinput'
@@ -172,5 +173,16 @@ Ext.define('rcm.view.laporan.Chart', {
 	},
 	handleSapTab: function()	{
 		rcmSettings.tsp = this.getActiveTab().getId();
+	},
+	
+	showInput: function(st)	{
+		var t = this.child('#ts_in');
+		//console.log('sampe sini showRelia');
+		if (st==true)	{
+			t.tab.show();
+		}
+		else {
+			t.tab.hide();
+		}
 	}
 });

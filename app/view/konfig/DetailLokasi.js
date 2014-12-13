@@ -181,7 +181,7 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 	},
     
     clrForm: function()	{
-		console.log("clrForm");
+		//console.log("clrForm");
 		var me = this.up('form').getForm();
 		this.up('form').clearIsi(me);
 	},

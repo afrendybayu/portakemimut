@@ -19,20 +19,7 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 			cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing');
         me.plugins = [cellEditingPlugin];
         me.hideHeaders = me.hideDel?false:true;
-        /*
-        me.listeners = {
-			itemclick: function(s,r) {
-				console.log("itemclick");
-				
-				//rcmSettings.idc = r.data.id;
-				me.fireEvent('catclick', s, r);
-				console.log(r);
-			},
-			itemmouseenter: function(gridview, record) {
-				rec = record;	//.get('id');
-			}
-		};
-        //*/
+
         me.viewConfig = {
             plugins: {
                 ptype: 'treeviewdragdrop',
