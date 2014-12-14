@@ -79,7 +79,7 @@ class Overhaul extends CI_Model {
 	
 	}
 	
-	function get_ohlist($thn){
+	function get_ohlist($thn, $lok, $cat){
 		/*
 		$sql = "select ol.id,ol.wo, h3.nama lokasi, h1.nama unit, eq.id id_equip,
 				concat(od.nama,' [',od.ket,'] ',eq.kode,' ',eq.tag,' ',h1.init,' ',h3.nama) equip,
@@ -93,16 +93,22 @@ class Overhaul extends CI_Model {
 					where year(ol.tglplan) = $thn
 					order by ol.tglplan desc";
 		//*/
-		$sql = "SELECT ol.id,ol.wo, SUBSTRING(h3.nama FROM LOCATE(' ',h3.nama)) lokasi, h1.nama unit, eq.id id_equip,
+		$slok = ""; $scat = "";
+		if ($lok>=0)	$slok = " AND h3.id = $lok ";
+		if ($cat>0)	$scat = " AND ce.id=$cat ";
+		
+		
+		$sql = "SELECT ol.id,ol.wo, ce.id, SUBSTRING(h3.nama FROM LOCATE(' ',h3.nama)) lokasi, h1.nama unit, eq.id id_equip,
 				concat(od.nama,' ',eq.kode,' ',eq.tag) equip,
 				od.nama oh, ol.tglplan, ol.durasiplan, ol.ket
 					FROM ohlist ol
-						INNER JOIN equip eq ON ol.equip = eq.id
-						INNER JOIN pmdef od ON ol.ohcat = od.durasi
-						INNER JOIN hirarki h1 ON eq.unit_id = h1.id
-						INNER JOIN hirarki h2 ON h1.parent = h2.id
-						INNER JOIN hirarki h3 ON h2.parent = h3.id
-					WHERE YEAR(ol.tglplan) = $thn
+						LEFT JOIN equip eq ON ol.equip = eq.id
+						LEFT JOIN pmdef od ON ol.ohcat = od.durasi
+						LEFT JOIN hirarki h1 ON eq.unit_id = h1.id
+						LEFT JOIN hirarki h2 ON h1.parent = h2.id
+						LEFT JOIN hirarki h3 ON h2.parent = h3.id
+						LEFT JOIN cat_equip ce ON ce.id = eq.cat
+					WHERE YEAR(ol.tglplan) = $thn $slok $scat
 					ORDER BY ol.tglplan DESC";
 		$query = $this->db->query($sql);
 		return $query->result();

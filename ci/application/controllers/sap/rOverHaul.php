@@ -79,7 +79,14 @@ class rOverHaul extends CI_Controller {
 	public function readOH(){
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
-			$hsl = $this->overhaul->get_ohlist($thn);
+			$lok = $this->input->get('lok')?:"ALL";
+			$cat = $this->input->get('cat')?:0;
+			
+			if (($lok === "ALL") || ($lok===-1))	{
+				$lok = -1;
+			}
+			
+			$hsl = $this->overhaul->get_ohlist($thn,$lok,$cat);
 			//print_r($hsl);
 			
 			$jsonResult = array(
