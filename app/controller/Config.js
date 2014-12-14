@@ -60,6 +60,8 @@ Ext.define('rcm.controller.Config', {
 		'GridModeIn',
 		'GridEqcIn',
 		'GridEqnIn'
+		
+		,'CatHirEq'
     ],
     
     models: [
@@ -1444,7 +1446,7 @@ Ext.define('rcm.controller.Config', {
 		
 		//console.log("hirStore.reload");
 		this.getLokUnitStore().load();
-		
+		this.getCatHirEqStore().load();
 		
 		var expandAndEdit = function() {
 			if(selList.isExpanded()) {
@@ -1569,6 +1571,7 @@ Ext.define('rcm.controller.Config', {
 							me.getCatHirStore().reload();
 							me.getGridEqcInStore().reload();
 							me.getGridEqnInStore().load();
+							me.getCatHirEqStore().load();
 							//me.getCatHirStore().removeAt(row);
 							//rec.getStore().removeAt(row);
 							//rcmSettings.kkkk = rec;

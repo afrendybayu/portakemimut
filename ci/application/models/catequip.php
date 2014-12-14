@@ -98,9 +98,14 @@ class Catequip extends CI_Model {
 		return $hsl[0]->kode;
 	}
 	
-	function get_hirarki($parent){
+	function get_hirarki($parent,$all){
 		
-		$sql = "SELECT ci.id,ci.nama AS text,ci.kode AS tipe, ci.ket,parent
+		$sall = "";
+		if ($all==="y")	{
+			$sall = "SELECT -1 AS id,'ALL' AS text,'ALL' as tipe,'ALL' as ket,0 AS parent,0 As jml,'false' AS leaf UNION ";
+		}
+		
+		$sql = "$sall SELECT ci.id,ci.nama AS text,ci.kode AS tipe, ci.ket,parent
 				,(select count(*) from cat_equip ce where ce.parent = ci.id) as jml
 				,(SELECT CASE WHEN jml>0 THEN 'false' ELSE 'true' END) AS leaf
 				FROM cat_equip ci

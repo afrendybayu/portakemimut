@@ -10,11 +10,12 @@ class rCatEquip extends CI_Controller {
 		
 		try {
 			$parent = $this->input->get('node')?:'0';
+			$all = $this->input->get('all');
 			//echo $parent.'<br>';
 			// echo $_GET['node'].'<br>';
 			
 			$arr = array(); $k=0;
-			$hsl = $this->catequip->get_hirarki($parent);
+			$hsl = $this->catequip->get_hirarki($parent,$all);
 
 			$jsonResult = array(
 				'success' => true,

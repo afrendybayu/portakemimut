@@ -10,6 +10,7 @@ Ext.define('rcm.model.CatHirEq', {
     proxy: {
 		type: 'ajax',
 		api: {
+			read: 'ci/index.php/konfig/rCatEquip/rHirarki?all=y',
 			destroy: 'ci/index.php/konfig/rCatEquip/dHirCatEq'
         },
         reader: {

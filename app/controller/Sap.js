@@ -45,7 +45,7 @@ Ext.define('rcm.controller.Sap', {
 		,'GridConMon'
 		,'ConMon','ConMonIn','CbParent','CbUnit','CbEquip','ConMonGr'
 		,'DetConMonGr','DetConMonPmp','DetConMonGs'
-		,'OhTahun','OverHaulIn'
+		,'OhTahun','OverHaulIn','CatHirEq'
 
     ],
     
@@ -902,6 +902,7 @@ Ext.define('rcm.controller.Sap', {
 			
 			me.getOhTahunStore().load();
 			me.getOverHaulInStore().load();
+			me.getCatHirEqStore().load();
 
 			var task = new Ext.util.DelayedTask(function(){
 				me.getDelayedStore2();

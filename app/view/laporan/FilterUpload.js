@@ -32,7 +32,7 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 					value: rcm.view.Util.U1th(''),
 					fieldLabel: '<b>Pilih Tahun</b>',
 					labelWidth: 70,
-					width: 150,
+					width: 140,
 					margin: '0 10 0 0'
 				},{
 					id: me.idLok,
@@ -47,9 +47,21 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 					fieldLabel: '<b>Lokasi</b>',
 					margin: '0 10 0 0'
 				},{
+					id: me.idCatH,
+					xtype: 'combo',	
+					store: 'CatHirEq',
+					labelWidth: 60,
+					width: 180,
+					value: 'ALL',
+					queryMode: 'local',
+					displayField: 'text',
+					valueField: 'id',
+					fieldLabel: '<b>Kategori</b>',
+					margin: '0 10 0 0'
+				},{
 					id: me.idbSr,
 					xtype: 'button',
-					width: 100,
+					width: 80,
 					text: 'Filter',
 					margin: '2 0 0 0'			
 				},{
