@@ -46,19 +46,18 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 		me.dockedItems= [{
 			xtype: 'toolbar',
 			dock: 'bottom',
-			items: me.dock ? ['->',{
+			items: me.dock ? [{
+					//id: me.idTHRef,
+					iconCls: 'refTH',
+                    tooltip: 'Refresh'
+				},'->',{
 					//id: 'idTrEqCHir',
 					id: me.idEqCH,
 					xtype: 'button',
 					text: 'Simpan',
 					iconCls: 'savedisk',
 					tooltip: 'Simpan Kategori'
-				}]:[/*{
-					id: me.idEqHir,
-					xtype: 'button',
-					text : 'Tambah Lokasi',
-					//id	: 'tambah_lokasi'
-				},*/'->',{
+				}]:['->',{
 					iconCls: 'newHir',
 					tooltip: 'Tambah Hirarki'
 				},{

@@ -53,7 +53,7 @@ $db['default']['hostname'] = 'localhost';
 //*
 $db['default']['username'] = 'obama';
 $db['default']['password'] = 'obama2014';
-$db['default']['database'] = 'medcom';
+$db['default']['database'] = 'medco';
 //*/
 /*
 $db['default']['username'] = 'monita';

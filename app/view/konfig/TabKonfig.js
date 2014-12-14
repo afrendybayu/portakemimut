@@ -22,7 +22,7 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 		me.items = [{
 			//*
 			tHir: 'tk_hr',
-			title: 'Lokasi',
+			title: 'Asset',
 			idKfHir: 'idKfHirEq',
 			idEqHir: 'idTmbhEqH',
 			xtype:'cHirarki'
@@ -98,6 +98,7 @@ Ext.define('rcm.view.konfig.TabKonfig', {
 			idnC: 'idnCEq',
 			iddC: 'iddCEq',
 			idEqCH: 'idEqCH',
+			idTHRef: 'idRefrCH',
 			idTreeH: 'tEqKonfigs',
 			dhideA: false,
 			dhideB: true,

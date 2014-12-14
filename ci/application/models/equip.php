@@ -87,6 +87,18 @@ class Equip extends CI_Model {
 		$this->db->where('id', $id);
 		return $this->db->update('equip');
 	}
+	
+	function ins_equip($data)	{
+		$this->db->trans_start();
+		$this->db->insert('equip', $data); 
+		$insert_id = $this->db->insert_id();
+		$this->db->trans_complete();
+		return  $insert_id;
+		/*
+		$this->db->set($data);
+		return $this->db->insert('hirarki');
+		//*/
+	}
 }
 
 

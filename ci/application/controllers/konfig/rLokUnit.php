@@ -69,7 +69,7 @@ class rLokUnit extends CI_Controller {
 					'ket' => $par->ket
 					
 				);
-				//$this->equip->ins_hirarki($data);
+				$hsl = $this->equip->ins_equip($data);
 			}
 			else {
 				$data = array(
@@ -132,17 +132,66 @@ class rLokUnit extends CI_Controller {
 			if (!isset($par))	{
 				throw new Exception("Input Data Tidak Ada");
 			}
+			
+			if (is_array($par))	{
+				$hsl = array();
+				foreach ($par as $d)	{
+					//print_r($d); echo "<br/>";
+						//*
+						
+					if ($d->sil=="e")	{
+						$n = explode("] ",$d->nama);
+						$data = array(
+							'nama'	=> isset($n[1])?$n[1]:"",
+							'kode'	=> $d->kode,
+							'tag'	=> $d->tag,
+							'unit_id' => $d->parent,
+							'cat'	=> $d->idcat,
+							'rhinit' => $d->rhinit
+						);
+						$this->equip->update_equip($data,$d->id);
+						array_push($hsl, array('id'=>$d->id));
+						//*/
+					}
+				}
+			}
+			else {
+				if ($par->sil=="e")	{
+					$n = explode("] ",$par->nama);
+					$data = array(
+						'nama'	=> isset($n[1])?$n[1]:"",
+						'kode'	=> $par->kode,
+						'tag'	=> $par->tag,
+						'unit_id' => $par->parent,
+						'cat'	=> $par->idcat,
+						'rhinit' => $par->rhinit
+					);
+					$this->equip->update_equip($data,$par->id);
+
+				}
+				else {
+					$data = array(
+						'nama' => $par->nama,
+						'parent' => $par->parent,
+						'kode' => $par->kode,
+						'urut' => $par->urut
+					);
+					$this->hirarki->upd_hirarki($data,$par->id);
+				}
+				$hsl = array('id' => $par->id);
+			}
+			/*
 			if ($par->sil=="e")	{
-				$n = explode("] ",$par->nama);
-				$data = array(
-					'nama'	=> isset($n[1])?$n[1]:"",
-					'kode'	=> $par->kode,
-					'tag'	=> $par->tag,
-					'unit_id' => $par->parent,
-					'cat'	=> $par->idcat,
-					'rhinit' => $par->rhinit
-				);
-				$this->equip->update_equip($data,$par->id);
+					$n = explode("] ",$par->nama);
+					$data = array(
+						'nama'	=> isset($n[1])?$n[1]:"",
+						'kode'	=> $par->kode,
+						'tag'	=> $par->tag,
+						'unit_id' => $par->parent,
+						'cat'	=> $par->idcat,
+						'rhinit' => $par->rhinit
+					);
+					$this->equip->update_equip($data,$par->id);
 			}
 			else {
 				$data = array(
@@ -153,9 +202,10 @@ class rLokUnit extends CI_Controller {
 				);
 				$this->hirarki->upd_hirarki($data,$par->id);
 			}
+			//*/
 			$jsonResult = array(
 				'success' => true,
-				'hir' => array('id' => $par->id)
+				'hir' => $hsl
 			);
 		}
 		catch (Exception $e){

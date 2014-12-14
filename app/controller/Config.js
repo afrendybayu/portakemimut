@@ -379,7 +379,12 @@ Ext.define('rcm.controller.Config', {
             },
             '[iconCls=newEquip]': {
                 click: me.newEquip
-            }
+            },
+            /*
+            '#idRefrCH': {
+				click: me.refTH
+			}
+			//*/
 		});
 		
     },
@@ -927,7 +932,11 @@ Ext.define('rcm.controller.Config', {
 	hdlCHRefresh: function()	{
 		this.getCatHirStore().load();
 	},
-
+	hdlrefTH: function()	{
+		alert("hdlrefTH");
+		//this.getLokUnitStore().load();
+	},
+	
 	slctKfHir: function(model, records)	{
 		//console.log(records[0]);
 	},
@@ -1502,6 +1511,7 @@ Ext.define('rcm.controller.Config', {
 				winEl.unmask();
 				wc.close();
 				me.getCatHirStore().load();
+				me.getCatHirEqStore().load();
 			},
 			failure: function(task, operation) {
 				var error = operation.getError(),

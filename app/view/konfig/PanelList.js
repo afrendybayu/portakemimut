@@ -65,6 +65,7 @@ Ext.define('rcm.view.konfig.PanelList', {
 				ngedit: me.ngedit,
 				id: me.idTreeH,
 				xtype: 'treeHirarki',
+				idTHRef: me.idTHRef,
 				idEqCH: me.idEqCH,
 				hideDel: true,
 				//dragGroup: 'GrupB',

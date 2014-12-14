@@ -311,16 +311,17 @@ class Hirarki extends CI_Model {
 		foreach ($hir as $h)	{
 			//print_r($h);	echo "<br/>id: {$h->id}<br/>";
 			//print_r($rh);	echo "<br/><br/>";
-			
-			foreach ($rh[$h->id] as $r)	{
-				//print_r($r);	echo "<br/>";
-				//echo "{$r->tgl} {$r->rh}<br/>";
-				$hir[$k]->{$r->tgl} = format_rh_time($r->rh);
+			if (count($rh)>0)	{
+				foreach ($rh[$h->id] as $r)	{
+					//print_r($r);	echo "<br/>";
+					//echo "{$r->tgl} {$r->rh}<br/>";
+					$hir[$k]->{$r->tgl} = format_rh_time($r->rh);
+				}
+				//echo "<br/>{$h->id}<br/>";
+				//print_r($hir[$k]); echo "<br/><br/>";
+				//echo "<br/>teeeeeee<br/>";
+				$k++;
 			}
-			//echo "<br/>{$h->id}<br/>";
-			//print_r($hir[$k]); echo "<br/><br/>";
-			//echo "<br/>teeeeeee<br/>";
-			$k++;
 		}
 		//*/
 		return $hir;
