@@ -105,7 +105,7 @@ Ext.define('rcm.view.Util', {
 				{ xtype:'rownumberer',width:25 
 				},{ header:'Lokasi',dataIndex:'lok',width:100, hideable : false, 
 					locked: true, filter: { type: 'string' }
-				},{ header:'Nama Unit',dataIndex:'nama',width:180, hideable : false, 
+				},{ header:'Nama Unit',dataIndex:'nama',width:220, hideable : false, 
 					locked: true, filter: { type: 'string' } 
 				}
 			];

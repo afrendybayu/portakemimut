@@ -64,10 +64,12 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 					width: 80,
 					text: 'Filter',
 					margin: '2 0 0 0'			
+				//*
 				},{
 					xtype: 'label',
 					flex: 1,
 					text: ''
+				//*/
 				},{
 					//id: 'btnClearSH',
 					id: me.idbDownL,

@@ -7,15 +7,14 @@ class Overhaul extends CI_Model {
     }
 
 	
-	function ohTahun($thn,$lok)	{
-
+	function ohTahun($thn,$lok,$cat)	{
 		/*
 		$sql = "select o.unit, h.nama, 'wwe' as lok from overhaul o
 				LEFT JOIN hirarki h on o.unit = h.id where thn=$thn";
 		//*/
-		$sql = "call overhaul(?,?)";
-		//echo "sql: $sql<br/>";
-		$query = $this->db->query($sql, array($thn,$lok));
+		$sql = "call overhaul(?,?,?)";
+		//echo "sql: call overhaul($thn,$lok,$cat)<br/>";
+		$query = $this->db->query($sql, array($thn,$lok,$cat));
 		return $query->result();
 	}
 	
@@ -95,7 +94,7 @@ class Overhaul extends CI_Model {
 		//*/
 		$slok = ""; $scat = "";
 		if ($lok>=0)	$slok = " AND h3.id = $lok ";
-		if ($cat>0)	$scat = " AND ce.id=$cat ";
+		if ($cat>0)	$scat = " AND ce.parent=$cat ";
 		
 		
 		$sql = "SELECT ol.id,ol.wo, ce.id, SUBSTRING(h3.nama FROM LOCATE(' ',h3.nama)) lokasi, h1.nama unit, eq.id id_equip,
@@ -110,6 +109,7 @@ class Overhaul extends CI_Model {
 						LEFT JOIN cat_equip ce ON ce.id = eq.cat
 					WHERE YEAR(ol.tglplan) = $thn $slok $scat
 					ORDER BY ol.tglplan DESC";
+		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
