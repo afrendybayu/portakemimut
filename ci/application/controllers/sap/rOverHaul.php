@@ -5,6 +5,7 @@ class rOverHaul extends CI_Controller {
         parent::__construct();
 		$this->load->model('overhaul');
 		$this->load->model('option');
+		$this->load->model('catequip');
 	}
 	
 	
@@ -136,12 +137,26 @@ class rOverHaul extends CI_Controller {
 	public function rExcOH(){
 		try {
 			$thn = $this->input->get('t')?:date('Y');
+			$lok = $this->input->get('l')?:-1;
+			$cat = $this->input->get('c')?:-1;
+			
+			if (($lok === "ALL") || ($lok===-1))	{
+				$lok = -1;
+			}
+			if (($cat === "ALL") || ($cat===-1))	{
+				$cat = -1;
+			}
 			
 			$jabat = $this->option->get_oh_report();
 			
+			$u = $this->catequip->get_tipe1_cat($cat);
+			if (count($u)>0)
+				$jdl = ($cat>0)?$u[0]->ket:"ALL EQUIPMENT";
+			else $jdl = "ALL EQUIPMENT";
+			
 			$sheet = $this->excel->getActiveSheet();
-			ohexcel_judul($sheet);
-			ohexcel_table($sheet,$thn);
+			ohexcel_judul($sheet,$jdl);
+			ohexcel_table($sheet,$thn,$jdl);
 			ohexcel_head($sheet);
 			ohexcel_font($sheet);
 			ohexcel_size($sheet);
@@ -149,8 +164,9 @@ class rOverHaul extends CI_Controller {
 			ohexcel_border($sheet);
 			ohexcel_image($sheet);
 			
-			$oh = $this->overhaul->proc_overhaul($thn);
+			$oh = $this->overhaul->proc_overhaul($thn,$lok,$cat);
 			//print_r($oh);
+			//return;
 			
 			
 			//print_r($jabat);
@@ -172,7 +188,7 @@ class rOverHaul extends CI_Controller {
 			$objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel2007');  
 			//force user to download the Excel file without writing it to server's HD
 			$objWriter->save('php://output');
-			echo "tes";
+			//echo "tes";
 			$jsonResult = array(
 				'success' => true,
 				'fNama'	=> $filename

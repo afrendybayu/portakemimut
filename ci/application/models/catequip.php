@@ -64,6 +64,14 @@ class Catequip extends CI_Model {
 		$this->db->update('equip',$data);
 	}
 	
+	function get_tipe1_cat($id)	{
+		$this->db->select('id,nama,kode,ket');
+		$this->db->where('id', $id);
+		$query = $this->db->get('cat_equip');
+		
+		return $query->result();
+	}
+	
 	function get_tipe_id()	{
 		$this->db->select('id');
 		$this->db->where('parent',0);

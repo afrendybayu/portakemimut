@@ -9,6 +9,15 @@ class Ulist extends CI_Model {
 		
 		return $query->result();
 	}
+	
+	function get_ulist($id)	{
+		$this->db->select('id,nama,kode,urut,ket');
+		//$this->db->order_by('urut', 'ASC');
+		$this->db->where('id', $id);
+		$query = $this->db->get('unitlist');
+		
+		return $query->result();
+	}
 
 	function update_equip($data,$id)	{
 		$this->db->set($data);

@@ -1,18 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
+
+
 if(!function_exists("ohexcel_judul")){
-	function ohexcel_judul($sheet){
+	function ohexcel_judul($sheet,$unit){
 		$sheet->setCellValue('A1','PT MEDCO E&P INDONESIA')->mergeCells('A1:BD1')->getStyle('A1')->getAlignment()->applyFromArray(
     	array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 			'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER));
-		$sheet->setCellValue('A2', 'PLANNING OVER HAUL ENGINE UNIT ')->mergeCells('A2:BD2')->getStyle('A2')->getAlignment()->applyFromArray(
+		$sheet->setCellValue('A2', "PLANNING PREVENTIVE MAINTENCANCE ".strtoupper($unit))->mergeCells('A2:BD2')->getStyle('A2')->getAlignment()->applyFromArray(
     	array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 			'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER));
 	}
 }
 
 if(!function_exists("ohexcel_table")){
-	function ohexcel_table($sheet,$thn){
+	function ohexcel_table($sheet,$thn,$unit){
 		$t = "Year : $thn";
 		$sheet->setCellValue('A3', 'Area : SSE Block')->mergeCells('A3:B3');
 		$sheet->setCellValue('AY3', $t)->mergeCells('AY3:BD3')->getStyle('AY3')->getAlignment()->applyFromArray(
@@ -21,14 +24,16 @@ if(!function_exists("ohexcel_table")){
 		$sheet->setCellValue('A5', 'Production Departement')->mergeCells('A5:D5');
 		$sheet->setCellValue('A6', 'Location : SSE Block')->mergeCells('A6:D6');
 		$sheet->setCellValue('E4', 'Equipment Name :')->mergeCells('E4:AB4');
-		$sheet->setCellValue('E5', 'Stationary Engine')->mergeCells('E5:AB5');
+		$sheet->setCellValue('E5', $unit)->mergeCells('E5:AB5');
 		$sheet->setCellValue('AC4', 'Dated Issued :')->mergeCells('AC4:AV4');
 		$sheet->setCellValue('AW4', 'Page')->mergeCells('AW4:BD4')->getStyle('AW4')->getAlignment()->applyFromArray(
 		    array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 		    	'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER));
+		/*
 		$sheet->setCellValue('AW5','1 of 1')->mergeCells("AW5:BD6")->getStyle('AW5')->getAlignment()->applyFromArray(
 		    array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 		    	'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER));
+		//*/
 	}
 }
 
@@ -245,21 +250,22 @@ if(!function_exists("ohexcel_data_overhaul")){
 		//$baris_foot = $baris2+1;
 		$no = 1;
 		foreach ($oh as $row) {
+			//print_r($row);
 			$aw='';	$ak=''; $f=0;
 			$sheet->getStyle("A$baris:BD$baris")->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$sheet->getRowDimension($baris)->setRowHeight(23);
 			$sheet->setCellValue('A'.$baris,$no++)->getStyle('A'.$baris)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
-			$sheet->setCellValue('B'.$baris,$row['lok'])->getStyle('B'.$baris)->getAlignment()->applyFromArray(
+			$sheet->setCellValue('B'.$baris,$row->lok)->getStyle('B'.$baris)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
-			$sheet->setCellValue('C'.$baris,$row['act'])->getStyle('C'.$baris)->getAlignment()->applyFromArray(
+			$sheet->setCellValue('C'.$baris,$row->act)->getStyle('C'.$baris)->getAlignment()->applyFromArray(
 				array('vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
-			$sheet->setCellValue('E'.$baris,$row['tgl'])->getStyle('E'.$baris)->getAlignment()->applyFromArray(
+			$sheet->setCellValue('E'.$baris,$row->tgl)->getStyle('E'.$baris)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
-			$sheet->setCellValue('F'.$baris,$row['lama'])->getStyle('F'.$baris)->getAlignment()->applyFromArray(
+			$sheet->setCellValue('F'.$baris,$row->lama)->getStyle('F'.$baris)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
 			$sheet->getStyle("BE8:BE$baris")->applyFromArray(array('borders' => array('left' => array(
@@ -267,9 +273,12 @@ if(!function_exists("ohexcel_data_overhaul")){
 			$sheet->getStyle("A8:A$baris")->applyFromArray(array('borders' => array('left' => array(
 				'style' => PHPExcel_Style_Border::BORDER_THICK))));
 			
+			$nilai="";
 			for ($i=1; $i<=48; $i++)	{
-				if (strlen($row["a$i"])>0)	{
-					if ($f==0)	{	$aw = $i+8; $f=1;	 $nilai= $row["a$i"];	}
+				//$i = "a$i";
+				//echo "$i  ".$row->{"a$i"}."<br/> ";
+				if (strlen($row->{"a$i"})>0)	{
+					if ($f==0)	{	$aw = $i+8; $f=1;	 $nilai= $row->{"a$i"};	}
 					else 	{	$ak = $i+8;	}
 				}
 			}

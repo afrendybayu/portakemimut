@@ -141,10 +141,15 @@ class Overhaul extends CI_Model {
 		return $query;
 	}
 	*/
+
+	function proc_overhaul($thn,$lok,$cat){
+		$sql = "call ohexcel_overhaul($thn,$lok,$cat)";
+		//echo "sql: $sql<br/>";
+		//$sql = $this->db->query("call ohexcel_overhaul(?,?,?)");
+		//return $sql->result_array();
 		
-	function proc_overhaul($thn){
-		$q = $this->db->query("call ohexcel_overhaul($thn)");
-		return $q->result_array();
+		$query = $this->db->query($sql, array($thn,$lok,$cat));
+		return $query->result();
 	}
 
 }
