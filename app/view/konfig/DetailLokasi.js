@@ -84,6 +84,7 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 				//name: 'nama',
 				//xtype: 'tHirDef'
 				//*
+				allowBlank: false,
 				name: 'parent',
 				xtype: 'treepicker',
 				//store: 'HirDef',
@@ -93,21 +94,26 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 				displayField: 'nama'
 				//*/
 			},{
+				fieldLabel: 'Jenis Unit',
+				name: 'flag',
+				xtype: 'combobox',
+				queryMode	: 'local',
+			    displayField: 'nama',
+			    valueField	: 'id',
+			    dataIndex: 'id',
+				store: 'UnitList',
+				emptyText: 'Masukkan Jenis Unit',
+				allowBlank: false,
+				//renderer: me.renderList
+				//hidden: true
+			//*/
+			},{
 				fieldLabel: 'Function Location',
 				name: 'funcloc',
 				emptyText: 'Masukkan nilai Func Loc',
 				allowBlank: false,
 				hidden: true
 			//*
-			},{
-				fieldLabel: 'Jenis Equipment',
-				name: 'jnseq',
-				xtype: 'combobox',
-				store: Ext.create('rcm.store.HirDef'),
-				emptyText: 'Masukkan Jenis Equipment',
-				allowBlank: false,
-				//hidden: true
-			//*/
 			},{
 				fieldLabel: 'Tag',
 				name: 'tag',
@@ -167,6 +173,7 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 			me.findField('funcloc').setValue(" ");
 			me.findField('tag').setValue(" ");
 			me.findField('sil').setValue("h");
+			me.findField('flag').setValue(0);
 		}
 		else if (n=="u")	{
 			Ext.fly('lblFormHir').update("Tambah Unit");
@@ -180,6 +187,7 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 			me.findField('funcloc').setValue(" ");
 			me.findField('tag').setValue("");
 			me.findField('sil').setValue("e");
+			me.findField('flag').setValue(0);
 		}
 	},
     
@@ -199,7 +207,7 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
     
     clearIsi: function(me)	{
 		//var me = this.getForm()
-		rcmSettings.tttttt = me;
+		//rcmSettings.tttttt = me;
 		var id = me.findField('id').getValue(),
 			f  = me.findField('sil').getValue();
 		me.reset();
@@ -208,17 +216,18 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 		if (f=="h")	{	// TAMBAHKAN INI buat manipulasi form dinamis
 			me.findField('tag').setValue(" ");
 			me.findField('funcloc').setValue(" ");
+			me.findField('flag').setValue(0);
 		}
 		else if (f=="u")	{
 			me.findField('tag').setValue(" ");
+			me.findField('flag').setValue(0);
 		}
 		else if (f=="e")	{
 			me.findField('funcloc').setValue(" ");
+			me.findField('flag').setValue(0);
 		}
 	},
-    
-    
-    
+
     showInput: function(n)	{
 		var me = this.getForm();
 		//*
@@ -227,27 +236,40 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 			me.findField('tag').setVisible(false);
 			me.findField('funcloc').setVisible(false);
 			me.findField('urut').setVisible(true);
+			//me.findField('junit').setVisible(false);
 		}
 		else if (n=="u")	{
 			me.findField('funcloc').setVisible(true);
 			me.findField('rhinit').setVisible(true);
 			me.findField('tag').setVisible(false);
 			me.findField('urut').setVisible(false);
+			//me.findField('junit').setVisible(true);
 		}
 		else if (n=="e")	{
 			me.findField('rhinit').setVisible(true);
 			me.findField('tag').setVisible(true);
 			me.findField('urut').setVisible(false);
 			me.findField('funcloc').setVisible(false);
+			//me.findField('junit').setVisible(false);
 		}
 		else {
 			me.findField('rhinit').setVisible(false);
 			me.findField('tag').setVisible(false);
 			me.findField('funcloc').setVisible(false);
 			me.findField('urut').setVisible(false);
+			//me.findField('junit').setVisible(false);
 			me.reset();
 		}
 		//*/
-	}
+	},
+	
+	renderList: function(value) {
+		console.log("sampe sini 0");
+		if (value<=0)	return "";
+        var ul = Ext.getStore('UnitList'),
+            node = value ? ul.getNodeById(value) : ul.getRootNode();
+		console.log("sampe sini 2");
+        return node.get('nama');
+    }
 
 });

@@ -62,6 +62,7 @@ Ext.define('rcm.controller.Config', {
 		'GridEqnIn'
 		
 		,'CatHirEq'
+		,'UnitList'
     ],
     
     models: [
@@ -708,10 +709,11 @@ Ext.define('rcm.controller.Config', {
 			me.getUsersStore().load();
 			me.getFormAksisStore().load();
 			me.getFormPmDefsStore().load();
+			me.getUnitListStore().load();
 			
 			//console.log("getTreeHirarki().collapseAll");
 			//me.getTreeHirarki().collapseAll();
-			rcmSettings.mmmm = me.getTKGridL();
+			//rcmSettings.mmmm = me.getTKGridL();
 			this.getTCatHir().expandAll();
 			//console.log("collapseAll");
 		}
@@ -959,12 +961,13 @@ Ext.define('rcm.controller.Config', {
 			f=r.get('sil'),
 			l=me.getPanLokasi();
 		//console.log("KOnfig EdtEqH");
-		//console.log(r.data);
+		console.log(r.data);
 		l.editForm(f);
 		if (r) {
 			if (f=="h") {
-				r.data.tag=" ";
+				r.data.tag=" ";		// r.set('tag',"");
 				r.data.funcloc=" ";
+				r.data.junit=0;
 			}
 			else if (f=="u") {
 				r.data.tag=" ";
@@ -973,6 +976,7 @@ Ext.define('rcm.controller.Config', {
 				r.data.funcloc=" ";
 				var n=r.get('nama').split("] ");
 				r.data.nama = (n.length==2)?n[1]:n[0];
+				r.data.junit=0;
 			}
 			if (f!="")	me.getPanLokasi().getForm().loadRecord(r);
         }
