@@ -965,20 +965,30 @@ Ext.define('rcm.controller.Config', {
 		l.editForm(f);
 		if (r) {
 			if (f=="h") {
-				r.data.tag=" ";		// r.set('tag',"");
-				r.data.funcloc=" ";
-				r.data.junit=0;
+				//r.data.tag=" ";		
+				//r.data.funcloc=" ";
+				//r.data.junit=0;
+				r.set('tag'," ");
+				r.set('funcloc'," ");
+				r.set('junit',0);
 			}
 			else if (f=="u") {
-				r.data.tag=" ";
+				//r.data.tag=" ";
+				r.set('tag'," ");
 			}
 			else if (f=="e") {		// equip
-				r.data.funcloc=" ";
+				//r.data.funcloc=" ";
 				var n=r.get('nama').split("] ");
-				r.data.nama = (n.length==2)?n[1]:n[0];
-				r.data.junit=0;
+				//r.data.nama = (n.length==2)?n[1]:n[0];
+				//r.data.junit=0;
+				r.set('funcloc'," ");
+				r.set('junit',0);
+				r.set('nama',(n.length==2)?n[1]:n[0]);
 			}
-			if (f!="")	me.getPanLokasi().getForm().loadRecord(r);
+			if (f!="")	{
+				if (r.get('flag')==0)	r.set('flag',"");
+				me.getPanLokasi().getForm().loadRecord(r);
+			}
         }
 	},
 

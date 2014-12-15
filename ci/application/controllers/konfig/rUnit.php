@@ -1,41 +1,22 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class rLokUnit extends CI_Controller {
+class rUnit extends CI_Controller {
 	function __construct() {
         parent::__construct();
-		$this->load->model('hirarki');
-		$this->load->model('equip');
+		$this->load->model('ulist');
 	}
 	
 	function index()	{
 		echo "res";
 	}
 	
-	public function rHirarki()	{
+	public function rUnitL()	{
 		//*
 		try {
-			//$parent_id = (isset($_GET['node']))?($_GET['node']):0;
-			$parent_id = (isset($_GET['node']))?$this->input->get('node'):0;
-			//echo $parent_id.'<br>';
-			// echo $_GET['node'].'<br>';
 			
-			$arr = array(); $k=0;
-			$hsl = $this->hirarki->get_hirarki($parent_id);
-			//print_r($hsl->result()); echo "<br/><br/>";
-			if ($hsl->num_rows() > 0)	{
-				//echo "ada row";
-				$arr = $hsl->result();
-
-			}
-			
-			else {
-				//echo "pindah sini";
-				$hsl = $this->hirarki->get_hirarki_equip($parent_id);
-				$arr = $hsl->result();
-			}
 			$jsonResult = array(
 				'success' => true,
-				'lokunit' => $arr
+				'ulist' => $this->ulist->get_ulist_all()
 			);
 		}
 		catch (Exception $e){
@@ -48,7 +29,8 @@ class rLokUnit extends CI_Controller {
 		echo json_encode($jsonResult);
 	
 	}
-	
+
+	/*
 	public function cHirarki() {
 		$par = json_decode(file_get_contents('php://input'));
 
@@ -111,32 +93,7 @@ class rLokUnit extends CI_Controller {
 		}
 		echo json_encode($jsonResult);
 	}
-	
-	public function hirAll()	{
-		/*
-		try {
-			$hsl = $this->hirarki->get_hirarki_all();
-			$hir = buildTree($hsl,0);
-			
-			$jsonResult = array(
-				'success' => true,
-				'hirarki' => $hir
-			);
-		}
-		catch (Exception $e){
-			$jsonResult = array(
-				'success' => false,
-				'message' => $e->getMessage()
-			);
-		}
-		echo json_encode($jsonResult);
-		//*/
-		
-		$hsl = $this->hirarki->get_hirarki_all();
-		$hir = buildTree($hsl,0);
-		echo json_encode($hir);
-	}
-	
+
 	public function uHirarki() {
 		$par = json_decode(file_get_contents('php://input'));
 
@@ -163,7 +120,6 @@ class rLokUnit extends CI_Controller {
 						);
 						$this->equip->update_equip($data,$d->id);
 						//array_push($hsl, array('id'=>$d->id));
-						//*/
 					}
 					else if ($par->sil=="u")	{
 						$data = array(
@@ -172,12 +128,12 @@ class rLokUnit extends CI_Controller {
 							'kode' => $d->kode,
 							'rhinit' => $d->rhinit,
 							'funcloc' => $d->funcloc,
-							'flag' => $d->flag,
+							//'flag' => $d->flag,
 							'urut' => $d->urut
 						);
 						$this->hirarki->upd_hirarki($data,$d->id);
 					}
-					//*
+
 					else 	{
 						//$n = explode("] ",$d->nama);
 						$data = array(
@@ -190,7 +146,7 @@ class rLokUnit extends CI_Controller {
 						
 					}
 					array_push($hsl, array('id'=>$d->id));
-					//*/
+
 				}
 			}
 			else {
@@ -213,7 +169,7 @@ class rLokUnit extends CI_Controller {
 						'kode' => $par->kode,
 						'rhinit' => $par->rhinit,
 						'funcloc' => $par->funcloc,
-						'flag' => $par->flag,
+						//'flag' => $par->flag,
 						'urut' => $par->urut
 					);
 					$this->hirarki->upd_hirarki($data,$par->id);
@@ -229,29 +185,7 @@ class rLokUnit extends CI_Controller {
 				}
 				$hsl = array('id' => $par->id);
 			}
-			/*
-			if ($par->sil=="e")	{
-					$n = explode("] ",$par->nama);
-					$data = array(
-						'nama'	=> isset($n[1])?$n[1]:"",
-						'kode'	=> $par->kode,
-						'tag'	=> $par->tag,
-						'unit_id' => $par->parent,
-						'cat'	=> $par->idcat,
-						'rhinit' => $par->rhinit
-					);
-					$this->equip->update_equip($data,$par->id);
-			}
-			else {
-				$data = array(
-					'nama' => $par->nama,
-					'parent' => $par->parent,
-					'kode' => $par->kode,
-					'urut' => $par->urut
-				);
-				$this->hirarki->upd_hirarki($data,$par->id);
-			}
-			//*/
+			
 			$jsonResult = array(
 				'success' => true,
 				'hir' => $hsl
@@ -291,7 +225,9 @@ class rLokUnit extends CI_Controller {
 		}
 		echo json_encode($jsonResult);
 	}
+	//*/
+
 }
 
-/* End of file rLokUnit.php */
-/* Location: ./application/controllers/konfig/rLokUnit.php */
+/* End of file rUnit.php */
+/* Location: ./application/controllers/konfig/rUnit.php */

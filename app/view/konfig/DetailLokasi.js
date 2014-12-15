@@ -97,13 +97,15 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 				fieldLabel: 'Jenis Unit',
 				name: 'flag',
 				xtype: 'combobox',
-				queryMode	: 'local',
-			    displayField: 'nama',
-			    valueField	: 'id',
-			    dataIndex: 'id',
+				queryMode: 'local',
+				displayField: 'nama',
+			    valueField: 'id',
+				//dataIndex: 'id',
+				editable: false,
 				store: 'UnitList',
 				emptyText: 'Masukkan Jenis Unit',
-				allowBlank: false,
+				combineErrors: true,
+				allowBlank: false
 				//renderer: me.renderList
 				//hidden: true
 			//*/
