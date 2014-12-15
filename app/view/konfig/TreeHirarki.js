@@ -73,7 +73,7 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
         me.columns = [{
                 xtype: 'treecolumn',
                 dataIndex: 'nama',
-                text: 'Hirarki Kategori',
+                text: 'Hirarki Aset',
                 flex: 3,
                 editor: {
                     xtype: 'textfield',

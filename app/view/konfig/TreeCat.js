@@ -69,10 +69,12 @@ Ext.define('rcm.view.konfig.TreeCat', {
                     selectOnFocus: true,
                     allowOnlyWhitespace: false
 				}
+			/*
 			},{
 				//text: 'ID',
                 dataIndex: 'id',
                 width:40
+			//*/
 			},{
                 xtype	: 'actioncolumn',
                 //text: 'Hapus',

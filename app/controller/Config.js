@@ -860,7 +860,7 @@ Ext.define('rcm.controller.Config', {
 			success: function(rec, op){
 				//console.log("config hdlSmpHir");
 				//me.getHirDefStore().reload();
-				me.getLokUnitStore().reload();
+				me.getLokUnitStore().load();
 			}
 		});
 	},
@@ -879,7 +879,7 @@ Ext.define('rcm.controller.Config', {
 		hSmp.save({
 			success: function(rec, op){
 				//console.log("config hdlSmpHir success");
-				me.getLokUnitStore().reload();
+				me.getLokUnitStore().load();
 				//me.getHirDefStore().reload();
 				Ext.Msg.alert('Sukses', 'Data baru sudah ditambahkan');
 				//vPL.clearIsi(vPL.getForm());
@@ -926,7 +926,7 @@ Ext.define('rcm.controller.Config', {
 			});
 		vPL.clearIsi(vPL.getForm());
 		//me.getHirDefStore().reload();
-		me.getLokUnitStore().reload();
+		me.getLokUnitStore().load();
 	},
 	
 	hdlCHRefresh: function()	{

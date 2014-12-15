@@ -119,7 +119,7 @@ class Hirarki extends CI_Model {
 				FROM hirarki h LEFT JOIN equip eq ON eq.unit_id = h.id 
 				LEFT JOIN hirarki hh  ON hh.parent = h.id 
 				WHERE h.parent = $parent GROUP BY h.id
-				ORDER BY urut ASC, nama ASC";
+				ORDER BY nama ASC";		// urut ASC, 
 		
 		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql);

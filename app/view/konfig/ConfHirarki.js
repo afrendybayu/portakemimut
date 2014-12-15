@@ -13,7 +13,7 @@ Ext.define('rcm.view.konfig.ConfHirarki', {
 	initComponent: function() {
 		var me = this;
 		me.items = [{
-			title: 'Konfigurasi Hirarki',
+			title: 'Konfigurasi Asset',
 			idKfHir: me.idKfHir,
 			id: me.tHir,
 			region: 'west',     
