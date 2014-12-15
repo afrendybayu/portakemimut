@@ -706,7 +706,10 @@ Ext.define('rcm.controller.Config', {
 			me.getFormAksisStore().load();
 			me.getFormPmDefsStore().load();
 			
-			
+			//console.log("getTreeHirarki().collapseAll");
+			//me.getTreeHirarki().collapseAll();
+			rcmSettings.mmmm = me.getTKGridL();
+			//console.log("collapseAll");
 		}
 		//*/
 	},
@@ -875,6 +878,8 @@ Ext.define('rcm.controller.Config', {
 		//console.log(getData);
 		//vPL.clearIsi(vPL.getForm());
 		//*
+		console.log(getData);
+		//return;
 		var	hSmp = new rcm.model.LokUnit(getData);
 		hSmp.save({
 			success: function(rec, op){

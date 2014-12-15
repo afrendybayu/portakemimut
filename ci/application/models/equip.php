@@ -99,6 +99,13 @@ class Equip extends CI_Model {
 		return $this->db->insert('hirarki');
 		//*/
 	}
+	
+	function del_equip($ids)	{
+		$this->db->where_in('id', $ids);
+		$this->db->delete('equip');
+		
+		return $ids;
+	}
 }
 
 

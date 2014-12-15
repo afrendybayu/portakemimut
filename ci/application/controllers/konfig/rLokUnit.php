@@ -71,6 +71,18 @@ class rLokUnit extends CI_Controller {
 				);
 				$hsl = $this->equip->ins_equip($data);
 			}
+			else if ($par->sil=="u")	{
+				$data = array(
+					'nama' => $par->nama,
+					'parent' => $par->parent,
+					'kode' => $par->kode,
+					'funcloc' => $par->funcloc,
+					'rhinit' => $par->rhinit,
+					'urut' => $par->urut,
+					'ket' => $par->ket
+				);
+				$hsl = $this->hirarki->ins_hirarki($data);
+			}
 			else {
 				$data = array(
 					'nama' => $par->nama,
@@ -224,7 +236,10 @@ class rLokUnit extends CI_Controller {
 			if (!isset($par))	{
 				throw new Exception("Input Data Tidak Ada");
 			}
-			$id = $this->hirarki->del_hirarki($par->id);
+			if ($par->sil=="e")
+				$id = $this->equip->del_equip($par->id);
+			else
+				$id = $this->hirarki->del_hirarki($par->id);
 			
 			$jsonResult = array(
 				'success' => true,

@@ -26,8 +26,15 @@ Ext.define('rcm.view.konfig.TreeCat', {
             dock: 'bottom',
             items: [{
 					id: me.idRh,
+					xtype: 'button',
+					text: 'Refresh',
 					iconCls: 'refresh',
                     tooltip: 'Refresh'
+				},{
+					xtype: 'button',
+					text: 'Expand',
+					iconCls: 'expand',
+                    tooltip: 'Expand All'
 				},'->',{
 					id: me.idnC,
                     iconCls: 'new_cat_tree',
