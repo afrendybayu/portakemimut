@@ -254,13 +254,15 @@ Ext.define('rcm.controller.Sap', {
     },
     
     hdlExcOh: function(btn)	{
-		var t=Ext.getCmp('idThnOh').getValue();
+		var t=Ext.getCmp('idThnOh').getValue(),
+			l=Ext.getCmp('idLokOh').getValue(),
+			c=Ext.getCmp('idCatOh').getValue();
 		var form = btn.up('form').getForm();
 		if(form.isValid()){
 			//alert("hdlExcOh "+t);
 			//*
 			form.submit({
-				url: 'ci/index.php/sap/rOverHaul/rExcOH?t='+t
+				url: 'ci/index.php/sap/rOverHaul/rExcOH?t='+t+'&l='+l+'&c='+c
 				
 			});
 			//*/
