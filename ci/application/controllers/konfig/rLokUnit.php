@@ -150,9 +150,9 @@ class rLokUnit extends CI_Controller {
 				foreach ($par as $d)	{
 					//print_r($d); echo "<br/>";
 						//*
-						
+					$n = explode("] ",$d->nama);
 					if ($d->sil=="e")	{
-						$n = explode("] ",$d->nama);
+						//$n = explode("] ",$d->nama);
 						$data = array(
 							'nama'	=> isset($n[1])?$n[1]:"",
 							'kode'	=> $d->kode,
@@ -162,9 +162,35 @@ class rLokUnit extends CI_Controller {
 							'rhinit' => $d->rhinit
 						);
 						$this->equip->update_equip($data,$d->id);
-						array_push($hsl, array('id'=>$d->id));
+						//array_push($hsl, array('id'=>$d->id));
 						//*/
 					}
+					else if ($par->sil=="u")	{
+						$data = array(
+							'nama' => isset($n[1])?$n[1]:"",
+							'parent' => $d->parent,
+							'kode' => $d->kode,
+							'rhinit' => $d->rhinit,
+							'funcloc' => $d->funcloc,
+							//'flag' => $d->flag,
+							'urut' => $d->urut
+						);
+						$this->hirarki->upd_hirarki($data,$d->id);
+					}
+					//*
+					else 	{
+						//$n = explode("] ",$d->nama);
+						$data = array(
+							'nama' => isset($n[1])?$n[1]:""
+							'parent' => $d->parent,
+							'kode' => $d->kode,
+							'urut' => $d->urut
+						);
+						$this->hirarki->upd_hirarki($data,$d->id);
+						
+					}
+					array_push($hsl, array('id'=>$d->id));
+					//*/
 				}
 			}
 			else {
@@ -180,6 +206,18 @@ class rLokUnit extends CI_Controller {
 					);
 					$this->equip->update_equip($data,$par->id);
 
+				}
+				else if ($par->sil=="u")	{
+					$data = array(
+						'nama' => $par->nama,
+						'parent' => $par->parent,
+						'kode' => $par->kode,
+						'rhinit' => $par->rhinit,
+						'funcloc' => $par->funcloc,
+						//'flag' => $par->flag,
+						'urut' => $par->urut
+					);
+					$this->hirarki->upd_hirarki($data,$par->id);
 				}
 				else {
 					$data = array(
