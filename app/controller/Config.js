@@ -371,6 +371,9 @@ Ext.define('rcm.controller.Config', {
 			'[iconCls=refresh]': {
                 click: me.hdlCHRefresh
             },
+            '[iconCls=expand]':	{
+				click: me.hdlExpand
+			},
 			'[iconCls=newHir]': {
                 click: me.newHir
             },
@@ -709,6 +712,7 @@ Ext.define('rcm.controller.Config', {
 			//console.log("getTreeHirarki().collapseAll");
 			//me.getTreeHirarki().collapseAll();
 			rcmSettings.mmmm = me.getTKGridL();
+			this.getTCatHir().expandAll();
 			//console.log("collapseAll");
 		}
 		//*/
@@ -941,6 +945,10 @@ Ext.define('rcm.controller.Config', {
 		alert("hdlrefTH");
 		//this.getLokUnitStore().load();
 	},
+	hdlExpand: function()	{
+		//alert("Expand");
+		this.getTCatHir().expandAll();
+	},	
 	
 	slctKfHir: function(model, records)	{
 		//console.log(records[0]);

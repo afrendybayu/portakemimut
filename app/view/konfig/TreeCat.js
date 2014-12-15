@@ -58,7 +58,7 @@ Ext.define('rcm.view.konfig.TreeCat', {
 
         me.columns = [{
                 xtype: 'treecolumn',
-                text: 'Hirarki',
+                text: 'Hirarki Kategori',
                 dataIndex: 'text',
                 //width:200,
                 flex: 1,
