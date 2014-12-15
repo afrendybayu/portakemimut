@@ -181,7 +181,7 @@ class rLokUnit extends CI_Controller {
 					else 	{
 						//$n = explode("] ",$d->nama);
 						$data = array(
-							'nama' => isset($n[1])?$n[1]:""
+							'nama' => isset($n[1])?$n[1]:"",
 							'parent' => $d->parent,
 							'kode' => $d->kode,
 							'urut' => $d->urut
