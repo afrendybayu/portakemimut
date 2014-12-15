@@ -16,7 +16,7 @@ class rRunningHour extends CI_Controller {
 		$tisi = array(); 
 		$ww=14;	$w=$ww-1;
 		//echo "tes<br/>";
-		
+		//return;
 		
 		try {
 			$tgl = $this->input->get('tgl')?:date('Y-m-d'); 
@@ -26,21 +26,23 @@ class rRunningHour extends CI_Controller {
 			$y = date('Y', strtotime($tgl)); //year
 			$t = date('d', strtotime($tgl)); //day 00-31
 			
-			//echo "$m $y $t<br/>";
+			//echo "$m $y $t<br/>";	
+			//return;
 			
 			$bts_0 = date("Y-m-d", mktime(0, 0, 0, $m, $t, $y));
 			$bts_1 = date("Y-m-d", mktime(0, 0, 0, $m, $t-$w, $y));
 			//echo "$bts_0 $bts_1<br/>";
-			
+			//return;
 			
 			$pm = $this->pm->get_pmlist_array();
 			//print_r($pm);	echo "<br/>";
-			
+			//return;
 			
 			$hir = $this->hirarki->get_excelgrid_hir($cat,$pm,$m,$y,$t,$w);
+			//*
 			//print_r($hir);	echo "<br/>";
-			
 			//return;
+			//*/
 			$rh = $this->runninghour->get_rh_bulan(array($bts_1,$bts_0,$cat));
 			//print_r($rh);
 			

@@ -54,7 +54,7 @@ class Pm extends CI_Model {
     
     function get_pmlist_array()	{
 		$this->db->select('pd.durasi,pl.eqcat');
-		$this->db->join('pmdef pd', 'pd.id = pl.pm', 'left');
+		$this->db->join('pmdef pd', 'pd.id = pl.pm', 'inner');
 		$query = $this->db->get('pmlist pl');
 		
 		$pl = $query->result();

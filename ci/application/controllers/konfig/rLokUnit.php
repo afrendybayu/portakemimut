@@ -65,7 +65,7 @@ class rLokUnit extends CI_Controller {
 					'tag' => $par->tag,
 					//'cat' => $par->cat,
 					'rhinit' => $par->rhinit,
-					'urut' => $par->urut,
+					//'urut' => $par->urut,
 					'ket' => $par->ket
 					
 				);

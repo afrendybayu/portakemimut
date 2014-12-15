@@ -233,6 +233,12 @@ class Hirarki extends CI_Model {
 		//echo $query->num_rows()."<br/>";
 		//echo count($pm)."<br/>";
 		//print_r($pm); echo "<br/>";
+		/*
+		foreach($pm as $p)	{
+			print_r($p); echo "<br/>";
+		}
+		//*/
+		//return;
 		$hsl = array(); $obj = new stdClass();
 		//if (count($d)>0)	{
 		//*
@@ -243,13 +249,16 @@ class Hirarki extends CI_Model {
 				
 				//print_r($r); echo "<br/>";
 				//echo "--->{$pm[$r->cat]}<br/>";
-				//continue;
+				
 				if ($r->cat==0)	continue;
+				if ($r->cat==null)	continue;
+				//echo "cat: {$r->cat}<br/>";
+				
 				if (isset($pm[$r->cat]) && (count($pm[$r->cat])>0))	{
-					//echo "cat: {$r->cat} masuk sini <br/>";
+					//echo "cat: {$r->cat} masuk sini : {$r->rhtot} {$r->cat}<br/>";
 					$npm = nextpm($r->rhtot,$pm[$r->cat]);
 				}
-				
+				//continue;
 				//echo "=--->"; print_r(nextpm($r->rhtot,$pm[$r->cat]));	echo "<br/>";
 				//*
 				
@@ -289,6 +298,7 @@ class Hirarki extends CI_Model {
 				}
 				//*/
 			}
+			//echo "===>>>>"; print_r($hsl); echo "<br/>";
 			array_push($hsl, $obj);
 		}
 		//*/
