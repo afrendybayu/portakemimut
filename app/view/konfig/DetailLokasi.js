@@ -98,6 +98,16 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 				emptyText: 'Masukkan nilai Func Loc',
 				allowBlank: false,
 				hidden: true
+			//*
+			},{
+				fieldLabel: 'Jenis Equipment',
+				name: 'jnseq',
+				xtype: 'combobox',
+				store: Ext.create('rcm.store.HirDef'),
+				emptyText: 'Masukkan Jenis Equipment',
+				allowBlank: false,
+				//hidden: true
+			//*/
 			},{
 				fieldLabel: 'Tag',
 				name: 'tag',
