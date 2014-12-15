@@ -105,9 +105,8 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 				store: 'UnitList',
 				emptyText: 'Masukkan Jenis Unit',
 				combineErrors: true,
-				allowBlank: false
-				//renderer: me.renderList
-				//hidden: true
+				allowBlank: false,
+				hidden: true
 			//*/
 			},{
 				fieldLabel: 'Function Location',
@@ -238,28 +237,28 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 			me.findField('tag').setVisible(false);
 			me.findField('funcloc').setVisible(false);
 			me.findField('urut').setVisible(true);
-			//me.findField('junit').setVisible(false);
+			me.findField('flag').setVisible(false);
 		}
 		else if (n=="u")	{
 			me.findField('funcloc').setVisible(true);
 			me.findField('rhinit').setVisible(true);
 			me.findField('tag').setVisible(false);
 			me.findField('urut').setVisible(false);
-			//me.findField('junit').setVisible(true);
+			me.findField('flag').setVisible(true);
 		}
 		else if (n=="e")	{
 			me.findField('rhinit').setVisible(true);
 			me.findField('tag').setVisible(true);
 			me.findField('urut').setVisible(false);
 			me.findField('funcloc').setVisible(false);
-			//me.findField('junit').setVisible(false);
+			me.findField('flag').setVisible(false);
 		}
 		else {
 			me.findField('rhinit').setVisible(false);
 			me.findField('tag').setVisible(false);
 			me.findField('funcloc').setVisible(false);
 			me.findField('urut').setVisible(false);
-			//me.findField('junit').setVisible(false);
+			me.findField('flag').setVisible(false);
 			me.reset();
 		}
 		//*/

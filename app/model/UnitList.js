@@ -10,7 +10,7 @@ Ext.define('rcm.model.UnitList', {
     proxy: {
 		type: 'ajax',
 		api: {
-			read	: 'ci/index.php/konfig/rUnit/rUnitL',
+			read	: 'ci/index.php/konfig/rUnit/rUnitL'
         },
         reader: {
             type: 'json',
