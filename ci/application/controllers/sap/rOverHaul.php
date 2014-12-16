@@ -140,7 +140,94 @@ class rOverHaul extends CI_Controller {
 		}
 	}
 	
-	public function rExcOH(){
+	public function rExcOH()	{
+		try {
+			
+			$thn = $this->input->get('t')?:date('Y');
+			$lok = $this->input->get('l')?:-1;
+			$cat = $this->input->get('c')?:-1;
+			
+			if (($lok === "ALL") || ($lok===-1))	{
+				$lok = -1;
+			}
+			if (($cat === "ALL") || ($cat===-1))	{
+				$cat = -1;
+			}
+			
+			$jabat = $this->option->get_oh_report();
+			
+			$u = $this->catequip->get_tipe1_cat($cat);
+			if (count($u)>0)
+				$jdl = ($cat>0)?$u[0]->ket:"ALL EQUIPMENT";
+			else $jdl = "ALL EQUIPMENT";
+			$fn="overhaul$thn.xls";
+			
+			$sheet = $this->excel->getActiveSheet();
+			//*
+			ohexcel_judul($sheet,$jdl);
+			ohexcel_table($sheet,$thn,$jdl);
+			ohexcel_head($sheet);
+			ohexcel_font($sheet);
+			ohexcel_size($sheet);
+			ohexcel_bg($sheet);
+			ohexcel_border($sheet);
+			ohexcel_image($sheet);
+			//*/
+			$oh = $this->overhaul->proc_overhaul($thn,$lok,$cat);
+			//return;
+			//print_r($oh);
+			
+			$nx = ohexcel_data_overhaul($sheet,$oh);
+			//$nx = 15;
+			ohexcel_jabat($sheet,$nx,$jabat);
+			
+			//*
+			// Redirect output to a client’s web browser (Excel2007)
+			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+			header('Content-Disposition: attachment;filename="'.$fn.'"');
+			header('Cache-Control: max-age=0');
+			// If you're serving to IE 9, then the following may be needed
+			header('Cache-Control: max-age=1');
+
+			// If you're serving to IE over SSL, then the following may be needed
+			header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+			header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+			header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+			header ('Pragma: public'); // HTTP/1.0
+
+			$objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel2007');
+			$objWriter->save('php://output');
+			//*/
+			
+			$jsonResult = array(
+				'success' => true,
+				'fNama'	=> $fn
+			);
+		}
+		catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		//echo json_encode($jsonResult);
+		/*
+		$sheet = $this->excel->getActiveSheet();
+		$filename="overhaul.xls"; //save our workbook as this file name
+		//header('Content-Type: application/vnd.ms-excel'); //mime type
+		header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
+		header('Cache-Control: max-age=0'); //no cache
+
+		//save it to Excel5 format (excel 2003 .XLS file), change this to 'Excel2007' (and adjust the filename extension, also the header mime type)
+		//if you want to save it as .XLSX Excel 2007 format
+		//$objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5');  
+		$objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel2007');  
+			//force user to download the Excel file without writing it to server's HD
+		$objWriter->save('php://output');
+		//*/
+	}
+	
+	public function rExcOHxx(){
 		try {
 			$thn = $this->input->get('t')?:date('Y');
 			$lok = $this->input->get('l')?:-1;

@@ -170,7 +170,7 @@ if(!function_exists("ohexcel_size")){
 		for($col = 'I'; $col !== 'BE'; $col++) {
 		    $sheet
 		        ->getColumnDimension($col)
-		        ->setWidth(2.25);
+		        ->setWidth(2.65);
 		}
 	}
 }
@@ -247,18 +247,20 @@ if(!function_exists("ohexcel_data_overhaul")){
 		//*/
 		$baris = 11;
 		//$baris2 = $baris+1;
-		//$baris_foot = $baris2+1;
+		$baris_foot = 100;
 		$no = 1;
 		foreach ($oh as $row) {
 			//print_r($row);
+			
 			$aw='';	$ak=''; $f=0;
 			$sheet->getStyle("A$baris:BD$baris")->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$sheet->getRowDimension($baris)->setRowHeight(23);
+			
 			$sheet->setCellValue('A'.$baris,$no++)->getStyle('A'.$baris)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
 			$sheet->setCellValue('B'.$baris,$row->lok)->getStyle('B'.$baris)->getAlignment()->applyFromArray(
-				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
 			$sheet->setCellValue('C'.$baris,$row->act)->getStyle('C'.$baris)->getAlignment()->applyFromArray(
 				array('vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
@@ -273,35 +275,39 @@ if(!function_exists("ohexcel_data_overhaul")){
 			$sheet->getStyle("A8:A$baris")->applyFromArray(array('borders' => array('left' => array(
 				'style' => PHPExcel_Style_Border::BORDER_THICK))));
 			
+			
 			$nilai="";
+			
 			for ($i=1; $i<=48; $i++)	{
-				//$i = "a$i";
-				//echo "$i  ".$row->{"a$i"}."<br/> ";
 				if (strlen($row->{"a$i"})>0)	{
 					if ($f==0)	{	$aw = $i+8; $f=1;	 $nilai= $row->{"a$i"};	}
 					else 	{	$ak = $i+8;	}
 				}
 			}
 			$f=0;
-			
-			//echo "aw: $aw, ak: $ak, nil: $nilai<br/>";
+
 			$aw = numtoa(array('', $aw));
 			$ak = numtoa(array('', $ak));
-			//echo "baris: $baris, aw: {$aw[0]}, ak: {$ak[0]}, nil: $nilai<br/>";
-			
-			//$sheet->setCellValue("T11",$row['a12'])->mergeCells("T11:V11")->getStyle('T11')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setRGB('00B0F0');
-			$sheet->setCellValue("{$aw[0]}$baris",$nilai)->mergeCells("{$aw[0]}$baris:{$ak[0]}$baris")->getStyle("{$aw[0]}$baris")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setRGB('00B0F0');
-			
-			
-			$sheet->setCellValue('G'.$baris,"")->getStyle('G'.$baris)->getAlignment()->applyFromArray(
+			//
+			//*
+			$aaw = $aw[0].$baris;
+			$aak = $ak[0].$baris;
+			//echo "baris: $baris, aw: $aaw, ak: $aak, nil: $nilai<br/>";
+			/*
+			$sheet->setCellValue("{$aw[0]}$baris",$nilai)->mergeCells("{$aw[0]}$baris:{$ak[0]}$baris")
+				  ->getStyle("{$aw[0]}$baris")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+				  ->getStartColor()->setRGB('00B0F0');
+			$sheet->setCellValue($aaw,$nilai)->getStyle($aaw)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));
-			$baris++;
-			//$baris2++;
-			//$baris_foot++;			
+			//*/
+			$sheet->setCellValue("H$baris",$nilai.$aaw.$aak);//->getStyle($aaw)
+			$baris++;		
 		}
+		
 		$baris2 = $baris+1;
-		$baris_foot = $baris+2;	
+		$baris_foot = $baris+2;
+		//*
 		$sheet->getStyle("A$baris:BD$baris")->applyFromArray(array('borders' => array('top' => array('style' => PHPExcel_Style_Border::BORDER_THICK))));
 		$sheet->setCellValue("A$baris","Note :")->mergeCells("A$baris:BD$baris")->getStyle("A$baris")->getFont()->setBold(true);
 		$sheet->setCellValue("A$baris2","- Perubahan dari Schedule ini harus mendapat persetujuan dari Operations Manager dengan membuat Exception Report")->mergeCells("A$baris2:BD$baris2")
@@ -310,8 +316,7 @@ if(!function_exists("ohexcel_data_overhaul")){
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));
 		$sheet->getRowDimension($baris)->setRowHeight(30);
 		$sheet->getRowDimension($baris2)->setRowHeight(30);
-		
-		//$sheet->setCellValue("A$baris_foot", "test jabatan")->mergeCells("A$baris_foot:F$baris_foot");
+
 		return ($baris_foot);
 	}
 }
