@@ -79,6 +79,7 @@ class rLokUnit extends CI_Controller {
 					'funcloc' => $par->funcloc,
 					'rhinit' => $par->rhinit,
 					'urut' => $par->urut,
+					'status' => $par->status,
 					'ket' => $par->ket
 				);
 				$hsl = $this->hirarki->ins_hirarki($data);
@@ -173,6 +174,7 @@ class rLokUnit extends CI_Controller {
 							'rhinit' => $d->rhinit,
 							'funcloc' => $d->funcloc,
 							'flag' => $d->flag,
+							'status' => $d->status,
 							'urut' => $d->urut
 						);
 						$this->hirarki->upd_hirarki($data,$d->id);
@@ -214,6 +216,7 @@ class rLokUnit extends CI_Controller {
 						'rhinit' => $par->rhinit,
 						'funcloc' => $par->funcloc,
 						'flag' => $par->flag,
+						'status' => $par->status,
 						'urut' => $par->urut
 					);
 					$this->hirarki->upd_hirarki($data,$par->id);

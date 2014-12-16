@@ -7,6 +7,7 @@ Ext.define('rcm.model.LokUnit', {
 	
 	fields:	['id', 'nama', 'kode','cat',{name:'flag', type:'int'},'rhinit','funcloc',
 				'parent','tag','sil','ket',
+				{name:'status',type:'int'},
 				{name:'urut',type:'int'},
 				{name:'idcat',type:'int'}],
 
