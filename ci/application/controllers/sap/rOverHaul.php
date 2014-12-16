@@ -91,6 +91,12 @@ class rOverHaul extends CI_Controller {
 			}
 			
 			$hsl = $this->overhaul->get_ohlist($thn,$lok,$cat);
+			//echo "jml: ".count($hsl)."<br/>";
+			/*
+			foreach($hsl as $a)	{
+				print_r($a); echo "<br/>";
+			}
+			//*/
 			//print_r($hsl);
 			
 			$jsonResult = array(

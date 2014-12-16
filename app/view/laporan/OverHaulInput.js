@@ -12,9 +12,8 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 	// idunit: '',
 	// ngedit: 0,
 	enableColumnHide: false,
-
-	dockedItems: [
-        {
+	//*
+	dockedItems: [{
             xtype: 'taskOverHaul',
             dock: 'top',
             weight: 101,
@@ -23,7 +22,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
             }
         }
     ],
-	
+	//*/
 	
 	initComponent: function() {
 		var me=this; 
@@ -39,59 +38,67 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 		me.columns = {
 			defaults : {
 				draggable: false,
-				resizable: false,
+				//resizable: false,
 				hideable: false
 			},
-			items : [	{header : 'No', xtype:'rownumberer',width:25 },
-						{header : 'Order No',width : 100,dataIndex : 'wo', editor: {allowBlank: false}},
-						{header : 'Lokasi',width : 250,dataIndex : 'lokasi', editor:{
-							xtype		:'combobox',
-							editable	: false,
-							allowBlank	: false,
-							store 		: 'CbParent',
-							name		: 'lokasi',
-							displayField: 'nama',
-							valueField 	: 'nama',
-							queryMode 	: 'local',
-							listeners: {
+			items : [{
+					header : 'No', xtype:'rownumberer',width:35 
+				},{
+					header : 'Order No',width : 100,dataIndex : 'wo', editor: {allowBlank: false}
+				},{
+					header : 'Lokasi',width : 250,dataIndex : 'lokasi', 
+					editor:{
+						xtype		:'combobox',
+						editable	: false,
+						allowBlank	: false,
+						store 		: 'CbParent',
+						name		: 'lokasi',
+						displayField: 'nama',
+						valueField 	: 'nama',
+						queryMode 	: 'local',
+						listeners: {
 								select: function(combo, records, eOpts ) {
 									me.plhcblok(records);
-								}
 							}
+						}
 						
-						}},
-						{header : 'Unit',width:250,dataIndex : 'unit',editor:{
-							xtype		:'combobox',
-							editable	: false,
-							allowBlank	: false,
-							store 		: 'CbUnit',
-							name		: 'unit',
-							displayField: 'unit',
-							valueField 	: 'unit',
-							queryMode 	: 'local',
-							listeners: {
+					}
+				},{
+					header : 'Equip',flex : 1,dataIndex : 'equip',
+					editor:{
+						xtype		:'combobox',
+						editable	: false,
+						allowBlank	: false,
+						store 		: 'CbEquip',
+						name		: 'equip',
+						displayField: 'eq',
+						valueField 	: 'eq',
+						queryMode 	: 'local',
+						listeners: {
+							select: function(combo, records, eOpts ) {
+								me.plhcbequip(records);
+							}
+						}
+					}
+				},{
+					header : 'Unit',width:250,dataIndex : 'unit',
+					editor:{
+						xtype		:'combobox',
+						editable	: false,
+						allowBlank	: false,
+						store 		: 'CbUnit',
+						name		: 'unit',
+						displayField: 'unit',
+						valueField 	: 'unit',
+						queryMode 	: 'local',
+						listeners: {
 								select: function(combo, records, eOpts ) {
 									me.plhcbunit(records);
-								}
 							}
-						
-						}},
-						{header : 'Equip',flex : 1,dataIndex : 'equip',editor:{
-							xtype		:'combobox',
-							editable	: false,
-							allowBlank	: false,
-							store 		: 'CbEquip',
-							name		: 'equip',
-							displayField: 'eq',
-							valueField 	: 'eq',
-							queryMode 	: 'local',
-							listeners: {
-								select: function(combo, records, eOpts ) {
-									me.plhcbequip(records);
-								}
-							}
-						}},
-						{header : 'Tanggal', width : 100,dataIndex : 'tglplan',xtype : 'datecolumn', format : 'd-m-Y',editable : false, editor:{
+						}	
+					}
+				},{
+					header : 'Tanggal', width : 100,dataIndex : 'tglplan',xtype : 'datecolumn', format : 'd-m-Y',editable : false, editor:{
 							xtype		: 'datefield',
 							name		: 'tglplan',
 							format		: 'd-m-Y',

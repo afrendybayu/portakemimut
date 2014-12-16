@@ -96,8 +96,9 @@ class Overhaul extends CI_Model {
 		if ($lok>=0)	$slok = " AND h3.id = $lok ";
 		if ($cat>0)	$scat = " AND ce.parent=$cat ";
 		
-		
-		$sql = "SELECT ol.id,ol.wo, ce.id, SUBSTRING(h3.nama FROM LOCATE(' ',h3.nama)) lokasi, h1.nama unit, eq.id id_equip,
+		/*
+		$sql = "SELECT ol.id,ol.wo, ce.id, SUBSTRING(h3.nama FROM LOCATE(' ',h3.nama)) lokasi, 
+				h1.nama unit, eq.id id_equip,
 				concat(od.nama,' ',eq.kode,' ',eq.tag) equip,
 				od.nama oh, ol.tglplan, ol.durasiplan, ol.ket
 					FROM ohlist ol
@@ -109,6 +110,20 @@ class Overhaul extends CI_Model {
 						LEFT JOIN cat_equip ce ON ce.id = eq.cat
 					WHERE YEAR(ol.tglplan) = $thn $slok $scat
 					ORDER BY ol.tglplan DESC";
+		//*/
+		$sql = "SELECT ol.id,ol.wo, ce.id AS cat, SUBSTRING(h3.nama FROM LOCATE(' ',h3.nama)) lokasi, 
+				h1.nama unit, eq.id id_equip,
+				concat(od.nama,' ',eq.kode,' ',eq.tag) equip,
+				od.nama oh, ol.tglplan, ol.durasiplan, ol.ket
+					FROM ohlist ol
+						LEFT JOIN equip eq ON ol.equip = eq.id
+						LEFT JOIN pmdef od ON ol.ohcat = od.durasi
+						LEFT JOIN hirarki h1 ON eq.unit_id = h1.id
+						LEFT JOIN hirarki h2 ON h1.parent = h2.id
+						LEFT JOIN hirarki h3 ON h2.parent = h3.id
+						LEFT JOIN cat_equip ce ON ce.id = eq.cat
+					WHERE YEAR(ol.tglplan) = $thn $slok $scat
+					ORDER BY ol.tglplan ASC";
 		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql);
 		return $query->result();

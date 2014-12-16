@@ -14,7 +14,7 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
             {
                 xtype: 'component',
                 // cls: 'tasks-new',
-                 width: 25
+                 width: 35
                 // height: 25
             },{
 				xtype		:'textfield',
@@ -44,23 +44,6 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 				
 			},{
 				xtype		:'combobox',
-				emptyText 	: 'Unit',
-				editable	: false,
-				allowBlank	: false,
-				store 		: 'CbUnit',
-				//width		: 150, 
-				width:250,
-				name		: 'unit',
-				displayField: 'unit',
-				valueField 	: 'unit',
-				queryMode 	: 'local',
-				listeners: {
-					select: function(combo, records, eOpts ) {
-						me.plhunit(records);
-					}
-				}
-			},{
-				xtype		:'combobox',
 				emptyText 	: 'Equip',
 				editable	: false,
 				allowBlank	: false,
@@ -77,7 +60,23 @@ Ext.define('rcm.view.laporan.OverHaulForm', {
 					}
 				}
 			},{
-			
+				xtype		:'combobox',
+				emptyText 	: 'Unit',
+				editable	: false,
+				allowBlank	: false,
+				store 		: 'CbUnit',
+				//width		: 150, 
+				width:250,
+				name		: 'unit',
+				displayField: 'unit',
+				valueField 	: 'unit',
+				queryMode 	: 'local',
+				listeners: {
+					select: function(combo, records, eOpts ) {
+						me.plhunit(records);
+					}
+				}
+			},{
 				xtype		: 'datefield',
 				emptyText	: 'Tanggal',
 				name		: 'tglplan',
