@@ -151,9 +151,9 @@ class rLokUnit extends CI_Controller {
 				foreach ($par as $d)	{
 					//print_r($d); echo "<br/>";
 						//*
-					$n = explode("] ",$d->nama);
+					//$n = explode("] ",$d->nama);
 					if ($d->sil=="e")	{
-						//$n = explode("] ",$d->nama);
+						$n = explode("] ",$d->nama);
 						$data = array(
 							'nama'	=> isset($n[1])?$n[1]:"",
 							'kode'	=> $d->kode,
@@ -168,7 +168,8 @@ class rLokUnit extends CI_Controller {
 					}
 					else if ($par->sil=="u")	{
 						$data = array(
-							'nama' => isset($n[1])?$n[1]:"",
+							'nama' => $d->nama,
+							//'nama' => isset($n[1])?$n[1]:"",
 							'parent' => $d->parent,
 							'kode' => $d->kode,
 							'rhinit' => $d->rhinit,
@@ -183,7 +184,8 @@ class rLokUnit extends CI_Controller {
 					else 	{
 						//$n = explode("] ",$d->nama);
 						$data = array(
-							'nama' => isset($n[1])?$n[1]:"",
+							'nama' => $d->nama,
+							//'nama' => isset($n[1])?$n[1]:"",
 							'parent' => $d->parent,
 							'kode' => $d->kode,
 							'urut' => $d->urut
@@ -197,8 +199,10 @@ class rLokUnit extends CI_Controller {
 			}
 			else {
 				if ($par->sil=="e")	{
+					$n = explode("] ",$par->nama);
 					$data = array(
-						'nama'	=> $par->nama,
+						//'nama'	=> $par->nama,
+						'nama'	=> isset($n[1])?$n[1]:"",
 						'kode'	=> $par->kode,
 						'tag'	=> $par->tag,
 						'unit_id' => $par->parent,

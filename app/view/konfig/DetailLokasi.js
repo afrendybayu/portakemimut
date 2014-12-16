@@ -85,6 +85,7 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 				//xtype: 'tHirDef'
 				//*
 				allowBlank: false,
+				margin: '5 0 5 0',
 				name: 'parent',
 				xtype: 'treepicker',
 				//store: 'HirDef',

@@ -868,7 +868,7 @@ Ext.define('rcm.controller.Config', {
 			hir = me.getPanLokasi().getForm(),
 			gD = hir.getValues(),
 			hUpt = new rcm.model.LokUnit(gD);
-		console.log(gD);
+		//console.log(gD);
 		
 		hUpt.save({
 			success: function(rec, op){
@@ -970,7 +970,7 @@ Ext.define('rcm.controller.Config', {
 			f=r.get('sil'),
 			l=me.getPanLokasi();
 		//console.log("KOnfig EdtEqH");
-		console.log(r.data);
+		//console.log(r.data);
 		l.editForm(f);
 		if (r) {
 			if (f=="h") {

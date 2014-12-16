@@ -31,7 +31,7 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 					xtype: 'numberfield',
 					value: rcm.view.Util.U1th(''),
 					fieldLabel: '<b>Pilih Tahun</b>',
-					labelWidth: 70,
+					labelWidth: 90,
 					width: 140,
 					margin: '0 10 0 0'
 				},{
