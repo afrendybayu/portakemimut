@@ -188,9 +188,10 @@ Ext.define('rcm.view.Util', {
 				grid={header:tgl.getDate(),dataIndex:xwkt,width:50,editor:'textfield',tdCls: 'x-change-cell'
 					//*
 					,renderer: function(value,meta)	{
-						if(value.localeCompare("24:00")==0) {
+						//if(value.localeCompare("24:00")==0) {
+						if(value=="24:00") {
 							meta.style = "background-color:#a8ff94;";
-						} else if (value.localeCompare("-")==0) {
+						} else if (value=="-") {
 							meta.style = "background-color:#feffac;";
 						} else {
 							meta.style = "background-color:#ffbdbd;";
@@ -207,6 +208,7 @@ Ext.define('rcm.view.Util', {
 			}
 			//items.push({ header:'Cat',dataIndex:'cat',width:30 });
 			if (blnthn.length>1)	{
+				//if (!blnthn[0].header.localeCompare("Desember "+tgl.getFullYear()))
 				if (!blnthn[0].header.localeCompare("Desember "+tgl.getFullYear()))
 					blnthn[0].header = "Desember "+(tgl.getFullYear()-1)
 				//alert(blnthn[0].columns.length);

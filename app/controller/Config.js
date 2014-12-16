@@ -22,6 +22,8 @@ Ext.define('rcm.controller.Config', {
 				
 		
 		'konfig.TreeHirDef'
+		
+		//,'dataentry.ExcelGrid'
     ],
 
     controllers: [
@@ -63,6 +65,7 @@ Ext.define('rcm.controller.Config', {
 		
 		,'CatHirEq'
 		,'UnitList'
+		,'RunningHour'
     ],
     
     models: [
@@ -88,6 +91,8 @@ Ext.define('rcm.controller.Config', {
 		'GridModeIn',
 		'CatHir',
 		'CatHirEq'
+		
+		
 	],
     
     refs: [{
@@ -861,15 +866,19 @@ Ext.define('rcm.controller.Config', {
 		//console.log("COnfig hdlUptHir");
 		var me = this,
 			hir = me.getPanLokasi().getForm(),
-			getData = hir.getValues(),
-			hUpt = new rcm.model.LokUnit(getData);
-		console.log(getData);
+			gD = hir.getValues(),
+			hUpt = new rcm.model.LokUnit(gD);
+		console.log(gD);
 		
 		hUpt.save({
 			success: function(rec, op){
 				//console.log("config hdlSmpHir");
 				//me.getHirDefStore().reload();
 				me.getLokUnitStore().load();
+				if (gD.sil=="u")	{
+					//me.getExcelgrid().reconfigure(me.getRunningHourStore().load({ params:{cat:gD.cat} }), rcm.view.Util.UxcolGrid());
+					me.getRunningHourStore().reload({ params:{tgl:rcmSettings.tgl, cat:gD.cat} });
+				}
 			}
 		});
 	},

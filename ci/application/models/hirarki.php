@@ -224,9 +224,9 @@ class Hirarki extends CI_Model {
 				LEFT JOIN hirarki h3 ON h3.parent = h2.id
 				LEFT JOIN equip eq ON eq.unit_id = h3.id
 				LEFT JOIN waktudown wd ON eq.id = wd.eqid AND wd.event=2 AND wd.tipeev >0
-				WHERE h1.parent=0 AND h3.flag=?
+				WHERE h3.flag=? AND h3.status=1
 				GROUP BY h3.id,eq.id
-				ORDER BY h1.urut ASC, h3.nama ASC";
+				ORDER BY lok ASC, h3.nama ASC";
 		
 		$query = $this->db->query($sql,$cat);
 		
