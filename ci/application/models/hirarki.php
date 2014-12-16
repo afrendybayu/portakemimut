@@ -113,7 +113,7 @@ class Hirarki extends CI_Model {
 	function get_hirarki($parent){
 		//*
 		$sql =	"SELECT h.id,h.nama,h.status,IFNULL(h.kode,'') AS kode,h.parent,h.rhinit, IFNULL(h.urut,'') AS urut,
-				IFNULL(h.funcloc,'') AS funcloc,h.flag,IFNULL(GROUP_CONCAT(eq.id),'') AS eqid, 
+				IFNULL(h.funcloc,'') AS funcloc,h.flag,IFNULL(GROUP_CONCAT(eq.id),'') AS eqid, ' ' AS tag,
 				CASE WHEN eq.id>0 THEN 'u' ELSE 'h' END AS sil,
 				CASE WHEN hh.id>0 THEN 'false' WHEN eq.id<>'' THEN 'false' ELSE 'true' END AS leaf
 				FROM hirarki h LEFT JOIN equip eq ON eq.unit_id = h.id 
@@ -135,13 +135,15 @@ class Hirarki extends CI_Model {
 	
 	function get_hirarki_equip($parent){
 		/*
-		$sql = "SELECT eq.id,eq.nama,eq.tag,ce.nama AS cat
+		$sql =	"SELECT eq.id,CONCAT('[',eq.tag,'] ',eq.nama) AS nama,
+				eq.tag,eq.unit_id AS parent, ce.id AS idcat,ce.nama AS cat,eq.kode,IFNULL(eq.rhinit,0) AS rhinit,
+				'e' AS sil, 'true' AS leaf
 				FROM equip  eq
-				LEFT JOIN cat_equip ce ON ce.id = eq.cat
+					LEFT JOIN cat_equip ce ON ce.id = eq.cat
 				WHERE unit_id = $parent
 				ORDER BY nama ASC";
 		//*/
-		$sql =	"SELECT eq.id,CONCAT('[',eq.tag,'] ',eq.nama) AS nama,
+		$sql =	"SELECT eq.id,eq.nama AS nama,
 				eq.tag,eq.unit_id AS parent, ce.id AS idcat,ce.nama AS cat,eq.kode,IFNULL(eq.rhinit,0) AS rhinit,
 				'e' AS sil, 'true' AS leaf
 				FROM equip  eq

@@ -19,7 +19,7 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 			cellEditingPlugin = Ext.create('Ext.grid.plugin.CellEditing');
         me.plugins = [cellEditingPlugin];
         me.hideHeaders = me.hideDel?false:true;
-
+		/*
         me.viewConfig = {
             plugins: {
                 ptype: 'treeviewdragdrop',
@@ -39,10 +39,10 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 						me.fireEvent('ddragdrop', data.records[0],rcmSettings.idc,rcmSettings.tkf);
 						//alert("listeners GridL "+me.dropGroup+" "+data.records[0].get("kode"));
 					}
-					//*/
                 }
             }
         };
+        //*/
 		me.dockedItems= [{
 			xtype: 'toolbar',
 			dock: 'bottom',
@@ -54,7 +54,7 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
 					//id: 'idTrEqCHir',
 					id: me.idEqCH,
 					xtype: 'button',
-					text: 'Simpan',
+					text: 'Simpan Kategori',
 					iconCls: 'savedisk',
 					tooltip: 'Simpan Kategori'
 				}]:['->',{
@@ -74,12 +74,26 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
                 xtype: 'treecolumn',
                 dataIndex: 'nama',
                 text: 'Hirarki Aset',
-                flex: 3,
+                flex: 3
+                /*,
                 editor: {
                     xtype: 'textfield',
                     selectOnFocus: true,
                     allowOnlyWhitespace: false
 				}
+				//*/
+			},{
+				//xtype: 'treecolumn',
+                dataIndex: 'tag',
+                text: 'Tag',
+                flex: 1
+                /*,
+                editor: {
+                    xtype: 'textfield',
+                    selectOnFocus: true,
+                    allowOnlyWhitespace: false
+				}
+				//*/
 			},{
 				hidden  : me.hideCat,
 				text: 'Kategori Equipment',

@@ -986,18 +986,17 @@ Ext.define('rcm.controller.Config', {
 				r.set('tag'," ");
 			}
 			else if (f=="e") {		// equip
-				//r.data.funcloc=" ";
 				var n=r.get('nama').split("] ");
-				//r.data.nama = (n.length==2)?n[1]:n[0];
-				//r.data.junit=0;
+				//r.set('nama',(n.length==2)?n[1]:n[0]);
+				
 				r.set('funcloc'," ");
 				r.set('junit',0);
-				r.set('nama',(n.length==2)?n[1]:n[0]);
+				
 			}
 			if (f!="")	{
 				if (r.get('flag')==0)	r.set('flag',"");
 				me.getPanLokasi().getForm().loadRecord(r);
-				console.log(r);
+				//console.log(r);
 			}
         }
 	},
@@ -1448,7 +1447,7 @@ Ext.define('rcm.controller.Config', {
 	hdlCatHirEq: function(btn)		{
 		//alert("hdlCatHirEq");
 		var lu = this.getLokUnitStore();
-		rcmSettings.kkkk = lu;
+		//rcmSettings.kkkk = lu;
 		lu.sync();
 	},
 	

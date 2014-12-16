@@ -199,10 +199,9 @@ class rLokUnit extends CI_Controller {
 			}
 			else {
 				if ($par->sil=="e")	{
-					$n = explode("] ",$par->nama);
+					//$n = explode("] ",$par->nama);
 					$data = array(
-						//'nama'	=> $par->nama,
-						'nama'	=> isset($n[1])?$n[1]:"",
+						'nama'	=> $par->nama,
 						'kode'	=> $par->kode,
 						'tag'	=> $par->tag,
 						'unit_id' => $par->parent,
@@ -236,6 +235,7 @@ class rLokUnit extends CI_Controller {
 				}
 				$hsl = array('id' => $par->id);
 			}
+			
 			/*
 			if ($par->sil=="e")	{
 					$n = explode("] ",$par->nama);

@@ -319,7 +319,7 @@ if(!function_exists("ohexcel_data_overhaul")){
 					$sheet->setCellValue($awn[0].$baris,$nilai)->mergeCells("{$awn[0]}$baris:{$akn[0]}$baris")
 						  ->getStyle("{$awn[0]}$baris")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
 						  ->getStartColor()->setRGB(ohexcel_warna($nilai));		// 
-					/*
+					//*
 					$sheet->getStyle("{$awn[0]}$baris")->getAlignment()->setTextRotation(90)->applyFromArray(
 								array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 									  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
@@ -336,7 +336,7 @@ if(!function_exists("ohexcel_data_overhaul")){
 				$sheet->setCellValue($awn[0].$baris,$nilai)->mergeCells("{$awn[0]}$baris:{$akn[0]}$baris")
 					  ->getStyle("{$awn[0]}$baris")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
 					  ->getStartColor()->setRGB(ohexcel_warna($nilai));
-				/*
+				//*
 				$sheet->getStyle("{$awn[0]}$baris")->getAlignment()->setTextRotation(90)->applyFromArray(
 								array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 									  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
