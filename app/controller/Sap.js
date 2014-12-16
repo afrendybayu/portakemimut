@@ -263,7 +263,6 @@ Ext.define('rcm.controller.Sap', {
 			//*
 			form.submit({
 				url: 'ci/index.php/sap/rOverHaul/rExcOH?t='+t+'&l='+l+'&c='+c
-				
 			});
 			//*/
 		}
