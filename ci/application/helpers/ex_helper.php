@@ -238,6 +238,29 @@ if(!function_exists("warna_oh")){
 	}
 }
 
+if(!function_exists("ohexcel_warna")){
+	function ohexcel_warna($data){
+		$hijau = array("PM8K","PM9K","PM12K","PM16K","PM18K");
+		$merah = array("PM24K","PM32K","PM36K","PM48K","PM72K");
+		
+		if (count($hijau)>0)	{
+			foreach($hijau as $h)	{
+				if ($h===$data)	{
+					return "28e57b";
+				}
+			}
+		}
+		if (count($merah)>0)	{
+			foreach($merah as $h)	{
+				if ($h===$data)	{
+					return "fa6d5b";
+				}
+			}
+		}
+		return "90e5dd";
+	}
+}
+
 if(!function_exists("ohexcel_data_overhaul")){
 	function ohexcel_data_overhaul($sheet, $oh){
 		/*
@@ -296,7 +319,7 @@ if(!function_exists("ohexcel_data_overhaul")){
 					$sheet->setCellValue($awn[0].$baris,$nilai)->mergeCells("{$awn[0]}$baris:{$akn[0]}$baris")
 						  ->getStyle("{$awn[0]}$baris")
 						  ->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
-						  ->getStartColor()->setRGB('00B0F0');
+						  ->getStartColor()->setRGB(ohexcel_warna($nilai));
 					$sheet->getStyle("{$awn[0]}$baris")->getAlignment()->setTextRotation(90)->applyFromArray(
 								array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 									  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
