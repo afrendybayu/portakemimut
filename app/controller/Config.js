@@ -997,6 +997,7 @@ Ext.define('rcm.controller.Config', {
 			if (f!="")	{
 				if (r.get('flag')==0)	r.set('flag',"");
 				me.getPanLokasi().getForm().loadRecord(r);
+				console.log(r);
 			}
         }
 	},

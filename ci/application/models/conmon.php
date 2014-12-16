@@ -82,7 +82,7 @@ class Conmon extends CI_Model {
 
 	function uiconmon($val, $bln, $tipe, $thn)	{
 		$sql = "call iuconmon('$val','$bln','$tipe','$thn')";
-		//echo "sql: $sql<br/>";
+		echo "sql: $sql<br/>";
 		$hsl = new stdClass();
 		$l1=0; $l2 = 0;
 		if (mysqli_multi_query($this->db->conn_id,$sql))	{

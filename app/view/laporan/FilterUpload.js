@@ -32,7 +32,7 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 					value: rcm.view.Util.U1th(''),
 					fieldLabel: '<b>Pilih Tahun</b>',
 					labelWidth: 90,
-					width: 140,
+					width: 160,
 					margin: '0 10 0 0'
 				},{
 					id: me.idLok,
