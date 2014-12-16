@@ -135,6 +135,10 @@ class Conf extends CI_Controller {
 			
 			$this->db->where('id',$pmdef->id);
 			$this->db->update('pmdef', $upd);
+			$jsonResult = array(
+				'success' => true,
+				'message' => array('id' => $pmdef->id)
+			);
 			
 		} catch(Exception $e) {
 			$jsonResult = array(
