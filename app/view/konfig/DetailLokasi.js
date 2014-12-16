@@ -122,6 +122,15 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 				allowBlank: false,
 				hidden: true
 			},{
+				xtype: 'radiogroup',
+				fieldLabel: 'Status Unit',
+				name: 'radio',
+				items: [
+					{boxLabel: 'Aktif', name: 'status', inputValue: 1, checked: true},
+					{boxLabel: 'Non Aktif', name: 'status', inputValue: 0}
+				],
+				hidden: true
+			},{
 				xtype: 'numberfield',
 				fieldLabel: 'No urut',
 				name: 'urut',
@@ -175,13 +184,14 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 			me.findField('tag').setValue(" ");
 			me.findField('sil').setValue("h");
 			me.findField('flag').setValue(0);
+			//me.findField('status').setValue(0);
 		}
 		else if (n=="u")	{
 			Ext.fly('lblFormHir').update("Tambah Unit");
 			me.findField('funcloc').setValue("");
 			me.findField('tag').setValue(" ");
 			me.findField('sil').setValue('u');
-			//alert(me.findField('sil').setValue('u'));
+			//me.findField('status').setValue(0);
 		}
 		else if (n=="e")	{
 			Ext.fly('lblFormHir').update("Tambah Equipment");
@@ -189,6 +199,7 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 			me.findField('tag').setValue("");
 			me.findField('sil').setValue("e");
 			me.findField('flag').setValue(0);
+			//me.findField('status').setValue(0);
 		}
 	},
     
@@ -238,6 +249,7 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 			me.findField('funcloc').setVisible(false);
 			me.findField('urut').setVisible(true);
 			me.findField('flag').setVisible(false);
+			me.findField('radio').setVisible(false);
 		}
 		else if (n=="u")	{
 			me.findField('funcloc').setVisible(true);
@@ -245,6 +257,7 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 			me.findField('tag').setVisible(false);
 			me.findField('urut').setVisible(false);
 			me.findField('flag').setVisible(true);
+			me.findField('radio').setVisible(true);
 		}
 		else if (n=="e")	{
 			me.findField('rhinit').setVisible(true);
@@ -252,6 +265,7 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 			me.findField('urut').setVisible(false);
 			me.findField('funcloc').setVisible(false);
 			me.findField('flag').setVisible(false);
+			me.findField('radio').setVisible(false);
 		}
 		else {
 			me.findField('rhinit').setVisible(false);
@@ -259,18 +273,10 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 			me.findField('funcloc').setVisible(false);
 			me.findField('urut').setVisible(false);
 			me.findField('flag').setVisible(false);
+			me.findField('radio').setVisible(false);
 			me.reset();
 		}
 		//*/
-	},
-	
-	renderList: function(value) {
-		console.log("sampe sini 0");
-		if (value<=0)	return "";
-        var ul = Ext.getStore('UnitList'),
-            node = value ? ul.getNodeById(value) : ul.getRootNode();
-		console.log("sampe sini 2");
-        return node.get('nama');
-    }
+	}
 
 });

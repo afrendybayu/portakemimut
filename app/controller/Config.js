@@ -884,7 +884,7 @@ Ext.define('rcm.controller.Config', {
 		//console.log(getData);
 		//vPL.clearIsi(vPL.getForm());
 		//*
-		console.log(getData);
+		//console.log(getData);
 		//return;
 		var	hSmp = new rcm.model.LokUnit(getData);
 		hSmp.save({
