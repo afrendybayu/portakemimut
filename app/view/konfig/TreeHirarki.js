@@ -87,13 +87,6 @@ Ext.define('rcm.view.konfig.TreeHirarki', {
                 dataIndex: 'tag',
                 text: 'Tag',
                 flex: 1
-                /*,
-                editor: {
-                    xtype: 'textfield',
-                    selectOnFocus: true,
-                    allowOnlyWhitespace: false
-				}
-				//*/
 			},{
 				hidden  : me.hideCat,
 				text: 'Kategori Equipment',
