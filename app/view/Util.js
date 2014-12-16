@@ -103,7 +103,7 @@ Ext.define('rcm.view.Util', {
 			
 			items = [
 				{ xtype:'rownumberer',width:25 
-				},{ header:'Lokasi',dataIndex:'lok',width:100, hideable : false, 
+				},{ header:'Lokasi',dataIndex:'lok',width:130, hideable : false, 
 					locked: true, filter: { type: 'string' }
 				},{ header:'Nama Unit',dataIndex:'nama',width:220, hideable : false, 
 					locked: true, filter: { type: 'string' } 
@@ -113,14 +113,15 @@ Ext.define('rcm.view.Util', {
 			for(var i=1; i<13; i++)	{
 				col = [];
 				for (var j=1; j<5; j++)		{
-					col.push({ header: 'W'+j, dataIndex: 'b'+i+'m'+j, width:40,tdCls: 'x-change-cell',
+					col.push({ header: 'W'+j, dataIndex: 'b'+i+'m'+j, width:55,tdCls: 'x-change-cell',
 						
 						renderer: function(value,meta)	{
-							if (value=="IFOH") {	// (value.localeCompare("IFOH")==0) {
-								meta.style = "background-color:#a8ff94;";
-							} else if (value=="TOH")	{	// (value.localeCompare("TOH")==0) {
+							//if (value=="PM9K") {	// (value.localeCompare("IFOH")==0) {
+							//	meta.style = "background-color:#a8ff94;";
+							//} else if (value=="PM9K" || value=="PM18K")	{	// (value.localeCompare("TOH")==0) {
+							if (value=="PM9K" || value=="PM18K")	{	// (value.localeCompare("TOH")==0) {
 								meta.style = "background-color:#feffac;";
-							} else if (value=="GOH")	{	//(value.localeCompare("GOH")==0) {
+							} else if (value=="PM36K" || value=="PM48K" || value=="PM72K")	{	//(value.localeCompare("GOH")==0) {
 								meta.style = "background-color:#ffbdbd;";
 							//} else {
 							//*/

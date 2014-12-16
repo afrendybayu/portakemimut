@@ -21,9 +21,6 @@ Ext.define('rcm.view.laporan.GridConMon', {
 		]};
 		me.listeners = { 
 			'celldblclick' : function(list, record, row, e ){
-				// rcmSettings.itemmmmm = list;
-				// rcmSettings.eeeeeeee = e;
-				// rcmSettings.rrrrrrrr = record;
 				var thn = e.data.tahun;
 				// console.log(thn);
 				this.fireEvent('filterThConMon', thn);
