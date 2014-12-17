@@ -39,9 +39,11 @@ class rRunningHour extends CI_Controller {
 			//return;
 			
 			$hir = $this->hirarki->get_excelgrid_hir($cat,$pm,$m,$y,$t,$w);
-			//*
-			//print_r($hir);	echo "<br/>";
-			//return;
+			/*
+			foreach($hir as $h)	{
+				print_r($h);	echo "<br/>";
+			}
+			return;
 			//*/
 			$rh = $this->runninghour->get_rh_bulan(array($bts_1,$bts_0,$cat));
 			//print_r($rh);

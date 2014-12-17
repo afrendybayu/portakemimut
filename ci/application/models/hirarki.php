@@ -240,6 +240,11 @@ class Hirarki extends CI_Model {
 			print_r($p); echo "<br/>";
 		}
 		//*/
+		/*
+		foreach($query->result() as $p)	{
+			print_r($p); echo "<br/>";
+		}
+		//*/
 		//return;
 		$hsl = array(); $obj = new stdClass();
 		//if (count($d)>0)	{
@@ -305,10 +310,11 @@ class Hirarki extends CI_Model {
 		}
 		//*/
 		/*
-		//echo count($hsl)."<br/>";
+		echo "<br/>=================================".count($hsl)."<br/>";
 		foreach	($hsl as $h)	{
 			print_r($h);	echo "<br/>";
 		}
+		//echo "<br/>=================================".count($hsl)."<br/>";
 		//print_r($query->result());
 		//if ($query->num_rows)
 		//echo $query->num_rows();
@@ -320,19 +326,22 @@ class Hirarki extends CI_Model {
 		//print_r($hir);
 		//*
 		$hsl = array();	$k=0;
-		foreach ($hir as $h)	{
-			//print_r($h);	echo "<br/>id: {$h->id}<br/>";
-			//print_r($rh);	echo "<br/><br/>";
-			if (count($rh)>0)	{
-				foreach ($rh[$h->id] as $r)	{
-					//print_r($r);	echo "<br/>";
-					//echo "{$r->tgl} {$r->rh}<br/>";
-					$hir[$k]->{$r->tgl} = format_rh_time($r->rh);
+		//echo "<br/>Hir count: ".count($hir)."";
+		if (count($hir)>0)	{
+			foreach ($hir as $h)	{
+				//print_r($h);	echo "<br/>id: {$h->id}<br/>";
+				//print_r($rh);	echo "<br/><br/>";
+				if (count($rh)>0 && (isset($rh[$h->id])))	{
+					foreach ($rh[$h->id] as $r)	{
+						//print_r($r);	echo "<br/>";
+						//echo "{$r->tgl} {$r->rh}<br/>";
+						$hir[$k]->{$r->tgl} = format_rh_time($r->rh);
+					}
+					//echo "<br/>{$h->id}<br/>";
+					//print_r($hir[$k]); echo "<br/><br/>";
+					//echo "<br/>teeeeeee<br/>";
+					$k++;
 				}
-				//echo "<br/>{$h->id}<br/>";
-				//print_r($hir[$k]); echo "<br/><br/>";
-				//echo "<br/>teeeeeee<br/>";
-				$k++;
 			}
 		}
 		//*/

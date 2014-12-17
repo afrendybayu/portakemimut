@@ -48,8 +48,8 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-//$db['default']['hostname'] = '10.32.3.68';
+//$db['default']['hostname'] = 'localhost';
+$db['default']['hostname'] = '10.32.3.68';
 //*
 $db['default']['username'] = 'obama';
 $db['default']['password'] = 'obama2014';
