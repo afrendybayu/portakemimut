@@ -69,9 +69,9 @@ class rConMon extends CI_Controller {
 			$thn = (isset($par->thn))?$par->thn:date('Y');
 
 			//$this->load->model('contract');
-			echo "nilai: ".floatval($par->nilai).",bln: ".$bln.", tipe: ".$par->tipe.",thn: ".$par->thn;
+			//echo "nilai: ".floatval($par->nilai).",bln: ".$bln.", tipe: ".$par->tipe.",thn: ".$par->thn;
 			$hasil = $this->conmon->uiconmon(floatval($par->nilai), $bln, $par->tipe, $par->thn);
-			print_r($hasil);
+			//print_r($hasil);
 			
 			//print_r($hasil);
 			$jsonResult = array(
