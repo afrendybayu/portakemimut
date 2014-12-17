@@ -44,8 +44,8 @@ class rHirarki extends CI_Controller {
 						//print_r($row); echo "<br/>";
 						$arr[$k]['leaf'] = 'true';
 						$arr[$k]['id'] = $row->id;
-						//$arr[$k]['text'] = '['.$row->tag.'] '.$row->nama;
-						$arr[$k]['text'] = '['.$row->tag.'] '.$row->nama.' '.$row->id;
+						$arr[$k]['text'] = '['.$row->tag.'] '.$row->nama;
+						//$arr[$k]['text'] = '['.$row->tag.'] '.$row->nama.' '.$row->id;
 						$arr[$k]['tipe'] = 'e';
 						$k++;
 					}
