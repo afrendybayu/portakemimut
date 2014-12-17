@@ -875,6 +875,7 @@ Ext.define('rcm.controller.Config', {
 				//console.log("config hdlSmpHir");
 				//me.getHirDefStore().reload();
 				me.getLokUnitStore().load();
+				me.getHirDefStore().load();
 				if (gD.sil=="u")	{
 					//me.getExcelgrid().reconfigure(me.getRunningHourStore().load({ params:{cat:gD.cat} }), rcm.view.Util.UxcolGrid());
 					me.getRunningHourStore().reload({ params:{tgl:rcmSettings.tgl, cat:gD.cat} });
@@ -900,7 +901,7 @@ Ext.define('rcm.controller.Config', {
 			success: function(rec, op){
 				//console.log("config hdlSmpHir success");
 				me.getLokUnitStore().load();
-				//me.getHirDefStore().reload();
+				me.getHirDefStore().load();
 				Ext.Msg.alert('Sukses', 'Data baru sudah ditambahkan');
 				//vPL.clearIsi(vPL.getForm());
 			}
