@@ -389,9 +389,10 @@ Ext.define('rcm.controller.Config', {
             '[iconCls=newEquip]': {
                 click: me.newEquip
             },
-            /*
-            '#idRefrCH': {
-				click: me.refTH
+            //*
+            //'#idRefrCH': {
+            '[iconCls=refTH]': {
+				click: me.hdlrefTH
 			}
 			//*/
 		});
@@ -874,8 +875,10 @@ Ext.define('rcm.controller.Config', {
 			success: function(rec, op){
 				//console.log("config hdlSmpHir");
 				//me.getHirDefStore().reload();
+				Ext.Msg.alert('Sukses', 'Data baru sudah diperbarui');
 				me.getLokUnitStore().load();
 				me.getHirDefStore().load();
+				me.getGridEqnInStore().load();
 				if (gD.sil=="u")	{
 					//me.getExcelgrid().reconfigure(me.getRunningHourStore().load({ params:{cat:gD.cat} }), rcm.view.Util.UxcolGrid());
 					me.getRunningHourStore().reload({ params:{tgl:rcmSettings.tgl, cat:gD.cat} });
@@ -902,6 +905,7 @@ Ext.define('rcm.controller.Config', {
 				//console.log("config hdlSmpHir success");
 				me.getLokUnitStore().load();
 				me.getHirDefStore().load();
+				me.getGridEqnInStore().load();
 				Ext.Msg.alert('Sukses', 'Data baru sudah ditambahkan');
 				//vPL.clearIsi(vPL.getForm());
 			}
@@ -954,8 +958,8 @@ Ext.define('rcm.controller.Config', {
 		this.getCatHirStore().load();
 	},
 	hdlrefTH: function()	{
-		alert("hdlrefTH");
-		//this.getLokUnitStore().load();
+		//alert("hdlrefTH");
+		this.getLokUnitStore().load();
 	},
 	hdlExpand: function()	{
 		//alert("Expand");

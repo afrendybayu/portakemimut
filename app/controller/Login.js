@@ -120,8 +120,7 @@ Ext.define('rcm.controller.Login', {
 					//Ext.getCmp('conmondel').setDisabled(false);
 					//Ext.getCmp('cmform').setDisabled(false);
 					
-					Ext.getCmp('ohdel').setDisabled(false);
-					Ext.getCmp('ohform').setDisabled(false);
+					
 					// Ext.getCmp('tu_kf').setDisabled(false);
 					
 					//Ext.getCmp('conmondel').setEnabled(false);
@@ -133,6 +132,9 @@ Ext.define('rcm.controller.Login', {
 					me.getContent().showKonfig(true);
 					me.getTabChart().showInput(true);
 					Ext.getCmp('idUpOh').setDisabled(false);
+					
+					Ext.getCmp('ohdel').setDisabled(false);
+					//Ext.getCmp('ohform').setDisabled(false);
 					
 				},
 				failure : function(respon, operation){
@@ -202,8 +204,7 @@ Ext.define('rcm.controller.Login', {
 					//Ext.getCmp('conmondel').setDisabled(true);
 					//Ext.getCmp('cmform').setDisabled(true);
 					
-					Ext.getCmp('ohform').setDisabled(true);
-					Ext.getCmp('ohdel').setDisabled(true);
+					
 					// Ext.getCmp('tu_kf').setDisabled(true);
 					Ext.getCmp('idGridCM').ngedit = 0;
 					//Ext.fly('idGridCM').ngedit = 0;
@@ -212,6 +213,9 @@ Ext.define('rcm.controller.Login', {
 					me.getTabChart().showInput(false);
 					Ext.getCmp('idUpOh').setDisabled(true);
 					//Ext.getCmp('ConMonSave').setDisabled(true);
+					
+					//Ext.getCmp('ohform').setDisabled(true);
+					Ext.getCmp('ohdel').setDisabled(true);
 				}
 				else {
 					Ext.getCmp('p_login').setVisible(false);
@@ -256,8 +260,7 @@ Ext.define('rcm.controller.Login', {
 					//Ext.getCmp('conmondel').setDisabled(false);
 					//Ext.getCmp('cmform').setDisabled(false);
 					
-					Ext.getCmp('ohdel').setDisabled(false);
-					Ext.getCmp('ohform').setDisabled(false);
+					
 					// Ext.getCmp('tu_kf').setDisabled(false);
 					
 					Ext.getCmp('idGridCM').ngedit = 1;
@@ -267,6 +270,10 @@ Ext.define('rcm.controller.Login', {
 					me.getTabChart().showInput(true);
 					//alert("me.getExcelgrid().ngedit = 1;");
 					//me.getIConMon().ngedit = 1;
+					
+					Ext.getCmp('idUpOh').setDisabled(false);
+					Ext.getCmp('ohdel').setDisabled(false);
+					//Ext.getCmp('ohform').setDisabled(false);
 				}
 				else{
 					//console.log('sesine ilang je');
@@ -280,12 +287,15 @@ Ext.define('rcm.controller.Login', {
 					//Ext.getCmp('cmform').setDisabled(true);
 					//Ext.getCmp('idGridCM').ngedit = 0;		// ----->
 					
-					Ext.getCmp('ohform').setDisabled(true);
-					Ext.getCmp('ohdel').setDisabled(true);
+					
 					me.getContent().showKonfig(false);
 					me.getTabChart().showInput(false);
 					// Ext.getCmp('tu_kf').setDisabled(true);
 					//alert("Session Habis");
+					
+					Ext.getCmp('idUpOh').setDisabled(true);
+					//Ext.getCmp('ohform').setDisabled(true);	// ----->
+					Ext.getCmp('ohdel').setDisabled(true);
 				}
 				// console.log(res.nama);
 			}

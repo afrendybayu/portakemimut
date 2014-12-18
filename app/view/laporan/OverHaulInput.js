@@ -12,7 +12,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 	// idunit: '',
 	// ngedit: 0,
 	enableColumnHide: false,
-	//*
+	/*
 	dockedItems: [{
             xtype: 'taskOverHaul',
             dock: 'top',
@@ -33,7 +33,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 			// hideTooltip: true
 		});
 		// me.selType = rmode;
-		me.plugins = [edit];
+		//me.plugins = [edit];
 				
 		me.columns = {
 			defaults : {
@@ -46,8 +46,9 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 				},{
 					header : 'Order No',width : 100,dataIndex : 'wo', editor: {allowBlank: false}
 				},{
-					header : 'Lokasi',width : 250,dataIndex : 'lokasi', 
-					editor:{
+					header : 'Lokasi',width : 250,dataIndex : 'lokasi'
+					/*
+					,editor:{
 						xtype		:'combobox',
 						editable	: false,
 						allowBlank	: false,
@@ -63,9 +64,11 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 						}
 						
 					}
+					//*/
 				},{
-					header : 'Equip',flex : 1,dataIndex : 'equip',
-					editor:{
+					header : 'Equip',flex : 1,dataIndex : 'equip'
+					/*
+					,editor:{
 						xtype		:'combobox',
 						editable	: false,
 						allowBlank	: false,
@@ -80,9 +83,11 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 							}
 						}
 					}
+					//*/
 				},{
-					header : 'Unit',width:250,dataIndex : 'unit',
-					editor:{
+					header : 'Unit',width:250,dataIndex : 'unit'
+					/*
+					,editor:{
 						xtype		:'combobox',
 						editable	: false,
 						allowBlank	: false,
@@ -97,36 +102,40 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 							}
 						}	
 					}
+					//*/
 				},{
-					header : 'Tanggal', width : 100,dataIndex : 'tglplan',xtype : 'datecolumn', format : 'd-m-Y',editable : false, editor:{
+					header : 'Tanggal', width : 100,dataIndex : 'tglplan',xtype : 'datecolumn', format : 'd-m-Y'
+						,editable : false, editor:{
 							xtype		: 'datefield',
 							name		: 'tglplan',
 							format		: 'd-m-Y',
 							// submitFormat : 'Y-m-d',
 							editable	: false,
 							allowBlank	: false
-						}},
-						{header : 'Durasi',width : 100,dataIndex : 'durasiplan',editor : {
+						}
+				},{
+					header : 'Durasi',width : 100,dataIndex : 'durasiplan'
+						,editor : {
 							xtype		:'numberfield',
 							allowBlank	: false,
 							name		: 'durasiplan',
 							maxValue	: 360,
 							minValue	: 1
-						}},
-						{
-							xtype		:'actioncolumn',
-							width		:50,
-							id 			: 'ohdel', 
-							iconCls		: 'hpsEvent',
-							sortable	: false,
-							visible		: false,
-							tooltip		: 'Hapus',
-							disabled: true,
-							//hidden : true,
-							handler		: Ext.bind(me.OhGridDelete, me)
+						}
+				},{
+						xtype		:'actioncolumn',
+						width		:50,
+						id 			: 'ohdel', 
+						iconCls		: 'hpsEvent',
+						sortable	: false,
+						visible		: false,
+						tooltip		: 'Hapus',
+						disabled: true,
+						//hidden : true,
+						handler		: Ext.bind(me.OhGridDelete, me)
 							
 			
-					}]
+			}]
 		};
 		me.callParent(arguments);
 		// me.addEvents(		);
@@ -145,7 +154,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 
 	hdlGridOHEdit: function(record, e){
 		// console.log (e);
-		rcmSettings.eeeee = e;
+		//rcmSettings.eeeee = e;
 		// rcmSettings.rrrrr = record;
 		// console.log('id equip : '+e.record.get('id_equip')+' , id oh : '+e.record.get('oh'));
 		

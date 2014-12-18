@@ -114,7 +114,6 @@ Ext.define('rcm.view.Util', {
 				col = [];
 				for (var j=1; j<5; j++)		{
 					col.push({ header: 'W'+j, dataIndex: 'b'+i+'m'+j, width:55,tdCls: 'x-change-cell',
-						
 						renderer: function(value,meta)	{
 							//if (value=="PM9K") {	// (value.localeCompare("IFOH")==0) {
 							//	meta.style = "background-color:#a8ff94;";
@@ -123,9 +122,9 @@ Ext.define('rcm.view.Util', {
 								meta.style = "background-color:#feffac;";
 							} else if (value=="PM36K" || value=="PM48K" || value=="PM72K")	{	//(value.localeCompare("GOH")==0) {
 								meta.style = "background-color:#ffbdbd;";
-							//} else {
-							//*/
-							}
+							} else if (value=="PM1.5K")	{
+								meta.style = "background-color:#bdbdff;";
+							}	
 						
 							return value;
 						}
@@ -136,7 +135,7 @@ Ext.define('rcm.view.Util', {
 			}
 			//items.push({ header:'Keterangan',dataIndex:'ket',minWidth: 180,flex:1,hideable:false });
 			
-			//console.log(items);
+			console.log(items);
 			return items;
 		},
 		
