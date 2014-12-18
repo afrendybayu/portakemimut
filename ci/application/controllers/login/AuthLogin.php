@@ -10,8 +10,7 @@ class AuthLogin extends CI_Controller {
 		
 		try {
 			$query = $this->login->getLogAuth();
-			foreach ($query->result() as $row)
-			{
+			foreach ($query->result() as $row)	{
 			   $logid[] = array(
 					"user"=>$row->userid,
 					"pass"=>$row->pass,
@@ -35,18 +34,26 @@ class AuthLogin extends CI_Controller {
 		try{
 			$login = json_decode(file_get_contents('php://input'));
 			
-			
-			if (isset ($login->userid) && isset($login->pass)){
+			/*
+			if (isset ($login->userid) && isset($login->pass))	{
 				$login  = $this->login->ValidLogin($login->userid,$login->pass);
 				//print_r($login);
 				if (count($login)>0)	{
 					foreach ($login as $row){
-						$sesi = array('nama' =>$row->nama,'level' => $row->akses );
+						$sesi = array(
+									'nama' =>$row->nama,
+									'level' => $row->akses 
+								);
 						$this->session->set_userdata('log_sesi',$sesi);
 						$session_data = $this->session->userdata('log_sesi'); //sesi
+						//$session_id = $this->session->userdata('session_id');
+						//print_r($session_id);
 						$jsonResult = array(
 							'success' 	=> true,
-							'rule' => array ('level' => $session_data['level'],'session' => $session_data['nama'] )
+							'rule' => array (
+										'level' => $session_data['level'],
+										'session' => $session_data['nama']
+									)
 						);
 					}
 				}
@@ -55,7 +62,7 @@ class AuthLogin extends CI_Controller {
 				}
 			}
 			
-			else{
+			else {
 				$jsonResult = array(
 					'success' => false,
 					'rule' => 'Gagal Login'
@@ -63,7 +70,7 @@ class AuthLogin extends CI_Controller {
 			
 			
 			}
-			
+			//*/
 		}
 		catch(Exception $e){
 			$jsonResult = array(

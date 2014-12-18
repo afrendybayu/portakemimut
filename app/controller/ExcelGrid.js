@@ -29,7 +29,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 		,'EventList'
 		,'Event'
 		,'EventInfo'
-		,'LoginSesi'
+		//,'LoginSesi'
 		,'Equip'
 		,'OPart'
 		,'FMode'
@@ -42,7 +42,7 @@ Ext.define('rcm.controller.ExcelGrid', {
     models: [
 		'RunningHour'
 		,'Event'
-		,'LoginSesi'
+		//,'LoginSesi'
     ],
     
     refs: [{
@@ -335,6 +335,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 	
 	buildFormGagal: function(e)	{
 		var me = this;
+		/*
 		var DSesi = me.getLoginSesiStore();
 		DSesi.load({
 			scope: this,
@@ -357,7 +358,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 				//console.log(res.nama);
 			}
 		});
-		
+		//*/
 		var	go = 0,
             tFG = me.getTaskFormGagal(),
 			form =  tFG.down('form').getForm(),
@@ -479,6 +480,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 
     onLaunch: function() {
 		//console.log("onLauch ExcelGrid");
+		//*
 		Ext.getCmp('idwest').collapse();
 		this.ubahFieldRH();		
 		Ext.getCmp('htmleddet').setReadOnly(true);	// ------------->
@@ -566,7 +568,7 @@ Ext.define('rcm.controller.ExcelGrid', {
 			},
 			timerangeText: 'Start Time must be less than end time'
 		});
-        
+        //*/
         
 	},
 	

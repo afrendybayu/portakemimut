@@ -35,7 +35,7 @@ Ext.define('rcm.view.Content', {
 			xtype: 'tHoChart'
 		//*
 		},{
-		
+		//*/
 		//*
 			id: 'tu_re',
 			title: 'Reliability',
@@ -56,18 +56,21 @@ Ext.define('rcm.view.Content', {
 			id: 'tu_rh',
 			title: 'Runnning Hour',
 			iconCls: 'RunnningHour',
-			//layout: 'accordion',
 			xtype: 'tabRh'
 		//*
-		//*
+		
+		
 		},{
+		//*
+		//*/
 			id: 'tu_co',
 			title: 'Condition Monitoring',
 			iconCls: 'connect',
 			xtype:'tConMon'
-		//*/
+		
 		//*
 		},{
+		
 			id		: 'tu_kf',
 			itemId	: 'tu_kf',
 			title	: 'Konfigurasi',

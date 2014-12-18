@@ -233,16 +233,18 @@ Ext.define('rcm.controller.Login', {
 	onLaunch: function(){
 		// console.log('launch sesi login');
 		var me = this;
+		//*
 		var LSesi = this.getLoginSesiStore();
 		
 		var runner = new Ext.util.TaskRunner();
 		var task = runner.start({
 			run: this.updateClock,
-			interval: 1000
+			//interval: 1000
+			interval: 10
 		});
 
 
-		//*/
+		
 		LSesi.load({
 			scope: this,
 			callback: function(records, operation, success) {
@@ -300,5 +302,6 @@ Ext.define('rcm.controller.Login', {
 				// console.log(res.nama);
 			}
 		});
+		//*/
 	}
 });
