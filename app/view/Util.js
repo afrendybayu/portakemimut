@@ -135,7 +135,7 @@ Ext.define('rcm.view.Util', {
 			}
 			//items.push({ header:'Keterangan',dataIndex:'ket',minWidth: 180,flex:1,hideable:false });
 			
-			console.log(items);
+			//console.log(items);
 			return items;
 		},
 		

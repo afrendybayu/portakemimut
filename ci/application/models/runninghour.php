@@ -165,7 +165,7 @@ class Runninghour extends CI_Model {
 				LEFT JOIN rh_201311 ON hirarki.id = rh_201311.eq 
 				LEFT JOIN equip ON hirarki.id = equip.unit_id AND equip.kode LIKE (SELECT kode FROM cat_equip WHERE cat_equip.id=$cat) 
 				WHERE hirarki.flag=$cat 
-				GROUP BY hirarki.id ORDER BY urut,init ASC;";
+				GROUP BY hirarki.id ORDER BY urut,kode ASC;";
 		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql,array($thn,$cat));
 		return $query->result();
@@ -189,7 +189,7 @@ class Runninghour extends CI_Model {
 				"LEFT JOIN rh_201311 ON hirarki.id = rh_201311.eq ".
 				"LEFT JOIN equip ON hirarki.id = equip.unit_id AND equip.kode LIKE (SELECT kode FROM cat_equip WHERE cat_equip.id=$cat) ".
 				"WHERE hirarki.flag=$cat ".
-				"GROUP BY hirarki.id ORDER BY urut,init ASC;";
+				"GROUP BY hirarki.id ORDER BY urut,kode ASC;";
 		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql,array($thn,$bln,$cat));
 		return $query->result();
