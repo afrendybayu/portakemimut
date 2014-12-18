@@ -114,19 +114,43 @@ Ext.define('rcm.view.Util', {
 				col = [];
 				for (var j=1; j<5; j++)		{
 					col.push({ header: 'W'+j, dataIndex: 'b'+i+'m'+j, width:55,tdCls: 'x-change-cell',
-						renderer: function(value,meta)	{
+						renderer: function(value,meta,a,b)	{
+							var n=value.split(";");
+							var d = parseInt(n[1]);
+							//console.log(d);
+							if (d<=3000)	{
+								meta.style = "background-color:#a9d08e;";
+							} else if (d<=4500)	{
+								meta.style = "background-color:#00b050;";
+							} else if (d<=9000)	{
+								meta.style = "background-color:#b4c6e7;";
+							} else if (d<=16000)	{
+								meta.style = "background-color:#ffd966;";
+							} else if (d<=24000)	{
+								meta.style = "background-color:#f4b084;";
+							} else if (d<=36000)	{
+								meta.style = "background-color:#b46c95;";
+							} else if (d<=1000000)	{
+								meta.style = "background-color:#ff2828;";
+							} 
+							
+							
+							
+							return (n[0]);
+							//console.log(a);
 							//if (value=="PM9K") {	// (value.localeCompare("IFOH")==0) {
 							//	meta.style = "background-color:#a8ff94;";
 							//} else if (value=="PM9K" || value=="PM18K")	{	// (value.localeCompare("TOH")==0) {
+							/*
 							if (value=="PM9K" || value=="PM18K")	{	// (value.localeCompare("TOH")==0) {
 								meta.style = "background-color:#feffac;";
 							} else if (value=="PM36K" || value=="PM48K" || value=="PM72K")	{	//(value.localeCompare("GOH")==0) {
 								meta.style = "background-color:#ffbdbd;";
 							} else if (value=="PM1.5K")	{
 								meta.style = "background-color:#bdbdff;";
-							}	
-						
+							}
 							return value;
+							//*/
 						}
 						
 					});

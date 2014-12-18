@@ -48,6 +48,7 @@ Ext.define('rcm.view.laporan.FilterSap', {
 					queryMode: 'local',
 					displayField: 'nama',
 					valueField: 'id',
+					//valueField: 'urut',
 					fieldLabel: '<b>Lokasi</b>',
 					margin: '0 10 0 0'
 				},{
