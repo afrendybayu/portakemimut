@@ -231,7 +231,7 @@ class Sap extends CI_Model {
 				ROUND((100*(sum(if(teco!=0,1,0)))/count(teco)),2) as woc,
 				ROUND((100*(sum(if(teco!=0,0,1)))/count(teco)),2) as woo
 				from sap left join refer on refer.kode = sap.manwork
-				where manwork != '' AND YEAR(planstart)=$thn group by manwork";
+				where manwork != '' AND manwork != -1 AND YEAR(planstart)=$thn group by manwork";
 
 		$query = $this->db->query($sql);
 		return $query->result();
