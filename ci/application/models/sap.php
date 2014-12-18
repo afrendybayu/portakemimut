@@ -18,7 +18,10 @@ class Sap extends CI_Model {
 		//*/
 		$fmc = ''; $flok = '';
 		if ($mwc !== '-')	$fmc  = " AND manwork LIKE '%$mwc%' ";
-		if ($lok >= 0)		$flok = " AND sap.lokasi=$lok ";
+		//echo "lok: $lok<br/>";
+		if ($lok >= 0)		{
+			$flok = " AND sap.lokasi=$lok ";
+		}
 		
 		
 		$sql =	"select ordertype AS kode,pmtype,count(*) AS wo

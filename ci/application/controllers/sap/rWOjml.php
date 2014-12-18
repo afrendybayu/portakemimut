@@ -34,7 +34,7 @@ class rWOjml extends CI_Controller {
 			$mwc = $this->input->get('mwc')?:'-';
 			
 			if ($mwc === 'ALL')	$mwc = '-';
-			$lok = $this->input->get('loc')?:-1;
+			$lok = ($this->input->get('loc')>=0)?$this->input->get('loc'):-1;
 			if ($lok === 'ALL')	$lok = -1;
 			//echo "lok: $lok --> lok: $lok<br/>";
 			$this->load->model('sap');
