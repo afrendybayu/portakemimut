@@ -903,21 +903,52 @@ Ext.define('rcm.controller.Sap', {
 			me.getDetConMonGrStore().load();
 			me.getDetConMonPmpStore().load();
 			me.getDetConMonGsStore().load();
-			
+			/*
 			me.getWoOpen7Store().load();
 			me.getWoOpen30Store().load();
 			me.getWoOpen60Store().load();
 			me.getWoOpenL60Store().load();
-			
-			me.getOhTahunStore().load();
-			me.getOverHaulInStore().load();
-			me.getCatHirEqStore().load();
-
-			var task = new Ext.util.DelayedTask(function(){
-				me.getDelayedStore2();
+			//*/
+			me.getWoOpen7Store().load({
+				scope: this,
+				callback: function(rec) {
+					//console.log(rec[0].get('teks'));
+					if (rec)	Ext.getCmp('wo3s7').setText(rec[0].get('teks'));
+					//Ext.fly('wo3s7').update(rec[0].get('teks'));
+				}
 			});
-			task.delay(rcmSettings.dlySapI*1000);
-		}
+			me.getWoOpen30Store().load({
+				scope: this,
+				callback: function(rec) {
+					if (rec)	Ext.getCmp('wo7s30').setText(rec[0].get('teks'));
+					//Ext.fly('wo7s30').update(rec[0].get('teks'));
+				}
+			});
+			me.getWoOpen60Store().load({
+				scope: this,
+				callback: function(rec) {
+					if (rec)	Ext.getCmp('wo30s60').setText(rec[0].get('teks'));
+					//Ext.fly('wo30s60').update(rec[0].get('teks'));
+				}
+			});
+			me.getWoOpenL60Store().load({
+				scope: this,
+				callback: function(rec) {
+					if (rec)	Ext.getCmp('wo60').setText(rec[0].get('teks'));
+					//Ext.fly('wo60').update(rec[0].get('teks'));
+				}
+			});
+			
+				//*/
+				me.getOhTahunStore().load();
+				me.getOverHaulInStore().load();
+				me.getCatHirEqStore().load();
+
+				var task = new Ext.util.DelayedTask(function(){
+					me.getDelayedStore2();
+				});
+				task.delay(rcmSettings.dlySapI*1000);
+			}
 		//*/
 		/*
 		'HoTeco','HoMan','HoOrderC'

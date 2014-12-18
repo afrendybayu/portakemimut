@@ -36,14 +36,38 @@ class rWOjml extends CI_Controller {
 			if ($mwc === 'ALL')	$mwc = '-';
 			//$lok = $this->input->get('loc')>=0)?$this->input->get('loc'):-1;
 			
-			if ($this->input->get('loc') || $this->input->get('loc')>=0)	{
-				//echo "lok: $lok --> lok: $lok<br/>";
-				$lok = $this->input->get('loc');
-				if ($lok === 'ALL')	$lok = -1;
+			if  (strlen($this->input->get('loc'))>0)	{
+				if ($this->input->get('loc')==="ALL")	$lok = -1;
+				else $lok = $this->input->get('loc');
+				//echo "lewat sini $lok<br/>";
+			}
+			else {
+				$lok = -1;
+			}
+			/*
+			if ($this->input->get('loc') || ($this->input->get('loc')>=0))	{
+			//if ($lok>=0)	{
+				echo "masuk sini".$this->input->get('loc')."<br/>";
+				if (strlen($this->input->get('loc')>0))
+					echo "nilai: ".$this->input->get('loc')."<br/>";
+				else {
+					echo "tidak ada getloc<br/>";
+				}
+				if ($this->input->get('loc')>=0)	{
+					$lok = 0;
+					echo "lok: $lok<br/>";
+				}
+				else {
+					$lok = $this->input->get('loc')?:"-1";
+					echo "lok: $lok --> lok: $lok<br/>";
+					//$lok = $this->input->get('loc');
+					if ($lok === 'ALL')	$lok = -1;
+				}
 			} 
 			else {
 				$lok = -1;
 			}
+			//*/
 			//if ($lok === 'ALL')	$lok = -1;
 			//echo "lok: $lok --> lok: $lok<br/>";
 			$this->load->model('sap');
@@ -111,14 +135,26 @@ class rWOjml extends CI_Controller {
 			$mwc = $this->input->get('mwc')?:"_";
 			
 			
-			if ($this->input->get('loc') || $this->input->get('loc')>=0)	{
+			//$lok = $this->input->get('loc')?:"-1";
+			if  (strlen($this->input->get('loc'))>0)	{
+				if ($this->input->get('loc')==="ALL")	$lok = -1;
+				else $lok = $this->input->get('loc');
+				//echo "lewat sini $lok<br/>";
+			}
+			else {
+				$lok = -1;
+			}
+			
+			/*
+			//if ($this->input->get('loc') || $this->input->get('loc')>=0)	{
+			if ($lok>=0)	{
 				$lok = $this->input->get('loc');
 				if ($lok === 'ALL')	$lok = -1;
 			} 
 			else {
 				$lok = -1;
 			}
-			//if ($lok === 'ALL')	$lok = -1;
+			//*/
 			//echo "lok: $lok<br/>";
 			$this->load->model('sap');
 			$hsl = $this->sap->get_selisih_WO($thn, $lok, $otp, $mwc);

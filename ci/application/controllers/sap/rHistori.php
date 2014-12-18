@@ -15,9 +15,18 @@ class rHistori extends CI_Controller {
 
 		try {
 			$thn = $this->input->get('tgl')?:date('Y');
-			$lok = $this->input->get('loc')?:"_";
+			//$lok = $this->input->get('loc')?:"_";
 			$otp = $this->input->get('otp')?:"_";
 			$mwc = $this->input->get('mwc')?:"_";
+			
+			if  (strlen($this->input->get('loc'))>0)	{
+				if ($this->input->get('loc')==="ALL")	$lok = -1;
+				else $lok = $this->input->get('loc');
+				//echo "lewat sini $lok<br/>";
+			}
+			else {
+				$lok = -1;
+			}
 			
 			//echo "$lok $otp $mwc<br/>";
 			//$this->load->model('sap');

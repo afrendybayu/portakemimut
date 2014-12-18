@@ -262,7 +262,8 @@ class Sap extends CI_Model {
 		
 		//echo "lok: $lok<br/>";
 
-		if ($lok!="ALL" and $lok!="_")		$sql .=	"AND lokasi=$lok ";
+		//if ($lok!="ALL" and $lok!="_")		$sql .=	"AND lokasi=$lok ";
+		if ($lok>=0)		$sql .=	"AND lokasi=$lok ";
 		if ($otp!="ALL" and $otp!="_")		$sql .=	"AND ordertype like '%$otp%' ";
 		if ($mwc!="ALL" and $mwc!="_")		$sql .=	"AND manwork like '%$mwc%' ";
 		$sql .=	"GROUP BY nbln ORDER BY nbln ASC";
@@ -282,7 +283,7 @@ class Sap extends CI_Model {
 	
 	function get_mwc()	{
 		$sql =	"SELECT 'ALL' AS mwc UNION ".
-				"SELECT manwork as mwc FROM sap WHERE manwork <> '' GROUP BY manwork";
+				"SELECT manwork as mwc FROM sap WHERE manwork <> '' AND manwork <> -1 GROUP BY manwork";
 		//echo "sql: $sql";		
 		
 		$query = $this->db->query($sql);

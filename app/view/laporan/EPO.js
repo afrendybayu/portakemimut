@@ -82,25 +82,25 @@ Ext.define('rcm.view.laporan.EPO', {
 					xtype: 'label',
 					id: 'wo3s7',
 					cls: 'cTextAlign',
-					text: 'Jml: 3449, %-to-Total: 84.83 %'
+					text: 'Jml: x, %-to-Total: y %'
 				},{
 					flex: 1,
 					xtype: 'label',
 					id: 'wo7s30',
 					cls: 'cTextAlign',
-					text: 'Jml: 255, %-to-Total: 6.27 %'
+					text: 'Jml: x, %-to-Total: y %'
 				},{
 					flex: 1,
 					xtype: 'label',
 					id: 'wo30s60',
 					cls: 'cTextAlign',
-					text: 'Jml: 56, %-to-Total: 1.38 %'
+					text: 'Jml: x, %-to-Total: y %'
 				},{
 					flex: 1,
 					xtype: 'label',
 					id: 'wo60',
 					cls: 'cTextAlign',
-					text: 'Jml: 306, %-to-Total: 7.52 %'
+					text: 'Jml: x, %-to-Total: y %'
 			}]
 		},{
 			xtype: 'panel',
