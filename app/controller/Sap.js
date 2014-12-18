@@ -19,6 +19,8 @@ Ext.define('rcm.controller.Sap', {
 		,'laporan.OverHaulForm'
 		,'laporan.ManOCost'
 		,'laporan.Jabatan'
+		
+		,'laporan.WOStack'
     ],
 
     controllers: [
@@ -64,6 +66,9 @@ Ext.define('rcm.controller.Sap', {
 		},{
 			ref: 'tWOComp',
 			selector: 'tWOComp'
+		},{
+			ref: 'tWOStack',
+			selector: 'tWOStack'
 		},{
 			ref: 'causechart',
 			selector: 'causechart'
@@ -747,7 +752,9 @@ Ext.define('rcm.controller.Sap', {
 		var t=Ext.getCmp('iThnCom').getValue();
 		this.getHoTecoStore().load({ params:{thn:t} });
 		this.getHoManStore().load({ params:{thn:t} });
-		
+		//console.log(this.getTWOStack());
+		this.getTWOStack().draw();
+		//rcmSettings.dddddd = this.getTWOStack();
 	},
 		
 	simpanconmon : function(){

@@ -53,6 +53,7 @@ Ext.define('rcm.view.laporan.WOComp', {
 					jdl: 'WO Compliance'
 			}]
 		},{
+			id: 'idWOStack',
 			xtype: 'tWOStack',
 			flex: 1,
 			jdl: 'WO Compliance'

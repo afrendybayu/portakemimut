@@ -72,8 +72,8 @@ Ext.define('rcm.view.laporan.WOStack', {
 			},
 			tooltip : {
 				formatter : function(rec) {
-					rcmSettings.bbbb = rec;
-					rcmSettings.cccc = this;
+					//rcmSettings.bbbb = rec;
+					//rcmSettings.cccc = this;
 					return '<b>' + this.series.name + '</b><br/>' + this.x + ': ' + this.y+'%';
 				}
 			},
