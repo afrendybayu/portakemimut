@@ -47,7 +47,8 @@ class Sap extends CI_Model {
 				WHERE teco=0 and planend<curdate() AND YEAR(planstart)=$thn AND (datediff(curdate(), planend))>2 ";
 		//*/
 		$flt = '';
-		if ($lok!="ALL" and $lok!="_")		$flt .= " AND lokasi=$lok ";
+		//if ($lok!="ALL" and $lok!="_")		$flt .= " AND lokasi=$lok ";
+		if ($lok>=0)		$flt .= " AND lokasi=$lok ";
 		if ($otp!="ALL" and $otp!="_")		$flt .=	" AND ordertype like '%$otp%' ";
 		if ($mwc!="ALL" and $mwc!="_")		$flt .=	" AND manwork like '%$mwc%' ";
 		
