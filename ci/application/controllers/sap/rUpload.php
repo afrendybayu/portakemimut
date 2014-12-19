@@ -161,7 +161,8 @@ class rUpload extends CI_Controller {
 					for ($i=0; $i<$colData; $i++)	{
 						$no = numtoa(array('', $i+1)); 
 						array_push($c,$dt[$kk][$no[0]]);
-						//echo "no[$i]: {$no[0]} : {$dt[1][$no[0]]} : <font color='red'>{$dt[2][$no[0]]}</font> <br/>";
+						//echo $dt[$kk][$no[0]]."<br/>";
+						//echo "no[$i]: {$no[0]} : {$dt[1][$no[0]]} : <font color='red'>{$dt[2][$no[0]]} {$dt[3][$no[0]]}</font> <br/>";
 					}
 					//$this->upload->insert_bpm3($c);
 					$this->upload->insert_oh($c);

@@ -65,7 +65,26 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 					xtype: 'button',
 					width: 80,
 					text: 'Filter',
-					margin: '2 0 0 0'			
+					margin: '2 0 0 0'
+				},{
+					id: me.idbExc,
+					xtype: 'button',
+					//disabled : true,
+					hidden : me.hdExc,
+					iconCls: 'excel',
+					//width: 100,
+					text: 'Gabung',
+					margin: '2 5'
+				},{
+					id: me.idbExcP,
+					xtype: 'button',
+					//disabled : true,
+					hidden : me.hdExcP,
+					iconCls: 'excel',
+					//width: 100,
+					text: 'Pisah',
+					margin: '2 5'
+					
 				//*
 				},{
 					xtype: 'label',
@@ -97,15 +116,6 @@ Ext.define('rcm.view.laporan.FilterUpload', {
 					width: 100,
 					text: 'Upload',
 					disabled: true,
-					margin: '2 5'
-				},{
-					id: me.idbExc,
-					xtype: 'button',
-					//disabled : true,
-					hidden : me.hdExc,
-					iconCls: 'excel',
-					//width: 100,
-					text: 'Export to Excel',
 					margin: '2 5'
 				//*
 				},{
