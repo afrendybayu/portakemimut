@@ -359,15 +359,16 @@ class Sap extends CI_Model {
 				GROUP BY eqkode
 				ORDER BY jml desc, totmatcost DESC LIMIT 0,10";
 		//*/
-		$sql =	"SELECT CONCAT(e.nama,', ',hh.nama,' @',hhh.nama) AS desk, ROUND(sum(totmatcost),2) AS jml
+		$sql =	"SELECT CONCAT(e.nama,', ',h.kode,' @',hhh.nama) AS desk, ROUND(sum(totmatcost),2) AS jml
 				FROM sap
 				LEFT JOIN equip e ON e.tag = sap.eqkode
 				LEFT JOIN hirarki h ON h.id = e.unit_id
 				LEFT JOIN hirarki hh ON hh.id = h.parent
 				LEFT JOIN hirarki hhh ON hhh.id = hh.parent
-				where year(planstart)=2014 AND e.nama <> ""
+				where year(planstart)=$thn AND e.nama <> ''
 				group by eqkode 
 				order by jml DESC limit 0,10";
+		
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
