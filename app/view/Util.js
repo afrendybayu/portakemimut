@@ -246,6 +246,16 @@ Ext.define('rcm.view.Util', {
 			items.push({ header:'RunningHour',dataIndex:'rhtot',flex:1,minWidth:90 });		// 
 			items.push({ header:'Last PM',dataIndex:'lpm',flex:1,minWidth:320 });		// ganti dgn note
 			items.push({ header:'Next PM',dataIndex:'npm',flex:1,minWidth:450 });		// ganti dgn note
+			/*
+			items.push({ header:'Next PM',//flex:3,
+					columns: [{ 
+							header: 'Equip 1', dataIndex:'npm1',flex:1,minWidth:230
+						},{ 
+							header: 'Equip 2',dataIndex:'npm2',flex:1,minWidth:230
+					} 
+				}]
+			});
+			//*/
 			//console.log(items);
 			//rcmS = items;
 			

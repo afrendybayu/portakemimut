@@ -78,7 +78,8 @@ Ext.define('rcm.view.laporan.SapCause', {
 			},
 			tooltip : {
 				formatter : function() {
-					return '<b>' + this.series.name + '</b><br/>' + this.x + ': ' + this.y;
+					//return '<b>' + this.series.name + '</b><br/>' + this.x + ': ' + this.y;
+					return '<b>' + this.series.name + '</b><br/>' + this.x + ': ' + rcm.view.Util.format2(me.duit,this.y,'$');
 				}
 			},
 			credits : {

@@ -359,14 +359,13 @@ class Sap extends CI_Model {
 				GROUP BY eqkode
 				ORDER BY jml desc, totmatcost DESC LIMIT 0,10";
 		//*/
-		$sql =	"SELECT CONCAT(e.nama,', ',h.kode,' @',hhh.nama) AS desk, ROUND(sum(totmatcost),2) AS jml
+		$sql =	"SELECT sap.funcloc,CONCAT(e.nama,' ',SUBSTRING_INDEX(sap.funcloc,'-',-1),' @',h.nama) AS desk, 
+				ROUND(sum(sap.totmatcost),2) AS jml
 				FROM sap
 				LEFT JOIN equip e ON e.tag = sap.eqkode
-				LEFT JOIN hirarki h ON h.id = e.unit_id
-				LEFT JOIN hirarki hh ON hh.id = h.parent
-				LEFT JOIN hirarki hhh ON hhh.id = hh.parent
-				where year(planstart)=$thn AND e.nama <> ''
-				group by eqkode 
+				LEFT JOIN hirarki h ON h.urut>=0 and h.parent = 0 AND sap.lokasi = h.urut
+				where year(sap.planstart)=2014 AND  sap.eqdesc <> ''
+				group by sap.eqkode 
 				order by jml DESC limit 0,10";
 		
 		$query = $this->db->query($sql);
@@ -389,6 +388,7 @@ class Sap extends CI_Model {
 	}
 
 	function get_pm_cost($thn)	{
+		/*
 		$sql = "SELECT ordertype AS ortype, pmtype AS desk, ROUND(SUM(totplancost),2) as jml,
 				(SELECT CASE WHEN ortype = 'EP01' THEN '#2f7ed8'
 					WHEN ortype = 'EP02' THEN '#0d233a'
@@ -400,11 +400,18 @@ class Sap extends CI_Model {
 				GROUP BY ordertype,pmtype
 				ORDER BY ordertype asc, jml desc";
 		//echo "sql: $sql";
-		/*
-		$sql =	"SELECT ordertype AS ortype, pmtype AS desk, ROUND(SUM(totplancost),2) as jml FROM sap ".
-				"WHERE YEAR(planstart)=$thn ".
-				"GROUP BY ordertype,pmtype ".
-				"ORDER BY ordertype asc, jml desc";
+		//*/
+		//*
+		$sql =	"select pmtype AS desk,ordertype AS ortype, ROUND(SUM(totmatcost),0) as jml
+				,(CASE WHEN ordertype = 'EP01' THEN '#2f7ed8'
+					WHEN ordertype = 'EP02' THEN '#0d233a'
+					WHEN ordertype = 'EP03' THEN '#8bbc21'
+					WHEN ordertype = 'EP04' THEN '#910000'
+					WHEN ordertype = 'EP05' THEN '#ffa81f' END) AS color 
+				FROM sap
+				WHERE YEAR(planstart)=$thn AND pmtype <> ''
+				GROUP BY ordertype,pmtype
+				ORDER BY ordertype asc, jml desc";
 		//*/
 		$query = $this->db->query($sql);
 		return $query->result();
