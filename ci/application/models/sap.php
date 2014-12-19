@@ -351,15 +351,6 @@ class Sap extends CI_Model {
 
 	function get_topten($thn)	{
 		/*
-		$sql =	"SELECT CONCAT(equip.nama,'@',h.nama,' ',SUBSTRING_INDEX((SELECT hhhh.nama FROM hirarki hhhh WHERE hhhh.id
-					= (SELECT hhh.parent FROM hirarki hhh WHERE hhh.id
-					= (SELECT hh.parent FROM hirarki hh WHERE hh.id = equip.unit_id))),' ',-1)) AS desk
-				,ROUND(SUM(totmatcost),2) as jml
-				FROM sap,equip,hirarki h
-				WHERE equip.tag= SUBSTRING_INDEX(eqkode,'-',2) AND h.id = equip.unit_id AND YEAR(planstart)=$thn
-				GROUP BY SUBSTRING_INDEX(eqkode,'-',2)
-				ORDER BY jml desc, totmatcost DESC LIMIT 0,10";
-		//*/
 		$sql =	"SELECT ROUND(SUM(totmatcost),2) as jml
 				,CONCAT(e.nama,' ',SUBSTRING_INDEX(sap.funcloc,'-',-1),' @',SUBSTRING_INDEX(h.nama,' ',-1)) as desk
 				FROM sap,equip e,hirarki h
@@ -367,6 +358,16 @@ class Sap extends CI_Model {
 				AND YEAR(planstart)=$thn
 				GROUP BY eqkode
 				ORDER BY jml desc, totmatcost DESC LIMIT 0,10";
+		//*/
+		$sql =	"SELECT CONCAT(e.nama,', ',hh.nama,' @',hhh.nama) AS desk, ROUND(sum(totmatcost),2) AS jml
+				FROM sap
+				LEFT JOIN equip e ON e.tag = sap.eqkode
+				LEFT JOIN hirarki h ON h.id = e.unit_id
+				LEFT JOIN hirarki hh ON hh.id = h.parent
+				LEFT JOIN hirarki hhh ON hhh.id = hh.parent
+				where year(planstart)=2014 AND e.nama <> ""
+				group by eqkode 
+				order by jml DESC limit 0,10";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
