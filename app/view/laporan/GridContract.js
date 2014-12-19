@@ -28,7 +28,7 @@ Ext.define('rcm.view.laporan.GridContract', {
 		me.columns = {	
 			items: [
 			{ xtype:'rownumberer',width:25 },
-			{ header:'Equipment',dataIndex:'nama', minWidth: 130, locked: true,
+			{ header:'Equipment',dataIndex:'nama', minWidth: 130,// locked: true,
 				summaryRenderer: function() {
 					if (me.duit)	return Ext.String.format('TOTAL Cost'); 
 					else return Ext.String.format('TOTAL'); 

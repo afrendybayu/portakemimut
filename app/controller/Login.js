@@ -116,6 +116,7 @@ Ext.define('rcm.controller.Login', {
 					//Ext.fly('idGridCM').ngedit = 1;
 					//console.log(Ext.getCmp('idGridCM'));
 					Ext.getCmp('idGridCM').ngedit = 1;
+					Ext.getCmp('idGridKontrak').ngedit = 1;
 					//Ext.fly('idGridCM').ngedit = 1;
 					//Ext.getCmp('conmondel').setDisabled(false);
 					//Ext.getCmp('cmform').setDisabled(false);
@@ -207,6 +208,7 @@ Ext.define('rcm.controller.Login', {
 					
 					// Ext.getCmp('tu_kf').setDisabled(true);
 					Ext.getCmp('idGridCM').ngedit = 0;
+					Ext.getCmp('idGridKontrak').ngedit = 0;
 					//Ext.fly('idGridCM').ngedit = 0;
 					
 					me.getContent().showKonfig(false);
@@ -243,7 +245,6 @@ Ext.define('rcm.controller.Login', {
 			interval: 10
 		});
 
-
 		
 		LSesi.load({
 			scope: this,
@@ -266,6 +267,8 @@ Ext.define('rcm.controller.Login', {
 					// Ext.getCmp('tu_kf').setDisabled(false);
 					
 					Ext.getCmp('idGridCM').ngedit = 1;
+					Ext.getCmp('idGridKontrak').ngedit = 1;
+					//console.log("tes masuk sini");
 					me.getAuthlogin().level = res.level;
 					
 					me.getContent().showKonfig(true);
@@ -287,7 +290,8 @@ Ext.define('rcm.controller.Login', {
 					Ext.getCmp('bwbpm3').setDisabled(true);
 					//Ext.getCmp('conmondel').setDisabled(true);
 					//Ext.getCmp('cmform').setDisabled(true);
-					//Ext.getCmp('idGridCM').ngedit = 0;		// ----->
+					Ext.getCmp('idGridCM').ngedit = 0;		// ----->
+					Ext.getCmp('idGridKontrak').ngedit = 0;
 					
 					
 					me.getContent().showKonfig(false);

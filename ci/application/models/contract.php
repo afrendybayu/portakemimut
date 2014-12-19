@@ -26,7 +26,7 @@ class Contract extends CI_Model {
 				ORDER by u.urut asc";
 		//*/
 		//*
-		$sql =	"SELECT ce.nama, ce.id
+		$sql =	"SELECT ce.nama, ce.id as tipe
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=1 AND c.tipe=ce.id THEN nilai END),0) as b1 
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=2 AND c.tipe=ce.id THEN nilai END),0) as b2 
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=3 AND c.tipe=ce.id THEN nilai END),0) as b3 
@@ -39,7 +39,7 @@ class Contract extends CI_Model {
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=10 AND c.tipe=ce.id THEN nilai END),0) as b10
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=11 AND c.tipe=ce.id THEN nilai END),0) as b11
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=12 AND c.tipe=ce.id THEN nilai END),0) as b12
-				,IFNULL(SUM(CASE WHEN c.tipe=ce.id THEN nilai END),0) as tot 
+				,IFNULL(SUM(CASE WHEN c.tipe=ce.id AND bulan<15 THEN nilai END),0) as tot
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=15 AND c.tipe=ce.id THEN nilai END),0) as budget 
 				,IFNULL(ROUND(SUM(CASE WHEN bulan<15 AND c.tipe=ce.id THEN nilai END)*100/
 					GROUP_CONCAT(CASE WHEN bulan=15 AND c.tipe=ce.id THEN nilai END),2),0) as persen 
