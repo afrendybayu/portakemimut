@@ -34,7 +34,7 @@ class AuthLogin extends CI_Controller {
 		try{
 			$login = json_decode(file_get_contents('php://input'));
 			
-			/*
+			//*
 			if (isset ($login->userid) && isset($login->pass))	{
 				$login  = $this->login->ValidLogin($login->userid,$login->pass);
 				//print_r($login);

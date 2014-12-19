@@ -28,7 +28,8 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 			region: 'north',
 			duit: true,
 			dstore: 'Contract',
-			minHeight: 130,
+			minHeight: 155,
+			tot: true,
 			split: true
 		},{
 		//*/
