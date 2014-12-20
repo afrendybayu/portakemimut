@@ -159,8 +159,16 @@ class rUpload extends CI_Controller {
 				//for ($kk=2; $kk<=30; $kk++)	{
 					$c = array();
 					for ($i=0; $i<$colData; $i++)	{
-						$no = numtoa(array('', $i+1)); 
-						array_push($c,$dt[$kk][$no[0]]);
+						$no = numtoa(array('', $i+1));
+						if ($i==3)	{
+							$time = strtotime($dt[$kk][$no[0]]);
+							$dd = date('Y-m-d',$time);
+							//echo $dd;
+							array_push($c,$dd);
+						}
+						else 	{
+							array_push($c,$dt[$kk][$no[0]]);
+						}
 						//echo $dt[$kk][$no[0]]."<br/>";
 						//echo "no[$i]: {$no[0]} : {$dt[1][$no[0]]} : <font color='red'>{$dt[2][$no[0]]} {$dt[3][$no[0]]}</font> <br/>";
 					}
