@@ -3,10 +3,10 @@
 
 if(!function_exists("ohexcel_judul_gabung")){
 	function ohexcel_judul_gabung($sheet,$unit){
-		$sheet->setCellValue('A1','PT MEDCO E&P INDONESIA')->mergeCells('A1:AZ1')->getStyle('A1')->getAlignment()->applyFromArray(
+		$sheet->setCellValue('A1','PT MEDCO E&P INDONESIA')->mergeCells('A1:AY1')->getStyle('A1')->getAlignment()->applyFromArray(
     	array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 			'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER));
-		$sheet->setCellValue('A2', "PLANNING PREVENTIVE MAINTENCANCE ".strtoupper($unit))->mergeCells('A2:AZ2')->getStyle('A2')->getAlignment()->applyFromArray(
+		$sheet->setCellValue('A2', "PLANNING PREVENTIVE MAINTENCANCE ".strtoupper($unit))->mergeCells('A2:AY2')->getStyle('A2')->getAlignment()->applyFromArray(
     	array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 			'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER));
 	}
@@ -26,17 +26,17 @@ if(!function_exists("ohexcel_table_gabung")){
 	function ohexcel_table_gabung($sheet,$thn,$unit){
 		$t = "Year : $thn";
 		$sheet->setCellValue('A3', 'Area : SSE Block')->mergeCells('A3:B3');
-		$sheet->setCellValue('AT3', $t)->mergeCells('AT3:AZ3')->getStyle('AT3')->getAlignment()->applyFromArray(
+		$sheet->setCellValue('AS3', $t)->mergeCells('AS3:AY3')->getStyle('AS3')->getAlignment()->applyFromArray(
 		    array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_RIGHT,));
 		$sheet->setCellValue('A4', 'Custodian')->mergeCells('A4:C4');
-		$sheet->setCellValue('A5', 'Production Departement')->mergeCells('A5:D5');
-		$sheet->setCellValue('A6', 'Location : SSE Block')->mergeCells('A6:D6');
-		$sheet->setCellValue('E4', 'Equipment Name :')->mergeCells('E4:X4');
-		$sheet->setCellValue('E5', $unit)->mergeCells('E5:X6')->getStyle('E5')->getAlignment()->applyFromArray(
+		$sheet->setCellValue('A5', 'Production Departement')->mergeCells('A5:C5');
+		$sheet->setCellValue('A6', 'Location : SSE Block')->mergeCells('A6:C6');
+		$sheet->setCellValue('D4', 'Equipment Name :')->mergeCells('D4:W4');
+		$sheet->setCellValue('D5', $unit)->mergeCells('D5:W6')->getStyle('D5')->getAlignment()->applyFromArray(
 		    array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 		    	'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER));
-		$sheet->setCellValue('Y4', 'Dated Issued :')->mergeCells('Y4:AQ4');
-		$sheet->setCellValue('AR4', 'Page')->mergeCells('AR4:AZ4')->getStyle('AR4')->getAlignment()->applyFromArray(
+		$sheet->setCellValue('X4', 'Dated Issued :')->mergeCells('X4:AP4');
+		$sheet->setCellValue('AQ4', 'Page')->mergeCells('AQ4:AY4')->getStyle('AQ4')->getAlignment()->applyFromArray(
 		    array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 		    	'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER));
 		/*
@@ -165,9 +165,9 @@ if(!function_exists("ohexcel_head_gabung")){
 	function ohexcel_head_gabung($sheet){
 		$sheet->setCellValue('A8','NO')->mergeCells("A8:A10");
 		$sheet->setCellValue('B8','LOCATION')->mergeCells("B8:B10");
-		$sheet->setCellValue('C8','DESCRIPTION')->mergeCells("C8:D8");
-		$sheet->setCellValue('C9','ACTIVITY')->mergeCells("C9:C10");
-		$sheet->setCellValue('D9','ORDER NO')->mergeCells("D9:D10");
+		//$sheet->setCellValue('C8','DESCRIPTION')->mergeCells("C8:D8");
+		$sheet->setCellValue('C9','ACTIVITY')->mergeCells("C8:C10");
+		//$sheet->setCellValue('D9','ORDER NO')->mergeCells("D9:D10");
 		//$sheet->setCellValue('E8','PLANNING')->mergeCells("E8:F8");
 		//$sheet->setCellValue('E9','DATE')->mergeCells("E9:E10");
 		//$sheet->setCellValue('F9','PLAN DURATION OR SHUTDOWN (DAYS)')->mergeCells("F9:F10")->getStyle('F9')->getAlignment()->setWrapText(true);;
@@ -175,83 +175,83 @@ if(!function_exists("ohexcel_head_gabung")){
 		//$sheet->setCellValue('G9','DATE')->mergeCells("G9:G10");
 		//$sheet->setCellValue('H9','PLAN DURATION OR SHUTDOWN (DAYS)')->mergeCells("H9:H10")->getStyle('H9')->getAlignment()->setWrapText(true);;
 
-		$sheet->setCellValue('E8','JANUARY')->mergeCells("E8:H8");
-		$sheet->setCellValue('I8','FEBRUARY')->mergeCells("I8:L8");
-		$sheet->setCellValue('M8','MARCH')->mergeCells("M8:P8");
-		$sheet->setCellValue('Q8','APRIL')->mergeCells("Q8:T8");
-		$sheet->setCellValue('U8','MAY')->mergeCells("U8:X8");
-		$sheet->setCellValue('Y8','JUNE')->mergeCells("Y8:AB8");
-		$sheet->setCellValue('AC8','JULY')->mergeCells("AC8:AF8");
-		$sheet->setCellValue('AG8','AUGUST')->mergeCells("AG8:AJ8");
-		$sheet->setCellValue('AK8','SEPTEMBER')->mergeCells("AK8:AN8");
-		$sheet->setCellValue('AO8','OCTOBER')->mergeCells("AO8:AR8");
-		$sheet->setCellValue('AS8','NOVEMBER')->mergeCells("AS8:AV8");
-		$sheet->setCellValue('AW8','DECEMBER')->mergeCells("AW8:AZ8");
+		$sheet->setCellValue('D8','JANUARY')->mergeCells("D8:G8");
+		$sheet->setCellValue('H8','FEBRUARY')->mergeCells("H8:K8");
+		$sheet->setCellValue('L8','MARCH')->mergeCells("L8:O8");
+		$sheet->setCellValue('P8','APRIL')->mergeCells("P8:S8");
+		$sheet->setCellValue('T8','MAY')->mergeCells("T8:W8");
+		$sheet->setCellValue('X8','JUNE')->mergeCells("X8:AA8");
+		$sheet->setCellValue('AB8','JULY')->mergeCells("AB8:AE8");
+		$sheet->setCellValue('AF8','AUGUST')->mergeCells("AF8:AI8");
+		$sheet->setCellValue('AJ8','SEPTEMBER')->mergeCells("AJ8:AM8");
+		$sheet->setCellValue('AN8','OCTOBER')->mergeCells("AN8:AQ8");
+		$sheet->setCellValue('AR8','NOVEMBER')->mergeCells("AR8:AU8");
+		$sheet->setCellValue('AV8','DECEMBER')->mergeCells("AV8:AY8");
 		
-		$sheet->setCellValue('E9','PLAN')->mergeCells("E9:H9");
-		$sheet->setCellValue('I9','PLAN')->mergeCells("I9:L9");
-		$sheet->setCellValue('M9','PLAN')->mergeCells("M9:P9");
-		$sheet->setCellValue('Q9','PLAN')->mergeCells("Q9:T9");
-		$sheet->setCellValue('U9','PLAN')->mergeCells("U9:X9");
-		$sheet->setCellValue('Y9','PLAN')->mergeCells("Y9:AB9");
-		$sheet->setCellValue('AC9','PLAN')->mergeCells("AC9:AF9");
-		$sheet->setCellValue('AG9','PLAN')->mergeCells("AG9:AJ9");
-		$sheet->setCellValue('AK9','PLAN')->mergeCells("AK9:AN9");
-		$sheet->setCellValue('AO9','PLAN')->mergeCells("AO9:AR9");
-		$sheet->setCellValue('AS9','PLAN')->mergeCells("AS9:AV9");
-		$sheet->setCellValue('AW9','PLAN')->mergeCells("AW9:AZ9");
+		$sheet->setCellValue('D9','PLAN')->mergeCells("D9:G9");
+		$sheet->setCellValue('H9','PLAN')->mergeCells("H9:K9");
+		$sheet->setCellValue('L9','PLAN')->mergeCells("L9:O9");
+		$sheet->setCellValue('P9','PLAN')->mergeCells("P9:S9");
+		$sheet->setCellValue('T9','PLAN')->mergeCells("T9:W9");
+		$sheet->setCellValue('X9','PLAN')->mergeCells("X9:AA9");
+		$sheet->setCellValue('AB9','PLAN')->mergeCells("AB9:AE9");
+		$sheet->setCellValue('AF9','PLAN')->mergeCells("AF9:AI9");
+		$sheet->setCellValue('AJ9','PLAN')->mergeCells("AJ9:AM9");
+		$sheet->setCellValue('AN9','PLAN')->mergeCells("AN9:AQ9");
+		$sheet->setCellValue('AR9','PLAN')->mergeCells("AR9:AU9");
+		$sheet->setCellValue('AV9','PLAN')->mergeCells("AV9:AY9");
 		
-		$sheet->setCellValue('E10','1');
-		$sheet->setCellValue('I10','1');
-		$sheet->setCellValue('M10','1');
-		$sheet->setCellValue('Q10','1');
-		$sheet->setCellValue('U10','1');
-		$sheet->setCellValue('Y10','1');
-		$sheet->setCellValue('AC10','1');
-		$sheet->setCellValue('AG10','1');
-		$sheet->setCellValue('AK10','1');
-		$sheet->setCellValue('AO10','1');
-		$sheet->setCellValue('AS10','1');
-		$sheet->setCellValue('AW10','1');
+		$sheet->setCellValue('D10','1');
+		$sheet->setCellValue('H10','1');
+		$sheet->setCellValue('L10','1');
+		$sheet->setCellValue('P10','1');
+		$sheet->setCellValue('T10','1');
+		$sheet->setCellValue('X10','1');
+		$sheet->setCellValue('AB10','1');
+		$sheet->setCellValue('AF10','1');
+		$sheet->setCellValue('AJ10','1');
+		$sheet->setCellValue('AN10','1');
+		$sheet->setCellValue('AR10','1');
+		$sheet->setCellValue('AV10','1');
 		
-		$sheet->setCellValue('F10','2');
-		$sheet->setCellValue('J10','2');
-		$sheet->setCellValue('N10','2');
-		$sheet->setCellValue('R10','2');
-		$sheet->setCellValue('V10','2');
-		$sheet->setCellValue('Z10','2');
-		$sheet->setCellValue('AD10','2');
-		$sheet->setCellValue('AH10','2');
-		$sheet->setCellValue('AL10','2');
-		$sheet->setCellValue('AP10','2');
-		$sheet->setCellValue('AT10','2');
-		$sheet->setCellValue('AX10','2');
+		$sheet->setCellValue('E10','2');
+		$sheet->setCellValue('I10','2');
+		$sheet->setCellValue('M10','2');
+		$sheet->setCellValue('Q10','2');
+		$sheet->setCellValue('U10','2');
+		$sheet->setCellValue('Y10','2');
+		$sheet->setCellValue('AC10','2');
+		$sheet->setCellValue('AG10','2');
+		$sheet->setCellValue('AK10','2');
+		$sheet->setCellValue('AO10','2');
+		$sheet->setCellValue('AS10','2');
+		$sheet->setCellValue('AW10','2');
 		
-		$sheet->setCellValue('G10','3');
-		$sheet->setCellValue('K10','3');
-		$sheet->setCellValue('O10','3');
-		$sheet->setCellValue('S10','3');
-		$sheet->setCellValue('W10','3');
-		$sheet->setCellValue('AA10','3');
-		$sheet->setCellValue('AE10','3');
-		$sheet->setCellValue('AI10','3');
-		$sheet->setCellValue('AM10','3');
-		$sheet->setCellValue('AQ10','3');
-		$sheet->setCellValue('AU10','3');
-		$sheet->setCellValue('AY10','3');
+		$sheet->setCellValue('F10','3');
+		$sheet->setCellValue('J10','3');
+		$sheet->setCellValue('N10','3');
+		$sheet->setCellValue('R10','3');
+		$sheet->setCellValue('V10','3');
+		$sheet->setCellValue('Z10','3');
+		$sheet->setCellValue('AD10','3');
+		$sheet->setCellValue('AH10','3');
+		$sheet->setCellValue('AL10','3');
+		$sheet->setCellValue('AP10','3');
+		$sheet->setCellValue('AT10','3');
+		$sheet->setCellValue('AX10','3');
 		
-		$sheet->setCellValue('H10','4');
-		$sheet->setCellValue('L10','4');
-		$sheet->setCellValue('P10','4');
-		$sheet->setCellValue('T10','4');
-		$sheet->setCellValue('X10','4');
-		$sheet->setCellValue('AB10','4');
-		$sheet->setCellValue('AF10','4');
-		$sheet->setCellValue('AJ10','4');
-		$sheet->setCellValue('AN10','4');
-		$sheet->setCellValue('AR10','4');
-		$sheet->setCellValue('AV10','4');
-		$sheet->setCellValue('AZ10','4');
+		$sheet->setCellValue('G10','4');
+		$sheet->setCellValue('K10','4');
+		$sheet->setCellValue('O10','4');
+		$sheet->setCellValue('S10','4');
+		$sheet->setCellValue('W10','4');
+		$sheet->setCellValue('AA10','4');
+		$sheet->setCellValue('AE10','4');
+		$sheet->setCellValue('AI10','4');
+		$sheet->setCellValue('AM10','4');
+		$sheet->setCellValue('AQ10','4');
+		$sheet->setCellValue('AU10','4');
+		$sheet->setCellValue('AY10','4');
 		
 	}
 }
@@ -274,18 +274,18 @@ if(!function_exists("ohexcel_font")){
 }
 if(!function_exists("ohexcel_font_gabung")){
 	function ohexcel_font_gabung($sheet){
-		$sheet->getStyle("A1:AZ10")->getFont()->setBold(true);
-		$sheet->getStyle("A5:AZ5")->getFont()->setItalic(true);
+		$sheet->getStyle("A1:AY10")->getFont()->setBold(true);
+		$sheet->getStyle("A5:AY5")->getFont()->setItalic(true);
 		$sheet->getStyle("A1")->getFont()->setSize(18);
 		$sheet->getStyle("A2")->getFont()->setSize(12);
-		$sheet->getStyle("F9")->getFont()->setSize(6);
-		$sheet->getStyle("H9")->getFont()->setSize(6);
-		$sheet->getStyle('A8:AZ10')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
-		$sheet->getStyle('A8:AZ10')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-		$sheet->getStyle("I11")->getFont()->setSize(7);
-		$sheet->getStyle('I11')->getAlignment()->applyFromArray(
-    array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-		'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER))->setTextRotation(-90);
+		$sheet->getStyle("E9")->getFont()->setSize(6);
+		$sheet->getStyle("G9")->getFont()->setSize(6);
+		$sheet->getStyle('A8:AY10')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+		$sheet->getStyle('A8:AY10')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+		$sheet->getStyle("H11")->getFont()->setSize(7);
+		$sheet->getStyle('H11')->getAlignment()->applyFromArray(
+			array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+				'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER))->setTextRotation(-90);
 	}
 }
 
@@ -303,10 +303,10 @@ if(!function_exists("ohexcel_size_gabung")){
 		$sheet->getRowDimension('10')->setRowHeight(27);
 		$sheet->getColumnDimension('A')->setWidth(3.86);
 		$sheet->getColumnDimension('B')->setWidth(20.43);
-		$sheet->getColumnDimension('C')->setWidth(25);
-		$sheet->getColumnDimension('D')->setWidth(14.43);
+		$sheet->getColumnDimension('C')->setWidth(30);
+		//$sheet->getColumnDimension('D')->setWidth(14.43);
 
-		for($col = 'E'; $col !== 'BA'; $col++) {
+		for($col = 'D'; $col !== 'AZ'; $col++) {
 		    $sheet
 		        ->getColumnDimension($col)
 		        ->setWidth(2.65);
@@ -355,10 +355,10 @@ if(!function_exists("ohexcel_bg")){
 }
 if(!function_exists("ohexcel_bg_gabung")){
 	function ohexcel_bg_gabung($sheet){		
-		$sheet->getStyle('A8:AZ10')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setRGB('D7E4BC');
+		$sheet->getStyle('A8:AY10')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setRGB('D7E4BC');
 		//$sheet->getStyle('I10:BD10')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setRGB('D7E4BC');
 		//$sheet->getStyle('I8:BD8')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setRGB('D7E4BC');
-		$sheet->getStyle('E9:AZ9')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setRGB('00B050');
+		$sheet->getStyle('D9:AY9')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setRGB('00B050');
 	}
 }
 
@@ -392,27 +392,27 @@ if(!function_exists("ohexcel_border")){
 if(!function_exists("ohexcel_border_gabung")){
 	function ohexcel_border_gabung($sheet){
 		$sheet->getStyle('A3:B3')->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_THICK);
-		$sheet->getStyle('AT3:AZ3')->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_THICK);
-		$sheet->getStyle('A8:AZ10')->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-		$sheet->getStyle('A4:AZ4')->applyFromArray(array('borders' => array('top' => array(
+		$sheet->getStyle('AS3:AY3')->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_THICK);
+		$sheet->getStyle('A8:AY10')->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$sheet->getStyle('A4:AY4')->applyFromArray(array('borders' => array('top' => array(
 			'style' => PHPExcel_Style_Border::BORDER_THICK))));
-		$sheet->getStyle('A6:AZ6')->applyFromArray(array('borders' => array('bottom' => array(
+		$sheet->getStyle('A6:AY6')->applyFromArray(array('borders' => array('bottom' => array(
 			'style' => PHPExcel_Style_Border::BORDER_THICK))));
-		$sheet->getStyle('AZ4:AZ6')->applyFromArray(array('borders' => array('right' => array(
+		$sheet->getStyle('AY4:AY6')->applyFromArray(array('borders' => array('right' => array(
 			'style' => PHPExcel_Style_Border::BORDER_THICK))));
-		$sheet->getStyle('AQ4:AQ6')->applyFromArray(array('borders' => array('right' => array(
+		$sheet->getStyle('AP4:AP6')->applyFromArray(array('borders' => array('right' => array(
 			'style' => PHPExcel_Style_Border::BORDER_THICK))));
 		$sheet->getStyle('A4:A6')->applyFromArray(array('borders' => array('left' => array(
 			'style' => PHPExcel_Style_Border::BORDER_THICK))));
-		$sheet->getStyle('D4:D6')->applyFromArray(array('borders' => array('right' => array(
+		$sheet->getStyle('C4:C6')->applyFromArray(array('borders' => array('right' => array(
 			'style' => PHPExcel_Style_Border::BORDER_THIN))));
-		$sheet->getStyle('X4:X6')->applyFromArray(array('borders' => array('right' => array(
+		$sheet->getStyle('W4:W6')->applyFromArray(array('borders' => array('right' => array(
 			'style' => PHPExcel_Style_Border::BORDER_THIN))));
-		$sheet->getStyle('A5:AZ5')->applyFromArray(array('borders' => array(
+		$sheet->getStyle('A5:AY5')->applyFromArray(array('borders' => array(
 			'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN))));
-		$sheet->getStyle('A6:D6')->applyFromArray(array('borders' => array(
+		$sheet->getStyle('A6:C6')->applyFromArray(array('borders' => array(
 			'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN))));
-		$sheet->getStyle('A7:AZ7')->applyFromArray(array('borders' => array('bottom' => array(
+		$sheet->getStyle('A7:AY7')->applyFromArray(array('borders' => array('bottom' => array(
 		 'style' => PHPExcel_Style_Border::BORDER_THICK))));
 	}
 }
@@ -437,7 +437,7 @@ if(!function_exists("ohexcel_image_gabung")){
 		$objDrawing->setName("name");
 		$objDrawing->setDescription("Description");
 		$objDrawing->setPath('../resources/css/images/med.jpg');
-		$objDrawing->setCoordinates('AW1');
+		$objDrawing->setCoordinates('AV1');
 		$objDrawing->setHeight(75);
 		$objDrawing->setWidth(78);
 		$objDrawing->setWorksheet($sheet);
@@ -597,7 +597,7 @@ if(!function_exists("ohexcel_data_overhaul_gabung")){
 			//print_r($row);
 			
 			$aw='';	$ak=''; $f=0;
-			$sheet->getStyle("A$baris:AZ$baris")->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+			$sheet->getStyle("A$baris:AY$baris")->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$sheet->getRowDimension($baris)->setRowHeight(23);
 			
 			$sheet->setCellValue('A'.$baris,$no++)->getStyle('A'.$baris)->getAlignment()->applyFromArray(
@@ -616,14 +616,14 @@ if(!function_exists("ohexcel_data_overhaul_gabung")){
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
 			//*/
-			$sheet->getStyle("AZ8:AZ$baris")->applyFromArray(array('borders' => array('right' => array(
+			$sheet->getStyle("AY8:AY$baris")->applyFromArray(array('borders' => array('right' => array(
 				'style' => PHPExcel_Style_Border::BORDER_THICK))));
 			$sheet->getStyle("A8:A$baris")->applyFromArray(array('borders' => array('left' => array(
 				'style' => PHPExcel_Style_Border::BORDER_THICK))));
 			
 
 			$fl=0; $isi=0; $aw=0; $ak=0; $nilai=""; $f=0;
-			$os=4;
+			$os=3;
 			for ($i=1; $i<=48; $i++)	{
 				if (strlen($row->{"a$i"})>0)	{
 					//echo "$i: ".$row->{"a$i"}."<br/>";
@@ -673,8 +673,8 @@ if(!function_exists("ohexcel_data_overhaul_gabung")){
 		$baris2 = $baris+1;
 		$baris_foot = $baris+2;
 		//*
-		$sheet->getStyle("A$baris:AZ$baris")->applyFromArray(array('borders' => array('top' => array('style' => PHPExcel_Style_Border::BORDER_THICK))));
-		$sheet->setCellValue("A$baris","Note :")->mergeCells("A$baris:AZ$baris")->getStyle("A$baris")->getFont()->setBold(true);
+		$sheet->getStyle("A$baris:AY$baris")->applyFromArray(array('borders' => array('top' => array('style' => PHPExcel_Style_Border::BORDER_THICK))));
+		$sheet->setCellValue("A$baris","Note :")->mergeCells("A$baris:AY$baris")->getStyle("A$baris")->getFont()->setBold(true);
 		$sheet->setCellValue("A$baris2","- Perubahan dari Schedule ini harus mendapat persetujuan dari Operations Manager dengan membuat Exception Report")->mergeCells("A$baris2:BD$baris2")
 				->getStyle('A'.$baris2)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
@@ -691,7 +691,7 @@ if(!function_exists("ohexcel_jabat_gabung"))	{
 		$b = $brs;
 		//print_r($j);
 		$sheet->getRowDimension($b)->setRowHeight(47);
-		$sheet->getStyle("A$b:AZ$b")->applyFromArray(array('borders' => array('top' => array(
+		$sheet->getStyle("A$b:AY$b")->applyFromArray(array('borders' => array('top' => array(
 			'style' => PHPExcel_Style_Border::BORDER_THICK))));
 		//$sheet->getStyle("A$b:BD$b")->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_THICK);
 		$sheet->setCellValue('A'.$b," Prepared by")->mergeCells("A$b:B$b")->getStyle('A'.$b)->getAlignment()->applyFromArray(
@@ -706,10 +706,10 @@ if(!function_exists("ohexcel_jabat_gabung"))	{
 		$sheet->setCellValue('L'.$b,": {$j->nRev}")->mergeCells("L$b:Z$b")->getStyle('L'.$b)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_BOTTOM));
-		$sheet->setCellValue('AA'.$b," Approved by")->mergeCells("AA$b:AH$b")->getStyle('AA'.$b)->getAlignment()->applyFromArray(
+		$sheet->setCellValue('AA'.$b," Approved by")->mergeCells("AA$b:AF$b")->getStyle('AA'.$b)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_BOTTOM));	
-		$sheet->setCellValue('AG'.$b,": {$j->nApr}")->mergeCells("AG$b:AZ$b")->getStyle('AG'.$b)->getAlignment()->applyFromArray(
+		$sheet->setCellValue('AG'.$b,": {$j->nApr}")->mergeCells("AG$b:AY$b")->getStyle('AG'.$b)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_BOTTOM));
 		
@@ -730,12 +730,12 @@ if(!function_exists("ohexcel_jabat_gabung"))	{
 		$sheet->setCellValue('AA'.$b," Position")->getStyle('AA'.$b)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));
-		$sheet->setCellValue('AG'.$b,": {$j->jApr}")->mergeCells("AG$b:AZ$b")->getStyle('AG'.$b)->getAlignment()->applyFromArray(
+		$sheet->setCellValue('AG'.$b,": {$j->jApr}")->mergeCells("AG$b:AY$b")->getStyle('AG'.$b)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));	
-		$sheet->getStyle("A$brs:AZ$b")->getFont()->setBold(true);
+		$sheet->getStyle("A$brs:AY$b")->getFont()->setBold(true);
 		
-		$sheet->getStyle("A$b:AZ$b")->applyFromArray(array('borders' => array('top' => array(
+		$sheet->getStyle("A$b:AY$b")->applyFromArray(array('borders' => array('top' => array(
 			'style' => PHPExcel_Style_Border::BORDER_THIN))));
 		
 		
@@ -750,7 +750,7 @@ if(!function_exists("ohexcel_jabat_gabung"))	{
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_TOP));
 		
-		$sheet->getStyle("A$b:AZ$b")->applyFromArray(array('borders' => array('bottom' => array(
+		$sheet->getStyle("A$b:AY$b")->applyFromArray(array('borders' => array('bottom' => array(
 			'style' => PHPExcel_Style_Border::BORDER_THICK))));
 		$sheet->getStyle("D$brs:D$b")->applyFromArray(array('borders' => array('right' => array(
 			'style' => PHPExcel_Style_Border::BORDER_THICK))));
