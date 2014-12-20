@@ -93,7 +93,7 @@ class Overhaul extends CI_Model {
 					order by ol.tglplan desc";
 		//*/
 		$slok = ""; $scat = "";
-		if ($lok>=0)	$slok = " AND h3.id = $lok ";
+		if ($lok>=0)	$slok = " AND h3.urut = $lok ";
 		if ($cat>0)	$scat = " AND ce.parent=$cat ";
 		
 		/*

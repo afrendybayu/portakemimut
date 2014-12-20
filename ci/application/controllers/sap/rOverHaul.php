@@ -16,12 +16,22 @@ class rOverHaul extends CI_Controller {
 	public function ohTahun()	{
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
-			$lok = $this->input->get('lok')?:"ALL";
+			//$lok = $this->input->get('lok')?:"ALL";
 			$cat = $this->input->get('cat')?:0;
 			
+			if  (strlen($this->input->get('lok'))>0)	{
+				if ($this->input->get('lok')==="ALL")	$lok = -1;
+				else $lok = $this->input->get('lok');
+				//echo "lewat sini $lok<br/>";
+			}
+			else {
+				$lok = -1;
+			}
+			/*
 			if (($lok === "ALL") || ($lok===-1))	{
 				$lok = -1;
 			}
+			//*/
 			//echo "$thn, lok: $lok, cat: $cat<br/>";
 			
 			$hsl = $this->overhaul->ohTahun($thn,$lok,$cat);
@@ -83,13 +93,22 @@ class rOverHaul extends CI_Controller {
 	public function readOH(){
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
-			$lok = $this->input->get('lok')?:"ALL";
+			//$lok = $this->input->get('lok')?:"ALL";
 			$cat = $this->input->get('cat')?:0;
 			
+			if  (strlen($this->input->get('lok'))>0)	{
+				if ($this->input->get('lok')==="ALL")	$lok = -1;
+				else $lok = $this->input->get('lok');
+				//echo "lewat sini $lok<br/>";
+			}
+			else {
+				$lok = -1;
+			}
+			/*
 			if (($lok === "ALL") || ($lok===-1))	{
 				$lok = -1;
 			}
-			
+			//*/
 			$hsl = $this->overhaul->get_ohlist($thn,$lok,$cat);
 			//echo "jml: ".count($hsl)."<br/>";
 			/*
