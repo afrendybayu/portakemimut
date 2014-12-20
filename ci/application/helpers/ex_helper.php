@@ -27,7 +27,7 @@ if(!function_exists("ohexcel_table_gabung")){
 		$t = "Year : $thn";
 		$sheet->setCellValue('A3', 'Area : SSE Block')->mergeCells('A3:B3');
 		$sheet->setCellValue('AS3', $t)->mergeCells('AS3:AY3')->getStyle('AS3')->getAlignment()->applyFromArray(
-		    array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_RIGHT,));
+		    array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_RIGHT));
 		$sheet->setCellValue('A4', 'Custodian')->mergeCells('A4:C4');
 		$sheet->setCellValue('A5', 'Production Departement')->mergeCells('A5:C5');
 		$sheet->setCellValue('A6', 'Location : SSE Block')->mergeCells('A6:C6');
@@ -35,7 +35,9 @@ if(!function_exists("ohexcel_table_gabung")){
 		$sheet->setCellValue('D5', $unit)->mergeCells('D5:W6')->getStyle('D5')->getAlignment()->applyFromArray(
 		    array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 		    	'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER));
-		$sheet->setCellValue('X4', 'Dated Issued :')->mergeCells('X4:AP4');
+		$sheet->setCellValue('X4', 'Dated Issued :')->mergeCells('X4:AP4')->getStyle('AQ4')->getAlignment()->applyFromArray(
+		    array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+		    	'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER));;
 		$sheet->setCellValue('AQ4', 'Page')->mergeCells('AQ4:AY4')->getStyle('AQ4')->getAlignment()->applyFromArray(
 		    array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 		    	'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER));
@@ -262,8 +264,8 @@ if(!function_exists("ohexcel_font")){
 		$sheet->getStyle("A5:BD5")->getFont()->setItalic(true);
 		$sheet->getStyle("A1")->getFont()->setSize(18);
 		$sheet->getStyle("A2")->getFont()->setSize(12);
-		$sheet->getStyle("F9")->getFont()->setSize(6);
-		$sheet->getStyle("H9")->getFont()->setSize(6);
+		//$sheet->getStyle("F9")->getFont()->setSize(6);
+		//$sheet->getStyle("H9")->getFont()->setSize(6);
 		$sheet->getStyle('A8:BD10')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
 		$sheet->getStyle('A8:BD10')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 		$sheet->getStyle("T11")->getFont()->setSize(7);
@@ -278,8 +280,8 @@ if(!function_exists("ohexcel_font_gabung")){
 		$sheet->getStyle("A5:AY5")->getFont()->setItalic(true);
 		$sheet->getStyle("A1")->getFont()->setSize(18);
 		$sheet->getStyle("A2")->getFont()->setSize(12);
-		$sheet->getStyle("E9")->getFont()->setSize(6);
-		$sheet->getStyle("G9")->getFont()->setSize(6);
+		//$sheet->getStyle("E9")->getFont()->setSize(6);
+		//$sheet->getStyle("G9")->getFont()->setSize(6);
 		$sheet->getStyle('A8:AY10')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
 		$sheet->getStyle('A8:AY10')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 		$sheet->getStyle("H11")->getFont()->setSize(7);
@@ -309,7 +311,7 @@ if(!function_exists("ohexcel_size_gabung")){
 		for($col = 'D'; $col !== 'AZ'; $col++) {
 		    $sheet
 		        ->getColumnDimension($col)
-		        ->setWidth(2.65);
+		        ->setWidth(2.75);
 		}
 	}
 }
