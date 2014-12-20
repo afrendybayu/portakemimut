@@ -25,7 +25,7 @@ class Contract extends CI_Model {
 				group by tipe
 				ORDER by u.urut asc";
 		//*/
-		//*
+		/*
 		$sql =	"SELECT ce.nama, ce.id as tipe
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=1 AND c.tipe=ce.id THEN nilai END),0) as b1 
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=2 AND c.tipe=ce.id THEN nilai END),0) as b2 
@@ -47,6 +47,28 @@ class Contract extends CI_Model {
 				WHERE ce.parent=0 AND c.tahun=$thn
 				group by ce.id ORDER BY ce.nama";
 		//*/
+		$sql =	"SELECT  ce.id, ce.nama
+				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=1 AND c.tahun=$thn THEN nilai END),0) as b1 
+				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=2 AND c.tahun=$thn THEN nilai END),0) as b2 
+				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=3 AND c.tahun=$thn THEN nilai END),0) as b3 
+				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=4 AND c.tahun=$thn THEN nilai END),0) as b4 
+				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=5 AND c.tahun=$thn THEN nilai END),0) as b5 
+				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=6 AND c.tahun=$thn THEN nilai END),0) as b6 
+				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=7 AND c.tahun=$thn THEN nilai END),0) as b7 
+				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=8 AND c.tahun=$thn THEN nilai END),0) as b8
+				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=9 AND c.tahun=$thn THEN nilai END),0) as b9 
+				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=10 AND c.tahun=$thn THEN nilai END),0) as b10 
+				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=11 AND c.tahun=$thn THEN nilai END),0) as b11
+				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=12 AND c.tahun=$thn THEN nilai END),0) as b12
+				,IFNULL(SUM(CASE WHEN bulan<15 AND c.tahun=$thn THEN nilai END),0) as tot
+				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=15 AND c.tahun=$thn THEN nilai END),0) as budget
+				,IFNULL(ROUND(SUM(CASE WHEN bulan<15 AND c.tahun=$thn THEN nilai END)*100/
+					GROUP_CONCAT(CASE WHEN bulan=15 AND c.tahun=$thn THEN nilai END),2),0) as persen 
+				FROM cat_equip ce
+				LEFT JOIN contract c ON c.tipe=ce.id
+				WHERE ce.parent=0
+				GROUP BY ce.id
+				ORDER BY ce.nama ASC";
 		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql);
 		return $query->result();

@@ -228,7 +228,7 @@ class Hirarki extends CI_Model {
 				LEFT JOIN waktudown wd ON eq.id = wd.eqid AND wd.event=2 AND wd.tipeev >0
 				WHERE h3.flag=? AND h3.status=1
 				GROUP BY h3.id,eq.id
-				ORDER BY lok ASC, h3.nama ASC";
+				ORDER BY lok ASC, h3.nama ASC,eq.kode ASC";
 		
 		$query = $this->db->query($sql,$cat);
 		
@@ -283,6 +283,7 @@ class Hirarki extends CI_Model {
 					$obj->lpm = $r->lpm;
 					if (isset($npm))	{
 						$obj->npm = "[{$r->kode} PM{$npm->npm} {$npm->tgl}, {$npm->hari} hari lagi]";
+						$obj->npm1 = "[{$r->kode} PM{$npm->npm} {$npm->tgl} - {$npm->hari} hari lagi]";
 						unset($npm);
 					}
 					for($i=$w;$i>=0; $i--)	{
@@ -299,7 +300,10 @@ class Hirarki extends CI_Model {
 							$obj->npm .= " [{$r->kode} PM{$npm->npm} {$npm->tgl}, {$npm->hari} hari lagi]";
 						else
 							$obj->npm = " [{$r->kode} PM{$npm->npm} {$npm->tgl}, {$npm->hari} hari lagi]";
+						
+						$obj->npm2 = " [{$r->kode} PM{$npm->npm} {$npm->tgl} - {$npm->hari} hari lagi]";
 						unset($npm);
+						
 					}
 					
 				}

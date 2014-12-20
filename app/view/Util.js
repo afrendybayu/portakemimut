@@ -114,7 +114,7 @@ Ext.define('rcm.view.Util', {
 				col = [];
 				for (var j=1; j<5; j++)		{
 					col.push({ header: 'W'+j, dataIndex: 'b'+i+'m'+j, width:55,tdCls: 'x-change-cell',
-						renderer: function(value,meta,a,b)	{
+						renderer: function(value,meta)	{
 							var n=value.split(";");
 							var d = parseInt(n[1]);
 							//console.log(d);
@@ -172,6 +172,21 @@ Ext.define('rcm.view.Util', {
 			else {
 				return arr[0];
 			}
+		},
+		
+		UwarnaCell: function(v,m)	{
+			var n=v.split("- "),
+				d=parseInt(n[1]);
+			//*
+			if(d<10) {
+				m.style = "background-color:#ffbdbd;";	// merah
+			} else if (d<20) {
+				m.style = "background-color:#feffac;";	// kuning
+			} else {
+				m.style = "background-color:#a8ff94;";	// ijo
+			}
+			//*/
+			return '<span style="color:black;">' + v + '</span>';
 		},
 		
 		UxcolGrid: function()	{
@@ -245,14 +260,47 @@ Ext.define('rcm.view.Util', {
 			//items.push({ header:'Catatan',dataIndex:'note',flex:1,minWidth:300 });		// 
 			items.push({ header:'RunningHour',dataIndex:'rhtot',flex:1,minWidth:90 });		// 
 			items.push({ header:'Last PM',dataIndex:'lpm',flex:1,minWidth:320 });		// ganti dgn note
-			items.push({ header:'Next PM',dataIndex:'npm',flex:1,minWidth:450 });		// ganti dgn note
-			/*
+			//items.push({ header:'Next PM',dataIndex:'npm',flex:1,minWidth:450 });		// ganti dgn note
+			//*
 			items.push({ header:'Next PM',//flex:3,
-					columns: [{ 
-							header: 'Equip 1', dataIndex:'npm1',flex:1,minWidth:230
-						},{ 
-							header: 'Equip 2',dataIndex:'npm2',flex:1,minWidth:230
-					} 
+				columns: [{ 
+						header: 'Equip 1', dataIndex:'npm1',flex:1,minWidth:240
+							,renderer: function(v,m)	{
+								//return this.UwarnaCell(value,meta);
+								if (v=="")	return '<span style="color:black;">' + v + '</span>';
+								var n=v.split("- "),
+									d=parseInt(n[1]);
+									
+								
+								//*
+								if(d<10) {
+									m.style = "background-color:#ffbdbd;";	// merah
+								} else if (d<20) {
+									m.style = "background-color:#feffac;";	// kuning
+								} else {
+									m.style = "background-color:#a8ff94;";	// ijo
+								}
+								//*/
+								return '<span style="color:black;">' + v + '</span>';
+							}
+					},{ 
+						header: 'Equip 2',dataIndex:'npm2',flex:1,minWidth:240
+							,renderer: function(v,m)	{
+								//return this.UwarnaCell(value,meta);
+								if (v=="")	return '<span style="color:black;">' + v + '</span>';
+								var n=v.split("- "),
+									d=parseInt(n[1]);
+								//*
+								if(d<10) {
+									m.style = "background-color:#ffbdbd;";	// merah
+								} else if (d<20) {
+									m.style = "background-color:#feffac;";	// kuning
+								} else {
+									m.style = "background-color:#a8ff94;";	// ijo
+								}
+								//*/
+								return '<span style="color:black;">' + v + '</span>';
+							}
 				}]
 			});
 			//*/
@@ -267,7 +315,8 @@ Ext.define('rcm.view.Util', {
 			var tglbln=new Array();
 			tglbln[0] = 'eq'; tglbln[1] = 'Lokasi'; tglbln[2] = 'cat'; 
 			tglbln[3] = 'rhtot'; tglbln[4] = 'lpm'; tglbln[5] = 'npm';
-			var xx = 6;
+			tglbln[6] = 'npm1'; tglbln[7] = 'npm2';
+			var xx = 8;
 			//*
 			//alert("x: "+x+", Ublntgl: "+rcmSettings.tgl);
 				
