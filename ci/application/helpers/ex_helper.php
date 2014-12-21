@@ -624,9 +624,89 @@ if(!function_exists("ohexcel_data_overhaul_gabung")){
 				'style' => PHPExcel_Style_Border::BORDER_THICK))));
 			
 
-			$fl=0; $isi=0; $aw=0; $ak=0; $nilai=""; $f=0;
+			$fl=0; 		// untuk akhir 
+			$isi=0; $aw=0; $ak=0; $nilai=""; 
+			$fm=0;		// untuk merge
 			$os=3;
+			//echo "awal equipment {$row->act}<br/>";
 			for ($i=1; $i<=48; $i++)	{
+				/*
+				if (strlen($row->{"a$i"})>0)	{
+					echo "@i: $i, nilai: '$nilai', fl: $fl, aktv: ".$row->{"a$i"}."<br/>";
+				}
+				//*/
+				if ($fl==1)	{
+					//echo "i: $i. fl: $fl<br/>";
+					$awn = numtoa(array('', $aw));
+					$akn = numtoa(array('', $ak));
+					if ((strlen($row->{"a$i"})>0) && ($row->{"a$i"}!==$nilai))	{	// ada isi dan sama dengan nilai sebelum
+						$sheet->setCellValue($awn[0].$baris,$nilai)->mergeCells("{$awn[0]}$baris:{$akn[0]}$baris")
+							  ->getStyle("{$awn[0]}$baris")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+							  ->getStartColor()->setRGB(ohexcel_warna($nilai));		// 
+						//*
+						$sheet->getStyle("{$awn[0]}$baris")->getAlignment()->setTextRotation(90)->applyFromArray(
+									array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+										  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
+						//*/
+						$sheet->getRowDimension($baris)->setRowHeight(50);
+						
+						//echo "====>====>====>====> $nilai @".$awn[0].$baris.", merge: ".$awn[0].$baris.":".$akn[0].$baris."<br/><br/>";
+						$fl=1;
+						$aw = $i+$os; 	// kol awal
+						$nilai=$row->{"a$i"};
+						/*
+						$aw = $i+$os; 	// kol awal
+						//$f=1;
+						$nilai= $row->{"a$i"};	
+						//}
+						$ak = $i+$os;			// kol akhir, klo lebih dari 1
+						$fl=1;				// mulai ada isi;
+						//*/
+					}
+					else if (strlen($row->{"a$i"})==0)	{
+						$sheet->setCellValue($awn[0].$baris,$nilai)->mergeCells("{$awn[0]}$baris:{$akn[0]}$baris")
+							  ->getStyle("{$awn[0]}$baris")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+							  ->getStartColor()->setRGB(ohexcel_warna($nilai));		// 
+						//*
+						$sheet->getStyle("{$awn[0]}$baris")->getAlignment()->setTextRotation(90)->applyFromArray(
+									array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+										  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
+						//*/
+						$sheet->getRowDimension($baris)->setRowHeight(50);
+						//echo "====>====>====>====> $nilai @".$awn[0].$baris.", merge: ".$awn[0].$baris.":".$akn[0].$baris."<br/><br/>";
+						//$nilai="";
+						$fl=0;
+						
+					}
+					$ak = $i+$os;			// kol akhir, klo lebih dari 1
+				}
+				
+				if ($fl==0)	{
+					if (strlen($row->{"a$i"})>0)	{	// ada isi dan sama dengan nilai sebelum
+						
+					//if ($f==0)	{		// awalnya
+						$aw = $i+$os; 	// kol awal
+						//$f=1;
+						$nilai= $row->{"a$i"};	
+						
+						//}
+						$ak = $i+$os;			// kol akhir, klo lebih dari 1
+						$fl=1;				// mulai ada isi;
+						//echo "mulai ada: $nilai, i: $i, fl: $fl<br/>";
+					}
+				}
+				/*
+				if ((strlen($row->{"a$i"})>0) && ($row->{"a$i"}!==$nilai))	{	// ada isi dan sama dengan nilai sebelum
+					
+					if ($f==0)	{		// awalnya
+						$aw = $i+$os; 	// kol awal
+						$f=1;
+						$nilai= $row->{"a$i"};	
+					}
+					$ak = $i+$os;			// kol akhir, klo lebih dari 1
+					$fl=1;				// mulai ada isi;
+				}
+				
 				if (strlen($row->{"a$i"})>0)	{
 					//echo "$i: ".$row->{"a$i"}."<br/>";
 					if ($f==0)	{		// awalnya
@@ -645,30 +725,47 @@ if(!function_exists("ohexcel_data_overhaul_gabung")){
 					$sheet->setCellValue($awn[0].$baris,$nilai)->mergeCells("{$awn[0]}$baris:{$akn[0]}$baris")
 						  ->getStyle("{$awn[0]}$baris")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
 						  ->getStartColor()->setRGB(ohexcel_warna($nilai));		// 
-					//*
+
 					$sheet->getStyle("{$awn[0]}$baris")->getAlignment()->setTextRotation(90)->applyFromArray(
 								array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 									  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
-					//*/
+
 					$sheet->getRowDimension($baris)->setRowHeight(50);
 					$f=0;
 				}
+				//*/
 			}
-			//echo "--- ganti ---";
-			
-			if ($fl==1 && $i==48)	{
+			//
+			//echo "--- ganti ---$i $<br/>";
+			if ( ($i>48) && (strlen($row->a48)>0))	{
 				$awn = numtoa(array('', $aw));
 				$akn = numtoa(array('', $ak));
+				//echo "48 ====>====>====>====> $nilai @".$awn[0].$baris.", merge: ".$awn[0].$baris.":".$akn[0].$baris."<br/><br/>";
 				$sheet->setCellValue($awn[0].$baris,$nilai)->mergeCells("{$awn[0]}$baris:{$akn[0]}$baris")
 					  ->getStyle("{$awn[0]}$baris")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
 					  ->getStartColor()->setRGB(ohexcel_warna($nilai));
-				//*
+
 				$sheet->getStyle("{$awn[0]}$baris")->getAlignment()->setTextRotation(90)->applyFromArray(
 								array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 									  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
-				//*/
+
 				$sheet->getRowDimension($baris)->setRowHeight(50);
 			}
+			/*
+			if (($i>48) && (strlen($row->{"a$i"})>0))	{
+				echo "--- ganti ---";
+				
+				$sheet->setCellValue($awn[0].$baris,$nilai)->mergeCells("{$awn[0]}$baris:{$akn[0]}$baris")
+					  ->getStyle("{$awn[0]}$baris")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+					  ->getStartColor()->setRGB(ohexcel_warna($nilai));
+
+				$sheet->getStyle("{$awn[0]}$baris")->getAlignment()->setTextRotation(90)->applyFromArray(
+								array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+									  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
+
+				$sheet->getRowDimension($baris)->setRowHeight(50);
+			}
+			//*/
 			$baris++;		
 		}
 		
