@@ -295,7 +295,7 @@ if(!function_exists("ohexcel_size_gabung")){
 	function ohexcel_size_gabung($sheet){
 		$sheet->getRowDimension('1')->setRowHeight(39.75);
 		$sheet->getRowDimension('2')->setRowHeight(22.25);
-		$sheet->getRowDimension('3')->setRowHeight(24.75);
+		$sheet->getRowDimension('3')->setRowHeight(26.75);
 		$sheet->getRowDimension('4')->setRowHeight(30.75);
 		$sheet->getRowDimension('5')->setRowHeight(22.5);
 		$sheet->getRowDimension('6')->setRowHeight(20.25);
@@ -319,7 +319,7 @@ if(!function_exists("ohexcel_size")){
 	function ohexcel_size($sheet){
 		$sheet->getRowDimension('1')->setRowHeight(39.75);
 		$sheet->getRowDimension('2')->setRowHeight(22.25);
-		$sheet->getRowDimension('3')->setRowHeight(24.75);
+		$sheet->getRowDimension('3')->setRowHeight(26.75);
 		$sheet->getRowDimension('4')->setRowHeight(30.75);
 		$sheet->getRowDimension('5')->setRowHeight(22.5);
 		$sheet->getRowDimension('6')->setRowHeight(20.25);
@@ -463,24 +463,21 @@ if(!function_exists("warna_oh")){
 
 if(!function_exists("ohexcel_warna")){
 	function ohexcel_warna($data){
-		$hijau = array("PM8K","PM9K","PM12K","PM16K","PM18K");
-		$merah = array("PM24K","PM32K","PM36K","PM48K","PM72K");
-		
-		if (count($hijau)>0)	{
-			foreach($hijau as $h)	{
-				if ($h===$data)	{
-					return "28e57b";
-				}
-			}
+		//$hijau = array("PM8K","PM9K","PM12K","PM16K","PM18K");
+		//$merah = array("PM24K","PM32K","PM36K","PM48K","PM72K");
+		$d = explode(";", $data);
+		$n = (int) $d[1];
+		//echo $d[0]." ".$d[1];
+		if (count($d)>1)	{
+			if ($n<=3000)			return "a9d08e";
+			else if ($n<=4500)		return "00b050";
+			else if ($n<=9000)		return "b4c6e7";
+			else if ($n<=16000)		return "ffd966";
+			else if ($n<=24000)		return "f4b084";
+			else if ($n<=36000)		return "b46c95";
+			else if ($n<=1000000)	return "ff2828";
 		}
-		if (count($merah)>0)	{
-			foreach($merah as $h)	{
-				if ($h===$data)	{
-					return "fa6d5b";
-				}
-			}
-		}
-		return "90e5dd";
+		return "ffffff";
 	}
 }
 
@@ -509,6 +506,8 @@ if(!function_exists("ohexcel_data_overhaul")){
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					  'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
 			$sheet->setCellValue('C'.$baris,$row->act)->getStyle('C'.$baris)->getAlignment()->applyFromArray(
+				array('vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
+			$sheet->setCellValue('D'.$baris,$row->wo)->getStyle('D'.$baris)->getAlignment()->applyFromArray(
 				array('vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER));
 			$sheet->setCellValue('E'.$baris,$row->tgl)->getStyle('E'.$baris)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
@@ -539,7 +538,8 @@ if(!function_exists("ohexcel_data_overhaul")){
 					$fl=0;
 					$awn = numtoa(array('', $aw));
 					$akn = numtoa(array('', $ak));
-					$sheet->setCellValue($awn[0].$baris,$nilai)->mergeCells("{$awn[0]}$baris:{$akn[0]}$baris")
+					$d = explode(";", $nilai);
+					$sheet->setCellValue($awn[0].$baris,$d[0])->mergeCells("{$awn[0]}$baris:{$akn[0]}$baris")
 						  ->getStyle("{$awn[0]}$baris")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
 						  ->getStartColor()->setRGB(ohexcel_warna($nilai));		// 
 					//*
@@ -556,7 +556,8 @@ if(!function_exists("ohexcel_data_overhaul")){
 				$awn = numtoa(array('', $aw));
 				$akn = numtoa(array('', $ak));
 				//echo "48 ====>====>====>====> $nilai @".$awn[0].$baris.", merge: ".$awn[0].$baris.":".$akn[0].$baris."<br/><br/>";
-				$sheet->setCellValue($awn[0].$baris,$nilai)->mergeCells("{$awn[0]}$baris:{$akn[0]}$baris")
+				$d = explode(";", $nilai);
+				$sheet->setCellValue($awn[0].$baris,$d[0])->mergeCells("{$awn[0]}$baris:{$akn[0]}$baris")
 					  ->getStyle("{$awn[0]}$baris")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
 					  ->getStartColor()->setRGB(ohexcel_warna($nilai));
 
@@ -653,7 +654,8 @@ if(!function_exists("ohexcel_data_overhaul_gabung")){
 					$awn = numtoa(array('', $aw));
 					$akn = numtoa(array('', $ak));
 					if ((strlen($row->{"a$i"})>0) && ($row->{"a$i"}!==$nilai))	{	// ada isi dan sama dengan nilai sebelum
-						$sheet->setCellValue($awn[0].$baris,$nilai)->mergeCells("{$awn[0]}$baris:{$akn[0]}$baris")
+						$d = explode(";", $nilai);
+						$sheet->setCellValue($awn[0].$baris,$d[0])->mergeCells("{$awn[0]}$baris:{$akn[0]}$baris")
 							  ->getStyle("{$awn[0]}$baris")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
 							  ->getStartColor()->setRGB(ohexcel_warna($nilai));		// 
 						//*
@@ -677,7 +679,8 @@ if(!function_exists("ohexcel_data_overhaul_gabung")){
 						//*/
 					}
 					else if (strlen($row->{"a$i"})==0)	{
-						$sheet->setCellValue($awn[0].$baris,$nilai)->mergeCells("{$awn[0]}$baris:{$akn[0]}$baris")
+						$d = explode(";", $nilai);
+						$sheet->setCellValue($awn[0].$baris,$d[0])->mergeCells("{$awn[0]}$baris:{$akn[0]}$baris")
 							  ->getStyle("{$awn[0]}$baris")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
 							  ->getStartColor()->setRGB(ohexcel_warna($nilai));		// 
 						//*
@@ -754,9 +757,10 @@ if(!function_exists("ohexcel_data_overhaul_gabung")){
 				$awn = numtoa(array('', $aw));
 				$akn = numtoa(array('', $ak));
 				//echo "48 ====>====>====>====> $nilai @".$awn[0].$baris.", merge: ".$awn[0].$baris.":".$akn[0].$baris."<br/><br/>";
-				$sheet->setCellValue($awn[0].$baris,$nilai)->mergeCells("{$awn[0]}$baris:{$akn[0]}$baris")
+				$d = explode(";", $nilai);
+				$sheet->setCellValue($awn[0].$baris,$d[0])->mergeCells("{$awn[0]}$baris:{$akn[0]}$baris")
 					  ->getStyle("{$awn[0]}$baris")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
-					  ->getStartColor()->setRGB(ohexcel_warna($nilai));
+					  ->getStartColor()->setRGB(ohexcel_warna($nilai));		// 
 
 				$sheet->getStyle("{$awn[0]}$baris")->getAlignment()->setTextRotation(90)->applyFromArray(
 								array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
