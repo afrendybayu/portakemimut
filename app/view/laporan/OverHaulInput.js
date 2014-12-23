@@ -178,10 +178,12 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 		// rcmSettings.rrrrr = record;
 		// console.log('id equip : '+e.record.get('id_equip')+' , id oh : '+e.record.get('oh'));
 		
-		//console.log(e);
+		//console.log(record);
 		var rec = e.newValues;
+		rec.id = e.record.get('id');
 		//console.log(rec);
 		this.fireEvent('updateoh',rec);
+		
 		/*
 		// rec.id_unit = this.idunit == ''? e.record.get('id_unit') : this.idunit;
 		rec.id_equip = this.ideq == ''? e.record.get('id_equip') : this.idunit;

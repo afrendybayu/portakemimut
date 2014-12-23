@@ -137,7 +137,7 @@ class Overhaul extends CI_Model {
 					'durasiplan' 	=> $ohin->durasiplan,
 					//'equip'			=> $ohin->id_equip,
 					//'ohcat'			=> $ohin->oh,
-					//'wo'			=> $ohin->wo,
+					'wo'			=> $ohin->wo,
 					'ket'			=> $ohin->ket
 					
 				);
