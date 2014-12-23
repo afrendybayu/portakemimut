@@ -150,9 +150,13 @@ class rOverHaul extends CI_Controller {
 	
 	}
 	public function updateOH(){
+		$par = json_decode(file_get_contents('php://input'));
 		try {
-			//$ohtb = json_decode(file_get_contents('php://input'));
-			$hsl = $this->overhaul->update_ohlist();
+			if (!isset($par))	{
+				throw new Exception("Input Data Tidak Ada");
+			}
+			
+			$hsl = $this->overhaul->update_ohlist($par);
 			
 		} catch(Exception $e) {
 			$hsl = 'gagal';

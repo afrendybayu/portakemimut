@@ -129,14 +129,15 @@ class Overhaul extends CI_Model {
 		return $query->result();
 	}
 	
-	function update_ohlist(){
-		$ohin = json_decode(file_get_contents('php://input'));
+	function update_ohlist($ohin){
+		//$ohin = json_decode(file_get_contents('php://input'));
+		
 		$sql = array(
 					'tglplan' 		=> $ohin->tglplan,
 					'durasiplan' 	=> $ohin->durasiplan,
-					'equip'			=> $ohin->id_equip,
-					'ohcat'			=> $ohin->oh,
-					'wo'			=> $ohin->wo,
+					//'equip'			=> $ohin->id_equip,
+					//'ohcat'			=> $ohin->oh,
+					//'wo'			=> $ohin->wo,
 					'ket'			=> $ohin->ket
 					
 				);

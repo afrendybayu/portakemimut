@@ -89,7 +89,7 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 				name: 'parent',
 				xtype: 'treepicker',
 				//store: 'HirDef',
-				store: Ext.create('rcm.store.HirDef'),
+				store: Ext.create('rcm.store.HirDef', {storeId: 'HirDef-DetailL' }),
 				//store: Ext.create('rcm.store.LokUnit'),
 				emptyText: 'Pilih Induk Hirarki/Equipment',
 				dataIndex: 'parent',
