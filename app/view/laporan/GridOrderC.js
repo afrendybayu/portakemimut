@@ -68,7 +68,7 @@ Ext.define('rcm.view.laporan.GridOrderC', {
 					}]
 				}
 				//*
-				,{ header:'Budget',dataIndex:'budget',flex:2,minWidth:80,renderer:'usMoney',
+				,{ header:'Budget',dataIndex:'budget',flex:2,minWidth:100,renderer:'usMoney',
 					summaryType:'average',summaryRenderer: function(value) {
 						//return Ext.String.format('${0}',value.toFixed(2));	} }
 						return rcm.view.Util.format2(1,value,'$');	} }

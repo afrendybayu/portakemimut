@@ -325,17 +325,24 @@ class Sap extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
-	
-	
 
 	function get_ordercostwo($thn)    {
-
+		/*
 		$sql =	"SELECT objid AS otipe, objtype AS `desc`, count(*) AS jml
 				,ROUND(sum(totescost),2) AS plstcost,ROUND(sum(intcost),2) AS plincost,ROUND(sum(totplancost),2) AS tplcost
 				,ROUND(sum(totmatcost),2) AS taccost,ROUND(sum(intcost),2) AS acincost
 				,ROUND(sum(totservcost),2) AS srvcost,ROUND(sum(actcost),2) AS acstcost
 				,(SELECT budget FROM ocost WHERE thn=$thn) AS budget
 				,ROUND((SELECT wo FROM ocost WHERE thn=$thn),2) AS persen
+				FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!='' GROUP BY otipe";
+		//*/
+		$sql =	"SELECT objid AS otipe, objtype AS `desc`, count(*) AS jml
+				,ROUND(sum(totescost),2) AS plstcost,ROUND(sum(intcost),2) AS plincost,ROUND(sum(totplancost),2) AS tplcost
+				,ROUND(sum(totmatcost),2) AS taccost,ROUND(sum(intcost),2) AS acincost
+				,ROUND(sum(totservcost),2) AS srvcost,ROUND(sum(actcost),2) AS acstcost
+				,(SELECT budget FROM ocost WHERE thn=$thn) AS budget
+				,ROUND((select SUM(totmatcost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn AND objid!='')*100/
+					(SELECT budget FROM ocost WHERE thn=$thn),2) as persen
 				FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!='' GROUP BY otipe";
 		//echo "sql: $sql";
 		
@@ -344,6 +351,7 @@ class Sap extends CI_Model {
     }
     
     function get_ordercostot($thn)	{
+		/*
 		$sql =	"SELECT ordertype as otipe, pmtype as `desc`
 				,ROUND(sum(totescost),2) AS plstcost,ROUND(sum(intcost),2) AS plincost,ROUND(sum(totplancost),2) AS tplcost
 				,ROUND(sum(totmatcost),2) AS taccost,ROUND(sum(intcost),2) AS acincost
@@ -351,26 +359,35 @@ class Sap extends CI_Model {
 				,(SELECT budget FROM ocost WHERE thn=$thn) AS budget
 				,ROUND((SELECT otype FROM ocost WHERE thn=$thn),2) AS persen
 				FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn group by ordertype";
+		//*/
+		$sql =	"SELECT ordertype as otipe, pmtype as `desc`
+				,ROUND(sum(totescost),2) AS plstcost,ROUND(sum(intcost),2) AS plincost,ROUND(sum(totplancost),2) AS tplcost
+				,ROUND(sum(totmatcost),2) AS taccost,ROUND(sum(intcost),2) AS acincost
+				,ROUND(sum(totservcost),2) AS srvcost,ROUND(sum(actcost),2) AS acstcost
+				,(SELECT budget FROM ocost WHERE thn=$thn) AS budget
+				,ROUND((select SUM(totmatcost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn)*100/
+					(SELECT budget FROM ocost WHERE thn=$thn),2) as persen
+				FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn group by ordertype";
 		
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
 	
 	function get_persen_ocwo($thn)	{
-		$sql =	"SELECT objid AS nama ".
-				",ROUND(sum(totplancost)*100/(select sum(totplancost) from sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!=''),2) as tPlCost ".
-				",ROUND(sum(totmatcost)*100/(select sum(totmatcost) from sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!=''),2) as tAcCost ".
-				"FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!='' GROUP BY objid";
+		$sql =	"SELECT objid AS nama 
+				,ROUND(sum(totplancost)*100/(select sum(totplancost) from sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!=''),2) as tPlCost 
+				,ROUND(sum(totmatcost)*100/(select sum(totmatcost) from sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!=''),2) as tAcCost 
+				FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!='' GROUP BY objid";
 				
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
 	
 	function get_persen_ocot($thn)	{
-		$sql =	"SELECT ordertype as nama ".
-				",ROUND(sum(totplancost)*100/(SELECT sum(totplancost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn),2) as tPlCost ".
-				",ROUND(SUM(totmatcost)*100/(SELECT sum(totplancost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn),2) as tAcCost ".
-				"FROM sap WHERE totplancost>0 AND YEAR(planstart)=2014 group by ordertype";
+		$sql =	"SELECT ordertype as nama 
+				,ROUND(sum(totplancost)*100/(SELECT sum(totplancost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn),2) as tPlCost 
+				,ROUND(SUM(totmatcost)*100/(SELECT sum(totplancost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn),2) as tAcCost 
+				FROM sap WHERE totplancost>0 AND YEAR(planstart)=2014 group by ordertype";
 				
 		$query = $this->db->query($sql);
 		return $query->result();

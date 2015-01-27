@@ -33,7 +33,6 @@ Ext.define('rcm.view.laporan.ManOCost', {
 					margin: '2 15'
 				}]
 			},{
-			//*/
 				xtype: 'textfield',
 				fieldLabel: '$ Budget',
 				id: 'mbudg',
@@ -41,8 +40,9 @@ Ext.define('rcm.view.laporan.ManOCost', {
 				allowBlank: false,
 				emptyText: '$ Annual Budget',
 				msgTarget: 'side'
+			/*
 			},{
-			//*/
+			
 				xtype: 'textfield',
 				fieldLabel: '% WO Type',
 				id: 'mwo',
@@ -58,6 +58,7 @@ Ext.define('rcm.view.laporan.ManOCost', {
 				msgTarget: 'side',
 				width:280,
 				emptyText: '% Object Type'
+			//*/
 		}],
 		
 		me.callParent(arguments);

@@ -7,7 +7,8 @@ Ext.define('rcm.view.laporan.Jabatan', {
 
 	],
 	
-	defaults: {
+	//defaults: {
+	fieldDefaults: {
 		width:480
 	},
 	

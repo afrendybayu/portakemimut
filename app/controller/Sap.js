@@ -325,9 +325,9 @@ Ext.define('rcm.controller.Sap', {
     
     loadOCost: function(rec)	{
 		//rcmSettings.hhh = rec;
-		Ext.getCmp('mbudg').setValue(rec.get('budget')),
-		Ext.getCmp('mwo').setValue(rec.get('wo')),
-		Ext.getCmp('motype').setValue(rec.get('otype'));
+		Ext.getCmp('mbudg').setValue(rec.get('budget'));
+		//Ext.getCmp('mwo').setValue(rec.get('wo')),
+		//Ext.getCmp('motype').setValue(rec.get('otype'));
 	},
 	
 	loadJabat: function(rec)	{
