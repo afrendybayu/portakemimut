@@ -53,7 +53,8 @@ Ext.define('rcm.view.laporan.SapHistori', {
 			},
 			colors: ['#10ae3d', '#f32727', '#0000FF'],
 			title : {
-				text: 'Trend Work Order '+rcm.view.Util.U1th(''),
+				//text: 'Trend Work Order '+rcm.view.Util.U1th(''),
+				text: 'Trend Work Order',
 				x: -50
 			},
 			xAxis : [{

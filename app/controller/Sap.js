@@ -20,6 +20,7 @@ Ext.define('rcm.controller.Sap', {
 		,'laporan.ManOCost'
 		,'laporan.Jabatan'
 		
+		,'laporan.SapHistori'
 		,'laporan.WOStack'
     ],
 
@@ -36,7 +37,7 @@ Ext.define('rcm.controller.Sap', {
 		,'SapCauseInfo','SapDamageInfo','SapOPartInfo','SapSymptomInfo'
 
 		,'SapOrderCwo','SapOrderCot'
-		,'SapThn','SapMwc','SapOType','SapLoc'
+		,'SapThn12','SapThn','SapMwc','SapOType','SapLoc'
 		
 		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10','SapTop10FL'
 		,'Contract','ContractLine', 'ContractInput'
@@ -78,6 +79,9 @@ Ext.define('rcm.controller.Sap', {
 		},{
 			ref: 'tEPO',
 			selector: 'tEPO'
+		},{
+			ref: 'tHistori',
+			selector: 'tHistori'
 		},{
 			ref: 'tpSapHistori',
 			selector: 'tpSapHistori'
@@ -908,6 +912,7 @@ Ext.define('rcm.controller.Sap', {
 			me.getContractLineStore().load();
 			me.getSapPMCostStore().load();
 			me.getSapThnStore().load();
+			me.getSapThn12Store().load();
 			me.getSapMwcStore().load();
 			me.getSapLocStore().load();
 			me.getSapOTypeStore().load();
@@ -1026,6 +1031,7 @@ Ext.define('rcm.controller.Sap', {
 		//rcmSettings.ttt = o;
 		this.getSapHistoriStore().load({params: {loc:o.iL,otp:o.iW,mwc:o.iM,tgl:o.iT }});
 		//alert("o.L: "+o.iL+", oW: "+o.iW+", oM: "+o.iM+", oT: "+o.iT);
+		this.getTHistori().draw();
 	},
 	
 	clrSapMaint: function()	{

@@ -262,7 +262,10 @@ class Sap extends CI_Model {
 					,ROUND((SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)))*100/
 						(SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1))),2) as persen
 					FROM sap WHERE (YEAR(planend)*100+MONTH(planend)) <= (YEAR(CURDATE())*100+MONTH(CURDATE())) ";
-					
+			
+			if ($lok>=0)		$sql .=	"AND lokasi=$lok ";
+			if ($otp!="ALL" and $otp!="_")		$sql .=	"AND ordertype like '%$otp%' ";
+			if ($mwc!="ALL" and $mwc!="_")		$sql .=	"AND manwork like '%$mwc%' ";
 			$sql .=	"GROUP BY wkt, nbln ORDER BY wkt desc, nbln ASC limit 0,12";
 		}
 		else {
@@ -288,7 +291,17 @@ class Sap extends CI_Model {
 	}
 
 	function get_tahun()	{
-		$sql =	"select YEAR(planstart) AS thn FROM sap GROUP BY thn ORDER BY thn DESC";
+		$sql =	"select YEAR(planstart) AS thn, YEAR(planstart) AS nama FROM sap WHERE YEAR(planstart)>1900 GROUP BY thn ORDER BY thn DESC";
+		//echo "sql: $sql";		
+		
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
+	function get_tahun12()	{
+		$sql =	"SELECT 12 AS thn, '12 Bulan berjalan' AS nama
+					UNION
+				SELECT YEAR(planstart) AS thn, YEAR(planstart) AS nama FROM sap WHERE YEAR(planstart)>1900 GROUP BY thn ORDER BY thn DESC";
 		//echo "sql: $sql";		
 		
 		$query = $this->db->query($sql);

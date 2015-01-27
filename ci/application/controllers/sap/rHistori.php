@@ -99,26 +99,49 @@ class rHistori extends CI_Controller {
 	
 	}
 
-	public function getThnSap()	{
-		//*
+	public function getThnSap12()	{
 		try {
-			$this->load->model('sap');
-			//*
+			$thn = $this->sap->get_tahun();
+			//$thn = array();
+			$t12 = new stdClass();
+			$t12->thn = 12;
+			$t12->nama = '12 Bulan';
+			
+			array_unshift($thn, $t12);
+			//array_shift($thn, $t12);
+			//array_push($thn, $t12);
+			//array_push($thn, );
+			//print_r($thn);
 			$jsonResult = array(
 				'success' => true,
-				'sapthn' => $this->sap->get_tahun()
+				'sapthn' => $thn
 			);
-			//*/
 		}	
 		catch (Exception $e)	{
-			//*
 			$jsonResult = array(
 				'success' => false,
 				'message' => $e->getMessage()
 			);	
-			//*/
 		}
-		//*/
+		echo json_encode($jsonResult);
+	}
+
+	public function getThnSap()	{
+		try {
+			$thn = $this->sap->get_tahun();
+			//print_r($thn);
+			
+			$jsonResult = array(
+				'success' => true,
+				'sapthn' => $this->sap->get_tahun()
+			);
+		}	
+		catch (Exception $e)	{
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
 		echo json_encode($jsonResult);
 	}
 

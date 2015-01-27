@@ -5,8 +5,10 @@ Ext.define('rcm.model.SapThn', {
 		'Ext.data.proxy.Ajax'
 	],
 
-	fields: [ 'thn' ],
-    proxy: {
+	fields: [ 'thn','nama' ]
+	
+	/*
+	,proxy: {
 		type: 'ajax',
 		api: {
 			read: 'ci/index.php/sap/rHistori/getThnSap'
@@ -17,4 +19,5 @@ Ext.define('rcm.model.SapThn', {
             messageProperty: 'message'
         }
     }
+    //*/
 });
