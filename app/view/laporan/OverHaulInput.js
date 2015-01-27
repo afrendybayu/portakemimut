@@ -33,8 +33,16 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 			// hideTooltip: true
 		});
 		// me.selType = rmode;
-		//me.plugins = [edit];
-				
+		me.plugins = [edit];
+		/*
+		me.listeners = {
+            'selectionchange': function(view, records) {
+                //grid.down('#removeEmployee').setDisabled(!records.length);
+                //alert("jos <!!");
+                console.log(records);
+            }
+        };
+		//*/	
 		me.columns = {
 			defaults : {
 				draggable: false,
@@ -44,9 +52,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 			items : [{
 					header : 'No', xtype:'rownumberer',width:35 
 				},{
-					header : 'Order No',width : 100,dataIndex : 'wo', editor: {allowBlank: false}
-				},{
-					header : 'Lokasi',width : 250,dataIndex : 'lokasi'
+					header : 'Lokasi',minWidth : 130,dataIndex : 'lokasi'
 					/*
 					,editor:{
 						xtype		:'combobox',
@@ -66,7 +72,8 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 					}
 					//*/
 				},{
-					header : 'Equip',flex : 1,dataIndex : 'equip'
+					//header : 'Equip',flex : 1,dataIndex : 'equip'
+					header:'Equip', minWidth:200, dataIndex: 'equip'
 					/*
 					,editor:{
 						xtype		:'combobox',
@@ -85,7 +92,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 					}
 					//*/
 				},{
-					header : 'Unit',width:250,dataIndex : 'unit'
+					header : 'Unit',minWidth:150,dataIndex : 'unit'
 					/*
 					,editor:{
 						xtype		:'combobox',
@@ -104,6 +111,12 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 					}
 					//*/
 				},{
+					header : 'Order No',width : 100,dataIndex : 'wo'
+						,editor: {
+							//allowBlank: false
+							xtype: 'textfield'
+						}
+				},{
 					header : 'Tanggal', width : 100,dataIndex : 'tglplan',xtype : 'datecolumn', format : 'd-m-Y'
 						,editable : false, editor:{
 							xtype		: 'datefield',
@@ -114,13 +127,20 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 							allowBlank	: false
 						}
 				},{
-					header : 'Durasi',width : 100,dataIndex : 'durasiplan'
+					header : 'Durasi',dataIndex : 'durasiplan',width:60
 						,editor : {
 							xtype		:'numberfield',
 							allowBlank	: false,
+							//width : 100,
 							name		: 'durasiplan',
 							maxValue	: 360,
 							minValue	: 1
+						}
+				},{
+					header : 'Keterangan',dataIndex : 'ket',flex: 1
+						,editor: {
+							//allowBlank: false
+							xtype: 'textfield'
 						}
 				},{
 						xtype		:'actioncolumn',
@@ -158,15 +178,21 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 		// rcmSettings.rrrrr = record;
 		// console.log('id equip : '+e.record.get('id_equip')+' , id oh : '+e.record.get('oh'));
 		
+		//console.log(record);
 		var rec = e.newValues;
+		rec.id = e.record.get('id');
+		//console.log(rec);
+		this.fireEvent('updateoh',rec);
+		
+		/*
 		// rec.id_unit = this.idunit == ''? e.record.get('id_unit') : this.idunit;
 		rec.id_equip = this.ideq == ''? e.record.get('id_equip') : this.idunit;
 		rec.oh = this.idoh == ''? e.record.get('oh') : this.idoh;
 		rec.id = e.record.get('id'); //rec.oh = e.grid.idoh; //rec.id_equip = e.grid.ideq;
 		// console.log (rec.id);
 		
-		this.fireEvent('updateoh',rec);
-	
+		//this.fireEvent('updateoh',rec);
+		//*/
 	},
 	plhcblok : function(record){
 		var lks = record[0].data.id;

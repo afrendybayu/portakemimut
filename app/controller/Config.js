@@ -174,7 +174,8 @@ Ext.define('rcm.controller.Config', {
 	}],
     
     init: function() {
-		var me = this;
+		var me = this,
+			lokUnit = me.getLokUnitStore();
         me.control({
 			//*
 			'[iconCls=delete_folder_tree]': {
@@ -396,9 +397,25 @@ Ext.define('rcm.controller.Config', {
 			}
 			//*/
 		});
-		
+		lokUnit.on('write', me.syncLokUnitSt, me, {
+            buffer: 1
+        });
     },
-    hdlSmpUserForm : function(){
+	
+	syncLokUnitSt: function(LokUnitStore, operation) {
+		console.log("masuk syncLokUnitSt");
+		 var me = this,
+            stores = Ext.getStore('HirDef-DetailL');
+            storesLen = stores.length,
+            records = operation.getRecords(),
+            recordsLen = records.length, 
+            i, j, listToSync, node, list, store;
+            
+			console.log(storesLen);
+			console.log(records);
+	},
+	
+	hdlSmpUserForm : function(){
     	// alert ('pencet user simpan');
     	var me =this,
     	usr = me.getF_User().getForm(),
