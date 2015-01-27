@@ -78,24 +78,29 @@ class Sap extends CI_Model {
 		return $query->result();
 	}
     
-    function get_cause($thn)	{
+    function get_cause($thn, $tipe)	{
+		if ($tipe!=="ALL")	$f = " AND notiftype='$tipe' ";
+		else $f = "";
+		
 		$sql = "select cause as kode,CONCAT('[',cause,'] ',ifnull(cause.nama,'')) AS desk,cause.nama
 				,count(*) AS jml
 				,ROUND(100*count(*)/(SELECT count(*) FROM sapfmea sfx 
 					LEFT JOIN sap ON sfx.pid = sap.pid 
 					where YEAR(planstart)=$thn AND (sfx.cause <> 'COTH' OR sap.ordertype <> 'EP03')),2) as persen
-				from sapfmea sf
+				FROM sapfmea sf
 				LEFT JOIN sap ON sf.pid = sap.pid
 				LEFT JOIN cause on sf.cause= cause.kode
-				where YEAR(planstart)=$thn AND (sf.cause <> 'COTH' OR sap.ordertype <> 'EP03')
+				WHERE YEAR(planstart)=$thn AND (sf.cause <> 'COTH' OR sap.ordertype <> 'EP03') $f
 				group by cause
-				ORDER BY jml desc, cause asc";	 
+				ORDER BY jml desc, cause asc";
+				
+		//echo "";
 		$query = $this->db->query($sql);
 		
 		return $query->result();
 	}
 	
-	function get_cause_info($cause,$thn)	{
+	function get_cause_info($cause,$thn, $tipe)	{
 		/*
 		$sql = "SELECT sap.pid AS noorder,if(notifno=0,'',notifno) AS nosap,damage,damage.nama AS damagenm,cause,cause.nama AS causenm,
 				manwork AS mainwork,down,opart,opart.nama as opartnm,
@@ -107,6 +112,10 @@ class Sap extends CI_Model {
 				LEFT JOIN cause ON sapfmea.cause = cause.kode
 				group by noorder,damage,cause,opart";
 		//*/
+		
+		if ($tipe!=="ALL")	$f = " AND notiftype='$tipe' ";
+		else $f = "";
+		
 		$sql =	"select sf.pid AS noorder,if(orderno=0,'',orderno) AS nosap
 				,sf.damage,if(sf.damage<>'',damage.nama,'') AS damagenm
 				,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm,planstart AS plnstr
@@ -127,27 +136,34 @@ class Sap extends CI_Model {
 		return $query->result();
 	}
 	
-	function get_damage($thn)	{
+	function get_damage($thn, $tipe)	{
+		if ($tipe!=="ALL")	$f = " AND notiftype='$tipe' ";
+		else $f = "";
+		
 		$sql = "select sapfmea.damage as kode,CONCAT('[',sapfmea.damage,'] ',damage.nama) AS desk,damage.nama, count(*) as jml,
 				ROUND((100*count(*)/(select count(*) from sapfmea left join sap on sapfmea.pid= sap.pid where damage <> 'NDMG' AND 
 					YEAR(planstart)=$thn)),2) as persen
-				from sapfmea
+				FROM sapfmea
 				left join damage on sapfmea.damage = damage.kode
 				left join sap on sapfmea.pid= sap.pid
-				where YEAR(planstart)=$thn
+				WHERE YEAR(planstart)=$thn $f
 				AND damage <> 'NDMG' group by damage order by jml desc, kode asc";
 		$query = $this->db->query($sql);
 		
 		return $query->result();
 	}
 	
-	function get_damage_info($damage, $thn)	{
+	function get_damage_info($damage, $thn, $tipe)	{
 		/*
 		$sql = "SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,opart,eqkode AS equip,".
 				"notiftype AS tipe,ordertype,downstart ".
 				"FROM sapfmea ".
 				"LEFT JOIN sap ON sap.pid = sapfmea.pid";
 		//*/
+		
+		if ($tipe!=="ALL")	$f = " AND notiftype='$tipe' ";
+		else $f = "";
+		
 		$sql =	"select sf.pid AS noorder,if(notifno=0,'',notifno) AS nosap
 				,sf.damage,if(sf.damage<>'',damage.nama,'') AS damagenm
 				,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm
@@ -169,7 +185,7 @@ class Sap extends CI_Model {
 		return $query->result();
 	}
 	
-	function get_opart($thn)	{
+	function get_opart($thn, $tipe)	{
 		/*
 		$sql = "select count(*) as jml, opart as kode,
 				(select nama from opart where opart.kode = sapfmea.opart limit 0,1) as nama,
@@ -181,6 +197,9 @@ class Sap extends CI_Model {
 				where YEAR(planstart)=$thn
 				group by opart,kode order by jml desc, kode asc";
 		//*/
+		if ($tipe!=="ALL")	$f = " AND notiftype='$tipe' ";
+		else $f = "";
+		
 		$sql =	"SELECT sf.opart AS kode, count(*) AS jml,od.nama,CONCAT('[',sf.opart,'] ',od.nama) AS desk
 				,ROUND((100*COUNT(*)/(SELECT COUNT(*) FROM sapfmea LEFT JOIN sap ON sapfmea.pid=sap.pid
 					WHERE YEAR(planstart)=2014)),2) as persen
@@ -195,7 +214,10 @@ class Sap extends CI_Model {
 		return $query->result();
 	}
 	
-	function get_opart_info($opart, $thn)	{
+	function get_opart_info($opart, $thn, $tipe)	{
+		if ($tipe!=="ALL")	$f = " AND notiftype='$tipe' ";
+		else $f = "";
+		
 		$sql =	"SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,opart,eqkode AS equip,
 				notiftype AS tipe,ordertype,downstart,deskord AS orderdesc
 				FROM sapfmea

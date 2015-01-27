@@ -1,7 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class rFMEA extends CI_Controller {
-	
+	function __construct() {
+        parent::__construct();
+		$this->load->model('sap');
+	}
+
 	public function sapCause()	{
 
 		try {
@@ -80,11 +84,12 @@ class rFMEA extends CI_Controller {
 	public function getCause()	{
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
+			$tipe = $this->input->get('tp')?:'ALL';
 			$this->load->model('sap');
 
 			$jsonResult = array(
 				'success' => true,
-				'sapcause' => $this->sap->get_cause($thn)
+				'sapcause' => $this->sap->get_cause($thn,$tipe)
 			);
 		}
 		catch (Exception $e){
@@ -99,12 +104,13 @@ class rFMEA extends CI_Controller {
 	public function getCauseInfo()	{
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
+			$tipe = $this->input->get('tp')?:'ALL';
 			$cause = $this->input->get('cause')?:'';
 			$this->load->model('sap');
 
 			$jsonResult = array(
 				'success' => true,
-				'sapcause' => $this->sap->get_cause_info($cause, $thn)
+				'sapcause' => $this->sap->get_cause_info($cause, $thn,$tipe)
 			);
 		}
 		catch (Exception $e){
@@ -119,11 +125,12 @@ class rFMEA extends CI_Controller {
 	public function getDamage()	{
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
+			$tipe = $this->input->get('tp')?:'ALL';
 			$this->load->model('sap');
 
 			$jsonResult = array(
 				'success' => true,
-				'sapdamage' => $this->sap->get_damage($thn)
+				'sapdamage' => $this->sap->get_damage($thn,$tipe)
 			);
 		}
 		catch (Exception $e){
@@ -139,11 +146,12 @@ class rFMEA extends CI_Controller {
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
 			$damage = $this->input->get('cause')?:'';
+			$tipe = $this->input->get('tp')?:'ALL';
 			$this->load->model('sap');
 
 			$jsonResult = array(
 				'success' => true,
-				'sapcause' => $this->sap->get_damage_info($damage, $thn)
+				'sapcause' => $this->sap->get_damage_info($damage, $thn, $tipe)
 			);
 		}
 		catch (Exception $e){
@@ -158,11 +166,12 @@ class rFMEA extends CI_Controller {
 	public function getOPart()	{
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
+			$tipe = $this->input->get('tp')?:'ALL';
 			$this->load->model('sap');
 
 			$jsonResult = array(
 				'success' => true,
-				'sapopart' => $this->sap->get_opart($thn)
+				'sapopart' => $this->sap->get_opart($thn, $tipe)
 			);
 		}
 		catch (Exception $e){
@@ -176,12 +185,14 @@ class rFMEA extends CI_Controller {
 
 	public function getOPartInfo()	{
 		try {
-			$damage = $this->input->get('cause')?:'';
+			$thn = $this->input->get('thn')?:date('Y');
+			$opart = $this->input->get('cause')?:'';
+			$tipe = $this->input->get('tp')?:'ALL';
 			$this->load->model('sap');
 
 			$jsonResult = array(
 				'success' => true,
-				'sapcause' => $this->sap->get_opart_info($damage)
+				'sapcause' => $this->sap->get_opart_info($opart, $thn, $tipe)
 			);
 		}
 		catch (Exception $e){
