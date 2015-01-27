@@ -69,6 +69,15 @@ class Sap extends CI_Model {
 		return $query->result();
     }
     
+    function get_ntype()	{
+		$sql =	"SELECT 'ALL' AS ntipe UNION ".
+				"SELECT notiftype as ntipe FROM sap WHERE notiftype <> '' GROUP BY notiftype ORDER BY ntipe ASC";
+		//echo "sql: $sql";		
+		
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+    
     function get_cause($thn)	{
 		$sql = "select cause as kode,CONCAT('[',cause,'] ',ifnull(cause.nama,'')) AS desk,cause.nama
 				,count(*) AS jml

@@ -23,9 +23,10 @@ Ext.define('rcm.view.laporan.SapChartDet', {
 		me.dockedItems = [{
 			dock: 'top',
 			idThn: me.idThn,
+			idTipe: me.idTipe,
 			idbSr: me.idbSr,
 			//xtype: 'label',
-			xtype: 'tFThn',
+			xtype: 'tFThnTp',
 			text: me.idThn			
 		}],
 		

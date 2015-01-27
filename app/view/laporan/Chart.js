@@ -22,8 +22,8 @@ Ext.define('rcm.view.laporan.Chart', {
         ,'rcm.view.laporan.GridOverHaul'
 		,'rcm.view.laporan.OverHaul'
         ,'rcm.view.laporan.FilterThn'
-        ,'rcm.view.laporan.SapChartSaja'
-        ,'rcm.view.laporan.FilterThn'
+        ,'rcm.view.laporan.FilterThnTipe'
+        ,'rcm.view.laporan.SapChartDet'
         ,'rcm.view.laporan.SapChartSaja'
 		,'rcm.view.laporan.OverHaul'
 		,'rcm.view.laporan.SapChartTop10'	
@@ -118,6 +118,7 @@ Ext.define('rcm.view.laporan.Chart', {
 				dstore: 'SapCause',
 				dstoreD:'SapCauseInfo',
 				idThn: 'thnCau',
+				idTipe: 'tpCau',
 				idbSr: 'srCau',
 				btnFilter: 'cau'
 			},{
@@ -130,6 +131,7 @@ Ext.define('rcm.view.laporan.Chart', {
 				param: 'Damage',
 				dstore: 'SapDamage',
 				idThn: 'thnDam',
+				idTipe: 'tpDam',
 				idbSr: 'srDam',
 				dstoreD:'SapDamageInfo',
 				btnFilter: 'dam'
@@ -142,6 +144,7 @@ Ext.define('rcm.view.laporan.Chart', {
 				jdlDet: 'Info Detail Chart Object Part Frequent',
 				param: 'Object part',
 				idThn: 'thnOpr',
+				idTipe: 'tpOpr',
 				idbSr: 'srOpr',
 				dstore: 'SapOPart',
 				dstoreD:'SapOPartInfo',

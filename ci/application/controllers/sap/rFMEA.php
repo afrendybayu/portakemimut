@@ -59,6 +59,24 @@ class rFMEA extends CI_Controller {
 	
 	}
 	
+	public function getNTipe()	{
+		try {
+			$this->load->model('sap');
+
+			$jsonResult = array(
+				'success' => true,
+				'sapntipe' => $this->sap->get_ntype()
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		echo json_encode($jsonResult);
+	}
+	
 	public function getCause()	{
 		try {
 			$thn = $this->input->get('thn')?:date('Y');

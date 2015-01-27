@@ -37,7 +37,7 @@ Ext.define('rcm.controller.Sap', {
 		,'SapCauseInfo','SapDamageInfo','SapOPartInfo','SapSymptomInfo'
 
 		,'SapOrderCwo','SapOrderCot'
-		,'SapThn12','SapThn','SapMwc','SapOType','SapLoc'
+		,'SapTipe','SapThn12','SapThn','SapMwc','SapOType','SapLoc'
 		
 		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10','SapTop10FL'
 		,'Contract','ContractLine', 'ContractInput'
@@ -722,26 +722,32 @@ Ext.define('rcm.controller.Sap', {
 	
 	bFiltCau: function()	{
 		//alert("Cause Thn: "+Ext.getCmp('thnCau').getValue());
-		var t=Ext.getCmp('thnCau').getValue();
+		var t=Ext.getCmp('thnCau').getValue(),
+			p=Ext.getCmp('tpCau').getValue(),
+			x={thn:t, tp:p};
 		this.getSapCauseInfoStore().clearFilter(true);
-		this.getSapCauseStore().load({params:{thn:t}});
-		this.getSapCauseInfoStore().load({params:{thn:t}});
+		this.getSapCauseStore().load({params:x});
+		this.getSapCauseInfoStore().load({params:x});
 	},
 	
 	bFiltDam: function()	{
 		//alert("Damage Thn: "+Ext.getCmp('thnDam').getValue());
-		var t=Ext.getCmp('thnDam').getValue();
+		var t=Ext.getCmp('thnDam').getValue(),
+			p=Ext.getCmp('tpDam').getValue(),
+			x={thn:t, tp:p};
 		this.getSapDamageInfoStore().clearFilter(true);
-		this.getSapDamageStore().load({params:{thn:t}});
-		this.getSapDamageInfoStore().load({params:{thn:t}});
+		this.getSapDamageStore().load({params:x});
+		this.getSapDamageInfoStore().load({params:x});
 	},
 	
 	bFiltOPart: function()	{
 		//alert("OPart Thn: "+Ext.getCmp('thnOpr').getValue());
-		var t=Ext.getCmp('thnOpr').getValue();
+		var t=Ext.getCmp('thnOpr').getValue(),
+			p=Ext.getCmp('tpOpr').getValue(),
+			x={thn:t, tp:p};
 		this.getSapOPartInfoStore().clearFilter(true);
-		this.getSapOPartStore().load({params:{thn:t}});
-		this.getSapOPartInfoStore().load({params:{thn:t}});
+		this.getSapOPartStore().load({params:x});
+		this.getSapOPartInfoStore().load({params:x});
 	},
 	
 	bFiltPM: function()	{
@@ -911,6 +917,7 @@ Ext.define('rcm.controller.Sap', {
 			me.getContractStore().load();
 			me.getContractLineStore().load();
 			me.getSapPMCostStore().load();
+			me.getSapTipeStore().load();
 			me.getSapThnStore().load();
 			me.getSapThn12Store().load();
 			me.getSapMwcStore().load();
