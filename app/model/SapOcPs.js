@@ -6,7 +6,6 @@ Ext.define('rcm.model.SapOcPs', {
 	],
 
 	fields: ['nama',
-		//{ name:'tPlCost',type:'float' },
-		'tPlCost',
+		{ name:'tPlCost',type:'float' },
 		{ name:'tAcCost',type:'float' }]
 });

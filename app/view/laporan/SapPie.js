@@ -87,7 +87,7 @@ Ext.define('rcm.view.laporan.SapPie', {
 		};
 		me.callParent(arguments);
 	}
-	
+	/*
 	,cariNilai: function(d)	{
 		var sd = d.split("p");
 		if (sd.length>1)	return parseFloat(sd[0]);
@@ -98,4 +98,5 @@ Ext.define('rcm.view.laporan.SapPie', {
 		var sd = d.split("p");
 		if (sd.length>1)	return sd[1];
 	}
+	//*/
 });
