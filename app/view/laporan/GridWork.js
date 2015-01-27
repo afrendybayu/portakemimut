@@ -12,14 +12,14 @@ Ext.define('rcm.view.laporan.GridWork', {
 		me.columns = {	
 			items: [
 			{ xtype:'rownumberer',width:25 },
-			{ text:'Work Centre',dataIndex:'nama',flex:1, 
+			{ text:'Work Center',dataIndex:'nama',flex:1, 
 				summaryRenderer: function() {
 					return Ext.String.format('TOTAL ALL WO'); 
 				} 
 			},
 			{ text:'Open',dataIndex:'open',flex:1,summaryType:'sum' },
 			{ text:'Teco',dataIndex:'teco',flex:1,summaryType:'sum' },
-			{ text:'Total Work Order<br/>Per Work Centre',dataIndex:'tot',flex:1,summaryType:'sum' },
+			{ text:'Total Work Order<br/>Per Work Center',dataIndex:'tot',flex:1,summaryType:'sum' },
 			{ text:'WO Compliance',dataIndex:'woc',width:110,xtype:'templatecolumn',tpl:'{woc} %',
 				summaryType: function(rec){
 					var tot = rec.reduce(function(sums, rec){

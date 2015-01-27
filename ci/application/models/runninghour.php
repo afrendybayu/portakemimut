@@ -105,9 +105,9 @@ class Runninghour extends CI_Model {
 		$sql =	"SELECT h.id AS id, CONCAT(h.kode,'@',hhh.kode) AS kode, CONCAT(h.nama,', ',eq.nama,'@ ',hhh.nama) AS nama
 				,hhh.urut as urut
 				,(SELECT ifnull(ROUND((sum(rh_201311.rh_av)*100/(count(rh_201311.id)*24)),2),0) 
-				FROM rh_201311 WHERE eq = h.id AND thn=$thn AND bln=12) AS av 
+				FROM rh_201311 WHERE eq = h.id AND thn=$thn AND bln=$bln) AS av 
 				,(SELECT ifnull(ROUND((sum(rh_201311.rh_re)*100/(count(rh_201311.id)*24)),2),0) 
-				FROM rh_201311 WHERE eq = h.id AND thn=$thn AND bln=12) AS re 
+				FROM rh_201311 WHERE eq = h.id AND thn=$thn AND bln=$bln) AS re 
 				FROM hirarki h
 				LEFT JOIN rh_201311 ON h.id = rh_201311.eq 
 				LEFT JOIN hirarki hh ON h.parent = hh.id
