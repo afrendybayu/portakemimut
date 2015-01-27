@@ -1028,10 +1028,11 @@ Ext.define('rcm.controller.Sap', {
 	cariSapHist: function()	{
 		//var o = this.getTFSap().sedotFilter();
 		var o = this.getTpSapHistori().sedotFilter();
-		//rcmSettings.ttt = o;
 		this.getSapHistoriStore().load({params: {loc:o.iL,otp:o.iW,mwc:o.iM,tgl:o.iT }});
 		//alert("o.L: "+o.iL+", oW: "+o.iW+", oM: "+o.iM+", oT: "+o.iT);
-		this.getTHistori().draw();
+		//this.getTHistori().draw();
+		Ext.getCmp('tSapHx').draw();
+		rcmSettings.qwqwq = this.getTHistori();
 	},
 	
 	clrSapMaint: function()	{

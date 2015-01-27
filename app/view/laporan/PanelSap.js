@@ -38,6 +38,7 @@ Ext.define('rcm.view.laporan.PanelSap', {
 		me.items= [{
 			//iconCls: 'Reliability',
 			xtype: 'tHistori',
+			id: 'tSapHx',
 			//flex: 1,
 			dstore: me.dstore
 		/*
