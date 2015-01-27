@@ -38,7 +38,7 @@ class rDetailG extends CI_Controller {
 					INNER JOIN hirarki h ON h.id = wd.unit_id
 					INNER JOIN hirarki hh ON hh.id = h.parent
 					INNER JOIN hirarki hhh ON hhh.id = hh.parent
-					INNER JOIN listEvent le ON le.id = wd.event
+					INNER JOIN listevent le ON le.id = wd.event
 					LEFT JOIN pmlist pl ON pl.id = wd.tipeev
 					LEFT JOIN pmdef pd ON pd.id = wd.tipeev
 					WHERE wd.id IN ($id) 
