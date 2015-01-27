@@ -253,20 +253,34 @@ class Sap extends CI_Model {
 	}
 	
 	function get_histori($thn,$lok,$otp,$mwc)	{
-		$sql =	"SELECT DATE_FORMAT(planend, '%b') AS bulan, MONTH(planend)-1 AS nbln
-				,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,0,1)) AS `teco`
-				,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)) AS `open`
-				,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1)) AS jml
-				,ROUND((SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)))*100/(SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1))),2) as persen
-				FROM sap WHERE YEAR(planend)=$thn ";
 		
-		//echo "lok: $lok<br/>";
+		if ($thn==12)	{
+			$sql =	"SELECT (YEAR(planend)*100+MONTH(planend)) as wkt, DATE_FORMAT(planend, '%b%y') AS bulan, MONTH(planend)-1 AS nbln
+					,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,0,1)) AS `teco`
+					,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)) AS `open`
+					,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1)) AS jml
+					,ROUND((SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)))*100/
+						(SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1))),2) as persen
+					FROM sap WHERE (YEAR(planend)*100+MONTH(planend)) <= (YEAR(CURDATE())*100+MONTH(CURDATE())) ";
+					
+			$sql .=	"GROUP BY wkt, nbln ORDER BY wkt desc, nbln ASC limit 0,12";
+		}
+		else {
+			$sql =	"SELECT DATE_FORMAT(planend, '%b%y') AS bulan, MONTH(planend)-1 AS nbln
+					,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,0,1)) AS `teco`
+					,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)) AS `open`
+					,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1)) AS jml
+					,ROUND((SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)))*100/(SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1))),2) as persen
+					FROM sap WHERE YEAR(planend)=$thn ";
+		
+			//echo "lok: $lok<br/>";
 
-		//if ($lok!="ALL" and $lok!="_")		$sql .=	"AND lokasi=$lok ";
-		if ($lok>=0)		$sql .=	"AND lokasi=$lok ";
-		if ($otp!="ALL" and $otp!="_")		$sql .=	"AND ordertype like '%$otp%' ";
-		if ($mwc!="ALL" and $mwc!="_")		$sql .=	"AND manwork like '%$mwc%' ";
-		$sql .=	"GROUP BY nbln ORDER BY nbln ASC";
+			//if ($lok!="ALL" and $lok!="_")		$sql .=	"AND lokasi=$lok ";
+			if ($lok>=0)		$sql .=	"AND lokasi=$lok ";
+			if ($otp!="ALL" and $otp!="_")		$sql .=	"AND ordertype like '%$otp%' ";
+			if ($mwc!="ALL" and $mwc!="_")		$sql .=	"AND manwork like '%$mwc%' ";
+			$sql .=	"GROUP BY nbln ORDER BY nbln ASC";
+		}
 		//echo "sql: $sql<br/><br/>";		
 		
 		$query = $this->db->query($sql);
