@@ -12,7 +12,7 @@ Ext.define('rcm.view.utama.GridWO', {
 		me.columns = {
 			items: [
 			{ xtype:'rownumberer',width:25 },
-			{ header:'Work Centre',dataIndex:'nama',flex:1, 
+			{ header:'Work Center',dataIndex:'nama',flex:1, 
 				//*
 				summaryRenderer: function() {
 					return Ext.String.format('TOTAL ALL WO'); 
