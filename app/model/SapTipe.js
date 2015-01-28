@@ -4,5 +4,5 @@ Ext.define('rcm.model.SapTipe', {
 	requires:[
 		'Ext.data.proxy.Ajax'
 	],
-	fields: [ 'text','id' ]
+	fields: [ 'text', 'nama', { name: 'id', type: 'int' }]
 });

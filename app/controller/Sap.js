@@ -40,7 +40,7 @@ Ext.define('rcm.controller.Sap', {
 		,'SapTipe','SapThn12','SapThn','SapMwc','SapOType','SapLoc'
 		
 		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10','SapTop10FL'
-		,'Contract','ContractLine', 'ContractInput'
+		,'Contract','ContractLine','ContractInput','SrKontrak','SapCatH'
 
 		,'SapHistori'
 		,'ManOCost','Jabat'
@@ -917,7 +917,9 @@ Ext.define('rcm.controller.Sap', {
 			me.getSapTop10FLStore().load();
 			me.getSapOrderCwoStore().load();
 			me.getSapOrderCotStore().load();
-			
+
+			me.getSapCatHStore().load();
+			me.getSrKontrakStore().load();
 			me.getContractStore().load();
 			me.getContractLineStore().load();
 			me.getSapPMCostStore().load();

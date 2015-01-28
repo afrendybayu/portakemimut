@@ -3,7 +3,7 @@
 class Catequip extends CI_Model {
 
 	function get_tipe($kode)	{
-		$this->db->select('id,nama');
+		$this->db->select('id,nama, nama as text');
 		$this->db->where('parent',0);
 		$this->db->order_by('urut');
 		

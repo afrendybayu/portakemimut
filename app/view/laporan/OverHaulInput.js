@@ -34,7 +34,10 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 			// hideTooltip: true
 		});
 		// me.selType = rmode;
-		me.plugins = [edit];
+		
+		//me.plugins = [edit];
+		
+		
 		/*
 		me.listeners = {
             'selectionchange': function(view, records) {

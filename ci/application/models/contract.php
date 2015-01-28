@@ -53,6 +53,15 @@ class Contract extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_single_kontrak($thn)	{
+		$this->db->select('*');
+		$this->db->where('YEAR(tgl)',$thn);
+		$this->db->order_by('tgl','desc');
+		
+		$query = $this->db->get('kontrak');
+		
+		return $query->result();
+	}
 	
 	function get_grafikcontrak($thn)	{
 		$sql =	"SELECT bulan AS m,
