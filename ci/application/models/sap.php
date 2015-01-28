@@ -70,8 +70,8 @@ class Sap extends CI_Model {
     }
     
     function get_ntype()	{
-		$sql =	"SELECT 'ALL' AS ntipe UNION ".
-				"SELECT notiftype as ntipe FROM sap WHERE notiftype <> '' GROUP BY notiftype ORDER BY ntipe ASC";
+		$sql =	"SELECT 'ALL' AS text,'ALL' AS id UNION ".
+				"SELECT notiftype as text,notiftype as id FROM sap WHERE notiftype <> '' GROUP BY notiftype ORDER BY text ASC";
 		//echo "sql: $sql";		
 		
 		$query = $this->db->query($sql);
@@ -127,10 +127,11 @@ class Sap extends CI_Model {
 				LEFT JOIN opartdef ON sf.opart = opartdef.kode
 				LEFT JOIN damage ON sf.damage = damage.kode
 				WHERE YEAR(planstart)=$thn AND (sf.cause <> 'COTH' OR sap.ordertype <> 'EP03') $f ";
-		
+		/*
 		if (strlen($cause)>0)	{
-			$sql .= "WHERE cause LIKE '%$cause%'";
+			$sql .= "AND cause LIKE '%$cause%'";
 		}
+		//*/
 		$query = $this->db->query($sql);
 		
 		return $query->result();

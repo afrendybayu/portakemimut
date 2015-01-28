@@ -109,6 +109,7 @@ Ext.define('rcm.view.laporan.Chart', {
 				xtype: 'tCostCont'
 			},{
 				id: 'ts_ca',
+				idc: 'idcCau',
 				title: 'Cause',
 				xtype: 'tSapDet',
 				jdlGr: 'Grafik Cause Frequent',
@@ -123,6 +124,7 @@ Ext.define('rcm.view.laporan.Chart', {
 				btnFilter: 'cau'
 			},{
 				id: 'ts_da',
+				idc: 'idcDam',
 				title: 'Damage',
 				xtype: 'tSapDet',
 				jdlGr: 'Grafik Damage Frequent',
@@ -137,6 +139,7 @@ Ext.define('rcm.view.laporan.Chart', {
 				btnFilter: 'dam'
 			},{
 				id: 'ts_ob',
+				idc: 'idcObp',
 				title: 'Object Part',
 				xtype: 'tSapDet',
 				jdlGr: 'Grafik Object Part Frequent',

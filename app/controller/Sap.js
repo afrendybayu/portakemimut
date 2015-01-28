@@ -728,6 +728,8 @@ Ext.define('rcm.controller.Sap', {
 		this.getSapCauseInfoStore().clearFilter(true);
 		this.getSapCauseStore().load({params:x});
 		this.getSapCauseInfoStore().load({params:x});
+		Ext.getCmp('idcCau').draw();
+		rcmSettings.qwqwq = Ext.getCmp('idcCau');
 	},
 	
 	bFiltDam: function()	{
@@ -738,6 +740,7 @@ Ext.define('rcm.controller.Sap', {
 		this.getSapDamageInfoStore().clearFilter(true);
 		this.getSapDamageStore().load({params:x});
 		this.getSapDamageInfoStore().load({params:x});
+		Ext.getCmp('idcDam').draw();
 	},
 	
 	bFiltOPart: function()	{

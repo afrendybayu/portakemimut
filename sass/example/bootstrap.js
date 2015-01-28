@@ -5,18 +5,21 @@
  * metadata-driven class system features 
  */
 Ext.Loader.addClassPathMappings({
-  "Chart.ux.Highcharts.WaterfallSerie": "../../ext/src/Chart/ux/Highcharts/WaterfallSerie.js",
+  "Chart": "../../ext/src/Chart",
   "Ext": "../../ext/src",
-  "Ext.DomHelper": "../../ext/src/dom/Helper.js",
-  "Ext.DomQuery": "../../ext/src/dom/Query.js",
-  "Ext.EventObjectImpl": "../../ext/src/EventObject.js",
   "Ext.Msg": "../../ext/src/window/MessageBox.js",
-  "Ext.Supports": "../../ext/src/Support.js",
   "Ext.chart": "../../ext/src/chart__",
-  "Ext.cmd": "../../../../../../../home/jono/bin/Sencha/Cmd/5.1.0.26/plugins/src",
-  "Ext.core.DomHelper": "../../ext/src/dom/Helper.js",
-  "Ext.core.DomQuery": "../../ext/src/dom/Query.js",
   "Ext.rtl.EventObjectImpl": "../../ext/src/rtl/EventObject.js",
+  "Ext.view": "../../app/view",
+  "Ext.view.AbstractView": "../../ext/src/view/AbstractView.js",
+  "Ext.view.BoundList": "../../ext/src/view/BoundList.js",
+  "Ext.view.BoundListKeyNav": "../../ext/src/view/BoundListKeyNav.js",
+  "Ext.view.DragZone": "../../ext/src/view/DragZone.js",
+  "Ext.view.DropZone": "../../ext/src/view/DropZone.js",
+  "Ext.view.NodeCache": "../../ext/src/view/NodeCache.js",
+  "Ext.view.Table": "../../ext/src/view/Table.js",
+  "Ext.view.TableLayout": "../../ext/src/view/TableLayout.js",
+  "Ext.view.View": "../../ext/src/view/View.js",
   "rcm": "../../app",
   "rcm.store.OPartDefs": "../../app/store/OpartDefs.js"
 });
@@ -887,6 +890,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.view.View": [
     "Ext.DataView"
   ],
+  "Ext.view.override.Table": [],
   "Ext.window.MessageBox": [],
   "Ext.window.Window": [
     "Ext.Window"
@@ -971,6 +975,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.SapOcPs": [],
   "rcm.model.SapSpeedo": [],
   "rcm.model.SapThn": [],
+  "rcm.model.SapTipe": [],
   "rcm.model.SapTop": [],
   "rcm.model.Symptom": [],
   "rcm.model.UnitList": [],
@@ -1064,6 +1069,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.SapSymptomInfo": [],
   "rcm.store.SapThn": [],
   "rcm.store.SapThn12": [],
+  "rcm.store.SapTipe": [],
   "rcm.store.SapTop10": [],
   "rcm.store.SapTop10FL": [],
   "rcm.store.SpAvGcUt": [],
@@ -1159,6 +1165,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.laporan.FilterSap": [],
   "rcm.view.laporan.FilterThn": [],
   "rcm.view.laporan.FilterThnNo": [],
+  "rcm.view.laporan.FilterThnTipe": [],
   "rcm.view.laporan.FilterUpload": [],
   "rcm.view.laporan.GridCause": [],
   "rcm.view.laporan.GridCauseInfo": [],
@@ -2205,6 +2212,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.view.View": [
     "widget.dataview"
   ],
+  "Ext.view.override.Table": [],
   "Ext.window.MessageBox": [
     "widget.messagebox"
   ],
@@ -2291,6 +2299,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.SapOcPs": [],
   "rcm.model.SapSpeedo": [],
   "rcm.model.SapThn": [],
+  "rcm.model.SapTipe": [],
   "rcm.model.SapTop": [],
   "rcm.model.Symptom": [],
   "rcm.model.UnitList": [],
@@ -2384,6 +2393,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.SapSymptomInfo": [],
   "rcm.store.SapThn": [],
   "rcm.store.SapThn12": [],
+  "rcm.store.SapTipe": [],
   "rcm.store.SapTop10": [],
   "rcm.store.SapTop10FL": [],
   "rcm.store.SpAvGcUt": [],
@@ -2622,6 +2632,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.laporan.FilterThnNo": [
     "widget.tFThnNo"
+  ],
+  "rcm.view.laporan.FilterThnTipe": [
+    "widget.tFThnTp"
   ],
   "rcm.view.laporan.FilterUpload": [
     "widget.tFUpl"
