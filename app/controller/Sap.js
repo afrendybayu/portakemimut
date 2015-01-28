@@ -715,7 +715,7 @@ Ext.define('rcm.controller.Sap', {
 		//alert("Thn: "+Ext.getCmp('iThnCont').getValue());
 		var t=Ext.getCmp('iThnCont').getValue();
 		this.getTGridContract().thn = t;
-		Ext.getCmp('grContL').setTitle("Trend Cost Center "+t);
+		//Ext.getCmp('grContL').setTitle("Trend Cost Center "+t);
 		this.getContractStore().load({params:{tgl:t}});
 		this.getContractLineStore().load({params:{tgl:t}});
 	},

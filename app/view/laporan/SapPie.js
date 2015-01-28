@@ -39,7 +39,7 @@ Ext.define('rcm.view.laporan.SapPie', {
 			dataLabels: {
 				formatter: function() {
 					//return this.y>1 ? '<b>'+this.point.name+':</b> '+this.y+me.dsat : null;
-					console.log(this.y);
+					//console.log(this.y);
 					return this.y>1 ? this.point.name+'<br/><b>'+this.y+me.dsat+'</b>' : null;
 				}
 			}

@@ -5,7 +5,6 @@ Ext.define('rcm.view.laporan.SapContractLine', {
 	//*
 	require: [
 		'rcm.view.Util'
-		//,'rcm.view.laporan.FilterHistori'
 	],
 	//*/
 	loadMask: true,

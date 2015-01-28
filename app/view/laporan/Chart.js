@@ -46,7 +46,7 @@ Ext.define('rcm.view.laporan.Chart', {
 			//*/
 				id: 'ts_oh',
 				itemId: 'ts_oh',
-				title: 'OverHaul',
+				title: 'Preventive Maintenance',
 				xtype:'pOverHaul'
 			},{
 				id: 'ts_mo',

@@ -8,6 +8,7 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 		 'rcm.view.laporan.GridContract'
         ,'rcm.view.laporan.SapContractLine'
         ,'rcm.view.laporan.FilterThnNo'
+        ,'rcm.view.laporan.SapAcdCont'
 	],
 	
 	layout: 'border',
@@ -32,7 +33,15 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 			tot: true,
 			split: true
 		},{
+			
+		/*
+			region: 'center',
+			//title: 'tes',
+			xtype: 'tAcdCont',
+			//html: 'ess',
+			flex: 1
 		//*/
+		//*
 			id: 'grContL',
 			region: 'center',
 			title: 'ContractL',

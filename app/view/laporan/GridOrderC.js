@@ -24,7 +24,7 @@ Ext.define('rcm.view.laporan.GridOrderC', {
             },
             //*/
 			items: [
-				{ xtype:'rownumberer',width:25 },		// 
+				{ xtype:'rownumberer',width:25 },		// ,locked:true
 				{ header:'Order Costing',//flex:3,
 					columns: [{ 
 						header: me.jdl, dataIndex:'otipe'

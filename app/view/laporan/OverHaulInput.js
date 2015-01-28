@@ -12,6 +12,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 	// idunit: '',
 	// ngedit: 0,
 	enableColumnHide: false,
+	features: [{ftype: 'filters',local: true }],
 	/*
 	dockedItems: [{
             xtype: 'taskOverHaul',
@@ -52,7 +53,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 			items : [{
 					header : 'No', xtype:'rownumberer',width:35 
 				},{
-					header : 'Lokasi',minWidth : 130,dataIndex : 'lokasi'
+					header : 'Lokasi',minWidth : 130,dataIndex : 'lokasi', filter: { type: 'string' }
 					/*
 					,editor:{
 						xtype		:'combobox',
@@ -73,7 +74,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 					//*/
 				},{
 					//header : 'Equip',flex : 1,dataIndex : 'equip'
-					header:'Equip', minWidth:200, dataIndex: 'equip'
+					header:'Equip', minWidth:200, dataIndex: 'equip', filter: { type: 'string' }
 					/*
 					,editor:{
 						xtype		:'combobox',
@@ -92,7 +93,7 @@ Ext.define('rcm.view.laporan.OverHaulInput', {
 					}
 					//*/
 				},{
-					header : 'Unit',minWidth:150,dataIndex : 'unit'
+					header : 'Unit',minWidth:150,dataIndex : 'unit', filter: { type: 'string' }
 					/*
 					,editor:{
 						xtype		:'combobox',
