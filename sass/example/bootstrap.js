@@ -1182,6 +1182,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.laporan.OverHaulForm": [],
   "rcm.view.laporan.OverHaulInput": [],
   "rcm.view.laporan.PanelSap": [],
+  "rcm.view.laporan.SapAcdCont": [],
   "rcm.view.laporan.SapCause": [],
   "rcm.view.laporan.SapChartDet": [],
   "rcm.view.laporan.SapChartSaja": [],
@@ -2686,6 +2687,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.laporan.PanelSap": [
     "widget.tpSapHistori"
+  ],
+  "rcm.view.laporan.SapAcdCont": [
+    "widget.tAcdCont"
   ],
   "rcm.view.laporan.SapCause": [
     "widget.causechart"
