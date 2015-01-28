@@ -97,7 +97,7 @@ Ext.define('rcm.view.utama.GridOrderC', {
             rowCount = store.getCount(),
 			
 			col = [10,11],
-            spanCell, spanCount, spanValue;
+            spanCell, spanCount, spanValue, dtIndex;
 
 		for (var c=0; c<col.length; c++)	{
 			spanCell = null;
