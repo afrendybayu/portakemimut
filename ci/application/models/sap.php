@@ -121,12 +121,12 @@ class Sap extends CI_Model {
 				,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm,planstart AS plnstr
 				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm,deskord AS orderdesc
 				,manwork AS mainwork,down,eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart
-				from sapfmea sf
+				FROM sapfmea sf
 				LEFT JOIN sap ON sap.pid = sf.pid
 				LEFT JOIN cause ON sf.cause = cause.kode
 				LEFT JOIN opartdef ON sf.opart = opartdef.kode
 				LEFT JOIN damage ON sf.damage = damage.kode
-				where YEAR(planstart)=$thn AND (sf.cause <> 'COTH' OR sap.ordertype <> 'EP03')";
+				WHERE YEAR(planstart)=$thn AND (sf.cause <> 'COTH' OR sap.ordertype <> 'EP03') $f ";
 		
 		if (strlen($cause)>0)	{
 			$sql .= "WHERE cause LIKE '%$cause%'";
