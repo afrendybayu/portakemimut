@@ -15,7 +15,7 @@
 |
 */
 // $config['base_url']	= 'http://localhost/daunbiru/portakemimut/ci'; //medco/ci/';
-$config['base_url']	= 'http://localhost/daunbiru/mulyoharjo/'; //medco/ci/';
+$config['base_url']	= 'http://localhost/daunbiru/portakemimut/ci'; //medco/ci/';
 
 /*
 |--------------------------------------------------------------------------

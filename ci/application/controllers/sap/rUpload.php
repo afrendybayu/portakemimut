@@ -138,8 +138,11 @@ class rUpload extends CI_Controller {
 						
 				$objPHPExcel = PHPExcel_IOFactory::load($hsl["lokasi"]);
 				
-				
+				//$objPHPExcel->getActiveSheet()->getStyle("B2")->getNumberFormat()->setFormatCode('0');
 				$dt = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+				
+				
+				 
 				//print_r($dt);
 				$bacaFileEnd = microtime(true);
 				$bacaFile = $bacaFileEnd - $bacaFileStart;
@@ -160,6 +163,14 @@ class rUpload extends CI_Controller {
 					$c = array();
 					for ($i=0; $i<$colData; $i++)	{
 						$no = numtoa(array('', $i+1));
+						//if ($i==2){ 
+							////$objPHPExcel->getActiveSheet()->getStyle("B2")->getNumberFormat()->setFormatCode('0');
+							////$objPHPExcel->getActiveSheet()->getStyle('B2')->getNumberFormat()->setFormatCode('#');
+							//echo $dt[$kk][$no[0]];
+						
+						//}
+												
+						//else if ($i==3)	{
 						if ($i==3)	{
 							$time = strtotime($dt[$kk][$no[0]]);
 							$dd = date('Y-m-d',$time);
@@ -173,7 +184,7 @@ class rUpload extends CI_Controller {
 						//echo "no[$i]: {$no[0]} : {$dt[1][$no[0]]} : <font color='red'>{$dt[2][$no[0]]} {$dt[3][$no[0]]}</font> <br/>";
 					}
 					//$this->upload->insert_bpm3($c);
-					$this->upload->insert_oh($c);
+					//$this->upload->insert_oh($c);
 				}
 				
 				$prosesFileEnd = microtime(true);
