@@ -67,7 +67,7 @@ Ext.define('rcm.view.sapu.Sapu', {
 					value	: Ext.Date.add (new Date(),Ext.Date.DAY,-1)
 				},{ 
 					text:'Submit', 
-					handler : this.tbLakukan
+					//handler : this.tbLakukan
 				},{ 
 					text:'Delete' 
 				}					
