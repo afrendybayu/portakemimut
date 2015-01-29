@@ -11,6 +11,7 @@ Ext.define('rcm.controller.Sap', {
         ,'laporan.FilterSap'
 
 		,'laporan.ConMonForm'
+		,'laporan.ContractForm'
 		,'laporan.SapPie'
 		,'laporan.GridContract'
 		,'laporan.EPO'
@@ -22,6 +23,7 @@ Ext.define('rcm.controller.Sap', {
 		
 		,'laporan.SapHistori'
 		,'laporan.WOStack'
+		,'laporan.ContractList'
     ],
 
     controllers: [
@@ -58,7 +60,8 @@ Ext.define('rcm.controller.Sap', {
 		'ConMonIn',
 		'OverHaulIn',
 		'ManOCost',
-		'Jabat'
+		'Jabat',
+		'SrKontrak'
     ],
     
     refs: [{
@@ -101,6 +104,9 @@ Ext.define('rcm.controller.Sap', {
 		},{
 			ref : 'taskConMon',
 			selector : 'taskConMon'
+		},{
+			ref : 'tContrxF',
+			selector : 'tContrxF'
 		},{
 			ref : 'iConMon',
 			selector : 'iConMon'
@@ -182,6 +188,9 @@ Ext.define('rcm.controller.Sap', {
 			'#ConMonSave' : {
 				click : me.tblsimpanConMon
 			},
+			'#ContraxSave' : {
+				click : me.tSaveCtrx
+			},
 			'#idGridCM': {
 				recordedit: me.uConMon
 			},
@@ -260,6 +269,9 @@ Ext.define('rcm.controller.Sap', {
 			},
 			'tJabat button[text=Simpan]' : {
 				click: me.sRepOH
+			},
+			'iContx': {
+				delSContract: me.delSKontrak
 			}
 			
 		});
@@ -509,25 +521,25 @@ Ext.define('rcm.controller.Sap', {
 		var me = this, record = isi.data,
 		doh 	= Ext.create('rcm.model.OverHaulIn', record );
 		Ext.MessageBox.show({
-				title : 'Hapus OverHaul',
-				msg   : 'Yakin Data Akan di Hapus??',
-				buttons: Ext.MessageBox.OKCANCEL,
-				icon  : Ext.MessageBox.WARNING,
-				fn	: function (oks){
-					if (oks === 'ok'){ 
-						
-						doh.destroy ({
-							success : function(dcmon, operation){
-								me.getOverHaulInStore().reload();
-								me.getOhTahunStore().reload();
-							},
-							callback : function(){
-								
-							}
-						}) 
-					}
+			title : 'Hapus OverHaul',
+			msg   : 'Yakin Data Akan di Hapus??',
+			buttons: Ext.MessageBox.OKCANCEL,
+			icon  : Ext.MessageBox.WARNING,
+			fn	: function (oks){
+				if (oks === 'ok'){ 
 					
+					doh.destroy ({
+						success : function(dcmon, operation){
+							me.getOverHaulInStore().reload();
+							me.getOhTahunStore().reload();
+						},
+						callback : function(){
+							
+						}
+					}) 
 				}
+				
+			}
 		});
 	},
 	entersaveOH : function(field,e){  
@@ -787,6 +799,46 @@ Ext.define('rcm.controller.Sap', {
 		//console.log(this.getTWOStack());
 		this.getTWOStack().draw();
 		//rcmSettings.dddddd = this.getTWOStack();
+	},
+	
+	tSaveCtrx: function()	{
+		//alert("tSaveCtrx");
+		var me = this,
+			form = me.getTContrxF(),
+			bForm = form.getForm(),
+            formEl = form.getEl(),
+			cont = Ext.create('rcm.model.SrKontrak');
+			// console.log(tgl.getValue()+'->'+lokasi.getValue()+'->'+unit.getValue());
+			bForm.updateRecord(cont);
+			
+			cont.save({
+				success: function(cmon, operation) {
+					//alert("sukses");
+					me.getSrKontrakStore().reload();
+				}
+			});
+			bForm.reset();
+	},
+	
+	delSKontrak: function(d)	{
+		var me = this, rec = d.data,
+		doh = Ext.create('rcm.model.SrKontrak', rec );
+		Ext.MessageBox.show({
+			title : 'Hapus Kontrak',
+			msg   : 'Yakin Data '+ rec.ket +' Akan di Hapus??',
+			buttons: Ext.MessageBox.OKCANCEL,
+			icon  : Ext.MessageBox.WARNING,
+			fn	: function (oks){
+				if (oks === 'ok'){ 
+					doh.destroy ({
+						callback : function() {
+							me.getSrKontrakStore().reload();
+						}
+					}) 
+				}
+				
+			}
+		});
 	},
 		
 	simpanconmon : function(){

@@ -105,6 +105,26 @@ class Contract extends CI_Model {
 		return array($hsl);
 	}
 
+
+	function csKontrak($data)	{
+		//echo "disini 1<br/>";
+		$this->db->trans_start();
+		//echo "disini 2<br/>";
+		$this->db->insert('kontrak', $data);
+		//echo "disini 3<br/>";
+		//echo $this->db->last_query();
+		//echo "disini 4<br/>";
+		$insert_id = $this->db->insert_id();
+		$this->db->trans_complete();
+		return  $insert_id;
+	}
+	
+	function dsKontrak($data)	{
+		//echo 'id: '. $data->id;
+		$this->db->where('id', $data->id);
+		$this->db->delete('kontrak'); 
+		return  $data->id;
+	}
 }
 
 /* End of file contract.php */

@@ -13,7 +13,9 @@ Ext.define('rcm.model.SrKontrak', {
 		type: 'ajax',
 		api: {
 			read: 'ci/index.php/sap/rContract/rsKontrak',
-			update: 'ci/index.php/sap/uContract'
+			update: 'ci/index.php/sap/cContract/usKontrak',
+			create: 'ci/index.php/sap/cContract/csKontrak',
+			destroy: 'ci/index.php/sap/cContract/dsKontrak'
         },
         reader: {
             type: 'json',

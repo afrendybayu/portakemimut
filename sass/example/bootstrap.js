@@ -977,6 +977,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.SapThn": [],
   "rcm.model.SapTipe": [],
   "rcm.model.SapTop": [],
+  "rcm.model.SrKontrak": [],
   "rcm.model.Symptom": [],
   "rcm.model.UnitList": [],
   "rcm.model.UnsetSesi": [],
@@ -1048,6 +1049,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.ReSpeedo": [],
   "rcm.store.Refers": [],
   "rcm.store.RunningHour": [],
+  "rcm.store.SapCatH": [],
   "rcm.store.SapCause": [],
   "rcm.store.SapCauseInfo": [],
   "rcm.store.SapDamage": [],
@@ -1079,6 +1081,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.SpReGcUt": [],
   "rcm.store.SpReGsUt": [],
   "rcm.store.SpRePmUt": [],
+  "rcm.store.SrKontrak": [],
   "rcm.store.Symptom": [],
   "rcm.store.Symptoms": [],
   "rcm.store.UnitList": [],
@@ -1157,6 +1160,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.laporan.ConMonForm": [],
   "rcm.view.laporan.ConMonInput": [],
   "rcm.view.laporan.ConMonUnit": [],
+  "rcm.view.laporan.ContractForm": [],
+  "rcm.view.laporan.ContractList": [],
   "rcm.view.laporan.DetCmGasComp": [],
   "rcm.view.laporan.EPO": [],
   "rcm.view.laporan.EPOCol": [],
@@ -2302,6 +2307,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.SapThn": [],
   "rcm.model.SapTipe": [],
   "rcm.model.SapTop": [],
+  "rcm.model.SrKontrak": [],
   "rcm.model.Symptom": [],
   "rcm.model.UnitList": [],
   "rcm.model.UnsetSesi": [],
@@ -2373,6 +2379,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.ReSpeedo": [],
   "rcm.store.Refers": [],
   "rcm.store.RunningHour": [],
+  "rcm.store.SapCatH": [],
   "rcm.store.SapCause": [],
   "rcm.store.SapCauseInfo": [],
   "rcm.store.SapDamage": [],
@@ -2404,6 +2411,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.SpReGcUt": [],
   "rcm.store.SpReGsUt": [],
   "rcm.store.SpRePmUt": [],
+  "rcm.store.SrKontrak": [],
   "rcm.store.Symptom": [],
   "rcm.store.Symptoms": [],
   "rcm.store.UnitList": [],
@@ -2609,6 +2617,12 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.laporan.ConMonUnit": [
     "widget.tConMonUnit"
+  ],
+  "rcm.view.laporan.ContractForm": [
+    "widget.tContrxF"
+  ],
+  "rcm.view.laporan.ContractList": [
+    "widget.iContx"
   ],
   "rcm.view.laporan.DetCmGasComp": [
     "widget.detgascompcm"
