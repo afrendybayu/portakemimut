@@ -440,7 +440,7 @@ class Sap extends CI_Model {
 				FROM sap
 				LEFT JOIN equip e ON e.tag = sap.eqkode
 				LEFT JOIN hirarki h ON h.urut>=0 and h.parent = 0 AND sap.lokasi = h.urut
-				where year(sap.planstart)=2014 AND  sap.eqdesc <> ''
+				where year(sap.planstart)=$thn AND  sap.eqdesc <> ''
 				group by sap.eqkode 
 				order by jml DESC limit 0,10";
 		
