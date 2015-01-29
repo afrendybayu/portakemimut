@@ -84,13 +84,13 @@ class RhSweep extends CI_Controller {
 		echo json_encode($jsonResult);
 	}
 	
-	function Sapu_Unit(){
+	function cSapu_Unit(){
 		
 		
 		try{
 			$s_unit = json_decode(file_get_contents('php://input'));
 			
-			if (isset($s_unit->id_unit) ){
+			//if (isset($s_unit->id_unit) ){
 			$interval =floor((strtotime($s_unit->akhir) - strtotime($s_unit->awal))/(3600*24));
 			$concat_eq = $this->equip->get_equip_unit_concat($s_unit->id_unit);
 			foreach ( $concat_eq as $row){
@@ -116,7 +116,7 @@ class RhSweep extends CI_Controller {
 					else {continue;	}
 				}
 			}
-		}
+		//}
 		
 			
 			//$this->hirarki->set_rhtot($row->unit_id);
@@ -139,6 +139,7 @@ class RhSweep extends CI_Controller {
 		}
 		//echo json_encode($jsonResult);
 	}
+	
 }
 
 ?>

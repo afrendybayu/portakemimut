@@ -20,7 +20,7 @@ Ext.define('rcm.controller.Sapu', {
     
     models: [
 		'SapuUnit'
-		,'RunningHour'
+		//,'RunningHour'
 	],
     
     refs: [{
@@ -44,11 +44,42 @@ Ext.define('rcm.controller.Sapu', {
 			},
 			'tSapu button[text=Submit]' : {
 				click : me.SubmitSapu
+			},
+			'tSapu button[text=Delete]' : {
+				click : me.DeleteSapu
 			}
 		
 		});
 	},
-	
+	//DeleteSapu: function(){
+			//var me = this;
+			//var spgrid = this.getTSapu(),
+			//datax = spgrid.getSelectionModel().getSelection(),
+			//awl = Ext.getCmp('t_awal').value,
+			//akh = Ext.getCmp('t_akhir').value;
+			////console.log(datax);
+			
+			//for(var i = 0, lgt = datax.length; i < lgt; i++){
+				////console.log(datax[i].data.id_unit);
+				
+				////ndelete = new rcm.model.SapuUnit(datax[i]);
+				////ndelete = Ext.create(rcm.model.SapuUnit,{id_unit:datax[i].data.id_unit, awal:awl, akhir:akh});
+				////console.log (ndelete);
+					
+					//ndelete.destroy({
+						//success: function(ndelete, operation){
+							////me.getFormAksisStore().reload();
+							////me.getRunningHourStore().reload();
+						//}
+
+					//});
+					
+				
+				//}
+			
+			
+			
+	//},
 	SubmitSapu: function(){
 			var me = this;
 			//console.log('nyapu mase');
@@ -58,7 +89,7 @@ Ext.define('rcm.controller.Sapu', {
 			var dua = Ext.getCmp('t_akhir').value;
 			
 			//console.log(sapugrid);
-			console.log(satu + dua);
+			//console.log(satu + dua);
 			//console.log(datanya[].data.id_unit);
 			
 			for(var i = 0, len = datanya.length; i < len; i++){
@@ -66,12 +97,12 @@ Ext.define('rcm.controller.Sapu', {
 					//console.log(satu + dua);
 					
 					nyapu = Ext.create(rcm.model.SapuUnit,{id_unit:datanya[i].data.id_unit, flag:datanya[i].data.flag, awal:satu, akhir:dua});
-					console.log (nyapu);
+					//console.log (nyapu);
 					
 					nyapu.save({
 						success: function(record, operation){
 							//me.getFormAksisStore().reload();
-							me.getRunningHourStore().reload();
+							//me.getRunningHourStore().reload();
 						}
 
 					});

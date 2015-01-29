@@ -84,7 +84,7 @@ Ext.define('rcm.view.Content', {
 		},{
 			id		: 'tu_sp',
 			itemId	: 'tu_sp',
-			title	: 'Data Bulk Running Hour',
+			title	: 'Bulk Input Running Hour',
 			iconCls	: 'Konfigurasi',
 			hidden	: false,
 			xtype 	: 'tSapu'

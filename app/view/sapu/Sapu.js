@@ -50,7 +50,7 @@ Ext.define('rcm.view.sapu.Sapu', {
 					handler : this.klikPump
 				},'->',{
 					xtype : 'label',
-					html : '<span style="color:green;">Lakukan Sapu</span>'
+					html : '<span style="font-weight: bold">Lakukan Sapu</span>'
 				},{
 					id	: 't_awal',
 					xtype : 'datefield',

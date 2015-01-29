@@ -455,7 +455,7 @@ Ext.define('rcm.controller.Config', {
     	// alert ('pencet tombol apuss');
     	var me = this, 
 		record = rec.data,
-		delusr = new rcm.model.User(record );
+		delusr = new rcm.model.User(record);
 		Ext.MessageBox.show({
 				title : 'Hapus User',
 				msg   : 'Yakin Data Akan di Hapus ??',
