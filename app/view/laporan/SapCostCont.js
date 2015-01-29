@@ -9,7 +9,7 @@ Ext.define('rcm.view.laporan.SapCostCont', {
         ,'rcm.view.laporan.SapContractLine'
         ,'rcm.view.laporan.FilterThnNo'
         //,'rcm.view.laporan.SapAcdCont'
-        ,'rcm.view.laporan.ContractInput'
+        ,'rcm.view.laporan.ContractList'
 	],
 	
 	layout: 'border',

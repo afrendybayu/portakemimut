@@ -38,15 +38,24 @@ Ext.define('rcm.view.laporan.FilterThnTipe', {
 				},{
 					id: me.idTipe,
 					xtype: 'combo',
-					emptyText: 'Tahun '+rcm.view.Util.U1th(''),
 					valueField: 'text',
-					value: 'ALL',
+					//value: 'ALL',
 					fieldLabel: '<b>Tipe</b>',
-					queryMode: 'local',
+					multiSelect: true,
+					forceSelection: true,
+					editable: false,
+					//queryMode: 'local',
+					mode: 'local',
 					store: 'SapTipe',
 					displayField: 'text',
 					width: 110,
-					labelWidth: 40
+					labelWidth: 40,
+					triggerAction: 'all',
+					listConfig : {          
+						getInnerTpl : function() {
+							return '<div class="x-combo-list-item"><img src="' + Ext.BLANK_IMAGE_URL + '" class="chkCombo-default-icon chkCombo" /> {text} </div>';
+						}
+					}
 				},{
 					//id: 'btnCariSH',
 					id: me.idbSr,
