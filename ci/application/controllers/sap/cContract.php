@@ -61,6 +61,31 @@ class cContract extends CI_Controller {
 		echo "coba oni";
 	}
 	
+	public function usKontrak()	{
+		try	{
+			$params = json_decode(file_get_contents('php://input'));
+
+			if (!isset($params))	{
+				throw new Exception("Data Tidak ada !!");
+			}
+			$hasil = $this->contract->usKontrak($params);
+
+			$jsonResult = array(
+				'success' => true,
+				'tasks' => $hasil
+			);
+			
+			//*/
+		}
+		catch (Exception $e)	{
+			 $jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+	}
+	
 	public function csKontrak()	{
 		try	{
 			$params = json_decode(file_get_contents('php://input'));

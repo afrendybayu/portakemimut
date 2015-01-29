@@ -125,6 +125,12 @@ class Contract extends CI_Model {
 		$this->db->delete('kontrak'); 
 		return  $data->id;
 	}
+	
+	function usKontrak($data)	{
+		$this->db->set($data);
+		$this->db->where('id', $data->id);
+		return $this->db->update('kontrak');
+	}
 }
 
 /* End of file contract.php */

@@ -271,7 +271,8 @@ Ext.define('rcm.controller.Sap', {
 				click: me.sRepOH
 			},
 			'iContx': {
-				delSContract: me.delSKontrak
+				delSContract: me.delSKontrak,
+				updSContract: me.updSKontrak
 			}
 			
 		});
@@ -839,6 +840,30 @@ Ext.define('rcm.controller.Sap', {
 				
 			}
 		});
+	},
+	
+	updSKontrak: function(d)	{
+		var me = this,
+		doh = Ext.create('rcm.model.SrKontrak', d );
+
+		Ext.MessageBox.show({
+			title : 'Ubah Kontrak',
+			msg   : 'Yakin Data '+ d.ket +' Akan di Ubah??',
+			buttons: Ext.MessageBox.OKCANCEL,
+			icon  : Ext.MessageBox.WARNING,
+			fn	: function (oks){
+				if (oks === 'ok'){ 
+					doh.save ({
+						success: function()	{
+						//	alert("sampe sini");
+							me.getSrKontrakStore().reload();
+						}
+					})
+				}
+				
+			}
+		});
+		//*/
 	},
 		
 	simpanconmon : function(){
