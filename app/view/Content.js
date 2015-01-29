@@ -11,6 +11,7 @@ Ext.define('rcm.view.Content', {
 		//,'rcm.view.laporan.Tab'
 		,'rcm.view.konfig.TabKonfig'
 		,'rcm.view.dataentry.Tab'
+		,'rcm.view.sapu.Sapu'
 		
 		
 		//,'rcm.view.login.LoginAuth'
@@ -80,7 +81,15 @@ Ext.define('rcm.view.Content', {
 			//disabled : true
 			// hidden: true
 		//*/
-		
+		},{
+			id		: 'tu_sp',
+			itemId	: 'tu_sp',
+			title	: 'Data Bulk Running Hour',
+			iconCls	: 'Konfigurasi',
+			hidden	: false,
+			xtype 	: 'tSapu'
+			
+			
 		}];
 		
 		me.callParent(arguments);
@@ -107,6 +116,10 @@ Ext.define('rcm.view.Content', {
 		else if (tt.localeCompare("tu_ho")==0)	{
 			//alert("masuk update Home");
 			this.fireEvent('updateHome');
+		}
+		else if (tt === "tu_sp"){
+			//alert ("ini update sapu");
+			this.fireEvent('updateSapu');
 		}
 	},
 	

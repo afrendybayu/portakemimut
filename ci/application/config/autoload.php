@@ -65,7 +65,7 @@ $autoload['libraries'] = array('database', 'session','excel');
 */
 
 //$autoload['helper'] = array();
-$autoload['helper'] = array('util_helper','sap_helper','ex_helper');
+$autoload['helper'] = array('util_helper','sap_helper','ex_helper','url');
 
 
 /*

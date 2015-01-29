@@ -173,6 +173,7 @@ Ext.define('rcm.view.laporan.Chart', {
 		this.on('tabchange', me.handleSapTab, this);
 	},
 	handleSapTab: function()	{
+		
 		rcmSettings.tsp = this.getActiveTab().getId();
 	},
 	

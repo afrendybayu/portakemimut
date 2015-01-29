@@ -351,6 +351,19 @@ class Hirarki extends CI_Model {
 		//*/
 		return $hir;
 	}
+	
+	function get_unit_lok($flag){
+		$hrk = "select hhh.id as id_unit, hhh.nama as lokasi, hh.nama as cat, h.nama as unit, h.flag as flag
+					from hirarki h 
+					inner join hirarki hh on h.parent = hh.id
+					inner join hirarki hhh on hh.parent = hhh.id
+					where h.flag = $flag
+					order by lokasi,cat,unit asc;";
+		$query = $this->db->query($hrk);
+		
+		return $query->result();
+		
+	}
 
 }
 

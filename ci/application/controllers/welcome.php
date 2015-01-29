@@ -19,6 +19,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()	{
 		$this->load->view('welcome_message');
+		//$this->load->view('pertama');
 		//echo exec('pwd'); echo "<br/>";
 		//echo exec('git remote -v');	echo "<br/>";
 		//echo exec('git pull');		echo "<br/>selesai";
