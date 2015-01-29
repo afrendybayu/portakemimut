@@ -8,6 +8,8 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 		 'rcm.view.laporan.GridContract'
         ,'rcm.view.laporan.SapContractLine'
         ,'rcm.view.laporan.FilterThnNo'
+        //,'rcm.view.laporan.SapAcdCont'
+        ,'rcm.view.laporan.ContractList'
 	],
 	
 	layout: 'border',
@@ -25,18 +27,38 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 			id: 'idGridKontrak',
 			xtype: 'tGridContract',
 			dstore: 'SapPMCost',
-			region: 'north',
+			region: 'center',
 			duit: true,
 			dstore: 'Contract',
-			minHeight: 155,
+			minHeight: 80,
 			tot: true,
 			split: true
 		},{
+			
+		/*
+			region: 'south',
+			//title: 'tes',
+			//xtype: 'tAcdCont',
+			//html: 'ess',
+			flex: 1
 		//*/
+		//*
 			id: 'grContL',
-			region: 'center',
+			flex: 2,
+			region: 'south',
 			title: 'ContractL',
 			xtype: 'tContractL'
+		//*/
+		},{
+			//id: 'grContLx',
+			title: 'Input Kontrak',
+			region: 'south',
+			flex: 1,
+			collapsible: true,
+			split: true,
+			xtype: 'iContx'
+			//xtype: 'tContractL'
+		//*/
 		}];
 		me.callParent(arguments);
 	}

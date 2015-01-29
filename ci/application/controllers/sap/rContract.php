@@ -51,6 +51,27 @@ class rContract extends CI_Controller {
 		echo json_encode($jsonResult);
 	}
 	
+	public function rsKontrak()	{
+		try {
+			$thn = $this->input->get('tgl')?:date('Y');
+			$hsl = $this->contract->get_single_kontrak($thn);
+			
+			$jsonResult = array(
+				'success' => true,
+				'contract' => $hsl
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+	}
+	
+	
 	public function sapGrContract()	{
 		try {
 			$thn = $this->input->get('tgl')?:date('Y');

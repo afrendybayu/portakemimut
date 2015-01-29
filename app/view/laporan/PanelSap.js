@@ -22,7 +22,9 @@ Ext.define('rcm.view.laporan.PanelSap', {
 		idbSr: 'btnCariSH',
 		idbCl: 'btnClearSH',
 		lThn: '<b>Pilih Waktu</b>',
-		xtype: 'tFSap'
+		xtype: 'tFSap',
+		dstr: 'SapThn12',
+		dval: '12 Bulan'
 	}],
 
 	defaults: {
@@ -36,6 +38,7 @@ Ext.define('rcm.view.laporan.PanelSap', {
 		me.items= [{
 			//iconCls: 'Reliability',
 			xtype: 'tHistori',
+			id: 'tSapHx',
 			//flex: 1,
 			dstore: me.dstore
 		/*

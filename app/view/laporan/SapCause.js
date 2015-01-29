@@ -1,7 +1,7 @@
 /* AfrendyBayu, 14Nov2013 */
 Ext.define('rcm.view.laporan.SapCause', {
 	xtype: 'causechart',
-	//extend: 'Ext.chart.Chart',
+
 	extend: 'Chart.ux.Highcharts',
 	dstore: 'SapCause',
 	jdl: 'Grafik',

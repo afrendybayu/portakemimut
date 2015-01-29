@@ -69,24 +69,38 @@ class Sap extends CI_Model {
 		return $query->result();
     }
     
-    function get_cause($thn)	{
+    function get_ntype()	{
+		$sql =	"SELECT 'ALL' AS text,'ALL' AS id UNION ".
+				"SELECT notiftype as text,notiftype as id FROM sap WHERE notiftype <> '' GROUP BY notiftype ORDER BY text ASC";
+		//echo "sql: $sql";		
+		
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+    
+    function get_cause($thn, $tipe)	{
+		if ($tipe!=="ALL")	$f = " AND notiftype='$tipe' ";
+		else $f = "";
+		
 		$sql = "select cause as kode,CONCAT('[',cause,'] ',ifnull(cause.nama,'')) AS desk,cause.nama
 				,count(*) AS jml
 				,ROUND(100*count(*)/(SELECT count(*) FROM sapfmea sfx 
 					LEFT JOIN sap ON sfx.pid = sap.pid 
 					where YEAR(planstart)=$thn AND (sfx.cause <> 'COTH' OR sap.ordertype <> 'EP03')),2) as persen
-				from sapfmea sf
+				FROM sapfmea sf
 				LEFT JOIN sap ON sf.pid = sap.pid
 				LEFT JOIN cause on sf.cause= cause.kode
-				where YEAR(planstart)=$thn AND (sf.cause <> 'COTH' OR sap.ordertype <> 'EP03')
+				WHERE YEAR(planstart)=$thn AND (sf.cause <> 'COTH' OR sap.ordertype <> 'EP03') $f
 				group by cause
-				ORDER BY jml desc, cause asc";	 
+				ORDER BY jml desc, cause asc";
+				
+		//echo "";
 		$query = $this->db->query($sql);
 		
 		return $query->result();
 	}
 	
-	function get_cause_info($cause,$thn)	{
+	function get_cause_info($cause,$thn, $tipe)	{
 		/*
 		$sql = "SELECT sap.pid AS noorder,if(notifno=0,'',notifno) AS nosap,damage,damage.nama AS damagenm,cause,cause.nama AS causenm,
 				manwork AS mainwork,down,opart,opart.nama as opartnm,
@@ -98,47 +112,59 @@ class Sap extends CI_Model {
 				LEFT JOIN cause ON sapfmea.cause = cause.kode
 				group by noorder,damage,cause,opart";
 		//*/
+		
+		if ($tipe!=="ALL")	$f = " AND notiftype='$tipe' ";
+		else $f = "";
+		
 		$sql =	"select sf.pid AS noorder,if(orderno=0,'',orderno) AS nosap
 				,sf.damage,if(sf.damage<>'',damage.nama,'') AS damagenm
 				,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm,planstart AS plnstr
 				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm,deskord AS orderdesc
 				,manwork AS mainwork,down,eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart
-				from sapfmea sf
+				FROM sapfmea sf
 				LEFT JOIN sap ON sap.pid = sf.pid
 				LEFT JOIN cause ON sf.cause = cause.kode
 				LEFT JOIN opartdef ON sf.opart = opartdef.kode
 				LEFT JOIN damage ON sf.damage = damage.kode
-				where YEAR(planstart)=$thn AND (sf.cause <> 'COTH' OR sap.ordertype <> 'EP03')";
-		
+				WHERE YEAR(planstart)=$thn AND (sf.cause <> 'COTH' OR sap.ordertype <> 'EP03') $f ";
+		/*
 		if (strlen($cause)>0)	{
-			$sql .= "WHERE cause LIKE '%$cause%'";
+			$sql .= "AND cause LIKE '%$cause%'";
 		}
+		//*/
 		$query = $this->db->query($sql);
 		
 		return $query->result();
 	}
 	
-	function get_damage($thn)	{
+	function get_damage($thn, $tipe)	{
+		if ($tipe!=="ALL")	$f = " AND notiftype='$tipe' ";
+		else $f = "";
+		
 		$sql = "select sapfmea.damage as kode,CONCAT('[',sapfmea.damage,'] ',damage.nama) AS desk,damage.nama, count(*) as jml,
 				ROUND((100*count(*)/(select count(*) from sapfmea left join sap on sapfmea.pid= sap.pid where damage <> 'NDMG' AND 
 					YEAR(planstart)=$thn)),2) as persen
-				from sapfmea
+				FROM sapfmea
 				left join damage on sapfmea.damage = damage.kode
 				left join sap on sapfmea.pid= sap.pid
-				where YEAR(planstart)=$thn
+				WHERE YEAR(planstart)=$thn $f
 				AND damage <> 'NDMG' group by damage order by jml desc, kode asc";
 		$query = $this->db->query($sql);
 		
 		return $query->result();
 	}
 	
-	function get_damage_info($damage, $thn)	{
+	function get_damage_info($damage, $thn, $tipe)	{
 		/*
 		$sql = "SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,opart,eqkode AS equip,".
 				"notiftype AS tipe,ordertype,downstart ".
 				"FROM sapfmea ".
 				"LEFT JOIN sap ON sap.pid = sapfmea.pid";
 		//*/
+		
+		if ($tipe!=="ALL")	$f = " AND notiftype='$tipe' ";
+		else $f = "";
+		
 		$sql =	"select sf.pid AS noorder,if(notifno=0,'',notifno) AS nosap
 				,sf.damage,if(sf.damage<>'',damage.nama,'') AS damagenm
 				,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm
@@ -160,7 +186,7 @@ class Sap extends CI_Model {
 		return $query->result();
 	}
 	
-	function get_opart($thn)	{
+	function get_opart($thn, $tipe)	{
 		/*
 		$sql = "select count(*) as jml, opart as kode,
 				(select nama from opart where opart.kode = sapfmea.opart limit 0,1) as nama,
@@ -172,6 +198,9 @@ class Sap extends CI_Model {
 				where YEAR(planstart)=$thn
 				group by opart,kode order by jml desc, kode asc";
 		//*/
+		if ($tipe!=="ALL")	$f = " AND notiftype='$tipe' ";
+		else $f = "";
+		
 		$sql =	"SELECT sf.opart AS kode, count(*) AS jml,od.nama,CONCAT('[',sf.opart,'] ',od.nama) AS desk
 				,ROUND((100*COUNT(*)/(SELECT COUNT(*) FROM sapfmea LEFT JOIN sap ON sapfmea.pid=sap.pid
 					WHERE YEAR(planstart)=2014)),2) as persen
@@ -186,7 +215,10 @@ class Sap extends CI_Model {
 		return $query->result();
 	}
 	
-	function get_opart_info($opart, $thn)	{
+	function get_opart_info($opart, $thn, $tipe)	{
+		if ($tipe!=="ALL")	$f = " AND notiftype='$tipe' ";
+		else $f = "";
+		
 		$sql =	"SELECT sap.pid AS noorder,damage,cause,manwork AS mainwork,opart,eqkode AS equip,
 				notiftype AS tipe,ordertype,downstart,deskord AS orderdesc
 				FROM sapfmea
@@ -253,20 +285,37 @@ class Sap extends CI_Model {
 	}
 	
 	function get_histori($thn,$lok,$otp,$mwc)	{
-		$sql =	"SELECT DATE_FORMAT(planend, '%b') AS bulan, MONTH(planend)-1 AS nbln
-				,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,0,1)) AS `teco`
-				,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)) AS `open`
-				,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1)) AS jml
-				,ROUND((SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)))*100/(SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1))),2) as persen
-				FROM sap WHERE YEAR(planend)=$thn ";
 		
-		//echo "lok: $lok<br/>";
+		if ($thn==12)	{
+			$sql =	"SELECT (YEAR(planend)*100+MONTH(planend)) as wkt, DATE_FORMAT(planend, '%b%y') AS bulan, MONTH(planend)-1 AS nbln
+					,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,0,1)) AS `teco`
+					,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)) AS `open`
+					,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1)) AS jml
+					,ROUND((SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)))*100/
+						(SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1))),2) as persen
+					FROM sap WHERE (YEAR(planend)*100+MONTH(planend)) <= (YEAR(CURDATE())*100+MONTH(CURDATE())) ";
+			
+			if ($lok>=0)		$sql .=	"AND lokasi=$lok ";
+			if ($otp!="ALL" and $otp!="_")		$sql .=	"AND ordertype like '%$otp%' ";
+			if ($mwc!="ALL" and $mwc!="_")		$sql .=	"AND manwork like '%$mwc%' ";
+			$sql .=	"GROUP BY wkt, nbln ORDER BY wkt desc, nbln ASC limit 0,12";
+		}
+		else {
+			$sql =	"SELECT DATE_FORMAT(planend, '%b%y') AS bulan, MONTH(planend)-1 AS nbln
+					,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,0,1)) AS `teco`
+					,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)) AS `open`
+					,SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1)) AS jml
+					,ROUND((SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,0)))*100/(SUM(IF(tecodate<=DATE_ADD(planend,INTERVAL 7 DAY) AND teco=0,1,1))),2) as persen
+					FROM sap WHERE YEAR(planend)=$thn ";
+		
+			//echo "lok: $lok<br/>";
 
-		//if ($lok!="ALL" and $lok!="_")		$sql .=	"AND lokasi=$lok ";
-		if ($lok>=0)		$sql .=	"AND lokasi=$lok ";
-		if ($otp!="ALL" and $otp!="_")		$sql .=	"AND ordertype like '%$otp%' ";
-		if ($mwc!="ALL" and $mwc!="_")		$sql .=	"AND manwork like '%$mwc%' ";
-		$sql .=	"GROUP BY nbln ORDER BY nbln ASC";
+			//if ($lok!="ALL" and $lok!="_")		$sql .=	"AND lokasi=$lok ";
+			if ($lok>=0)		$sql .=	"AND lokasi=$lok ";
+			if ($otp!="ALL" and $otp!="_")		$sql .=	"AND ordertype like '%$otp%' ";
+			if ($mwc!="ALL" and $mwc!="_")		$sql .=	"AND manwork like '%$mwc%' ";
+			$sql .=	"GROUP BY nbln ORDER BY nbln ASC";
+		}
 		//echo "sql: $sql<br/><br/>";		
 		
 		$query = $this->db->query($sql);
@@ -274,7 +323,17 @@ class Sap extends CI_Model {
 	}
 
 	function get_tahun()	{
-		$sql =	"select YEAR(planstart) AS thn FROM sap GROUP BY thn ORDER BY thn DESC";
+		$sql =	"select YEAR(planstart) AS thn, YEAR(planstart) AS nama FROM sap WHERE YEAR(planstart)>1900 GROUP BY thn ORDER BY thn DESC";
+		//echo "sql: $sql";		
+		
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
+	function get_tahun12()	{
+		$sql =	"SELECT 12 AS thn, '12 Bulan berjalan' AS nama
+					UNION
+				SELECT YEAR(planstart) AS thn, YEAR(planstart) AS nama FROM sap WHERE YEAR(planstart)>1900 GROUP BY thn ORDER BY thn DESC";
 		//echo "sql: $sql";		
 		
 		$query = $this->db->query($sql);
@@ -298,17 +357,24 @@ class Sap extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
-	
-	
 
 	function get_ordercostwo($thn)    {
-
+		/*
 		$sql =	"SELECT objid AS otipe, objtype AS `desc`, count(*) AS jml
 				,ROUND(sum(totescost),2) AS plstcost,ROUND(sum(intcost),2) AS plincost,ROUND(sum(totplancost),2) AS tplcost
 				,ROUND(sum(totmatcost),2) AS taccost,ROUND(sum(intcost),2) AS acincost
 				,ROUND(sum(totservcost),2) AS srvcost,ROUND(sum(actcost),2) AS acstcost
 				,(SELECT budget FROM ocost WHERE thn=$thn) AS budget
 				,ROUND((SELECT wo FROM ocost WHERE thn=$thn),2) AS persen
+				FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!='' GROUP BY otipe";
+		//*/
+		$sql =	"SELECT objid AS otipe, objtype AS `desc`, count(*) AS jml
+				,ROUND(sum(totescost),2) AS plstcost,ROUND(sum(intcost),2) AS plincost,ROUND(sum(totplancost),2) AS tplcost
+				,ROUND(sum(totmatcost),2) AS taccost,ROUND(sum(intcost),2) AS acincost
+				,ROUND(sum(totservcost),2) AS srvcost,ROUND(sum(actcost),2) AS acstcost
+				,(SELECT budget FROM ocost WHERE thn=$thn) AS budget
+				,ROUND((select SUM(totmatcost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn AND objid!='')*100/
+					(SELECT budget FROM ocost WHERE thn=$thn),2) as persen
 				FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!='' GROUP BY otipe";
 		//echo "sql: $sql";
 		
@@ -317,6 +383,7 @@ class Sap extends CI_Model {
     }
     
     function get_ordercostot($thn)	{
+		/*
 		$sql =	"SELECT ordertype as otipe, pmtype as `desc`
 				,ROUND(sum(totescost),2) AS plstcost,ROUND(sum(intcost),2) AS plincost,ROUND(sum(totplancost),2) AS tplcost
 				,ROUND(sum(totmatcost),2) AS taccost,ROUND(sum(intcost),2) AS acincost
@@ -324,26 +391,35 @@ class Sap extends CI_Model {
 				,(SELECT budget FROM ocost WHERE thn=$thn) AS budget
 				,ROUND((SELECT otype FROM ocost WHERE thn=$thn),2) AS persen
 				FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn group by ordertype";
+		//*/
+		$sql =	"SELECT ordertype as otipe, pmtype as `desc`
+				,ROUND(sum(totescost),2) AS plstcost,ROUND(sum(intcost),2) AS plincost,ROUND(sum(totplancost),2) AS tplcost
+				,ROUND(sum(totmatcost),2) AS taccost,ROUND(sum(intcost),2) AS acincost
+				,ROUND(sum(totservcost),2) AS srvcost,ROUND(sum(actcost),2) AS acstcost
+				,(SELECT budget FROM ocost WHERE thn=$thn) AS budget
+				,ROUND((select SUM(totmatcost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn)*100/
+					(SELECT budget FROM ocost WHERE thn=$thn),2) as persen
+				FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn group by ordertype";
 		
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
 	
 	function get_persen_ocwo($thn)	{
-		$sql =	"SELECT objid AS nama ".
-				",ROUND(sum(totplancost)*100/(select sum(totplancost) from sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!=''),2) as tPlCost ".
-				",ROUND(sum(totmatcost)*100/(select sum(totmatcost) from sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!=''),2) as tAcCost ".
-				"FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!='' GROUP BY objid";
+		$sql =	"SELECT objid AS nama 
+				,ROUND(sum(totplancost)*100/(select sum(totplancost) from sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!=''),2) as tPlCost 
+				,ROUND(sum(totmatcost)*100/(select sum(totmatcost) from sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!=''),2) as tAcCost 
+				FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!='' GROUP BY objid";
 				
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
 	
 	function get_persen_ocot($thn)	{
-		$sql =	"SELECT ordertype as nama ".
-				",ROUND(sum(totplancost)*100/(SELECT sum(totplancost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn),2) as tPlCost ".
-				",ROUND(SUM(totmatcost)*100/(SELECT sum(totplancost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn),2) as tAcCost ".
-				"FROM sap WHERE totplancost>0 AND YEAR(planstart)=2014 group by ordertype";
+		$sql =	"SELECT ordertype as nama 
+				,ROUND(sum(totplancost)*100/(SELECT sum(totplancost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn),2) as tPlCost 
+				,ROUND(SUM(totmatcost)*100/(SELECT sum(totplancost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn),2) as tAcCost 
+				FROM sap WHERE totplancost>0 AND YEAR(planstart)=2014 group by ordertype";
 				
 		$query = $this->db->query($sql);
 		return $query->result();

@@ -22,8 +22,8 @@ Ext.define('rcm.view.laporan.Chart', {
         ,'rcm.view.laporan.GridOverHaul'
 		,'rcm.view.laporan.OverHaul'
         ,'rcm.view.laporan.FilterThn'
-        ,'rcm.view.laporan.SapChartSaja'
-        ,'rcm.view.laporan.FilterThn'
+        ,'rcm.view.laporan.FilterThnTipe'
+        ,'rcm.view.laporan.SapChartDet'
         ,'rcm.view.laporan.SapChartSaja'
 		,'rcm.view.laporan.OverHaul'
 		,'rcm.view.laporan.SapChartTop10'	
@@ -46,7 +46,7 @@ Ext.define('rcm.view.laporan.Chart', {
 			//*/
 				id: 'ts_oh',
 				itemId: 'ts_oh',
-				title: 'OverHaul',
+				title: 'Preventive Maintenance',
 				xtype:'pOverHaul'
 			},{
 				id: 'ts_mo',
@@ -109,6 +109,7 @@ Ext.define('rcm.view.laporan.Chart', {
 				xtype: 'tCostCont'
 			},{
 				id: 'ts_ca',
+				idc: 'idcCau',
 				title: 'Cause',
 				xtype: 'tSapDet',
 				jdlGr: 'Grafik Cause Frequent',
@@ -118,10 +119,12 @@ Ext.define('rcm.view.laporan.Chart', {
 				dstore: 'SapCause',
 				dstoreD:'SapCauseInfo',
 				idThn: 'thnCau',
+				idTipe: 'tpCau',
 				idbSr: 'srCau',
 				btnFilter: 'cau'
 			},{
 				id: 'ts_da',
+				idc: 'idcDam',
 				title: 'Damage',
 				xtype: 'tSapDet',
 				jdlGr: 'Grafik Damage Frequent',
@@ -130,11 +133,13 @@ Ext.define('rcm.view.laporan.Chart', {
 				param: 'Damage',
 				dstore: 'SapDamage',
 				idThn: 'thnDam',
+				idTipe: 'tpDam',
 				idbSr: 'srDam',
 				dstoreD:'SapDamageInfo',
 				btnFilter: 'dam'
 			},{
 				id: 'ts_ob',
+				idc: 'idcObp',
 				title: 'Object Part',
 				xtype: 'tSapDet',
 				jdlGr: 'Grafik Object Part Frequent',
@@ -142,6 +147,7 @@ Ext.define('rcm.view.laporan.Chart', {
 				jdlDet: 'Info Detail Chart Object Part Frequent',
 				param: 'Object part',
 				idThn: 'thnOpr',
+				idTipe: 'tpOpr',
 				idbSr: 'srOpr',
 				dstore: 'SapOPart',
 				dstoreD:'SapOPartInfo',

@@ -23,9 +23,10 @@ Ext.define('rcm.view.laporan.SapChartDet', {
 		me.dockedItems = [{
 			dock: 'top',
 			idThn: me.idThn,
+			idTipe: me.idTipe,
 			idbSr: me.idbSr,
 			//xtype: 'label',
-			xtype: 'tFThn',
+			xtype: 'tFThnTp',
 			text: me.idThn			
 		}],
 		
@@ -35,13 +36,16 @@ Ext.define('rcm.view.laporan.SapChartDet', {
 			dstore: me.dstore,
 			jdl: me.jdlGr,
 			btnFilter: me.btnFilter,
-			param: me.param
+			param: me.param,
+			id: me.idc
 		},{
 			title: me.jdlTb,
 			xtype: 'taskGridCause',
 			region: 'east',
 			dstore: me.dstore,
 			width:320,
+			minWidth:320,
+			maxWidth:500,
 			collapsible: true,
 			split: true,
 			iconCls: 'editEvent',
@@ -50,7 +54,7 @@ Ext.define('rcm.view.laporan.SapChartDet', {
 			collapsible: true,
 			split: true,
 			minHeight: 100,
-			maxHeight: 300,
+			maxHeight: 500,
 			height: 200,
 			region: 'south',
 			title: me.jdlDet,

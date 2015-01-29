@@ -7,6 +7,11 @@ Ext.define('rcm.view.laporan.Jabatan', {
 
 	],
 	
+	//defaults: {
+	fieldDefaults: {
+		width:480
+	},
+	
 	initComponent: function() {
 		var me=this;
 		
@@ -15,7 +20,6 @@ Ext.define('rcm.view.laporan.Jabatan', {
 				xtype: 'textfield',
 				fieldLabel: 'Prepared by',	//  Nama yang menyiapkan
 				id: 'nPrep',
-				width:280,
 				emptyText: 'Prepared by',
 				msgTarget: 'side'
 			},{
@@ -23,7 +27,6 @@ Ext.define('rcm.view.laporan.Jabatan', {
 				xtype: 'textfield',
 				fieldLabel: 'Jabatan',
 				id: 'jPrep',
-				width:280,
 				emptyText: 'Position',
 				msgTarget: 'side'
 			},{
@@ -31,13 +34,11 @@ Ext.define('rcm.view.laporan.Jabatan', {
 				id: 'nRevi',
 				xtype: 'textfield',
 				msgTarget: 'side',
-				width:280,
 				emptyText: 'Reviewed by'
 			},{
 				xtype: 'textfield',
 				fieldLabel: 'Jabatan',
 				id: 'jRevi',
-				width:280,
 				emptyText: 'Position',
 				msgTarget: 'side'
 			},{
@@ -45,22 +46,21 @@ Ext.define('rcm.view.laporan.Jabatan', {
 				xtype: 'textfield',
 				fieldLabel: 'Approved by',	// Nama yang menyetujui
 				id: 'nAppr',
-				width:280,
 				emptyText: 'Approved by',
 				msgTarget: 'side'
 			},{
 				xtype: 'textfield',
 				fieldLabel: 'Jabatan',
 				id: 'jAppr',
-				width:280,
 				emptyText: 'Position',
 				msgTarget: 'side'
 			},{
 				xtype: 'button',
 				id: 'idJabatOH',
 				text: 'Simpan',
+				width: 100,
 				iconCls: 'savedisk',
-				margin: '0 210'
+				margin: '0 380'
 		}],
 		
 		me.callParent(arguments);

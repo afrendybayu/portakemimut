@@ -1,18 +1,18 @@
 /* AfrendyBayu 18Jan2014 */
-Ext.define('rcm.store.SapThn', {
+Ext.define('rcm.store.SapTipe', {
     extend: 'Ext.data.Store',
-    model: 'rcm.model.SapThn',
+    model: 'rcm.model.SapTipe',
     //autoLoad: true,
-    requires: 'rcm.model.SapThn'
+    requires: 'rcm.model.SapTipe'
 
 	,proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/sap/rHistori/getThnSap'
+			read: 'ci/index.php/sap/rFMEA/getNTipe'
         },
         reader: {
             type: 'json',
-            root: 'sapthn',
+            root: 'sapntipe',
             messageProperty: 'message'
         }
     }

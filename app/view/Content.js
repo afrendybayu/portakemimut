@@ -42,8 +42,6 @@ Ext.define('rcm.view.Content', {
 			title: 'Reliability',
 			iconCls: 'Reliability',
 			xtype: 'tAvReChart'
-		
-		
 		},{
 		//*/
 		//*
@@ -51,6 +49,7 @@ Ext.define('rcm.view.Content', {
 			title: 'SAP Report',
 			xtype: 'tabChart',
 			iconCls: 'sap'
+		//*
 		},{
 		//*/
 		//*
@@ -63,7 +62,7 @@ Ext.define('rcm.view.Content', {
 		
 		},{
 		//*
-		//*/
+		
 			id: 'tu_co',
 			title: 'Condition Monitoring',
 			iconCls: 'connect',
@@ -79,7 +78,6 @@ Ext.define('rcm.view.Content', {
 			hidden	: true,
 			xtype 	: 't_Konfig'
 			//disabled : true
-			// hidden: true
 		//*/
 		},{
 			id		: 'tu_sp',

@@ -24,7 +24,7 @@ Ext.define('rcm.view.laporan.GridOrderC', {
             },
             //*/
 			items: [
-				{ xtype:'rownumberer',width:25 },		// 
+				{ xtype:'rownumberer',width:25 },		// ,locked:true
 				{ header:'Order Costing',//flex:3,
 					columns: [{ 
 						header: me.jdl, dataIndex:'otipe'
@@ -68,7 +68,7 @@ Ext.define('rcm.view.laporan.GridOrderC', {
 					}]
 				}
 				//*
-				,{ header:'Budget',dataIndex:'budget',flex:2,minWidth:80,renderer:'usMoney',
+				,{ header:'Budget',dataIndex:'budget',flex:2,minWidth:100,renderer:'usMoney',
 					summaryType:'average',summaryRenderer: function(value) {
 						//return Ext.String.format('${0}',value.toFixed(2));	} }
 						return rcm.view.Util.format2(1,value,'$');	} }

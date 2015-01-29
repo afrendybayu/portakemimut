@@ -19,7 +19,9 @@ Ext.define('rcm.view.laporan.EPO', {
 		idbSr: 'btnCariSM',
 		idbCl: 'btnClearSM',
 		lThn: '<b>Tahun</b>',
-		xtype: 'tFSap'
+		xtype: 'tFSap',
+		dstr: 'SapThn',
+		dval: rcm.view.Util.U1th('')
 	}],
 	
 	layout: {

@@ -11,6 +11,7 @@ Ext.define('rcm.controller.Sap', {
         ,'laporan.FilterSap'
 
 		,'laporan.ConMonForm'
+		,'laporan.ContractForm'
 		,'laporan.SapPie'
 		,'laporan.GridContract'
 		,'laporan.EPO'
@@ -20,7 +21,9 @@ Ext.define('rcm.controller.Sap', {
 		,'laporan.ManOCost'
 		,'laporan.Jabatan'
 		
+		,'laporan.SapHistori'
 		,'laporan.WOStack'
+		,'laporan.ContractList'
     ],
 
     controllers: [
@@ -36,10 +39,10 @@ Ext.define('rcm.controller.Sap', {
 		,'SapCauseInfo','SapDamageInfo','SapOPartInfo','SapSymptomInfo'
 
 		,'SapOrderCwo','SapOrderCot'
-		,'SapThn','SapMwc','SapOType','SapLoc'
+		,'SapTipe','SapThn12','SapThn','SapMwc','SapOType','SapLoc'
 		
 		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10','SapTop10FL'
-		,'Contract','ContractLine', 'ContractInput'
+		,'Contract','ContractLine','ContractInput','SrKontrak','SapCatH'
 
 		,'SapHistori'
 		,'ManOCost','Jabat'
@@ -57,7 +60,8 @@ Ext.define('rcm.controller.Sap', {
 		'ConMonIn',
 		'OverHaulIn',
 		'ManOCost',
-		'Jabat'
+		'Jabat',
+		'SrKontrak'
     ],
     
     refs: [{
@@ -79,6 +83,9 @@ Ext.define('rcm.controller.Sap', {
 			ref: 'tEPO',
 			selector: 'tEPO'
 		},{
+			ref: 'tHistori',
+			selector: 'tHistori'
+		},{
 			ref: 'tpSapHistori',
 			selector: 'tpSapHistori'
 		},{
@@ -97,6 +104,9 @@ Ext.define('rcm.controller.Sap', {
 		},{
 			ref : 'taskConMon',
 			selector : 'taskConMon'
+		},{
+			ref : 'tContrxF',
+			selector : 'tContrxF'
 		},{
 			ref : 'iConMon',
 			selector : 'iConMon'
@@ -178,6 +188,9 @@ Ext.define('rcm.controller.Sap', {
 			'#ConMonSave' : {
 				click : me.tblsimpanConMon
 			},
+			'#ContraxSave' : {
+				click : me.tSaveCtrx
+			},
 			'#idGridCM': {
 				recordedit: me.uConMon
 			},
@@ -256,6 +269,9 @@ Ext.define('rcm.controller.Sap', {
 			},
 			'tJabat button[text=Simpan]' : {
 				click: me.sRepOH
+			},
+			'iContx': {
+				delSContract: me.delSKontrak
 			}
 			
 		});
@@ -321,9 +337,9 @@ Ext.define('rcm.controller.Sap', {
     
     loadOCost: function(rec)	{
 		//rcmSettings.hhh = rec;
-		Ext.getCmp('mbudg').setValue(rec.get('budget')),
-		Ext.getCmp('mwo').setValue(rec.get('wo')),
-		Ext.getCmp('motype').setValue(rec.get('otype'));
+		Ext.getCmp('mbudg').setValue(rec.get('budget'));
+		//Ext.getCmp('mwo').setValue(rec.get('wo')),
+		//Ext.getCmp('motype').setValue(rec.get('otype'));
 	},
 	
 	loadJabat: function(rec)	{
@@ -505,25 +521,25 @@ Ext.define('rcm.controller.Sap', {
 		var me = this, record = isi.data,
 		doh 	= Ext.create('rcm.model.OverHaulIn', record );
 		Ext.MessageBox.show({
-				title : 'Hapus OverHaul',
-				msg   : 'Yakin Data Akan di Hapus??',
-				buttons: Ext.MessageBox.OKCANCEL,
-				icon  : Ext.MessageBox.WARNING,
-				fn	: function (oks){
-					if (oks === 'ok'){ 
-						
-						doh.destroy ({
-							success : function(dcmon, operation){
-								me.getOverHaulInStore().reload();
-								me.getOhTahunStore().reload();
-							},
-							callback : function(){
-								
-							}
-						}) 
-					}
+			title : 'Hapus OverHaul',
+			msg   : 'Yakin Data Akan di Hapus??',
+			buttons: Ext.MessageBox.OKCANCEL,
+			icon  : Ext.MessageBox.WARNING,
+			fn	: function (oks){
+				if (oks === 'ok'){ 
 					
+					doh.destroy ({
+						success : function(dcmon, operation){
+							me.getOverHaulInStore().reload();
+							me.getOhTahunStore().reload();
+						},
+						callback : function(){
+							
+						}
+					}) 
 				}
+				
+			}
 		});
 	},
 	entersaveOH : function(field,e){  
@@ -712,32 +728,42 @@ Ext.define('rcm.controller.Sap', {
 		var t=Ext.getCmp('iThnCont').getValue();
 		this.getTGridContract().thn = t;
 		Ext.getCmp('grContL').setTitle("Trend Cost Center "+t);
+		//Ext.getCmp('grContL').setSubTitle("Trend Cost Center "+t);
 		this.getContractStore().load({params:{tgl:t}});
 		this.getContractLineStore().load({params:{tgl:t}});
 	},
 	
 	bFiltCau: function()	{
 		//alert("Cause Thn: "+Ext.getCmp('thnCau').getValue());
-		var t=Ext.getCmp('thnCau').getValue();
+		var t=Ext.getCmp('thnCau').getValue(),
+			p=Ext.getCmp('tpCau').getValue(),
+			x={thn:t, tp:p};
 		this.getSapCauseInfoStore().clearFilter(true);
-		this.getSapCauseStore().load({params:{thn:t}});
-		this.getSapCauseInfoStore().load({params:{thn:t}});
+		this.getSapCauseStore().load({params:x});
+		this.getSapCauseInfoStore().load({params:x});
+		Ext.getCmp('idcCau').draw();
+		rcmSettings.qwqwq = Ext.getCmp('idcCau');
 	},
 	
 	bFiltDam: function()	{
 		//alert("Damage Thn: "+Ext.getCmp('thnDam').getValue());
-		var t=Ext.getCmp('thnDam').getValue();
+		var t=Ext.getCmp('thnDam').getValue(),
+			p=Ext.getCmp('tpDam').getValue(),
+			x={thn:t, tp:p};
 		this.getSapDamageInfoStore().clearFilter(true);
-		this.getSapDamageStore().load({params:{thn:t}});
-		this.getSapDamageInfoStore().load({params:{thn:t}});
+		this.getSapDamageStore().load({params:x});
+		this.getSapDamageInfoStore().load({params:x});
+		Ext.getCmp('idcDam').draw();
 	},
 	
 	bFiltOPart: function()	{
 		//alert("OPart Thn: "+Ext.getCmp('thnOpr').getValue());
-		var t=Ext.getCmp('thnOpr').getValue();
+		var t=Ext.getCmp('thnOpr').getValue(),
+			p=Ext.getCmp('tpOpr').getValue(),
+			x={thn:t, tp:p};
 		this.getSapOPartInfoStore().clearFilter(true);
-		this.getSapOPartStore().load({params:{thn:t}});
-		this.getSapOPartInfoStore().load({params:{thn:t}});
+		this.getSapOPartStore().load({params:x});
+		this.getSapOPartInfoStore().load({params:x});
 	},
 	
 	bFiltPM: function()	{
@@ -773,6 +799,46 @@ Ext.define('rcm.controller.Sap', {
 		//console.log(this.getTWOStack());
 		this.getTWOStack().draw();
 		//rcmSettings.dddddd = this.getTWOStack();
+	},
+	
+	tSaveCtrx: function()	{
+		//alert("tSaveCtrx");
+		var me = this,
+			form = me.getTContrxF(),
+			bForm = form.getForm(),
+            formEl = form.getEl(),
+			cont = Ext.create('rcm.model.SrKontrak');
+			// console.log(tgl.getValue()+'->'+lokasi.getValue()+'->'+unit.getValue());
+			bForm.updateRecord(cont);
+			
+			cont.save({
+				success: function(cmon, operation) {
+					//alert("sukses");
+					me.getSrKontrakStore().reload();
+				}
+			});
+			bForm.reset();
+	},
+	
+	delSKontrak: function(d)	{
+		var me = this, rec = d.data,
+		doh = Ext.create('rcm.model.SrKontrak', rec );
+		Ext.MessageBox.show({
+			title : 'Hapus Kontrak',
+			msg   : 'Yakin Data '+ rec.ket +' Akan di Hapus??',
+			buttons: Ext.MessageBox.OKCANCEL,
+			icon  : Ext.MessageBox.WARNING,
+			fn	: function (oks){
+				if (oks === 'ok'){ 
+					doh.destroy ({
+						callback : function() {
+							me.getSrKontrakStore().reload();
+						}
+					}) 
+				}
+				
+			}
+		});
 	},
 		
 	simpanconmon : function(){
@@ -903,11 +969,15 @@ Ext.define('rcm.controller.Sap', {
 			me.getSapTop10FLStore().load();
 			me.getSapOrderCwoStore().load();
 			me.getSapOrderCotStore().load();
-			
+
+			me.getSapCatHStore().load();
+			me.getSrKontrakStore().load();
 			me.getContractStore().load();
 			me.getContractLineStore().load();
 			me.getSapPMCostStore().load();
+			me.getSapTipeStore().load();
 			me.getSapThnStore().load();
+			me.getSapThn12Store().load();
 			me.getSapMwcStore().load();
 			me.getSapLocStore().load();
 			me.getSapOTypeStore().load();
@@ -1023,9 +1093,9 @@ Ext.define('rcm.controller.Sap', {
 	cariSapHist: function()	{
 		//var o = this.getTFSap().sedotFilter();
 		var o = this.getTpSapHistori().sedotFilter();
-		//rcmSettings.ttt = o;
 		this.getSapHistoriStore().load({params: {loc:o.iL,otp:o.iW,mwc:o.iM,tgl:o.iT }});
 		//alert("o.L: "+o.iL+", oW: "+o.iW+", oM: "+o.iM+", oT: "+o.iT);
+		Ext.getCmp('tSapHx').draw();
 	},
 	
 	clrSapMaint: function()	{

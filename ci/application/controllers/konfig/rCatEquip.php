@@ -6,6 +6,26 @@ class rCatEquip extends CI_Controller {
 		$this->load->model('catequip');
 	}
 	
+	
+	public function rCatHir0()	{
+		try {
+			$hsl = $this->catequip->get_tipe();
+
+			$jsonResult = array(
+				'success' => true,
+				'cateq' => $hsl
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+	}
+	
 	public function rHirarki()	{
 		
 		try {

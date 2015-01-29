@@ -4,28 +4,6 @@ class Contract extends CI_Model {
 
 	function get_contract($thn)	{
 		/*
-		$sql =	"SELECT c.tipe, u.nama
-				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=1 AND tahun=$thn THEN nilai END),0) as b1
-				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=2 AND tahun=$thn THEN nilai END),0) as b2
-				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=3 AND tahun=$thn THEN nilai END),0) as b3
-				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=4 AND tahun=$thn THEN nilai END),0) as b4
-				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=5 AND tahun=$thn THEN nilai END),0) as b5
-				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=6 AND tahun=$thn THEN nilai END),0) as b6
-				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=7 AND tahun=$thn THEN nilai END),0) as b7
-				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=8 AND tahun=$thn THEN nilai END),0) as b8
-				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=9 AND tahun=$thn THEN nilai END),0) as b9
-				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=10 AND tahun=$thn THEN nilai END),0) as b10
-				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=11 AND tahun=$thn THEN nilai END),0) as b11
-				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=12 AND tahun=$thn THEN nilai END),0) as b12
-				,IFNULL(SUM(CASE WHEN tahun=$thn THEN nilai END),0) as tot
-				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=15 AND tahun=$thn THEN nilai END),0) as budget
-				,CONCAT(IFNULL(ROUND(SUM(CASE WHEN tahun=$thn THEN nilai END)*100/GROUP_CONCAT(CASE WHEN bulan=15 AND tahun=$thn THEN nilai END),2),0),'%') as persen
-				FROM contract c
-				LEFT JOIN unitlist u ON c.tipe = u.id
-				group by tipe
-				ORDER by u.urut asc";
-		//*/
-		/*
 		$sql =	"SELECT ce.nama, ce.id as tipe
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=1 AND c.tipe=ce.id THEN nilai END),0) as b1 
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=2 AND c.tipe=ce.id THEN nilai END),0) as b2 
@@ -61,6 +39,7 @@ class Contract extends CI_Model {
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=11 AND c.tahun=$thn THEN nilai END),0) as b11
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=12 AND c.tahun=$thn THEN nilai END),0) as b12
 				,IFNULL(SUM(CASE WHEN bulan<15 AND c.tahun=$thn THEN nilai END),0) as tot
+				,IFNULL(SUM(CASE WHEN bulan<15 AND c.tahun=".($thn-1)." THEN nilai END),0) as tot1
 				,IFNULL(GROUP_CONCAT(CASE WHEN bulan=15 AND c.tahun=$thn THEN nilai END),0) as budget
 				,IFNULL(ROUND(SUM(CASE WHEN bulan<15 AND c.tahun=$thn THEN nilai END)*100/
 					GROUP_CONCAT(CASE WHEN bulan=15 AND c.tahun=$thn THEN nilai END),2),0) as persen 
@@ -74,6 +53,15 @@ class Contract extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_single_kontrak($thn)	{
+		$this->db->select('*');
+		$this->db->where('YEAR(tgl)',$thn);
+		$this->db->order_by('tgl','desc');
+		
+		$query = $this->db->get('kontrak');
+		
+		return $query->result();
+	}
 	
 	function get_grafikcontrak($thn)	{
 		$sql =	"SELECT bulan AS m,
@@ -117,6 +105,26 @@ class Contract extends CI_Model {
 		return array($hsl);
 	}
 
+
+	function csKontrak($data)	{
+		//echo "disini 1<br/>";
+		$this->db->trans_start();
+		//echo "disini 2<br/>";
+		$this->db->insert('kontrak', $data);
+		//echo "disini 3<br/>";
+		//echo $this->db->last_query();
+		//echo "disini 4<br/>";
+		$insert_id = $this->db->insert_id();
+		$this->db->trans_complete();
+		return  $insert_id;
+	}
+	
+	function dsKontrak($data)	{
+		//echo 'id: '. $data->id;
+		$this->db->where('id', $data->id);
+		$this->db->delete('kontrak'); 
+		return  $data->id;
+	}
 }
 
 /* End of file contract.php */

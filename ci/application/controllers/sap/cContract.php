@@ -2,6 +2,11 @@
 
 class cContract extends CI_Controller {
 	
+	function __construct() {
+        parent::__construct();
+		$this->load->model('contract');
+	}
+	
 	public function index()	{
 		//*
 		try	{
@@ -54,6 +59,59 @@ class cContract extends CI_Controller {
 	
 	public function ini()	{
 		echo "coba oni";
+	}
+	
+	public function csKontrak()	{
+		try	{
+			$params = json_decode(file_get_contents('php://input'));
+
+			if (!isset($params))	{
+				throw new Exception("Data Tidak ada !!");
+			}
+			//print_r($params);
+			$hasil = $this->contract->csKontrak($params);
+			
+			
+			$jsonResult = array(
+				'success' => true,
+				'tasks' => $hasil
+			);
+			
+			//*/
+		}
+		catch (Exception $e)	{
+			 $jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+
+		echo json_encode($jsonResult);
+	}
+
+	public function dsKontrak(){
+		
+		try {
+			$par = json_decode(file_get_contents('php://input'));
+
+			if (!isset($par))	{
+				throw new Exception("Data Tidak ada !!");
+			}
+
+			$hasil = $this->contract->dsKontrak($par);
+			$jsonResult = array(
+				'success' => false,
+				'message' => $hasil
+			);
+			
+		} catch(Exception $e) {
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);
+		}
+		echo json_encode($jsonResult);
+		
 	}
 }
 
