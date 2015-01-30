@@ -113,20 +113,23 @@ class Sap extends CI_Model {
 				group by noorder,damage,cause,opart";
 		//*/
 		
-		if ($tipe!=="ALL")	$f = " AND notiftype='$tipe' ";
-		else $f = "";
+		//if ($tipe!=="ALL")	$f = " AND notiftype='$tipe' ";
+		//else $f = "";
 		
-		$sql =	"select sf.pid AS noorder,if(orderno=0,'',orderno) AS nosap
-				,sf.damage,if(sf.damage<>'',damage.nama,'') AS damagenm
-				,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm,planstart AS plnstr
-				,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm,deskord AS orderdesc
-				,manwork AS mainwork,down,eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart
+		$sql =	"select sf.pid AS noorder,if(orderno=0,'',orderno) AS nosap,sf.damage,if(sf.damage<>'',damage.nama,'') AS damagenm
+					,sf.cause,if(sf.cause<>'',cause.nama,'') AS causenm,planstart AS plnstr
+					,sf.opart,if(sf.opart<>'',opartdef.nama,'') as opartnm,deskord AS orderdesc
+					,manwork AS mainwork,down,eqkode AS equip,totplancost as biaya,notiftype AS tipe,ordertype,downstart
 				FROM sapfmea sf
-				LEFT JOIN sap ON sap.pid = sf.pid
-				LEFT JOIN cause ON sf.cause = cause.kode
-				LEFT JOIN opartdef ON sf.opart = opartdef.kode
-				LEFT JOIN damage ON sf.damage = damage.kode
-				WHERE YEAR(planstart)=$thn AND (sf.cause <> 'COTH' OR sap.ordertype <> 'EP03') $f ";
+					LEFT JOIN sap ON sap.pid = sf.pid
+					LEFT JOIN cause ON sf.cause = cause.kode
+					LEFT JOIN opartdef ON sf.opart = opartdef.kode
+					LEFT JOIN damage ON sf.damage = damage.kode
+				WHERE YEAR(planstart)=$thn AND (sf.cause <> 'COTH' OR sap.ordertype <> 'EP03')  
+				".((strpos($tipe, 'ALL') !== false) ? "" :  "AND notiftype in ($tipe) ") . "";
+				
+				
+				
 		/*
 		if (strlen($cause)>0)	{
 			$sql .= "AND cause LIKE '%$cause%'";
@@ -197,17 +200,20 @@ class Sap extends CI_Model {
 				left join sap on sapfmea.pid= sap.pid
 				where YEAR(planstart)=$thn
 				group by opart,kode order by jml desc, kode asc";
-		//*/
-		if ($tipe!=="ALL")	$f = " AND notiftype='$tipe' ";
-		else $f = "";
+		////*/
+		//if ($tipe!=="ALL")	$f = " AND notiftype='$tipe' ";
+		//else $f = "";
+		//$query1 = "SELECT * FROM `Yrker` WHERE `Kategori`='1' ".($_GET['nobruk'] === 'no' ? "" : "AND `Bruk`='1' ")."ORDER BY yearstart DESC, mndstart DESC";
+		
 		
 		$sql =	"SELECT sf.opart AS kode, count(*) AS jml,od.nama,CONCAT('[',sf.opart,'] ',od.nama) AS desk
-				,ROUND((100*COUNT(*)/(SELECT COUNT(*) FROM sapfmea LEFT JOIN sap ON sapfmea.pid=sap.pid
-					WHERE YEAR(planstart)=2014)),2) as persen
+						,ROUND((100*COUNT(*)/(SELECT COUNT(*) FROM sapfmea LEFT JOIN sap ON sapfmea.pid=sap.pid
+				WHERE YEAR(planstart)=$thn)),2) as persen
 				FROM sapfmea sf
-				LEFT JOIN sap ON sf.pid= sap.pid
-				LEFT JOIN opartdef od ON od.kode = sf.opart 
-				WHERE YEAR(planstart)=$thn AND (sf.cause <> 'COTH' OR sap.ordertype <> 'EP03')
+					LEFT JOIN sap ON sf.pid= sap.pid
+					LEFT JOIN opartdef od ON od.kode = sf.opart 
+				WHERE YEAR(planstart)=$thn AND (sf.cause <> 'COTH' OR sap.ordertype <> 'EP03') 
+				".((strpos($tipe, 'ALL') !== false) ? "" :  "AND notiftype in ($tipe) ") ."			 
 				GROUP BY opart
 				ORDER BY jml DESC";
 		$query = $this->db->query($sql);

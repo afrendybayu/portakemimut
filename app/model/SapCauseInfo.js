@@ -10,7 +10,7 @@ Ext.define('rcm.model.SapCauseInfo', {
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/sap/rFMEA/getCauseInfo'
+			read: 'ci/sap/rFMEA/getCauseInfo'
         },
         reader: {
             type: 'json',
