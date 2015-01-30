@@ -68,8 +68,8 @@ Ext.define('rcm.view.sapu.Sapu', {
 				},{ 
 					text:'Submit', 
 					//handler : this.tbLakukan
-				},{ 
-					text:'Delete' 
+				//},{ 
+					//text:'Delete' 
 				}					
 				]};
 		//me.dockedItems = {

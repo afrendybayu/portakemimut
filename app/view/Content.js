@@ -84,7 +84,7 @@ Ext.define('rcm.view.Content', {
 			itemId	: 'tu_sp',
 			title	: 'Bulk Input Running Hour',
 			iconCls	: 'Konfigurasi',
-			hidden	: false,
+			hidden	: true,
 			xtype 	: 'tSapu'
 			
 			
@@ -125,6 +125,18 @@ Ext.define('rcm.view.Content', {
 		var t = this.child('#tu_kf');
 		//console.log('sampe sini showRelia');
 		if (st==true)	{
+			t.tab.show();
+			//this.setActiveTab(t);
+		}
+		else {
+			t.tab.hide();
+			this.setActiveTab(this.child('#tu_ho'));
+		}
+	},
+	showSapu: function(sp)	{
+		var t = this.child('#tu_sp');
+		//console.log('sampe sini showRelia');
+		if (sp==true)	{
 			t.tab.show();
 			//this.setActiveTab(t);
 		}

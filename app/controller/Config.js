@@ -481,6 +481,8 @@ Ext.define('rcm.controller.Config', {
 
     slctUserGrid : function(model,records){
     	var me =this;
+		//var isi = records[0].data.;
+    	//console.log(isi);
 		if (records[0]) {
 		 	me.getF_User().getForm().loadRecord(records[0]);
 		

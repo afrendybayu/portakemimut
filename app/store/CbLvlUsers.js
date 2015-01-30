@@ -6,7 +6,8 @@ Ext.define('rcm.store.CbLvlUsers', {
 
     // autoLoad: true
     data : [
-    	{"level":"0", "nama":"Administrator"},
-        {"level":"1", "nama":"Operator"}
+    	{"level":"0", "nama":"Super Admin"},
+    	{"level":"1", "nama":"Administrator"},
+        {"level":"2", "nama":"Operator"}
     ]
 });

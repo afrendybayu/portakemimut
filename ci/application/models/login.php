@@ -25,8 +25,10 @@ class Login extends CI_Model {
 	}
 	
 	function get_user(){
-			
+		$this->db->select('id,nama,akses,userid,ket,active');	
+		//$this->db->where('akses <>','-1')
 		$this->db->order_by('nama','asc');
+		
         $query = $this->db->get('user');
 		
 		return $query->result();
