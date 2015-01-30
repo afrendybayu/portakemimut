@@ -72,7 +72,18 @@ Ext.define('rcm.view.lapobama.ReHome', {
 				tooltip : {
 					formatter : function() {
 						return '<b>' + this.series.name + '</b><br/>' + this.x + ': ' + this.y+'%';
-					}
+					},
+					positioner: function () {
+						return { x: 5, y: 0 };
+					},
+					style: {
+						//color: '#333333',
+						fontSize: '10px',
+						padding: '2px'
+					},
+					//shadow: false,
+					borderWidth: 1,
+					backgroundColor: 'rgba(255,255,255,0.7)'
 				},
 				credits : {
 					text : 'hc'
