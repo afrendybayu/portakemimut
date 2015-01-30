@@ -85,11 +85,14 @@ class rFMEA extends CI_Controller {
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
 			$tipe = $this->input->get('tp')?:'ALL';
-			$this->load->model('sap');
+			//$this->load->model('sap');
+			$hsl = explode(',',$tipe);
+			//$hsl = preg_split("/[\s,]+/", $tipe); //explode(',',$tipe);
+			$hsl2 = "'".implode("','", $hsl)."'";
 
 			$jsonResult = array(
 				'success' => true,
-				'sapcause' => $this->sap->get_cause($thn,$tipe)
+				'sapcause' => $this->sap->get_cause($thn,$hsl2)
 			);
 		}
 		catch (Exception $e){
@@ -131,11 +134,14 @@ class rFMEA extends CI_Controller {
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
 			$tipe = $this->input->get('tp')?:'ALL';
-			$this->load->model('sap');
-
+			//$this->load->model('sap');
+			$hsl = explode(',',$tipe);
+			//$hsl = preg_split("/[\s,]+/", $tipe); //explode(',',$tipe);
+			$hsl2 = "'".implode("','", $hsl)."'";
+			
 			$jsonResult = array(
 				'success' => true,
-				'sapdamage' => $this->sap->get_damage($thn,$tipe)
+				'sapdamage' => $this->sap->get_damage($thn,$hsl2)
 			);
 		}
 		catch (Exception $e){
@@ -152,7 +158,7 @@ class rFMEA extends CI_Controller {
 			$thn = $this->input->get('thn')?:date('Y');
 			$damage = $this->input->get('cause')?:'';
 			$tipe = $this->input->get('tp')?:'ALL';
-			$this->load->model('sap');
+			//$this->load->model('sap');
 
 			$jsonResult = array(
 				'success' => true,
