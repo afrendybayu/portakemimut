@@ -53,7 +53,7 @@ if(!function_exists("ohexcel_table")){
 		$t = "Year : $thn";
 		$sheet->setCellValue('A3', 'Area : SSE Block')->mergeCells('A3:B3');
 		$sheet->setCellValue('AY3', $t)->mergeCells('AY3:BD3')->getStyle('AY3')->getAlignment()->applyFromArray(
-		    array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_RIGHT,));
+		    array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_RIGHT));
 		$sheet->setCellValue('A4', 'Custodian')->mergeCells('A4:D4');
 		$sheet->setCellValue('A5', 'Production Departement')->mergeCells('A5:D5');
 		$sheet->setCellValue('A6', 'Location : SSE Block')->mergeCells('A6:D6');
@@ -804,7 +804,7 @@ if(!function_exists("ohexcel_data_overhaul_gabung")){
 
 if(!function_exists("ohexcel_jabat_gabung"))	{
 	function ohexcel_jabat_gabung($sheet, $brs,$j)	{
-		$b = $brs;
+		$a = $b = $brs;
 		//print_r($j);
 		$sheet->getRowDimension($b)->setRowHeight(47);
 		$sheet->getStyle("A$b:AY$b")->applyFromArray(array('borders' => array('top' => array(
@@ -872,11 +872,16 @@ if(!function_exists("ohexcel_jabat_gabung"))	{
 			'style' => PHPExcel_Style_Border::BORDER_THICK))));
 		$sheet->getStyle("Z$brs:Z$b")->applyFromArray(array('borders' => array('right' => array(
 			'style' => PHPExcel_Style_Border::BORDER_THICK))));
+		
+		$sheet->getStyle("AY$a:AY$b")->applyFromArray(array('borders' => array('right' => array(
+			'style' => PHPExcel_Style_Border::BORDER_THICK))));
+		$sheet->getStyle("A$a:A$b")->applyFromArray(array('borders' => array('left' => array(
+			'style' => PHPExcel_Style_Border::BORDER_THICK))));
 	}
 }
 if(!function_exists("ohexcel_jabat"))	{
 	function ohexcel_jabat($sheet, $brs,$j)	{
-		$b = $brs;
+		$a = $b = $brs;
 		//print_r($j);
 		$sheet->getRowDimension($b)->setRowHeight(47);
 		$sheet->getStyle("A$b:BD$b")->applyFromArray(array('borders' => array('top' => array(
@@ -943,6 +948,11 @@ if(!function_exists("ohexcel_jabat"))	{
 		$sheet->getStyle("F$brs:F$b")->applyFromArray(array('borders' => array('right' => array(
 			'style' => PHPExcel_Style_Border::BORDER_THICK))));
 		$sheet->getStyle("AB$brs:AB$b")->applyFromArray(array('borders' => array('right' => array(
+			'style' => PHPExcel_Style_Border::BORDER_THICK))));
+			
+		$sheet->getStyle("BD$a:BD$b")->applyFromArray(array('borders' => array('right' => array(
+			'style' => PHPExcel_Style_Border::BORDER_THICK))));
+		$sheet->getStyle("A$a:A$b")->applyFromArray(array('borders' => array('left' => array(
 			'style' => PHPExcel_Style_Border::BORDER_THICK))));
 	}
 }

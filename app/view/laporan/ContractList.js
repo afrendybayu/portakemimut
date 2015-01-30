@@ -139,7 +139,7 @@ Ext.define('rcm.view.laporan.ContractList', {
 		this.fireEvent('updSContract',rec);
 	},
 	
-	,renderCH: function(val) {
+	renderCH: function(val) {
 		var stCatH = Ext.getStore('SapCatH'),
 			node = val ? stCatH.getById(val) : "--";
 		//console.log(node);

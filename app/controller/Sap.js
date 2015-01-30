@@ -732,6 +732,7 @@ Ext.define('rcm.controller.Sap', {
 		//Ext.getCmp('grContL').setSubTitle("Trend Cost Center "+t);
 		this.getContractStore().load({params:{tgl:t}});
 		this.getContractLineStore().load({params:{tgl:t}});
+		this.getSrKontrakStore().load({params:{tgl:t}});
 	},
 	
 	bFiltCau: function()	{
