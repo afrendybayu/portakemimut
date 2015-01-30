@@ -203,7 +203,7 @@ class Sap extends CI_Model {
 		
 		$sql =	"SELECT sf.opart AS kode, count(*) AS jml,od.nama,CONCAT('[',sf.opart,'] ',od.nama) AS desk
 				,ROUND((100*COUNT(*)/(SELECT COUNT(*) FROM sapfmea LEFT JOIN sap ON sapfmea.pid=sap.pid
-					WHERE YEAR(planstart)=2014)),2) as persen
+					WHERE YEAR(planstart)=$thn)),2) as persen
 				FROM sapfmea sf
 				LEFT JOIN sap ON sf.pid= sap.pid
 				LEFT JOIN opartdef od ON od.kode = sf.opart 
@@ -449,7 +449,7 @@ class Sap extends CI_Model {
 		$sql =	"SELECT ordertype as nama 
 				,ROUND(sum(totplancost)*100/(SELECT sum(totplancost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn),2) as tPlCost 
 				,ROUND(SUM(totmatcost)*100/(SELECT sum(totplancost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn),2) as tAcCost 
-				FROM sap WHERE totplancost>0 AND YEAR(planstart)=2014 group by ordertype";
+				FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn group by ordertype";
 				
 		$query = $this->db->query($sql);
 		return $query->result();
@@ -470,7 +470,7 @@ class Sap extends CI_Model {
 				FROM sap
 				LEFT JOIN equip e ON e.tag = sap.eqkode
 				LEFT JOIN hirarki h ON h.urut>=0 and h.parent = 0 AND sap.lokasi = h.urut
-				where year(sap.planstart)=2014 AND  sap.eqdesc <> ''
+				where year(sap.planstart)=$thn AND  sap.eqdesc <> ''
 				group by sap.eqkode 
 				order by jml DESC limit 0,10";
 		
