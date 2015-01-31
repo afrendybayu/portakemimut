@@ -10,17 +10,22 @@ Ext.define('rcm.view.laporan.SapContractLine', {
 	loadMask: true,
 	
 	series : [{
+	//*
 			type: 'spline',
-			dataIndex: 'gc',
+			dataIndex: 'COMP',
 			name: 'Gas Compressor'
 		},{
+	
 			type: 'spline',
-			dataIndex: 'gs',
+			dataIndex: 'PUMP',
 			name: 'Generator Set'
 		},{
+	//*/
+	//*
 			type: 'spline',
-			dataIndex: 'pm',
+			dataIndex: 'ENG',
 			name: 'Pump'
+	//*/
 	}],
 	
 	// store:'SapHistori',
@@ -52,7 +57,7 @@ Ext.define('rcm.view.laporan.SapContractLine', {
 			}],
 			yAxis : [{
 				title : {
-					text : 'Cost'
+					text : 'Cost [$]'
 				},
 				min: 0
 			}],
@@ -84,7 +89,7 @@ Ext.define('rcm.view.laporan.SapContractLine', {
                     align : 'right',
                     verticalAlign : 'top',
                     x : -10,
-                    y : 10,
+                    y : 50,
 				borderWidth : 0
 			},
 			//*/

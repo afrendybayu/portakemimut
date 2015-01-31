@@ -1095,6 +1095,15 @@ Ext.define('rcm.controller.Sap', {
 		task.delay(rcmSettings.dlySap*1000);
 		//alert("tes");
 		//me.ubahLabelWO();
+		/*
+		rcmSettings.qeq = Ext.getCmp('grContL');
+		Ext.getCmp('grContL').addSeries({
+			type: 'spline',
+			//dataIndex: 'gs',
+			name: 'Generator Set',
+			//data: 
+		});
+		//*/
 		me.getManOCostStore().load({
 			scope: this,
 			callback: function(rec, op, suc) {
@@ -1109,6 +1118,8 @@ Ext.define('rcm.controller.Sap', {
 				this.loadJabat(rec[0]);
 			}
 		});
+		
+		
 	},
 	
 	clrSapHist: function()	{

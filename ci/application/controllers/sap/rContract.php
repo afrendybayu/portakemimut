@@ -75,20 +75,31 @@ class rContract extends CI_Controller {
 	public function sapGrContract()	{
 		try {
 			$thn = $this->input->get('tgl')?:date('Y');
-			$this->load->model('contract');
+			//$this->load->model('contract');
+			
+			$tt = $this->contract->get_tipe_eq();
+			//print_r($tt);
 			
 			$hsl = array();
 			for ($i=0; $i<12; $i++)	{
 				$obj = new stdClass();
 				$obj->m = $i+1;
 				$obj->bln = nmMonth($i,1);
+				//*
+				foreach ($tt as $t)	{
+					$obj->{$t->kode} = '0';
+				}
+				//*/
+				/*
 				$obj->gc = '0';
 				$obj->gs = '0';
 				$obj->pm = '0';
+				//*/
 				array_push($hsl,$obj);
 				
 			}
 			//print_r($hsl);
+			//return;
 
 			$oo = $this->contract->get_grafikcontrak($thn);
 			//echo 'banyaknya '.count($oo) .'<br>';
@@ -98,14 +109,13 @@ class rContract extends CI_Controller {
 			for ($i=0; $i<count($oo); $i++)	{
 			//for ($i=0; $i<12; $i++)	{
 				$hsl[$oo[$i]->m-1] = $oo[$i];
-				$hsl[$oo[$i]->m-1]->bln = nmMonth($oo[$i]->m-1,1);
+				//$hsl[$oo[$i]->m-1]->bln = nmMonth($oo[$i]->m-1,1);
 			}
 			//echo "<br/><br/>";	print_r($hsl); echo "<br/><br/>";
 			//*/
 			$jsonResult = array(
 				'success' => true,
 				'contract' => $hsl
-				//'contract' => $oo
 			);
 		}
 		catch (Exception $e){

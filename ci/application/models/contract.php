@@ -68,17 +68,16 @@ class Contract extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_tipe_eq()	{
+		$sql = "SELECT kode,nama 
+				FROM cat_equip WHERE parent=0";
+		//echo "sql: $sql";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
 	function get_grafikcontrak($thn)	{
 		/*
-		$sql =	"SELECT bulan AS m,
-				IFNULL(GROUP_CONCAT(CASE WHEN tipe=5 THEN nilai end),0) gc,
-				IFNULL(GROUP_CONCAT(CASE WHEN tipe=7 THEN nilai end),0) gs,
-				IFNULL(GROUP_CONCAT(CASE WHEN tipe=6 THEN nilai end),0) pm 
-				FROM contract
-				WHERE tahun = $thn AND bulan<13
-				GROUP BY bulan
-				ORDER BY bulan ASC";
-		//*/
 		$sql =	"SELECT month(k.tgl) AS m 
 				,IFNULL(SUM(CASE WHEN cat=5 THEN nilai end),0) gc
 				,IFNULL(SUM(CASE WHEN cat=7 THEN nilai end),0) gs
@@ -87,6 +86,9 @@ class Contract extends CI_Model {
 				WHERE year(k.tgl) = $thn 
 				GROUP BY m
 				ORDER BY m ASC";
+		//*/
+		$sql = "call rGKontrak($thn)";
+		//echo "sql: $sql";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
