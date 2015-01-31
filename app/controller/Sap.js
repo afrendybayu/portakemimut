@@ -744,7 +744,7 @@ Ext.define('rcm.controller.Sap', {
 		this.getSapCauseStore().load({params:x});
 		this.getSapCauseInfoStore().load({params:x});
 		Ext.getCmp('idcCau').draw();
-		rcmSettings.qwqwq = Ext.getCmp('idcCau');
+		//rcmSettings.qwqwq = Ext.getCmp('idcCau');
 	},
 	
 	bFiltDam: function()	{

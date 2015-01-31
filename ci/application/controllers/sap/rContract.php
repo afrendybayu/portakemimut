@@ -82,17 +82,18 @@ class rContract extends CI_Controller {
 			
 			$hsl = array();
 			for ($i=0; $i<12; $i++)	{
+				$b = $i+1;
 				$obj = new stdClass();
-				$obj->m = $i+1;
+				$obj->m = "$b";
 				$obj->bln = nmMonth($i,1);
-				//*
+				/*
 				foreach ($tt as $t)	{
 					$obj->{$t->kode} = '0';
 				}
 				//*/
-				/*
-				$obj->gc = '0';
-				$obj->gs = '0';
+				//*
+				$obj->en = '0';
+				$obj->xx = '0';
 				$obj->pm = '0';
 				//*/
 				array_push($hsl,$obj);
@@ -108,7 +109,7 @@ class rContract extends CI_Controller {
 			//*
 			for ($i=0; $i<count($oo); $i++)	{
 			//for ($i=0; $i<12; $i++)	{
-				$hsl[$oo[$i]->m-1] = $oo[$i];
+//				$hsl[$oo[$i]->m-1] = $oo[$i];
 				//$hsl[$oo[$i]->m-1]->bln = nmMonth($oo[$i]->m-1,1);
 			}
 			//echo "<br/><br/>";	print_r($hsl); echo "<br/><br/>";

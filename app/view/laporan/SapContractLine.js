@@ -10,20 +10,20 @@ Ext.define('rcm.view.laporan.SapContractLine', {
 	loadMask: true,
 	
 	series : [{
-	//*
+	/*
 			type: 'spline',
-			dataIndex: 'COMP',
+			dataIndex: 'comp',
 			name: 'Gas Compressor'
 		},{
 	
 			type: 'spline',
-			dataIndex: 'PUMP',
+			dataIndex: 'pump',
 			name: 'Generator Set'
 		},{
 	//*/
 	//*
 			type: 'spline',
-			dataIndex: 'ENG',
+			dataIndex: 'pm',
 			name: 'Pump'
 	//*/
 	}],
@@ -33,7 +33,7 @@ Ext.define('rcm.view.laporan.SapContractLine', {
 	
 	initComponent: function() {
 		var me=this;
-		//me.store='SapHistori';
+
 		me.store='ContractLine';
 		me.chartConfig = {
 			chart: {
@@ -45,7 +45,7 @@ Ext.define('rcm.view.laporan.SapContractLine', {
 				},
 				backgroundColor: '#d9e9ef'
 			},
-			colors: ['#10ae3d', '#f32727', '#0000FF'],
+			//colors: ['#10ae3d', '#f32727', '#0000FF'],
 			title : {
 				text: 'Trend Cost Center '+rcm.view.Util.U1th(''),
 				x: -50
@@ -78,18 +78,20 @@ Ext.define('rcm.view.laporan.SapContractLine', {
 					}
 				}
 			},
+			/*
 			tooltip : {
 				formatter : function() {
 					return '<b>' + this.series.name + '</b><br/>' + this.x + ': ' + this.y;
 				}
 			},
+			//*/
 			//*
 			legend : {
-                    layout : 'vertical',
-                    align : 'right',
-                    verticalAlign : 'top',
-                    x : -10,
-                    y : 50,
+				layout : 'vertical',
+				align : 'right',
+				verticalAlign : 'top',
+				x : -10,
+				y : 50,
 				borderWidth : 0
 			},
 			//*/
