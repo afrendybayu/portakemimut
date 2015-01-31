@@ -271,7 +271,8 @@ Ext.define('rcm.controller.Sap', {
 				click: me.sRepOH
 			},
 			'iContx': {
-				delSContract: me.delSKontrak
+				delSContract: me.delSKontrak,
+				updSContract: me.updSKontrak
 			}
 			
 		});
@@ -731,6 +732,7 @@ Ext.define('rcm.controller.Sap', {
 		//Ext.getCmp('grContL').setSubTitle("Trend Cost Center "+t);
 		this.getContractStore().load({params:{tgl:t}});
 		this.getContractLineStore().load({params:{tgl:t}});
+		this.getSrKontrakStore().load({params:{tgl:t}});
 	},
 	
 	bFiltCau: function()	{
@@ -839,6 +841,30 @@ Ext.define('rcm.controller.Sap', {
 				
 			}
 		});
+	},
+	
+	updSKontrak: function(d)	{
+		var me = this,
+		doh = Ext.create('rcm.model.SrKontrak', d );
+
+		Ext.MessageBox.show({
+			title : 'Ubah Kontrak',
+			msg   : 'Yakin Data '+ d.ket +' Akan di Ubah??',
+			buttons: Ext.MessageBox.OKCANCEL,
+			icon  : Ext.MessageBox.WARNING,
+			fn	: function (oks){
+				if (oks === 'ok'){ 
+					doh.save ({
+						success: function()	{
+						//	alert("sampe sini");
+							me.getSrKontrakStore().reload();
+						}
+					})
+				}
+				
+			}
+		});
+		//*/
 	},
 		
 	simpanconmon : function(){
@@ -1095,7 +1121,7 @@ Ext.define('rcm.controller.Sap', {
 		var o = this.getTpSapHistori().sedotFilter();
 		this.getSapHistoriStore().load({params: {loc:o.iL,otp:o.iW,mwc:o.iM,tgl:o.iT }});
 		//alert("o.L: "+o.iL+", oW: "+o.iW+", oM: "+o.iM+", oT: "+o.iT);
-		Ext.getCmp('tSapHx').draw();
+		//Ext.getCmp('tSapHx').draw();
 	},
 	
 	clrSapMaint: function()	{

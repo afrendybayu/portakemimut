@@ -268,24 +268,54 @@ class Sap extends CI_Model {
 	}
 	
 	function get_teco_manwork($thn)	{
-		$sql =	"select refer.nama, (count(teco)) as tot,
-				sum(if(teco!=0,1,0)) as `teco`,
-				sum(if(teco!=0,0,1)) as `open`,
-				ROUND((100*(sum(if(teco!=0,1,0)))/count(teco)),2) as woc,
-				ROUND((100*(sum(if(teco!=0,0,1)))/count(teco)),2) as woo
-				from sap left join refer on refer.kode = sap.manwork
-				where manwork != '' AND manwork != -1 AND YEAR(planstart)=$thn group by manwork";
-
+		if ($thn==date('Y'))	{
+			//echo "$thn == ".date('Y');
+			$sql =	"SELECT refer.nama, (count(teco)) AS tot,
+					SUM(if(teco!=0,1,0)) as `teco`,
+					SUM(if(teco!=0,0,1)) as `open`,
+					ROUND((100*(sum(if(teco!=0,1,0)))/count(teco)),2) as woc,
+					ROUND((100*(sum(if(teco!=0,0,1)))/count(teco)),2) as woo
+					FROM sap left join refer on refer.kode = sap.manwork
+					WHERE manwork != '' AND manwork != -1 	AND YEAR(planend)=$thn 
+						AND CURDATE()>DATE_ADD(planend,INTERVAL 7 DAY) 
+					GROUP BY manwork";
+					// 	
+		}
+		else {
+			$sql =	"SELECT refer.nama, (count(teco)) as tot,
+					SUM(if(teco!=0,1,0)) as `teco`,
+					SUM(if(teco!=0,0,1)) as `open`,
+					ROUND((100*(sum(if(teco!=0,1,0)))/count(teco)),2) as woc,
+					ROUND((100*(sum(if(teco!=0,0,1)))/count(teco)),2) as woo
+					FROM sap left join refer on refer.kode = sap.manwork
+					WHERE manwork != '' AND manwork != -1 AND YEAR(planend)=$thn GROUP by manwork";
+		}
+		//echo "sql : $sql<br/>";
+		
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
 	
 	function get_teco_persen($thn)	{
-		$sql =	"select (if(teco!=0,1,0)) as teko
-				,(if(teco!=0,'Teco','Open')) as nama
-				,ROUND((100*count(*)/(select count(*) from sap where YEAR(planstart)=$thn)),2) as `teco`
-				from sap where YEAR(planstart)=$thn
-				group by teko";
+		if ($thn==date('Y'))	{
+			$sql =	"SELECT (if(teco!=0,1,0)) AS teko
+					,(IF(teco!=0,'Teco','Open')) AS nama
+					,ROUND((100*count(*)/
+						(select count(*) FROM sap 
+							WHERE YEAR(planend)=$thn AND CURDATE()>DATE_ADD(planend,INTERVAL 7 DAY))),2) as `teco`
+					FROM sap WHERE YEAR(planend)=$thn
+						AND CURDATE()>DATE_ADD(planend,INTERVAL 7 DAY)
+					GROUP by teko";
+		}
+		else {
+			$sql =	"SELECT (if(teco!=0,1,0)) AS teko
+					,(IF(teco!=0,'Teco','Open')) AS nama
+					,ROUND((100*count(*)/
+						(select count(*) FROM sap 
+							WHERE YEAR(planend)=$thn))),2) as `teco`
+					FROM sap WHERE YEAR(planend)=$thn
+					GROUP by teko";
+		}
 
 		$query = $this->db->query($sql);
 		return $query->result();
@@ -426,7 +456,7 @@ class Sap extends CI_Model {
 		$sql =	"SELECT ordertype as nama 
 				,ROUND(sum(totplancost)*100/(SELECT sum(totplancost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn),2) as tPlCost 
 				,ROUND(SUM(totmatcost)*100/(SELECT sum(totplancost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn),2) as tAcCost 
-				FROM sap WHERE totplancost>0 AND YEAR(planstart)=2014 group by ordertype";
+				FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn group by ordertype";
 				
 		$query = $this->db->query($sql);
 		return $query->result();

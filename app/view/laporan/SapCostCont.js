@@ -53,7 +53,9 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 			//id: 'grContLx',
 			title: 'Input Kontrak',
 			region: 'south',
-			flex: 1,
+			//flex: 1,
+			minWidth: 200,
+			collapsed: true,
 			collapsible: true,
 			split: true,
 			xtype: 'iContx'

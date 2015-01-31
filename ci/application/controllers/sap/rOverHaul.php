@@ -169,11 +169,7 @@ class rOverHaul extends CI_Controller {
 			$thn = $this->input->get('t')?:date('Y');
 			//$lok = $this->input->get('l')?:-1;
 			$cat = $this->input->get('c')?:-1;
-			/*
-			if (($lok === "ALL") || ($lok===-1))	{
-				$lok = -1;
-			}
-			//*/
+
 			if (($cat === "ALL") || ($cat===-1))	{
 				$cat = -1;
 			}
@@ -263,16 +259,22 @@ class rOverHaul extends CI_Controller {
 	
 	public function rExcPOH()	{
 		try {
-			
+						
 			$thn = $this->input->get('t')?:date('Y');
-			$lok = $this->input->get('l')?:-1;
+			//$lok = $this->input->get('l')?:-1;
 			$cat = $this->input->get('c')?:-1;
-			
-			if (($lok === "ALL") || ($lok===-1))	{
-				$lok = -1;
-			}
+
 			if (($cat === "ALL") || ($cat===-1))	{
 				$cat = -1;
+			}
+			
+			if  (strlen($this->input->get('l'))>0)	{
+				if ($this->input->get('l')==="ALL")	$lok = -1;
+				else $lok = $this->input->get('l');
+				//echo "lewat sini $lok<br/>";
+			}
+			else {
+				$lok = -1;
 			}
 			
 			$jabat = $this->option->get_oh_report();

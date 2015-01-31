@@ -49,7 +49,7 @@ Ext.define('rcm.view.laporan.GridContract', {
 			{ hidden: me.tot, header:'Total',dataIndex:'tot',flex:1,align:'right',summaryType:'sum',renderer:me.duit?'usMoney':'' },
 			{ hidden: me.totcv, header:'Total Contract Value',dataIndex:'tot',flex:1, minWidth:120,align:'right',summaryType:'sum',renderer:'usMoney' },
 			{ hidden: me.totcv, header:'Tot Contract 1Year Ago',dataIndex:'tot1',flex:1, minWidth:130,align:'right',summaryType:'sum',renderer:'usMoney' },
-			{ hidden: me.budg, header:'Budget',dataIndex:'budget',minWidth:100,flex:1,align:'right',summaryType:'sum',renderer:'usMoney',editor:'textfield' },
+			{ hidden: me.budg, header:'Budget',dataIndex:'b15',minWidth:100,flex:1,align:'right',summaryType:'sum',renderer:'usMoney',editor:'textfield' },
 			{ hidden: me.pbudg, header:'% Budget',dataIndex:'persen',minWidth:60,flex:1,align:'right' }
 		]};
 		

@@ -28,9 +28,9 @@ Ext.define('rcm.view.laporan.ContractList', {
 			autoCancel : true 
 			// hideTooltip: true
 		});
-		// me.selType = rmode;
+		me.selType = 'rowmodel';
 		
-		//me.plugins = [edit];
+		me.plugins = [edit];
 		
 		
 		/*
@@ -53,6 +53,12 @@ Ext.define('rcm.view.laporan.ContractList', {
 				},{
 					header:'Tanggal',minWidth:110,dataIndex : 'tgl'
 						,renderer : Ext.util.Format.dateRenderer('j M Y')
+						,editor: {
+							allowBlank: false,
+							submitFormat: 'Y-m-d',
+							format: 'j M Y',
+							xtype: 'datefield'
+						}
 					/*
 					,editor:{
 						xtype		:'combobox',
@@ -73,9 +79,22 @@ Ext.define('rcm.view.laporan.ContractList', {
 					//*/
 				},{
 					header:'Tipe', minWidth:200, dataIndex: 'cat', filter: { type: 'string' }
+						,editor: {
+							allowBlank: false,
+							xtype:'combobox',
+							store: 'SapCatH',
+							name		: 'cat',
+							displayField: 'nama',
+							valueField 	: 'id',
+							queryMode 	: 'local'
+						}
 						,renderer: me.renderCH
 				},{
 					header:'Nilai',minWidth:200,dataIndex:'nilai',renderer:'usMoney', filter: { type: 'string' }
+						,editor: {
+							allowBlank: false,
+							xtype: 'textfield'
+						}
 				},{
 					header : 'Keterangan',dataIndex : 'ket',flex: 1, filter: { type: 'string' }
 						,editor: {
@@ -102,8 +121,9 @@ Ext.define('rcm.view.laporan.ContractList', {
 		me.callParent(arguments);
 		// me.addEvents(		);
 		
-        edit.on('edit', me.hdlGridOHEdit, this);
-		// ed.on('beforeedit', me.GridEditEna, this);
+		edit.on('edit', me.hdlGridRowEdit, this);
+		//edit.on('edit', me.hdlGridOHEdit, this);
+		//edit.on('beforeedit', me.GridEditEna, this);
 	},
 	
 	
@@ -113,26 +133,13 @@ Ext.define('rcm.view.laporan.ContractList', {
 		this.fireEvent('delSContract', isi);
     },
 	
-
-	hdlGridOHEdit: function(record, e){
-		//console.log(record);
+	hdlGridRowEdit: function(rec, e)	{
 		var rec = e.newValues;
 		rec.id = e.record.get('id');
-		//console.log(rec);
-		this.fireEvent('updateoh',rec);
-		
-		/*
-		// rec.id_unit = this.idunit == ''? e.record.get('id_unit') : this.idunit;
-		rec.id_equip = this.ideq == ''? e.record.get('id_equip') : this.idunit;
-		rec.oh = this.idoh == ''? e.record.get('oh') : this.idoh;
-		rec.id = e.record.get('id'); //rec.oh = e.grid.idoh; //rec.id_equip = e.grid.ideq;
-		// console.log (rec.id);
-		
-		//this.fireEvent('updateoh',rec);
-		//*/
-	}
+		this.fireEvent('updSContract',rec);
+	},
 	
-	,renderCH: function(val) {
+	renderCH: function(val) {
 		var stCatH = Ext.getStore('SapCatH'),
 			node = val ? stCatH.getById(val) : "--";
 		//console.log(node);

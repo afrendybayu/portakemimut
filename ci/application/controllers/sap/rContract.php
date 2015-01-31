@@ -14,7 +14,7 @@ class rContract extends CI_Controller {
 		try {
 			$thn = $this->input->get('tgl')?:date('Y');
 			$this->load->model('contract');
-			//*
+			/*
 			$hsl = array();
 			for ($i=0; $i<12; $i++)	{
 				$obj = new stdClass();
@@ -88,23 +88,24 @@ class rContract extends CI_Controller {
 				array_push($hsl,$obj);
 				
 			}
-			//print_r($obj);
+			//print_r($hsl);
 
 			$oo = $this->contract->get_grafikcontrak($thn);
 			//echo 'banyaknya '.count($oo) .'<br>';
+			//echo "<br/><br/>";	print_r($oo); echo "<br/><br/>";
 			
-			//print_r($oo); echo "<br/><br/>";
 			//*
 			for ($i=0; $i<count($oo); $i++)	{
 			//for ($i=0; $i<12; $i++)	{
 				$hsl[$oo[$i]->m-1] = $oo[$i];
 				$hsl[$oo[$i]->m-1]->bln = nmMonth($oo[$i]->m-1,1);
 			}
-			//echo "<br/><br/>";	print_r($oo); echo "<br/><br/>";
+			//echo "<br/><br/>";	print_r($hsl); echo "<br/><br/>";
 			//*/
 			$jsonResult = array(
 				'success' => true,
 				'contract' => $hsl
+				//'contract' => $oo
 			);
 		}
 		catch (Exception $e){
