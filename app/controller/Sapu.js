@@ -44,20 +44,34 @@ Ext.define('rcm.controller.Sapu', {
 			},
 			'tSapu button[text=Submit]' : {
 				click : me.SubmitSapu
-			}//,
-			//'tSapu button[text=Delete]' : {
-				//click : me.DeleteSapu
-			//}
+			},
+			'tSapu button[text=Delete]' : {
+				click : me.DeleteSapu
+			}
 		
 		});
 	},
-	//DeleteSapu: function(){
-			//var me = this;
-			//var spgrid = this.getTSapu(),
-			//datax = spgrid.getSelectionModel().getSelection(),
-			//awl = Ext.getCmp('t_awal').value,
-			//akh = Ext.getCmp('t_akhir').value;
-			////console.log(datax);
+	DeleteSapu: function(){
+			alert ('hapus hapus hapusss');
+			var me = this;
+			var spgrid = this.getTSapu(),
+			datax = spgrid.getSelectionModel().getSelection(),
+			awl = Ext.getCmp('t_awal').value,
+			akh = Ext.getCmp('t_akhir').value;
+			console.log(datax);
+			
+			//for(var i = 0, lgt = datax.length; i < lgt; i++){
+				////ndelete = Ext.create(rcm.model.SapuUnit,{id_unit:datax[i].data.id_unit, awal:awl, akhir:akh});
+				//ndel  = new rcm.model.SapuUnit(datax);
+				
+					//ndel.destroy({
+						//success: function(ndel, operation){
+							
+							//}
+						
+						
+						//});
+			//}
 			
 			//for(var i = 0, lgt = datax.length; i < lgt; i++){
 				////console.log(datax[i].data.id_unit);
@@ -79,7 +93,7 @@ Ext.define('rcm.controller.Sapu', {
 			
 			
 			
-	//},
+	},
 	SubmitSapu: function(){
 			var me = this;
 			//console.log('nyapu mase');

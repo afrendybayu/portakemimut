@@ -24,8 +24,8 @@ Ext.define('rcm.view.laporan.GridCauseInfo', {
 			{ xtype:'rownumberer',width:50 },
 			{ header:'No PID',dataIndex:'noorder',width:75 },
 			{ header:'No Order',dataIndex:'nosap',width:75 },
-			{ header:'Tipe',dataIndex:'tipe',width:40, minWidth:40, 
-				filter: { type: 'list', store: Ext.create('rcm.store.SapTipe') } 
+			{ header:'Tipe',dataIndex:'tipe',width:40, minWidth:40
+				//,filter: { type: 'list', store: Ext.create('rcm.store.SapTipe') } 
 				//filter: { type: 'string' }
 			},
 			{ header:'Equipment',dataIndex:'equip',flex:1, minWidth:100, filter: { type: 'string' } },

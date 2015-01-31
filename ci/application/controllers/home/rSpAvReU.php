@@ -4,9 +4,13 @@ class rSpAvReU extends CI_Controller {
 	
 	public function index()	{
 		try {
-			$greq = $this->input->get('qe')?:'';
 			$thn = date('Y');
 			$bln = date('n');
+			
+			$greq = $this->input->get('qe')?:'';
+			$tahun = $this->input->get('th')?:$thn;
+			
+			
 			
 			if (!strcmp($greq,'avgc'))	{
 				$avre = 'rh_av'; $cat=5;
@@ -27,7 +31,7 @@ class rSpAvReU extends CI_Controller {
 			
 			$this->load->model("runninghour");
 			
-			$hsl = $this->runninghour->get_spAvReU($avre, $cat, $bln, $thn);
+			$hsl = $this->runninghour->get_spAvReU($avre, $cat, $bln, $tahun);
 
 			//print_r($hsl);
 			
