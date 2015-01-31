@@ -454,11 +454,11 @@ class Sap extends CI_Model {
 	
 	function get_persen_ocot($thn)	{
 		$sql =	"SELECT ordertype as nama 
-				,ROUND(sum(totplancost)*100/
+				,ROUND(SUM(totplancost)*100/
 					(SELECT sum(totplancost) FROM sap WHERE YEAR(planend)=$thn),2) as tPlCost 
 				,ROUND(SUM(totmatcost)*100/
-					(SELECT sum(totmatcost) FROM sap WHERE YEAR(planend)=$thn),2) as tAcCost 
-				FROM sap WHERE YEAR(planend)=$thn group by ordertype";
+					(SELECT SUM(totmatcost) FROM sap WHERE YEAR(planend)=$thn),2) as tAcCost 
+				FROM sap WHERE YEAR(planend)=$thn GROUP by ordertype";
 				
 		$query = $this->db->query($sql);
 		return $query->result();
