@@ -25,7 +25,6 @@ Ext.define('rcm.view.lapobama.SpeedoAv', {
 			//store: 'AvSpeedo',
 			dataIndex: 'av',
 			//dataIndex: this.nama,
-			//threshold: 0,
 			dataLabels: {
 				//color: '#E58964',
 				borderWidth: 0,
@@ -44,6 +43,16 @@ Ext.define('rcm.view.lapobama.SpeedoAv', {
 			pivot: {
 				radius: '5'
 			},
+			dial: {
+                    baseWidth: 2,
+                    backgroundColor: '#333333',//'#1f9fd9',
+                    borderColor: '#333333',
+                    borderWidth: 1,
+                    rearLength: 0,
+                    baseLength: 90,
+                    radius: 90
+            },
+            
 			wrap : false
 		}],
 		me.chartConfig={
@@ -158,7 +167,6 @@ Ext.define('rcm.view.lapobama.SpeedoAv', {
 							easing : 'swing'
 						},
 						cursor: 'pointer',
-						
 						point: {
 							events: {
 								click: function(evt) {
