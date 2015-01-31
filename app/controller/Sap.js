@@ -1121,7 +1121,7 @@ Ext.define('rcm.controller.Sap', {
 		var o = this.getTpSapHistori().sedotFilter();
 		this.getSapHistoriStore().load({params: {loc:o.iL,otp:o.iW,mwc:o.iM,tgl:o.iT }});
 		//alert("o.L: "+o.iL+", oW: "+o.iW+", oM: "+o.iM+", oT: "+o.iT);
-		//Ext.getCmp('tSapHx').draw();
+		Ext.getCmp('tSapHx').draw();
 	},
 	
 	clrSapMaint: function()	{

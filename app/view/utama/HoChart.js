@@ -58,7 +58,8 @@ Ext.define('rcm.view.utama.HoChart', {
 				dstore: 'SapHistoriUt',
 				xtype: 'tHistori',
 				flex: 6,
-				jdl: 'Histori'
+				jdl: 'Histori',
+				id : 'tHisUt'
 			}],
 			flex: 5
 		},{

@@ -109,7 +109,7 @@ Ext.define('rcm.controller.AvRe', {
 		
 		me.getSapHistoriUtStore().load({params: {tgl:t} });
 		//me.getAvReUnitStore().load();
-		//Ext.getCmp('tSapHx').draw();
+		Ext.getCmp('tHisUt').draw();
 		
 		
 		
