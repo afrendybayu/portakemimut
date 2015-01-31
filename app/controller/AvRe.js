@@ -30,7 +30,7 @@ Ext.define('rcm.controller.AvRe', {
 		,'SapHistoriUt'
 		
 		,'SpAvGcUt','SpAvGsUt','SpAvPmUt','SpReGcUt','SpReGsUt','SpRePmUt'
-		,'HoOrderC','HoMan'
+		,'HoOrderC','HoMan','HoTeco'
     ],
     
     models: [
@@ -81,9 +81,36 @@ Ext.define('rcm.controller.AvRe', {
 			},
 			'tReHome' : {
 				ReHomeCl: me.AvHomeClick
-			}
+			},
+			'#srUtama': {
+				click: me.hdlThnUtama
+			},
 		});
     },
+    
+    hdlThnUtama : function(){
+		var me = this;
+		var t=Ext.getCmp('iThnUtama').getValue();
+		
+		//alert('Filter Tahun Dahsboard '+t);
+		
+		me.getSpAvGcUtStore().load({params: {th:t} });
+		me.getSpAvGsUtStore().load({params: {th:t} });
+		me.getSpAvPmUtStore().load({params: {th:t} });
+		me.getSpReGcUtStore().load({params: {th:t} });
+		me.getSpReGsUtStore().load({params: {th:t} });
+		me.getSpRePmUtStore().load({params: {th:t} });
+		
+		me.getHoOrderCStore().load({params: {thn:t} });
+		me.getHoManStore().load({params: {thn:t} });
+		me.getHoTecoStore().load({params: {thn:t} });
+		//var taon = Ext.Date.format(new Date(), 'Y'),
+		var y = (t==Ext.Date.format(new Date(), 'Y'))? 12:t;
+		me.getSapHistoriUtStore().load({params: {tgl:y} });
+		//me.getAvReUnitStore().load();
+		Ext.getCmp('tHisUt').draw();
+		
+	},
 	
 	getDelayedStore: function()	{
 		//console.log("AvRe getDelayedStore");

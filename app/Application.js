@@ -21,6 +21,7 @@ Ext.define('rcm.Application', {
 		,'Login'
 		,'Sapu'
 		,'Config'
+		//,'Dashboard'
 		
 		//=================
     ],

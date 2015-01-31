@@ -1,7 +1,8 @@
 // afrendyBayu,26Jan2014 //
 Ext.define('rcm.view.utama.HoChart', {
     xtype: 'tHoChart',
-	extend: 'Ext.container.Container',
+	//extend: 'Ext.container.Container',
+	extend: 'Ext.panel.Panel',
 
 	requires: [
 		'rcm.view.utama.GridOrderC'
@@ -9,6 +10,7 @@ Ext.define('rcm.view.utama.HoChart', {
 		,'rcm.view.utama.HoPie'
 		,'rcm.view.utama.HoSpeedo'
 		,'rcm.view.Util'
+		,'rcm.view.utama.FilterThNo'
 	],
 	
 	layout: {
@@ -19,7 +21,14 @@ Ext.define('rcm.view.utama.HoChart', {
 		flex: 1,
 		hideLabel: true
 	},
-
+	dockedItems: [{
+		xtype : 'uFThnNo',
+		idThn: 'iThnUtama',
+		idbSr: 'srUtama',
+		dock: 'top',
+		
+	}],
+	
     items: [{
 		xtype: 'container',
 		layout: {
@@ -49,7 +58,8 @@ Ext.define('rcm.view.utama.HoChart', {
 				dstore: 'SapHistoriUt',
 				xtype: 'tHistori',
 				flex: 6,
-				jdl: 'Histori'
+				jdl: 'Histori',
+				id : 'tHisUt'
 			}],
 			flex: 5
 		},{
@@ -58,5 +68,6 @@ Ext.define('rcm.view.utama.HoChart', {
 			flex: 4,
 			title: 'Order Costing '+rcm.view.Util.U1th('')
 		}]
-	}]
+	}],
+	
 });

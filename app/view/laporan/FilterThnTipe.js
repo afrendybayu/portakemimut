@@ -51,11 +51,11 @@ Ext.define('rcm.view.laporan.FilterThnTipe', {
 					width: 110,
 					labelWidth: 40,
 					triggerAction: 'all',
-					listConfig : {          
-						getInnerTpl : function() {
-							return '<div class="x-combo-list-item"><img src="' + Ext.BLANK_IMAGE_URL + '" class="chkCombo-default-icon chkCombo" /> {text} </div>';
-						}
-					}
+					//listConfig : {          
+						//getInnerTpl : function() {
+							//return '<div class="x-combo-list-item"><img src="' + Ext.BLANK_IMAGE_URL + '" class="chkCombo-default-icon chkCombo" /> {text} </div>';
+						//}
+					//}
 				},{
 					//id: 'btnCariSH',
 					id: me.idbSr,

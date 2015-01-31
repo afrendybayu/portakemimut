@@ -208,8 +208,13 @@ class Sap extends CI_Model {
 		
 		
 		$sql =	"SELECT sf.opart AS kode, count(*) AS jml,od.nama,CONCAT('[',sf.opart,'] ',od.nama) AS desk
+<<<<<<< HEAD
 				,ROUND((100*COUNT(*)/(SELECT COUNT(*) FROM sapfmea LEFT JOIN sap ON sapfmea.pid=sap.pid
 					WHERE YEAR(planstart)=$thn)),2) as persen
+=======
+						,ROUND((100*COUNT(*)/(SELECT COUNT(*) FROM sapfmea LEFT JOIN sap ON sapfmea.pid=sap.pid
+				WHERE YEAR(planstart)=$thn)),2) as persen
+>>>>>>> jono
 				FROM sapfmea sf
 					LEFT JOIN sap ON sf.pid= sap.pid
 					LEFT JOIN opartdef od ON od.kode = sf.opart 
@@ -312,7 +317,7 @@ class Sap extends CI_Model {
 					,(IF(teco!=0,'Teco','Open')) AS nama
 					,ROUND((100*count(*)/
 						(select count(*) FROM sap 
-							WHERE YEAR(planend)=$thn))),2) as `teco`
+							WHERE YEAR(planend)=$thn)),2) as `teco`
 					FROM sap WHERE YEAR(planend)=$thn
 					GROUP by teko";
 		}
