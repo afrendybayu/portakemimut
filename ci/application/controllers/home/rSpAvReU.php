@@ -1,7 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class rSpAvReU extends CI_Controller {
-	
+	function __construct() {
+        parent::__construct();
+		$this->load->model('runninghour');
+		$this->load->model('cost');
+	}
 	public function index()	{
 		try {
 			$thn = date('Y');
@@ -9,7 +13,9 @@ class rSpAvReU extends CI_Controller {
 			
 			$greq = $this->input->get('qe')?:'';
 			$tahun = $this->input->get('th')?:$thn;
+			$bulan = ($this->input->get('th')==$thn)?$bln:0;
 			
+			//echo $bulan;
 			
 			
 			if (!strcmp($greq,'avgc'))	{
@@ -29,9 +35,7 @@ class rSpAvReU extends CI_Controller {
 			}
 			//echo "avre: $avre, cat: $cat<br/>";
 			
-			$this->load->model("runninghour");
-			
-			$hsl = $this->runninghour->get_spAvReU($avre, $cat, $bln, $tahun);
+			$hsl = $this->runninghour->get_spAvReU($avre, $cat, $bulan, $tahun);
 
 			//print_r($hsl);
 			
@@ -54,8 +58,6 @@ class rSpAvReU extends CI_Controller {
 		try {
 			$thn = $this->input->get('tgl')?:date('Y');
 
-			$this->load->model('cost');
-			
 			$hsl = $this->cost->get_ordercost($thn);
 			//print_r($hsl);
 			$jsonResult = array(

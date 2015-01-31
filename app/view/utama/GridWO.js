@@ -4,7 +4,7 @@ Ext.define('rcm.view.utama.GridWO', {
 	//alias: 'widget.gridWO',
 	xtype: 'tGridWO',
     
-	store: 'HoMan',
+	store: 'HoWorkCen',
 	
 	initComponent: function() {
 		var me=this;

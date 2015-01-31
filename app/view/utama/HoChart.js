@@ -63,6 +63,7 @@ Ext.define('rcm.view.utama.HoChart', {
 			}],
 			flex: 5
 		},{
+			id : 'tOrdCost',
 			iconCls: 'dollar',
 			xtype: 'tGridOrderC',
 			flex: 4,

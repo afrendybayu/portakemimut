@@ -27,7 +27,7 @@ Ext.define('rcm.view.utama.HoPie', {
 	
 	initComponent: function() {
 		var me=this;
-		me.store='HoTeco';
+		me.store='HoWoCompl';
 		me.chartConfig={
 			chart : {
 				type: 'pie',

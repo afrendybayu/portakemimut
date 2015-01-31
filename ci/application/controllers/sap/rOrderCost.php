@@ -14,8 +14,6 @@ class rOrderCost extends CI_Controller {
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
 
-			$this->load->model('sap');
-			
 			$hsl = $this->sap->get_ordercostwo($thn);
 			//print_r($hsl);
 			$jsonResult = array(
@@ -37,7 +35,6 @@ class rOrderCost extends CI_Controller {
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
 
-			//$this->load->model('sap');
 			$hsl = $this->sap->get_ordercostot($thn);
 
 			for($i=0; $i<count($hsl); $i++)		{
@@ -66,7 +63,6 @@ class rOrderCost extends CI_Controller {
 	public function sapPsOCwo()		{
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
-			$this->load->model('sap');
 			$hsl = $this->sap->get_persen_ocwo($thn);
 			//print_r($hsl);
 			$jsonResult = array(
