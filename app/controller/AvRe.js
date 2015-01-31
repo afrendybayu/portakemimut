@@ -104,17 +104,11 @@ Ext.define('rcm.controller.AvRe', {
 		me.getHoOrderCStore().load({params: {thn:t} });
 		me.getHoManStore().load({params: {thn:t} });
 		me.getHoTecoStore().load({params: {thn:t} });
-		var taon = new Date();
-		//console.log(taon);
-		console.log(Ext.Date.format(taon, 'Y'));
-		//if (t==Ext.Date.format(taon, 'Y'))
-		var y = (t==Ext.Date.format(taon, 'Y'))? 12:t;
-		
+		//var taon = Ext.Date.format(new Date(), 'Y'),
+		var y = (t==Ext.Date.format(new Date(), 'Y'))? 12:t;
 		me.getSapHistoriUtStore().load({params: {tgl:y} });
 		//me.getAvReUnitStore().load();
 		Ext.getCmp('tHisUt').draw();
-		
-		
 		
 	},
 	
