@@ -92,7 +92,7 @@ Ext.define('rcm.controller.AvRe', {
 		var me = this;
 		var t=Ext.getCmp('iThnUtama').getValue();
 		
-		alert('Filter Tahun Dahsboard '+t);
+		//alert('Filter Tahun Dahsboard '+t);
 		
 		me.getSpAvGcUtStore().load({params: {th:t} });
 		me.getSpAvGsUtStore().load({params: {th:t} });
@@ -109,7 +109,7 @@ Ext.define('rcm.controller.AvRe', {
 		
 		me.getSapHistoriUtStore().load({params: {tgl:t} });
 		//me.getAvReUnitStore().load();
-		Ext.getCmp('tSapHx').draw();
+		//Ext.getCmp('tSapHx').draw();
 		
 		
 		

@@ -312,7 +312,7 @@ class Sap extends CI_Model {
 					,(IF(teco!=0,'Teco','Open')) AS nama
 					,ROUND((100*count(*)/
 						(select count(*) FROM sap 
-							WHERE YEAR(planend)=$thn))),2) as `teco`
+							WHERE YEAR(planend)=$thn)),2) as `teco`
 					FROM sap WHERE YEAR(planend)=$thn
 					GROUP by teko";
 		}

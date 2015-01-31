@@ -10,7 +10,7 @@ class rTeco extends CI_Controller {
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
 
-			$this->load->model('sap');
+			//$this->load->model('sap');
 			
 			$hsl = $this->sap->get_teco_persen($thn);
 			//print_r($hsl);
