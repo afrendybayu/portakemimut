@@ -69,7 +69,7 @@ class Contract extends CI_Model {
 	}
 	
 	function get_tipe_eq()	{
-		$sql = "SELECT LOWER(kode) AS kode,nama 
+		$sql = "SELECT GROUP_CONCAT(LOWER(kode)) AS kode
 				FROM cat_equip WHERE parent=0";
 		//echo "sql: $sql";
 		$query = $this->db->query($sql);

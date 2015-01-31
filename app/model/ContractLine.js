@@ -4,11 +4,12 @@ Ext.define('rcm.model.ContractLine', {
 	requires:[
 		'Ext.data.proxy.Ajax'
 	],
-
+	/*
 	fields: [ 'm','bln',
 				{ name:'gc', type:'float' },
 				{ name:'gs', type:'float' },
 				{ name:'pm',type:'float' }],
+	//*/
     proxy: {
 		type: 'ajax',
 		api: {

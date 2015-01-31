@@ -8,6 +8,7 @@ Ext.define('rcm.view.laporan.SapContractLine', {
 	],
 	//*/
 	loadMask: true,
+	loadingtext: 'Njuupuk ...',
 	
 	series : [{
 	/*
@@ -23,7 +24,7 @@ Ext.define('rcm.view.laporan.SapContractLine', {
 	//*/
 	//*
 			type: 'spline',
-			dataIndex: 'pm',
+			dataIndex: 'xx',
 			name: 'Pump'
 	//*/
 	}],

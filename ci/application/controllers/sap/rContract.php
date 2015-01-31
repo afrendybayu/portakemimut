@@ -71,6 +71,11 @@ class rContract extends CI_Controller {
 		echo json_encode($jsonResult);
 	}
 	
+	public function sapTpKontx()	{
+		$tt = $this->contract->get_tipe_eq();
+		print_r ($tt[0]->kode);
+		//echo $tt;
+	}
 	
 	public function sapGrContract()	{
 		try {

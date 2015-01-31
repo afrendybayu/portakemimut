@@ -1095,6 +1095,8 @@ Ext.define('rcm.controller.Sap', {
 		task.delay(rcmSettings.dlySap*1000);
 		//alert("tes");
 		//me.ubahLabelWO();
+		
+		this.setEnviGrKontx();
 		/*
 		rcmSettings.qeq = Ext.getCmp('grContL');
 		Ext.getCmp('grContL').addSeries({
@@ -1120,6 +1122,29 @@ Ext.define('rcm.controller.Sap', {
 		});
 		
 		
+	},
+	
+	setEnviGrKontx: function()	{
+		
+		Ext.Ajax.request({
+			url: 'ci/index.php/sap/rContract/sapTpKontx',
+			//url: 'ci/dashboard',
+			method: 'GET',
+			//params: {user:usr,pass:pwd},
+			scope: this,
+			//callback: this.onHomeStore
+			success: function(d)	{
+				var df = new Array();
+				
+				if (d.status==200)	{
+					 df = d.responseText.split(',');
+					 console.log(df);
+				}
+				else {
+					alert("Tidak bisa akses");
+				}
+			}
+        });
 	},
 	
 	clrSapHist: function()	{
