@@ -444,9 +444,9 @@ class Sap extends CI_Model {
 	
 	function get_persen_ocwo($thn)	{
 		$sql =	"SELECT objid AS nama 
-				,ROUND(sum(totplancost)*100/(select sum(totplancost) from sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!=''),2) as tPlCost 
-				,ROUND(sum(totmatcost)*100/(select sum(totmatcost) from sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!=''),2) as tAcCost 
-				FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn and objid!='' GROUP BY objid";
+				,ROUND(SUM(totplancost)*100/(SELECT sum(totplancost) FROM sap WHERE YEAR(planend)=$thn and objid!=''),2) as tPlCost 
+				,ROUND(SUM(totmatcost)*100/(SELECT sum(totmatcost) FROM sap WHERE YEAR(planend)=$thn and objid!=''),2) as tAcCost 
+				FROM sap WHERE YEAR(planend)=$thn and objid!='' GROUP BY objid";
 				
 		$query = $this->db->query($sql);
 		return $query->result();
@@ -454,9 +454,11 @@ class Sap extends CI_Model {
 	
 	function get_persen_ocot($thn)	{
 		$sql =	"SELECT ordertype as nama 
-				,ROUND(sum(totplancost)*100/(SELECT sum(totplancost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn),2) as tPlCost 
-				,ROUND(SUM(totmatcost)*100/(SELECT sum(totplancost) FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn),2) as tAcCost 
-				FROM sap WHERE totplancost>0 AND YEAR(planstart)=$thn group by ordertype";
+				,ROUND(sum(totplancost)*100/
+					(SELECT sum(totplancost) FROM sap WHERE YEAR(planend)=$thn),2) as tPlCost 
+				,ROUND(SUM(totmatcost)*100/
+					(SELECT sum(totmatcost) FROM sap WHERE YEAR(planend)=$thn),2) as tAcCost 
+				FROM sap WHERE YEAR(planend)=$thn group by ordertype";
 				
 		$query = $this->db->query($sql);
 		return $query->result();
