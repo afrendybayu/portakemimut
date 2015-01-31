@@ -212,8 +212,8 @@ Ext.define('rcm.controller.AvRe', {
 			thnm1=th-1;		//rcm.view.Util.Uthm1(t),
 			bln=rcm.view.Util.Ublnini(t);
 
-		//me.getTAvGroup().waktu = bln;
-		
+		me.getTAvGroup().waktu = bln;
+		//console.log (bln);
 		//var c = (me.getTAvGroup().cat)?me.getTAvGroup().cat:5;
 		//alert(me.getTAvGroup().cat);
 		me.updateAvRe(bln,me.getTAvGroup().nama,me.getTAvGroup().cat);
@@ -273,8 +273,8 @@ Ext.define('rcm.controller.AvRe', {
 	AvGroupClick: function(d,app,bln,kat) 	{
 		var me=this,plh,wkt,nnm;
 		//alert("bln: "+bln+", waktu: "+me.getTAvGroup().waktu);
-		//wkt=(bln)?bln:me.getTAvGroup().waktu;
 		wkt=(bln)?bln:me.getTAvGroup().waktu;
+		//wkt=bln;
 		plh=(app==1)?me.getAvGroupStore().getAt(d.point.x).data:me.getAvGroupStore().getAt(0).data;
 
 		//alert("wkt: "+wkt+",plh: "+plh);

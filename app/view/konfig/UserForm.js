@@ -56,6 +56,7 @@ Ext.define('rcm.view.konfig.UserForm', {
 	            margins: '0 0 0 10',
 	            boxLabel: 'Aktif',
 	            flex : 1
+	            
             }]
 
 			

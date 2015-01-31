@@ -55,6 +55,15 @@ class Equip extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_equip_unit_concat($equip){
+		$sql = "select group_concat('e',e.id separator'') as eq 
+					from equip e
+					where e.unit_id = ?";
+		$query = $this->db->query($sql,$equip);
+		return $query->result();
+					
+	}
+	
 	function get_equip($id)	{
 		$this->db->select('id,cat,kode');
 		$this->db->where('unit_id',$id);

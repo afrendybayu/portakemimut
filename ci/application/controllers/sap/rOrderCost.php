@@ -37,7 +37,7 @@ class rOrderCost extends CI_Controller {
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
 
-			$this->load->model('sap');
+			//$this->load->model('sap');
 			$hsl = $this->sap->get_ordercostot($thn);
 
 			for($i=0; $i<count($hsl); $i++)		{
@@ -119,7 +119,7 @@ class rOrderCost extends CI_Controller {
 	public function sapTop10()		{
 		try {
 			$thn = $this->input->get('thn')?:date('Y');
-			$this->load->model('sap');
+			//$this->load->model('sap');
 			$hsl = $this->sap->get_topten($thn);
 			//print_r($hsl);
 			$jsonResult = array(

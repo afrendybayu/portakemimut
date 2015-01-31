@@ -67,7 +67,7 @@
 <body>
 
 <div id="container">
-	<h1>Nyantei aja Berroooo ....</h1>
+	<h1>Nyantei aja Berroooo ....</h1>	
 
 	<div id="body">
 		<code>Kita memang pake CodeIgniter</code>

@@ -96,7 +96,10 @@ Ext.define('rcm.controller.Login', {
 		if (frm.isValid()) {
 			login.save({
 				success: function(login, operation) {
-					var res = operation.request.scope.reader.jsonData["rule"];
+					var res = operation.request.scope.reader.jsonData["rule"],
+					priviledge = res.level;
+					
+					//console.log(res);
 					/*
 					Ext.MessageBox.show({
 						title : 'Login Info',
@@ -106,36 +109,116 @@ Ext.define('rcm.controller.Login', {
 					});
 					//*/
 					me.getAuthlogin().level = res.level;
-					Ext.getCmp('p_login').setVisible(false);
-					Ext.getCmp('p_logout').setVisible(true);
-					Ext.getCmp('t_welcome').setText('Selamat Datang '+res.session);
-					Ext.getCmp('griddel').setVisible(true);
-					Ext.getCmp('gridedit').setVisible(true);
-					Ext.getCmp('btnUplBpm3').setDisabled(false);
-					Ext.getCmp('bwbpm3').setDisabled(false);
-					//Ext.fly('idGridCM').ngedit = 1;
-					//console.log(Ext.getCmp('idGridCM'));
-					Ext.getCmp('idGridCM').ngedit = 1;
-					Ext.getCmp('idGridKontrak').ngedit = 1;
-					//Ext.fly('idGridCM').ngedit = 1;
-					//Ext.getCmp('conmondel').setDisabled(false);
-					//Ext.getCmp('cmform').setDisabled(false);
 					
-					
-					// Ext.getCmp('tu_kf').setDisabled(false);
-					
-					//Ext.getCmp('conmondel').setEnabled(false);
-					
-					//me.getIConMon().ngedit = 1;
-					me.getExcelgrid().ngedit = 1;
-					me.getTGridContract().ngedit = 1;
+					if (priviledge == 0){
+							//alert ('login sebagai super');
+							Ext.getCmp('p_login').setVisible(false);
+							Ext.getCmp('p_logout').setVisible(true);
+							Ext.getCmp('t_welcome').setText('Selamat Datang '+res.session);
+							Ext.getCmp('griddel').setVisible(true);
+							Ext.getCmp('gridedit').setVisible(true);
+							Ext.getCmp('btnUplBpm3').setDisabled(false);
+							Ext.getCmp('bwbpm3').setDisabled(false);
+							//Ext.fly('idGridCM').ngedit = 1;
+							//console.log(Ext.getCmp('idGridCM'));
+							Ext.getCmp('idGridCM').ngedit = 1;
+							Ext.getCmp('idGridKontrak').ngedit = 1;
+							//Ext.fly('idGridCM').ngedit = 1;
+							//Ext.getCmp('conmondel').setDisabled(false);
+							//Ext.getCmp('cmform').setDisabled(false);
+							
+							
+							// Ext.getCmp('tu_kf').setDisabled(false);
+							
+							//Ext.getCmp('conmondel').setEnabled(false);
+							
+							//me.getIConMon().ngedit = 1;
+							me.getExcelgrid().ngedit = 1;
+							me.getTGridContract().ngedit = 1;
 
-					me.getContent().showKonfig(true);
-					me.getTabChart().showInput(true);
-					Ext.getCmp('idUpOh').setDisabled(false);
+							me.getContent().showKonfig(true);
+							me.getContent().showSapu(true);
+							me.getTabChart().showInput(true);
+							Ext.getCmp('idUpOh').setDisabled(false);
+							
+							Ext.getCmp('ohdel').setDisabled(false);
+							//Ext.getCmp('ohform').setDisabled(false);
+							
+							
+							
+						}
+					else if (priviledge == 1){
+							//alert ('login sebagai admin');
+							Ext.getCmp('p_login').setVisible(false);
+							Ext.getCmp('p_logout').setVisible(true);
+							Ext.getCmp('t_welcome').setText('Selamat Datang '+res.session);
+							Ext.getCmp('griddel').setVisible(true);
+							Ext.getCmp('gridedit').setVisible(true);
+							Ext.getCmp('btnUplBpm3').setDisabled(false);
+							Ext.getCmp('bwbpm3').setDisabled(false);
+							//Ext.fly('idGridCM').ngedit = 1;
+							//console.log(Ext.getCmp('idGridCM'));
+							Ext.getCmp('idGridCM').ngedit = 1;
+							Ext.getCmp('idGridKontrak').ngedit = 1;
+							//Ext.fly('idGridCM').ngedit = 1;
+							//Ext.getCmp('conmondel').setDisabled(false);
+							//Ext.getCmp('cmform').setDisabled(false);
+							
+							
+							// Ext.getCmp('tu_kf').setDisabled(false);
+							
+							//Ext.getCmp('conmondel').setEnabled(false);
+							
+							//me.getIConMon().ngedit = 1;
+							me.getExcelgrid().ngedit = 1;
+							me.getTGridContract().ngedit = 1;
+
+							me.getContent().showKonfig(true);
+							//me.getContent().showSapu(true);
+							me.getTabChart().showInput(true);
+							Ext.getCmp('idUpOh').setDisabled(false);
+							
+							Ext.getCmp('ohdel').setDisabled(false);
+							//Ext.getCmp('ohform').setDisabled(false);
+							
+						}
+					else if (priviledge > 1){
+							//alert ('login sebagai admin');
+							Ext.getCmp('p_login').setVisible(false);
+							Ext.getCmp('p_logout').setVisible(true);
+							Ext.getCmp('t_welcome').setText('Selamat Datang '+res.session);
+							Ext.getCmp('griddel').setVisible(true);
+							Ext.getCmp('gridedit').setVisible(true);
+							Ext.getCmp('btnUplBpm3').setDisabled(false);
+							Ext.getCmp('bwbpm3').setDisabled(false);
+							//Ext.fly('idGridCM').ngedit = 1;
+							//console.log(Ext.getCmp('idGridCM'));
+							Ext.getCmp('idGridCM').ngedit = 1;
+							Ext.getCmp('idGridKontrak').ngedit = 1;
+							//Ext.fly('idGridCM').ngedit = 1;
+							//Ext.getCmp('conmondel').setDisabled(false);
+							//Ext.getCmp('cmform').setDisabled(false);
+							
+							
+							// Ext.getCmp('tu_kf').setDisabled(false);
+							
+							//Ext.getCmp('conmondel').setEnabled(false);
+							
+							//me.getIConMon().ngedit = 1;
+							me.getExcelgrid().ngedit = 1;
+							me.getTGridContract().ngedit = 1;
+
+							//me.getContent().showKonfig(true);
+							//me.getContent().showSapu(true);
+							me.getTabChart().showInput(true);
+							Ext.getCmp('idUpOh').setDisabled(false);
+							
+							Ext.getCmp('ohdel').setDisabled(false);
+							//Ext.getCmp('ohform').setDisabled(false);
+							
+						}
+						
 					
-					Ext.getCmp('ohdel').setDisabled(false);
-					//Ext.getCmp('ohform').setDisabled(false);
 					
 				},
 				failure : function(respon, operation){
@@ -212,6 +295,7 @@ Ext.define('rcm.controller.Login', {
 					//Ext.fly('idGridCM').ngedit = 0;
 					
 					me.getContent().showKonfig(false);
+					me.getContent().showSapu(false);
 					me.getTabChart().showInput(false);
 					Ext.getCmp('idUpOh').setDisabled(true);
 					//Ext.getCmp('ConMonSave').setDisabled(true);
@@ -250,60 +334,136 @@ Ext.define('rcm.controller.Login', {
 			scope: this,
 			callback: function(records, operation, success) {
 				var res = operation.request.scope.reader.jsonData["sesi"];
-				if (success){
-					//console.log('masuk sebagai admin');
-					me.getExcelgrid().ngedit = 1;
-					Ext.getCmp('p_login').setVisible(false);
-					Ext.getCmp('p_logout').setVisible(true);
-					Ext.getCmp('t_welcome').setText('Selamat Datang '+res.nama);
-					Ext.getCmp('griddel').setVisible(true);
-					Ext.getCmp('gridedit').setVisible(true);
-					Ext.getCmp('btnUplBpm3').setDisabled(false);
-					Ext.getCmp('bwbpm3').setDisabled(false);
-					//Ext.getCmp('conmondel').setDisabled(false);
-					//Ext.getCmp('cmform').setDisabled(false);
+				
+				priviledge = res.akses;
+				//console.log('yang sedang akses adalah : ' + priviledge);
+				
+				if (priviledge == 0 && success){
+						//alert ('sebagai superadmin');
+						//console.log('masuk sebagai admin');
+						me.getExcelgrid().ngedit = 1;
+						Ext.getCmp('p_login').setVisible(false);
+						Ext.getCmp('p_logout').setVisible(true);
+						Ext.getCmp('t_welcome').setText('Selamat Datang '+res.nama);
+						Ext.getCmp('griddel').setVisible(true);
+						Ext.getCmp('gridedit').setVisible(true);
+						Ext.getCmp('btnUplBpm3').setDisabled(false);
+						Ext.getCmp('bwbpm3').setDisabled(false);
+						//Ext.getCmp('conmondel').setDisabled(false);
+						//Ext.getCmp('cmform').setDisabled(false);
+						
+						
+						// Ext.getCmp('tu_kf').setDisabled(false);
+						
+						Ext.getCmp('idGridCM').ngedit = 1;
+						Ext.getCmp('idGridKontrak').ngedit = 1;
+						//console.log("tes masuk sini");
+						me.getAuthlogin().level = res.level;
+						
+						me.getContent().showKonfig(true);
+						me.getContent().showSapu(true);
+						me.getTabChart().showInput(true);
+						//alert("me.getExcelgrid().ngedit = 1;");
+						//me.getIConMon().ngedit = 1;
+						
+						Ext.getCmp('idUpOh').setDisabled(false);
+						Ext.getCmp('ohdel').setDisabled(false);
+						//Ext.getCmp('ohform').setDisabled(false);
+						
+						
+					}
+				else if (priviledge == 1 && success){
+						//alert ('sebagai admin');
+						//console.log('masuk sebagai admin');
+						me.getExcelgrid().ngedit = 1;
+						Ext.getCmp('p_login').setVisible(false);
+						Ext.getCmp('p_logout').setVisible(true);
+						Ext.getCmp('t_welcome').setText('Selamat Datang '+res.nama);
+						Ext.getCmp('griddel').setVisible(true);
+						Ext.getCmp('gridedit').setVisible(true);
+						Ext.getCmp('btnUplBpm3').setDisabled(false);
+						Ext.getCmp('bwbpm3').setDisabled(false);
+						//Ext.getCmp('conmondel').setDisabled(false);
+						//Ext.getCmp('cmform').setDisabled(false);
+						
+						
+						// Ext.getCmp('tu_kf').setDisabled(false);
+						
+						Ext.getCmp('idGridCM').ngedit = 1;
+						Ext.getCmp('idGridKontrak').ngedit = 1;
+						//console.log("tes masuk sini");
+						me.getAuthlogin().level = res.level;
+						
+						me.getContent().showKonfig(true);
+						//me.getContent().showSapu(true);
+						me.getTabChart().showInput(true);
+						//alert("me.getExcelgrid().ngedit = 1;");
+						//me.getIConMon().ngedit = 1;
+						
+						Ext.getCmp('idUpOh').setDisabled(false);
+						Ext.getCmp('ohdel').setDisabled(false);
+						//Ext.getCmp('ohform').setDisabled(false);
 					
+					}
+				else if(priviledge > 1 && success){
+						
+						me.getExcelgrid().ngedit = 1;
+						Ext.getCmp('p_login').setVisible(false);
+						Ext.getCmp('p_logout').setVisible(true);
+						Ext.getCmp('t_welcome').setText('Selamat Datang '+res.nama);
+						Ext.getCmp('griddel').setVisible(true);
+						Ext.getCmp('gridedit').setVisible(true);
+						Ext.getCmp('btnUplBpm3').setDisabled(false);
+						Ext.getCmp('bwbpm3').setDisabled(false);
+						//Ext.getCmp('conmondel').setDisabled(false);
+						//Ext.getCmp('cmform').setDisabled(false);
+						
+						
+						// Ext.getCmp('tu_kf').setDisabled(false);
+						
+						Ext.getCmp('idGridCM').ngedit = 1;
+						Ext.getCmp('idGridKontrak').ngedit = 1;
+						//console.log("tes masuk sini");
+						me.getAuthlogin().level = res.level;
+						
+						//me.getContent().showKonfig(true);
+						//me.getContent().showSapu(true);
+						me.getTabChart().showInput(true);
+						//alert("me.getExcelgrid().ngedit = 1;");
+						//me.getIConMon().ngedit = 1;
+						
+						Ext.getCmp('idUpOh').setDisabled(false);
+						Ext.getCmp('ohdel').setDisabled(false);
+						//Ext.getCmp('ohform').setDisabled(false);
 					
-					// Ext.getCmp('tu_kf').setDisabled(false);
+					}
+				
+				else {
+						//console.log('sesine ilang je');
+						Ext.getCmp('p_login').setVisible(true);
+						Ext.getCmp('p_logout').setVisible(false);
+						//Ext.getCmp('griddel').setVisible(false);	// ----->
+						//Ext.getCmp('gridedit').setVisible(false);	// ----->
+						Ext.getCmp('btnUplBpm3').setDisabled(true);
+						Ext.getCmp('bwbpm3').setDisabled(true);
+						//Ext.getCmp('conmondel').setDisabled(true);
+						//Ext.getCmp('cmform').setDisabled(true);
+						Ext.getCmp('idGridCM').ngedit = 0;		// ----->
+						Ext.getCmp('idGridKontrak').ngedit = 0;
+						
+						
+						me.getContent().showKonfig(false);
+						me.getContent().showSapu(false);
+						me.getTabChart().showInput(false);
+						// Ext.getCmp('tu_kf').setDisabled(true);
+						//alert("Session Habis");
+						
+						Ext.getCmp('idUpOh').setDisabled(true);
+						//Ext.getCmp('ohform').setDisabled(true);	// ----->
+						Ext.getCmp('ohdel').setDisabled(true);
 					
-					Ext.getCmp('idGridCM').ngedit = 1;
-					Ext.getCmp('idGridKontrak').ngedit = 1;
-					//console.log("tes masuk sini");
-					me.getAuthlogin().level = res.level;
-					
-					me.getContent().showKonfig(true);
-					me.getTabChart().showInput(true);
-					//alert("me.getExcelgrid().ngedit = 1;");
-					//me.getIConMon().ngedit = 1;
-					
-					Ext.getCmp('idUpOh').setDisabled(false);
-					Ext.getCmp('ohdel').setDisabled(false);
-					//Ext.getCmp('ohform').setDisabled(false);
-				}
-				else{
-					//console.log('sesine ilang je');
-					Ext.getCmp('p_login').setVisible(true);
-					Ext.getCmp('p_logout').setVisible(false);
-					//Ext.getCmp('griddel').setVisible(false);	// ----->
-					//Ext.getCmp('gridedit').setVisible(false);	// ----->
-					Ext.getCmp('btnUplBpm3').setDisabled(true);
-					Ext.getCmp('bwbpm3').setDisabled(true);
-					//Ext.getCmp('conmondel').setDisabled(true);
-					//Ext.getCmp('cmform').setDisabled(true);
-					Ext.getCmp('idGridCM').ngedit = 0;		// ----->
-					Ext.getCmp('idGridKontrak').ngedit = 0;
-					
-					
-					me.getContent().showKonfig(false);
-					me.getTabChart().showInput(false);
-					// Ext.getCmp('tu_kf').setDisabled(true);
-					//alert("Session Habis");
-					
-					Ext.getCmp('idUpOh').setDisabled(true);
-					//Ext.getCmp('ohform').setDisabled(true);	// ----->
-					Ext.getCmp('ohdel').setDisabled(true);
-				}
-				// console.log(res.nama);
+					}
+				
 			}
 		});
 		//*/

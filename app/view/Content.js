@@ -11,6 +11,7 @@ Ext.define('rcm.view.Content', {
 		//,'rcm.view.laporan.Tab'
 		,'rcm.view.konfig.TabKonfig'
 		,'rcm.view.dataentry.Tab'
+		,'rcm.view.sapu.Sapu'
 		
 		
 		//,'rcm.view.login.LoginAuth'
@@ -78,7 +79,15 @@ Ext.define('rcm.view.Content', {
 			xtype 	: 't_Konfig'
 			//disabled : true
 		//*/
-		
+		},{
+			id		: 'tu_sp',
+			itemId	: 'tu_sp',
+			title	: 'Bulk Input Running Hour',
+			iconCls	: 'Konfigurasi',
+			hidden	: true,
+			xtype 	: 'tSapu'
+			
+			
 		}];
 		
 		me.callParent(arguments);
@@ -106,12 +115,28 @@ Ext.define('rcm.view.Content', {
 			//alert("masuk update Home");
 			this.fireEvent('updateHome');
 		}
+		else if (tt === "tu_sp"){
+			//alert ("ini update sapu");
+			this.fireEvent('updateSapu');
+		}
 	},
 	
 	showKonfig: function(st)	{
 		var t = this.child('#tu_kf');
 		//console.log('sampe sini showRelia');
 		if (st==true)	{
+			t.tab.show();
+			//this.setActiveTab(t);
+		}
+		else {
+			t.tab.hide();
+			this.setActiveTab(this.child('#tu_ho'));
+		}
+	},
+	showSapu: function(sp)	{
+		var t = this.child('#tu_sp');
+		//console.log('sampe sini showRelia');
+		if (sp==true)	{
 			t.tab.show();
 			//this.setActiveTab(t);
 		}

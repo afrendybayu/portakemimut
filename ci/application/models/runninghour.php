@@ -278,6 +278,25 @@ class Runninghour extends CI_Model {
 		//*/
 		return $hasil;
 	}
+	function rh_ada($eq,$tgl){
+		$this->db->select('id');
+		$this->db->where('eq',$eq);
+		$this->db->where('tgl',$tgl);
+		$query = $this->db->get('rh_201311');
+		
+		return $query->num_rows();
+		
+		}
+	function rh_delete($eq,$tgl1,$tgl2){
+		
+		
+		$this->db->where('eq', $eq);
+		$this->db->where('tgl >=', $tgl1);
+		$this->db->where('tgl <=', $tgl2);
+		$query = $this->db->delete('rh_201311'); 
+		
+		
+	}
 }
 
 /* End of file option.php */

@@ -904,6 +904,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.controller.Login": [],
   "rcm.controller.Nav": [],
   "rcm.controller.Sap": [],
+  "rcm.controller.Sapu": [],
   "rcm.model.Aksi": [],
   "rcm.model.AvGroup": [],
   "rcm.model.AvHome": [],
@@ -977,6 +978,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.model.SapThn": [],
   "rcm.model.SapTipe": [],
   "rcm.model.SapTop": [],
+  "rcm.model.SapuUnit": [],
   "rcm.model.SrKontrak": [],
   "rcm.model.Symptom": [],
   "rcm.model.UnitList": [],
@@ -1074,6 +1076,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.SapTipe": [],
   "rcm.store.SapTop10": [],
   "rcm.store.SapTop10FL": [],
+  "rcm.store.SapuUnit": [],
   "rcm.store.SpAvGcUt": [],
   "rcm.store.SpAvGsUt": [],
   "rcm.store.SpAvPmUt": [],
@@ -1210,6 +1213,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.nav.AppHeader": [],
   "rcm.view.nav.Navigation": [],
   "rcm.view.nav.Tanggalan": [],
+  "rcm.view.sapu.Sapu": [],
   "rcm.view.utama.GridOrderC": [],
   "rcm.view.utama.GridWO": [],
   "rcm.view.utama.HoChart": [],
@@ -2234,6 +2238,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.controller.Login": [],
   "rcm.controller.Nav": [],
   "rcm.controller.Sap": [],
+  "rcm.controller.Sapu": [],
   "rcm.model.Aksi": [],
   "rcm.model.AvGroup": [],
   "rcm.model.AvHome": [],
@@ -2307,6 +2312,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.model.SapThn": [],
   "rcm.model.SapTipe": [],
   "rcm.model.SapTop": [],
+  "rcm.model.SapuUnit": [],
   "rcm.model.SrKontrak": [],
   "rcm.model.Symptom": [],
   "rcm.model.UnitList": [],
@@ -2404,6 +2410,7 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.SapTipe": [],
   "rcm.store.SapTop10": [],
   "rcm.store.SapTop10FL": [],
+  "rcm.store.SapuUnit": [],
   "rcm.store.SpAvGcUt": [],
   "rcm.store.SpAvGsUt": [],
   "rcm.store.SpAvPmUt": [],
@@ -2771,6 +2778,9 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.view.nav.Tanggalan": [
     "widget.tanggalan",
     "widget.taskTanggalan"
+  ],
+  "rcm.view.sapu.Sapu": [
+    "widget.tSapu"
   ],
   "rcm.view.utama.GridOrderC": [
     "widget.tGridOrderC"

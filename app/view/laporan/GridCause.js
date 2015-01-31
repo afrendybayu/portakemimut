@@ -14,7 +14,7 @@ Ext.define('rcm.view.laporan.GridCause', {
 		me.features = [{ftype: 'summary'}];
 		me.columns = {	
 			items: [
-			{ xtype:'rownumberer',width:25 },
+			{ xtype:'rownumberer',width:40 },
 			{ header:'Nama',dataIndex:'nama',flex:1, 
 				summaryRenderer: function() {
 					return Ext.String.format('TOTAL'); 

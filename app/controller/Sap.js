@@ -287,7 +287,7 @@ Ext.define('rcm.controller.Sap', {
 			//alert("hdlExcOh "+t);
 			//*
 			form.submit({
-				url: 'ci/index.php/sap/rOverHaul/rExcOH?t='+t+'&l='+l+'&c='+c
+				url: 'ci/sap/rOverHaul/rExcOH?t='+t+'&l='+l+'&c='+c
 			});
 			//*/
 		}
@@ -302,7 +302,7 @@ Ext.define('rcm.controller.Sap', {
 			//alert("hdlExcOh "+t);
 			//*
 			form.submit({
-				url: 'ci/index.php/sap/rOverHaul/rExcPOH?t='+t+'&l='+l+'&c='+c
+				url: 'ci/sap/rOverHaul/rExcPOH?t='+t+'&l='+l+'&c='+c
 			});
 			//*/
 		}
@@ -739,7 +739,7 @@ Ext.define('rcm.controller.Sap', {
 		//alert("Cause Thn: "+Ext.getCmp('thnCau').getValue());
 		var t=Ext.getCmp('thnCau').getValue(),
 			p=Ext.getCmp('tpCau').getValue(),
-			x={thn:t, tp:p};
+			x={thn:t, tp:[p]};
 		this.getSapCauseInfoStore().clearFilter(true);
 		this.getSapCauseStore().load({params:x});
 		this.getSapCauseInfoStore().load({params:x});
@@ -751,7 +751,7 @@ Ext.define('rcm.controller.Sap', {
 		//alert("Damage Thn: "+Ext.getCmp('thnDam').getValue());
 		var t=Ext.getCmp('thnDam').getValue(),
 			p=Ext.getCmp('tpDam').getValue(),
-			x={thn:t, tp:p};
+			x={thn:t, tp:[p]};
 		this.getSapDamageInfoStore().clearFilter(true);
 		this.getSapDamageStore().load({params:x});
 		this.getSapDamageInfoStore().load({params:x});
@@ -762,7 +762,7 @@ Ext.define('rcm.controller.Sap', {
 		//alert("OPart Thn: "+Ext.getCmp('thnOpr').getValue());
 		var t=Ext.getCmp('thnOpr').getValue(),
 			p=Ext.getCmp('tpOpr').getValue(),
-			x={thn:t, tp:p};
+			x={thn:t, tp:[p]};
 		this.getSapOPartInfoStore().clearFilter(true);
 		this.getSapOPartStore().load({params:x});
 		this.getSapOPartInfoStore().load({params:x});
