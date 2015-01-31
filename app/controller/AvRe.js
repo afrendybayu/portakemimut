@@ -30,7 +30,7 @@ Ext.define('rcm.controller.AvRe', {
 		,'SapHistoriUt'
 		
 		,'SpAvGcUt','SpAvGsUt','SpAvPmUt','SpReGcUt','SpReGsUt','SpRePmUt'
-		,'HoOrderC','HoMan','HoTeco'
+		,'HoOrderC','HoMan','HoTeco','HoWoCompl','HoWorkCen'
     ],
     
     models: [
@@ -102,13 +102,20 @@ Ext.define('rcm.controller.AvRe', {
 		me.getSpRePmUtStore().load({params: {th:t} });
 		
 		me.getHoOrderCStore().load({params: {thn:t} });
-		me.getHoManStore().load({params: {thn:t} });
-		me.getHoTecoStore().load({params: {thn:t} });
-		//var taon = Ext.Date.format(new Date(), 'Y'),
+		me.getHoWorkCenStore().load({params: {thn:t} }); //work center- wo compliance
+		me.getHoWoComplStore().load({params: {thn:t} }); //Wo Compliance table dan chart
 		var y = (t==Ext.Date.format(new Date(), 'Y'))? 12:t;
 		me.getSapHistoriUtStore().load({params: {tgl:y} });
-		//me.getAvReUnitStore().load();
 		Ext.getCmp('tHisUt').draw();
+		Ext.getCmp('tOrdCost').setTitle('Order Costing '+t);
+		
+		var blthini = (t==Ext.Date.format(new Date(), 'Y'))?rcm.view.Util.Ublnini(''):'Avg '+t;
+		Ext.getCmp('AvGC').setSubTitle('Avail '+blthini);
+		Ext.getCmp('AvGS').setSubTitle('Avail '+blthini);
+		Ext.getCmp('AvPm').setSubTitle('Avail '+blthini);
+		Ext.getCmp('ReGC').setSubTitle('Reliability '+blthini);
+		Ext.getCmp('ReGS').setSubTitle('Reliability '+blthini);
+		Ext.getCmp('RePm').setSubTitle('Reliability '+blthini);
 		
 	},
 	
