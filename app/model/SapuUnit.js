@@ -10,11 +10,7 @@ Ext.define('rcm.model.SapuUnit', {
     proxy: {
 		type: 'ajax',
 		api: {
-<<<<<<< HEAD
 			read: 'ci/index.php/cron/rUnit',
-=======
-			read: 'ci/cron/rUnit',
->>>>>>> jono
 			create : 'ci/index.php/cron/RhSweep/cSapu_Unit'
 			//destroy : 'ci/cron/RhSweep/dSapu_Unit'
         },
