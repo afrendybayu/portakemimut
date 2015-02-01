@@ -11,7 +11,7 @@ Ext.define('rcm.model.SapuUnit', {
 		type: 'ajax',
 		api: {
 			read: 'ci/cron/rUnit',
-			create : 'ci/cron/RhSweep/cSapu_Unit'
+			create : 'ci/index.php/cron/RhSweep/cSapu_Unit'
 			//destroy : 'ci/cron/RhSweep/dSapu_Unit'
         },
         reader: {
