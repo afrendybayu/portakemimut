@@ -18,12 +18,15 @@ class Runninghour extends CI_Model {
 	
 	function insert_rh($data)	{
 		$this->db->set($data);
-		$this->db->insert('rh_201311');
+		$query = $this->db->insert('rh_201311');
+		//echo $this->db->last_query();
+		return $query;
 	}
 	
 	function update_rh($data,$id)	{
 		$this->db->where('id',$id);
-		$this->db->update('rh_201311',$data);
+		$query = $this->db->update('rh_201311',$data);
+		return $query;
 	}
 	
 	function get_spAvReU($avre, $cat, $bln, $thn)	{
@@ -68,7 +71,7 @@ class Runninghour extends CI_Model {
 		}
 		return $hsl;
 	}
-
+	
 	function get_rhunit($eq,$tgl){
 		$this->db->select('eq,tgl');
 		$this->db->where('eq',$eq);
@@ -121,11 +124,12 @@ class Runninghour extends CI_Model {
 	}
 	
 	function get_rh_bulan($tgl)	{
-		//echo "tgl: {$tgl[0]}, {$tgl[1]}<br/>";
+		//echo "tgl: {$tgl[0]}, {$tgl[1]}, {$tgl[2]}<br/>";
 		$sql =	"SELECT eq,rh,DATE_FORMAT(tgl,'k%y%m%d') AS tgl 
 				FROM rh_201311 
 				WHERE (tgl BETWEEN ? AND ?) AND cat=?
 				ORDER BY eq ASC";
+		//echo $sql;
 		$query = $this->db->query($sql, array($tgl[0],$tgl[1],$tgl[2]));
 		
 		$hsl = array(); $k=0;
@@ -283,7 +287,7 @@ class Runninghour extends CI_Model {
 		$this->db->where('eq',$eq);
 		$this->db->where('tgl',$tgl);
 		$query = $this->db->get('rh_201311');
-		
+		//echo $this->db->last_query();
 		return $query->num_rows();
 		
 		}
@@ -297,6 +301,7 @@ class Runninghour extends CI_Model {
 		
 		
 	}
+
 }
 
 /* End of file option.php */

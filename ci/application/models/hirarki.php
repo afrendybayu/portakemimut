@@ -366,6 +366,19 @@ class Hirarki extends CI_Model {
 		return $query->result();
 		
 	}
+	
+	function get_equip_hir(){
+		$this->db->select('h1.id id, h1.nama nama, h1.flag cat');
+		$this->db->join('hirarki h2','h2.id = h1.parent');
+		$this->db->join('hirarki h3','h3.id = h2.parent');
+		$this->db->where('h1.flag >',0);
+		$query = $this->db->get('hirarki h1');
+		//echo $this->db->last_query();
+		
+		return $query->result();
+		
+		
+	}
 
 }
 

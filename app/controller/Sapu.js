@@ -97,32 +97,26 @@ Ext.define('rcm.controller.Sapu', {
 	SubmitSapu: function(){
 			var me = this;
 			//console.log('nyapu mase');
-			var sapugrid = this.getTSapu(),dataisi = [],
+			var sapugrid = this.getTSapu(),
 			datanya = sapugrid.getSelectionModel().getSelection();
 			var satu = Ext.getCmp('t_awal').value;
 			var dua = Ext.getCmp('t_akhir').value;
 			
-			//console.log(sapugrid);
+			//console.log(datanya);
 			//console.log(satu + dua);
 			//console.log(datanya[].data.id_unit);
 			
 			for(var i = 0, len = datanya.length; i < len; i++){
 					//console.log(datanya[i].data.id_unit);
 					//console.log(satu + dua);
-					
-					//nyapu = Ext.create(rcm.model.SapuUnit,{id_unit:datanya[i].data.id_unit, flag:datanya[i].data.flag, awal:satu, akhir:dua});
 					nyapu = Ext.create(rcm.model.SapuUnit,{id_unit:datanya[i].data.id_unit, flag:datanya[i].data.flag, awal:satu, akhir:dua});
 					//console.log (nyapu);
-					
 					nyapu.save({
 						success: function(record, operation){
 							//me.getFormAksisStore().reload();
 							me.getRunningHourStore().reload();
 						}
-
 					});
-					
-					
 				}
 	},
 	klikUnit : function(cat){
