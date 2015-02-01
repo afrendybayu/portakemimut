@@ -76,6 +76,7 @@ class rLokUnit extends CI_Controller {
 				$data = array(
 					'nama' => $par->nama,
 					'parent' => $par->parent,
+					'flag' => $par->flag,
 					'kode' => $par->kode,
 					'funcloc' => $par->funcloc,
 					'rhinit' => $par->rhinit,

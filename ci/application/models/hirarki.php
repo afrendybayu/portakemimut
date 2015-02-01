@@ -372,10 +372,11 @@ class Hirarki extends CI_Model {
 		$this->db->join('hirarki h2','h2.id = h1.parent');
 		$this->db->join('hirarki h3','h3.id = h2.parent');
 		$this->db->where('h1.flag >',0);
+		$this->db->where('h1.status',1);
 		$query = $this->db->get('hirarki h1');
-		//echo $this->db->last_query();
+		echo $this->db->last_query();
 		
-		return $query->result();
+		//return $query->result();
 		
 		
 	}
