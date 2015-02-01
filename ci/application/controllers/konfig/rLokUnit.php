@@ -51,13 +51,18 @@ class rLokUnit extends CI_Controller {
 	
 	public function cHirarki() {
 		$par = json_decode(file_get_contents('php://input'));
-
+		
+		echo "fewfrewfe fer f";
+		return;
 		try {
+			throw new Exception("stop");
 			if (!isset($par))	{
-				throw new Exception("Input Data Tidak Ada");
+				throw new Exception("Input Data Tidak Ada dwdwedfwef");
 			}
+			echo "sil: {$par->sil}<br/>";
 			
 			if ($par->sil=="e")	{
+				echo "masuk eeee";
 				$data = array(
 					'nama' => $par->nama,
 					'unit_id' => $par->parent,
@@ -72,19 +77,23 @@ class rLokUnit extends CI_Controller {
 				$hsl = $this->equip->ins_equip($data);
 			}
 			else if ($par->sil=="u")	{
+				echo "masuk iuuuu";
 				$data = array(
 					'nama' => $par->nama,
 					'parent' => $par->parent,
 					'kode' => $par->kode,
 					'funcloc' => $par->funcloc,
 					'rhinit' => $par->rhinit,
+					'flag' => $par->flag,
 					'urut' => $par->urut,
 					'status' => $par->status,
 					'ket' => $par->ket
 				);
+				print_r($data);
 				$hsl = $this->hirarki->ins_hirarki($data);
 			}
 			else {
+				echo "masuk liyo";
 				$data = array(
 					'nama' => $par->nama,
 					'parent' => $par->parent,
