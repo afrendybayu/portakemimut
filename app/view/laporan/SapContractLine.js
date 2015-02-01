@@ -8,27 +8,31 @@ Ext.define('rcm.view.laporan.SapContractLine', {
 	],
 	//*/
 	loadMask: true,
-	loadingtext: 'Njuupuk ...',
+	//loadingtext: 'Njuupuk ...',
 	
 	series : [{
-	/*
 			type: 'spline',
 			dataIndex: 'comp',
-			name: 'Gas Compressor'
+			name: 'Compressor'
 		},{
-	
 			type: 'spline',
 			dataIndex: 'pump',
-			name: 'Generator Set'
-		},{
-	//*/
-	//*
-			type: 'spline',
-			dataIndex: 'xx',
 			name: 'Pump'
+		},{
+			type: 'spline',
+			dataIndex: 'elm',
+			name: 'El Motor'
+		},{
+			type: 'spline',
+			dataIndex: 'eng',
+			name: 'Engine'
+		},{
+			type: 'spline',
+			dataIndex: 'gen',
+			name: 'Generator'
 	//*/
 	}],
-	
+		
 	// store:'SapHistori',
 	xField: 'bln',
 	

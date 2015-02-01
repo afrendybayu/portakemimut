@@ -73,7 +73,12 @@ class rContract extends CI_Controller {
 	
 	public function sapTpKontx()	{
 		$tt = $this->contract->get_tipe_eq();
-		print_r ($tt[0]->kode);
+		//print_r ($tt);
+		$ar = array('m','bln');
+		foreach ($tt as $t)	{
+			array_push($ar, $t->kode);
+		}
+		print_r($ar);
 		//echo $tt;
 	}
 	
@@ -91,12 +96,12 @@ class rContract extends CI_Controller {
 				$obj = new stdClass();
 				$obj->m = "$b";
 				$obj->bln = nmMonth($i,1);
-				/*
+				//*
 				foreach ($tt as $t)	{
 					$obj->{$t->kode} = '0';
 				}
 				//*/
-				//*
+				/*
 				$obj->en = '0';
 				$obj->xx = '0';
 				$obj->pm = '0';
@@ -114,7 +119,7 @@ class rContract extends CI_Controller {
 			//*
 			for ($i=0; $i<count($oo); $i++)	{
 			//for ($i=0; $i<12; $i++)	{
-//				$hsl[$oo[$i]->m-1] = $oo[$i];
+				$hsl[$oo[$i]->m-1] = $oo[$i];
 				//$hsl[$oo[$i]->m-1]->bln = nmMonth($oo[$i]->m-1,1);
 			}
 			//echo "<br/><br/>";	print_r($hsl); echo "<br/><br/>";

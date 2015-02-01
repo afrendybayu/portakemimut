@@ -61,7 +61,8 @@ Ext.define('rcm.controller.Sap', {
 		'OverHaulIn',
 		'ManOCost',
 		'Jabat',
-		'SrKontrak'
+		'SrKontrak',
+		'ContractLine'
     ],
     
     refs: [{
@@ -1125,26 +1126,28 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	setEnviGrKontx: function()	{
-		
+		var me=this;
+		/*
 		Ext.Ajax.request({
 			url: 'ci/index.php/sap/rContract/sapTpKontx',
-			//url: 'ci/dashboard',
 			method: 'GET',
-			//params: {user:usr,pass:pwd},
 			scope: this,
 			//callback: this.onHomeStore
 			success: function(d)	{
 				var df = new Array();
 				
 				if (d.status==200)	{
-					 df = d.responseText.split(',');
-					 console.log(df);
+					//me.getContractLineModel().setFields(d.responseText);
+					rcmSettings.mmmm = me.getContractLineModel();
+					df = d.responseText;
+					console.log(df);
 				}
 				else {
 					alert("Tidak bisa akses");
 				}
 			}
         });
+        //*/
 	},
 	
 	clrSapHist: function()	{
