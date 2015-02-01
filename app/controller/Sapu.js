@@ -109,6 +109,7 @@ Ext.define('rcm.controller.Sapu', {
 			for(var i = 0; i < datanya.length; i++){
 					//console.log(datanya[i].data.id_unit);
 					//console.log(satu + dua);
+				console.log (i);
 				nyapu = Ext.create(rcm.model.SapuUnit,{id_unit:datanya[i].data.id_unit, flag:datanya[i].data.flag, awal:satu, akhir:dua});
 				//console.log (nyapu);
 				nyapu.save({
@@ -117,6 +118,11 @@ Ext.define('rcm.controller.Sapu', {
 						me.getRunningHourStore().reload();
 					}
 				});
+				
+				//if (i == datanya.length ){
+					//alert ('selesai');
+					//}
+				//else {continue};
 			}
 	},
 	klikUnit : function(cat){
