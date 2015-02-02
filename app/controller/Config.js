@@ -403,7 +403,7 @@ Ext.define('rcm.controller.Config', {
     },
 	
 	syncLokUnitSt: function(LokUnitStore, operation) {
-		console.log("masuk syncLokUnitSt");
+		//console.log("masuk syncLokUnitSt");
 		 var me = this,
             stores = Ext.getStore('HirDef-DetailL');
             storesLen = stores.length,
@@ -411,8 +411,8 @@ Ext.define('rcm.controller.Config', {
             recordsLen = records.length, 
             i, j, listToSync, node, list, store;
             
-			console.log(storesLen);
-			console.log(records);
+			//console.log(storesLen);
+			//console.log(records);
 	},
 	
 	hdlSmpUserForm : function(){

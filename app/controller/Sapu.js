@@ -58,7 +58,7 @@ Ext.define('rcm.controller.Sapu', {
 			datax = spgrid.getSelectionModel().getSelection(),
 			awl = Ext.getCmp('t_awal').value,
 			akh = Ext.getCmp('t_akhir').value;
-			console.log(datax);
+			//console.log(datax);
 			
 			//for(var i = 0, lgt = datax.length; i < lgt; i++){
 				////ndelete = Ext.create(rcm.model.SapuUnit,{id_unit:datax[i].data.id_unit, awal:awl, akhir:akh});
@@ -109,7 +109,7 @@ Ext.define('rcm.controller.Sapu', {
 			for(var i = 0; i < datanya.length; i++){
 					//console.log(datanya[i].data.id_unit);
 					//console.log(satu + dua);
-				console.log (i);
+				//console.log (i);
 				nyapu = Ext.create(rcm.model.SapuUnit,{id_unit:datanya[i].data.id_unit, flag:datanya[i].data.flag, awal:satu, akhir:dua});
 				//console.log (nyapu);
 				nyapu.save({
