@@ -124,7 +124,7 @@ class Runninghour extends CI_Model {
 		//echo "tgl: {$tgl[0]}, {$tgl[1]}, cat: {$tgl[2]}<br/>";
 		$sql =	"SELECT eq,rh,DATE_FORMAT(tgl,'k%y%m%d') AS tgl 
 				FROM rh_201311 
-				WHERE (tgl BETWEEN ? AND ?) AND cat=? AND eq=126
+				WHERE (tgl BETWEEN ? AND ?) AND cat=?
 				ORDER BY eq ASC";
 				
 		//echo "sql: $sql<br/>";
