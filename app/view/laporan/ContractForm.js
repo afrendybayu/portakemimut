@@ -49,11 +49,7 @@ Ext.define('rcm.view.laporan.ContractForm', {
 				width 		: 110,
 				editable	: false,
 				allowBlank	: false
-			},{
-				xtype		:'textfield',
-				emptyText 	: 'Keterangan',
-				name		: 'ket',
-				flex 		: 1,
+			
 			},{
 				xtype		:'textfield',
 				emptyText 	: 'Nilai Kontrak',
@@ -65,15 +61,22 @@ Ext.define('rcm.view.laporan.ContractForm', {
 				valueField 	: 'nilai',
 				queryMode 	: 'local'
 			},{
-				//xtype		:'component',
-				////emptyText 	: 'Terpakai',
-				////editable	: false,
-				////allowBlank	: false,
-				//width		: 400, 	
-				////name		: 'pakai',
-				////displayField: 'pakai',
-				////valueField 	: 'pakai',
-				////queryMode 	: 'local'
+				xtype		:'component',
+				//emptyText 	: 'Terpakai',
+				//editable	: false,
+				//allowBlank	: false,
+				width		: 400, 	
+				//name		: 'pakai',
+				//displayField: 'pakai',
+				//valueField 	: 'pakai',
+				//queryMode 	: 'local'
+				
+			},{
+				xtype		:'textfield',
+				emptyText 	: 'Keterangan',
+				name		: 'ket',
+				flex 		: 1,
+			
 			////},{
 				////xtype		:'textfield',
 				////emptyText 	: 'Sisa',
@@ -86,13 +89,13 @@ Ext.define('rcm.view.laporan.ContractForm', {
 				////queryMode 	: 'local'
 			
 			
-			//},{
+			},{
 				xtype:'button',
 				//itemId: 'ConMonSave',
 				itemId: 'ContraxSave',
 				iconCls: 'add',
 				text: 'Simpan',
-				width : 450,
+				width : 50,
 				tooltip: 'Save',
 				//disabled : true,
 				formBind: true

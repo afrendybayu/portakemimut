@@ -348,7 +348,7 @@ class Sap extends CI_Model {
 			if ($otp!="ALL" and $otp!="_")		$sql .=	"AND ordertype like '%$otp%' ";
 			if ($mwc!="ALL" and $mwc!="_")		$sql .=	"AND manwork like '%$mwc%' ";
 			//$sql .=	"GROUP BY wkt, nbln ORDER BY wkt desc, nbln ASC limit 0,12";
-			$sql .= "GROUP BY wkt ORDER by wkt DESC limit 0,12";
+			$sql .= "GROUP BY year(PLANEND),MONTH(planend) ORDER by wkt DESC limit 0,12";
 		}
 		else {
 			/*
@@ -373,7 +373,7 @@ class Sap extends CI_Model {
 			if ($lok>=0)		$sql .=	"AND lokasi=$lok ";
 			if ($otp!="ALL" and $otp!="_")		$sql .=	"AND ordertype like '%$otp%' ";
 			if ($mwc!="ALL" and $mwc!="_")		$sql .=	"AND manwork like '%$mwc%' ";
-			$sql .=	"GROUP BY wkt ORDER by wkt DESC";
+			$sql .=	"GROUP BY year(PLANEND),MONTH(planend) ORDER by wkt DESC";
 		}
 		//echo "sql: $sql<br/><br/>";		
 		

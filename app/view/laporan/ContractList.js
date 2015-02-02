@@ -63,8 +63,9 @@ Ext.define('rcm.view.laporan.ContractList', {
 							xtype: 'textfield'
 						}
 				},{
-					header:'Tanggal Awal',minWidth:110,dataIndex : 'awal'
+					header:'Tanggal Awal',width:110,dataIndex : 'awal'
 						,renderer : Ext.util.Format.dateRenderer('j M Y')
+						,filter: { type: 'date' }
 						,editor: {
 							allowBlank: false,
 							submitFormat: 'Y-m-d',
@@ -72,20 +73,16 @@ Ext.define('rcm.view.laporan.ContractList', {
 							xtype: 'datefield'
 						}
 				},{
-					header:'Tanggal Akhir',minWidth:110,dataIndex : 'akhir'
+					header:'Tanggal Akhir',width:110,dataIndex : 'akhir'
 						,renderer : Ext.util.Format.dateRenderer('j M Y')
+						,filter: { type: 'date' }
 						,editor: {
 							allowBlank: false,
 							submitFormat: 'Y-m-d',
 							format: 'j M Y',
 							xtype: 'datefield'
 						}
-				},{
-					header : 'Keterangan',dataIndex : 'ket',flex: 1, filter: { type: 'string' }
-						,editor: {
-							//allowBlank: false
-							xtype: 'textfield'
-						}
+				
 					/*
 					,editor:{
 						xtype		:'combobox',
@@ -119,19 +116,26 @@ Ext.define('rcm.view.laporan.ContractList', {
 						,renderer: me.renderCH
 				//*/
 				},{
-					header:'Anggaran',minWidth:200,dataIndex:'nilai',align: 'right',renderer:'usMoney', filter: { type: 'string' }
+					header:'Anggaran',width:200,dataIndex:'nilai',align: 'right',renderer:'usMoney', filter: { type: 'string' }
 						,editor: {
 							allowBlank: false,
 							xtype: 'textfield'
 						}
 				},{
-					header:'Terpakai',minWidth:200,dataIndex:'pakai',align: 'right',renderer:'usMoney', filter: { type: 'string' }
+					header:'Terpakai',width:200,dataIndex:'pakai',align: 'right',renderer:'usMoney', filter: { type: 'string' }
 				},{
-					header:'Sisa',minWidth:200,dataIndex:'sisa',align: 'right',renderer: 'usMoney', filter: { type: 'string' }
+					header:'Sisa',width:200,dataIndex:'sisa',align: 'right',renderer: 'usMoney', filter: { type: 'string' }
 				
 				},{
-					header:'ID',dataIndex:'id',width:35, hidden: true
+					header:'ID',dataIndex:'id', hidden: true
 				},{
+				header : 'Keterangan',dataIndex : 'ket',flex: 1, filter: { type: 'string' }
+					,editor: {
+						//allowBlank: false
+						xtype: 'textfield'
+					}
+				},{
+					
 					xtype:'actioncolumn',
 					width:25,
 					//id 			: 'ohdel', 
