@@ -1034,6 +1034,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.store.HoMan": [],
   "rcm.store.HoOrderC": [],
   "rcm.store.HoTeco": [],
+  "rcm.store.HoWoCompl": [],
+  "rcm.store.HoWorkCen": [],
   "rcm.store.Jabat": [],
   "rcm.store.LoginAuth": [],
   "rcm.store.LoginSesi": [],
@@ -1214,6 +1216,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "rcm.view.nav.Navigation": [],
   "rcm.view.nav.Tanggalan": [],
   "rcm.view.sapu.Sapu": [],
+  "rcm.view.utama.FilterThNo": [],
   "rcm.view.utama.GridOrderC": [],
   "rcm.view.utama.GridWO": [],
   "rcm.view.utama.HoChart": [],
@@ -2368,6 +2371,8 @@ Ext.ClassManager.addNameAliasMappings({
   "rcm.store.HoMan": [],
   "rcm.store.HoOrderC": [],
   "rcm.store.HoTeco": [],
+  "rcm.store.HoWoCompl": [],
+  "rcm.store.HoWorkCen": [],
   "rcm.store.Jabat": [],
   "rcm.store.LoginAuth": [],
   "rcm.store.LoginSesi": [],
@@ -2781,6 +2786,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rcm.view.sapu.Sapu": [
     "widget.tSapu"
+  ],
+  "rcm.view.utama.FilterThNo": [
+    "widget.uFThnNo"
   ],
   "rcm.view.utama.GridOrderC": [
     "widget.tGridOrderC"

@@ -47,6 +47,11 @@ class rHistori extends CI_Controller {
 				//print_r($hasil); echo "<br/><br/>";
 			}
 			else {
+				asort($hsl);
+				foreach ($hsl as $d)	{
+					array_push($hasil,$d);
+				}
+				/*
 				if ($thn==date('Y'))	$bb = date('n');
 				else $bb = 12;
 				
@@ -62,7 +67,6 @@ class rHistori extends CI_Controller {
 							}
 						}
 					}
-					//*
 					if (!$ada)	{
 						$obj = new stdClass();
 						$obj->bulan = nmMonth($i,1);
@@ -78,6 +82,7 @@ class rHistori extends CI_Controller {
 					}
 					$ada = 0;
 				}
+				//*/
 			}
 			//print_r($hsl);
 			

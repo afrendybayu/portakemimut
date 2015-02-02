@@ -229,7 +229,7 @@ class Hirarki extends CI_Model {
 				WHERE h3.flag=? AND h3.status=1
 				GROUP BY h3.id,eq.id
 				ORDER BY lok ASC, h3.nama ASC,eq.kode ASC";
-		
+		//echo "sql: $sql<br/>flag: $cat";
 		$query = $this->db->query($sql,$cat);
 		
 		//echo $query->num_rows()."<br/>";

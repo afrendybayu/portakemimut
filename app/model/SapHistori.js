@@ -8,6 +8,8 @@ Ext.define('rcm.model.SapHistori', {
 	fields: ['nama','bulan', 'kode',
 		{ name:'open',type:'int' },
 		{ name:'teco',type:'int' },
+		{ name:'with',type:'int' },
+		{ name:'over',type:'int' },
 		{ name:'persen',type:'float' }],
     proxy: {
 		type: 'ajax',

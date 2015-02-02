@@ -193,7 +193,8 @@ Ext.define('rcm.view.konfig.DetailLokasi', {
 			me.findField('funcloc').setValue("");
 			me.findField('tag').setValue(" ");
 			me.findField('sil').setValue('u');
-			//me.findField('status').setValue(0);
+			
+			me.findField('flag').clearValue();
 		}
 		else if (n=="e")	{
 			Ext.fly('lblFormHir').update("Tambah Equipment");

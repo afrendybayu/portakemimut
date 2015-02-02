@@ -121,11 +121,13 @@ class Runninghour extends CI_Model {
 	}
 	
 	function get_rh_bulan($tgl)	{
-		//echo "tgl: {$tgl[0]}, {$tgl[1]}<br/>";
+		//echo "tgl: {$tgl[0]}, {$tgl[1]}, cat: {$tgl[2]}<br/>";
 		$sql =	"SELECT eq,rh,DATE_FORMAT(tgl,'k%y%m%d') AS tgl 
 				FROM rh_201311 
-				WHERE (tgl BETWEEN ? AND ?) AND cat=?
+				WHERE (tgl BETWEEN ? AND ?) AND cat=? AND eq=126
 				ORDER BY eq ASC";
+				
+		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql, array($tgl[0],$tgl[1],$tgl[2]));
 		
 		$hsl = array(); $k=0;
