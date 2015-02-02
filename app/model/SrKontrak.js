@@ -6,9 +6,15 @@ Ext.define('rcm.model.SrKontrak', {
 	],
 
 	fields: [ 'id','ket',
-				{ name: 'cat', type: 'int' },
-				{ name: 'tgl', type: 'date' },
-				{ name:'nilai', type:'float' }],
+				{ name: 'nilai', type: 'int' },
+				{ name: 'awal', type: 'date' },
+				{ name: 'akhir', type: 'date' },
+				{ name: 'sisa', type: 'int' },
+				{ name: 'pakai', type: 'int' },
+				{ name: 'vend', type: 'string' },
+				{ name: 'nokont', type: 'string' }],
+				
+				
     proxy: {
 		type: 'ajax',
 		api: {

@@ -11,26 +11,49 @@ Ext.define('rcm.view.laporan.ContractForm', {
 				xtype: 'component',
 				width: 35
             },{
+				xtype		:'textfield',
+				emptyText 	: 'No Kontrak',
+				editable	: false,
+				allowBlank	: false,
+				width		: 120, 	
+				name		: 'nokont',
+				displayField: 'no_kont',
+				valueField 	: 'no_kont',
+				queryMode 	: 'local'
+			},{
+				xtype		:'textfield',
+				emptyText 	: 'Vendor',
+				editable	: false,
+				allowBlank	: false,
+				width		: 120, 	
+				name		: 'vend',
+				displayField: 'vend',
+				valueField 	: 'vent',
+				queryMode 	: 'local'
+							
+			},{
 				xtype		: 'datefield',
-				emptyText	: 'Tanggal',
-				name		: 'tgl',
+				emptyText	: 'Tanggal Awal',
+				name		: 'awal',
 				submitFormat: 'Y-m-d',
 				format		: 'j M Y',
 				width 		: 110,
 				editable	: false,
 				allowBlank	: false
 			},{
-				xtype		:'combobox',
-				//itemId: 'cb_parent',
+				xtype		: 'datefield',
+				emptyText	: 'Tanggal',
+				name		: 'akhir',
+				submitFormat: 'Y-m-d',
+				format		: 'j M Y',
+				width 		: 110,
 				editable	: false,
-				allowBlank	: false,
-				width 		: 200,
-				store 		: 'SapCatH',	//Ext.create('rcm.store.SapCatH', {storeId: 'CatHir0' }),
-				emptyText	: 'Kategori',
-				name		: 'cat',
-				displayField: 'nama',
-				valueField 	: 'id',
-				queryMode 	: 'local'
+				allowBlank	: false
+			},{
+				xtype		:'textfield',
+				emptyText 	: 'Keterangan',
+				name		: 'ket',
+				flex 		: 1,
 			},{
 				xtype		:'textfield',
 				emptyText 	: 'Nilai Kontrak',
@@ -38,29 +61,45 @@ Ext.define('rcm.view.laporan.ContractForm', {
 				allowBlank	: false,
 				width		: 200, 	
 				name		: 'nilai',
-				displayField: 'unit',
-				valueField 	: 'id_unit',
+				displayField: 'nilai',
+				valueField 	: 'nilai',
 				queryMode 	: 'local'
 			},{
-				xtype		:'textfield',
-				emptyText 	: 'Keterangan',
-				name		: 'ket',
-				flex 		: 1,
-			},{
+				//xtype		:'component',
+				////emptyText 	: 'Terpakai',
+				////editable	: false,
+				////allowBlank	: false,
+				//width		: 400, 	
+				////name		: 'pakai',
+				////displayField: 'pakai',
+				////valueField 	: 'pakai',
+				////queryMode 	: 'local'
+			////},{
+				////xtype		:'textfield',
+				////emptyText 	: 'Sisa',
+				////editable	: false,
+				////allowBlank	: false,
+				////width		: 200, 	
+				////name		: 'sisa',
+				////displayField: 'sisa',
+				////valueField 	: 'sisa',
+				////queryMode 	: 'local'
+			
+			
+			//},{
 				xtype:'button',
 				//itemId: 'ConMonSave',
 				itemId: 'ContraxSave',
 				iconCls: 'add',
-				text: 'Save',
-				width:65,
+				text: 'Simpan',
+				width : 450,
 				tooltip: 'Save',
 				//disabled : true,
 				formBind: true
             }
-			
-			
         ];
-
+        
+        
         me.callParent(arguments);
 		
 		

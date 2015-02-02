@@ -438,7 +438,7 @@ Ext.define('rcm.controller.Sap', {
 
 		var form = btn.up('form').getForm();
 		if(form.isValid()){
-			alert('tes');
+			//alert('tes');
 		}
 	},
 	
@@ -810,30 +810,43 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	tSaveCtrx: function()	{
-		//alert("tSaveCtrx");
+		//alert("tekan tombol tSaveCtrx");
 		var me = this,
-			form = me.getTContrxF(),
-			bForm = form.getForm(),
-            formEl = form.getEl(),
-			cont = Ext.create('rcm.model.SrKontrak');
-			// console.log(tgl.getValue()+'->'+lokasi.getValue()+'->'+unit.getValue());
-			bForm.updateRecord(cont);
-			
-			cont.save({
-				success: function(cmon, operation) {
-					//alert("sukses");
-					me.getSrKontrakStore().reload();
+		form = me.getTContrxF().getForm(),
+		isiFr = form.getValues();
+		kontrak = new rcm.model.SrKontrak(isiFr);
+		console.log(isiFr.nilai);
+		
+		Ext.MessageBox.show({
+			title : 'Kontrak Data',
+			msg   : 'No Kontrak '+ isiFr.nokont +' bernilai '+isiFr.nilai+' akan disimpan?',
+			buttons: Ext.MessageBox.OKCANCEL,
+			icon  : Ext.MessageBox.WARNING,
+			fn	: function (blout){
+				if (blout === 'ok'){ 
+					//alert ('OK ............... ');
+						kontrak.save({
+							success: function(kontrak, operation) {
+								//alert("sukses");
+								me.getSrKontrakStore().reload();
+							}
+						});
+					form.reset();
 				}
-			});
-			bForm.reset();
+			}
+		});
+		
 	},
 	
 	delSKontrak: function(d)	{
+		//alert ('delete contrak');
+		
 		var me = this, rec = d.data,
 		doh = Ext.create('rcm.model.SrKontrak', rec );
+				
 		Ext.MessageBox.show({
 			title : 'Hapus Kontrak',
-			msg   : 'Yakin Data '+ rec.ket +' Akan di Hapus??',
+			msg   : 'Yakin No Kontrak '+ rec.nokont +' Akan di Hapus??',
 			buttons: Ext.MessageBox.OKCANCEL,
 			icon  : Ext.MessageBox.WARNING,
 			fn	: function (oks){
@@ -855,7 +868,7 @@ Ext.define('rcm.controller.Sap', {
 
 		Ext.MessageBox.show({
 			title : 'Ubah Kontrak',
-			msg   : 'Yakin Data '+ d.ket +' Akan di Ubah??',
+			msg   : 'Yakin No Kontrak '+ d.nokont +' Akan di Ubah??',
 			buttons: Ext.MessageBox.OKCANCEL,
 			icon  : Ext.MessageBox.WARNING,
 			fn	: function (oks){
