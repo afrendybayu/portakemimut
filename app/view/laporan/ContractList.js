@@ -51,13 +51,13 @@ Ext.define('rcm.view.laporan.ContractList', {
 			items : [{
 					header:'No',xtype:'rownumberer',width:35 
 				},{
-					header : 'No Kontrak',dataIndex : 'nox',width:120, filter: { type: 'string' }
+					header : 'No Kontrak',dataIndex : 'noCont',width:120, filter: { type: 'string' }
 						,editor: {
 							allowBlank: false,
 							xtype: 'textfield'
 						}
 				},{
-					header : 'Vendor',dataIndex : 'nox',width:120, filter: { type: 'string' }
+					header : 'Vendor',dataIndex : 'noVend',width:120, filter: { type: 'string' }
 						,editor: {
 							allowBlank: false,
 							xtype: 'textfield'
@@ -79,6 +79,12 @@ Ext.define('rcm.view.laporan.ContractList', {
 							submitFormat: 'Y-m-d',
 							format: 'j M Y',
 							xtype: 'datefield'
+						}
+				},{
+					header : 'Keterangan',dataIndex : 'ket',flex: 1, filter: { type: 'string' }
+						,editor: {
+							//allowBlank: false
+							xtype: 'textfield'
 						}
 					/*
 					,editor:{
@@ -122,29 +128,24 @@ Ext.define('rcm.view.laporan.ContractList', {
 					header:'Terpakai',minWidth:200,dataIndex:'used',renderer:'usMoney', filter: { type: 'string' }
 				},{
 					header:'Sisa',minWidth:200,dataIndex:'sisa',renderer:'usMoney', filter: { type: 'string' }
-				},{
-					header : 'Keterangan',dataIndex : 'ket',flex: 1, filter: { type: 'string' }
-						,editor: {
-							//allowBlank: false
-							xtype: 'textfield'
-						}
+				
 				},{
 					header:'ID',dataIndex:'id',width:35, hidden: true
 				},{
 					xtype:'actioncolumn',
-					width:50,
+					width:25,
 					//id 			: 'ohdel', 
-					//iconCls: 'hpsEvent',
-					text: 'Cek PO',
+					iconCls: 'icon-downtime',
+					//text: 'Cek PO',
 					sortable: false,
-					visible: false,
-					tooltip: 'Hapus',
+					//visible: true,
+					tooltip: 'Cek PO',
 					//disabled: true,
 					//hidden : true,
 					handler: Ext.bind(me.OhGridDelete, me)
 				},{
 					xtype		:'actioncolumn',
-					width		:50,
+					width		:25,
 					//id 			: 'ohdel', 
 					iconCls		: 'hpsEvent',
 					sortable	: false,

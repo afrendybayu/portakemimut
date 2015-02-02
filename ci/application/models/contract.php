@@ -131,9 +131,9 @@ class Contract extends CI_Model {
 		//echo "disini 3<br/>";
 		//echo $this->db->last_query();
 		//echo "disini 4<br/>";
-		$insert_id = $this->db->insert_id();
+		//$insert_id = $this->db->insert_id();
 		$this->db->trans_complete();
-		return  $insert_id;
+		//return  $insert_id;
 	}
 	
 	function dsKontrak($data)	{

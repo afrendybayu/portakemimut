@@ -13,7 +13,6 @@ class rContract extends CI_Controller {
 	public function sapContract()	{
 		try {
 			$thn = $this->input->get('tgl')?:date('Y');
-			$this->load->model('contract');
 			/*
 			$hsl = array();
 			for ($i=0; $i<12; $i++)	{

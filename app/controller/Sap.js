@@ -805,22 +805,32 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	tSaveCtrx: function()	{
-		//alert("tSaveCtrx");
+		//alert("tekan tombol tSaveCtrx");
 		var me = this,
-			form = me.getTContrxF(),
-			bForm = form.getForm(),
-            formEl = form.getEl(),
-			cont = Ext.create('rcm.model.SrKontrak');
-			// console.log(tgl.getValue()+'->'+lokasi.getValue()+'->'+unit.getValue());
-			bForm.updateRecord(cont);
-			
-			cont.save({
-				success: function(cmon, operation) {
-					//alert("sukses");
-					me.getSrKontrakStore().reload();
+		form = me.getTContrxF().getForm(),
+		isiFr = form.getValues();
+		kontrak = new rcm.model.SrKontrak(isiFr);
+		//console.log(kontrak);
+		
+		Ext.MessageBox.show({
+			title : 'Logout Info',
+			msg   : 'Apakah Anda ingin Keluar ?',
+			buttons: Ext.MessageBox.OKCANCEL,
+			icon  : Ext.MessageBox.WARNING,
+			fn	: function (blout){
+				if (blout === 'ok'){ 
+					//alert ('OK ............... ');
+						kontrak.save({
+							success: function(kontrak, operation) {
+								//alert("sukses");
+								//me.getSrKontrakStore().reload();
+							}
+						});
+					form.reset();
 				}
-			});
-			bForm.reset();
+			}
+		});
+		
 	},
 	
 	delSKontrak: function(d)	{

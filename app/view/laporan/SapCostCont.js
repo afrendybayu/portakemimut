@@ -55,7 +55,7 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 			region: 'south',
 			//flex: 1,
 			minWidth: 200,
-			collapsed: true,
+			//collapsed: true,
 			collapsible: true,
 			split: true,
 			xtype: 'iContx'
