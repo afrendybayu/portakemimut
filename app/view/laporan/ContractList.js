@@ -53,13 +53,13 @@ Ext.define('rcm.view.laporan.ContractList', {
 				},{
 					header : 'No Kontrak',dataIndex : 'nox',width:120, filter: { type: 'string' }
 						,editor: {
-							allowBlank: false
+							allowBlank: false,
 							xtype: 'textfield'
 						}
 				},{
 					header : 'Vendor',dataIndex : 'nox',width:120, filter: { type: 'string' }
 						,editor: {
-							allowBlank: false
+							allowBlank: false,
 							xtype: 'textfield'
 						}
 				},{
