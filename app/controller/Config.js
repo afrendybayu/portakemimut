@@ -1618,7 +1618,7 @@ Ext.define('rcm.controller.Config', {
 		this.treeCat(true);
 	},
 	tblDelCat: function()	{
-		alert("Config controller tblDelCat");
+		//alert("Config controller tblDelCat");
 		//this.treeCat(true);
 	},
 	

@@ -166,6 +166,10 @@ Ext.define('rcm.view.laporan.ContractList', {
 		//edit.on('beforeedit', me.GridEditEna, this);
 	},
 	
+	hdlcekPO: function(gridView, rowIndex, colIndex, column, e){
+		alert ('cek po');
+	
+	},
 	
 	hdGridDelete: function(gridView, rowIndex, colIndex, column, e) {
 		var kontx = gridView.getStore().getAt(rowIndex);

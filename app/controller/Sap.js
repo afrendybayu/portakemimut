@@ -433,7 +433,7 @@ Ext.define('rcm.controller.Sap', {
 
 		var form = btn.up('form').getForm();
 		if(form.isValid()){
-			alert('tes');
+			//alert('tes');
 		}
 	},
 	
