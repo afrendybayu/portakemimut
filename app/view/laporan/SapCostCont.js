@@ -10,6 +10,7 @@ Ext.define('rcm.view.laporan.SapCostCont', {
         ,'rcm.view.laporan.FilterThnNo'
         //,'rcm.view.laporan.SapAcdCont'
         ,'rcm.view.laporan.ContractList'
+        ,'rcm.view.laporan.GridPO'
 	],
 	
 	layout: 'border',
@@ -34,6 +35,10 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 			tot: true,
 			split: true
 		},{
+			xtype: 'tGridPO',
+			region: 'north',
+			height: 50
+		},{
 			
 		/*
 			region: 'south',
@@ -42,7 +47,7 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 			//html: 'ess',
 			flex: 1
 		//*/
-		//*
+		/*
 			id: 'grContL',
 			flex: 2,
 			region: 'south',

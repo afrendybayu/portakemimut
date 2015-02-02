@@ -14,6 +14,7 @@ Ext.define('rcm.controller.Sap', {
 		,'laporan.ContractForm'
 		,'laporan.SapPie'
 		,'laporan.GridContract'
+		,'laporan.GridPO'
 		,'laporan.EPO'
 		,'laporan.WOComp'
 
@@ -42,7 +43,7 @@ Ext.define('rcm.controller.Sap', {
 		,'SapTipe','SapThn12','SapThn','SapMwc','SapOType','SapLoc'
 		
 		,'SapPsOCot','SapPsOCwo','SapPMCost','SapTop10','SapTop10FL'
-		,'Contract','ContractLine','ContractInput','SrKontrak','SapCatH'
+		,'Contract','ContractLine','ContractInput','SrKontrak','SapCatH','POKontrak'
 
 		,'SapHistori'
 		,'ManOCost','Jabat'
@@ -62,7 +63,8 @@ Ext.define('rcm.controller.Sap', {
 		'ManOCost',
 		'Jabat',
 		'SrKontrak',
-		'ContractLine'
+		'ContractLine',
+		'POKontrak'
     ],
     
     refs: [{
@@ -77,6 +79,9 @@ Ext.define('rcm.controller.Sap', {
 		},{
 			ref: 'causechart',
 			selector: 'causechart'
+		},{
+			ref: 'tGridPO',
+			selector: 'tGridPO'
 		},{
 			ref: 'tFSap',
 			selector: 'tFSap'
@@ -729,7 +734,7 @@ Ext.define('rcm.controller.Sap', {
 		//alert("Thn: "+Ext.getCmp('iThnCont').getValue());
 		var t=Ext.getCmp('iThnCont').getValue();
 		this.getTGridContract().thn = t;
-		Ext.getCmp('grContL').setTitle("Trend Cost Center "+t);
+		//Ext.getCmp('grContL').setTitle("Trend Cost Center "+t);
 		//Ext.getCmp('grContL').setSubTitle("Trend Cost Center "+t);
 		this.getContractStore().load({params:{tgl:t}});
 		this.getContractLineStore().load({params:{tgl:t}});
@@ -1087,6 +1092,41 @@ Ext.define('rcm.controller.Sap', {
 		//*/
 	},
 	
+	setPOKontrak: function(id)	{
+		var me=this;
+		Ext.Ajax.request({
+			url: 'ci/index.php/sap/rContract/rPOKontrak?id='+id,
+			method: 'GET',
+			scope: this,
+			success: function(d)	{
+				var df = new Array();
+				
+				if (d.status==200)	{
+					var res = Ext.JSON.decode(d.responseText);
+
+					me.getPOKontrakModel().setFields(rcm.view.Util.gPOModel(res.field));
+					Ext.suspendLayouts();
+					
+					var cc = rcm.view.Util.GridPO(res.field);
+					//console.log(cc);
+					//rcmSettings.dddd = me.getPOKontrakModel();
+					console.log("contract: ");
+					console.log(res.contract);
+					//me.getPOKontrakStore().loadData(res.contract);
+					//rcmSetting.eqeqeq = me.getPOKontrakStore();
+					//console.log("getPOKontrakStore: ");
+					//me.getGridPO().reconfigure(res.contract,cc);
+					//me.getGridPO().reconfigure(me.getPOKontrakStore().load(),cc);
+					Ext.resumeLayouts(true);
+					//*/
+				}
+				else {
+					alert("Tidak bisa akses");
+				}
+			}
+        });
+	},
+	
 	onLaunch: function() {
 		//console.log("SAP onLaunch");
 		var me=this;
@@ -1122,7 +1162,7 @@ Ext.define('rcm.controller.Sap', {
 			}
 		});
 		
-		
+		me.setPOKontrak(10);
 	},
 	
 	setEnviGrKontx: function()	{

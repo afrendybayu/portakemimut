@@ -10,6 +10,32 @@ class rContract extends CI_Controller {
 		echo "index contract";
 	}
 	
+	public function rPOKontrak()	{
+		try {
+			
+			$idk = $this->input->get('id');
+			$hsl = $this->contract->get_po_kontrak($idk);
+			$fld = $this->contract->get_po_field($idk);
+			
+			//print_r($hsl);
+			
+			$jsonResult = array(
+				'success' => true,
+				'contract' => $hsl,
+				'field' => $fld
+			);
+		}
+		catch (Exception $e){
+			$jsonResult = array(
+				'success' => false,
+				'message' => $e->getMessage()
+			);	
+		}
+		
+		echo json_encode($jsonResult);
+	}
+		
+		
 	public function sapContract()	{
 		try {
 			$thn = $this->input->get('tgl')?:date('Y');
