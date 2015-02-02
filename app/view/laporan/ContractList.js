@@ -119,15 +119,15 @@ Ext.define('rcm.view.laporan.ContractList', {
 						,renderer: me.renderCH
 				//*/
 				},{
-					header:'Anggaran',minWidth:200,dataIndex:'nilai',renderer:'usMoney', filter: { type: 'string' }
+					header:'Anggaran',minWidth:200,dataIndex:'nilai',align: 'right',renderer:'usMoney', filter: { type: 'string' }
 						,editor: {
 							allowBlank: false,
 							xtype: 'textfield'
 						}
 				},{
-					header:'Terpakai',minWidth:200,dataIndex:'pakai',renderer:'usMoney', filter: { type: 'string' }
+					header:'Terpakai',minWidth:200,dataIndex:'pakai',align: 'right',renderer:'usMoney', filter: { type: 'string' }
 				},{
-					header:'Sisa',minWidth:200,dataIndex:'sisa',renderer:'usMoney', filter: { type: 'string' }
+					header:'Sisa',minWidth:200,dataIndex:'sisa',align: 'right',renderer: 'usMoney', filter: { type: 'string' }
 				
 				},{
 					header:'ID',dataIndex:'id',width:35, hidden: true
@@ -168,11 +168,9 @@ Ext.define('rcm.view.laporan.ContractList', {
 	
 	
 	hdGridDelete: function(gridView, rowIndex, colIndex, column, e) {
-		alert ('delete kontrakl');
-		
 		var kontx = gridView.getStore().getAt(rowIndex);
-		console.log (kontx);
-		//this.fireEvent('delSContract', isi);
+		//console.log (kontx);
+		this.fireEvent('delSContract', kontx);
     },
 	
 	hdlGridRowEdit: function(rec, e)	{

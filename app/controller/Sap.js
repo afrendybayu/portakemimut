@@ -834,11 +834,14 @@ Ext.define('rcm.controller.Sap', {
 	},
 	
 	delSKontrak: function(d)	{
+		//alert ('delete contrak');
+		
 		var me = this, rec = d.data,
 		doh = Ext.create('rcm.model.SrKontrak', rec );
+				
 		Ext.MessageBox.show({
 			title : 'Hapus Kontrak',
-			msg   : 'Yakin Data '+ rec.ket +' Akan di Hapus??',
+			msg   : 'Yakin No Kontrak '+ rec.nokont +' Akan di Hapus??',
 			buttons: Ext.MessageBox.OKCANCEL,
 			icon  : Ext.MessageBox.WARNING,
 			fn	: function (oks){
@@ -860,7 +863,7 @@ Ext.define('rcm.controller.Sap', {
 
 		Ext.MessageBox.show({
 			title : 'Ubah Kontrak',
-			msg   : 'Yakin Data '+ d.ket +' Akan di Ubah??',
+			msg   : 'Yakin No Kontrak '+ d.nokont +' Akan di Ubah??',
 			buttons: Ext.MessageBox.OKCANCEL,
 			icon  : Ext.MessageBox.WARNING,
 			fn	: function (oks){

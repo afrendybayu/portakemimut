@@ -143,10 +143,12 @@ class Contract extends CI_Model {
 		return  $data->id;
 	}
 	
-	function usKontrak($data)	{
-		$this->db->set($data);
-		$this->db->where('id', $data->id);
-		return $this->db->update('kontrak');
+	function usKontrak($data,$id)	{
+		//$this->db->set($data);
+		$this->db->where('id', $id);
+		$query = $this->db->update('kontrak',$data);		
+		//echo $this->db->last_query();
+		return $query; 
 	}
 	
 	function get_anggaran_kont($thn){

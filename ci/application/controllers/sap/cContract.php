@@ -68,7 +68,19 @@ class cContract extends CI_Controller {
 			if (!isset($params))	{
 				throw new Exception("Data Tidak ada !!");
 			}
-			$hasil = $this->contract->usKontrak($params);
+			$id = $params->id;
+			$isidata = array(
+				'nokont'=> $params->nokont,
+				'vend'=> $params->vend,
+				'awal'=> $params->awal,
+				'akhir'=> $params->akhir,
+				'ket'=> $params->ket,
+				'nilai'=> $params->nilai,
+				
+			);
+			
+			
+			$hasil = $this->contract->usKontrak($isidata,$id);
 
 			$jsonResult = array(
 				'success' => true,
