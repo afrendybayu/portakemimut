@@ -63,7 +63,16 @@ Ext.define('rcm.view.laporan.ContractList', {
 							xtype: 'textfield'
 						}
 				},{
-					header:'Tanggal',minWidth:110,dataIndex : 'tgl'
+					header:'Tanggal Awal',minWidth:110,dataIndex : 'tgl'
+						,renderer : Ext.util.Format.dateRenderer('j M Y')
+						,editor: {
+							allowBlank: false,
+							submitFormat: 'Y-m-d',
+							format: 'j M Y',
+							xtype: 'datefield'
+						}
+				},{
+					header:'Tanggal Akhir',minWidth:110,dataIndex : 'tgl'
 						,renderer : Ext.util.Format.dateRenderer('j M Y')
 						,editor: {
 							allowBlank: false,
@@ -89,6 +98,7 @@ Ext.define('rcm.view.laporan.ContractList', {
 						
 					}
 					//*/
+				/*
 				},{
 					header:'Tipe', minWidth:200, dataIndex: 'cat', filter: { type: 'string' }
 						,editor: {
@@ -101,12 +111,17 @@ Ext.define('rcm.view.laporan.ContractList', {
 							queryMode 	: 'local'
 						}
 						,renderer: me.renderCH
+				//*/
 				},{
-					header:'Nilai',minWidth:200,dataIndex:'nilai',renderer:'usMoney', filter: { type: 'string' }
+					header:'Anggaran',minWidth:200,dataIndex:'nilai',renderer:'usMoney', filter: { type: 'string' }
 						,editor: {
 							allowBlank: false,
 							xtype: 'textfield'
 						}
+				},{
+					header:'Terpakai',minWidth:200,dataIndex:'used',renderer:'usMoney', filter: { type: 'string' }
+				},{
+					header:'Sisa',minWidth:200,dataIndex:'sisa',renderer:'usMoney', filter: { type: 'string' }
 				},{
 					header : 'Keterangan',dataIndex : 'ket',flex: 1, filter: { type: 'string' }
 						,editor: {
@@ -115,6 +130,18 @@ Ext.define('rcm.view.laporan.ContractList', {
 						}
 				},{
 					header:'ID',dataIndex:'id',width:35, hidden: true
+				},{
+					xtype:'actioncolumn',
+					width:50,
+					//id 			: 'ohdel', 
+					//iconCls: 'hpsEvent',
+					text: 'Cek PO',
+					sortable: false,
+					visible: false,
+					tooltip: 'Hapus',
+					//disabled: true,
+					//hidden : true,
+					handler: Ext.bind(me.OhGridDelete, me)
 				},{
 					xtype		:'actioncolumn',
 					width		:50,
