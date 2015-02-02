@@ -736,7 +736,7 @@ Ext.define('rcm.controller.Sap', {
 		this.getTGridContract().thn = t;
 		//Ext.getCmp('grContL').setTitle("Trend Cost Center "+t);
 		//Ext.getCmp('grContL').setSubTitle("Trend Cost Center "+t);
-		this.getContractStore().load({params:{tgl:t}});
+//		this.getContractStore().load({params:{tgl:t}});
 		this.getContractLineStore().load({params:{tgl:t}});
 		this.getSrKontrakStore().load({params:{tgl:t}});
 	},
@@ -1017,8 +1017,8 @@ Ext.define('rcm.controller.Sap', {
 
 			me.getSapCatHStore().load();
 			me.getSrKontrakStore().load();
-			me.getContractStore().load();
-			me.getContractLineStore().load();
+//			me.getContractStore().load();
+//			me.getContractLineStore().load();
 			me.getSapPMCostStore().load();
 			me.getSapTipeStore().load();
 			me.getSapThnStore().load();
