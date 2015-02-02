@@ -1107,18 +1107,13 @@ Ext.define('rcm.controller.Sap', {
 					me.getPOKontrakModel().setFields(rcm.view.Util.gPOModel(res.field));
 					Ext.suspendLayouts();
 					
-					var cc = rcm.view.Util.GridPO(res.field);
-					//console.log(cc);
-					//rcmSettings.dddd = me.getPOKontrakModel();
-					console.log("contract: ");
-					console.log(res.contract);
-					//me.getPOKontrakStore().loadData(res.contract);
-					//rcmSetting.eqeqeq = me.getPOKontrakStore();
-					//console.log("getPOKontrakStore: ");
-					//me.getGridPO().reconfigure(res.contract,cc);
-					//me.getGridPO().reconfigure(me.getPOKontrakStore().load(),cc);
+					//var cc = rcm.view.Util.GridPO(res.field);
+					var dt = new Ext.data.Store({
+						model: rcm.model.POKontrak,
+						data: res.contract
+					});
+					me.getTGridPO().reconfigure(dt,rcm.view.Util.GridPO(res.field));
 					Ext.resumeLayouts(true);
-					//*/
 				}
 				else {
 					alert("Tidak bisa akses");
