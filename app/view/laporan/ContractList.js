@@ -51,19 +51,19 @@ Ext.define('rcm.view.laporan.ContractList', {
 			items : [{
 					header:'No',xtype:'rownumberer',width:35 
 				},{
-					header : 'No Kontrak',dataIndex : 'noCont',width:120, filter: { type: 'string' }
+					header : 'No Kontrak',dataIndex : 'nokont',width:120, filter: { type: 'string' }
 						,editor: {
 							allowBlank: false,
 							xtype: 'textfield'
 						}
 				},{
-					header : 'Vendor',dataIndex : 'noVend',width:120, filter: { type: 'string' }
+					header : 'Vendor',dataIndex : 'vend',width:120, filter: { type: 'string' }
 						,editor: {
 							allowBlank: false,
 							xtype: 'textfield'
 						}
 				},{
-					header:'Tanggal Awal',minWidth:110,dataIndex : 'tgl'
+					header:'Tanggal Awal',minWidth:110,dataIndex : 'awal'
 						,renderer : Ext.util.Format.dateRenderer('j M Y')
 						,editor: {
 							allowBlank: false,
@@ -72,7 +72,7 @@ Ext.define('rcm.view.laporan.ContractList', {
 							xtype: 'datefield'
 						}
 				},{
-					header:'Tanggal Akhir',minWidth:110,dataIndex : 'tgl'
+					header:'Tanggal Akhir',minWidth:110,dataIndex : 'akhir'
 						,renderer : Ext.util.Format.dateRenderer('j M Y')
 						,editor: {
 							allowBlank: false,
@@ -125,7 +125,7 @@ Ext.define('rcm.view.laporan.ContractList', {
 							xtype: 'textfield'
 						}
 				},{
-					header:'Terpakai',minWidth:200,dataIndex:'used',renderer:'usMoney', filter: { type: 'string' }
+					header:'Terpakai',minWidth:200,dataIndex:'pakai',renderer:'usMoney', filter: { type: 'string' }
 				},{
 					header:'Sisa',minWidth:200,dataIndex:'sisa',renderer:'usMoney', filter: { type: 'string' }
 				
@@ -142,7 +142,7 @@ Ext.define('rcm.view.laporan.ContractList', {
 					tooltip: 'Cek PO',
 					//disabled: true,
 					//hidden : true,
-					handler: Ext.bind(me.OhGridDelete, me)
+					handler: Ext.bind(me.hdlcekPO, me)
 				},{
 					xtype		:'actioncolumn',
 					width		:25,
@@ -153,7 +153,7 @@ Ext.define('rcm.view.laporan.ContractList', {
 					tooltip		: 'Hapus',
 					//disabled: true,
 					//hidden : true,
-					handler		: Ext.bind(me.OhGridDelete, me)
+					handler		: Ext.bind(me.hdGridDelete, me)
 							
 			
 			}]
@@ -167,10 +167,12 @@ Ext.define('rcm.view.laporan.ContractList', {
 	},
 	
 	
-	OhGridDelete: function(gridView, rowIndex, colIndex, column, e) {
-		var isi = gridView.getStore().getAt(rowIndex);
-		//console.log (isi);
-		this.fireEvent('delSContract', isi);
+	hdGridDelete: function(gridView, rowIndex, colIndex, column, e) {
+		alert ('delete kontrakl');
+		
+		var kontx = gridView.getStore().getAt(rowIndex);
+		console.log (kontx);
+		//this.fireEvent('delSContract', isi);
     },
 	
 	hdlGridRowEdit: function(rec, e)	{

@@ -810,11 +810,11 @@ Ext.define('rcm.controller.Sap', {
 		form = me.getTContrxF().getForm(),
 		isiFr = form.getValues();
 		kontrak = new rcm.model.SrKontrak(isiFr);
-		//console.log(kontrak);
+		console.log(isiFr.nilai);
 		
 		Ext.MessageBox.show({
-			title : 'Logout Info',
-			msg   : 'Apakah Anda ingin Keluar ?',
+			title : 'Kontrak Data',
+			msg   : 'No Kontrak '+ isiFr.nokont +' bernilai '+isiFr.nilai+' akan disimpan?',
 			buttons: Ext.MessageBox.OKCANCEL,
 			icon  : Ext.MessageBox.WARNING,
 			fn	: function (blout){
@@ -823,7 +823,7 @@ Ext.define('rcm.controller.Sap', {
 						kontrak.save({
 							success: function(kontrak, operation) {
 								//alert("sukses");
-								//me.getSrKontrakStore().reload();
+								me.getSrKontrakStore().reload();
 							}
 						});
 					form.reset();

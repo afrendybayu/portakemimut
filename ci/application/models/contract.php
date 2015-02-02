@@ -60,8 +60,8 @@ class Contract extends CI_Model {
 	
 	function get_single_kontrak($thn)	{
 		$this->db->select('*');
-		$this->db->where('YEAR(tgl)',$thn);
-		$this->db->order_by('tgl','desc');
+		$this->db->where('YEAR(awal)',$thn);
+		$this->db->order_by('awal','desc');
 		
 		$query = $this->db->get('kontrak');
 		
@@ -148,6 +148,28 @@ class Contract extends CI_Model {
 		$this->db->where('id', $data->id);
 		return $this->db->update('kontrak');
 	}
+	
+	function get_anggaran_kont($thn){
+		//select  k.nokont as kon, k.vend as ven, k.nilai anggaran, sum(c.nilai) as pakai, (k.nilai - sum(c.nilai)) sisa  
+//from kontrak k
+//left join contract c on c.idkontx = k.id
+//group by k.id;
+		
+		$this->db->select('k.id,k.nokont, k.vend, k.awal, k.akhir, k.nilai, k.ket');
+		$this->db->select ('ifnull(sum(c.nilai),"0") pakai',false);
+		$this->db->select ('(k.nilai - ifnull(sum(c.nilai),"0")) sisa',false);
+		$this->db->join('contract c','c.idkontx = k.id','left');
+		$this->db->where('year(k.awal)',$thn);
+		$this->db->group_by('k.id');
+		$query = $this->db->get('kontrak k');
+		
+		//echo $this->db->last_query();
+		
+		return $query->result();
+		
+		
+		
+		}
 }
 
 /* End of file contract.php */

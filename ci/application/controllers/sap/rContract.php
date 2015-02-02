@@ -53,7 +53,8 @@ class rContract extends CI_Controller {
 	public function rsKontrak()	{
 		try {
 			$thn = $this->input->get('tgl')?:date('Y');
-			$hsl = $this->contract->get_single_kontrak($thn);
+			//$hsl = $this->contract->get_single_kontrak($thn);
+			$hsl = $this->contract->get_anggaran_kont($thn);
 			
 			$jsonResult = array(
 				'success' => true,
