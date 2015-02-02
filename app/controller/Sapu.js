@@ -52,7 +52,7 @@ Ext.define('rcm.controller.Sapu', {
 		});
 	},
 	DeleteSapu: function(){
-			alert ('hapus hapus hapusss');
+			//alert ('hapus hapus hapusss');
 			var me = this;
 			var spgrid = this.getTSapu(),
 			datax = spgrid.getSelectionModel().getSelection(),
@@ -109,7 +109,7 @@ Ext.define('rcm.controller.Sapu', {
 			for(var i = 0; i < datanya.length; i++){
 					//console.log(datanya[i].data.id_unit);
 					//console.log(satu + dua);
-				console.log (i);
+				//console.log (i);
 				nyapu = Ext.create(rcm.model.SapuUnit,{id_unit:datanya[i].data.id_unit, flag:datanya[i].data.flag, awal:satu, akhir:dua});
 				//console.log (nyapu);
 				nyapu.save({
