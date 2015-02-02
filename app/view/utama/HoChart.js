@@ -25,7 +25,7 @@ Ext.define('rcm.view.utama.HoChart', {
 		xtype : 'uFThnNo',
 		idThn: 'iThnUtama',
 		idbSr: 'srUtama',
-		dock: 'top',
+		dock: 'top'
 		
 	}],
 	

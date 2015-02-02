@@ -52,7 +52,7 @@ Ext.define('rcm.controller.Sapu', {
 		});
 	},
 	DeleteSapu: function(){
-			alert ('hapus hapus hapusss');
+			//alert ('hapus hapus hapusss');
 			var me = this;
 			var spgrid = this.getTSapu(),
 			datax = spgrid.getSelectionModel().getSelection(),
