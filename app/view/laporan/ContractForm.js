@@ -59,41 +59,41 @@ Ext.define('rcm.view.laporan.ContractForm', {
 				emptyText 	: 'Nilai Kontrak',
 				editable	: false,
 				allowBlank	: false,
-				width		: 200, 	
+				width		: 100, 	
 				name		: 'nilai',
 				displayField: 'nilai',
 				valueField 	: 'nilai',
 				queryMode 	: 'local'
 			},{
-				//xtype		:'component',
-				////emptyText 	: 'Terpakai',
-				////editable	: false,
-				////allowBlank	: false,
-				//width		: 400, 	
-				////name		: 'pakai',
-				////displayField: 'pakai',
-				////valueField 	: 'pakai',
-				////queryMode 	: 'local'
-			////},{
-				////xtype		:'textfield',
-				////emptyText 	: 'Sisa',
-				////editable	: false,
-				////allowBlank	: false,
-				////width		: 200, 	
-				////name		: 'sisa',
-				////displayField: 'sisa',
-				////valueField 	: 'sisa',
-				////queryMode 	: 'local'
+				xtype		:'component',
+				emptyText 	: 'Terpakai',
+				editable	: false,
+				//allowBlank	: false,
+				width		: 100, 	
+				//name		: 'pakai',
+				//displayField: 'pakai',
+				//valueField 	: 'pakai',
+				//queryMode 	: 'local'
+			},{
+				xtype		:'component',
+				emptyText 	: 'Sisa',
+				editable	: false,
+				//allowBlank	: false,
+				width		: 100, 	
+				//name		: 'sisa',
+				//displayField: 'sisa',
+				//valueField 	: 'sisa',
+				//queryMode 	: 'local'
 			
 			
-			//},{
+			},{
 				xtype:'button',
 				//itemId: 'ConMonSave',
 				itemId: 'ContraxSave',
 				iconCls: 'add',
-				text: 'Simpan',
-				width : 450,
-				tooltip: 'Save',
+				text: 'Save',
+				width : 50,
+				tooltip: 'Simpan Kontrak Baru',
 				//disabled : true,
 				formBind: true
             }

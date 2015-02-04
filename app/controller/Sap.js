@@ -278,7 +278,8 @@ Ext.define('rcm.controller.Sap', {
 			},
 			'iContx': {
 				delSContract: me.delSKontrak,
-				updSContract: me.updSKontrak
+				updSContract: me.updSKontrak,
+				detPO: me.getDetPO
 			}
 			
 		});
@@ -862,6 +863,11 @@ Ext.define('rcm.controller.Sap', {
 		});
 	},
 	
+	getDetPO: function(d)	{
+		//console.log(d);
+		this.setPOKontrak(d);
+	},
+	
 	updSKontrak: function(d)	{
 		var me = this,
 		doh = Ext.create('rcm.model.SrKontrak', d );
@@ -1170,7 +1176,7 @@ Ext.define('rcm.controller.Sap', {
 			}
 		});
 		
-		me.setPOKontrak(10);
+		//me.setPOKontrak(10);
 	},
 	
 	setEnviGrKontx: function()	{

@@ -82,7 +82,7 @@ class Contract extends CI_Model {
 	
 	function get_po_field($id)	{
 		$sql = "SELECT CONCAT('k',tahun,LPAD(bulan,2,0)) AS f 
-					,CONCAT(LEFT(MONTHNAME(STR_TO_DATE(bulan, '%m')),3),' ',MID(tahun,3,2) ) AS j
+					,CONCAT(LEFT(MONTHNAME(STR_TO_DATE(bulan, '%m')),3),' ',tahun ) AS j
 				FROM contract c WHERE c.idkontx =$id";
 		//echo "sql: $sql";
 		$query = $this->db->query($sql);

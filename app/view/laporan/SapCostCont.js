@@ -25,6 +25,7 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 	initComponent: function() {
 		var me=this;
 		me.items = [{
+		/*
 			id: 'idGridKontrak',
 			xtype: 'tGridContract',
 			dstore: 'SapPMCost',
@@ -35,9 +36,11 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 			tot: true,
 			split: true
 		},{
+		//*/
 			xtype: 'tGridPO',
 			region: 'north',
-			height: 50
+			id: 'idGridKontrak',
+			height: 80
 		},{
 			
 		/*
@@ -57,12 +60,12 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 		},{
 			//id: 'grContLx',
 			title: 'Input Kontrak',
-			region: 'south',
-			//flex: 1,
-			minWidth: 200,
+			region: 'center',
+			flex: 1,
+			//minWidth: 200,
 			//collapsed: true,
-			collapsible: true,
-			split: true,
+			//collapsible: true,
+			//split: true,
 			xtype: 'iContx'
 			//xtype: 'tContractL'
 		//*/
