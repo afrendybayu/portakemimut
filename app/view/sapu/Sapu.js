@@ -23,8 +23,10 @@ Ext.define('rcm.view.sapu.Sapu', {
     
     initComponent: function() {
 		var me=this;
-		var seltipe = 'checkboxmodel';
+		var seltipe = 'checkboxmodel', selmode = 'MULTI';
+		
 		me.selType = seltipe;
+		me.mode	= selmode;
 		me.columns = {
 				items: [
 					{text: "Lokasi", flex:1, dataIndex: 'lokasi'},

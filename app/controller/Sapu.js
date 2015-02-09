@@ -58,7 +58,7 @@ Ext.define('rcm.controller.Sapu', {
 			datax = spgrid.getSelectionModel().getSelection(),
 			awl = Ext.getCmp('t_awal').value,
 			akh = Ext.getCmp('t_akhir').value;
-			//console.log(datax);
+			console.log(datax);
 			
 			//for(var i = 0, lgt = datax.length; i < lgt; i++){
 				////ndelete = Ext.create(rcm.model.SapuUnit,{id_unit:datax[i].data.id_unit, awal:awl, akhir:akh});
@@ -97,15 +97,18 @@ Ext.define('rcm.controller.Sapu', {
 	SubmitSapu: function(){
 			var me = this;
 			//console.log('nyapu mase');
-			var sapugrid = this.getTSapu(),
+			var sapugrid = me.getTSapu(),
+			//datanya = [{sapugrid.getSelectionModel().getSelection()}];
 			datanya = sapugrid.getSelectionModel().getSelection();
+			
+			
 			var satu = Ext.getCmp('t_awal').value;
 			var dua = Ext.getCmp('t_akhir').value;
 			
-			//console.log(datanya);
+			console.log([datanya]);
 			//console.log(satu + dua);
 			//console.log(datanya[].data.id_unit);
-			
+			/*
 			for(var i = 0; i < datanya.length; i++){
 					//console.log(datanya[i].data.id_unit);
 					//console.log(satu + dua);
@@ -118,12 +121,12 @@ Ext.define('rcm.controller.Sapu', {
 						me.getRunningHourStore().reload();
 					}
 				});
-				
 				//if (i == datanya.length ){
 					//alert ('selesai');
 					//}
 				//else {continue};
 			}
+			//*/
 	},
 	klikUnit : function(cat){
 		//console.log('klik unit ini : '+cat);
