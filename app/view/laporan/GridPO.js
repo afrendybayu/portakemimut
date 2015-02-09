@@ -39,10 +39,12 @@ Ext.define('rcm.view.laporan.GridPO', {
 	}
 	//*
 	,handleCellEdit: function(grid, e) {
-		
-        var rec = e.grid.getStore().getAt(e.rowIdx), tt=e.field;
-        console.log(rec);
-		//this.fireEvent('recordedit',e,e.value,e.field,rec.get('tipe'),this.thn );
+        var rec = e.grid.getStore().getAt(e.rowIdx);
+        var h = {};	
+        h.field = e.field; h.data = parseFloat(e.value); h.idk=rec.get('idk');
+        console.log("handleCellEdit >> field: "+h.field+", nilai: "+h.data+",idk: "+h.idk);
+        console.log(h);
+		this.fireEvent('updPO',h );
     },
     //*/
     hdlCellEna: function(editor,a,eOpts)	{

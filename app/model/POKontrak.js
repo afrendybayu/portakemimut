@@ -10,7 +10,8 @@ Ext.define('rcm.model.POKontrak', {
     proxy: {
 		type: 'ajax',
 		api: {
-			read: 'ci/index.php/sap/rContract/rPOKontrak?id=10'
+			read: 'ci/index.php/sap/rContract/rPOKontrak',
+			
         },
         reader: {
             type: 'json',

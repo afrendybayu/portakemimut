@@ -100,7 +100,8 @@ Ext.define('rcm.view.Util', {
 		gPOModel: function(fld)	{
 			var it=new Array();
 			//it = [ 'no','ket' ];
-			it[0] = 'no';	it[1]='ket';
+			it[0] = 'no';	it[1]='ket';	it[2]='field'; it[3]='data';
+			it.push({ name: 'idk', type: 'int'});
 			for (var i=0; i<fld.length; i++)	{
 				//console.log(fld[i]);
 				it.push({ name: fld[i].f, type: 'float'});
