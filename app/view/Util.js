@@ -97,6 +97,34 @@ Ext.define('rcm.view.Util', {
 			
 		},
 		
+		gPOModel: function(fld)	{
+			var it=new Array();
+			//it = [ 'no','ket' ];
+			it[0] = 'no';	it[1]='ket';	it[2]='field'; it[3]='data';
+			it.push({ name: 'idk', type: 'int'});
+			for (var i=0; i<fld.length; i++)	{
+				//console.log(fld[i]);
+				it.push({ name: fld[i].f, type: 'float'});
+			}
+			return it;
+		},
+		
+		GridPO: function(fld)	{
+			var items=new Array(),
+				grid={};
+			
+			items = [
+				{ header:'No Kontrak', dataIndex: 'no', width:100 },
+				{ header:'Keterangan', dataIndex: 'ket', width:200 }	// ,locked:true
+			];
+			//console.log(fld);
+			for (var i=0; i<fld.length; i++)	{
+				grid = { header:fld[i].j,dataIndex:fld[i].f,width:80,editor:'textfield',renderer:'usMoney' };
+				items.push(grid);
+			}
+			return items;
+		},
+		
 		UxcolOH: function()	{
 			var items=new Array(),
 				col=new Array();

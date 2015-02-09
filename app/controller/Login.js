@@ -449,7 +449,7 @@ Ext.define('rcm.controller.Login', {
 						//Ext.getCmp('conmondel').setDisabled(true);
 						//Ext.getCmp('cmform').setDisabled(true);
 						Ext.getCmp('idGridCM').ngedit = 0;		// ----->
-						Ext.getCmp('idGridKontrak').ngedit = 0;
+//						Ext.getCmp('idGridKontrak').ngedit = 0;
 						
 						
 						me.getContent().showKonfig(false);

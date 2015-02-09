@@ -33,14 +33,13 @@ Ext.define('rcm.view.laporan.ContractList', {
 		me.plugins = [edit];
 		
 		
-		/*
+		//*
 		me.listeners = {
-            'selectionchange': function(view, records) {
-                //grid.down('#removeEmployee').setDisabled(!records.length);
-                //alert("jos <!!");
-                console.log(records);
-            }
-        };
+            'itemclick': function(dv, rec, item, index, e) {
+				//alert(rec.get('id'));
+				this.fireEvent('detPO', rec.get('id'));
+			}
+		}
 		//*/	
 		me.columns = {
 			defaults : {
@@ -116,7 +115,11 @@ Ext.define('rcm.view.laporan.ContractList', {
 						,renderer: me.renderCH
 				//*/
 				},{
+<<<<<<< HEAD
 					header:'Anggaran',width:200,dataIndex:'nilai',align: 'right',renderer:'usMoney', filter: { type: 'string' }
+=======
+					header:'Anggaran',minWidth:100,dataIndex:'nilai',align: 'right',renderer:'usMoney', filter: { type: 'string' }
+>>>>>>> afrendy
 						,editor: {
 							allowBlank: false,
 							xtype: 'textfield'
@@ -170,9 +173,10 @@ Ext.define('rcm.view.laporan.ContractList', {
 		//edit.on('beforeedit', me.GridEditEna, this);
 	},
 	
-	hdlcekPO: function(gridView, rowIndex, colIndex, column, e){
-		alert ('cek po');
-	
+	hdlcekPO: function(grid, rowIndex, colIndex, column, e){
+		//alert ('cek po');
+		//console.log(grid.store.getAt(rowIndex));
+		this.fireEvent('detPO', grid.store.getAt(rowIndex).get('id'));
 	},
 	
 	hdGridDelete: function(gridView, rowIndex, colIndex, column, e) {

@@ -10,6 +10,7 @@ Ext.define('rcm.view.laporan.SapCostCont', {
         ,'rcm.view.laporan.FilterThnNo'
         //,'rcm.view.laporan.SapAcdCont'
         ,'rcm.view.laporan.ContractList'
+        ,'rcm.view.laporan.GridPO'
 	],
 	
 	layout: 'border',
@@ -24,6 +25,7 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 	initComponent: function() {
 		var me=this;
 		me.items = [{
+		/*
 			id: 'idGridKontrak',
 			xtype: 'tGridContract',
 			dstore: 'SapPMCost',
@@ -34,6 +36,12 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 			tot: true,
 			split: true
 		},{
+		//*/
+			xtype: 'tGridPO',
+			region: 'north',
+			id: 'idGridKontrak',
+			height: 80
+		},{
 			
 		/*
 			region: 'south',
@@ -42,7 +50,7 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 			//html: 'ess',
 			flex: 1
 		//*/
-		//*
+		/*
 			id: 'grContL',
 			flex: 2,
 			region: 'south',
@@ -52,12 +60,12 @@ Ext.define('rcm.view.laporan.SapCostCont', {
 		},{
 			//id: 'grContLx',
 			title: 'Input Kontrak',
-			region: 'south',
-			//flex: 1,
-			minWidth: 200,
+			region: 'center',
+			flex: 1,
+			//minWidth: 200,
 			//collapsed: true,
-			collapsible: true,
-			split: true,
+			//collapsible: true,
+			//split: true,
 			xtype: 'iContx'
 			//xtype: 'tContractL'
 		//*/

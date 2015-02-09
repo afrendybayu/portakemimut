@@ -58,6 +58,37 @@ class Contract extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_po_kontrak($id)	{
+		$sql = "call rPOKontrak($id)";
+		//echo "sql: $sql";
+		$hsl = array();
+		if (mysqli_multi_query($this->db->conn_id,$sql))	{
+			do    {
+				// Store first result set
+				if ($result=mysqli_store_result($this->db->conn_id))	{
+					//while ($row=mysqli_fetch_row($result))	{
+					
+					while ($row=mysqli_fetch_assoc($result))	{
+						array_push($hsl, $row);
+						//print_r($row); echo "<br/>";
+					}
+					mysqli_free_result($result);
+				}
+			}
+			while (mysqli_next_result($this->db->conn_id));
+		}
+		//print_r($row); echo "<br/>";
+		return $hsl;	}
+	
+	function get_po_field($id)	{
+		$sql = "SELECT CONCAT('k',tahun,LPAD(bulan,2,0)) AS f 
+					,CONCAT(LEFT(MONTHNAME(STR_TO_DATE(bulan, '%m')),3),' ',tahun ) AS j
+				FROM contract c WHERE c.idkontx =$id";
+		//echo "sql: $sql";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
 	function get_single_kontrak($thn)	{
 		$this->db->select('*');
 		$this->db->where('YEAR(awal)',$thn);

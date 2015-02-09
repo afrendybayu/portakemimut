@@ -546,7 +546,7 @@ class Sap extends CI_Model {
 					WHEN ordertype = 'EP04' THEN '#910000'
 					WHEN ordertype = 'EP05' THEN '#ffa81f' END) AS color 
 				FROM sap
-				WHERE YEAR(planend)=$thn AND pmtype <> ''
+				WHERE YEAR(planend)=$thn AND pmtype <> '' AND pmtype NOT LIKE '%select%'
 				GROUP BY ordertype,pmtype
 				ORDER BY ordertype asc, jml desc";
 		//*/

@@ -99,7 +99,7 @@ Ext.define('rcm.view.laporan.Chart', {
 				dstore: 'SapPMCost',
 				idThn: 'thnPM',
 				idbSr: 'srPM',
-				jdl: 'PM Activity Planned Cost',
+				jdl: 'PM Activity Cost',
 				param: 'PM Cost',
 				yNama: 'Cost ($)',
 				duit: 1
