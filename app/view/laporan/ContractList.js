@@ -115,11 +115,7 @@ Ext.define('rcm.view.laporan.ContractList', {
 						,renderer: me.renderCH
 				//*/
 				},{
-<<<<<<< HEAD
 					header:'Anggaran',width:200,dataIndex:'nilai',align: 'right',renderer:'usMoney', filter: { type: 'string' }
-=======
-					header:'Anggaran',minWidth:100,dataIndex:'nilai',align: 'right',renderer:'usMoney', filter: { type: 'string' }
->>>>>>> afrendy
 						,editor: {
 							allowBlank: false,
 							xtype: 'textfield'
