@@ -31,7 +31,7 @@ Ext.define('rcm.view.laporan.OverHaul', {
 	layout: 'border',
     items: [{
 
-        title: 'OverHaul Schedule',
+        title: 'PM Schedule',
         region: 'south',     
         xtype: 'tOverHaul',
         height : '50%',

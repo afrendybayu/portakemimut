@@ -239,8 +239,12 @@ Ext.define('rcm.view.Util', {
 			
 			tgl.setDate(tgl.getDate() - w + 1);
 			var xbln=tgl.getMonth(); 
+			var tgg=new Date(), tgg1 = tgg.getDate();
+			//console.log(tgg1);
+			//console.log(tgl.getDate());
+			//console.log(tgl.getDate() + w -1);
 			//console.log("xbln "+xbln+" "+strbln[xbln]);
-			var grid={}; var j=0;
+			var grid={}; var j=0; 
 			for(var i=w; i>=0; i--)	{
 				if (((tgl.getDate()==1)&&(i!=w)) || (i==0))	{
 					blnthn.push({ header:(strbln[xbln]+" "+(tgl.getFullYear())), columns: column });
@@ -250,9 +254,11 @@ Ext.define('rcm.view.Util', {
 					if (i==0) break;
 				}
 				
+				
 				xwkt="k"+(tgl.getFullYear()-2000)+""+this.Upad(tgl.getMonth()+1)+""+this.Upad(tgl.getDate());
+				ttll = this.Upad(tgl.getDate());
 				//grid={header:tgl.getDate(),dataIndex:xwkt,width:50,editor:'textfield', tdCls: 'x-change-cell'};
-				grid={header:tgl.getDate(),dataIndex:xwkt,width:50,editor:'textfield',tdCls: 'x-change-cell'
+				grid={header:tgl.getDate(),dataIndex:xwkt,width:50,editor: ttll >= tgg1? '':'textfield',tdCls: 'x-change-cell'
 					//*
 					,renderer: function(value,meta)	{
 						//if(value.localeCompare("24:00")==0) {

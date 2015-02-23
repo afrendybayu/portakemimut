@@ -488,6 +488,7 @@ Ext.define('rcm.controller.ExcelGrid', {
         Ext.apply(Ext.form.field.VTypes, {
 			daterange: function(val, field) {
 				var date = field.parseDate(val);
+				//console.log (date);
 
 				if (!date) {
 					return false;

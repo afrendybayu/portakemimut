@@ -144,6 +144,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 						emptyText: 'Pilih Tanggal ... ',
 						margin: '0 5 0 0',
 						vtype: 'daterange',
+						maxValue: Ext.Date.add (new Date(),Ext.Date.DAY,-1),
 						endDateField: 'dateup',
 						maxWidth: 200,
 						allowBlank: false
@@ -185,6 +186,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 						fieldLabel: 'Tanggal',
 						format: 'd-m-Y',
 						emptyText: 'Pilih Tanggal ... ',
+						maxValue: Ext.Date.add (new Date(),Ext.Date.DAY,-1),
 						maxWidth: 200
 						//allowBlank: false
 					},{
@@ -226,7 +228,7 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 						startDateField: 'datedown',
 						endTimeField: 'timeup', // diakses ketika tanggal sama !!!
 						startTimeField: 'timedown',		// diakses untuk cari waktu down !!!
-						
+						maxValue: Ext.Date.add (new Date(),Ext.Date.DAY,-1),
 						//endDateField: 'dateup',
 						fieldLabel: 'Tanggal',
 						format: 'd-m-Y',
@@ -271,7 +273,9 @@ Ext.define('rcm.view.dataentry.IsiTabForm', {
 						fieldLabel: 'Tanggal',
 						format: 'd-m-Y',
 						emptyText: 'Pilih Tanggal ... ',
+						maxValue: Ext.Date.add (new Date(),Ext.Date.DAY,-1),
 						maxWidth: 200
+						
 						//allowBlank: false
 					}, {
 						xtype: 'timefield',

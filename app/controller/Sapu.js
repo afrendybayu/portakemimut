@@ -105,7 +105,7 @@ Ext.define('rcm.controller.Sapu', {
 			var satu = Ext.getCmp('t_awal').value;
 			var dua = Ext.getCmp('t_akhir').value;
 			
-			console.log([datanya]);
+			console.log(datanya);
 			//console.log(satu + dua);
 			//console.log(datanya[].data.id_unit);
 			/*

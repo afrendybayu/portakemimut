@@ -116,7 +116,7 @@ class Runninghour extends CI_Model {
 				LEFT JOIN hirarki hh ON h.parent = hh.id
 				LEFT JOIN hirarki hhh ON hh.parent = hhh.id
 				LEFT JOIN equip eq ON h.id = eq.unit_id
-				WHERE h.flag=$cat
+				WHERE h.flag=$cat and  h.status = 1
 				GROUP BY h.id ORDER BY urut,kode ASC";
 		//echo "sql: $sql<br/><br/><br/>";
 		$query = $this->db->query($sql,array($thn,$bln,$cat));

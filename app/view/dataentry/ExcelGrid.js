@@ -130,6 +130,7 @@ Ext.define('rcm.view.dataentry.ExcelGrid', {
 		rcmSettings.eqx = rec.get('id');
 		rcmSettings.tgl =  "20"+tt.substring(1,3)+"-"+tt.substring(3,5)+"-"+tt.substring(5);
 		//console.log("handleCellEdit ExcelGrid tgl: "+rcmSettings.tgl);
+		//console.log(tt);
         //*/
         this.fireEvent('recordedit', gridView, e);
         

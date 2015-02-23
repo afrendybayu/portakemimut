@@ -26,10 +26,10 @@ class Opart extends CI_Model {
 				WHERE kode NOT IN (
 					SELECT od.kode
 					FROM opartlist ol
-					LEFT JOIN opartdef od ON ol.opart = od.id
+					INNER JOIN opartdef od ON ol.opart = od.id
 					WHERE ol.eqcat = $cat
 				) ORDER BY nama ASC";
-		
+		//echo "sql: $sql";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
