@@ -169,7 +169,7 @@ class Runninghour extends CI_Model {
 				FROM hirarki 
 				LEFT JOIN rh_201311 ON hirarki.id = rh_201311.eq 
 				LEFT JOIN equip ON hirarki.id = equip.unit_id AND equip.kode LIKE (SELECT kode FROM cat_equip WHERE cat_equip.id=$cat) 
-				WHERE hirarki.flag=$cat 
+				WHERE hirarki.flag=$cat and  h.status = 1
 				GROUP BY hirarki.id ORDER BY urut,kode ASC;";
 		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql,array($thn,$cat));
@@ -182,19 +182,33 @@ class Runninghour extends CI_Model {
 				",ROUND((sum(rh_av)*100/(count(id)*24)),2) AS av,ROUND((sum(rh_re)*100/(count(id)*24)),2) AS re ".
 				"FROM rh_201311 WHERE thn=$thn AND bln<=$bln AND cat=$cat GROUP BY eq";
 		//*/
-		$sql =	"SELECT hirarki.id AS id ".
-				",CONCAT(hirarki.kode,'@',(SELECT hhh.kode FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS kode ".
-				",CONCAT(hirarki.nama,', ',equip.nama,' @',(SELECT hhh.nama FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS nama ".
-				",(SELECT ifnull(ROUND((sum(rh_201311.rh_av)*100/(count(rh_201311.id)*24)),2),0) ".
-				"FROM rh_201311 WHERE eq = hirarki.id AND thn=$thn AND bln<=$bln) AS av ".
-				",(SELECT ifnull(ROUND((sum(rh_201311.rh_re)*100/(count(rh_201311.id)*24)),2),0) ".
-				"FROM rh_201311 WHERE eq = hirarki.id AND thn=$thn AND bln<=$bln) AS re ".
-				",(SELECT hhh.urut FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id)) AS urut ".
-				"FROM hirarki ".
-				"LEFT JOIN rh_201311 ON hirarki.id = rh_201311.eq ".
-				"LEFT JOIN equip ON hirarki.id = equip.unit_id AND equip.kode LIKE (SELECT kode FROM cat_equip WHERE cat_equip.id=$cat) ".
-				"WHERE hirarki.flag=$cat ".
-				"GROUP BY hirarki.id ORDER BY urut,kode ASC;";
+		//$sql =	"SELECT hirarki.id AS id ".
+				//",CONCAT(hirarki.kode,'@',(SELECT hhh.kode FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS kode ".
+				//",CONCAT(hirarki.nama,', ',equip.nama,' @',(SELECT hhh.nama FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS nama ".
+				//",(SELECT ifnull(ROUND((sum(rh_201311.rh_av)*100/(count(rh_201311.id)*24)),2),0) ".
+				//"FROM rh_201311 WHERE eq = hirarki.id AND thn=$thn AND bln<=$bln) AS av ".
+				//",(SELECT ifnull(ROUND((sum(rh_201311.rh_re)*100/(count(rh_201311.id)*24)),2),0) ".
+				//"FROM rh_201311 WHERE eq = hirarki.id AND thn=$thn AND bln<=$bln) AS re ".
+				//",(SELECT hhh.urut FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id)) AS urut ".
+				//"FROM hirarki ".
+				//"LEFT JOIN rh_201311 ON hirarki.id = rh_201311.eq ".
+				//"LEFT JOIN equip ON hirarki.id = equip.unit_id AND equip.kode LIKE (SELECT kode FROM cat_equip WHERE cat_equip.id=$cat) ".
+				//"WHERE hirarki.flag=$cat ".
+				//"GROUP BY hirarki.id ORDER BY urut,kode ASC;";
+				
+		$sql =		"SELECT hirarki.id AS id 
+					,CONCAT(hirarki.kode,'@',(SELECT hhh.kode FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS kode 
+					,CONCAT(hirarki.nama,', ',equip.nama,' @',(SELECT hhh.nama FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id))) AS nama 
+					,(SELECT ifnull(ROUND((sum(rh_201311.rh_av)*100/(count(rh_201311.id)*24)),2),0) FROM rh_201311 WHERE eq = hirarki.id AND thn=$thn AND bln<=$bln) AS av 
+					,(SELECT ifnull(ROUND((sum(rh_201311.rh_re)*100/(count(rh_201311.id)*24)),2),0) FROM rh_201311 WHERE eq = hirarki.id AND thn=$thn AND bln<=$bln) AS re 
+					,(SELECT hhh.urut FROM hirarki hhh WHERE hhh.id = (SELECT hh.parent FROM hirarki hh WHERE hirarki.parent = hh.id)) AS urut 
+				FROM hirarki 
+					LEFT JOIN rh_201311 ON hirarki.id = rh_201311.eq 
+					LEFT JOIN equip ON hirarki.id = equip.unit_id AND equip.kode LIKE (SELECT kode FROM cat_equip WHERE cat_equip.id=$cat) 
+				WHERE hirarki.flag=$cat and hirarki.status = 1
+				GROUP BY hirarki.id ORDER BY urut,kode ASC;";
+				
+				
 		//echo "sql: $sql<br/>";
 		$query = $this->db->query($sql,array($thn,$bln,$cat));
 		return $query->result();
