@@ -2,7 +2,7 @@
 Ext.define('rcm.store.Cause', {
     extend: 'Ext.data.Store',
     model: 'rcm.model.Cause',
-    //autoLoad: true,
+    autoLoad: true,
     requires: 'rcm.model.Cause'
     
 });

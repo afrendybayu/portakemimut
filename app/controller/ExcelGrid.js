@@ -42,6 +42,7 @@ Ext.define('rcm.controller.ExcelGrid', {
     models: [
 		'RunningHour'
 		,'Event'
+		,'Cause'
 		//,'LoginSesi'
     ],
     
